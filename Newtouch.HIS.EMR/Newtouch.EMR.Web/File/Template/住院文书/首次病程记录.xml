@@ -13,19 +13,19 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <InnerID>2613</InnerID>
-               <Text>病  历  记  录</Text>
+               <Text>Hồ sơ bệnh án</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0">
                <InnerID>54</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>2614</InnerID>
-               <Text>姓名：	</Text>
+               <Text>Họ tên：	</Text>
             </Element>
             <Element xsi:type="XInputField">
                <InnerID>60</InnerID>
                <ID>555B0059-D165-46B3-9F88-9720672296AF</ID>
-               <ToolTip>请输入姓名</ToolTip>
+               <ToolTip>Vui lòng nhập họ tên</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -36,11 +36,11 @@
                <EndBorderText>]</EndBorderText>
                <BorderElementColor />
                <Name>xm</Name>
-               <BackgroundText>姓名</BackgroundText>
+               <BackgroundText>Họ tên</BackgroundText>
             </Element>
             <Element xsi:type="XString">
                <InnerID>2615</InnerID>
-               <Text>                床号：</Text>
+               <Text>                Số giường：</Text>
             </Element>
             <Element xsi:type="XInputField">
                <InnerID>80</InnerID>
@@ -53,17 +53,17 @@
                <ContentReadonly>False</ContentReadonly>
                <BorderElementColor />
                <Name>BedName</Name>
-               <BackgroundText>床位编码</BackgroundText>
+               <BackgroundText>Mã giường bệnh</BackgroundText>
                <EditorActiveMode>None</EditorActiveMode>
             </Element>
             <Element xsi:type="XString">
                <InnerID>2616</InnerID>
-               <Text>	         住院号：</Text>
+               <Text>	         Số nhập viện：</Text>
             </Element>
             <Element xsi:type="XInputField">
                <InnerID>95</InnerID>
                <ID>6C1F42F9-EB78-43E1-AF32-18795C4E2303</ID>
-               <ToolTip>请输入住院号</ToolTip>
+               <ToolTip>Vui lòng nhập số nhập viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -74,7 +74,7 @@
                <EndBorderText>]</EndBorderText>
                <BorderElementColor />
                <Name>zyh</Name>
-               <BackgroundText>住院号</BackgroundText>
+               <BackgroundText>Số nhập viện</BackgroundText>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0">
                <InnerID>96</InnerID>
@@ -87,7 +87,7 @@
          <XElements>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>2617</InnerID>
-               <Text>首次病程记录</Text>
+               <Text>Hồ sơ bệnh trình lần đầu</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="4">
                <InnerID>107</InnerID>
@@ -95,7 +95,7 @@
             <Element xsi:type="XInputField">
                <InnerID>109</InnerID>
                <ID>txtDate</ID>
-               <ToolTip>请输入日期</ToolTip>
+               <ToolTip>Vui lòng nhập ngày</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ContentReadonly>False</ContentReadonly>
                <XElements>
@@ -106,7 +106,7 @@
                </XElements>
                <BorderElementColor />
                <Name>日期</Name>
-               <BackgroundText>日期</BackgroundText>
+               <BackgroundText>Ngày</BackgroundText>
                <EditorActiveMode>MouseClick</EditorActiveMode>
                <FieldSettings>
                   <EditStyle>DateTime</EditStyle>
@@ -121,7 +121,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>2619</InnerID>
-               <Text>患者</Text>
+               <Text>Bệnh nhân</Text>
             </Element>
             <Element xsi:type="XInputField">
                <InnerID>131</InnerID>
@@ -134,7 +134,7 @@
                <ContentReadonly>False</ContentReadonly>
                <BorderElementColor />
                <Name>xm</Name>
-               <BackgroundText>姓名</BackgroundText>
+               <BackgroundText>Họ tên</BackgroundText>
                <EditorActiveMode>None</EditorActiveMode>
             </Element>
             <Element xsi:type="XString">
@@ -144,7 +144,7 @@
             <Element xsi:type="XInputField">
                <InnerID>133</InnerID>
                <ID>F8D8D127-729E-4113-9BD4-A0C7918C331D</ID>
-               <ToolTip>请输入性别</ToolTip>
+               <ToolTip>Vui lòng nhập giới tính</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -155,7 +155,7 @@
                <EndBorderText>]</EndBorderText>
                <BorderElementColor />
                <Name>sex</Name>
-               <BackgroundText>性别</BackgroundText>
+               <BackgroundText>Giới tính</BackgroundText>
             </Element>
             <Element xsi:type="XString">
                <InnerID>2621</InnerID>
@@ -164,7 +164,7 @@
             <Element xsi:type="XInputField">
                <InnerID>135</InnerID>
                <ID>294E8883-886E-4F41-B60C-AA5FCA5DC21E</ID>
-               <ToolTip>请输入年龄</ToolTip>
+               <ToolTip>Vui lòng nhập tuổi</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -175,16 +175,16 @@
                <EndBorderText>]</EndBorderText>
                <BorderElementColor />
                <Name>nl</Name>
-               <BackgroundText>年龄</BackgroundText>
+               <BackgroundText>Tuổi</BackgroundText>
             </Element>
             <Element xsi:type="XString">
                <InnerID>2622</InnerID>
-               <Text>。因“咳嗽、咳痰，伴咽痛4天。”</Text>
+               <Text>。Do“Ho、Ho có đờm，Kèm đau họng4ngày。”</Text>
             </Element>
             <Element xsi:type="XInputField">
                <InnerID>152</InnerID>
                <ID>712DBF5F-E853-4459-851B-30C61A6F1AD1</ID>
-               <ToolTip>请输入入院日期</ToolTip>
+               <ToolTip>Vui lòng nhập ngày nhập viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -195,44 +195,44 @@
                <EndBorderText>]</EndBorderText>
                <BorderElementColor />
                <Name>ryrq</Name>
-               <BackgroundText>入院日期</BackgroundText>
+               <BackgroundText>Ngày nhập viện</BackgroundText>
             </Element>
             <Element xsi:type="XString">
                <InnerID>2623</InnerID>
-               <Text>由门诊步行入院。</Text>
+               <Text>Vào viện bằng cách đi bộ từ phòng khám ngoại trú。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="6">
                <InnerID>161</InnerID>
             </Element>
             <Element xsi:type="XString" StyleIndex="7">
                <InnerID>2624</InnerID>
-               <Text>病例特点:</Text>
+               <Text>Đặc điểm ca bệnh:</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>2625</InnerID>
-               <Text>1.患者本人自诉约于4天前开始无明显诱因下出现咳嗽，以晚上咳嗽尤甚，呈阵发性连声咳，偶有咳吐少量白色粘痰，无喉中痰鸣、气喘，无呼吸困难，伴有鼻塞、流涕、咽痒、咽痛，吞咽及咳嗽时咽痛明显，病程开始时伴有发热，体温高达38.5℃ ，无畏寒、寒战，无惊厥、抽搐、昏迷；无声音嘶哑，无紫绀、呼吸困难，无盗汗，无咯血，无心悸、胸闷、胸痛，无恶心、呕吐，无呕血，无腹痛、腹泻，无黄疸，无尿频、尿急、尿痛症状，无偏瘫、肢麻，无抽搐、昏迷症状。病后曾到私人诊所输液及服药治疗，具体不详，无发热，咳嗽、咽痛无好转，为进一步诊治今日来到我院就诊，门诊行血常规、胸片检查后拟诊为“急性支气管炎、急性咽炎”收住院治疗，自发病以来，患者精神、食欲、睡眠欠佳，大小便未见异常，体重无明显变化。2.既往有“肾结石”手术病史，具体不详；有“高血压病”病史，不规律服用降血压药治疗，具体不详；无药物过敏史。3.查体：T37.2℃，P104次/分，R20次/分，BP131/98mmHg，体重54kg，身高140cm；神志清楚，精神一般，急性病容；鼻翼无扇动，口唇不发绀，咽红、充血，两侧扁桃体未见肿大，无脓点及脓苔附着，悬雍垂居中。听诊两肺呼吸音粗，无三凹征，语音传导正常，双侧对称，两肺未闻及干湿性啰音，未闻及哮鸣音，未闻及胸膜摩擦音。心前区无隆起，心尖搏动位于左锁骨中线第5肋间内侧0.5厘米处，无震颤，心界无扩大，心率104次/分,心律齐，各瓣膜听诊区未闻及病理性心脏杂音，无心包摩擦音。腹壁平坦，对称，无静脉曲张及胃肠型、蠕动波。腹部软，全腹无压痛及反跳痛，未触及包块及异常搏动，肝脾肋缘下未触及，双肾均未触及，肝浊音上界在右锁骨中线第5肋间，肝脾区均无叩击痛，墨非氏征阴性，无移动性浊音，肠鸣音正常。双下肢无水肿。四肢肌力、肌张力正常；生理反射存在，病理反射未引出。脑膜刺激征阴性。4.辅助检查:胸片：两下肺纹理增粗、多，请结合临床。 </Text>
+               <Text>1.Bệnh nhân tự kể khoảng4ngày trước bắt đầu ho mà không có nguyên nhân rõ ràng，Ho nhiều hơn vào buổi tối，Ho từng cơn liên tục，Thỉnh thoảng ho khạc ít đờm dính màu trắng，Không có tiếng đờm trong họng、Thở khò khè，Không khó thở，Kèm nghẹt mũi、Chảy nước mũi、Ngứa họng、Đau họng，Đau họng rõ khi nuốt và khi ho，Lúc bắt đầu bệnh có kèm sốt，Thân nhiệt cao nhất38.5℃ ，Không ớn lạnh、Rét run，Không co giật、Co giật、Hôn mê；Không khàn tiếng，Không tím tái、Khó thở，Không đổ mồ hôi trộm，Không ho ra máu，Không hồi hộp、Tức ngực、Đau ngực，Không buồn nôn、Nôn，Không nôn ra máu，Không đau bụng、Tiêu chảy，Không vàng da，Không tiểu nhiều lần、Tiểu gấp、Triệu chứng tiểu buốt，Không liệt nửa người、Tê chi，Không co giật、Triệu chứng hôn mê。Sau khi mắc bệnh từng đến phòng khám tư truyền dịch và uống thuốc điều trị，Không rõ cụ thể，Không sốt，Ho、Đau họng không đỡ，Để chẩn đoán và điều trị thêm, hôm nay bệnh nhân đến khám tại bệnh viện chúng tôi，Khám ngoại trú và làm xét nghiệm máu thường quy、Sau khi chụp X-quang ngực, chẩn đoán dự kiến là“Viêm phế quản cấp、Viêm họng cấp”Nhập viện điều trị，Từ khi phát bệnh，Tinh thần bệnh nhân、Ăn uống、Giấc ngủ kém，Đại tiểu tiện không thấy bất thường，Cân nặng không thay đổi rõ。2.Trước đây có“Sỏi thận”Tiền sử phẫu thuật，Không rõ cụ thể；Có“Bệnh tăng huyết áp”Bệnh sử，Uống thuốc hạ huyết áp không đều，Không rõ cụ thể；Không có tiền sử dị ứng thuốc。3.Khám thực thể：T37.2℃，P104lần/phút，R20lần/phút，BP131/98mmHg，Cân nặng54kg，Chiều cao140cm；Ý thức tỉnh táo，Tinh thần bình thường，Vẻ mặt bệnh cấp tính；Cánh mũi không phập phồng，Môi không tím tái，Họng đỏ、Sung huyết，Hai bên amidan không sưng to，Không có điểm mủ và rêu mủ bám，Lưỡi gà ở giữa。Nghe thấy âm thở hai phổi thô，Không có dấu hiệu ba lõm，Dẫn truyền giọng nói bình thường，Hai bên đối xứng，Hai phổi không nghe thấy ran khô, ran ẩm，Không nghe thấy tiếng rít，Không nghe thấy tiếng cọ màng phổi。Vùng trước tim không nhô lên，Mỏm tim đập tại đường giữa đòn trái, khoang liên sườn thứ5Mặt trong khoang liên sườn0.5cm，Không rung，Bờ tim không mở rộng，Nhịp tim104lần/phút,Nhịp tim đều，Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý，Không có tiếng cọ màng ngoài tim。Thành bụng phẳng，Đối xứng，Không giãn tĩnh mạch và không thấy hình dạ dày-ruột、Sóng nhu động。Bụng mềm，Toàn bụng không đau khi ấn và không đau dội ngược，Không sờ thấy khối và đập bất thường，Không sờ thấy gan lách dưới bờ sườn，Không sờ thấy cả hai thận，Giới hạn trên tiếng đục gan tại đường giữa đòn phải, khoang liên sườn thứ5Khoang liên sườn，Vùng gan lách không đau khi gõ，Dấu hiệu Murphy âm tính，Không có tiếng đục di động，Âm ruột bình thường。Hai chi dưới không phù。Sức cơ tứ chi、Trương lực cơ bình thường；Phản xạ sinh lý còn，Không gợi được phản xạ bệnh lý。Dấu hiệu kích thích màng não âm tính。4.Cận lâm sàng:Phim X-quang ngực：Vân phổi hai bên tăng đậm、nhiều，Đề nghị kết hợp lâm sàng。 </Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="6">
                <InnerID>974</InnerID>
             </Element>
             <Element xsi:type="XString" StyleIndex="7">
                <InnerID>2626</InnerID>
-               <Text>初步诊断:</Text>
+               <Text>Chẩn đoán sơ bộ:</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>2627</InnerID>
-               <Text>1、急性支气管炎 2、急性咽炎 3、原发性高血压</Text>
+               <Text>1、Viêm phế quản cấp 2、Viêm họng cấp 3、Tăng huyết áp nguyên phát</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="6">
                <InnerID>1005</InnerID>
             </Element>
             <Element xsi:type="XString" StyleIndex="7">
                <InnerID>2628</InnerID>
-               <Text>诊断依据:</Text>
+               <Text>Căn cứ chẩn đoán:</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>2629</InnerID>
-               <Text> 1. 患者</Text>
+               <Text> 1. Bệnh nhân</Text>
             </Element>
             <Element xsi:type="XInputField">
                <InnerID>1018</InnerID>
@@ -245,7 +245,7 @@
                <ContentReadonly>False</ContentReadonly>
                <BorderElementColor />
                <Name>xm</Name>
-               <BackgroundText>姓名</BackgroundText>
+               <BackgroundText>Họ tên</BackgroundText>
                <EditorActiveMode>None</EditorActiveMode>
             </Element>
             <Element xsi:type="XString">
@@ -263,7 +263,7 @@
                <ContentReadonly>False</ContentReadonly>
                <BorderElementColor />
                <Name>sex</Name>
-               <BackgroundText>性别</BackgroundText>
+               <BackgroundText>Giới tính</BackgroundText>
                <EditorActiveMode>None</EditorActiveMode>
             </Element>
             <Element xsi:type="XString">
@@ -281,65 +281,65 @@
                <ContentReadonly>False</ContentReadonly>
                <BorderElementColor />
                <Name>nl</Name>
-               <BackgroundText>年龄</BackgroundText>
+               <BackgroundText>Tuổi</BackgroundText>
                <EditorActiveMode>None</EditorActiveMode>
             </Element>
             <Element xsi:type="XString">
                <InnerID>2632</InnerID>
-               <Text>。因“咳嗽、咳痰，伴咽痛4天。”2024-04-27 09:29由门诊步行入院。2.既往有“肾结石”手术病史，具体不详；有“高血压病”病史，不规律服用降血压药治疗，具体不详；无药物过敏史。3.查体：T37.2℃，P104次/分，R20次/分，BP131/98mmHg，体重54kg，身高140cm；神志清楚，精神一般，急性病容；鼻翼无扇动，口唇不发绀，咽红、充血，两侧扁桃体未见肿大，无脓点及脓苔附着，悬雍垂居中。听诊两肺呼吸音粗，无三凹征，语音传导正常，双侧对称，两肺未闻及干湿性啰音，未闻及哮鸣音，未闻及胸膜摩擦音。心前区无隆起，心尖搏动位于左锁骨中线第5肋间内侧0.5厘米处，无震颤，心界无扩大，心率104次/分,心律齐，各瓣膜听诊区未闻及病理性心脏杂音，无心包摩擦音。腹壁平坦，对称，无静脉曲张及胃肠型、蠕动波。腹部软，全腹无压痛及反跳痛，未触及包块及异常搏动，肝脾肋缘下未触及，双肾均未触及，肝浊音上界在右锁骨中线第5肋间，肝脾区均无叩击痛，墨非氏征阴性，无移动性浊音，肠鸣音正常。双下肢无水肿。四肢肌力、肌张力正常；生理反射存在，病理反射未引出。脑膜刺激征阴性。4.辅助检查:胸片：两下肺纹理增粗、多，请结合临床。        </Text>
+               <Text>。Do“Ho、Ho có đờm，Kèm đau họng4ngày。”2024-04-27 09:29Vào viện bằng cách đi bộ từ phòng khám ngoại trú。2.Trước đây có“Sỏi thận”Tiền sử phẫu thuật，Không rõ cụ thể；Có“Bệnh tăng huyết áp”Bệnh sử，Uống thuốc hạ huyết áp không đều，Không rõ cụ thể；Không có tiền sử dị ứng thuốc。3.Khám thực thể：T37.2℃，P104lần/phút，R20lần/phút，BP131/98mmHg，Cân nặng54kg，Chiều cao140cm；Ý thức tỉnh táo，Tinh thần bình thường，Vẻ mặt bệnh cấp tính；Cánh mũi không phập phồng，Môi không tím tái，Họng đỏ、Sung huyết，Hai bên amidan không sưng to，Không có điểm mủ và rêu mủ bám，Lưỡi gà ở giữa。Nghe thấy âm thở hai phổi thô，Không có dấu hiệu ba lõm，Dẫn truyền giọng nói bình thường，Hai bên đối xứng，Hai phổi không nghe thấy ran khô, ran ẩm，Không nghe thấy tiếng rít，Không nghe thấy tiếng cọ màng phổi。Vùng trước tim không nhô lên，Mỏm tim đập tại đường giữa đòn trái, khoang liên sườn thứ5Mặt trong khoang liên sườn0.5cm，Không rung，Bờ tim không mở rộng，Nhịp tim104lần/phút,Nhịp tim đều，Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý，Không có tiếng cọ màng ngoài tim。Thành bụng phẳng，Đối xứng，Không giãn tĩnh mạch và không thấy hình dạ dày-ruột、Sóng nhu động。Bụng mềm，Toàn bụng không đau khi ấn và không đau dội ngược，Không sờ thấy khối và đập bất thường，Không sờ thấy gan lách dưới bờ sườn，Không sờ thấy cả hai thận，Giới hạn trên tiếng đục gan tại đường giữa đòn phải, khoang liên sườn thứ5Khoang liên sườn，Vùng gan lách không đau khi gõ，Dấu hiệu Murphy âm tính，Không có tiếng đục di động，Âm ruột bình thường。Hai chi dưới không phù。Sức cơ tứ chi、Trương lực cơ bình thường；Phản xạ sinh lý còn，Không gợi được phản xạ bệnh lý。Dấu hiệu kích thích màng não âm tính。4.Cận lâm sàng:Phim X-quang ngực：Vân phổi hai bên tăng đậm、nhiều，Đề nghị kết hợp lâm sàng。        </Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="6">
                <InnerID>1544</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>2633</InnerID>
-               <Text>鉴别诊断:1、支气管哮喘：常于幼年发病，一般无慢性咳嗽咳痰病史，发作时双肺可闻及哮鸣音，缓解时基本正常。2、肺结核：有结核中毒症状,如午后低热、盗汗、消瘦等,X线可见肺内结核病变,血沉加快,痰菌检查可找到抗酸杆菌。患者无午后低热、盗汗、体重无明显变化，可根据X线片检查予以排除。3、咽白喉：咽痛较轻，灰白色假膜常超出扁桃体的范围，假膜坚韧不易擦去，强行剥离易出血;颈淋巴结有时肿大呈“牛颈”状;全身表现为精神萎靡不振、低热、面色苍白。实验室检查咽分泌物涂片发现白喉杆菌;血常规检查白细胞一般无变化。</Text>
+               <Text>Chẩn đoán phân biệt:1、Hen phế quản：Thường khởi phát từ nhỏ，Thường không có tiền sử ho mạn tính, ho có đờm，Khi phát cơn, hai phổi nghe thấy tiếng rít，Khi đỡ thì cơ bản bình thường。2、Lao phổi：Có triệu chứng nhiễm độc lao,Như sốt nhẹ buổi chiều、Đổ mồ hôi trộm、Gầy sút, v.v.,XX-quang thấy tổn thương lao trong phổi,Tốc độ lắng máu tăng,Xét nghiệm đờm có thể tìm thấy trực khuẩn kháng cồn toan。Bệnh nhân không sốt nhẹ buổi chiều、Đổ mồ hôi trộm、Cân nặng không thay đổi rõ，Có thể dựa theoXChụp X-quang để loại trừ。3、Bạch hầu họng：Đau họng nhẹ，Màng giả màu trắng xám thường lan ra ngoài phạm vi amidan，Màng giả dai, khó lau sạch，Bóc mạnh dễ chảy máu;Hạch cổ đôi khi sưng to“Cổ bò”dạng;Toàn thân biểu hiện tinh thần mệt mỏi, uể oải、Sốt nhẹ、Sắc mặt nhợt nhạt。Xét nghiệm phết dịch họng phát hiện trực khuẩn bạch hầu;Xét nghiệm máu thường quy: bạch cầu thường không thay đổi。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="8">
                <InnerID>1795</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>2634</InnerID>
-               <Text>  病例分型:A型</Text>
+               <Text>  Phân loại ca bệnh:Aloại</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="8">
                <InnerID>1806</InnerID>
             </Element>
             <Element xsi:type="XString" StyleIndex="7">
                <InnerID>2635</InnerID>
-               <Text>诊疗计划:</Text>
+               <Text>Kế hoạch chẩn đoán và điều trị:</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>2636</InnerID>
-               <Text>1、完善相关检查：如肝功能、肾功能、电解质、心电图、血常规等检查；为初步了解患者心肺情况、腹腔脏器功能及血液传播性疾病，给予完善相关辅助检查，予查血常规、尿常规、粪使常规、心功能、肝功能、肾功能、电解质、C反应蛋白、血脂四项、血糖等排除是否合并感染、心功能、肝、肾、血脂、血糖、电解质等功能异常。患者为呼吸道感染者，予查呼吸道病毒抗体（肺炎支原体及衣原体、腺病毒抗体）排除是否合并病毒、支原体、衣原体感染。患者咽红行ASO检查以了解有无链球菌感染，以协助用药；予行乙型肝炎两对半检查，明确是否合并有传染性疾病，防止交叉感染；予行心电图排除是否合并心脏疾病，予行腹部B超排查腹腔脏器疾病；予查DR检查明确诊治。</Text>
+               <Text>1、Hoàn thiện các xét nghiệm liên quan：Như chức năng gan、Chức năng thận、Điện giải、Điện tâm đồ、Xét nghiệm máu thường quy và các xét nghiệm khác；Để bước đầu nắm tình trạng tim phổi của bệnh nhân、Chức năng tạng ổ bụng và bệnh lây qua đường máu，Cho làm đầy đủ các cận lâm sàng liên quan，Cho xét nghiệm máu thường quy、Xét nghiệm nước tiểu thường quy、Xét nghiệm phân thường quy、Chức năng tim、Chức năng gan、Chức năng thận、Điện giải、CProtein phản ứng、Bốn chỉ số mỡ máu、Đường huyết và các xét nghiệm khác để loại trừ có kèm nhiễm khuẩn không、Chức năng tim、Gan、Thận、Mỡ máu、Đường huyết、Điện giải và các chức năng khác bất thường。Bệnh nhân bị nhiễm khuẩn đường hô hấp，Cho xét nghiệm kháng thể virus đường hô hấp（Mycoplasma và Chlamydia gây viêm phổi、Kháng thể Adenovirus）Loại trừ có kèm nhiễm virus không、Mycoplasma、Nhiễm Chlamydia。Bệnh nhân họng đỏ, cho làmASOXét nghiệm để xem có nhiễm liên cầu khuẩn không，Để hỗ trợ dùng thuốc；Cho làm xét nghiệm hai cặp rưỡi viêm gan B，Xác định có kèm bệnh truyền nhiễm không，Phòng lây nhiễm chéo；Cho làm điện tâm đồ để loại trừ có kèm bệnh tim không，Cho siêu âm bụngSiêu âm BLoại trừ bệnh tạng ổ bụng；Cho làm xét nghiệmDRXét nghiệm để chẩn đoán và điều trị rõ ràng。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="8">
                <InnerID>2117</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>2637</InnerID>
-               <Text>  2、给予头孢曲松钠抗感染、止咳化痰、清热解毒、利咽、降血压、穴位敷贴、补液对症支持治疗；因未能行病原学检查，暂经验性选用头孢曲松钠抗感染，经请示上级医师后同意使用，头孢曲松钠为半合成的第三代头孢菌素，对大多数革兰阳性菌和阴性菌都有强大抗菌活性。辅助治疗：予雾化吸入激素促进炎症吸收及化痰，予穴位敷贴加强化痰、提高机体免疫力、促进炎症吸收等综合治疗；</Text>
+               <Text>  2、Cho Ceftriaxone natri để kháng nhiễm khuẩn、Giảm ho, tiêu đờm、Thanh nhiệt, giải độc、Lợi họng、Hạ huyết áp、Đắp huyệt、Bù dịch, điều trị hỗ trợ theo triệu chứng；Vì chưa làm được xét nghiệm tìm tác nhân gây bệnh，Tạm thời theo kinh nghiệm chọn Ceftriaxone natri để kháng nhiễm khuẩn，Sau khi xin ý kiến bác sĩ cấp trên và được đồng ý sử dụng，Ceftriaxone natri là cephalosporin thế hệ ba bán tổng hợp，Có hoạt tính kháng khuẩn mạnh với đa số vi khuẩn Gram dương và Gram âm。Điều trị hỗ trợ：Cho khí dung hormone để thúc đẩy hấp thu viêm và tiêu đờm，Cho đắp huyệt để tăng cường tiêu đờm、Nâng cao sức đề kháng của cơ thể、Thúc đẩy hấp thu viêm và điều trị tổng hợp；</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="8">
                <InnerID>2295</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>2638</InnerID>
-               <Text>  3、请上级医师查房指导治疗；视病情调整用药；为促进康复，同时请中医科中医师会诊，根据辨证论治原则，给予协助中医治疗；住院期间可能发生药物过敏、毒副作用、输液反应等情况。或有病情变化，诱发原有或潜在疾病的发作或加重的可能。  </Text>
+               <Text>  3、Mời bác sĩ cấp trên đi buồng hướng dẫn điều trị；Điều chỉnh thuốc theo diễn biến bệnh；Để thúc đẩy hồi phục，Đồng thời mời bác sĩ y học cổ truyền hội chẩn，Theo nguyên tắc biện chứng luận trị，Hỗ trợ điều trị bằng y học cổ truyền；Trong thời gian nằm viện có thể xảy ra dị ứng thuốc、Tác dụng độc hại、Phản ứng truyền dịch và các tình huống khác。Hoặc có diễn biến bệnh，Có thể gây khởi phát bệnh đã có hoặc bệnh tiềm ẩn, hoặc làm bệnh nặng thêm。  </Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="8">
                <InnerID>2411</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>2639</InnerID>
-               <Text>    4、告知患者按时接种新冠肺炎疫苗，告知做好个人健康监测和防护；</Text>
+               <Text>    4、Dặn bệnh nhân tiêm vắc-xin COVID-19 đúng lịch，Dặn dò theo dõi sức khỏe cá nhân và phòng hộ；</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>2448</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>2640</InnerID>
-               <Text>  5、调护：慎起居，防外感，劳逸结合，低盐低脂饮食，监测血压，多进食新鲜蔬菜及水果，多饮水。</Text>
+               <Text>  5、Chăm sóc điều dưỡng：Cẩn thận trong sinh hoạt，Phòng cảm mạo，Kết hợp lao động và nghỉ ngơi，Ăn nhạt, ít mỡ，Theo dõi huyết áp，Ăn nhiều rau tươi và trái cây，Uống nhiều nước。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="8">
                <InnerID>2497</InnerID>
@@ -353,7 +353,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="9">
                <InnerID>2642</InnerID>
-               <Text>                                 医师职称：执业医师 医师签名：  </Text>
+               <Text>                                 Chức danh bác sĩ：Bác sĩ hành nghề Bác sĩ ký tên：  </Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="10">
                <InnerID>2573</InnerID>
@@ -373,7 +373,7 @@
                <Width>400</Width>
                <AutoHeight>true</AutoHeight>
                <Height>62.73437</Height>
-               <FormatString>第[%PageIndex%]页 共[%NumOfPages%]页</FormatString>
+               <FormatString>Trang [%PageIndex%] trên tổng số [%NumOfPages%] trang</FormatString>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0">
                <InnerID>99</InnerID>
@@ -461,21 +461,21 @@
       <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
       <NumOfPage>2</NumOfPage>
    </Info>
-   <BodyText>首次病程记录
+   <BodyText>Hồ sơ bệnh trình lần đầu
 2015-01-09 09:39 
-患者，[]，[]。因“咳嗽、咳痰，伴咽痛4天。”[]由门诊步行入院。
-病例特点:1.患者本人自诉约于4天前开始无明显诱因下出现咳嗽，以晚上咳嗽尤甚，呈阵发性连声咳，偶有咳吐少量白色粘痰，无喉中痰鸣、气喘，无呼吸困难，伴有鼻塞、流涕、咽痒、咽痛，吞咽及咳嗽时咽痛明显，病程开始时伴有发热，体温高达38.5℃ ，无畏寒、寒战，无惊厥、抽搐、昏迷；无声音嘶哑，无紫绀、呼吸困难，无盗汗，无咯血，无心悸、胸闷、胸痛，无恶心、呕吐，无呕血，无腹痛、腹泻，无黄疸，无尿频、尿急、尿痛症状，无偏瘫、肢麻，无抽搐、昏迷症状。病后曾到私人诊所输液及服药治疗，具体不详，无发热，咳嗽、咽痛无好转，为进一步诊治今日来到我院就诊，门诊行血常规、胸片检查后拟诊为“急性支气管炎、急性咽炎”收住院治疗，自发病以来，患者精神、食欲、睡眠欠佳，大小便未见异常，体重无明显变化。2.既往有“肾结石”手术病史，具体不详；有“高血压病”病史，不规律服用降血压药治疗，具体不详；无药物过敏史。3.查体：T37.2℃，P104次/分，R20次/分，BP131/98mmHg，体重54kg，身高140cm；神志清楚，精神一般，急性病容；鼻翼无扇动，口唇不发绀，咽红、充血，两侧扁桃体未见肿大，无脓点及脓苔附着，悬雍垂居中。听诊两肺呼吸音粗，无三凹征，语音传导正常，双侧对称，两肺未闻及干湿性啰音，未闻及哮鸣音，未闻及胸膜摩擦音。心前区无隆起，心尖搏动位于左锁骨中线第5肋间内侧0.5厘米处，无震颤，心界无扩大，心率104次/分,心律齐，各瓣膜听诊区未闻及病理性心脏杂音，无心包摩擦音。腹壁平坦，对称，无静脉曲张及胃肠型、蠕动波。腹部软，全腹无压痛及反跳痛，未触及包块及异常搏动，肝脾肋缘下未触及，双肾均未触及，肝浊音上界在右锁骨中线第5肋间，肝脾区均无叩击痛，墨非氏征阴性，无移动性浊音，肠鸣音正常。双下肢无水肿。四肢肌力、肌张力正常；生理反射存在，病理反射未引出。脑膜刺激征阴性。4.辅助检查:胸片：两下肺纹理增粗、多，请结合临床。 
-初步诊断:1、急性支气管炎 2、急性咽炎 3、原发性高血压
-诊断依据: 1. 患者，，。因“咳嗽、咳痰，伴咽痛4天。”2024-04-27 09:29由门诊步行入院。2.既往有“肾结石”手术病史，具体不详；有“高血压病”病史，不规律服用降血压药治疗，具体不详；无药物过敏史。3.查体：T37.2℃，P104次/分，R20次/分，BP131/98mmHg，体重54kg，身高140cm；神志清楚，精神一般，急性病容；鼻翼无扇动，口唇不发绀，咽红、充血，两侧扁桃体未见肿大，无脓点及脓苔附着，悬雍垂居中。听诊两肺呼吸音粗，无三凹征，语音传导正常，双侧对称，两肺未闻及干湿性啰音，未闻及哮鸣音，未闻及胸膜摩擦音。心前区无隆起，心尖搏动位于左锁骨中线第5肋间内侧0.5厘米处，无震颤，心界无扩大，心率104次/分,心律齐，各瓣膜听诊区未闻及病理性心脏杂音，无心包摩擦音。腹壁平坦，对称，无静脉曲张及胃肠型、蠕动波。腹部软，全腹无压痛及反跳痛，未触及包块及异常搏动，肝脾肋缘下未触及，双肾均未触及，肝浊音上界在右锁骨中线第5肋间，肝脾区均无叩击痛，墨非氏征阴性，无移动性浊音，肠鸣音正常。双下肢无水肿。四肢肌力、肌张力正常；生理反射存在，病理反射未引出。脑膜刺激征阴性。4.辅助检查:胸片：两下肺纹理增粗、多，请结合临床。        
-鉴别诊断:1、支气管哮喘：常于幼年发病，一般无慢性咳嗽咳痰病史，发作时双肺可闻及哮鸣音，缓解时基本正常。2、肺结核：有结核中毒症状,如午后低热、盗汗、消瘦等,X线可见肺内结核病变,血沉加快,痰菌检查可找到抗酸杆菌。患者无午后低热、盗汗、体重无明显变化，可根据X线片检查予以排除。3、咽白喉：咽痛较轻，灰白色假膜常超出扁桃体的范围，假膜坚韧不易擦去，强行剥离易出血;颈淋巴结有时肿大呈“牛颈”状;全身表现为精神萎靡不振、低热、面色苍白。实验室检查咽分泌物涂片发现白喉杆菌;血常规检查白细胞一般无变化。
-  病例分型:A型
-诊疗计划:1、完善相关检查：如肝功能、肾功能、电解质、心电图、血常规等检查；为初步了解患者心肺情况、腹腔脏器功能及血液传播性疾病，给予完善相关辅助检查，予查血常规、尿常规、粪使常规、心功能、肝功能、肾功能、电解质、C反应蛋白、血脂四项、血糖等排除是否合并感染、心功能、肝、肾、血脂、血糖、电解质等功能异常。患者为呼吸道感染者，予查呼吸道病毒抗体（肺炎支原体及衣原体、腺病毒抗体）排除是否合并病毒、支原体、衣原体感染。患者咽红行ASO检查以了解有无链球菌感染，以协助用药；予行乙型肝炎两对半检查，明确是否合并有传染性疾病，防止交叉感染；予行心电图排除是否合并心脏疾病，予行腹部B超排查腹腔脏器疾病；予查DR检查明确诊治。
-  2、给予头孢曲松钠抗感染、止咳化痰、清热解毒、利咽、降血压、穴位敷贴、补液对症支持治疗；因未能行病原学检查，暂经验性选用头孢曲松钠抗感染，经请示上级医师后同意使用，头孢曲松钠为半合成的第三代头孢菌素，对大多数革兰阳性菌和阴性菌都有强大抗菌活性。辅助治疗：予雾化吸入激素促进炎症吸收及化痰，予穴位敷贴加强化痰、提高机体免疫力、促进炎症吸收等综合治疗；
-  3、请上级医师查房指导治疗；视病情调整用药；为促进康复，同时请中医科中医师会诊，根据辨证论治原则，给予协助中医治疗；住院期间可能发生药物过敏、毒副作用、输液反应等情况。或有病情变化，诱发原有或潜在疾病的发作或加重的可能。  
-    4、告知患者按时接种新冠肺炎疫苗，告知做好个人健康监测和防护；
-  5、调护：慎起居，防外感，劳逸结合，低盐低脂饮食，监测血压，多进食新鲜蔬菜及水果，多饮水。
+Bệnh nhân，[]，[]。Do“Ho、Ho có đờm，Kèm đau họng4ngày。”[]Vào viện bằng cách đi bộ từ phòng khám ngoại trú。
+Đặc điểm ca bệnh:1.Bệnh nhân tự kể khoảng4ngày trước bắt đầu ho mà không có nguyên nhân rõ ràng，Ho nhiều hơn vào buổi tối，Ho từng cơn liên tục，Thỉnh thoảng ho khạc ít đờm dính màu trắng，Không có tiếng đờm trong họng、Thở khò khè，Không khó thở，Kèm nghẹt mũi、Chảy nước mũi、Ngứa họng、Đau họng，Đau họng rõ khi nuốt và khi ho，Lúc bắt đầu bệnh có kèm sốt，Thân nhiệt cao nhất38.5℃ ，Không ớn lạnh、Rét run，Không co giật、Co giật、Hôn mê；Không khàn tiếng，Không tím tái、Khó thở，Không đổ mồ hôi trộm，Không ho ra máu，Không hồi hộp、Tức ngực、Đau ngực，Không buồn nôn、Nôn，Không nôn ra máu，Không đau bụng、Tiêu chảy，Không vàng da，Không tiểu nhiều lần、Tiểu gấp、Triệu chứng tiểu buốt，Không liệt nửa người、Tê chi，Không co giật、Triệu chứng hôn mê。Sau khi mắc bệnh từng đến phòng khám tư truyền dịch và uống thuốc điều trị，Không rõ cụ thể，Không sốt，Ho、Đau họng không đỡ，Để chẩn đoán và điều trị thêm, hôm nay bệnh nhân đến khám tại bệnh viện chúng tôi，Khám ngoại trú và làm xét nghiệm máu thường quy、Sau khi chụp X-quang ngực, chẩn đoán dự kiến là“Viêm phế quản cấp、Viêm họng cấp”Nhập viện điều trị，Từ khi phát bệnh，Tinh thần bệnh nhân、Ăn uống、Giấc ngủ kém，Đại tiểu tiện không thấy bất thường，Cân nặng không thay đổi rõ。2.Trước đây có“Sỏi thận”Tiền sử phẫu thuật，Không rõ cụ thể；Có“Bệnh tăng huyết áp”Bệnh sử，Uống thuốc hạ huyết áp không đều，Không rõ cụ thể；Không có tiền sử dị ứng thuốc。3.Khám thực thể：T37.2℃，P104lần/phút，R20lần/phút，BP131/98mmHg，Cân nặng54kg，Chiều cao140cm；Ý thức tỉnh táo，Tinh thần bình thường，Vẻ mặt bệnh cấp tính；Cánh mũi không phập phồng，Môi không tím tái，Họng đỏ、Sung huyết，Hai bên amidan không sưng to，Không có điểm mủ và rêu mủ bám，Lưỡi gà ở giữa。Nghe thấy âm thở hai phổi thô，Không có dấu hiệu ba lõm，Dẫn truyền giọng nói bình thường，Hai bên đối xứng，Hai phổi không nghe thấy ran khô, ran ẩm，Không nghe thấy tiếng rít，Không nghe thấy tiếng cọ màng phổi。Vùng trước tim không nhô lên，Mỏm tim đập tại đường giữa đòn trái, khoang liên sườn thứ5Mặt trong khoang liên sườn0.5cm，Không rung，Bờ tim không mở rộng，Nhịp tim104lần/phút,Nhịp tim đều，Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý，Không có tiếng cọ màng ngoài tim。Thành bụng phẳng，Đối xứng，Không giãn tĩnh mạch và không thấy hình dạ dày-ruột、Sóng nhu động。Bụng mềm，Toàn bụng không đau khi ấn và không đau dội ngược，Không sờ thấy khối và đập bất thường，Không sờ thấy gan lách dưới bờ sườn，Không sờ thấy cả hai thận，Giới hạn trên tiếng đục gan tại đường giữa đòn phải, khoang liên sườn thứ5Khoang liên sườn，Vùng gan lách không đau khi gõ，Dấu hiệu Murphy âm tính，Không có tiếng đục di động，Âm ruột bình thường。Hai chi dưới không phù。Sức cơ tứ chi、Trương lực cơ bình thường；Phản xạ sinh lý còn，Không gợi được phản xạ bệnh lý。Dấu hiệu kích thích màng não âm tính。4.Cận lâm sàng:Phim X-quang ngực：Vân phổi hai bên tăng đậm、nhiều，Đề nghị kết hợp lâm sàng。 
+Chẩn đoán sơ bộ:1、Viêm phế quản cấp 2、Viêm họng cấp 3、Tăng huyết áp nguyên phát
+Căn cứ chẩn đoán: 1. Bệnh nhân，，。Do“Ho、Ho có đờm，Kèm đau họng4ngày。”2024-04-27 09:29Vào viện bằng cách đi bộ từ phòng khám ngoại trú。2.Trước đây có“Sỏi thận”Tiền sử phẫu thuật，Không rõ cụ thể；Có“Bệnh tăng huyết áp”Bệnh sử，Uống thuốc hạ huyết áp không đều，Không rõ cụ thể；Không có tiền sử dị ứng thuốc。3.Khám thực thể：T37.2℃，P104lần/phút，R20lần/phút，BP131/98mmHg，Cân nặng54kg，Chiều cao140cm；Ý thức tỉnh táo，Tinh thần bình thường，Vẻ mặt bệnh cấp tính；Cánh mũi không phập phồng，Môi không tím tái，Họng đỏ、Sung huyết，Hai bên amidan không sưng to，Không có điểm mủ và rêu mủ bám，Lưỡi gà ở giữa。Nghe thấy âm thở hai phổi thô，Không có dấu hiệu ba lõm，Dẫn truyền giọng nói bình thường，Hai bên đối xứng，Hai phổi không nghe thấy ran khô, ran ẩm，Không nghe thấy tiếng rít，Không nghe thấy tiếng cọ màng phổi。Vùng trước tim không nhô lên，Mỏm tim đập tại đường giữa đòn trái, khoang liên sườn thứ5Mặt trong khoang liên sườn0.5cm，Không rung，Bờ tim không mở rộng，Nhịp tim104lần/phút,Nhịp tim đều，Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý，Không có tiếng cọ màng ngoài tim。Thành bụng phẳng，Đối xứng，Không giãn tĩnh mạch và không thấy hình dạ dày-ruột、Sóng nhu động。Bụng mềm，Toàn bụng không đau khi ấn và không đau dội ngược，Không sờ thấy khối và đập bất thường，Không sờ thấy gan lách dưới bờ sườn，Không sờ thấy cả hai thận，Giới hạn trên tiếng đục gan tại đường giữa đòn phải, khoang liên sườn thứ5Khoang liên sườn，Vùng gan lách không đau khi gõ，Dấu hiệu Murphy âm tính，Không có tiếng đục di động，Âm ruột bình thường。Hai chi dưới không phù。Sức cơ tứ chi、Trương lực cơ bình thường；Phản xạ sinh lý còn，Không gợi được phản xạ bệnh lý。Dấu hiệu kích thích màng não âm tính。4.Cận lâm sàng:Phim X-quang ngực：Vân phổi hai bên tăng đậm、nhiều，Đề nghị kết hợp lâm sàng。        
+Chẩn đoán phân biệt:1、Hen phế quản：Thường khởi phát từ nhỏ，Thường không có tiền sử ho mạn tính, ho có đờm，Khi phát cơn, hai phổi nghe thấy tiếng rít，Khi đỡ thì cơ bản bình thường。2、Lao phổi：Có triệu chứng nhiễm độc lao,Như sốt nhẹ buổi chiều、Đổ mồ hôi trộm、Gầy sút, v.v.,XX-quang thấy tổn thương lao trong phổi,Tốc độ lắng máu tăng,Xét nghiệm đờm có thể tìm thấy trực khuẩn kháng cồn toan。Bệnh nhân không sốt nhẹ buổi chiều、Đổ mồ hôi trộm、Cân nặng không thay đổi rõ，Có thể dựa theoXChụp X-quang để loại trừ。3、Bạch hầu họng：Đau họng nhẹ，Màng giả màu trắng xám thường lan ra ngoài phạm vi amidan，Màng giả dai, khó lau sạch，Bóc mạnh dễ chảy máu;Hạch cổ đôi khi sưng to“Cổ bò”dạng;Toàn thân biểu hiện tinh thần mệt mỏi, uể oải、Sốt nhẹ、Sắc mặt nhợt nhạt。Xét nghiệm phết dịch họng phát hiện trực khuẩn bạch hầu;Xét nghiệm máu thường quy: bạch cầu thường không thay đổi。
+  Phân loại ca bệnh:Aloại
+Kế hoạch chẩn đoán và điều trị:1、Hoàn thiện các xét nghiệm liên quan：Như chức năng gan、Chức năng thận、Điện giải、Điện tâm đồ、Xét nghiệm máu thường quy và các xét nghiệm khác；Để bước đầu nắm tình trạng tim phổi của bệnh nhân、Chức năng tạng ổ bụng và bệnh lây qua đường máu，Cho làm đầy đủ các cận lâm sàng liên quan，Cho xét nghiệm máu thường quy、Xét nghiệm nước tiểu thường quy、Xét nghiệm phân thường quy、Chức năng tim、Chức năng gan、Chức năng thận、Điện giải、CProtein phản ứng、Bốn chỉ số mỡ máu、Đường huyết và các xét nghiệm khác để loại trừ có kèm nhiễm khuẩn không、Chức năng tim、Gan、Thận、Mỡ máu、Đường huyết、Điện giải và các chức năng khác bất thường。Bệnh nhân bị nhiễm khuẩn đường hô hấp，Cho xét nghiệm kháng thể virus đường hô hấp（Mycoplasma và Chlamydia gây viêm phổi、Kháng thể Adenovirus）Loại trừ có kèm nhiễm virus không、Mycoplasma、Nhiễm Chlamydia。Bệnh nhân họng đỏ, cho làmASOXét nghiệm để xem có nhiễm liên cầu khuẩn không，Để hỗ trợ dùng thuốc；Cho làm xét nghiệm hai cặp rưỡi viêm gan B，Xác định có kèm bệnh truyền nhiễm không，Phòng lây nhiễm chéo；Cho làm điện tâm đồ để loại trừ có kèm bệnh tim không，Cho siêu âm bụngSiêu âm BLoại trừ bệnh tạng ổ bụng；Cho làm xét nghiệmDRXét nghiệm để chẩn đoán và điều trị rõ ràng。
+  2、Cho Ceftriaxone natri để kháng nhiễm khuẩn、Giảm ho, tiêu đờm、Thanh nhiệt, giải độc、Lợi họng、Hạ huyết áp、Đắp huyệt、Bù dịch, điều trị hỗ trợ theo triệu chứng；Vì chưa làm được xét nghiệm tìm tác nhân gây bệnh，Tạm thời theo kinh nghiệm chọn Ceftriaxone natri để kháng nhiễm khuẩn，Sau khi xin ý kiến bác sĩ cấp trên và được đồng ý sử dụng，Ceftriaxone natri là cephalosporin thế hệ ba bán tổng hợp，Có hoạt tính kháng khuẩn mạnh với đa số vi khuẩn Gram dương và Gram âm。Điều trị hỗ trợ：Cho khí dung hormone để thúc đẩy hấp thu viêm và tiêu đờm，Cho đắp huyệt để tăng cường tiêu đờm、Nâng cao sức đề kháng của cơ thể、Thúc đẩy hấp thu viêm và điều trị tổng hợp；
+  3、Mời bác sĩ cấp trên đi buồng hướng dẫn điều trị；Điều chỉnh thuốc theo diễn biến bệnh；Để thúc đẩy hồi phục，Đồng thời mời bác sĩ y học cổ truyền hội chẩn，Theo nguyên tắc biện chứng luận trị，Hỗ trợ điều trị bằng y học cổ truyền；Trong thời gian nằm viện có thể xảy ra dị ứng thuốc、Tác dụng độc hại、Phản ứng truyền dịch và các tình huống khác。Hoặc có diễn biến bệnh，Có thể gây khởi phát bệnh đã có hoặc bệnh tiềm ẩn, hoặc làm bệnh nặng thêm。  
+    4、Dặn bệnh nhân tiêm vắc-xin COVID-19 đúng lịch，Dặn dò theo dõi sức khỏe cá nhân và phòng hộ；
+  5、Chăm sóc điều dưỡng：Cẩn thận trong sinh hoạt，Phòng cảm mạo，Kết hợp lao động và nghỉ ngơi，Ăn nhạt, ít mỡ，Theo dõi huyết áp，Ăn nhiều rau tươi và trái cây，Uống nhiều nước。
                       
-                                 医师职称：执业医师 医师签名：  
+                                 Chức danh bác sĩ：Bác sĩ hành nghề Bác sĩ ký tên：  
 </BodyText>
    <LocalConfig />
    <PageSettings>

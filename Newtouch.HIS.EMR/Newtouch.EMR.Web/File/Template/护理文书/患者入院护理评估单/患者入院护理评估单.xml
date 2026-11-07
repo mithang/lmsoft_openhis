@@ -66,7 +66,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
                <XElements xsi:nil="true" />
-               <Text>护理评估单</Text>
+               <Text>Phiếu đánh giá điều dưỡng</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="7" />
          </XElements>
@@ -77,12 +77,12 @@
          <XElements>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>姓名:</Text>
+               <Text>Họ tên:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="9">
                <Attributes />
                <ID>field11</ID>
-               <ToolTip>姓名</ToolTip>
+               <ToolTip>Họ tên</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -95,17 +95,17 @@
                <AcceptChildElementTypes2>Text</AcceptChildElementTypes2>
                <BorderElementColor />
                <InnerValue />
-               <BackgroundText>姓名</BackgroundText>
+               <BackgroundText>Họ tên</BackgroundText>
                <FieldSettings />
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>性别:</Text>
+               <Text>Giới tính:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="2">
                <Attributes />
                <ID>F8D8D127-729E-4113-9BD4-A0C7918C331D</ID>
-               <ToolTip>请输入性别</ToolTip>
+               <ToolTip>Vui lòng nhập giới tính</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -118,17 +118,17 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>sex</Name>
-               <BackgroundText>性别</BackgroundText>
+               <BackgroundText>Giới tính</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text> 年龄:</Text>
+               <Text> Tuổi:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="2">
                <Attributes />
                <ID>294E8883-886E-4F41-B60C-AA5FCA5DC21E</ID>
-               <ToolTip>请输入年龄</ToolTip>
+               <ToolTip>Vui lòng nhập tuổi</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -141,17 +141,17 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>nl</Name>
-               <BackgroundText>年龄</BackgroundText>
+               <BackgroundText>Tuổi</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text> 科室:</Text>
+               <Text> Khoa:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="2">
                <Attributes />
                <ID>D725DEFE-CAF7-4ED4-98AD-A870B4A09F74</ID>
-               <ToolTip>请输入科室</ToolTip>
+               <ToolTip>Vui lòng nhập khoa</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -164,17 +164,17 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>DeptName</Name>
-               <BackgroundText>科室</BackgroundText>
+               <BackgroundText>Khoa</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text> 床号:</Text>
+               <Text> Số giường:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="1">
                <Attributes />
                <ID>47C322C6-9098-4D54-9F8A-C726F1BE8CC1</ID>
-               <ToolTip>请输入床号</ToolTip>
+               <ToolTip>Vui lòng nhập số giường</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -187,17 +187,17 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>BedName</Name>
-               <BackgroundText>床号</BackgroundText>
+               <BackgroundText>Số giường</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>病历号:</Text>
+               <Text>Số bệnh án:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="2">
                <Attributes />
                <ID>2F9B99E2-B9CC-43C7-9D16-4901E629942A</ID>
-               <ToolTip>请输入病历号</ToolTip>
+               <ToolTip>Vui lòng nhập số bệnh án</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -210,17 +210,17 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>blh</Name>
-               <BackgroundText>病历号</BackgroundText>
+               <BackgroundText>Số bệnh án</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text> 民族:</Text>
+               <Text> Dân tộc:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="2">
                <Attributes />
                <ID>7154762a-e06e-46a5-83f6-53138cac66e5</ID>
-               <ToolTip>请输入民族</ToolTip>
+               <ToolTip>Vui lòng nhập dân tộc</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -233,18 +233,18 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>mz</Name>
-               <BackgroundText>民族</BackgroundText>
+               <BackgroundText>Dân tộc</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>职业:</Text>
+               <Text>Nghề nghiệp:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="2">
                <Attributes />
                <ID>fa891797-ee53-411d-9834-4f0b49e31dfd</ID>
-               <ToolTip>请输入职业</ToolTip>
+               <ToolTip>Vui lòng nhập nghề nghiệp</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -257,12 +257,12 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>zy</Name>
-               <BackgroundText>职业</BackgroundText>
+               <BackgroundText>Nghề nghiệp</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text> 文化程度:</Text>
+               <Text> Trình độ văn hóa:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <XElements xsi:nil="true" />
@@ -270,12 +270,12 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>入院诊断:</Text>
+               <Text>Chẩn đoán nhập viện:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="1">
                <Attributes />
                <ID>C2F93F70-B187-4748-8F02-4164208C5697</ID>
-               <ToolTip>请输入住院入院诊断</ToolTip>
+               <ToolTip>Vui lòng nhập chẩn đoán nhập viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -288,18 +288,18 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>zdmc</Name>
-               <BackgroundText>住院入院诊断</BackgroundText>
+               <BackgroundText>Chẩn đoán nhập viện</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>入院时间、时间:</Text>
+               <Text>Thời gian nhập viện、Thời gian:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="2">
                <Attributes />
                <ID>712DBF5F-E853-4459-851B-30C61A6F1AD1</ID>
-               <ToolTip>请输入入院日期</ToolTip>
+               <ToolTip>Vui lòng nhập ngày nhập viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -312,19 +312,19 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>ryrq</Name>
-               <BackgroundText>入院日期</BackgroundText>
+               <BackgroundText>Ngày nhập viện</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text> 患者入院方式: </Text>
+               <Text> Cách thức nhập viện của bệnh nhân: </Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>步行</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Đi bộ</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -340,8 +340,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>扶行</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Dìu đi</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -357,8 +357,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>轮椅</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Xe lăn</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -374,8 +374,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>平车</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Xe cáng</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -391,8 +391,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>救护车</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Xe cứu thương</Caption>
                <Width>184.500015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -407,12 +407,12 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>入院主诉:</Text>
+               <Text>Lý do nhập viện chính:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="1">
                <Attributes />
                <ID>55247c72-1105-4ffb-bfdb-4b5843027882</ID>
-               <ToolTip>请输入主诉</ToolTip>
+               <ToolTip>Vui lòng nhập triệu chứng chính</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -425,13 +425,13 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>zs</Name>
-               <BackgroundText>主诉</BackgroundText>
+               <BackgroundText>Triệu chứng chính</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>体温</Text>
+               <Text>Thân nhiệt</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <XElements xsi:nil="true" />
@@ -439,7 +439,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>℃ 脉搏</Text>
+               <Text>℃ Mạch</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <XElements xsi:nil="true" />
@@ -447,7 +447,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>次/分 呼吸</Text>
+               <Text>lần/phút Hô hấp</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <XElements xsi:nil="true" />
@@ -455,7 +455,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>次/分 血压</Text>
+               <Text>lần/phút Huyết áp</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <XElements xsi:nil="true" />
@@ -463,7 +463,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>㎜Kg 体重</Text>
+               <Text>㎜Kg Cân nặng</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <XElements xsi:nil="true" />
@@ -471,7 +471,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>㎏ 身高</Text>
+               <Text>㎏ Chiều cao</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <XElements xsi:nil="true" />
@@ -484,14 +484,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>意 识: </Text>
+               <Text>Ý thức: </Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>清醒</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Tỉnh táo</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -507,8 +507,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>嗜睡</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Buồn ngủ nhiều</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -524,8 +524,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>意识模糊</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Ý thức mơ hồ</Caption>
                <Width>222.000015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -541,8 +541,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>昏睡</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Ngủ lịm</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -558,8 +558,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>昏迷</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Hôn mê</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -574,14 +574,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>面部表情: </Text>
+               <Text>Biểu cảm khuôn mặt: </Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>正常</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Bình thường</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -597,8 +597,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>淡漠</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Thờ ơ</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -614,8 +614,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>痛苦面容</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Vẻ mặt đau đớn</Caption>
                <Width>222.000015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -631,8 +631,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>慢性病面容</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Vẻ mặt bệnh mạn tính</Caption>
                <Width>259.5</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -647,14 +647,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>精神状态: </Text>
+               <Text>Trạng thái tinh thần: </Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>良好</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Tốt</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -670,8 +670,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>抑郁</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Trầm cảm</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -687,8 +687,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>焦虑</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Lo âu</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -704,8 +704,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>幻觉</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Ảo giác</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -721,8 +721,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>妄想</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Hoang tưởng</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -738,8 +738,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>躁动</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Kích động</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -754,14 +754,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>语言沟通: </Text>
+               <Text>Giao tiếp ngôn ngữ: </Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>正常</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Bình thường</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -777,8 +777,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>言语不清</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Nói không rõ</Caption>
                <Width>222.000015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -794,8 +794,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>语言困难</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Khó khăn ngôn ngữ</Caption>
                <Width>222.000015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -811,8 +811,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>失语</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Mất ngôn ngữ</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -828,8 +828,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>普通话</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Tiếng phổ thông</Caption>
                <Width>184.500015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -845,8 +845,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>方言</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Phương ngữ</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -861,14 +861,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>既往史:</Text>
+               <Text>Tiền sử:</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>无</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Không</Caption>
                <Width>109.5</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -884,8 +884,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>有</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Có</Caption>
                <Width>109.5</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -903,14 +903,14 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>药物过敏史: </Text>
+               <Text>Tiền sử dị ứng thuốc: </Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>无</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Không</Caption>
                <Width>109.5</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -926,8 +926,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>有</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Có</Caption>
                <Width>109.5</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -946,14 +946,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>过敏的物质:</Text>
+               <Text>Chất gây dị ứng:</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>无</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Không</Caption>
                <Width>109.5</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -969,8 +969,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>有</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Có</Caption>
                <Width>109.5</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -986,7 +986,7 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
+               <ToolTip>Thông tin gợi ý</ToolTip>
                <Caption>碘前</Caption>
                <Width>147</Width>
                <Height>62</Height>
@@ -1003,8 +1003,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>酒精</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Cồn</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1020,8 +1020,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>海鲜</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Hải sản</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1037,8 +1037,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>橡胶</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Cao su</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1054,8 +1054,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>其他</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Khác</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1070,14 +1070,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>饮酒史:</Text>
+               <Text>Tiền sử uống rượu:</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>无</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Không</Caption>
                <Width>109.5</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1093,8 +1093,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>偶尔</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Thỉnh thoảng</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1110,8 +1110,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>经常</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Thường xuyên</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1129,7 +1129,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>两/日  持续</Text>
+               <Text>2 lần/ngày  Liên tục</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <XElements xsi:nil="true" />
@@ -1137,19 +1137,19 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>年</Text>
+               <Text>năm</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>吸烟史:</Text>
+               <Text>Tiền sử hút thuốc:</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>无</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Không</Caption>
                <Width>109.5</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1165,8 +1165,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>偶尔</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Thỉnh thoảng</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1182,8 +1182,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>经常</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Thường xuyên</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1201,7 +1201,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>支/日  持续</Text>
+               <Text>支/ngày  Liên tục</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <XElements xsi:nil="true" />
@@ -1209,14 +1209,14 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>年    是否生活在吸烟环境中:</Text>
+               <Text>năm    Có sống trong môi trường khói thuốc không:</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>是</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Có</Caption>
                <Width>109.5</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1232,8 +1232,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>否</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Không</Caption>
                <Width>109.5</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1244,14 +1244,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>饮 食:</Text>
+               <Text>Ăn uống:</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>正常</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Bình thường</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1267,8 +1267,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>异常</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Bất thường</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1284,8 +1284,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>流质</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Thức ăn lỏng</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1297,8 +1297,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>半流质</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Thức ăn nửa lỏng</Caption>
                <Width>184.500015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1314,8 +1314,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>禁食</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Nhịn ăn</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1327,8 +1327,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>鼻饲</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Nuôi ăn qua ống thông mũi</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1338,14 +1338,14 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>  嗜好:</Text>
+               <Text>  Sở thích:</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>无</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Không</Caption>
                <Width>109.5</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1361,8 +1361,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>甜食</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Đồ ngọt</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1378,8 +1378,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>咸食</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Đồ mặn</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1395,8 +1395,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>其他</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Khác</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1411,7 +1411,7 @@
             <Element xsi:type="XLineBreak" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>营 养:</Text>
+               <Text>Dinh dưỡng:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="4">
                <XElements xsi:nil="true" />
@@ -1421,8 +1421,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>正常</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Bình thường</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1438,8 +1438,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>中等</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Trung bình</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1455,8 +1455,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>恶液质</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Suy kiệt</Caption>
                <Width>184.500015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1470,14 +1470,14 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="4">
                <XElements xsi:nil="true" />
-               <Text>   口腔粘膜:  </Text>
+               <Text>   Niêm mạc miệng:  </Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>完整</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Nguyên vẹn</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1493,8 +1493,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>破损</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Hư hỏng</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1510,8 +1510,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>活动性出血</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Chảy máu đang hoạt động</Caption>
                <Width>259.5</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1527,8 +1527,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>其他</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Khác</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1543,14 +1543,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>食 欲:</Text>
+               <Text>Ăn uống:</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>正常</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Bình thường</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1566,8 +1566,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>增加</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Tăng</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1583,8 +1583,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>减低</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Giảm</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1600,8 +1600,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>厌食</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Chán ăn</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1617,8 +1617,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>恶心</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Buồn nôn</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1634,8 +1634,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>吞咽困难</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Khó nuốt</Caption>
                <Width>222.000015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1651,8 +1651,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>其他</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Khác</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1667,14 +1667,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>睡 眠:</Text>
+               <Text>Giấc ngủ:</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>正常</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Bình thường</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1690,8 +1690,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>难以入睡</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Khó ngủ</Caption>
                <Width>222.000015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1707,8 +1707,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>多梦易醒</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Hay mơ, dễ tỉnh giấc</Caption>
                <Width>222.000015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1724,8 +1724,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>其他</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Khác</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1735,14 +1735,14 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>  辅助睡眠: </Text>
+               <Text>  Hỗ trợ giấc ngủ: </Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>无</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Không</Caption>
                <Width>109.5</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1758,8 +1758,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>有</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Có</Caption>
                <Width>109.5</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1769,7 +1769,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text> 药物</Text>
+               <Text> Thuốc</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <XElements xsi:nil="true" />
@@ -1778,14 +1778,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>自理程度:</Text>
+               <Text>Mức độ tự chăm sóc:</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>自理</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Tự chăm sóc</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1801,8 +1801,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>需协助</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Cần hỗ trợ</Caption>
                <Width>184.500015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1818,8 +1818,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>进食</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Ăn uống</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1835,8 +1835,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>洗漱</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Vệ sinh cá nhân</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1852,8 +1852,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>排泄</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Bài tiết</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1869,8 +1869,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>完全依赖</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Hoàn toàn phụ thuộc</Caption>
                <Width>222.000015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1886,8 +1886,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>瘫痪</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Liệt</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1903,8 +1903,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>畸形</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Dị dạng</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1920,8 +1920,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>其他</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Khác</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1936,14 +1936,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>活 动:</Text>
+               <Text>Vận động:</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>自如</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Tự nhiên</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1959,8 +1959,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>受限</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Hạn chế</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -1978,14 +1978,14 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text> 体位: </Text>
+               <Text> Tư thế: </Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>自动体位</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Tư thế tự chủ</Caption>
                <Width>222.000015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2001,8 +2001,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>强迫体位</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Tư thế bắt buộc</Caption>
                <Width>222.000015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2018,8 +2018,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>坐位</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Tư thế ngồi</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2035,8 +2035,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>半卧位</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Tư thế nửa nằm</Caption>
                <Width>184.500015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2047,14 +2047,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>皮肤粘膜: 颜色: </Text>
+               <Text>Da và niêm mạc: Màu sắc: </Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>正常</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Bình thường</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2070,8 +2070,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>苍白</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Nhợt nhạt</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2087,8 +2087,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>潮红</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Đỏ bừng</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2104,8 +2104,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>黄染</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Vàng da</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2121,8 +2121,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>发绀</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Tím tái</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2133,14 +2133,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>          弹性: </Text>
+               <Text>          Độ đàn hồi: </Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>正常</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Bình thường</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2156,8 +2156,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>破裂</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Vỡ</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2173,8 +2173,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>红斑</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Ban đỏ</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2190,93 +2190,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>薄如纸</Caption>
-               <Width>184.500015</Width>
-               <Height>62</Height>
-               <GroupName>name001</GroupName>
-               <CheckedValue>值3</CheckedValue>
-               <EventExpressions />
-               <RuntimeVisible>true</RuntimeVisible>
-            </Element>
-            <Element xsi:type="XString" StyleIndex="1">
-               <XElements xsi:nil="true" />
-               <Text> </Text>
-            </Element>
-            <Element xsi:type="XTextCheckBox" StyleIndex="1">
-               <ID>name001-3</ID>
-               <PropertyExpressions />
-               <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>水肿</Caption>
-               <Width>147</Width>
-               <Height>62</Height>
-               <GroupName>name001</GroupName>
-               <CheckedValue>值3</CheckedValue>
-               <EventExpressions />
-               <RuntimeVisible>true</RuntimeVisible>
-            </Element>
-            <Element xsi:type="XString" StyleIndex="1">
-               <XElements xsi:nil="true" />
-               <Text> 部位:</Text>
-            </Element>
-            <Element xsi:type="XString" StyleIndex="2">
-               <XElements xsi:nil="true" />
-               <Text>       </Text>
-            </Element>
-            <Element xsi:type="XString" StyleIndex="1">
-               <XElements xsi:nil="true" />
-               <Text>程度:</Text>
-            </Element>
-            <Element xsi:type="XString" StyleIndex="2">
-               <XElements xsi:nil="true" />
-               <Text>       </Text>
-            </Element>
-            <Element xsi:type="XParagraphFlag" StyleIndex="3" />
-            <Element xsi:type="XString" StyleIndex="1">
-               <XElements xsi:nil="true" />
-               <Text>          完整性: </Text>
-            </Element>
-            <Element xsi:type="XTextCheckBox" StyleIndex="1">
-               <ID>name001-3</ID>
-               <PropertyExpressions />
-               <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>完整</Caption>
-               <Width>147</Width>
-               <Height>62</Height>
-               <GroupName>name001</GroupName>
-               <CheckedValue>值3</CheckedValue>
-               <EventExpressions />
-               <RuntimeVisible>true</RuntimeVisible>
-            </Element>
-            <Element xsi:type="XString" StyleIndex="1">
-               <XElements xsi:nil="true" />
-               <Text> </Text>
-            </Element>
-            <Element xsi:type="XTextCheckBox" StyleIndex="1">
-               <ID>name001-2</ID>
-               <PropertyExpressions />
-               <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>皮疹</Caption>
-               <Width>147</Width>
-               <Height>62</Height>
-               <GroupName>name001</GroupName>
-               <CheckedValue>值2</CheckedValue>
-               <EventExpressions />
-               <RuntimeVisible>true</RuntimeVisible>
-            </Element>
-            <Element xsi:type="XString" StyleIndex="1">
-               <XElements xsi:nil="true" />
-               <Text> </Text>
-            </Element>
-            <Element xsi:type="XTextCheckBox" StyleIndex="1">
-               <ID>name001-3</ID>
-               <PropertyExpressions />
-               <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>出血点</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Mỏng như giấy</Caption>
                <Width>184.500015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2292,8 +2207,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>破损</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Phù</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2303,7 +2218,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text> 部位:</Text>
+               <Text> Vị trí:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <XElements xsi:nil="true" />
@@ -2311,7 +2226,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>_大小</Text>
+               <Text>Mức độ:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <XElements xsi:nil="true" />
@@ -2320,14 +2235,31 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>排 尿:</Text>
+               <Text>          Tính nguyên vẹn: </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="1">
+               <ID>name001-3</ID>
+               <PropertyExpressions />
+               <Name>name001</Name>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Nguyên vẹn</Caption>
+               <Width>147</Width>
+               <Height>62</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+               <EventExpressions />
+               <RuntimeVisible>true</RuntimeVisible>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="1">
+               <XElements xsi:nil="true" />
+               <Text> </Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>正常</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Ban da</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2343,8 +2275,76 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>潴留</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Điểm xuất huyết</Caption>
+               <Width>184.500015</Width>
+               <Height>62</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+               <EventExpressions />
+               <RuntimeVisible>true</RuntimeVisible>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="1">
+               <XElements xsi:nil="true" />
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="1">
+               <ID>name001-3</ID>
+               <PropertyExpressions />
+               <Name>name001</Name>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Hư hỏng</Caption>
+               <Width>147</Width>
+               <Height>62</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+               <EventExpressions />
+               <RuntimeVisible>true</RuntimeVisible>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="1">
+               <XElements xsi:nil="true" />
+               <Text> Vị trí:</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <XElements xsi:nil="true" />
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="1">
+               <XElements xsi:nil="true" />
+               <Text>_Kích thước</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <XElements xsi:nil="true" />
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="3" />
+            <Element xsi:type="XString" StyleIndex="1">
+               <XElements xsi:nil="true" />
+               <Text>Tiểu tiện:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="1">
+               <ID>name001-2</ID>
+               <PropertyExpressions />
+               <Name>name001</Name>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Bình thường</Caption>
+               <Width>147</Width>
+               <Height>62</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+               <EventExpressions />
+               <RuntimeVisible>true</RuntimeVisible>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="1">
+               <XElements xsi:nil="true" />
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="1">
+               <ID>name001-3</ID>
+               <PropertyExpressions />
+               <Name>name001</Name>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Ứ đọng</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2360,8 +2360,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>失禁</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Không tự chủ</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2377,8 +2377,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>尿频</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Tiểu nhiều lần</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2390,8 +2390,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>尿急</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Tiểu gấp</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2407,8 +2407,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>少尿</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Tiểu ít</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2420,8 +2420,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>留置导尿管</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Đặt ống thông tiểu lưu</Caption>
                <Width>259.5</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2437,8 +2437,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>尿管更换日期</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Ngày thay ống thông tiểu</Caption>
                <Width>297.000031</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2453,14 +2453,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>排 便: </Text>
+               <Text>Đại tiện: </Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>正常</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Bình thường</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2476,8 +2476,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>便秘</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Táo bón</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2491,7 +2491,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>天/次、最后一次排便时间</Text>
+               <Text>ngày/lần、Thời gian đại tiện lần cuối</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <XElements xsi:nil="true" />
@@ -2505,8 +2505,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>腹泻</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Tiêu chảy</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2520,14 +2520,14 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>次/天</Text>
+               <Text>lần/ngày</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>失禁</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Không tự chủ</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2538,7 +2538,7 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>造口部位</Text>
+               <Text>Vị trí lỗ thông</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <XElements xsi:nil="true" />
@@ -2547,14 +2547,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>对疾病的认识:</Text>
+               <Text>Nhận thức về bệnh:</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>认识</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Nhận thức</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2570,8 +2570,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>不理解</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Không hiểu</Caption>
                <Width>184.500015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2587,8 +2587,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>不能正视</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Không thể đối diện</Caption>
                <Width>222.000015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2604,8 +2604,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>隐瞒</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Che giấu</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2616,14 +2616,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>照顾者对疾病的认识:</Text>
+               <Text>Nhận thức của người chăm sóc về bệnh:</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>明白</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Hiểu rõ</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2639,8 +2639,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>一知半解</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Hiểu lơ mơ</Caption>
                <Width>222.000015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2656,8 +2656,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>不了解</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Không hiểu</Caption>
                <Width>184.500015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2673,8 +2673,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>基本了解</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Hiểu cơ bản</Caption>
                <Width>222.000015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2685,14 +2685,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>入院宣教:</Text>
+               <Text>Giáo dục sức khỏe lúc nhập viện:</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>已完成</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Đã hoàn thành</Caption>
                <Width>184.500015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2708,8 +2708,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>未完成</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Chưa hoàn thành</Caption>
                <Width>184.500015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2719,14 +2719,14 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>      方法:</Text>
+               <Text>      Phương pháp:</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>讲解</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Giải thích</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2742,8 +2742,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>示范</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Làm mẫu</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2759,8 +2759,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>视频</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Video</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2776,8 +2776,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>免费资料</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Tài liệu miễn phí</Caption>
                <Width>222.000015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2793,8 +2793,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>讨论</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Thảo luận</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2805,14 +2805,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>宣教对象:</Text>
+               <Text>Đối tượng giáo dục:</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>女儿</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Con gái</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2828,8 +2828,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>儿子</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Con trai</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2845,8 +2845,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>父亲</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Cha</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2862,8 +2862,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>母亲</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Mẹ</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2879,8 +2879,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>配偶</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Vợ/chồng</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2892,8 +2892,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>朋友</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Bạn bè</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2909,8 +2909,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>患者</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Bệnh nhân</Caption>
                <Width>147</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2921,14 +2921,14 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>接受能力:</Text>
+               <Text>Khả năng tiếp thu:</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>能接受</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Có thể tiếp thu</Caption>
                <Width>184.500015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2944,8 +2944,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>不能接受</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Không thể tiếp thu</Caption>
                <Width>222.000015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2961,8 +2961,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>语言障碍</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Rối loạn ngôn ngữ</Caption>
                <Width>222.000015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2978,8 +2978,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>文化差异</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Khác biệt văn hóa</Caption>
                <Width>222.000015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -2991,8 +2991,8 @@
                <ID>name001-3</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>教育水平低</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Trình độ học vấn thấp</Caption>
                <Width>259.5</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -3008,8 +3008,8 @@
                <ID>name001-2</ID>
                <PropertyExpressions />
                <Name>name001</Name>
-               <ToolTip>提示信息</ToolTip>
-               <Caption>听力障碍</Caption>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Caption>Rối loạn thính lực</Caption>
                <Width>222.000015</Width>
                <Height>62</Height>
                <GroupName>name001</GroupName>
@@ -3020,12 +3020,12 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>主要护理措施:</Text>
+               <Text>Biện pháp chăm sóc chính:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>                                                      年    月    日  评估人:</Text>
+               <Text>                                                      năm    tháng    ngày  Người đánh giá:</Text>
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
@@ -3052,38 +3052,38 @@
       <Operator>DCSoft.Writer Version:1.2015.12.23</Operator>
       <NumOfPage>2</NumOfPage>
    </Info>
-   <BodyText>姓名:性别:[] 年龄:[] 科室:[] 床号:[]病历号:[] 民族:[]
-职业:[] 文化程度:       入院诊断:[]
-入院时间、时间:[] 患者入院方式: □步行 □扶行 □轮椅 □平车 □救护车 
-入院主诉:[]
-体温    ℃ 脉搏    次/分 呼吸    次/分 血压     ㎜Kg 体重    ㎏ 身高    m
-意 识: □清醒 □嗜睡 □意识模糊 □昏睡 □昏迷  
-面部表情: □正常 □淡漠 □痛苦面容 □慢性病面容 
-精神状态: □良好 □抑郁 □焦虑 □幻觉 □妄想 □躁动 
-语言沟通: □正常 □言语不清 □语言困难 □失语 □普通话 □方言 
-既往史:□无 □有 /       药物过敏史: □无 □有 /       
-过敏的物质:□无 □有/□碘前；□酒精；□海鲜；□橡胶；□其他       
-饮酒史:□无 □偶尔 □经常/       两/日  持续       年
-吸烟史:□无 □偶尔 □经常/       支/日  持续       年    是否生活在吸烟环境中:□是 □否
-饮 食:□正常 □异常/□流质□半流质 □禁食□鼻饲  嗜好:□无 □甜食 □咸食 □其他 
-营 养: □正常 □中等 □恶液质    口腔粘膜:  □完整 □破损 □活动性出血 □其他 
-食 欲:□正常 □增加 □减低 □厌食 □恶心 □吞咽困难 □其他 
-睡 眠:□正常 □难以入睡 □多梦易醒 □其他  辅助睡眠: □无 □有 药物       
-自理程度:□自理 □需协助/□进食 □洗漱 □排泄 □完全依赖/□瘫痪 □畸形 □其他       
-活 动:□自如 □受限/        体位: □自动体位 □强迫体位/□坐位、□半卧位
-皮肤粘膜: 颜色: □正常 □苍白 □潮红 □黄染 □发绀
-          弹性: □正常 □破裂 □红斑 □薄如纸 □水肿 部位:       程度:       
-          完整性: □完整 □皮疹 □出血点 □破损 部位:       _大小       
-排 尿:□正常 □潴留 □失禁 □尿频□尿急 □少尿□留置导尿管 □尿管更换日期       
-排 便: □正常 □便秘       天/次、最后一次排便时间        □腹泻       次/天□失禁
-造口部位             
-对疾病的认识:□认识 □不理解 □不能正视 □隐瞒
-照顾者对疾病的认识:□明白 □一知半解 □不了解 □基本了解
-入院宣教:□已完成 □未完成      方法:□讲解 □示范 □视频 □免费资料 □讨论
-宣教对象:□女儿 □儿子 □父亲 □母亲 □配偶□朋友 □患者
-接受能力:□能接受 □不能接受 □语言障碍 □文化差异□教育水平低 □听力障碍
-主要护理措施:
-                                                      年    月    日  评估人:        </BodyText>
+   <BodyText>Họ tên:Giới tính:[] Tuổi:[] Khoa:[] Số giường:[]Số bệnh án:[] Dân tộc:[]
+Nghề nghiệp:[] Trình độ văn hóa:       Chẩn đoán nhập viện:[]
+Thời gian nhập viện、Thời gian:[] Cách thức nhập viện của bệnh nhân: □Đi bộ □Dìu đi □Xe lăn □Xe cáng □Xe cứu thương 
+Lý do nhập viện chính:[]
+Thân nhiệt    ℃ Mạch (lần)/phút Hô hấp (lần)/phút Huyết áp     ㎜Kg Cân nặng    ㎏ Chiều cao    m
+Ý thức: □Tỉnh táo □Buồn ngủ nhiều □Ý thức mơ hồ □Ngủ lịm □Hôn mê  
+Biểu cảm khuôn mặt: □Bình thường □Thờ ơ □Vẻ mặt đau đớn □Vẻ mặt bệnh mạn tính 
+Trạng thái tinh thần: □Tốt □Trầm cảm □Lo âu □Ảo giác □Hoang tưởng □Kích động 
+Giao tiếp ngôn ngữ: □Bình thường □Nói không rõ □Khó khăn ngôn ngữ □Mất ngôn ngữ □Tiếng phổ thông □Phương ngữ 
+Tiền sử:□Không □Có /       Tiền sử dị ứng thuốc: □Không □Có /       
+Chất gây dị ứng:□Không □Có/□碘前；□Cồn；□Hải sản；□Cao su；□Khác       
+Tiền sử uống rượu:□Không □Thỉnh thoảng □Thường xuyên/       2 lần/ngày  Liên tục       năm
+Tiền sử hút thuốc:□Không □Thỉnh thoảng □Thường xuyên/       支/ngày  Liên tục       năm    Có sống trong môi trường khói thuốc không:□Có □Không
+Ăn uống:□Bình thường □Bất thường/□Thức ăn lỏng□Thức ăn nửa lỏng □Nhịn ăn□Nuôi ăn qua ống thông mũi  Sở thích:□Không □Đồ ngọt □Đồ mặn □Khác 
+Dinh dưỡng: □Bình thường □Trung bình □Suy kiệt    Niêm mạc miệng:  □Nguyên vẹn □Hư hỏng □Chảy máu đang hoạt động □Khác 
+Ăn uống:□Bình thường □Tăng □Giảm □Chán ăn □Buồn nôn □Khó nuốt □Khác 
+Giấc ngủ:□Bình thường □Khó ngủ □Hay mơ, dễ tỉnh giấc □Khác  Hỗ trợ giấc ngủ: □Không □Có Thuốc       
+Mức độ tự chăm sóc:□Tự chăm sóc □Cần hỗ trợ/□Ăn uống □Vệ sinh cá nhân □Bài tiết □Hoàn toàn phụ thuộc/□Liệt □Dị dạng □Khác       
+Vận động:□Tự nhiên □Hạn chế/        Tư thế: □Tư thế tự chủ □Tư thế bắt buộc/□Tư thế ngồi、□Tư thế nửa nằm
+Da và niêm mạc: Màu sắc: □Bình thường □Nhợt nhạt □Đỏ bừng □Vàng da □Tím tái
+          Độ đàn hồi: □Bình thường □Vỡ □Ban đỏ □Mỏng như giấy □Phù Vị trí:       Mức độ:       
+          Tính nguyên vẹn: □Nguyên vẹn □Ban da □Điểm xuất huyết □Hư hỏng Vị trí:       _Kích thước       
+Tiểu tiện:□Bình thường □Ứ đọng □Không tự chủ □Tiểu nhiều lần□Tiểu gấp □Tiểu ít□Đặt ống thông tiểu lưu □Ngày thay ống thông tiểu       
+Đại tiện: □Bình thường □Táo bón       ngày/lần、Thời gian đại tiện lần cuối        □Tiêu chảy       lần/ngày□Không tự chủ
+Vị trí lỗ thông             
+Nhận thức về bệnh:□Nhận thức □Không hiểu □Không thể đối diện □Che giấu
+Nhận thức của người chăm sóc về bệnh:□Hiểu rõ □Hiểu lơ mơ □Không hiểu □Hiểu cơ bản
+Giáo dục sức khỏe lúc nhập viện:□Đã hoàn thành □Chưa hoàn thành      Phương pháp:□Giải thích □Làm mẫu □Video □Tài liệu miễn phí □Thảo luận
+Đối tượng giáo dục:□Con gái □Con trai □Cha □Mẹ □Vợ/chồng□Bạn bè □Bệnh nhân
+Khả năng tiếp thu:□Có thể tiếp thu □Không thể tiếp thu □Rối loạn ngôn ngữ □Khác biệt văn hóa□Trình độ học vấn thấp □Rối loạn thính lực
+Biện pháp chăm sóc chính:
+                                                      năm    tháng    ngày  Người đánh giá:        </BodyText>
    <Comments />
    <LocalConfig />
    <PageSettings>

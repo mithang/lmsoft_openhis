@@ -19,7 +19,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <InnerID>1666</InnerID>
-               <Text>住院告知书</Text>
+               <Text>Giấy thông báo nhập viện</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0">
                <InnerID>38</InnerID>
@@ -35,28 +35,28 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="4">
                <InnerID>1667</InnerID>
-               <Text>亲爱的病员及家属:</Text>
+               <Text>Thân gửi bệnh nhân và gia đình:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>53</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1668</InnerID>
-               <Text>       为了更好地维护医疗秩序与病人的权益，营造舒适的诊疗环境，当您入住病房，请知晓并自觉遵守住院病区的管理制度及规定，配合做好病区管理工作:</Text>
+               <Text>       Để bảo vệ tốt hơn trật tự y tế và quyền lợi của bệnh nhân，Tạo môi trường khám chữa bệnh thoải mái，Khi quý vị vào phòng bệnh，Xin quý vị biết và tự giác tuân thủ nội quy, quy định quản lý của khu bệnh，Phối hợp tốt công tác quản lý khu bệnh:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>129</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1669</InnerID>
-               <Text>       1、凡住院病人必须带好您的居民身份证、医保卡(或社保卡等)、门诊病</Text>
+               <Text>       1、Mọi bệnh nhân nằm viện phải mang theo chứng minh nhân dân、Thẻ bảo hiểm y tế(Hoặc thẻ bảo hiểm xã hội, v.v.)、门诊病</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>171</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1670</InnerID>
-               <Text>历、入院证等资料，以及预交款，办好住院手续后方能入院安排床位。</Text>
+               <Text>历、Giấy nhập viện và các giấy tờ khác，Và tiền tạm ứng，Làm xong thủ tục nhập viện mới được xếp giường。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>204</InnerID>
@@ -67,23 +67,23 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="4">
                <InnerID>1672</InnerID>
-               <Text>办理出入院手续地点:一楼收费</Text>
+               <Text>Địa điểm làm thủ tục nhập/xuất viện:Quầy thu phí tầng 1</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1673</InnerID>
-               <Text>挂号处;办理时间8;00一下午16:00。</Text>
+               <Text>Quầy đăng ký khám;Thời gian làm thủ tục8;00一下午16:00。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>248</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1674</InnerID>
-               <Text>       2、您入住的是</Text>
+               <Text>       2、Quý vị nằm tại</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="5">
                <InnerID>264</InnerID>
                <ID>05851fea-e7a2-4ada-969c-76b7d0403c10</ID>
-               <ToolTip>请输入科室名称</ToolTip>
+               <ToolTip>Vui lòng nhập tên khoa</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -94,16 +94,16 @@
                <EndBorderText>]</EndBorderText>
                <BorderElementColor />
                <Name>DeptName</Name>
-               <BackgroundText>科室名称</BackgroundText>
+               <BackgroundText>Tên khoa</BackgroundText>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1675</InnerID>
-               <Text>科病房， 床号</Text>
+               <Text>Phòng bệnh khoa， Số giường</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="5">
                <InnerID>272</InnerID>
                <ID>4cc046b8-0919-4534-beb3-509e1096e2f4</ID>
-               <ToolTip>请输入床位名称</ToolTip>
+               <ToolTip>Vui lòng nhập tên giường bệnh</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -114,11 +114,11 @@
                <EndBorderText>]</EndBorderText>
                <BorderElementColor />
                <Name>BedName</Name>
-               <BackgroundText>床位名称</BackgroundText>
+               <BackgroundText>Tên giường bệnh</BackgroundText>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1676</InnerID>
-               <Text>， 负责床位医师是责任护士是</Text>
+               <Text>， Bác sĩ phụ trách giường là, điều dưỡng phụ trách là</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="5">
                <InnerID>1677</InnerID>
@@ -129,14 +129,14 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>1678</InnerID>
-               <Text>       3、入院时，病人须签署《住院病人告知委托书》，医护人员应告知签署上述文书的重要性与内容。病人如因病情无法签字时，应由其指定委托人并签字;如住院期间更换委托人的，应及时告知医师更换人姓名并签字。</Text>
+               <Text>       3、Lúc nhập viện，Bệnh nhân phải ký《Giấy ủy quyền thông báo cho bệnh nhân nằm viện》，Nhân viên y tế cần thông báo tầm quan trọng và nội dung của việc ký các văn bản trên。Khi bệnh nhân không thể ký tên do tình trạng bệnh，Người được bệnh nhân chỉ định sẽ ký thay;Nếu trong thời gian nằm viện thay đổi người được ủy quyền，Cần báo ngay cho bác sĩ tên người thay thế và ký tên。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>401</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1679</InnerID>
-               <Text>       4、住院期间病人及家属应知晓下列规定:</Text>
+               <Text>       4、Trong thời gian nằm viện, bệnh nhân và gia đình cần biết các quy định sau:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>429</InnerID>
@@ -147,11 +147,11 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="4">
                <InnerID>1681</InnerID>
-               <Text>就餐时间</Text>
+               <Text>Giờ ăn</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1682</InnerID>
-               <Text>:为早餐:7:00;中餐 11:00;晚餐 17:00;由工务员送到病房。</Text>
+               <Text>:là bữa sáng:7:00;Bữa trưa 11:00;Bữa tối 17:00;Nhân viên phục vụ mang đến phòng bệnh。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>479</InnerID>
@@ -162,11 +162,11 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="4">
                <InnerID>1684</InnerID>
-               <Text>洗浴时间</Text>
+               <Text>Giờ tắm</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1685</InnerID>
-               <Text>:夏季:每天下午1:30~4:00;冬季:每周二次(周二、周五)开放时间相同。以上规定只适合病情稳定的病人，并需有亲属或护工陪同。</Text>
+               <Text>:Mùa hè:Mỗi buổi chiều1:30~4:00;Mùa đông:Mỗi tuần hai lần(Thứ ba、Thứ sáu)Giờ mở cửa như nhau。Các quy định trên chỉ áp dụng cho bệnh nhân có tình trạng ổn định，Và cần có người thân hoặc hộ lý đi cùng。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>557</InnerID>
@@ -177,53 +177,53 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="4">
                <InnerID>1687</InnerID>
-               <Text>探视时间</Text>
+               <Text>Giờ thăm bệnh</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1688</InnerID>
-               <Text>:每天下午:1:30~8:00。病人与家属需保持安静，不得在病房与走廊大声喧哗，不得睡在病床上，服从于病区护士长的管理。</Text>
+               <Text>:Mỗi buổi chiều:1:30~8:00。Bệnh nhân và gia đình cần giữ yên lặng，Không được nói to trong phòng bệnh và hành lang，Không được ngủ trên giường bệnh，Tuân theo sự quản lý của điều dưỡng trưởng khoa。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>630</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1689</InnerID>
-               <Text>       4、为了保证病人住院期间的安全，病人不得随意外出或在院外住宿。如确有特殊情况或要事外出，须得到床位主治医师的批准，并办理请假手续。必须自行落实亲属或其他人员陪同，如擅自单独自行离院，一切后果自负。</Text>
+               <Text>       4、Để bảo đảm an toàn cho bệnh nhân trong thời gian nằm viện，Bệnh nhân không được tự ý ra ngoài hay ngủ ngoài bệnh viện。Nếu thật sự có trường hợp đặc biệt hoặc việc quan trọng cần ra ngoài，Phải được bác sĩ điều trị chính phụ trách giường đồng ý，Và làm thủ tục xin phép。Phải tự bố trí người thân hoặc người khác đi cùng，Nếu tự ý một mình rời viện，Mọi hậu quả tự chịu trách nhiệm。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>737</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1690</InnerID>
-               <Text>       5、病人需积极配合诊疗、护理、检查、健康指导等工作，做相关检查时应有医护人员或护工陪同。未经医务人员的允许，不能随便翻阅、抢夺、涂改、损坏病历等医疗文书。如有问题，请向医师或护士咨询与沟通，我们将满足您的要求。</Text>
+               <Text>       5、Bệnh nhân cần tích cực phối hợp chẩn đoán và điều trị、Chăm sóc、Kiểm tra、Hướng dẫn sức khỏe và các công việc khác，Khi làm các kiểm tra liên quan cần có nhân viên y tế hoặc hộ lý đi cùng。Khi chưa được nhân viên y tế cho phép，Không được tự ý xem、Giành giật、Tẩy xóa、Làm hỏng bệnh án và các văn bản y tế khác。Nếu có vấn đề，Xin hỏi và trao đổi với bác sĩ hoặc điều dưỡng，Chúng tôi sẽ đáp ứng yêu cầu của quý vị。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>851</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1691</InnerID>
-               <Text>       6、住院期间请配合保持病区的整洁，不随意乱放生活日用物品。不要带入贵重物品，手机、钱包等请妥善保管，如遗失，医院概不负责。严禁将易燃易爆物品带入病区;刀具、锐器等物品可交给护理部统一保管，出院后领取。</Text>
+               <Text>       6、Trong thời gian nằm viện, xin phối hợp giữ khu bệnh sạch sẽ，Không vứt bừa đồ dùng sinh hoạt。Không mang đồ quý giá vào，Điện thoại、Ví tiền, v.v. xin giữ gìn cẩn thận，Nếu bị mất，Bệnh viện không chịu trách nhiệm。Nghiêm cấm mang đồ dễ cháy, dễ nổ vào khu bệnh;Dao、Đồ sắc nhọn, v.v. có thể giao cho khoa điều dưỡng giữ chung，Nhận lại sau khi xuất viện。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>960</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1692</InnerID>
-               <Text>       7、病人如需缴纳或查询医药费，请到出入院处，由工作人员为你办理(也可到护士办公室查询)。</Text>
+               <Text>       7、Nếu bệnh nhân cần nộp hoặc tra cứu viện phí，Xin đến quầy nhập/xuất viện，Nhân viên sẽ làm thủ tục cho quý vị(Cũng có thể đến văn phòng điều dưỡng để tra cứu)。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1013</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1693</InnerID>
-               <Text>       8、为了加强医德医风建设与行业自律，医患双方应共同遵守上海市卫生系统行风建设规定。本院是“无红包”医院，严禁医务人员在医疗活动中收受或索要患者“红包”及其他贵重物品，一旦查实，将按上级行风建设有关规定与院规院纪严肃处理。</Text>
+               <Text>       8、Để tăng cường xây dựng y đức, tác phong ngành và tự quản của ngành，Hai bên bác sĩ và bệnh nhân cần cùng tuân thủ quy định xây dựng tác phong ngành của hệ thống y tế thành phố Thượng Hải。Bệnh viện chúng tôi là“Không phong bì”Bệnh viện，Nghiêm cấm nhân viên y tế nhận hoặc đòi hỏi của bệnh nhân trong hoạt động khám chữa bệnh“phong bì”Và các đồ quý giá khác，Một khi xác minh được，Sẽ xử lý nghiêm theo quy định của cấp trên về xây dựng tác phong ngành và nội quy bệnh viện。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1132</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1694</InnerID>
-               <Text>       9、为了维护患者的权益，患者如对医疗服务、医疗质量、行风建设、医务人员工作态度等不满，或发生医疗纠纷，可向进行投诉维护自身权益。</Text>
+               <Text>       9、Để bảo vệ quyền lợi của bệnh nhân，Nếu bệnh nhân không hài lòng về dịch vụ y tế、Chất lượng y tế、Xây dựng tác phong ngành、Thái độ làm việc của nhân viên y tế, v.v.，Hoặc xảy ra tranh chấp y tế，Có thể khiếu nại để bảo vệ quyền lợi của mình。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1205</InnerID>
@@ -234,11 +234,11 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="4">
                <InnerID>1696</InnerID>
-               <Text> 投诉地点</Text>
+               <Text> Địa điểm khiếu nại</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1697</InnerID>
-               <Text>:七楼院办</Text>
+               <Text>:Văn phòng bệnh viện tầng 7</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1223</InnerID>
@@ -249,11 +249,11 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="4">
                <InnerID>1699</InnerID>
-               <Text>投诉方式</Text>
+               <Text>Cách thức khiếu nại</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1700</InnerID>
-               <Text>:可为本人前往，或通过电话、信件、邮箱等方式投诉:</Text>
+               <Text>:Có thể tự đến，Hoặc qua điện thoại、Thư、Khiếu nại qua email và các cách khác:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1261</InnerID>
@@ -264,7 +264,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="4">
                <InnerID>1702</InnerID>
-               <Text>投诉电话</Text>
+               <Text>Số điện thoại khiếu nại</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1703</InnerID>
@@ -279,7 +279,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="4">
                <InnerID>1705</InnerID>
-               <Text>投诉邮箱</Text>
+               <Text>Email khiếu nại</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1706</InnerID>
@@ -290,14 +290,14 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>1707</InnerID>
-               <Text>       我们将谒诚为您服务，祝您早日康复。</Text>
+               <Text>       Chúng tôi sẽ tận tâm phục vụ quý vị，Chúc quý vị sớm bình phục。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1342</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1708</InnerID>
-               <Text>                                             病人或家属签名: </Text>
+               <Text>                                             Bệnh nhân hoặc gia đình ký tên: </Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="5">
                <InnerID>1709</InnerID>
@@ -308,7 +308,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>1710</InnerID>
-               <Text>                                                      年      月      日</Text>
+               <Text>                                                      năm      tháng      ngày</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1481</InnerID>
@@ -331,14 +331,14 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>1712</InnerID>
-               <Text>      医院地址:浦东新区乳山路 235 弄 25 号</Text>
+               <Text>      Địa chỉ bệnh viện:浦东新区乳山路 235 弄 25 号</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1583</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1713</InnerID>
-               <Text>      电话:58205511、58205522</Text>
+               <Text>      Điện thoại:58205511、58205522</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1611</InnerID>
@@ -408,36 +408,35 @@
       <NumOfPage>2</NumOfPage>
    </Info>
    <BodyText>
-亲爱的病员及家属:
-       为了更好地维护医疗秩序与病人的权益，营造舒适的诊疗环境，当您入住病房，请知晓并自觉遵守住院病区的管理制度及规定，配合做好病区管理工作:
-       1、凡住院病人必须带好您的居民身份证、医保卡(或社保卡等)、门诊病
-历、入院证等资料，以及预交款，办好住院手续后方能入院安排床位。
-       办理出入院手续地点:一楼收费挂号处;办理时间8;00一下午16:00。
-       2、您入住的是[]科病房， 床号[]， 负责床位医师是责任护士是        ;
-       3、入院时，病人须签署《住院病人告知委托书》，医护人员应告知签署上述文书的重要性与内容。病人如因病情无法签字时，应由其指定委托人并签字;如住院期间更换委托人的，应及时告知医师更换人姓名并签字。
-       4、住院期间病人及家属应知晓下列规定:
-       就餐时间:为早餐:7:00;中餐 11:00;晚餐 17:00;由工务员送到病房。
-       洗浴时间:夏季:每天下午1:30~4:00;冬季:每周二次(周二、周五)开放时间相同。以上规定只适合病情稳定的病人，并需有亲属或护工陪同。
-       探视时间:每天下午:1:30~8:00。病人与家属需保持安静，不得在病房与走廊大声喧哗，不得睡在病床上，服从于病区护士长的管理。
-       4、为了保证病人住院期间的安全，病人不得随意外出或在院外住宿。如确有特殊情况或要事外出，须得到床位主治医师的批准，并办理请假手续。必须自行落实亲属或其他人员陪同，如擅自单独自行离院，一切后果自负。
-       5、病人需积极配合诊疗、护理、检查、健康指导等工作，做相关检查时应有医护人员或护工陪同。未经医务人员的允许，不能随便翻阅、抢夺、涂改、损坏病历等医疗文书。如有问题，请向医师或护士咨询与沟通，我们将满足您的要求。
-       6、住院期间请配合保持病区的整洁，不随意乱放生活日用物品。不要带入贵重物品，手机、钱包等请妥善保管，如遗失，医院概不负责。严禁将易燃易爆物品带入病区;刀具、锐器等物品可交给护理部统一保管，出院后领取。
-       7、病人如需缴纳或查询医药费，请到出入院处，由工作人员为你办理(也可到护士办公室查询)。
-       8、为了加强医德医风建设与行业自律，医患双方应共同遵守上海市卫生系统行风建设规定。本院是“无红包”医院，严禁医务人员在医疗活动中收受或索要患者“红包”及其他贵重物品，一旦查实，将按上级行风建设有关规定与院规院纪严肃处理。
-       9、为了维护患者的权益，患者如对医疗服务、医疗质量、行风建设、医务人员工作态度等不满，或发生医疗纠纷，可向进行投诉维护自身权益。
-       投诉地点:七楼院办
-       投诉方式:可为本人前往，或通过电话、信件、邮箱等方式投诉:
-       投诉电话:58205511-8168
-       投诉邮箱;mdeent@126.com
-       我们将谒诚为您服务，祝您早日康复。
-                                             病人或家属签名:             
-                                                      年      月      日
+Thân gửi bệnh nhân và gia đình:
+       Để bảo vệ tốt hơn trật tự y tế và quyền lợi của bệnh nhân，Tạo môi trường khám chữa bệnh thoải mái，Khi quý vị vào phòng bệnh，Xin quý vị biết và tự giác tuân thủ nội quy, quy định quản lý của khu bệnh，Phối hợp tốt công tác quản lý khu bệnh:
+       1、Mọi bệnh nhân nằm viện phải mang theo chứng minh nhân dân、Thẻ bảo hiểm y tế(Hoặc thẻ bảo hiểm xã hội, v.v.)、Bệnh án ngoại trú、Giấy nhập viện và các giấy tờ khác，Và tiền tạm ứng，Làm xong thủ tục nhập viện mới được xếp giường。
+       Địa điểm làm thủ tục nhập/xuất viện:Quầy thu phí tầng 1, quầy đăng ký khám;Thời gian làm thủ tục8;00一下午16:00。
+       2、Quý vị nằm tại[]Phòng bệnh khoa， Số giường[]， Bác sĩ phụ trách giường là, điều dưỡng phụ trách là        ;
+       3、Lúc nhập viện，Bệnh nhân phải ký《Giấy ủy quyền thông báo cho bệnh nhân nằm viện》，Nhân viên y tế cần thông báo tầm quan trọng và nội dung của việc ký các văn bản trên。Khi bệnh nhân không thể ký tên do tình trạng bệnh，Người được bệnh nhân chỉ định sẽ ký thay;Nếu trong thời gian nằm viện thay đổi người được ủy quyền，Cần báo ngay cho bác sĩ tên người thay thế và ký tên。
+       4、Trong thời gian nằm viện, bệnh nhân và gia đình cần biết các quy định sau:
+       Giờ ăn:là bữa sáng:7:00;Bữa trưa 11:00;Bữa tối 17:00;Nhân viên phục vụ mang đến phòng bệnh。
+       Giờ tắm:Mùa hè:Mỗi buổi chiều1:30~4:00;Mùa đông:Mỗi tuần hai lần(Thứ ba、Thứ sáu)Giờ mở cửa như nhau。Các quy định trên chỉ áp dụng cho bệnh nhân có tình trạng ổn định，Và cần có người thân hoặc hộ lý đi cùng。
+       Giờ thăm bệnh:Mỗi buổi chiều:1:30~8:00。Bệnh nhân và gia đình cần giữ yên lặng，Không được nói to trong phòng bệnh và hành lang，Không được ngủ trên giường bệnh，Tuân theo sự quản lý của điều dưỡng trưởng khoa。
+       4、Để bảo đảm an toàn cho bệnh nhân trong thời gian nằm viện，Bệnh nhân không được tự ý ra ngoài hay ngủ ngoài bệnh viện。Nếu thật sự có trường hợp đặc biệt hoặc việc quan trọng cần ra ngoài，Phải được bác sĩ điều trị chính phụ trách giường đồng ý，Và làm thủ tục xin phép。Phải tự bố trí người thân hoặc người khác đi cùng，Nếu tự ý một mình rời viện，Mọi hậu quả tự chịu trách nhiệm。
+       5、Bệnh nhân cần tích cực phối hợp chẩn đoán và điều trị、Chăm sóc、Kiểm tra、Hướng dẫn sức khỏe và các công việc khác，Khi làm các kiểm tra liên quan cần có nhân viên y tế hoặc hộ lý đi cùng。Khi chưa được nhân viên y tế cho phép，Không được tự ý xem、Giành giật、Tẩy xóa、Làm hỏng bệnh án và các văn bản y tế khác。Nếu có vấn đề，Xin hỏi và trao đổi với bác sĩ hoặc điều dưỡng，Chúng tôi sẽ đáp ứng yêu cầu của quý vị。
+       6、Trong thời gian nằm viện, xin phối hợp giữ khu bệnh sạch sẽ，Không vứt bừa đồ dùng sinh hoạt。Không mang đồ quý giá vào，Điện thoại、Ví tiền, v.v. xin giữ gìn cẩn thận，Nếu bị mất，Bệnh viện không chịu trách nhiệm。Nghiêm cấm mang đồ dễ cháy, dễ nổ vào khu bệnh;Dao、Đồ sắc nhọn, v.v. có thể giao cho khoa điều dưỡng giữ chung，Nhận lại sau khi xuất viện。
+       7、Nếu bệnh nhân cần nộp hoặc tra cứu viện phí，Xin đến quầy nhập/xuất viện，Nhân viên sẽ làm thủ tục cho quý vị(Cũng có thể đến văn phòng điều dưỡng để tra cứu)。
+       8、Để tăng cường xây dựng y đức, tác phong ngành và tự quản của ngành，Hai bên bác sĩ và bệnh nhân cần cùng tuân thủ quy định xây dựng tác phong ngành của hệ thống y tế thành phố Thượng Hải。Bệnh viện chúng tôi là“Không phong bì”Bệnh viện，Nghiêm cấm nhân viên y tế nhận hoặc đòi hỏi của bệnh nhân trong hoạt động khám chữa bệnh“phong bì”Và các đồ quý giá khác，Một khi xác minh được，Sẽ xử lý nghiêm theo quy định của cấp trên về xây dựng tác phong ngành và nội quy bệnh viện。
+       9、Để bảo vệ quyền lợi của bệnh nhân，Nếu bệnh nhân không hài lòng về dịch vụ y tế、Chất lượng y tế、Xây dựng tác phong ngành、Thái độ làm việc của nhân viên y tế, v.v.，Hoặc xảy ra tranh chấp y tế，Có thể khiếu nại để bảo vệ quyền lợi của mình。
+       Địa điểm khiếu nại:Văn phòng bệnh viện tầng 7
+       Cách thức khiếu nại:Có thể tự đến，Hoặc qua điện thoại、Thư、Khiếu nại qua email và các cách khác:
+       Số điện thoại khiếu nại:58205511-8168
+       Email khiếu nại;mdeent@126.com
+       Chúng tôi sẽ tận tâm phục vụ quý vị，Chúc quý vị sớm bình phục。
+                                             Bệnh nhân hoặc gia đình ký tên:             
+                                                      năm      tháng      ngày
 
                                                       上海明德五官科医院
 
 
-      医院地址:浦东新区乳山路 235 弄 25 号
-      电话:58205511、58205522</BodyText>
+      Địa chỉ bệnh viện:浦东新区乳山路 235 弄 25 号
+      Điện thoại:58205511、58205522</BodyText>
    <LocalConfig />
    <PageSettings>
       <LeftMargin>71</LeftMargin>

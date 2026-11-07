@@ -13,7 +13,7 @@
             <Element xsi:type="XInputField" StyleIndex="1">
                <Attributes />
                <ID>B0EADC5F-D1A7-4C1D-8BFF-C30B4AB96B89</ID>
-               <ToolTip>请输入医院名称</ToolTip>
+               <ToolTip>Vui lòng nhập tên bệnh viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -26,23 +26,23 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>yymc</Name>
-               <BackgroundText>医院名称</BackgroundText>
+               <BackgroundText>Tên bệnh viện</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="2" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>病  历  记  录</Text>
+               <Text>Hồ sơ bệnh án</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>姓名：</Text>
+               <Text>Họ tên：</Text>
             </Element>
             <Element xsi:type="XInputField">
                <Attributes />
                <ID>555B0059-D165-46B3-9F88-9720672296AF</ID>
-               <ToolTip>请输入姓名</ToolTip>
+               <ToolTip>Vui lòng nhập họ tên</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -55,12 +55,12 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>xm1</Name>
-               <BackgroundText>姓名</BackgroundText>
+               <BackgroundText>Họ tên</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>             床号：</Text>
+               <Text>             Số giường：</Text>
             </Element>
             <Element xsi:type="XInputField">
                <Attributes />
@@ -75,18 +75,18 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>BedName</Name>
-               <BackgroundText>床位编码</BackgroundText>
+               <BackgroundText>Mã giường bệnh</BackgroundText>
                <EditorActiveMode>None</EditorActiveMode>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>	          住院号：</Text>
+               <Text>	          Số nhập viện：</Text>
             </Element>
             <Element xsi:type="XInputField">
                <Attributes />
                <ID>6C1F42F9-EB78-43E1-AF32-18795C4E2303</ID>
-               <ToolTip>请输入住院号</ToolTip>
+               <ToolTip>Vui lòng nhập số nhập viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -99,7 +99,7 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>zyh</Name>
-               <BackgroundText>住院号</BackgroundText>
+               <BackgroundText>Số nhập viện</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XParagraphFlag" />
@@ -111,20 +111,20 @@
          <XElements>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>日常查房记录</Text>
+               <Text>Hồ sơ đi buồng hằng ngày</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
             <Element xsi:type="XInputField">
                <Attributes />
                <ID>txtDate</ID>
-               <ToolTip>请输入日期</ToolTip>
+               <ToolTip>Vui lòng nhập ngày</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ContentReadonly>False</ContentReadonly>
                <XElements />
                <BorderElementColor />
                <EventExpressions />
                <Name>日期</Name>
-               <BackgroundText>日期</BackgroundText>
+               <BackgroundText>Ngày</BackgroundText>
                <EditorActiveMode>MouseClick</EditorActiveMode>
                <LastSelectedListItems />
                <FieldSettings>
@@ -134,18 +134,18 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>主治医师查房记录</Text>
+               <Text>Hồ sơ đi buồng của bác sĩ điều trị chính</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="4" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>今日随包连胜主治医师查房，患者咳嗽、咽痛缓解，偶有咳吐有少量粘痰，无喉中喘鸣公、气喘，无畏寒、发热，无寒战、惊厥，无声音嘶哑，无抽搐、昏迷，无呼吸困难，无盗s汗，无心悸、胸痛，无呕吐、腹痛、腹泻，无腰痛、膝关节痛，精神、睡眠、饮食较前好有，大小便正常。查体：T37.0℃，BP140/88mmHg，神清，手、足、臀部I无疱疹，咽红、充血，两侧扁桃体未见肿大，无脓点。两肺呼吸音粗，未闻及明显干湿性科啰音，未闻及湿罗音及哮鸣音；叩诊心界不大，HR92次/分，律齐，各瓣膜听诊区未t闻及病理性心脏杂音；腹平软，无压痛、反跳痛，肝肾区叩击痛阴性，移动性浊音阴性，信肠鸣音正常；双下肢无水肿；辅助检查回报：胸片：两下肺纹理增粗、多，请结合临床。o庞金芳主治医师查房后指出：根据患者病史、临床表现及辅助检查结果，同意目前诊断及都治疗方案，需与肺结核、哮喘相签别；患者咳嗽中医治疗给予穴位贴敷，疏风解表、宣肺C止咳为主。选用穴位：天突、膻中、大椎、肺俞、合谷、列缺等穴位。咽炎穴位贴敷，清南热利咽，消肿止痛为主,选用穴位：廉泉、尺泽、少商、关冲、内庭风池、内关等穴位。 患者经予抗感染、止咳化痰、清热解毒、穴位敷贴、补液对症支持治疗后，现患者症状缓d解，无发热，治疗有效，监测血压基本正常；继续原方案治疗足疗程，注意观察病情变化公，遵执。</Text>
+               <Text>Hôm nay đi buồng cùng bác sĩ điều trị chính 包连胜，Bệnh nhân ho、Đau họng giảm，Thỉnh thoảng ho khạc ít đờm dính，Không có tiếng thở rít trong họng、Thở khò khè，Không ớn lạnh、Sốt，Không rét run、Co giật，Không khàn tiếng，Không co giật、Hôn mê，Không khó thở，Không đổ mồ hôi trộm，Không hồi hộp、Đau ngực，Không nôn、Đau bụng、Tiêu chảy，Không đau lưng、Đau khớp gối，Tinh thần、Giấc ngủ、Ăn uống tốt hơn trước，Đại tiểu tiện bình thường。Khám thực thể：T37.0℃，BP140/88mmHg，Tỉnh táo，tay、chân、MôngIKhông có mụn nước，Họng đỏ、Sung huyết，Hai bên amidan không sưng to，Không có điểm mủ。Âm thở hai phổi thô，Không nghe thấy ran khô, ran ẩm rõ，Không nghe thấy ran ẩm và tiếng rít；Gõ bờ tim không lớn，HR92lần/phút，Nhịp đều，Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý；Bụng phẳng, mềm，Không đau khi ấn、Đau dội ngược，Đau khi gõ vùng gan thận âm tính，Tiếng đục di động âm tính，Âm ruột bình thường；Hai chi dưới không phù；Kết quả cận lâm sàng：Phim X-quang ngực：Vân phổi hai bên tăng đậm、nhiều，Đề nghị kết hợp lâm sàng。oSau khi đi buồng, bác sĩ điều trị chính 庞金芳指出：Theo bệnh sử của bệnh nhân、Biểu hiện lâm sàng và kết quả cận lâm sàng，Đồng ý với chẩn đoán và phác đồ điều trị hiện tại，Cần chẩn đoán phân biệt với lao phổi、chẩn đoán phân biệt với hen phế quản；Bệnh nhân ho được điều trị y học cổ truyền bằng đắp huyệt，Sơ phong, giải biểu、Tuyên phếCChủ yếu giảm ho。Chọn huyệt：Thiên đột、Đản trung、Đại chùy、Phế du、Hợp cốc、Liệt khuyết và các huyệt khác。Đắp huyệt điều trị viêm họng，Thanh nhiệt, lợi họng，Chủ yếu tiêu sưng, giảm đau,Chọn huyệt：Liêm tuyền、Xích trạch、Thiếu thương、Quan xung、Nội đình, Phong trì、Nội quan và các huyệt khác。 Bệnh nhân được điều trị kháng nhiễm khuẩn、Giảm ho, tiêu đờm、Thanh nhiệt, giải độc、Đắp huyệt、Sau khi bù dịch và điều trị hỗ trợ theo triệu chứng，Hiện triệu chứng của bệnh nhân đã đỡ hơn，Không sốt，Điều trị có hiệu quả，Theo dõi huyết áp cơ bản bình thường；Tiếp tục điều trị theo phác đồ ban đầu đủ liệu trình，Chú ý theo dõi diễn biến bệnh，Thực hiện theo y lệnh。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="5" />
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>医师签名:</Text>
+               <Text>Bác sĩ ký tên:</Text>
             </Element>
             <Element xsi:type="XInputField">
                <Attributes />
@@ -155,7 +155,7 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>ysqm1</Name>
-               <BackgroundText>医师签名</BackgroundText>
+               <BackgroundText>Bác sĩ ký tên</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="6" />
@@ -172,7 +172,7 @@
                <Width>400</Width>
                <AutoHeight>true</AutoHeight>
                <Height>62.73438</Height>
-               <FormatString>第[%PageIndex%]页 共[%NumOfPages%]页</FormatString>
+               <FormatString>Trang [%PageIndex%] trên tổng số [%NumOfPages%] trang</FormatString>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
          </XElements>
@@ -188,12 +188,12 @@
       <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
       <NumOfPage>1</NumOfPage>
    </Info>
-   <BodyText>日常查房记录
+   <BodyText>Hồ sơ đi buồng hằng ngày
 
-主治医师查房记录
-今日随包连胜主治医师查房，患者咳嗽、咽痛缓解，偶有咳吐有少量粘痰，无喉中喘鸣公、气喘，无畏寒、发热，无寒战、惊厥，无声音嘶哑，无抽搐、昏迷，无呼吸困难，无盗s汗，无心悸、胸痛，无呕吐、腹痛、腹泻，无腰痛、膝关节痛，精神、睡眠、饮食较前好有，大小便正常。查体：T37.0℃，BP140/88mmHg，神清，手、足、臀部I无疱疹，咽红、充血，两侧扁桃体未见肿大，无脓点。两肺呼吸音粗，未闻及明显干湿性科啰音，未闻及湿罗音及哮鸣音；叩诊心界不大，HR92次/分，律齐，各瓣膜听诊区未t闻及病理性心脏杂音；腹平软，无压痛、反跳痛，肝肾区叩击痛阴性，移动性浊音阴性，信肠鸣音正常；双下肢无水肿；辅助检查回报：胸片：两下肺纹理增粗、多，请结合临床。o庞金芳主治医师查房后指出：根据患者病史、临床表现及辅助检查结果，同意目前诊断及都治疗方案，需与肺结核、哮喘相签别；患者咳嗽中医治疗给予穴位贴敷，疏风解表、宣肺C止咳为主。选用穴位：天突、膻中、大椎、肺俞、合谷、列缺等穴位。咽炎穴位贴敷，清南热利咽，消肿止痛为主,选用穴位：廉泉、尺泽、少商、关冲、内庭风池、内关等穴位。 患者经予抗感染、止咳化痰、清热解毒、穴位敷贴、补液对症支持治疗后，现患者症状缓d解，无发热，治疗有效，监测血压基本正常；继续原方案治疗足疗程，注意观察病情变化公，遵执。
+Hồ sơ đi buồng của bác sĩ điều trị chính
+Hôm nay đi buồng cùng bác sĩ điều trị chính 包连胜，Bệnh nhân ho、Đau họng giảm，Thỉnh thoảng ho khạc ít đờm dính，Không có tiếng thở rít trong họng、Thở khò khè，Không ớn lạnh、Sốt，Không rét run、Co giật，Không khàn tiếng，Không co giật、Hôn mê，Không khó thở，Không đổ mồ hôi trộm，Không hồi hộp、Đau ngực，Không nôn、Đau bụng、Tiêu chảy，Không đau lưng、Đau khớp gối，Tinh thần、Giấc ngủ、Ăn uống tốt hơn trước，Đại tiểu tiện bình thường。Khám thực thể：T37.0℃，BP140/88mmHg，Tỉnh táo，tay、chân、MôngIKhông có mụn nước，Họng đỏ、Sung huyết，Hai bên amidan không sưng to，Không có điểm mủ。Âm thở hai phổi thô，Không nghe thấy ran khô, ran ẩm rõ，Không nghe thấy ran ẩm và tiếng rít；Gõ bờ tim không lớn，HR92lần/phút，Nhịp đều，Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý；Bụng phẳng, mềm，Không đau khi ấn、Đau dội ngược，Đau khi gõ vùng gan thận âm tính，Tiếng đục di động âm tính，Âm ruột bình thường；Hai chi dưới không phù；Kết quả cận lâm sàng：Phim X-quang ngực：Vân phổi hai bên tăng đậm、nhiều，Đề nghị kết hợp lâm sàng。oSau khi đi buồng, bác sĩ điều trị chính 庞金芳指出：Theo bệnh sử của bệnh nhân、Biểu hiện lâm sàng và kết quả cận lâm sàng，Đồng ý với chẩn đoán và phác đồ điều trị hiện tại，Cần chẩn đoán phân biệt với lao phổi、chẩn đoán phân biệt với hen phế quản；Bệnh nhân ho được điều trị y học cổ truyền bằng đắp huyệt，Sơ phong, giải biểu、Tuyên phếCChủ yếu giảm ho。Chọn huyệt：Thiên đột、Đản trung、Đại chùy、Phế du、Hợp cốc、Liệt khuyết và các huyệt khác。Đắp huyệt điều trị viêm họng，Thanh nhiệt, lợi họng，Chủ yếu tiêu sưng, giảm đau,Chọn huyệt：Liêm tuyền、Xích trạch、Thiếu thương、Quan xung、Nội đình, Phong trì、Nội quan và các huyệt khác。 Bệnh nhân được điều trị kháng nhiễm khuẩn、Giảm ho, tiêu đờm、Thanh nhiệt, giải độc、Đắp huyệt、Sau khi bù dịch và điều trị hỗ trợ theo triệu chứng，Hiện triệu chứng của bệnh nhân đã đỡ hơn，Không sốt，Điều trị có hiệu quả，Theo dõi huyết áp cơ bản bình thường；Tiếp tục điều trị theo phác đồ ban đầu đủ liệu trình，Chú ý theo dõi diễn biến bệnh，Thực hiện theo y lệnh。
 
-医师签名:
+Bác sĩ ký tên:
 </BodyText>
    <Comments />
    <LocalConfig />

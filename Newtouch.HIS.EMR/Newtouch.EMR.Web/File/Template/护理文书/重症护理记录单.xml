@@ -27,7 +27,7 @@
             <Element xsi:type="XInputField" StyleIndex="2">
                <Attributes />
                <ID>B0EADC5F-D1A7-4C1D-8BFF-C30B4AB96B89</ID>
-               <ToolTip>请输入医院名称</ToolTip>
+               <ToolTip>Vui lòng nhập tên bệnh viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -40,23 +40,23 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>yymc</Name>
-               <BackgroundText>医院名称</BackgroundText>
+               <BackgroundText>Tên bệnh viện</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XParagraphFlag" />
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>重 症 护 理 记 录 单</Text>
+               <Text>Phiếu ghi chép điều dưỡng bệnh nặng</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="4" />
             <Element xsi:type="XString" StyleIndex="5">
                <XElements xsi:nil="true" />
-               <Text> 科室：</Text>
+               <Text> Khoa：</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="5">
                <Attributes />
                <ID>field10</ID>
-               <ToolTip>科室代码</ToolTip>
+               <ToolTip>Mã khoa</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -65,17 +65,17 @@
                <XElements />
                <BorderElementColor />
                <EventExpressions />
-               <BackgroundText>科室代码</BackgroundText>
+               <BackgroundText>Mã khoa</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString" StyleIndex="5">
                <XElements xsi:nil="true" />
-               <Text>  姓名：</Text>
+               <Text>  Họ tên：</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="5">
                <Attributes />
                <ID>field3</ID>
-               <ToolTip>姓名</ToolTip>
+               <ToolTip>Họ tên</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -84,17 +84,17 @@
                <XElements />
                <BorderElementColor />
                <EventExpressions />
-               <BackgroundText>姓名</BackgroundText>
+               <BackgroundText>Họ tên</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString" StyleIndex="5">
                <XElements xsi:nil="true" />
-               <Text>  性别:</Text>
+               <Text>  Giới tính:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="5">
                <Attributes />
                <ID>field6</ID>
-               <ToolTip>性别</ToolTip>
+               <ToolTip>Giới tính</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -105,22 +105,22 @@
                <BorderElementColor />
                <EventExpressions />
                <UserEditable>false</UserEditable>
-               <BackgroundText>性别</BackgroundText>
+               <BackgroundText>Giới tính</BackgroundText>
                <LastSelectedListItems />
                <FieldSettings>
                   <EditStyle>DropdownList</EditStyle>
                   <ListSource>
                      <Items>
                         <Item>
-                           <Text>男</Text>
+                           <Text>Nam</Text>
                            <Value>男</Value>
                         </Item>
                         <Item>
-                           <Text>女</Text>
+                           <Text>Nữ</Text>
                            <Value>女</Value>
                         </Item>
                         <Item>
-                           <Text>其他</Text>
+                           <Text>Khác</Text>
                            <Value>其他</Value>
                         </Item>
                      </Items>
@@ -129,12 +129,12 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="5">
                <XElements xsi:nil="true" />
-               <Text>  床号：</Text>
+               <Text>  Số giường：</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="5">
                <Attributes />
                <ID>field9</ID>
-               <ToolTip>床位名称</ToolTip>
+               <ToolTip>Tên giường bệnh</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -144,17 +144,17 @@
                <XElements />
                <BorderElementColor />
                <EventExpressions />
-               <BackgroundText>床位名称</BackgroundText>
+               <BackgroundText>Tên giường bệnh</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString" StyleIndex="5">
                <XElements xsi:nil="true" />
-               <Text>  住院号： </Text>
+               <Text>  Số nhập viện： </Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="5">
                <Attributes />
                <ID>field5</ID>
-               <ToolTip>住院号</ToolTip>
+               <ToolTip>Số nhập viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -163,17 +163,17 @@
                <XElements />
                <BorderElementColor />
                <EventExpressions />
-               <BackgroundText>住院号</BackgroundText>
+               <BackgroundText>Số nhập viện</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString" StyleIndex="5">
                <XElements xsi:nil="true" />
-               <Text>   诊断:</Text>
+               <Text>   Chẩn đoán:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="5">
                <Attributes />
                <ID>field8</ID>
-               <ToolTip>入院诊断名称</ToolTip>
+               <ToolTip>Tên chẩn đoán nhập viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -183,7 +183,7 @@
                <XElements />
                <BorderElementColor />
                <EventExpressions />
-               <BackgroundText>入院诊断名称</BackgroundText>
+               <BackgroundText>Tên chẩn đoán nhập viện</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString" StyleIndex="5">
@@ -215,7 +215,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>      时间</Text>
+                                 <Text>      Thời gian</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                            </XElements>
@@ -226,12 +226,12 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>体</Text>
+                                 <Text>Thân nhiệt</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>温</Text>
+                                 <Text></Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                               <Element xsi:type="XString" StyleIndex="5">
@@ -247,7 +247,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>脉搏次/分</Text>
+                                 <Text>Mạch (lần)/phút</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                            </XElements>
@@ -258,7 +258,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>呼吸次/分</Text>
+                                 <Text>Hô hấp (lần)/phút</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                            </XElements>
@@ -269,7 +269,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>血压</Text>
+                                 <Text>Huyết áp</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                               <Element xsi:type="XString" StyleIndex="5">
@@ -285,7 +285,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>氧饱和度</Text>
+                                 <Text>Độ bão hòa oxy</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                               <Element xsi:type="XString" StyleIndex="5">
@@ -301,7 +301,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>持续心电监测</Text>
+                                 <Text>Theo dõi điện tim liên tục</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                            </XElements>
@@ -312,12 +312,12 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>吸氧</Text>
+                                 <Text>Thở oxy</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>L/分</Text>
+                                 <Text>L/phút</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                            </XElements>
@@ -328,7 +328,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>基护级别</Text>
+                                 <Text>Cấp độ chăm sóc cơ bản</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
@@ -340,7 +340,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>协助进食</Text>
+                                 <Text>Hỗ trợ ăn uống</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                               <Element xsi:type="XString" StyleIndex="5">
@@ -350,7 +350,7 @@
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>水</Text>
+                                 <Text>Nước</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                            </XElements>
@@ -361,7 +361,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>拍背及有效咳痰</Text>
+                                 <Text>Vỗ lưng và ho khạc đờm hiệu quả</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                            </XElements>
@@ -372,7 +372,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>压疮预防</Text>
+                                 <Text>Phòng loét do tì đè</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                            </XElements>
@@ -383,7 +383,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>跌倒预防</Text>
+                                 <Text>Phòng ngã</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                            </XElements>
@@ -394,7 +394,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>其他基护</Text>
+                                 <Text>Chăm sóc cơ bản khác</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                            </XElements>
@@ -405,7 +405,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>专科护理</Text>
+                                 <Text>Chăm sóc chuyên khoa</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                            </XElements>
@@ -416,7 +416,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>导管类别</Text>
+                                 <Text>Loại ống thông</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                               <Element xsi:type="XString" StyleIndex="5">
@@ -426,7 +426,7 @@
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>措施</Text>
+                                 <Text>Biện pháp</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                            </XElements>
@@ -437,7 +437,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>护理指 导</Text>
+                                 <Text>Hướng dẫn chăm sóc</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                            </XElements>
@@ -448,7 +448,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>尿量</Text>
+                                 <Text>Lượng nước tiểu</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                               <Element xsi:type="XString" StyleIndex="5">
@@ -464,12 +464,12 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>胃</Text>
+                                 <Text>Dịch dạ dày</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>液</Text>
+                                 <Text></Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                               <Element xsi:type="XString" StyleIndex="5">
@@ -485,7 +485,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>病情观察/护理措施效果</Text>
+                                 <Text>Theo dõi tình trạng bệnh/Hiệu quả biện pháp chăm sóc</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                            </XElements>
@@ -496,7 +496,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>签名</Text>
+                                 <Text>Ký tên</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                            </XElements>
@@ -1705,20 +1705,18 @@
       <Operator>DCSoft.Writer Version:1.2015.12.23</Operator>
       <NumOfPage>1</NumOfPage>
    </Info>
-   <BodyText>      时间 体
-温
-℃ 脉搏次/分 呼吸次/分 血压
-mmHg 氧饱和度
-% 持续心电监测 吸氧
-L/分 基护级别
- 协助进食
+   <BodyText>      Thời gian Thân nhiệt
+℃ Mạch (lần)/phút Hô hấp (lần)/phút Huyết áp
+mmHg Độ bão hòa oxy
+% Theo dõi điện tim liên tục Thở oxy
+L/phút Cấp độ chăm sóc cơ bản
+ Hỗ trợ ăn uống
 /
-水 拍背及有效咳痰 压疮预防 跌倒预防 其他基护 专科护理 导管类别
+Nước Vỗ lưng và ho khạc đờm hiệu quả Phòng loét do tì đè Phòng ngã Chăm sóc cơ bản khác Chăm sóc chuyên khoa Loại ống thông
 /
-措施 护理指 导 尿量
-ml 胃
-液
-ml 病情观察/护理措施效果 签名 
+Biện pháp Hướng dẫn chăm sóc Lượng nước tiểu
+ml Dịch dạ dày
+ml Theo dõi tình trạng bệnh/Hiệu quả biện pháp chăm sóc Ký tên 
                                           
                                           
                                           

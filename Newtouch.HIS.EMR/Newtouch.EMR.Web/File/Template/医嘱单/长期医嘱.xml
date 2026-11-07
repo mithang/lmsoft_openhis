@@ -7,7 +7,7 @@
          <XElements Count="57">
             <Element xsi:type="XInputField" StyleIndex="1">
                <ID>B0EADC5F-D1A7-4C1D-8BFF-C30B4AB96B89</ID>
-               <ToolTip>请输入医院名称</ToolTip>
+               <ToolTip>Vui lòng nhập tên bệnh viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValidateStyle>
                   <CheckMaxValue>true</CheckMaxValue>
@@ -26,16 +26,16 @@
                <BorderElementColor>#00000000</BorderElementColor>
                <Name>yymc</Name>
                <DisplayFormat />
-               <BackgroundText>医院名称</BackgroundText>
+               <BackgroundText>Tên bệnh viện</BackgroundText>
                <FieldSettings />
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
             <Element xsi:type="XString" StyleIndex="2">
-               <Text>长期医嘱单1</Text>
+               <Text>Phiếu y lệnh dài hạn1</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
             <Element xsi:type="XString" StyleIndex="3">
-               <Text>姓名:</Text>
+               <Text>Họ tên:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="3">
                <ID>姓名</ID>
@@ -48,7 +48,7 @@
                <EditorActiveMode>F2 MouseDblClick MouseClick</EditorActiveMode>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
-               <Text>           科别:</Text>
+               <Text>           Khoa:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="3">
                <ID>科别</ID>
@@ -61,7 +61,7 @@
                <EditorActiveMode>F2 MouseDblClick MouseClick</EditorActiveMode>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
-               <Text>          床号:</Text>
+               <Text>          Số giường:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="3">
                <ID>床号</ID>
@@ -74,7 +74,7 @@
                <EditorActiveMode>F2 MouseDblClick MouseClick</EditorActiveMode>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
-               <Text>         住院号:</Text>
+               <Text>         Số nhập viện:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="3">
                <ID>住院号</ID>
@@ -104,7 +104,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="5">
                               <Element xsi:type="XString" StyleIndex="5">
-                                 <Text>起始时间</Text>
+                                 <Text>Thời gian bắt đầu</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6" />
                            </XElements>
@@ -113,7 +113,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="3">
                               <Element xsi:type="XString" StyleIndex="5">
-                                 <Text>医生</Text>
+                                 <Text>Bác sĩ</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6" />
                            </XElements>
@@ -122,7 +122,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="3">
                               <Element xsi:type="XString" StyleIndex="5">
-                                 <Text>护士</Text>
+                                 <Text>Điều dưỡng</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6" />
                            </XElements>
@@ -131,7 +131,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="3">
                               <Element xsi:type="XString" StyleIndex="5">
-                                 <Text>组号</Text>
+                                 <Text>Số nhóm</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6" />
                            </XElements>
@@ -140,7 +140,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="5">
                               <Element xsi:type="XString" StyleIndex="5">
-                                 <Text>医嘱内容</Text>
+                                 <Text>Nội dung y lệnh</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6" />
                            </XElements>
@@ -149,7 +149,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="5">
                               <Element xsi:type="XString" StyleIndex="5">
-                                 <Text>停止时间</Text>
+                                 <Text>Thời gian dừng</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6" />
                            </XElements>
@@ -158,7 +158,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="3">
                               <Element xsi:type="XString" StyleIndex="5">
-                                 <Text>医生</Text>
+                                 <Text>Bác sĩ</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6" />
                            </XElements>
@@ -167,7 +167,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="3">
                               <Element xsi:type="XString" StyleIndex="5">
-                                 <Text>护士</Text>
+                                 <Text>Điều dưỡng</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6" />
                            </XElements>
@@ -395,7 +395,7 @@
       <Operator>DCSoft.Writer Version:1.2014.122.41929</Operator>
       <NumOfPage>1</NumOfPage>
    </Info>
-   <BodyText>起始时间 医生 护士 组号 医嘱内容 停止时间 医生 护士 
+   <BodyText>Thời gian bắt đầu Bác sĩ Điều dưỡng Số nhóm Nội dung y lệnh Thời gian dừng Bác sĩ Điều dưỡng 
                 </BodyText>
    <LocalConfig />
    <PageSettings>

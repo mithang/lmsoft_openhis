@@ -14,7 +14,7 @@
             <Element xsi:type="XInputField" StyleIndex="1">
                <Attributes />
                <ID>B0EADC5F-D1A7-4C1D-8BFF-C30B4AB96B89</ID>
-               <ToolTip>请输入医院名称</ToolTip>
+               <ToolTip>Vui lòng nhập tên bệnh viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -27,23 +27,23 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>yymc</Name>
-               <BackgroundText>医院名称</BackgroundText>
+               <BackgroundText>Tên bệnh viện</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="2" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>一 般 护 理 记 录 单</Text>
+               <Text>Phiếu ghi chép điều dưỡng chung</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
             <Element xsi:type="XString" StyleIndex="4">
                <XElements xsi:nil="true" />
-               <Text>科室：</Text>
+               <Text>Khoa：</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="4">
                <Attributes />
                <ID>field10</ID>
-               <ToolTip>科室代码</ToolTip>
+               <ToolTip>Mã khoa</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -52,7 +52,7 @@
                <XElements />
                <BorderElementColor />
                <EventExpressions />
-               <BackgroundText>科室代码</BackgroundText>
+               <BackgroundText>Mã khoa</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString" StyleIndex="4">
@@ -61,12 +61,12 @@
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>姓名：</Text>
+               <Text>Họ tên：</Text>
             </Element>
             <Element xsi:type="XInputField">
                <Attributes />
                <ID>555B0059-D165-46B3-9F88-9720672296AF</ID>
-               <ToolTip>请输入姓名</ToolTip>
+               <ToolTip>Vui lòng nhập họ tên</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -79,7 +79,7 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>xm1</Name>
-               <BackgroundText>姓名</BackgroundText>
+               <BackgroundText>Họ tên</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString">
@@ -88,12 +88,12 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="4">
                <XElements xsi:nil="true" />
-               <Text>性别:</Text>
+               <Text>Giới tính:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="4">
                <Attributes />
                <ID>field6</ID>
-               <ToolTip>性别</ToolTip>
+               <ToolTip>Giới tính</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -103,22 +103,22 @@
                <XElements />
                <BorderElementColor />
                <EventExpressions />
-               <BackgroundText>性别</BackgroundText>
+               <BackgroundText>Giới tính</BackgroundText>
                <LastSelectedListItems />
                <FieldSettings>
                   <EditStyle>DropdownList</EditStyle>
                   <ListSource>
                      <Items>
                         <Item>
-                           <Text>男</Text>
+                           <Text>Nam</Text>
                            <Value>男</Value>
                         </Item>
                         <Item>
-                           <Text>女</Text>
+                           <Text>Nữ</Text>
                            <Value>女</Value>
                         </Item>
                         <Item>
-                           <Text>其他</Text>
+                           <Text>Khác</Text>
                            <Value>其他</Value>
                         </Item>
                      </Items>
@@ -128,7 +128,7 @@
             <Element xsi:type="XParagraphFlag" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>床号：</Text>
+               <Text>Số giường：</Text>
             </Element>
             <Element xsi:type="XInputField">
                <Attributes />
@@ -143,7 +143,7 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>BedName</Name>
-               <BackgroundText>床位编码</BackgroundText>
+               <BackgroundText>Mã giường bệnh</BackgroundText>
                <EditorActiveMode>None</EditorActiveMode>
                <LastSelectedListItems />
             </Element>
@@ -157,12 +157,12 @@
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>住院号：</Text>
+               <Text>Số nhập viện：</Text>
             </Element>
             <Element xsi:type="XInputField">
                <Attributes />
                <ID>6C1F42F9-EB78-43E1-AF32-18795C4E2303</ID>
-               <ToolTip>请输入住院号</ToolTip>
+               <ToolTip>Vui lòng nhập số nhập viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -175,7 +175,7 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>zyh</Name>
-               <BackgroundText>住院号</BackgroundText>
+               <BackgroundText>Số nhập viện</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString" WhiteSpaceLength="27">
@@ -184,12 +184,12 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="4">
                <XElements xsi:nil="true" />
-               <Text>诊断:</Text>
+               <Text>Chẩn đoán:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="4">
                <Attributes />
                <ID>field8</ID>
-               <ToolTip>入院诊断名称</ToolTip>
+               <ToolTip>Tên chẩn đoán nhập viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -199,7 +199,7 @@
                <XElements />
                <BorderElementColor />
                <EventExpressions />
-               <BackgroundText>入院诊断名称</BackgroundText>
+               <BackgroundText>Tên chẩn đoán nhập viện</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString" StyleIndex="4">
@@ -231,7 +231,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>日期</Text>
+                                 <Text>Ngày</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                            </XElements>
@@ -242,7 +242,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>时间</Text>
+                                 <Text>Thời gian</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                            </XElements>
@@ -253,7 +253,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>内容</Text>
+                                 <Text>Nội dung</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                            </XElements>
@@ -264,7 +264,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>签名</Text>
+                                 <Text>Ký tên</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                            </XElements>
@@ -415,7 +415,7 @@
                <Width>400</Width>
                <AutoHeight>true</AutoHeight>
                <Height>62.73438</Height>
-               <FormatString>第[%PageIndex%]页 共[%NumOfPages%]页</FormatString>
+               <FormatString>Trang [%PageIndex%] trên tổng số [%NumOfPages%] trang</FormatString>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
          </XElements>
@@ -431,7 +431,7 @@
       <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
       <NumOfPage>1</NumOfPage>
    </Info>
-   <BodyText>日期 时间 内容 签名 
+   <BodyText>Ngày Thời gian Nội dung Ký tên 
         
         
         </BodyText>

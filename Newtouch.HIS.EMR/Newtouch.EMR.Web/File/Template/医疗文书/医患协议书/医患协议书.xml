@@ -8,7 +8,7 @@
             <Element xsi:type="XInputField" StyleIndex="1">
                <InnerID>891</InnerID>
                <ID>B0EADC5F-D1A7-4C1D-8BFF-C30B4AB96B89</ID>
-               <ToolTip>请输入医院名称</ToolTip>
+               <ToolTip>Vui lòng nhập tên bệnh viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -19,26 +19,26 @@
                <EndBorderText>]</EndBorderText>
                <BorderElementColor />
                <Name>yymc</Name>
-               <BackgroundText>医院名称</BackgroundText>
+               <BackgroundText>Tên bệnh viện</BackgroundText>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0">
                <InnerID>892</InnerID>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <InnerID>1548</InnerID>
-               <Text>医患双方不收和不送 "红包" 协议书</Text>
+               <Text>Hai bên bác sĩ và bệnh nhân không nhận và không đưa "phong bì" Bản thỏa thuận</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0">
                <InnerID>912</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1549</InnerID>
-               <Text>姓名:</Text>
+               <Text>Họ tên:</Text>
             </Element>
             <Element xsi:type="XInputField">
                <InnerID>917</InnerID>
                <ID>555B0059-D165-46B3-9F88-9720672296AF</ID>
-               <ToolTip>请输入姓名</ToolTip>
+               <ToolTip>Vui lòng nhập họ tên</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -49,7 +49,7 @@
                <EndBorderText>]</EndBorderText>
                <BorderElementColor />
                <Name>xm</Name>
-               <BackgroundText>姓名</BackgroundText>
+               <BackgroundText>Họ tên</BackgroundText>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1550</InnerID>
@@ -57,12 +57,12 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>1551</InnerID>
-               <Text>  住院号:</Text>
+               <Text>  Số nhập viện:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="3">
                <InnerID>931</InnerID>
                <ID>6C1F42F9-EB78-43E1-AF32-18795C4E2303</ID>
-               <ToolTip>请输入住院号</ToolTip>
+               <ToolTip>Vui lòng nhập số nhập viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -73,7 +73,7 @@
                <EndBorderText>]</EndBorderText>
                <BorderElementColor />
                <Name>zyh</Name>
-               <BackgroundText>住院号</BackgroundText>
+               <BackgroundText>Số nhập viện</BackgroundText>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>1552</InnerID>
@@ -81,12 +81,12 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>1553</InnerID>
-               <Text>       科别:</Text>
+               <Text>       Khoa:</Text>
             </Element>
             <Element xsi:type="XInputField">
                <InnerID>944</InnerID>
                <ID>05851fea-e7a2-4ada-969c-76b7d0403c10</ID>
-               <ToolTip>请输入科室名称</ToolTip>
+               <ToolTip>Vui lòng nhập tên khoa</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -97,7 +97,7 @@
                <EndBorderText>]</EndBorderText>
                <BorderElementColor />
                <Name>DeptName</Name>
-               <BackgroundText>科室名称</BackgroundText>
+               <BackgroundText>Tên khoa</BackgroundText>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1554</InnerID>
@@ -123,7 +123,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>1555</InnerID>
-                                 <Text>尊敬的患者及家属：</Text>
+                                 <Text>Kính thưa bệnh nhân và gia đình：</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>980</InnerID>
@@ -134,7 +134,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>1557</InnerID>
-                                 <Text>衷心感谢你们的信任，选择到我们</Text>
+                                 <Text>Chân thành cảm ơn sự tin tưởng của quý vị，Đã chọn đến với chúng tôi</Text>
                               </Element>
                               <Element xsi:type="XInputField" StyleIndex="6">
                                  <InnerID>1001</InnerID>
@@ -147,12 +147,12 @@
                                  <ContentReadonly>False</ContentReadonly>
                                  <BorderElementColor />
                                  <Name>yymc</Name>
-                                 <BackgroundText>医院名称</BackgroundText>
+                                 <BackgroundText>Tên bệnh viện</BackgroundText>
                                  <EditorActiveMode>None</EditorActiveMode>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>1558</InnerID>
-                                 <Text>就医。在接下来的一段时间里，我们将共同面对疾病的挑战。在此，我们郑重承诺：</Text>
+                                 <Text>Khám chữa bệnh。Trong thời gian tới，Chúng ta sẽ cùng đối mặt với thử thách của bệnh tật。Tại đây，Chúng tôi trịnh trọng cam kết：</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1039</InnerID>
@@ -163,7 +163,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>1560</InnerID>
-                                 <Text>一、 秉持平等、仁爱、诚信的职业精神，以患者为中心，尽心尽责为患者治疗疾病。</Text>
+                                 <Text>一、 Giữ vững sự bình đẳng、Nhân ái、Tinh thần nghề nghiệp trung thực，Lấy bệnh nhân làm trung tâm，Tận tâm, tận trách điều trị bệnh cho bệnh nhân。</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1083</InnerID>
@@ -174,7 +174,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>1562</InnerID>
-                                 <Text>二、 充分履行告知义务，尊重患者的知情同意权、隐私权等各项权利</Text>
+                                 <Text>二、 Thực hiện đầy đủ nghĩa vụ thông báo，Tôn trọng quyền được biết và đồng ý của bệnh nhân、Quyền riêng tư và các quyền khác</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1120</InnerID>
@@ -185,14 +185,14 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>1564</InnerID>
-                                 <Text>三、 廉洁行医，不接受患者及其家属的“红包”、贵重礼品。</Text>
+                                 <Text>三、 Hành nghề liêm khiết，Không nhận của bệnh nhân và gia đình“phong bì”、Quà tặng quý giá。</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1154</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>1565</InnerID>
-                                 <Text>衷心祝您早日康复！</Text>
+                                 <Text>Chân thành chúc quý vị sớm bình phục！</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1165</InnerID>
@@ -206,7 +206,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="6">
                                  <InnerID>1567</InnerID>
-                                 <Text>   主管医师：</Text>
+                                 <Text>   Bác sĩ phụ trách：</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1179</InnerID>
@@ -224,7 +224,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="6">
                                  <InnerID>1570</InnerID>
-                                 <Text> 年    月   日</Text>
+                                 <Text> năm    tháng   ngày</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1216</InnerID>
@@ -257,7 +257,7 @@
                                  <ContentReadonly>False</ContentReadonly>
                                  <BorderElementColor />
                                  <Name>yymc</Name>
-                                 <BackgroundText>医院名称</BackgroundText>
+                                 <BackgroundText>Tên bệnh viện</BackgroundText>
                                  <EditorActiveMode>None</EditorActiveMode>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="7">
@@ -273,11 +273,11 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>1573</InnerID>
-                                 <Text>我们收到了贵单位的承诺书，认真阅读并理解了相关内容。在此，我们也郑重承</Text>
+                                 <Text>Chúng tôi đã nhận được bản cam kết của quý đơn vị，Đã đọc kỹ và hiểu rõ nội dung liên quan。Tại đây，Chúng tôi cũng trịnh trọng cam</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="8">
                                  <InnerID>1574</InnerID>
-                                 <Text>诺：</Text>
+                                 <Text>kết：</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1274</InnerID>
@@ -288,19 +288,19 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="8">
                                  <InnerID>1576</InnerID>
-                                 <Text>一、 积极配合诊疗活动，如实提供病</Text>
+                                 <Text>一、 Tích cực phối hợp hoạt động chẩn đoán và điều trị，Cung cấp trung thực bệnh</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="9">
                                  <InnerID>1577</InnerID>
-                                 <Text>史等信息，尊重科学，对疾病诊断治疗中客观存在的危险</Text>
+                                 <Text>sử và các thông tin khác，Tôn trọng khoa học，Đối với nguy cơ khách quan tồn tại trong chẩn đoán và điều trị bệnh</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="8">
                                  <InnerID>1578</InnerID>
-                                 <Text>作出慎重</Text>
+                                 <Text>Đưa ra quyết định thận trọng</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="9">
                                  <InnerID>1579</InnerID>
-                                 <Text>理智的决定。</Text>
+                                 <Text>và lý trí。</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1333</InnerID>
@@ -311,11 +311,11 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="6">
                                  <InnerID>1581</InnerID>
-                                 <Text>二、 尊重医务人员，爱护公共设</Text>
+                                 <Text>二、 Tôn trọng nhân viên y tế，Giữ gìn cơ sở vật chất công</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="9">
                                  <InnerID>1582</InnerID>
-                                 <Text>施，服从管理和安排。患者本人或患方代表要有效沟通协调好本方人员，共同履行好本承诺书。</Text>
+                                 <Text>cộng，Tuân theo quản lý và sắp xếp。Bệnh nhân hoặc người đại diện cần giao tiếp, phối hợp tốt với người của phía mình，Cùng thực hiện tốt bản cam kết này。</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1397</InnerID>
@@ -326,18 +326,18 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="6">
                                  <InnerID>1584</InnerID>
-                                 <Text>三、 不向医务人员送“红包”、贵</Text>
+                                 <Text>三、 Không đưa cho nhân viên y tế“phong bì”、</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="9">
                                  <InnerID>1585</InnerID>
-                                 <Text>重礼品，共创廉洁和谐的医疗环境。</Text>
+                                 <Text>Quà tặng quý giá，Cùng tạo môi trường y tế liêm khiết, hài hòa。</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1436</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="9">
                                  <InnerID>1586</InnerID>
-                                 <Text>患者或患方代表：</Text>
+                                 <Text>Bệnh nhân hoặc người đại diện：</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1446</InnerID>
@@ -347,7 +347,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="8">
                                  <InnerID>1587</InnerID>
-                                 <Text>患者或患方代表：</Text>
+                                 <Text>Bệnh nhân hoặc người đại diện：</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1459</InnerID>
@@ -365,7 +365,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="6">
                                  <InnerID>1590</InnerID>
-                                 <Text>年    月   日</Text>
+                                 <Text>năm    tháng   ngày</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1498</InnerID>
@@ -401,7 +401,7 @@
                <Width>400</Width>
                <AutoHeight>true</AutoHeight>
                <Height>62.73437</Height>
-               <FormatString>第[%PageIndex%]页 共[%NumOfPages%]页</FormatString>
+               <FormatString>Trang [%PageIndex%] trên tổng số [%NumOfPages%] trang</FormatString>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0">
                <InnerID>963</InnerID>
@@ -492,28 +492,28 @@
       <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
       <NumOfPage>1</NumOfPage>
    </Info>
-   <BodyText>尊敬的患者及家属：
-    衷心感谢你们的信任，选择到我们就医。在接下来的一段时间里，我们将共同面对疾病的挑战。在此，我们郑重承诺：
-    一、 秉持平等、仁爱、诚信的职业精神，以患者为中心，尽心尽责为患者治疗疾病。
-    二、 充分履行告知义务，尊重患者的知情同意权、隐私权等各项权利
-    三、 廉洁行医，不接受患者及其家属的“红包”、贵重礼品。
-衷心祝您早日康复！
+   <BodyText>Kính thưa bệnh nhân và gia đình：
+    Chân thành cảm ơn sự tin tưởng của quý vị，Đã chọn đến với chúng tôi để khám chữa bệnh。Trong thời gian tới，Chúng ta sẽ cùng đối mặt với thử thách của bệnh tật。Tại đây，Chúng tôi trịnh trọng cam kết：
+    一、 Giữ vững sự bình đẳng、Nhân ái、Tinh thần nghề nghiệp trung thực，Lấy bệnh nhân làm trung tâm，Tận tâm, tận trách điều trị bệnh cho bệnh nhân。
+    二、 Thực hiện đầy đủ nghĩa vụ thông báo，Tôn trọng quyền được biết và đồng ý của bệnh nhân、Quyền riêng tư và các quyền khác
+    三、 Hành nghề liêm khiết，Không nhận của bệnh nhân và gia đình“phong bì”、Quà tặng quý giá。
+Chân thành chúc quý vị sớm bình phục！
 
-    主管医师：
+    Bác sĩ phụ trách：
 
-                      年    月   日
+                      năm    tháng   ngày
 
 
  ：
-     我们收到了贵单位的承诺书，认真阅读并理解了相关内容。在此，我们也郑重承诺：
-     一、 积极配合诊疗活动，如实提供病史等信息，尊重科学，对疾病诊断治疗中客观存在的危险作出慎重理智的决定。
-     二、 尊重医务人员，爱护公共设施，服从管理和安排。患者本人或患方代表要有效沟通协调好本方人员，共同履行好本承诺书。
-     三、 不向医务人员送“红包”、贵重礼品，共创廉洁和谐的医疗环境。
-患者或患方代表：
+     Chúng tôi đã nhận được bản cam kết của quý đơn vị，Đã đọc kỹ và hiểu rõ nội dung liên quan。Tại đây，Chúng tôi cũng trịnh trọng cam kết：
+     一、 Tích cực phối hợp hoạt động chẩn đoán và điều trị，Cung cấp trung thực bệnh sử và các thông tin khác，Tôn trọng khoa học，Đưa ra quyết định thận trọng và lý trí đối với nguy cơ khách quan tồn tại trong chẩn đoán và điều trị bệnh。
+     二、 Tôn trọng nhân viên y tế，Giữ gìn cơ sở vật chất công cộng，Tuân theo quản lý và sắp xếp。Bệnh nhân hoặc người đại diện cần giao tiếp, phối hợp tốt với người của phía mình，Cùng thực hiện tốt bản cam kết này。
+     三、 Không đưa cho nhân viên y tế“phong bì”、Quà tặng quý giá，Cùng tạo môi trường y tế liêm khiết, hài hòa。
+Bệnh nhân hoặc người đại diện：
 
-患者或患方代表：
+Bệnh nhân hoặc người đại diện：
 
-                        年    月   日 </BodyText>
+                        năm    tháng   ngày </BodyText>
    <LocalConfig />
    <PageSettings>
       <StrictUsePageSize>false</StrictUsePageSize>

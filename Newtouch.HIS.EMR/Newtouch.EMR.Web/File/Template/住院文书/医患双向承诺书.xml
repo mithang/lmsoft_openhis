@@ -13,7 +13,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <InnerID>473</InnerID>
-               <Text>医患双向承诺书</Text>
+               <Text>Bản cam kết hai chiều giữa bác sĩ và bệnh nhân</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0">
                <InnerID>41</InnerID>
@@ -26,21 +26,21 @@
          <XElements>
             <Element xsi:type="XString">
                <InnerID>474</InnerID>
-               <Text>     为了全面加强卫生行业作风建设，坚决纠正行业不正之风，切实维护人民群众的利益，按上级卫生行政部门的要求，让我们共同签订《医患双向承诺书》，并以实际行动履行承诺。</Text>
+               <Text>     Để tăng cường toàn diện xây dựng tác phong ngành y tế，Kiên quyết chấn chỉnh những biểu hiện không lành mạnh trong ngành，Bảo vệ thiết thực lợi ích của nhân dân，Theo yêu cầu của cơ quan y tế cấp trên，Chúng ta cùng ký kết《Bản cam kết hai chiều giữa bác sĩ và bệnh nhân》，Và thực hiện cam kết bằng hành động thực tế。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>129</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>475</InnerID>
-               <Text>     医院向患者承诺:严格执行八项行业纪律，提供优质高效的医疗服务，拒绝“红包”、“礼物”及“宴请”，对违反承诺的科室和员工进行惩罚。医院受理投诉举报电话:0771-6538884、6530037</Text>
+               <Text>     Bệnh viện cam kết với bệnh nhân:Nghiêm túc thực hiện tám kỷ luật ngành，Cung cấp dịch vụ y tế chất lượng cao, hiệu quả，Từ chối“phong bì”、“Quà tặng”và“Mời ăn uống”，Xử phạt khoa và nhân viên vi phạm cam kết。Số điện thoại tiếp nhận khiếu nại, tố cáo của bệnh viện:0771-6538884、6530037</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>231</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>476</InnerID>
-               <Text>患者或患者家属向医院承诺:支持医院开展医药购销和医疗服务中的不正之风专项治理工作，不向医院工作人员送“红包”、“礼物”不宴请医院工作人员。发现有工作人员索要“红包”、“礼物”的坚决拒绝，并实名向医院进行举报。</Text>
+               <Text>Bệnh nhân hoặc gia đình bệnh nhân cam kết với bệnh viện:Ủng hộ bệnh viện triển khai công tác chấn chỉnh chuyên đề về những biểu hiện không lành mạnh trong mua bán thuốc và dịch vụ y tế，Không đưa cho nhân viên bệnh viện“phong bì”、“Quà tặng”Không mời nhân viên bệnh viện ăn uống。Phát hiện nhân viên đòi hỏi“phong bì”、“Quà tặng”thì kiên quyết từ chối，Và tố cáo với bệnh viện bằng tên thật。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>337</InnerID>
@@ -50,21 +50,21 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>477</InnerID>
-               <Text>     科室：</Text>
+               <Text>     Khoa：</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>349</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>478</InnerID>
-               <Text>     医师：                             患者(患者家属)家属签名：</Text>
+               <Text>     Bác sĩ：                             Bệnh nhân(Gia đình bệnh nhân)Gia đình ký tên：</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>401</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>479</InnerID>
-               <Text>  二0二    年    月    日                二0二    年    月    日</Text>
+               <Text>  202    năm    tháng    ngày                202    năm    tháng    ngày</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>457</InnerID>
@@ -123,13 +123,13 @@
       <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
       <NumOfPage>1</NumOfPage>
    </Info>
-   <BodyText>     为了全面加强卫生行业作风建设，坚决纠正行业不正之风，切实维护人民群众的利益，按上级卫生行政部门的要求，让我们共同签订《医患双向承诺书》，并以实际行动履行承诺。
-     医院向患者承诺:严格执行八项行业纪律，提供优质高效的医疗服务，拒绝“红包”、“礼物”及“宴请”，对违反承诺的科室和员工进行惩罚。医院受理投诉举报电话:0771-6538884、6530037
-患者或患者家属向医院承诺:支持医院开展医药购销和医疗服务中的不正之风专项治理工作，不向医院工作人员送“红包”、“礼物”不宴请医院工作人员。发现有工作人员索要“红包”、“礼物”的坚决拒绝，并实名向医院进行举报。
+   <BodyText>     Để tăng cường toàn diện xây dựng tác phong ngành y tế，Kiên quyết chấn chỉnh những biểu hiện không lành mạnh trong ngành，Bảo vệ thiết thực lợi ích của nhân dân，Theo yêu cầu của cơ quan y tế cấp trên，Chúng ta cùng ký kết《Bản cam kết hai chiều giữa bác sĩ và bệnh nhân》，Và thực hiện cam kết bằng hành động thực tế。
+     Bệnh viện cam kết với bệnh nhân:Nghiêm túc thực hiện tám kỷ luật ngành，Cung cấp dịch vụ y tế chất lượng cao, hiệu quả，Từ chối“phong bì”、“Quà tặng”và“Mời ăn uống”，Xử phạt khoa và nhân viên vi phạm cam kết。Số điện thoại tiếp nhận khiếu nại, tố cáo của bệnh viện:0771-6538884、6530037
+Bệnh nhân hoặc gia đình bệnh nhân cam kết với bệnh viện:Ủng hộ bệnh viện triển khai công tác chấn chỉnh chuyên đề về những biểu hiện không lành mạnh trong mua bán thuốc và dịch vụ y tế，Không đưa cho nhân viên bệnh viện“phong bì”、“Quà tặng”Không mời nhân viên bệnh viện ăn uống。Phát hiện nhân viên đòi hỏi“phong bì”、“Quà tặng”thì kiên quyết từ chối，Và tố cáo với bệnh viện bằng tên thật。
 
-     科室：
-     医师：                             患者(患者家属)家属签名：
-  二0二    年    月    日                二0二    年    月    日
+     Khoa：
+     Bác sĩ：                             Bệnh nhân(Gia đình bệnh nhân)Gia đình ký tên：
+  202    năm    tháng    ngày                202    năm    tháng    ngày
 </BodyText>
    <LocalConfig />
    <PageSettings>

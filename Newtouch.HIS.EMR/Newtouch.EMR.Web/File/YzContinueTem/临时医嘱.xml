@@ -8,14 +8,14 @@
       <XElements>
         <Element xsi:type="XString" StyleIndex="1">
           <InnerID>22256</InnerID>
-          <Text>测试医院</Text>
+          <Text>Bệnh viện kiểm thử</Text>
         </Element>
         <Element xsi:type="XParagraphFlag" StyleIndex="0">
           <InnerID>748</InnerID>
         </Element>
         <Element xsi:type="XString" StyleIndex="2">
           <InnerID>22257</InnerID>
-          <Text>临时医嘱单</Text>
+          <Text>Phiếu y lệnh tạm thời</Text>
         </Element>
         <Element xsi:type="XParagraphFlag" StyleIndex="0">
           <InnerID>753</InnerID>
@@ -26,7 +26,7 @@
         </Element>
         <Element xsi:type="XString" StyleIndex="3">
           <InnerID>22259</InnerID>
-          <Text>病人ID:</Text>
+          <Text>Bệnh nhânID:</Text>
         </Element>
         <Element xsi:type="XInputField" StyleIndex="3">
           <InnerID>813</InnerID>
@@ -42,7 +42,7 @@
         </Element>
         <Element xsi:type="XString" StyleIndex="3">
           <InnerID>22260</InnerID>
-          <Text>姓名:</Text>
+          <Text>Họ tên:</Text>
         </Element>
         <Element xsi:type="XInputField" StyleIndex="3">
           <InnerID>824</InnerID>
@@ -57,7 +57,7 @@
         </Element>
         <Element xsi:type="XString" StyleIndex="3">
           <InnerID>22261</InnerID>
-          <Text>           科别:</Text>
+          <Text>           Khoa:</Text>
         </Element>
         <Element xsi:type="XInputField" StyleIndex="3">
           <InnerID>843</InnerID>
@@ -72,7 +72,7 @@
         </Element>
         <Element xsi:type="XString" StyleIndex="3">
           <InnerID>22262</InnerID>
-          <Text>          床号:</Text>
+          <Text>          Số giường:</Text>
         </Element>
         <Element xsi:type="XInputField" StyleIndex="3">
           <InnerID>862</InnerID>
@@ -87,7 +87,7 @@
         </Element>
         <Element xsi:type="XString" StyleIndex="3">
           <InnerID>22263</InnerID>
-          <Text>         住院号:</Text>
+          <Text>         Số nhập viện:</Text>
         </Element>
         <Element xsi:type="XInputField" StyleIndex="3">
           <InnerID>885</InnerID>
@@ -120,7 +120,7 @@
                   <XElements>
                     <Element xsi:type="XString" StyleIndex="5">
                       <InnerID>22268</InnerID>
-                      <Text>下达时间</Text>
+                      <Text>Thời gian ban hành</Text>
                     </Element>
                     <Element xsi:type="XParagraphFlag" StyleIndex="6">
                       <InnerID>912</InnerID>
@@ -132,7 +132,7 @@
                   <XElements>
                     <Element xsi:type="XString" StyleIndex="5">
                       <InnerID>22269</InnerID>
-                      <Text>医生</Text>
+                      <Text>Bác sĩ</Text>
                     </Element>
                     <Element xsi:type="XParagraphFlag" StyleIndex="6">
                       <InnerID>917</InnerID>
@@ -144,7 +144,7 @@
                   <XElements>
                     <Element xsi:type="XString" StyleIndex="5">
                       <InnerID>22270</InnerID>
-                      <Text>医嘱内容</Text>
+                      <Text>Nội dung y lệnh</Text>
                     </Element>
                     <Element xsi:type="XParagraphFlag" StyleIndex="6">
                       <InnerID>922</InnerID>
@@ -156,7 +156,7 @@
                   <XElements>
                     <Element xsi:type="XString" StyleIndex="5">
                       <InnerID>22274</InnerID>
-                      <Text>组</Text>
+                      <Text>Nhóm</Text>
                     </Element>
                     <Element xsi:type="XParagraphFlag" StyleIndex="6">
                       <InnerID>952</InnerID>
@@ -168,7 +168,7 @@
                   <XElements>
                     <Element xsi:type="XString" StyleIndex="5">
                       <InnerID>22274</InnerID>
-                      <Text>途径</Text>
+                      <Text>Đường dùng</Text>
                     </Element>
                     <Element xsi:type="XParagraphFlag" StyleIndex="6">
                       <InnerID>952</InnerID>
@@ -180,7 +180,7 @@
                   <XElements>
                     <Element xsi:type="XString" StyleIndex="5">
                       <InnerID>22271</InnerID>
-                      <Text>执行时间</Text>
+                      <Text>Thời gian thực hiện</Text>
                     </Element>
                     <Element xsi:type="XParagraphFlag" StyleIndex="6">
                       <InnerID>929</InnerID>
@@ -192,7 +192,7 @@
                   <XElements>
                     <Element xsi:type="XString" StyleIndex="5">
                       <InnerID>22272</InnerID>
-                      <Text>护士</Text>
+                      <Text>Điều dưỡng</Text>
                     </Element>
                     <Element xsi:type="XParagraphFlag" StyleIndex="6">
                       <InnerID>936</InnerID>

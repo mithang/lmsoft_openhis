@@ -61,17 +61,17 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="5">
                <XElements xsi:nil="true" />
-               <Text>非药物执行单</Text>
+               <Text>Phiếu thực hiện điều trị không dùng thuốc</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>姓名:</Text>
+               <Text>Họ tên:</Text>
             </Element>
             <Element xsi:type="XInputField">
                <Attributes />
                <ID>555B0059-D165-46B3-9F88-9720672296AF</ID>
-               <ToolTip>请输入姓名</ToolTip>
+               <ToolTip>Vui lòng nhập họ tên</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -84,17 +84,17 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>xm</Name>
-               <BackgroundText>姓名</BackgroundText>
+               <BackgroundText>Họ tên</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>性别:</Text>
+               <Text>Giới tính:</Text>
             </Element>
             <Element xsi:type="XInputField">
                <Attributes />
                <ID>B4DF9EC6-B5D1-4DDA-B7A0-CF1C28E822F1</ID>
-               <ToolTip>请选择</ToolTip>
+               <ToolTip>Vui lòng chọn</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ContentReadonly>False</ContentReadonly>
                <XElements />
@@ -103,7 +103,7 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>sex</Name>
-               <BackgroundText>性别</BackgroundText>
+               <BackgroundText>Giới tính</BackgroundText>
                <EditorActiveMode>MouseClick</EditorActiveMode>
                <LastSelectedListItems />
                <FieldSettings>
@@ -111,19 +111,19 @@
                   <ListSource>
                      <Items>
                         <Item>
-                           <Text>男性</Text>
+                           <Text>Nam giới</Text>
                            <Value>0</Value>
                         </Item>
                         <Item>
-                           <Text>女性</Text>
+                           <Text>Nữ giới</Text>
                            <Value>1</Value>
                         </Item>
                         <Item>
-                           <Text>男</Text>
+                           <Text>Nam</Text>
                            <Value>2</Value>
                         </Item>
                         <Item>
-                           <Text>女</Text>
+                           <Text>Nữ</Text>
                            <Value>3</Value>
                         </Item>
                      </Items>
@@ -132,12 +132,12 @@
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>年龄:</Text>
+               <Text>Tuổi:</Text>
             </Element>
             <Element xsi:type="XInputField">
                <Attributes />
                <ID>294E8883-886E-4F41-B60C-AA5FCA5DC21E</ID>
-               <ToolTip>请输入年龄</ToolTip>
+               <ToolTip>Vui lòng nhập tuổi</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -150,17 +150,17 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>nl</Name>
-               <BackgroundText>年龄</BackgroundText>
+               <BackgroundText>Tuổi</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>床号:</Text>
+               <Text>Số giường:</Text>
             </Element>
             <Element xsi:type="XInputField">
                <Attributes />
                <ID>47C322C6-9098-4D54-9F8A-C726F1BE8CC1</ID>
-               <ToolTip>请输入床号</ToolTip>
+               <ToolTip>Vui lòng nhập số giường</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -170,7 +170,7 @@
                <XElements>
                   <Element xsi:type="XString">
                      <XElements xsi:nil="true" />
-                     <Text>床号</Text>
+                     <Text>Số giường</Text>
                   </Element>
                </XElements>
                <StartBorderText>[</StartBorderText>
@@ -179,17 +179,17 @@
                <EventExpressions />
                <Name>BedName</Name>
                <InnerValue>床号</InnerValue>
-               <BackgroundText>床号</BackgroundText>
+               <BackgroundText>Số giường</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>住院号:</Text>
+               <Text>Số nhập viện:</Text>
             </Element>
             <Element xsi:type="XInputField">
                <Attributes />
                <ID>6C1F42F9-EB78-43E1-AF32-18795C4E2303</ID>
-               <ToolTip>请输入住院号</ToolTip>
+               <ToolTip>Vui lòng nhập số nhập viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -202,12 +202,12 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>zyh</Name>
-               <BackgroundText>住院号</BackgroundText>
+               <BackgroundText>Số nhập viện</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>西医诊断:</Text>
+               <Text>Chẩn đoán y học hiện đại:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="4">
                <Attributes />
@@ -217,12 +217,12 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>xyzd</Name>
-               <BackgroundText>西医诊断</BackgroundText>
+               <BackgroundText>Chẩn đoán y học hiện đại</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text> 中医诊断:</Text>
+               <Text> Chẩn đoán y học cổ truyền:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="4">
                <Attributes />
@@ -232,7 +232,7 @@
                <BorderElementColor />
                <EventExpressions />
                <Name>zyzd</Name>
-               <BackgroundText>中医诊断</BackgroundText>
+               <BackgroundText>Chẩn đoán y học cổ truyền</BackgroundText>
                <LastSelectedListItems />
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
@@ -256,7 +256,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>  执行日期</Text>
+                                 <Text>  Ngày thực hiện</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                            </XElements>
@@ -267,7 +267,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>项目（已经执行的打√）</Text>
+                                 <Text>Hạng mục（Hạng mục đã thực hiện thì đánh dấu√）</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -398,7 +398,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>灸法</Text>
+                                 <Text>Phương pháp cứu</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -408,7 +408,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>雷火灸</Text>
+                                 <Text>Cứu lôi hỏa</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -418,7 +418,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>电针</Text>
+                                 <Text>Điện châm</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -428,7 +428,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>普通针刺</Text>
+                                 <Text>Châm cứu thường</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -438,7 +438,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>火针</Text>
+                                 <Text>Hỏa châm</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -448,7 +448,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>放血</Text>
+                                 <Text>Chích lể</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -458,7 +458,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>刮痧</Text>
+                                 <Text>Cạo gió</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -468,7 +468,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>中频</Text>
+                                 <Text>Điện trung tần</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -478,7 +478,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>小针刀</Text>
+                                 <Text>Tiểu châm đao</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -488,7 +488,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>手指点穴</Text>
+                                 <Text>Bấm huyệt bằng tay</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -498,7 +498,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>穴位贴敷</Text>
+                                 <Text>Đắp huyệt</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -508,7 +508,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>药物罐</Text>
+                                 <Text>Giác hơi thuốc</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -518,7 +518,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>拔罐</Text>
+                                 <Text>Giác hơi</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -528,7 +528,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>打火灸</Text>
+                                 <Text>Cứu lửa</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -538,7 +538,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>烫熨烫疗</Text>
+                                 <Text>Chườm nóng</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -548,7 +548,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>中药熏蒸</Text>
+                                 <Text>Xông thuốc đông y</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -558,7 +558,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>穴位注射</Text>
+                                 <Text>Tiêm huyệt</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -568,7 +568,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>关节错缝术</Text>
+                                 <Text>Thủ thuật nắn chỉnh khớp</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -578,22 +578,22 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>患</Text>
+                                 <Text>Bệnh nhân ký tên</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>者</Text>
+                                 <Text></Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>签</Text>
+                                 <Text></Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>名</Text>
+                                 <Text></Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="0" />
                            </XElements>
@@ -2961,12 +2961,12 @@
          <XElements>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>医生签名：</Text>
+               <Text>Bác sĩ ký tên：</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="2" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>年  月  日</Text>
+               <Text>năm  tháng  ngày</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="2" />
          </XElements>
@@ -2982,11 +2982,8 @@
       <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
       <NumOfPage>1</NumOfPage>
    </Info>
-   <BodyText>  执行日期 项目（已经执行的打√） 
-灸法 雷火灸 电针 普通针刺 火针 放血 刮痧 中频 小针刀 手指点穴 穴位贴敷 药物罐 拔罐 打火灸 烫熨烫疗 中药熏蒸 穴位注射 关节错缝术 患
-者
-签
-名 
+   <BodyText>  Ngày thực hiện Hạng mục（Hạng mục đã thực hiện thì đánh dấu√） 
+Phương pháp cứu Cứu lôi hỏa Điện châm Châm cứu thường Hỏa châm Chích lể Cạo gió Điện trung tần Tiểu châm đao Bấm huyệt bằng tay Đắp huyệt Giác hơi thuốc Giác hơi Cứu lửa Chườm nóng Xông thuốc đông y Tiêm huyệt Thủ thuật nắn chỉnh khớp Bệnh nhân ký tên 
                                         
                                         
                                         

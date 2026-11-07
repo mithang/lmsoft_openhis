@@ -7,7 +7,7 @@
          <XElements Count="56">
             <Element xsi:type="XInputField" StyleIndex="1">
                <ID>B0EADC5F-D1A7-4C1D-8BFF-C30B4AB96B89</ID>
-               <ToolTip>请输入医院名称</ToolTip>
+               <ToolTip>Vui lòng nhập tên bệnh viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -16,16 +16,16 @@
                <ContentReadonly>False</ContentReadonly>
                <BorderElementColor>#00000000</BorderElementColor>
                <Name>yymc</Name>
-               <BackgroundText>医院名称</BackgroundText>
+               <BackgroundText>Tên bệnh viện</BackgroundText>
                <EditorActiveMode>None</EditorActiveMode>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
             <Element xsi:type="XString" StyleIndex="2">
-               <Text>临时医嘱单</Text>
+               <Text>Phiếu y lệnh tạm thời</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
             <Element xsi:type="XString" StyleIndex="3">
-               <Text>姓名:</Text>
+               <Text>Họ tên:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="3">
                <ID>姓名</ID>
@@ -38,7 +38,7 @@
                <EditorActiveMode>F2 MouseDblClick MouseClick</EditorActiveMode>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
-               <Text>           科别:</Text>
+               <Text>           Khoa:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="3">
                <ID>科别</ID>
@@ -51,7 +51,7 @@
                <EditorActiveMode>F2 MouseDblClick MouseClick</EditorActiveMode>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
-               <Text>          床号:</Text>
+               <Text>          Số giường:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="3">
                <ID>床号</ID>
@@ -64,7 +64,7 @@
                <EditorActiveMode>F2 MouseDblClick MouseClick</EditorActiveMode>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
-               <Text>         住院号:</Text>
+               <Text>         Số nhập viện:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="3">
                <ID>住院号</ID>
@@ -94,7 +94,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="5">
                               <Element xsi:type="XString" StyleIndex="5">
-                                 <Text>下达时间</Text>
+                                 <Text>Thời gian ban hành</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6" />
                            </XElements>
@@ -103,7 +103,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="3">
                               <Element xsi:type="XString" StyleIndex="5">
-                                 <Text>医生</Text>
+                                 <Text>Bác sĩ</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6" />
                            </XElements>
@@ -112,7 +112,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="5">
                               <Element xsi:type="XString" StyleIndex="5">
-                                 <Text>医嘱内容</Text>
+                                 <Text>Nội dung y lệnh</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6" />
                            </XElements>
@@ -121,7 +121,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="2">
                               <Element xsi:type="XString" StyleIndex="5">
-                                 <Text>组</Text>
+                                 <Text>Nhóm</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6" />
                            </XElements>
@@ -130,7 +130,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="3">
                               <Element xsi:type="XString" StyleIndex="5">
-                                 <Text>途径</Text>
+                                 <Text>Đường dùng</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6" />
                            </XElements>
@@ -139,7 +139,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="5">
                               <Element xsi:type="XString" StyleIndex="5">
-                                 <Text>执行时间</Text>
+                                 <Text>Thời gian thực hiện</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6" />
                            </XElements>
@@ -148,7 +148,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="3">
                               <Element xsi:type="XString" StyleIndex="5">
-                                 <Text>护士</Text>
+                                 <Text>Điều dưỡng</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6" />
                            </XElements>
@@ -363,7 +363,7 @@
       <Operator>DCSoft.Writer Version:1.2014.122.41929</Operator>
       <NumOfPage>1</NumOfPage>
    </Info>
-   <BodyText>下达时间 医生 医嘱内容 组 途径 执行时间 护士 
+   <BodyText>Thời gian ban hành Bác sĩ Nội dung y lệnh Nhóm Đường dùng Thời gian thực hiện Điều dưỡng 
               </BodyText>
    <LocalConfig />
    <PageSettings>

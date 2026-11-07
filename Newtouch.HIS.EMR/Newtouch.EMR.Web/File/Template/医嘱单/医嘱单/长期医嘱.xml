@@ -28,12 +28,12 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
             <Element xsi:type="XString" StyleIndex="2">
                <XElements xsi:nil="true" />
-               <Text>长期医嘱单</Text>
+               <Text>Phiếu y lệnh dài hạn</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>姓名:</Text>
+               <Text>Họ tên:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="3">
                <Attributes />
@@ -51,7 +51,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>  年龄:</Text>
+               <Text>  Tuổi:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="4">
                <Attributes />
@@ -71,7 +71,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>  性别:</Text>
+               <Text>  Giới tính:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="4">
                <Attributes />
@@ -90,7 +90,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>  科别:</Text>
+               <Text>  Khoa:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="4">
                <Attributes />
@@ -109,7 +109,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>      床号:</Text>
+               <Text>      Số giường:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="3">
                <Attributes />
@@ -127,7 +127,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>        住院号:</Text>
+               <Text>        Số nhập viện:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="3">
                <Attributes />
@@ -164,7 +164,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="6">
                                  <XElements xsi:nil="true" />
-                                 <Text>起始时间</Text>
+                                 <Text>Thời gian bắt đầu</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="7" />
                            </XElements>
@@ -174,7 +174,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="6">
                                  <XElements xsi:nil="true" />
-                                 <Text>医生</Text>
+                                 <Text>Bác sĩ</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="7" />
                            </XElements>
@@ -184,7 +184,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="6">
                                  <XElements xsi:nil="true" />
-                                 <Text>护士</Text>
+                                 <Text>Điều dưỡng</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="7" />
                            </XElements>
@@ -194,7 +194,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="6">
                                  <XElements xsi:nil="true" />
-                                 <Text>组号</Text>
+                                 <Text>Số nhóm</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="7" />
                            </XElements>
@@ -204,7 +204,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="6">
                                  <XElements xsi:nil="true" />
-                                 <Text>医嘱内容</Text>
+                                 <Text>Nội dung y lệnh</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="7" />
                            </XElements>
@@ -214,7 +214,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="6">
                                  <XElements xsi:nil="true" />
-                                 <Text>停止时间</Text>
+                                 <Text>Thời gian dừng</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="7" />
                            </XElements>
@@ -224,7 +224,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="6">
                                  <XElements xsi:nil="true" />
-                                 <Text>医生</Text>
+                                 <Text>Bác sĩ</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="7" />
                            </XElements>
@@ -234,7 +234,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="6">
                                  <XElements xsi:nil="true" />
-                                 <Text>护士</Text>
+                                 <Text>Điều dưỡng</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="7" />
                            </XElements>
@@ -387,7 +387,7 @@
       <Operator>DCSoft.Writer Version:1.2014.122.41929</Operator>
       <NumOfPage>1</NumOfPage>
    </Info>
-   <BodyText>起始时间 医生 护士 组号 医嘱内容 停止时间 医生 护士 
+   <BodyText>Thời gian bắt đầu Bác sĩ Điều dưỡng Số nhóm Nội dung y lệnh Thời gian dừng Bác sĩ Điều dưỡng 
                 </BodyText>
    <Comments />
    <LocalConfig />

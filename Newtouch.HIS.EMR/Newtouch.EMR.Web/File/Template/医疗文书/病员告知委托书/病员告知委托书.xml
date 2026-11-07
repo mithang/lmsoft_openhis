@@ -14,7 +14,7 @@
             <Element xsi:type="XInputField" StyleIndex="1">
                <InnerID>3176</InnerID>
                <ID>B0EADC5F-D1A7-4C1D-8BFF-C30B4AB96B89</ID>
-               <ToolTip>请输入医院名称</ToolTip>
+               <ToolTip>Vui lòng nhập tên bệnh viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -25,14 +25,14 @@
                <EndBorderText>]</EndBorderText>
                <BorderElementColor />
                <Name>yymc</Name>
-               <BackgroundText>医院名称</BackgroundText>
+               <BackgroundText>Tên bệnh viện</BackgroundText>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0">
                <InnerID>3177</InnerID>
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <InnerID>3791</InnerID>
-               <Text>病员告知委托书</Text>
+               <Text>Giấy ủy quyền thông báo cho bệnh nhân</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0">
                <InnerID>3186</InnerID>
@@ -45,7 +45,7 @@
          <XElements>
             <Element xsi:type="XString">
                <InnerID>3792</InnerID>
-               <Text>       为有利于本人的疾病治疗，慈委托</Text>
+               <Text>       Để có lợi cho việc điều trị bệnh của tôi，Tôi ủy quyền cho</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <InnerID>3793</InnerID>
@@ -53,7 +53,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>3794</InnerID>
-               <Text>(与患者关系:</Text>
+               <Text>(Quan hệ với bệnh nhân:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <InnerID>3795</InnerID>
@@ -61,14 +61,14 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>3796</InnerID>
-               <Text>为本人代理人，听取医疗机构告知有关本人的病情、医疗措施、医疗风险等情况，全权处理本人在诊疗过程中的一切事物并在手术同意书等需要患者签名同意的医疗文书上签名，代理本人行使知情同意权和选择权。经代理人签名同意所实施的诊疗行为若产生不良后果将由本人承担。</Text>
+               <Text>Làm người đại diện của tôi，Nghe cơ sở y tế thông báo về tình trạng bệnh của tôi、Biện pháp điều trị、Nguy cơ y tế và các tình huống khác，Toàn quyền xử lý mọi việc của tôi trong quá trình chẩn đoán, điều trị và ký vào giấy đồng ý phẫu thuật cùng các văn bản y tế khác cần chữ ký đồng ý của bệnh nhân，Thay tôi thực hiện quyền được biết, đồng ý và quyền lựa chọn。Nếu việc chẩn đoán, điều trị được thực hiện sau khi người đại diện ký đồng ý gây hậu quả xấu, tôi sẽ chịu trách nhiệm。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>3362</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>3797</InnerID>
-               <Text>       此致</Text>
+               <Text>       Kính gửi</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>3373</InnerID>
@@ -81,7 +81,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>3798</InnerID>
-               <Text>受托人姓名:</Text>
+               <Text>Tên người được ủy quyền:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <InnerID>3799</InnerID>
@@ -89,7 +89,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>3800</InnerID>
-               <Text>委托人(患者)姓名:</Text>
+               <Text>Người ủy quyền(Bệnh nhân)Họ tên:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <InnerID>3801</InnerID>
@@ -100,38 +100,38 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>3802</InnerID>
-               <Text>性别:</Text>
+               <Text>Giới tính:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="2">
                <InnerID>3429</InnerID>
                <ID>B4DF9EC6-B5D1-4DDA-B7A0-CF1C28E822F1</ID>
-               <ToolTip>请选择</ToolTip>
+               <ToolTip>Vui lòng chọn</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ContentReadonly>False</ContentReadonly>
                <StartBorderText>[</StartBorderText>
                <EndBorderText>]</EndBorderText>
                <BorderElementColor />
                <Name>sex</Name>
-               <BackgroundText>性别</BackgroundText>
+               <BackgroundText>Giới tính</BackgroundText>
                <EditorActiveMode>MouseClick</EditorActiveMode>
                <FieldSettings>
                   <EditStyle>DropdownList</EditStyle>
                   <ListSource>
                      <Items>
                         <Item>
-                           <Text>男性</Text>
+                           <Text>Nam giới</Text>
                            <Value>0</Value>
                         </Item>
                         <Item>
-                           <Text>女性</Text>
+                           <Text>Nữ giới</Text>
                            <Value>1</Value>
                         </Item>
                         <Item>
-                           <Text>男</Text>
+                           <Text>Nam</Text>
                            <Value>2</Value>
                         </Item>
                         <Item>
-                           <Text>女</Text>
+                           <Text>Nữ</Text>
                            <Value>3</Value>
                         </Item>
                      </Items>
@@ -140,12 +140,12 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>3803</InnerID>
-               <Text>  年龄:</Text>
+               <Text>  Tuổi:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="2">
                <InnerID>3435</InnerID>
                <ID>294E8883-886E-4F41-B60C-AA5FCA5DC21E</ID>
-               <ToolTip>请输入年龄</ToolTip>
+               <ToolTip>Vui lòng nhập tuổi</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -156,11 +156,11 @@
                <EndBorderText>]</EndBorderText>
                <BorderElementColor />
                <Name>nl</Name>
-               <BackgroundText>年龄</BackgroundText>
+               <BackgroundText>Tuổi</BackgroundText>
             </Element>
             <Element xsi:type="XString">
                <InnerID>3804</InnerID>
-               <Text>   性别:</Text>
+               <Text>   Giới tính:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <InnerID>3805</InnerID>
@@ -168,7 +168,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>3806</InnerID>
-               <Text> 年龄:</Text>
+               <Text> Tuổi:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <InnerID>3807</InnerID>
@@ -179,7 +179,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>3808</InnerID>
-               <Text>住址:</Text>
+               <Text>Địa chỉ:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <InnerID>3809</InnerID>
@@ -187,7 +187,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>3810</InnerID>
-               <Text>   门诊号:</Text>
+               <Text>   Số khám ngoại trú:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <InnerID>3811</InnerID>
@@ -198,7 +198,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>3812</InnerID>
-               <Text>联系电话: </Text>
+               <Text>Số điện thoại liên hệ: </Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <InnerID>3813</InnerID>
@@ -206,7 +206,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>3814</InnerID>
-               <Text>  病史床号: </Text>
+               <Text>  Số giường bệnh: </Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <InnerID>3815</InnerID>
@@ -217,7 +217,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>3816</InnerID>
-               <Text>受托人身份证号码:</Text>
+               <Text>Số chứng minh nhân dân của người được ủy quyền:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <InnerID>3817</InnerID>
@@ -231,7 +231,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>3818</InnerID>
-               <Text>                                                             年      月      日</Text>
+               <Text>                                                             năm      tháng      ngày</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>3670</InnerID>
@@ -428,17 +428,17 @@
       <Operator>DCSoft.Writer Version:1.2015.12.23</Operator>
       <NumOfPage>2</NumOfPage>
    </Info>
-   <BodyText>       为有利于本人的疾病治疗，慈委托          (与患者关系:         为本人代理人，听取医疗机构告知有关本人的病情、医疗措施、医疗风险等情况，全权处理本人在诊疗过程中的一切事物并在手术同意书等需要患者签名同意的医疗文书上签名，代理本人行使知情同意权和选择权。经代理人签名同意所实施的诊疗行为若产生不良后果将由本人承担。
-       此致
+   <BodyText>       Để có lợi cho việc điều trị bệnh của tôi，Tôi ủy quyền cho          (Quan hệ với bệnh nhân:         Làm người đại diện của tôi，Nghe cơ sở y tế thông báo về tình trạng bệnh của tôi、Biện pháp điều trị、Nguy cơ y tế và các tình huống khác，Toàn quyền xử lý mọi việc của tôi trong quá trình chẩn đoán, điều trị và ký vào giấy đồng ý phẫu thuật cùng các văn bản y tế khác cần chữ ký đồng ý của bệnh nhân，Thay tôi thực hiện quyền được biết, đồng ý và quyền lựa chọn。Nếu việc chẩn đoán, điều trị được thực hiện sau khi người đại diện ký đồng ý gây hậu quả xấu, tôi sẽ chịu trách nhiệm。
+       Kính gửi
 
 
-受托人姓名:             委托人(患者)姓名:                
-性别:[]  年龄:[]   性别:            年龄:           
-住址:                     门诊号:                 
-联系电话:               病史床号:                  
-受托人身份证号码:                    
+Tên người được ủy quyền:             Người ủy quyền(Bệnh nhân)Họ tên:                
+Giới tính:[]  Tuổi:[]   Giới tính:            Tuổi:           
+Địa chỉ:                     Số khám ngoại trú:                 
+Số điện thoại liên hệ:               Số giường bệnh:                  
+Số chứng minh nhân dân của người được ủy quyền:                    
 
-                                                             年      月      日
+                                                             năm      tháng      ngày
 
 
 

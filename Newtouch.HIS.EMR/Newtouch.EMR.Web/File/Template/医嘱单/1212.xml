@@ -7,7 +7,7 @@
          <XElements Count="56">
             <Element xsi:type="XInputField" StyleIndex="1">
                <ID>B0EADC5F-D1A7-4C1D-8BFF-C30B4AB96B89</ID>
-               <ToolTip>请输入医院名称</ToolTip>
+               <ToolTip>Vui lòng nhập tên bệnh viện</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -16,16 +16,16 @@
                <ContentReadonly>False</ContentReadonly>
                <BorderElementColor>#00000000</BorderElementColor>
                <Name>yymc</Name>
-               <BackgroundText>医院名称</BackgroundText>
+               <BackgroundText>Tên bệnh viện</BackgroundText>
                <EditorActiveMode>None</EditorActiveMode>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
             <Element xsi:type="XString" StyleIndex="2">
-               <Text>临时医嘱单</Text>
+               <Text>Phiếu y lệnh tạm thời</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
             <Element xsi:type="XString" StyleIndex="3">
-               <Text>姓名:</Text>
+               <Text>Họ tên:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="3">
                <ID>姓名</ID>
@@ -38,7 +38,7 @@
                <EditorActiveMode>F2 MouseDblClick MouseClick</EditorActiveMode>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
-               <Text>           科别:</Text>
+               <Text>           Khoa:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="3">
                <ID>科别</ID>
@@ -51,7 +51,7 @@
                <EditorActiveMode>F2 MouseDblClick MouseClick</EditorActiveMode>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
-               <Text>          床号:</Text>
+               <Text>          Số giường:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="3">
                <ID>床号</ID>
@@ -64,7 +64,7 @@
                <EditorActiveMode>F2 MouseDblClick MouseClick</EditorActiveMode>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
-               <Text>         住院号:</Text>
+               <Text>         Số nhập viện:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="3">
                <ID>住院号</ID>
