@@ -1566,7 +1566,7 @@
          <XElements>
             <Element xsi:type="XString" StyleIndex="6">
                <XElements xsi:nil="true" />
-               <Text>注:①Phân cấp chăm sóc cơ bản: Ađộ: Hoàn toàn không tự chăm sóc được Bđộ: Tự chăm sóc một phần Cđộ: Hoàn toàn tự chăm sóc</Text>
+               <Text>注:①Phân cấp chăm sóc cơ bản: A độ: Hoàn toàn không tự chăm sóc được B độ: Tự chăm sóc một phần C độ: Hoàn toàn tự chăm sóc</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="6" />
             <Element xsi:type="XString" StyleIndex="6">

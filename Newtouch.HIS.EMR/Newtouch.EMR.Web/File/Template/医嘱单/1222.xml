@@ -282,7 +282,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="7">
                               <Element xsi:type="XString" StyleIndex="4">
-                                 <Text>出sNơi sinh:</Text>
+                                 <Text>出 Nơi sinh:</Text>
                               </Element>
                               <Element xsi:type="XInputField" StyleIndex="4">
                                  <ID>A7DB5475-9569-4B25-B786-F34CE41931B1</ID>
@@ -658,15 +658,15 @@
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="5" />
             <Element xsi:type="XString">
-               <Text>Bệnh sử hiện tại: Bệnh nhân tự kể từ 1 tháng trước, không có nguyên nhân rõ ràng, bắt đầu hoI, Ngứa họng, Ho từng cơn liên tục, Không ho có đờm rõ, Không sốt, Ớn lạnh, Chảy nước mũi, Không đau ngực, Hồi hộp, Thở khò khè, Không buồn nôn, Nôn, Đau bụng, Tiêu chảy, v.v., Sau khi mắc bệnh từng đến phòng khám Bệnh viện Y học cổ truyền huyện Long An lấy thuốc uống điều trị（Không rõ cụ thểt）, Ho đỡ hơn một chút. Do nhiễm lạnh nên lại ho, Ngứa họng, Lại đến phòng khám tư truyền dịch điều trị（Không rõ thuốc cụ thể đã dùng）信, Ho đỡ hơn, Nhưng ngừng thuốc lại tái phát. Vào 2 ngày trước xuất hiện sốt, Thân nhiệt cao nhất là 37.8℃,而1 tháng 2 o 7 Ngày đến khám ngoại trú tại bệnh viện chúng tôi, Cho uống thuốc“Roxithromycin, Thuốc hạt Ngân hoàng, Viên Ibuprofen”Điều trị, Sốt vẫn tái phát. Để kiểm tra và điều trị thêm, chiều nay bệnh nhân lại đến khám ngoại trú tại bệnh viện chúng tôi, Phòng khám ngoại trú cho chụp X-quang ngực thẳng-nghiêng cho thấy: Vân phổi hai bênCtăng đậm, nhiều, Đề nghị kết hợp lâm sàng.và dự kiến“1, Viêm phế quản cấp 2, Viêm họng cấp”Nhập viện điều trị. Tinh thần sau khi mắc bệnh, Ăn uống, Giấc ngủ kém, Đại tiểu tiện bình thường, Cân nặng không thay đổi rõ.</Text>
+               <Text>Bệnh sử hiện tại: Bệnh nhân tự kể từ 1 tháng trước, không có nguyên nhân rõ ràng, bắt đầu ho, Ngứa họng, Ho từng cơn liên tục, Không ho có đờm rõ, Không sốt, Ớn lạnh, Chảy nước mũi, Không đau ngực, Hồi hộp, Thở khò khè, Không buồn nôn, Nôn, Đau bụng, Tiêu chảy, v.v., Sau khi mắc bệnh từng đến phòng khám Bệnh viện Y học cổ truyền huyện Long An lấy thuốc uống điều trị（Không rõ cụ thể）, Ho đỡ hơn một chút. Do nhiễm lạnh nên lại ho, Ngứa họng, Lại đến phòng khám tư truyền dịch điều trị（Không rõ thuốc cụ thể đã dùng）信, Ho đỡ hơn, Nhưng ngừng thuốc lại tái phát. Vào 2 ngày trước xuất hiện sốt, Thân nhiệt cao nhất là 37.8℃,而1 tháng 2 o 7 Ngày đến khám ngoại trú tại bệnh viện chúng tôi, Cho uống thuốc “Roxithromycin, Thuốc hạt Ngân hoàng, Viên Ibuprofen” Điều trị, Sốt vẫn tái phát. Để kiểm tra và điều trị thêm, chiều nay bệnh nhân lại đến khám ngoại trú tại bệnh viện chúng tôi, Phòng khám ngoại trú cho chụp X-quang ngực thẳng-nghiêng cho thấy: Vân phổi hai bên tăng đậm, nhiều, Đề nghị kết hợp lâm sàng. và dự kiến“1, Viêm phế quản cấp 2, Viêm họng cấp” Nhập viện điều trị. Tinh thần sau khi mắc bệnh, Ăn uống, Giấc ngủ kém, Đại tiểu tiện bình thường, Cân nặng không thay đổi rõ.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="6" />
             <Element xsi:type="XString">
-               <Text>Tiền sử: Trước đây vào năm 2006 năm tại Long An Bệnh viện nhân dân huyện vì mang thai đủ tháng nên mổ lấy thai 1 lần; Vào 2023 năm vì“Thiếu máu”Điều trị ngoại trú tại Bệnh viện Y học cổ truyền huyện Long An.dPhủ nhận có viêm gan, Tiền sử lao phổi và các bệnh truyền nhiễm khác; Phủ nhận có tăng huyết áp, Bệnh tim, Tiền sử đái tháo đường và tiền sử u bướu; Phủ nhận có tiền sử chấn thương lớn, Không có tiền sử truyền máu, Phủ nhận có bệnh địa phương, Tiền sử tiếp xúc; Tiền sử tiêm chủng chưa rõ; Không có tiền sử dị ứng thuốcs. Hỏi các hệ cơ quan khác không thấy bất thường.</Text>
+               <Text>Tiền sử: Trước đây vào năm 2006 năm tại Long An Bệnh viện nhân dân huyện vì mang thai đủ tháng nên mổ lấy thai 1 lần; Vào 2023 năm vì “Thiếu máu” Điều trị ngoại trú tại Bệnh viện Y học cổ truyền huyện Long An. Phủ nhận có viêm gan, Tiền sử lao phổi và các bệnh truyền nhiễm khác; Phủ nhận có tăng huyết áp, Bệnh tim, Tiền sử đái tháo đường và tiền sử u bướu; Phủ nhận có tiền sử chấn thương lớn, Không có tiền sử truyền máu, Phủ nhận có bệnh địa phương, Tiền sử tiếp xúc; Tiền sử tiêm chủng chưa rõ; Không có tiền sử dị ứng thuốc. Hỏi các hệ cơ quan khác không thấy bất thường.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="6" />
             <Element xsi:type="XString">
-               <Text>Tiền sử cá nhân: Sinh ra và lớn lên tại quê quán, Chưa từng đến vùng có bệnh truyền nhiễm,流行病疫区居住有.Lớn lên rồi làm việc tại địa phương. Điều kiện kinh tế gia đình bình thường. Phủ nhận có thói quen hút thuốc, uống rượu và các thói quen khác. Không có thời gian cư trú dài hạn ở nơi khácITiền sử cư trú, Phủ nhận có tiếp xúc với vùng dịch gần đây, Phủ nhận có tiền sử quan hệ tình dục không an toàn. Không có tiền sử quan hệ tình dục không an toàn. Đã tiêm chủng 3 liều vắc-xin COVID-19.</Text>
+               <Text>Tiền sử cá nhân: Sinh ra và lớn lên tại quê quán, Chưa từng đến vùng có bệnh truyền nhiễm,流行病疫区居住有.Lớn lên rồi làm việc tại địa phương. Điều kiện kinh tế gia đình bình thường. Phủ nhận có thói quen hút thuốc, uống rượu và các thói quen khác. Không có thời gian cư trú dài hạn ở nơi khác, Tiền sử cư trú, Phủ nhận có tiếp xúc với vùng dịch gần đây, Phủ nhận có tiền sử quan hệ tình dục không an toàn. Không có tiền sử quan hệ tình dục không an toàn. Đã tiêm chủng 3 liều vắc-xin COVID-19.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="6" />
             <Element xsi:type="XString">
@@ -674,7 +674,7 @@
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="6" />
             <Element xsi:type="XString">
-               <Text>Tiền sử gia đìnho: Trong gia đình phủ nhận có người mắc bệnh tương tự, Không có tiền sử bệnh truyền nhiễm và bệnh di truyền.</Text>
+               <Text>Tiền sử gia đình: Trong gia đình phủ nhận có người mắc bệnh tương tự, Không có tiền sử bệnh truyền nhiễm và bệnh di truyền.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="7" />
             <Element xsi:type="XString" StyleIndex="1">
@@ -688,7 +688,7 @@
                <Text>℃</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="9">
-               <Text>, P都96 lần</Text>
+               <Text>, P96 lần</Text>
             </Element>
             <Element xsi:type="XString">
                <Text>/</Text>
@@ -715,7 +715,7 @@
                <Text>,</Text>
             </Element>
             <Element xsi:type="XString">
-               <Text>Wt 55 kg, Chiều cao 155 cCm</Text>
+               <Text>Wt 55 kg, Chiều cao 155 cm</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="9">
                <Text>.</Text>
@@ -730,15 +730,15 @@
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="6" />
             <Element xsi:type="XString">
-               <Text>Hạch bạch huyết: Không sờ thấy hạch nông sưng to toàn thând表淋巴结.</Text>
+               <Text>Hạch bạch huyết: Không sờ thấy hạch nông sưng to toàn thân.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="5" />
             <Element xsi:type="XString">
-               <Text>Đầu và các cơ quan vùng đầu: Đầu không dị dạng, Không đau khi ấn. Mí mắt không phù, Kết mạc không sung huyết, Củng mạc không vàng. Hai đồng tử đều nhau, hình tròn, Đường kính 3.0 mm, Phản xạ với ánh sáng nhanh nhạy, Ống tai ngoài và tiền đình mũi hai bên không thấy bất thườngsDịch tiết, Môi không tím tái, Khoang miệng không loét, Không có mụn nước, Hai bên amidan không sưng to, Bề mặt không thấy rêu mủ, Họng sung huyết (+), Thành sau họng thấy sung huyết, nang tăng sinh.</Text>
+               <Text>Đầu và các cơ quan vùng đầu: Đầu không dị dạng, Không đau khi ấn. Mí mắt không phù, Kết mạc không sung huyết, Củng mạc không vàng. Hai đồng tử đều nhau, hình tròn, Đường kính 3.0 mm, Phản xạ với ánh sáng nhanh nhạy, Ống tai ngoài và tiền đình mũi hai bên không thấy bất thường, Dịch tiết, Môi không tím tái, Khoang miệng không loét, Không có mụn nước, Hai bên amidan không sưng to, Bề mặt không thấy rêu mủ, Họng sung huyết (+), Thành sau họng thấy sung huyết, nang tăng sinh.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="6" />
             <Element xsi:type="XString">
-               <Text>Cổ: Hai bên đối xứng, Không dị dạng, Tĩnh mạch cổ không nổi căng, Động mạch cổ không cóIĐập bất thường. Cổ mềm, Khí quản ở giữa, Tuyến giáp không to, Không nghe thấy tiếng thổi mạch máu.</Text>
+               <Text>Cổ: Hai bên đối xứng, Không dị dạng, Tĩnh mạch cổ không nổi căng, Động mạch cổ không có đập bất thường. Cổ mềm, Khí quản ở giữa, Tuyến giáp không to, Không nghe thấy tiếng thổi mạch máu.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="5" />
             <Element xsi:type="XString">
@@ -746,19 +746,19 @@
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="5" />
             <Element xsi:type="XString">
-               <Text>  Lồng ngực: Hai bên đối xứng, Không dị dạng. Thành ngực không giãn tĩnh mạch và không đau khi ấn, Khe liên sườn không giãn rộng hay hẹp lại, Không đau khi ấn, Hai bên vú đối xứng,未tSờ thấy nốt.</Text>
+               <Text>  Lồng ngực: Hai bên đối xứng, Không dị dạng. Thành ngực không giãn tĩnh mạch và không đau khi ấn, Khe liên sườn không giãn rộng hay hẹp lại, Không đau khi ấn, Hai bên vú đối xứng, 未 Sờ thấy nốt.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="5" />
             <Element xsi:type="XString">
-               <Text>  Phổi: Hô hấp ổn định, Nhịp đều đặn. Độ di động hô hấp hai bên đều nhau, Rung thanh đều, Không tăng hay giảm, Không có cảm giác cọ màng phổi. Gõ hai phổi trong, Nghe thấy âm thở thô, Không nghe thấy ran khô, ran ẩm, Không có tiếng cọ màng phổio.</Text>
+               <Text>  Phổi: Hô hấp ổn định, Nhịp đều đặn. Độ di động hô hấp hai bên đều nhau, Rung thanh đều, Không tăng hay giảm, Không có cảm giác cọ màng phổi. Gõ hai phổi trong, Nghe thấy âm thở thô, Không nghe thấy ran khô, ran ẩm, Không có tiếng cọ màng phổi.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="5" />
             <Element xsi:type="XString">
-               <Text>  Tim: Vùng trước tim không nhô lên và không có đập bất thường, Không sờ thấy rung, Không có cảm giác cọ màng ngoài tim. Bờ tim không lớn, Nhịp tim 9都6 lần/phút, Nhịp đều đặn, Tiếng tim mạnh, Các vùng nghe van tim không nghe thấy tiếng thổi, Không có tiếng cọ màng ngoài tim.</Text>
+               <Text>  Tim: Vùng trước tim không nhô lên và không có đập bất thường, Không sờ thấy rung, Không có cảm giác cọ màng ngoài tim. Bờ tim không lớn, Nhịp tim 96 lần/phút, Nhịp đều đặn, Tiếng tim mạnh, Các vùng nghe van tim không nghe thấy tiếng thổi, Không có tiếng cọ màng ngoài tim.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="5" />
             <Element xsi:type="XString">
-               <Text>Mạch máu ngoại vi: CTần số mạch 96 lần/phút, Nhịp đều đặn. Không phát hiện dấu hiệu mạch máu ngoại vi.</Text>
+               <Text>Mạch máu ngoại vi: Tần số mạch 96 lần/phút, Nhịp đều đặn. Không phát hiện dấu hiệu mạch máu ngoại vi.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="5" />
             <Element xsi:type="XString">
@@ -766,7 +766,7 @@
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="5" />
             <Element xsi:type="XString">
-               <Text>Hậu môn, Trực tràng, Cơ quan sinh dục ngoàid器: Bề ngoài bình thường, Không có ban da.</Text>
+               <Text>Hậu môn, Trực tràng, Cơ quan sinh dục ngoài 器: Bề ngoài bình thường, Không có ban da.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="5" />
             <Element xsi:type="XString">
@@ -774,7 +774,7 @@
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="5" />
             <Element xsi:type="XString">
-               <Text>Hệ thần kinh: Sức cơ tứ chi, Trương lực cơ bình thường, Phản xạ sinh lý còn, sKhông gợi được phản xạ bệnh lý, Dấu hiệu kích thích màng não âm tính.</Text>
+               <Text>Hệ thần kinh: Sức cơ tứ chi, Trương lực cơ bình thường, Phản xạ sinh lý còn, Không gợi được phản xạ bệnh lý, Dấu hiệu kích thích màng não âm tính.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="5" />
             <Element xsi:type="XString" StyleIndex="1">
@@ -782,7 +782,7 @@
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="11" />
             <Element xsi:type="XString">
-               <Text>Xét nghiệm máu thường quy: WBC6.23×109/L, NCóeu 59.7﹪, Lym 25.6%, RBC5.84×1012/L, HGB108 gI/L, PLT260×109/L. C-Protein phản ứng: hs-CRP2.70 mg/L, C科RP&lt;5.0 mg/L. Đường huyết ngẫu nhiên: 3.90 mmol/L. Phim X-quang ngực thẳng-nghiêng: Vân phổi hai bên tăngt粗, nhiều, Đề nghị kết hợp lâm sàng.</Text>
+               <Text>Xét nghiệm máu thường quy: WBC6.23×109/L, NEU 59.7﹪, Lym 25.6%, RBC5.84×1012/L, HGB108 g/L, PLT260×109/L. C-Protein phản ứng: hs-CRP2.70 mg/L, CRP&lt;5.0 mg/L. Đường huyết ngẫu nhiên: 3.90 mmol/L. Phim X-quang ngực thẳng-nghiêng: Vân phổi hai bên tăng 粗, nhiều, Đề nghị kết hợp lâm sàng.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="10" />
             <Element xsi:type="XString">
@@ -836,7 +836,7 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="15" />
             <Element xsi:type="XParagraphFlag" StyleIndex="14" />
             <Element xsi:type="XString">
-               <Text>Chức danh bác sĩ: CBác sĩ hành nghề   Bác sĩ ký tên:</Text>
+               <Text>Chức danh bác sĩ: Bác sĩ hành nghề   Bác sĩ ký tên:</Text>
             </Element>
             <Element xsi:type="XInputField">
                <ID>field23</ID>
@@ -1011,36 +1011,36 @@
    <BodyText>Hồ sơ nhập viện
 
 Họ tên: Họ tên    Giới tính: Giới tính     Tuổi:[Tuổi]   Hôn nhân:[Tình trạng hôn nhân] Dân tộc:[Dân tộc] 
-Quê quán: Quê quán  出sNơi sinh: Nơi sinh 
+Quê quán: Quê quán  出 Nơi sinh: Nơi sinh 
 Nghề nghiệp:[Nghề nghiệp] Đơn vị: [Nơi làm việc và địa chỉ] Người liên hệ:[Tên người liên hệ](Quan hệ với người liên hệ) 
 Điện thoại:[Số điện thoại liên hệ]  Số chứng minh nhân dân: Số chứng minh nhân dân   
 Địa chỉ: Địa chỉ hiện tại 
 Ngày nhập viện:[Ngày nhập viện]  Người trình bày bệnh sử: Chính bệnh nhân 
 Bệnh sử
 Triệu chứng chính:[Triệu chứng chính]
-Bệnh sử hiện tại: Bệnh nhân tự kể từ 1 tháng trước, không có nguyên nhân rõ ràng, bắt đầu hoI, Ngứa họng, Ho từng cơn liên tục, Không ho có đờm rõ, Không sốt, Ớn lạnh, Chảy nước mũi, Không đau ngực, Hồi hộp, Thở khò khè, Không buồn nôn, Nôn, Đau bụng, Tiêu chảy, v.v., Sau khi mắc bệnh từng đến phòng khám Bệnh viện Y học cổ truyền huyện Long An lấy thuốc uống điều trị（Không rõ cụ thểt）, Ho đỡ hơn một chút. Do nhiễm lạnh nên lại ho, Ngứa họng, Lại đến phòng khám tư truyền dịch điều trị（Không rõ thuốc cụ thể đã dùng）信, Ho đỡ hơn, Nhưng ngừng thuốc lại tái phát. Vào 2 ngày trước xuất hiện sốt, Thân nhiệt cao nhất là 37.8℃,而1 tháng 2 o 7 Ngày đến khám ngoại trú tại bệnh viện chúng tôi, Cho uống thuốc“Roxithromycin, Thuốc hạt Ngân hoàng, Viên Ibuprofen”Điều trị, Sốt vẫn tái phát. Để kiểm tra và điều trị thêm, chiều nay bệnh nhân lại đến khám ngoại trú tại bệnh viện chúng tôi, Phòng khám ngoại trú cho chụp X-quang ngực thẳng-nghiêng cho thấy: Vân phổi hai bênCtăng đậm, nhiều, Đề nghị kết hợp lâm sàng.và dự kiến“1, Viêm phế quản cấp 2, Viêm họng cấp”Nhập viện điều trị. Tinh thần sau khi mắc bệnh, Ăn uống, Giấc ngủ kém, Đại tiểu tiện bình thường, Cân nặng không thay đổi rõ.
-Tiền sử: Trước đây vào năm 2006 năm tại Long An Bệnh viện nhân dân huyện vì mang thai đủ tháng nên mổ lấy thai 1 lần; Vào 2023 năm vì“Thiếu máu”Điều trị ngoại trú tại Bệnh viện Y học cổ truyền huyện Long An.dPhủ nhận có viêm gan, Tiền sử lao phổi và các bệnh truyền nhiễm khác; Phủ nhận có tăng huyết áp, Bệnh tim, Tiền sử đái tháo đường và tiền sử u bướu; Phủ nhận có tiền sử chấn thương lớn, Không có tiền sử truyền máu, Phủ nhận có bệnh địa phương, Tiền sử tiếp xúc; Tiền sử tiêm chủng chưa rõ; Không có tiền sử dị ứng thuốcs. Hỏi các hệ cơ quan khác không thấy bất thường.
-Tiền sử cá nhân: Sinh ra và lớn lên tại quê quán, Chưa từng đến vùng có bệnh truyền nhiễm,流行病疫区居住有.Lớn lên rồi làm việc tại địa phương. Điều kiện kinh tế gia đình bình thường. Phủ nhận có thói quen hút thuốc, uống rượu và các thói quen khác. Không có thời gian cư trú dài hạn ở nơi khácITiền sử cư trú, Phủ nhận có tiếp xúc với vùng dịch gần đây, Phủ nhận có tiền sử quan hệ tình dục không an toàn. Không có tiền sử quan hệ tình dục không an toàn. Đã tiêm chủng 3 liều vắc-xin COVID-19.
+Bệnh sử hiện tại: Bệnh nhân tự kể từ 1 tháng trước, không có nguyên nhân rõ ràng, bắt đầu ho, Ngứa họng, Ho từng cơn liên tục, Không ho có đờm rõ, Không sốt, Ớn lạnh, Chảy nước mũi, Không đau ngực, Hồi hộp, Thở khò khè, Không buồn nôn, Nôn, Đau bụng, Tiêu chảy, v.v., Sau khi mắc bệnh từng đến phòng khám Bệnh viện Y học cổ truyền huyện Long An lấy thuốc uống điều trị（Không rõ cụ thể）, Ho đỡ hơn một chút. Do nhiễm lạnh nên lại ho, Ngứa họng, Lại đến phòng khám tư truyền dịch điều trị（Không rõ thuốc cụ thể đã dùng）信, Ho đỡ hơn, Nhưng ngừng thuốc lại tái phát. Vào 2 ngày trước xuất hiện sốt, Thân nhiệt cao nhất là 37.8℃,而1 tháng 2 o 7 Ngày đến khám ngoại trú tại bệnh viện chúng tôi, Cho uống thuốc “Roxithromycin, Thuốc hạt Ngân hoàng, Viên Ibuprofen” Điều trị, Sốt vẫn tái phát. Để kiểm tra và điều trị thêm, chiều nay bệnh nhân lại đến khám ngoại trú tại bệnh viện chúng tôi, Phòng khám ngoại trú cho chụp X-quang ngực thẳng-nghiêng cho thấy: Vân phổi hai bên tăng đậm, nhiều, Đề nghị kết hợp lâm sàng. và dự kiến“1, Viêm phế quản cấp 2, Viêm họng cấp” Nhập viện điều trị. Tinh thần sau khi mắc bệnh, Ăn uống, Giấc ngủ kém, Đại tiểu tiện bình thường, Cân nặng không thay đổi rõ.
+Tiền sử: Trước đây vào năm 2006 năm tại Long An Bệnh viện nhân dân huyện vì mang thai đủ tháng nên mổ lấy thai 1 lần; Vào 2023 năm vì “Thiếu máu” Điều trị ngoại trú tại Bệnh viện Y học cổ truyền huyện Long An. Phủ nhận có viêm gan, Tiền sử lao phổi và các bệnh truyền nhiễm khác; Phủ nhận có tăng huyết áp, Bệnh tim, Tiền sử đái tháo đường và tiền sử u bướu; Phủ nhận có tiền sử chấn thương lớn, Không có tiền sử truyền máu, Phủ nhận có bệnh địa phương, Tiền sử tiếp xúc; Tiền sử tiêm chủng chưa rõ; Không có tiền sử dị ứng thuốc. Hỏi các hệ cơ quan khác không thấy bất thường.
+Tiền sử cá nhân: Sinh ra và lớn lên tại quê quán, Chưa từng đến vùng có bệnh truyền nhiễm,流行病疫区居住有.Lớn lên rồi làm việc tại địa phương. Điều kiện kinh tế gia đình bình thường. Phủ nhận có thói quen hút thuốc, uống rượu và các thói quen khác. Không có thời gian cư trú dài hạn ở nơi khác, Tiền sử cư trú, Phủ nhận có tiếp xúc với vùng dịch gần đây, Phủ nhận có tiền sử quan hệ tình dục không an toàn. Không có tiền sử quan hệ tình dục không an toàn. Đã tiêm chủng 3 liều vắc-xin COVID-19.
 Tiền sử kinh nguyệt và hôn nhân sinh đẻ: Kinh nguyệt 12 tuổi có kinh lần đầu, Kỳ kinh 3-5/28-30 ngày, Kỳ kinh cuối 2024. t 1.3, Lượng kinh nguyệt bình thường, Lượng kinh nguyệt bình thường, Màu đỏ sẫm, Không đau bụng kinh, Khí hư không nhiều, Không có mùi lạ. Kết hôn đúng tuổi, Vợ/chồng khỏe mạnh, Có con 1 Nữ 1 Con trai, Con cái đều sinh đủ tháng, sinh thường, Con cái đều khỏe mạnh. Phủ nhận có tiền sử quan hệ tình dục không an toàn.  
-Tiền sử gia đìnho: Trong gia đình phủ nhận có người mắc bệnh tương tự, Không có tiền sử bệnh truyền nhiễm và bệnh di truyền.
+Tiền sử gia đình: Trong gia đình phủ nhận có người mắc bệnh tương tự, Không có tiền sử bệnh truyền nhiễm và bệnh di truyền.
 Khám thực thể
-T37.2℃, P都96 lần/phút, R18 lần/phút, BP120/78 mmHg, Wt 55 kg, Chiều cao 155 cCm.
+T37.2℃, P96 lần/phút, R18 lần/phút, BP120/78 mmHg, Wt 55 kg, Chiều cao 155 cm.
 Tình trạng chung: Phát triển bình thường, Dinh dưỡng trung bình,正力体型, Ý thức tỉnh táo, Tinh thần bình thường, Vẻ mặt bệnh cấp tính, Dáng đi bình thường, Tư thế tự chủ, Hợp tác khi khám.
 Da và niêm mạc: Da và niêm mạc toàn thân không vàng, Da lưng thấy ban đỏ dạng mảng , Không có điểm xuất huyết dưới da, Không có nốt ruồi nhện, Loét, Sẹo. Da đàn hồi bình thường.
-Hạch bạch huyết: Không sờ thấy hạch nông sưng to toàn thând表淋巴结.
-Đầu và các cơ quan vùng đầu: Đầu không dị dạng, Không đau khi ấn. Mí mắt không phù, Kết mạc không sung huyết, Củng mạc không vàng. Hai đồng tử đều nhau, hình tròn, Đường kính 3.0 mm, Phản xạ với ánh sáng nhanh nhạy, Ống tai ngoài và tiền đình mũi hai bên không thấy bất thườngsDịch tiết, Môi không tím tái, Khoang miệng không loét, Không có mụn nước, Hai bên amidan không sưng to, Bề mặt không thấy rêu mủ, Họng sung huyết (+), Thành sau họng thấy sung huyết, nang tăng sinh.
-Cổ: Hai bên đối xứng, Không dị dạng, Tĩnh mạch cổ không nổi căng, Động mạch cổ không cóIĐập bất thường. Cổ mềm, Khí quản ở giữa, Tuyến giáp không to, Không nghe thấy tiếng thổi mạch máu.
+Hạch bạch huyết: Không sờ thấy hạch nông sưng to toàn thân.
+Đầu và các cơ quan vùng đầu: Đầu không dị dạng, Không đau khi ấn. Mí mắt không phù, Kết mạc không sung huyết, Củng mạc không vàng. Hai đồng tử đều nhau, hình tròn, Đường kính 3.0 mm, Phản xạ với ánh sáng nhanh nhạy, Ống tai ngoài và tiền đình mũi hai bên không thấy bất thường, Dịch tiết, Môi không tím tái, Khoang miệng không loét, Không có mụn nước, Hai bên amidan không sưng to, Bề mặt không thấy rêu mủ, Họng sung huyết (+), Thành sau họng thấy sung huyết, nang tăng sinh.
+Cổ: Hai bên đối xứng, Không dị dạng, Tĩnh mạch cổ không nổi căng, Động mạch cổ không có đập bất thường. Cổ mềm, Khí quản ở giữa, Tuyến giáp không to, Không nghe thấy tiếng thổi mạch máu.
 Ngực:
-  Lồng ngực: Hai bên đối xứng, Không dị dạng. Thành ngực không giãn tĩnh mạch và không đau khi ấn, Khe liên sườn không giãn rộng hay hẹp lại, Không đau khi ấn, Hai bên vú đối xứng,未tSờ thấy nốt.
-  Phổi: Hô hấp ổn định, Nhịp đều đặn. Độ di động hô hấp hai bên đều nhau, Rung thanh đều, Không tăng hay giảm, Không có cảm giác cọ màng phổi. Gõ hai phổi trong, Nghe thấy âm thở thô, Không nghe thấy ran khô, ran ẩm, Không có tiếng cọ màng phổio.
-  Tim: Vùng trước tim không nhô lên và không có đập bất thường, Không sờ thấy rung, Không có cảm giác cọ màng ngoài tim. Bờ tim không lớn, Nhịp tim 9都6 lần/phút, Nhịp đều đặn, Tiếng tim mạnh, Các vùng nghe van tim không nghe thấy tiếng thổi, Không có tiếng cọ màng ngoài tim.
-Mạch máu ngoại vi: CTần số mạch 96 lần/phút, Nhịp đều đặn. Không phát hiện dấu hiệu mạch máu ngoại vi.
+  Lồng ngực: Hai bên đối xứng, Không dị dạng. Thành ngực không giãn tĩnh mạch và không đau khi ấn, Khe liên sườn không giãn rộng hay hẹp lại, Không đau khi ấn, Hai bên vú đối xứng, 未 Sờ thấy nốt.
+  Phổi: Hô hấp ổn định, Nhịp đều đặn. Độ di động hô hấp hai bên đều nhau, Rung thanh đều, Không tăng hay giảm, Không có cảm giác cọ màng phổi. Gõ hai phổi trong, Nghe thấy âm thở thô, Không nghe thấy ran khô, ran ẩm, Không có tiếng cọ màng phổi.
+  Tim: Vùng trước tim không nhô lên và không có đập bất thường, Không sờ thấy rung, Không có cảm giác cọ màng ngoài tim. Bờ tim không lớn, Nhịp tim 96 lần/phút, Nhịp đều đặn, Tiếng tim mạnh, Các vùng nghe van tim không nghe thấy tiếng thổi, Không có tiếng cọ màng ngoài tim.
+Mạch máu ngoại vi: Tần số mạch 96 lần/phút, Nhịp đều đặn. Không phát hiện dấu hiệu mạch máu ngoại vi.
 Bụng: Bụng phẳng, Không giãn tĩnh mạch thành bụng, Không thấy hình ruột và sóng nhu động dạ dày-ruột, Cơ bụng mềm, Toàn bụng không đau khi ấn, Không đau dội ngược, Dấu hiệu Murphy âm tính, Không sờ thấy khối, Gan , Không sờ thấy lách dưới bờ sườn, Vùng gan thận không đau khi gõ, Tiếng đục di động âm tính, Âm ruột bình thường.
-Hậu môn, Trực tràng, Cơ quan sinh dục ngoàid器: Bề ngoài bình thường, Không có ban da.
+Hậu môn, Trực tràng, Cơ quan sinh dục ngoài 器: Bề ngoài bình thường, Không có ban da.
 Cột sống, Tứ chi: Cột sống, Tứ chi không dị dạng, Khớp tứ chi không đỏ, sưng, Đau khi ấn, Vận động không hạn chế. Hai chi dưới không giãn tĩnh mạch và không phù.
-Hệ thần kinh: Sức cơ tứ chi, Trương lực cơ bình thường, Phản xạ sinh lý còn, sKhông gợi được phản xạ bệnh lý, Dấu hiệu kích thích màng não âm tính.
+Hệ thần kinh: Sức cơ tứ chi, Trương lực cơ bình thường, Phản xạ sinh lý còn, Không gợi được phản xạ bệnh lý, Dấu hiệu kích thích màng não âm tính.
 Cận lâm sàng
-Xét nghiệm máu thường quy: WBC6.23×109/L, NCóeu 59.7﹪, Lym 25.6%, RBC5.84×1012/L, HGB108 gI/L, PLT260×109/L. C-Protein phản ứng: hs-CRP2.70 mg/L, C科RP&lt;5.0 mg/L. Đường huyết ngẫu nhiên: 3.90 mmol/L. Phim X-quang ngực thẳng-nghiêng: Vân phổi hai bên tăngt粗, nhiều, Đề nghị kết hợp lâm sàng.
+Xét nghiệm máu thường quy: WBC6.23×109/L, NEU 59.7﹪, Lym 25.6%, RBC5.84×1012/L, HGB108 g/L, PLT260×109/L. C-Protein phản ứng: hs-CRP2.70 mg/L, CRP&lt;5.0 mg/L. Đường huyết ngẫu nhiên: 3.90 mmol/L. Phim X-quang ngực thẳng-nghiêng: Vân phổi hai bên tăng 粗, nhiều, Đề nghị kết hợp lâm sàng.
 Chẩn đoán sơ bộ: 1, Viêm phế quản cấp
       2, Viêm họng cấp
                                     o             
@@ -1049,7 +1049,7 @@ Ngày 
 Chẩn đoán bổ sung:          
 Phân loại ca bệnh:
 
-Chức danh bác sĩ: CBác sĩ hành nghề   Bác sĩ ký tên: Bác sĩ ký tên
+Chức danh bác sĩ: Bác sĩ hành nghề   Bác sĩ ký tên: Bác sĩ ký tên
 Ngày 
            </BodyText>
    <LocalConfig />

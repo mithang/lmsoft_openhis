@@ -132,14 +132,14 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>830</InnerID>
-               <Text>Chẩn đoán xuất viện: 1. Thoát vị đĩa đệm cột sống cổ kèm bệnh lý rễ thần kinh 2. Đau thắt ngực ổn định 3. Chức năng timIIđộ 4•Bệnh tim do xơ vữa động mạch vành 5. 2 Đái tháo đường tuýp 6. Tăng cholesterol máu</Text>
+               <Text>Chẩn đoán xuất viện: 1. Thoát vị đĩa đệm cột sống cổ kèm bệnh lý rễ thần kinh 2. Đau thắt ngực ổn định 3. Chức năng tim II độ 4•Bệnh tim do xơ vữa động mạch vành 5. 2 Đái tháo đường tuýp 6. Tăng cholesterol máu</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>167</InnerID>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>831</InnerID>
-               <Text>Quá trình điều trị: Sau khi nhập viện, bệnh nhân được làm đầy đủ các xét nghiệm liên quan, Đĩa đệm cột sống cổCTcho thấy: C3/4 C4/5 C5/6 Thoát vị đĩa đệm 2•Gai xương cột sống cổ 3. Gai xương cột sống ngực. NgựcDRcho thấy: Vân phổi hai bên tăng đậm, Kết hợp lâm sàng. Siêu âm tim cho thấy: Chức năng tâm trương thất trái giảm. Điện tâm đồ cho thấy: Nhịp tim chậm xoang, Điện tâm đồ gần như bình thường. Xét nghiệm nước tiểu thường quy: Glucose 2+mmol/L, Sinh hóa: Glucose 10.47 mmol/L, Cholesterol LDL4.94 mmol/L, Tỉ lệ albumin/globulin 2.8, Cholesterol toàn phần 7.92 mmol/L0 Theo tình trạng bệnh, cho thuốc cải thiện tuần hoàn, Chống ngưng tập tiểu cầu, Ổn định mảng xơ vữa, Hạ đường huyết, Hạ mỡ máu và điều trị triệu chứng chóng mặt, Đau mỏi cổ vai, Buồn nôn, Khô miệng, Đắng miệng, Tê ngón tay, Hồi hộp và các triệu chứng khác đỡ hơn, Hôm nay xuất viện.</Text>
+               <Text>Quá trình điều trị: Sau khi nhập viện, bệnh nhân được làm đầy đủ các xét nghiệm liên quan, Đĩa đệm cột sống cổ CT cho thấy: C3/4 C4/5 C5/6 Thoát vị đĩa đệm 2•Gai xương cột sống cổ 3. Gai xương cột sống ngực. Ngực DR cho thấy: Vân phổi hai bên tăng đậm, Kết hợp lâm sàng. Siêu âm tim cho thấy: Chức năng tâm trương thất trái giảm. Điện tâm đồ cho thấy: Nhịp tim chậm xoang, Điện tâm đồ gần như bình thường. Xét nghiệm nước tiểu thường quy: Glucose 2+mmol/L, Sinh hóa: Glucose 10.47 mmol/L, Cholesterol LDL4.94 mmol/L, Tỉ lệ albumin/globulin 2.8, Cholesterol toàn phần 7.92 mmol/L0 Theo tình trạng bệnh, cho thuốc cải thiện tuần hoàn, Chống ngưng tập tiểu cầu, Ổn định mảng xơ vữa, Hạ đường huyết, Hạ mỡ máu và điều trị triệu chứng chóng mặt, Đau mỏi cổ vai, Buồn nôn, Khô miệng, Đắng miệng, Tê ngón tay, Hồi hộp và các triệu chứng khác đỡ hơn, Hôm nay xuất viện.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>426</InnerID>
@@ -372,8 +372,8 @@
       <NumOfPage>1</NumOfPage>
    </Info>
    <BodyText>Chẩn đoán xuất viện và quá trình điều trị tóm tắt:
-Chẩn đoán xuất viện: 1. Thoát vị đĩa đệm cột sống cổ kèm bệnh lý rễ thần kinh 2. Đau thắt ngực ổn định 3. Chức năng timIIđộ 4•Bệnh tim do xơ vữa động mạch vành 5. 2 Đái tháo đường tuýp 6. Tăng cholesterol máu
-Quá trình điều trị: Sau khi nhập viện, bệnh nhân được làm đầy đủ các xét nghiệm liên quan, Đĩa đệm cột sống cổCTcho thấy: C3/4 C4/5 C5/6 Thoát vị đĩa đệm 2•Gai xương cột sống cổ 3. Gai xương cột sống ngực. NgựcDRcho thấy: Vân phổi hai bên tăng đậm, Kết hợp lâm sàng. Siêu âm tim cho thấy: Chức năng tâm trương thất trái giảm. Điện tâm đồ cho thấy: Nhịp tim chậm xoang, Điện tâm đồ gần như bình thường. Xét nghiệm nước tiểu thường quy: Glucose 2+mmol/L, Sinh hóa: Glucose 10.47 mmol/L, Cholesterol LDL4.94 mmol/L, Tỉ lệ albumin/globulin 2.8, Cholesterol toàn phần 7.92 mmol/L0 Theo tình trạng bệnh, cho thuốc cải thiện tuần hoàn, Chống ngưng tập tiểu cầu, Ổn định mảng xơ vữa, Hạ đường huyết, Hạ mỡ máu và điều trị triệu chứng chóng mặt, Đau mỏi cổ vai, Buồn nôn, Khô miệng, Đắng miệng, Tê ngón tay, Hồi hộp và các triệu chứng khác đỡ hơn, Hôm nay xuất viện.
+Chẩn đoán xuất viện: 1. Thoát vị đĩa đệm cột sống cổ kèm bệnh lý rễ thần kinh 2. Đau thắt ngực ổn định 3. Chức năng tim II độ 4•Bệnh tim do xơ vữa động mạch vành 5. 2 Đái tháo đường tuýp 6. Tăng cholesterol máu
+Quá trình điều trị: Sau khi nhập viện, bệnh nhân được làm đầy đủ các xét nghiệm liên quan, Đĩa đệm cột sống cổ CT cho thấy: C3/4 C4/5 C5/6 Thoát vị đĩa đệm 2•Gai xương cột sống cổ 3. Gai xương cột sống ngực. Ngực DR cho thấy: Vân phổi hai bên tăng đậm, Kết hợp lâm sàng. Siêu âm tim cho thấy: Chức năng tâm trương thất trái giảm. Điện tâm đồ cho thấy: Nhịp tim chậm xoang, Điện tâm đồ gần như bình thường. Xét nghiệm nước tiểu thường quy: Glucose 2+mmol/L, Sinh hóa: Glucose 10.47 mmol/L, Cholesterol LDL4.94 mmol/L, Tỉ lệ albumin/globulin 2.8, Cholesterol toàn phần 7.92 mmol/L0 Theo tình trạng bệnh, cho thuốc cải thiện tuần hoàn, Chống ngưng tập tiểu cầu, Ổn định mảng xơ vữa, Hạ đường huyết, Hạ mỡ máu và điều trị triệu chứng chóng mặt, Đau mỏi cổ vai, Buồn nôn, Khô miệng, Đắng miệng, Tê ngón tay, Hồi hộp và các triệu chứng khác đỡ hơn, Hôm nay xuất viện.
 Thuốc dùng sau xuất viện và cách dùng, Những điều cần lưu ý:
 1. Tiếp tục điều trị bằng thuốc.
 Viên Aspirin bao tan ở ruột (chia liều)    100 mg  qd   Uống

@@ -470,12 +470,12 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>1, Giấy này không có hiệu lực nếu chưa được bệnh viện đóng dấu.2, Tẩy xóa mà không được bệnh viện đóng dấu xác nhận thì không có hiệu lực.</Text>
+                                 <Text>1, Giấy này không có hiệu lực nếu chưa được bệnh viện đóng dấu. 2, Tẩy xóa mà không được bệnh viện đóng dấu xác nhận thì không có hiệu lực.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>3, Giấy này chỉ chứng nhận tình trạng bệnh của bệnh nhân lúc xuất viện.4, Xin giữ gìn cẩn thận, Mất không cấp lại.</Text>
+                                 <Text>3, Giấy này chỉ chứng nhận tình trạng bệnh của bệnh nhân lúc xuất viện. 4, Xin giữ gìn cẩn thận, Mất không cấp lại.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                            </XElements>
@@ -531,8 +531,8 @@ Chẩn đoán lâm sàng:[]
 Ý kiến xử lý: 
 Những điều cần lưu ý sau khi xuất viện: 
 Bác sĩ ký tên:[] Ngày ký tên: 2015-01-09 09:39 
-1, Giấy này không có hiệu lực nếu chưa được bệnh viện đóng dấu.2, Tẩy xóa mà không được bệnh viện đóng dấu xác nhận thì không có hiệu lực.
-3, Giấy này chỉ chứng nhận tình trạng bệnh của bệnh nhân lúc xuất viện.4, Xin giữ gìn cẩn thận, Mất không cấp lại. </BodyText>
+1, Giấy này không có hiệu lực nếu chưa được bệnh viện đóng dấu. 2, Tẩy xóa mà không được bệnh viện đóng dấu xác nhận thì không có hiệu lực.
+3, Giấy này chỉ chứng nhận tình trạng bệnh của bệnh nhân lúc xuất viện. 4, Xin giữ gìn cẩn thận, Mất không cấp lại. </BodyText>
    <Comments />
    <LocalConfig />
    <PageSettings>

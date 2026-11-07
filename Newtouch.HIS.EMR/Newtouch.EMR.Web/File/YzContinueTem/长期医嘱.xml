@@ -26,7 +26,7 @@
         </Element>
         <Element xsi:type="XString" StyleIndex="3">
           <InnerID>22259</InnerID>
-          <Text>Bệnh nhânID:</Text>
+          <Text>Bệnh nhân ID:</Text>
         </Element>
         <Element xsi:type="XInputField" StyleIndex="3">
           <InnerID>813</InnerID>
