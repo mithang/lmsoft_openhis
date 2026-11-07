@@ -115,7 +115,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="resultObjArr"></param>
         /// <param name="pdId"></param>
-        /// <param name="noPc">0:theo Lô Kiểm kê  1:khôngtheo Lô Kiểm kê</param>
+        /// <param name="noPc">0:theo Lô Kiểm kê  1:không theo Lô Kiểm kê</param>
         /// <returns></returns>
         public IActionResult SaveInventory(string resultObjArr, long pdId, string noPc)
         {

@@ -65,7 +65,7 @@ namespace Newtouch.Domain.IDomainServices
 		/// <returns></returns>
 		List<OutpatientSettledRpQueryResponseDTO> OutpatientSettledRpQuery(string organizeId, DateTime kssj, DateTime jssj, string fph, string kh, string yfCode, string mzh);
 		/// <summary>
-		/// Lấytất cả Số nhóm
+		/// Lấy tất cả Số nhóm
 		/// </summary>
 		/// <param name="kh"></param>
 		/// <param name="fph"></param>

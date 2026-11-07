@@ -364,7 +364,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
         options.location(); //định ký tự
         options.container.show(); //định ký tựtốt lại Hiển thị
         options.loaddata(); //tải Dữ liệu
-        options.binddbclickchooseevent(); //nhấp đúp Đã chọnsự kiện  //ứng Cókích hoạtmột lầnthìcó thểlấyđã
+        options.binddbclickchooseevent(); //nhấp đúp Đã chọnsự kiện  //ứng Cókích hoạtmột lầnthì có thểlấyđã
     }
 
     if (options.isinputchangetriggered) {
@@ -779,7 +779,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
         options.location();   //định ký tự
         options.container.show();   //định ký tựtốt lại Hiển thị
         options.loaddata();   //tải Dữ liệu
-        options.binddbclickchooseevent();   //nhấp đúp Đã chọnsự kiện  //ứng Cókích hoạtmột lầnthìcó thểlấyđã
+        options.binddbclickchooseevent();   //nhấp đúp Đã chọnsự kiện  //ứng Cókích hoạtmột lầnthì có thểlấyđã
     }
 
     if (options.isinputchangetriggered) {
@@ -1235,7 +1235,7 @@ $.fn.multiFoodFloatingSelector = function (options, data) {
         options.location(); //định ký tự
         options.container.show(); //định ký tựtốt lại Hiển thị
         options.loaddata(); //tải Dữ liệu
-        options.binddbclickchooseevent(); //nhấp đúp Đã chọnsự kiện  //ứng Cókích hoạtmột lầnthìcó thểlấyđã
+        options.binddbclickchooseevent(); //nhấp đúp Đã chọnsự kiện  //ứng Cókích hoạtmột lầnthì có thểlấyđã
     }
 
     if (options.isinputchangetriggered) {

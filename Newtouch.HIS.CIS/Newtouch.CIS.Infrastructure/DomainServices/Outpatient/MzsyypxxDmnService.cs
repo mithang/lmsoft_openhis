@@ -145,7 +145,7 @@ AND syyp.fph LIKE '%' + @fph + '%'");
         }
 
         /// <summary>
-        /// Lấytất cả Số nhóm
+        /// Lấy tất cả Số nhóm
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="organizeId"></param>

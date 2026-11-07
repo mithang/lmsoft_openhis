@@ -236,7 +236,7 @@ namespace Newtouch.Sett.Domain
         [Description("Thẻ từ BHYT")]
         CTK = 0,
         /// <summary>
-        /// Thẻ ảo/việntrong Thẻ(tự động Tạolúc Thẻ ảo/Nhập taylúcviệntrong Thẻ)
+        /// Thẻ ảo/việntrong Thẻ(tự động Tạolúc Thẻ ảo/Nhập tay lúc viện trong Thẻ)
         /// </summary>
         [Description("Thẻ ảo")]
         XNK = 1,

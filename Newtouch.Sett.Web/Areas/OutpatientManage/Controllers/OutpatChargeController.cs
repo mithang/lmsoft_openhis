@@ -1194,7 +1194,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// gửi khám sức khỏe vắc xinForm
+        /// gửi khám sức khỏe vắc xin Form
         /// </summary>
         /// <returns></returns>
         public IActionResult SubmitPhysicalexamForm(AddPhysicalexamDto dto)

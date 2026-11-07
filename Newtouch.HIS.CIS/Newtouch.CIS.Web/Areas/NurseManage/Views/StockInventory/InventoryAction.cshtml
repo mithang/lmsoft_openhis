@@ -344,7 +344,7 @@
 
     //tảithứmột lần Tra cứu Dữ liệu
     function afterCompleteFunction() {
-        var rowIds = $gridKCInfo.jqGrid('getDataIDs');//Gridtải Hoàn thànhbậtdòngtrong Sửa   1.trước Lấytất cả các dòng Id  2.duyệtgọieditRow Phương pháp
+        var rowIds = $gridKCInfo.jqGrid('getDataIDs');//Gridtải Hoàn thànhbậtdòngtrong Sửa   1.trước Lấy tất cả các dòng Id  2.duyệt gọi editRow Phương pháp
         ObjArr_Load = [];
         for (var i = 0; i < rowIds.length; i++) {
             ObjArr_Load.push($gridKCInfo.jqGrid('getRowData', rowIds[i]));
@@ -355,7 +355,7 @@
 
     //tảithứmột lần Tra cứu Dữ liệu
     function afterCompleteFunctionNoPc() {
-        var rowIds = $gridKCInfoNoPc.jqGrid('getDataIDs');//Gridtải Hoàn thànhbậtdòngtrong Sửa   1.trước Lấytất cả các dòng Id  2.duyệtgọieditRow Phương pháp
+        var rowIds = $gridKCInfoNoPc.jqGrid('getDataIDs');//Gridtải Hoàn thànhbậtdòngtrong Sửa   1.trước Lấy tất cả các dòng Id  2.duyệt gọi editRow Phương pháp
         ObjArr_LoadNoPc = [];
         for (var i = 0; i < rowIds.length; i++) {
             ObjArr_LoadNoPc.push($gridKCInfoNoPc.jqGrid('getRowData', rowIds[i]));
@@ -369,13 +369,13 @@
         var $targetJqg;
         var noPc = "0";
         if ($("#i-noPc").hasClass("fa-toggle-off")) {
-            $targetJqg = $gridKCInfoNoPc;//Lấytất cả các dòng Id,duyệt để Sửakhung ở trạng thái Lưu Trạng thái
+            $targetJqg = $gridKCInfoNoPc;//Lấy tất cả các dòng Id,duyệt để Sửakhung ở trạng thái Lưu Trạng thái
             noPc = "1";
         } else {
-            $targetJqg = $gridKCInfo;//Lấytất cả các dòng Id,duyệt để Sửakhung ở trạng thái Lưu Trạng thái
+            $targetJqg = $gridKCInfo;//Lấy tất cả các dòng Id,duyệt để Sửakhung ở trạng thái Lưu Trạng thái
             noPc = "0";
         }
-        var rowIds = $targetJqg.jqGrid('getDataIDs');//Lấytất cả các dòng Id,duyệt để Sửakhung ở trạng thái Lưu Trạng thái
+        var rowIds = $targetJqg.jqGrid('getDataIDs');//Lấy tất cả các dòng Id,duyệt để Sửakhung ở trạng thái Lưu Trạng thái
 
         //kiểm tratrả Số lượng
         for (var i = 0; i < rowIds.length; i++) {
@@ -440,7 +440,7 @@
 
     //Bật sửa trong dòngkhung
     function EnableInlineEditBox($obj) {
-        var rowIds = $obj.jqGrid('getDataIDs');//Gridtải Hoàn thànhbậtdòngtrong Sửa   1.trước Lấytất cả các dòng Id  2.duyệtgọieditRow Phương pháp
+        var rowIds = $obj.jqGrid('getDataIDs');//Gridtải Hoàn thànhbậtdòngtrong Sửa   1.trước Lấy tất cả các dòng Id  2.duyệt gọi editRow Phương pháp
         for (var i = 0; i < rowIds.length; i++) {
             $obj.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
             });

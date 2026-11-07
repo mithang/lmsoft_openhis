@@ -109,7 +109,7 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
             }
             #endregion
 
-            //2.gọi Đăng kýsẽnghịphònggiao diện
+            //2.gọi Đăng kýsẽ nghị phònggiao diện
             //string token = AuthenManageHelper.GetToken();
             var hysqDataObj = new
             {
@@ -230,7 +230,7 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
             //Lấytoken
             //string token = AuthenManageHelper.GetToken();
 
-            //2.gọi Đăng kýsẽnghịphònggiao diện
+            //2.gọi Đăng kýsẽ nghị phònggiao diện
             //string token = AuthenManageHelper.GetToken();
             var hysqDataObj = new
             {
@@ -406,7 +406,7 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
             {
                 throw new FailedException(outstrSqjg.msg);
             }
-            //3.sẽnghịphòng Gửithông tin
+            //3.sẽ nghị phòng Gửithông tin
             //4.Cập nhật Trạng thái đăng ký
             _clinicApplyRepo.Updatesqzt(Id, (int)Emunzlzt.yjs, this.OrganizeId);
 

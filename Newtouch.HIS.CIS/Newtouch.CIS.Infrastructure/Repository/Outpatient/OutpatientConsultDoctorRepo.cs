@@ -67,7 +67,7 @@ where zt=1 and zsCode=@zscode";
 				,new SqlParameter("@zsfh", zsov.zsfh??""),new SqlParameter("@ys", zsov.gh??""),new SqlParameter("@ysmc", zsov.ysxm??"") ,new SqlParameter("@zscode", zsov.zsCode) });
 		}
 		/// <summary>
-		/// Tra cứukhingàycủaphútkhám Bác sĩ
+		/// Tra cứukhingày củaphútkhám Bác sĩ
 		/// </summary>
 		/// <param name="zsCode"></param>
 		/// <param name="orgId"></param>

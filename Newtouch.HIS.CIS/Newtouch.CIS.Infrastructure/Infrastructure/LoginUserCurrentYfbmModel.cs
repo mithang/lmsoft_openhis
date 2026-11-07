@@ -22,7 +22,7 @@ namespace Newtouch.Infrastructure
         public string yfbmjb { get; set; }
 
         /// <summary>
-        /// hiện tại Đăng nhậpthânphần của Khoa dược:0Kho thuốc;1Ngoại trú Nhà thuốc;2Nhập viện Nhà thuốc   Kho thuốctrực tiếpthông quayjbmjbkiểm trathìcó thểlấyđã
+        /// hiện tại Đăng nhậpthânphần của Khoa dược:0Kho thuốc;1Ngoại trú Nhà thuốc;2Nhập viện Nhà thuốc   Kho thuốctrực tiếpthông quayjbmjbkiểm trathì có thểlấyđã
         /// </summary>
         public string mzzybz { get; set; }
 

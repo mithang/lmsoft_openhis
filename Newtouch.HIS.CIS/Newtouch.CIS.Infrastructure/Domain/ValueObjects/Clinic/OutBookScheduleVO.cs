@@ -125,15 +125,15 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// là Không Dừngkhám 0Bình thườngrakhám  1Dừngkhám Trạng thái
+        /// là Không Dừng khám 0Bình thườngrakhám  1Dừng khám Trạng thái
         /// </summary>
         public string istz { get; set; }
         /// <summary>
-        /// Dừngkhámnguyên nhân
+        /// Dừng khámnguyên nhân
         /// </summary>
         public string tzyy { get; set; }
         /// <summary>
-        /// Dừngkhám Thời gian
+        /// Dừng khám Thời gian
         /// </summary>
         public string tzsj { get; set; }
     }

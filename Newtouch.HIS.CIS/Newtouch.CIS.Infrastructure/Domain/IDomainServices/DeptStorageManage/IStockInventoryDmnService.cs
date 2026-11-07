@@ -21,7 +21,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         List<VInventoryDateDropDownEntity> GetHangUpPdDates(string warehouseId, string organizeId);
 
         /// <summary>
-        /// Lấytất cả Kiểm kê Thời gian
+        /// Lấy tất cả Kiểm kê Thời gian
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>

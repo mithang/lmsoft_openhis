@@ -134,7 +134,7 @@ where czjl.createtime=@bysj
 			using (var db = new EFDbTransaction().BeginTrans())
 			{
                 //lấy Cấp độ chăm sóctương ứng Mã
-                string configsql = @"select value from [Newtouch_CIS]..[Sys_Config] where code = 'NursinLevelChargeItemMapp' and organizeId='"+ req.OrganizeId + "' and zt=1";//Xemlà Khôngcụ thểcómởthuốccủa Quyền,nàybảngcủavalue 0làchưabậtnày Quyền,1làbật
+                string configsql = @"select value from [Newtouch_CIS]..[Sys_Config] where code = 'NursinLevelChargeItemMapp' and organizeId='"+ req.OrganizeId + "' and zt=1";//Xemlà Khôngcụ thểcómởthuốccủa Quyền,nàybảngcủavalue 0là chưa bật này Quyền,1làbật
                 var value = this.FirstOrDefault<string>(configsql);
                 var hljbList = value.Split(',').ToList();
 

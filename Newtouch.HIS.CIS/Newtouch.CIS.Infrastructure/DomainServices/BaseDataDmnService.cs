@@ -302,7 +302,7 @@ where a.OrganizeId=@orgId and a.zt='1'";
 		public int GetPermissions(string orgid, string gh, string tsypzl, string dlcode, string kssqxjb)
 		{
 			var code = 1;
-			string sqls = @"select count(*) from [Newtouch_CIS]..[Sys_Config] where OrganizeId=@orgId and code = 'DocPresAuthCtrl' and Value = '1'";//Xemlà Khôngcụ thểcómởthuốccủa Quyền,nàybảngcủavalue 0làchưabậtnày Quyền,1làbật
+			string sqls = @"select count(*) from [Newtouch_CIS]..[Sys_Config] where OrganizeId=@orgId and code = 'DocPresAuthCtrl' and Value = '1'";//Xemlà Khôngcụ thểcómởthuốccủa Quyền,nàybảngcủavalue 0là chưa bật này Quyền,1làbật
 			var tt = this.FirstOrDefault<int>(sqls, new SqlParameter[] { new SqlParameter("@orgId", orgid) });
 			if (tt == 0) //nếuchưaở Bác sĩtrạmbậtmởthuốc Quyền,thìtất cả Thuốcđềucó thểmởlập
 			{
@@ -319,7 +319,7 @@ where a.OrganizeId=@orgid and b.gh=@gh and a.rel_value=@ypzl and a.rel_lxcode=1 
 				new SqlParameter("@gh",gh),
 				new SqlParameter("@ypzl",tsypzl),
 			};
-				var tsbz = this.FirstOrDefault<int>(sql, parm);//Lấylà Khôngcụ thểcó Loại nàythuốcvậtcủa Cờ thuốc đặc biệtcủamởlập Quyền,nếu Lớn hơn0thìcó Quyền,đợitại0 thìkhông Quyền
+				var tsbz = this.FirstOrDefault<int>(sql, parm);//Lấylà Khôngcụ thểcó Loại nàythuốcvậtcủa Cờ thuốc đặc biệtcủamởlập Quyền,nếu Lớn hơn0thì có Quyền,đợitại0 thìkhông Quyền
 				if (tsbz == 0)
 				{
 					code = -1;
@@ -336,7 +336,7 @@ where a.OrganizeId=@orgid and b.gh=@gh and a.rel_value=2 and a.rel_lxcode=3 and 
 				new SqlParameter("@gh",gh),
 				new SqlParameter("@ksscode",kssqxjb),
 			};
-				var qxjb = this.FirstOrDefault<int>(sqlqxjb, parm1);//Lấylà Khôngcụ thểcó Loại nàythuốcvậtcủa Kháng sinhmởlập Quyền,nếu Lớn hơn0thìcó Quyền,đợitại0 thìkhông Quyền
+				var qxjb = this.FirstOrDefault<int>(sqlqxjb, parm1);//Lấylà Khôngcụ thểcó Loại nàythuốcvậtcủa Kháng sinhmởlập Quyền,nếu Lớn hơn0thì có Quyền,đợitại0 thìkhông Quyền
 				if (qxjb == 0)//Bác sĩkhôngcụ thểchuẩn bị Kháng sinh Thuốc dùng không hạn chế Quyền,thìvàodòng Bước tiếp theokiểm tra
 				{
 					string sql = @"select COUNT(a.qxId) from  NewtouchHIS_Base.dbo.xt_qxkz a 
@@ -348,7 +348,7 @@ where a.OrganizeId=@orgid and b.gh=@gh and a.rel_value=@ksscode and a.rel_lxcode
 				new SqlParameter("@gh",gh),
 				new SqlParameter("@ksscode",kssqxjb),
 			};
-					var kss = this.FirstOrDefault<int>(sql, parm2);//Lấylà Khôngcụ thểcó Loại nàythuốcvậtcủa Kháng sinhmởlập Quyền,nếu Lớn hơn0thìcó Quyền,đợitại0 thìkhông Quyền
+					var kss = this.FirstOrDefault<int>(sql, parm2);//Lấylà Khôngcụ thểcó Loại nàythuốcvậtcủa Kháng sinhmởlập Quyền,nếu Lớn hơn0thì có Quyền,đợitại0 thìkhông Quyền
 					if (kss == 0)
 					{
 						code = -2;
@@ -366,7 +366,7 @@ where a.OrganizeId=@orgid and b.gh=@gh and a.rel_value=@dlcode and a.rel_lxcode=
 				new SqlParameter("@gh",gh),
 				new SqlParameter("@dlcode",dlcode),
 			};
-				var ypdl= this.FirstOrDefault<int>(sql, parm);//Lấylà Khôngcụ thểcó Loại nàythuốcvậtcủa Tên nhóm lớnmởlập Quyền,nếu Lớn hơn0thìcó Quyền,đợitại0 thìkhông Quyền
+				var ypdl= this.FirstOrDefault<int>(sql, parm);//Lấylà Khôngcụ thểcó Loại nàythuốcvậtcủa Tên nhóm lớnmởlập Quyền,nếu Lớn hơn0thì có Quyền,đợitại0 thìkhông Quyền
 				if (ypdl == 0)
 				{
 					code = -3;

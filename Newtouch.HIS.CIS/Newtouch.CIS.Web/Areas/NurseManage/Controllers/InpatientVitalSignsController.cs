@@ -373,7 +373,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             //}
             //if ((jssj.Value.Date - kssj.Value.Date).TotalDays > 30)
             //{
-            //    //2021-5-11Sửa:Nhập viện Thời gianvượtqua30ngàycủa Bệnh nhân có thể Tra cứu Nhập viện Xuất việnphạm vitrongcủa Ngày
+            //    //2021-5-11Sửa:Nhập viện Thời gianvượtqua30ngày của Bệnh nhân có thể Tra cứu Nhập viện Xuất việnphạm vitrongcủa Ngày
             //    if (!(patInfo.ryrq <= kssj && patInfo.cqrq >= jssj))
             //    {
             //        throw new FailedException("HLCX_DATE_OUTOFRANGE", "Ngàyphạm vikhôngcó thểvượtqua30ngày");
