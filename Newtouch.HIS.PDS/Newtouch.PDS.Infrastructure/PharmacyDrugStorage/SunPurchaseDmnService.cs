@@ -243,7 +243,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     {
                         OrganizeId = orgId,
                         jydm = "YY009",
-                        jymc = "订单填报",
+                        jymc = "Khai báo đơn hàng",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -326,7 +326,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     {
                         OrganizeId = orgId,
                         jydm = "YY010",
-                        jymc = "订单填报确认",
+                        jymc = "Xác nhận khai báo đơn hàng",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -393,7 +393,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     {
                         OrganizeId = orgId,
                         jydm = "YY011",
-                        jymc = "退货单填报",
+                        jymc = "Khai báo phiếu trả hàng",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -467,7 +467,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     {
                         OrganizeId = orgId,
                         jydm = "YY012",
-                        jymc = "退货单填报确认",
+                        jymc = "Xác nhận khai báo phiếu trả hàng",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -588,7 +588,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     {
                         OrganizeId = orgId,
                         jydm = "YY004",
-                        jymc = "发票查询并获取",
+                        jymc = "Tra cứu và lấy hóa đơn",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -646,7 +646,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     {
                         OrganizeId = orgId,
                         jydm = "YY019",
-                        jymc = "发票验收",
+                        jymc = "Nghiệm thu hóa đơn",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -752,7 +752,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     {
                         OrganizeId = orgId,
                         jydm = "YY003",
-                        jymc = "获取配送单明细数据",
+                        jymc = "Lấy dữ liệu chi tiết phiếu giao hàng",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -816,7 +816,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     {
                         OrganizeId = orgId,
                         jydm = "YY018",
-                        jymc = "配送明细验收",
+                        jymc = "Nghiệm thu chi tiết giao hàng",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -877,7 +877,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     {
                         OrganizeId = orgId,
                         jydm = "YY001",
-                        jymc = "医院配送点基础信息传报",
+                        jymc = "Báo cáo thông tin cơ bản điểm giao hàng của bệnh viện",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
