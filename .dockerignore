@@ -1,0 +1,21 @@
+# Build context for the .NET apps (docker/Dockerfile.app, context = repo root).
+.git
+.gitignore
+**/bin
+**/obj
+**/*.log
+# Static assets have their own build (docker/static); keep them out of the
+# .NET build context (25 MB of css/js/fonts).
+docker/static
+# Local database backups (mounted read-only into sqlserver instead).
+sqlbackup
+sqlbackup-current
+*.bak
+*.zip
+*.tar.gz
+# Staging/tmp copies of the tree — never build from these.
+herp-*-tmp
+sett-stage-*
+# Screenshots / local notes.
+shots*/
+roles-shots-progress.md

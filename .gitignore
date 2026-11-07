@@ -26,3 +26,7 @@ Thumbs.db
 
 # Delivery artifact (screenshots zip, delivered separately — never commit)
 shots-roles.zip
+
+# Docker setup (local secrets — never commit)
+.env
+.env.local
