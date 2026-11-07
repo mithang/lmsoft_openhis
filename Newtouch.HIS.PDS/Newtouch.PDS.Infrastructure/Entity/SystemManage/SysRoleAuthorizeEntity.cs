@@ -32,18 +32,14 @@ namespace Newtouch.HIS.Domain.Entity
         /// <summary>
         /// Loại hạng mục1-Mô-đun2-Nút3-Danh sách
         /// </summary>
-        // NX20-004 (D-NX20-004): cot nay KHONG ton tai trong bang
-        // Sys_RoleAuthorize (live + scratch deu 9 cot, khong co
-        // ItemType). Ly do nhu TopOrganizeId o SysRoleEntity: SqlSugar
-        // map moi property -> INSERT authorize row luon loi
-        // "Invalid column name 'ItemType'". Khoi phuc hanh vi EF goc
-        // (bo qua property thua) bang IsIgnore. Khong DDL (cam).
-        // GIOI HAN cu da ghi (NX20-004) da duoc xu ly o NX21-002
-        // (D-NX21-002): SysModuleDmnService khong loc ItemType tren
-        // repo nay nua ma suy loai tu tap Id cua Sys_Module /
-        // Sys_ModuleButton (dung cach RoleApp gan ItemType); doc
-        // ItemType qua entity nay van tra default(0).
-        [SugarColumn(IsIgnore = true)]
+        // NX30-ROLEDDL (D-NX30-ROLE-002): bo [SugarColumn(IsIgnore = true)]
+        // cua NX20-004 — cot ItemType DA TON TAI tren *_STG sau DDL
+        // nx30-role-ddl-STG.sql (backfill theo JOIN Sys_Module/Sys_ModuleButton).
+        // IsIgnore khien SqlSugar khong bao gio doc/ghi cot nay (doc luon tra
+        // default(0), INSERT authorize row luon ghi 0). GIOI HAN NX20-004 ve
+        // SysModuleDmnService (D-NX21-002) khong doi. CHI chay tren DB co cot
+        // nay — KHONG redeploy DLL nay sang carrier chay DB demo (demo chua co
+        // cot) cho toi khi DDL tuong ung duoc quyet dinh cho demo.
         public int ItemType { get; set; }
 
         /// <summary>

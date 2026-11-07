@@ -27,14 +27,13 @@ namespace Newtouch.HIS.Domain.Entity
         /// <summary>
         ///
         /// </summary>
-        // NX20-004 (D-NX20-004): cot nay KHONG ton tai trong bang
-        // Sys_Role (live + scratch deu 11 cot, khong co TopOrganizeId).
-        // SqlSugar map moi property mac dinh -> moi SELECT/INSERT/UPDATE
-        // deu loi "Invalid column name 'TopOrganizeId'" (harness NX20
-        // chung minh: ca guard lan insert that deu SqlException). Ban
-        // goc EF chi map cot da cau hinh nen property thua bi bo qua —
-        // khoi phuc dung hanh vi do bang IsIgnore. Khong DDL (cam).
-        [SugarColumn(IsIgnore = true)]
+        // NX30-ROLEDDL (D-NX30-ROLE-002): bo [SugarColumn(IsIgnore = true)]
+        // cua NX20-004 — cot ItemType DA TON TAI tren *_STG sau DDL
+        // nx30-role-ddl-STG.sql (backfill theo JOIN Sys_Module/Sys_ModuleButton).
+        // IsIgnore khien SqlSugar khong bao gio doc/ghi cot nay: INSERT authorize
+        // row luon de ItemType=0, doc qua entity luon tra default(0). CHI chay
+        // tren DB co cot nay — KHONG redeploy DLL nay sang carrier chay DB demo
+        // (demo chua co cot) cho toi khi DDL tuong ung duoc quyet dinh cho demo.
         public string TopOrganizeId { get; set; }
 
         /// <summary>

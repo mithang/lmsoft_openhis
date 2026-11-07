@@ -72,7 +72,16 @@ namespace Newtouch.HIS.Web.Controllers
             roleEntity.OrganizeId = "*";    //Vai trò phiên bản này theoTopOrganizeId,không tới được bệnh viện cụ thể
             roleEntity.TopOrganizeId = Constants.TopOrganizeId;
             roleEntity.zt = roleEntity.zt == "true" ? "1" : "0";
-            _roleApp.SubmitForm(roleEntity, permissionIds.Split(','), keyValue);
+            // NX30-ROLEDDL (F-NX30-ROLE-001): permissionIds ve null khi form
+            // khong check quyen nao (UI gui String([]) = "") -> Split(',') NRE
+            // o dong nay (live-probe temp 5301: SubmitForm keyValue=1, perms
+            // rong -> 200 {"state":"error","message":"Object reference..."},
+            // stack RoleController.cs:75). Guard: danh sach rong = 0 quyen,
+            // SubmitForm se xoa het RA cua role + khong insert dong nao.
+            var permissionIdArray = string.IsNullOrEmpty(permissionIds)
+                ? System.Array.Empty<string>()
+                : permissionIds.Split(',');
+            _roleApp.SubmitForm(roleEntity, permissionIdArray, keyValue);
             return Success("Thao tác thành công。");
         }
 
