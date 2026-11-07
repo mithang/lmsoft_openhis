@@ -585,18 +585,32 @@
     }
 
     function appdomain(sysApp) {
+        // Mở tab đích NGAY trong cú click (giữ chuỗi user-gesture) để trình duyệt
+        // không chặn popup; địa chỉ thật lấy sau qua AJAX rồi gán vào tab đó.
+        // Trước đây window.open nằm trong callback AJAX (mất chuỗi gesture) nên
+        // trình duyệt chặn lặng lẽ, bấm thẻ không có gì xảy ra.
+        var win = window.open('about:blank', '_blank');
         $.ajax({
             url: "/Login/GetUALoginAddres",
             data: { appId: sysApp },
             type: "post",
             dataType: "json",
             success: function (data) {
-                if (data.state == "success") {
+                if (data.state == "success" && data.data) {
                     var url = data.data + "&returnUrl=" + encodeURIComponent("/Home/Index");
-                    window.open(url);
+                    if (win) {
+                        win.location = url;
+                    } else {
+                        // Popup bị chặn: mở cùng tab thay vì không làm gì.
+                        window.location.href = url;
+                    }
+                } else {
+                    if (win) { win.close(); }
+                    $.modalAlert("không lấy được địa chỉ hệ thống [" + sysApp + "], vui lòng thử đăng nhập lại", 'error');
                 }
             },
             error: function (request, error, ex) {
+                if (win) { win.close(); }
                 $.modalAlert("dịch vụ không thể truy cập:[" + ex + "]", 'error');
             }
         });
