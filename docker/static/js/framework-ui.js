@@ -52,7 +52,7 @@ $.najax = function (options) {
 $.loading = function (bool, text) {
     try {
         var $loadingpage = top.$("#loadingPage"); var $loadingtext = $loadingpage.find('.loading-content'); if (bool) { $loadingpage.show(); } else { if ($loadingtext.attr('istableloading') == undefined) { $loadingpage.hide(); } }
-        if (!!text) { $loadingtext.html(text); } else { $loadingtext.html("数据加载中，请稍后…"); }
+        if (!!text) { $loadingtext.html(text); } else { $loadingtext.html("Đang tải dữ liệu, vui lòng đợi…"); }
 
         var iiiiiw = top.$('body').width();
         var iiiiih = top.$('body').height();

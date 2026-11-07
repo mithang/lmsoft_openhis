@@ -115,7 +115,7 @@ $.loading = function (bool, text) {
     if (!!text) {
         $loadingtext.html(text);
     } else {
-        $loadingtext.html("数据加载中，请稍后…");
+        $loadingtext.html("Đang tải dữ liệu, vui lòng đợi…");
     }
     var iiiiiw = top.$('body').width();
     var iiiiih = top.$('body').height();
