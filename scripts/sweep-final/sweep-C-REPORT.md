@@ -184,7 +184,7 @@ thuộc phần nợ lại §6.
 ### 4a. EMR DCSoft — vẫn là template demo, editor KHÔNG chạy được (ghi đúng, không tuyên bố ngược lại)
 
 - `MedicalRecordController.HandleDCWriterServicePage()` (và `MedRecordTemplateController`,
-  `MRMS RecordController`, `MRMS MainRecord` tương tự) trả JSON lỗi显式, không 404:
+  `MRMS RecordController`, `MRMS MainRecord` tương tự) trả JSON lỗi rõ ràng, không 404:
   message: "Trình soạn thảo văn bản DCSoft chưa khả dụng trên .NET Core (không có bản
   build .NET Core). Cần thay bằng trình soạn thảo web khác."
 - View demo còn nguyên: `MedRecordTemplate/testbl.cshtml` (và `testbl - 复制.cshtml`) load
@@ -216,7 +216,7 @@ thuộc phần nợ lại §6.
   "Báo cáo SSRS chưa được cấu hình (ReportServer.HOST trống): máy chủ SQL Server
   Reporting Services không chạy trên Linux nên trang báo cáo không thể hiển thị nội dung."
 - EMR: `MRHomePage/Report/BasyReport` đã sửa hành vi gốc (JS-redirect tới
-  `ReportViewer.aspx` rồi 404) thành thông báo SSRS显式 khi HOST trống, giữ nguyên nhánh
+  `ReportViewer.aspx` rồi 404) thành thông báo SSRS rõ ràng khi HOST trống, giữ nguyên nhánh
   redirect khi có cấu hình SSRS thật.
 - Kết luận: **không báo cáo SSRS nào chạy được trên Linux trong đợt này**; tất cả đều là
   stub/thông báo — đúng hiện trạng Windows-only đã ghi từ trước, không phải hồi quy.
