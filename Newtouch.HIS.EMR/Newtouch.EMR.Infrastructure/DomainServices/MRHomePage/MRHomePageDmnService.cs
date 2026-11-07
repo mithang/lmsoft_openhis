@@ -762,7 +762,7 @@ order by SSOrder ";
                             var basyLj = _ZymeddocsrelationRepo.FindEntity(p => p.OrganizeId == orgId && p.zyh == ety.ZYH && p.blId==ety.Id && p.bllx == "5" && p.zt == "0");
                             if (basyLj != null)
                             {
-                                DocRelSubmit(blmbId, ety.ZYH, ety.Id, "病案首页", ety.CreatorCode, username, orgId);
+                                DocRelSubmit(blmbId, ety.ZYH, ety.Id, "Trang đầu bệnh án", ety.CreatorCode, username, orgId);
                             }
                             else
                             {
@@ -800,7 +800,7 @@ order by SSOrder ";
                             var basy = _MrbasyRepo.FindEntity(p => p.OrganizeId == orgId && p.ZYH == ety.ZYH && p.BAH == ety.BAH && p.zt == "1");
                             if (basy != null)
                             {
-                                DocRelSubmit(blmbId, basy.ZYH, basy.Id, "病案首页", basy.CreatorCode, username, orgId);
+                                DocRelSubmit(blmbId, basy.ZYH, basy.Id, "Trang đầu bệnh án", basy.CreatorCode, username, orgId);
                             }
                         }
                         else

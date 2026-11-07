@@ -65,7 +65,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             }
         }
 
-        //ĐọcxmlGiá trị nút chỉ định
+        // Đọc giá trị nút XML chỉ định
         public string ReadXmlNodes(string xml, string node)
         {
             string text = string.Empty;
@@ -83,7 +83,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             }
             catch (Exception ex)
             {
-                AppLogger.Info("ĐọcxmlGiá trị nút chỉ định bất thường: " + ex);
+                AppLogger.Info("Đọc giá trị nút XML chỉ định bất thường: " + ex);
             }
             return text;
         }
@@ -103,7 +103,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             }
             catch (Exception ex)
             {
-                AppLogger.Info("ĐọcxmlGiá trị nút chỉ định bất thường: " + ex);
+                AppLogger.Info("Đọc giá trị nút XML chỉ định bất thường: " + ex);
                 throw new Exception(ex.ToString());
             }
             return text;
@@ -152,7 +152,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     var sXxlx = jydm;
                     var sSign = getMessageDigest(responsexml);
 
-                    //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
+                    // Gọi nền tảng mua hàng SunshineWebService Giao diện
                     AppLogger.Info("============= " + sXxlx + " ============= ");
                     AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                     AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
@@ -228,7 +228,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
                 var sXxlx = "YY009";
                 var sSign = getMessageDigest(responsexml);
-                //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
+                // Gọi nền tảng mua hàng SunshineWebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
@@ -269,7 +269,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                 //_purchaseRepo.PurchaseDdbhUpdate(cgId, ddbh, orgId);
 
                 var ddbh = ReadXmlNodes(responseXML, "DDBH");
-                AppLogger.Info("Trả về gọi giao dịch mua hàngDDBH： " + ddbh);
+                AppLogger.Info("Trả về gọi giao dịch mua hàng DDBH: " + ddbh);
                 return ddbh;
             }
             catch (Exception e)
@@ -311,7 +311,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
                 var sXxlx = "YY010";
                 var sSign = getMessageDigest(responsexml);
-                //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
+                // Gọi nền tảng mua hàng SunshineWebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
@@ -380,7 +380,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
                 var sXxlx = "YY011";
                 var sSign = getMessageDigest(responsexml);
-                //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
+                // Gọi nền tảng mua hàng SunshineWebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
@@ -456,7 +456,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     //var responseXML = "<XMLDATA><HEAD><JSSJ>20130831/102341/</JSSJ><ZTCLJG>00000</ZTCLJG><CWXX/><BZXX/></HEAD></XMLDATA>";
                     var sXxlx = "YY012";
                     var sSign = getMessageDigest(responsexml);
-                    //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
+                    // Gọi nền tảng mua hàng SunshineWebService Giao diện
                     AppLogger.Info("============= " + sXxlx + " ============= ");
                     AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                     AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
@@ -524,7 +524,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                 {
                     var sXxlx = "YY004";
                     var sSign = getMessageDigest(responsexml);
-                    //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
+                    // Gọi nền tảng mua hàng SunshineWebService Giao diện
                     AppLogger.Info("============= " + sXxlx + " ============= ");
                     AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                     AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
@@ -635,7 +635,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     //var responseXML = "<XMLDATA><HEAD><JSSJ>20130831/102341/</JSSJ><ZTCLJG>00000</ZTCLJG><CWXX/><BZXX/></HEAD></XMLDATA>";
                     var sXxlx = "YY019";
                     var sSign = getMessageDigest(responsexml);
-                    //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
+                    // Gọi nền tảng mua hàng SunshineWebService Giao diện
                     AppLogger.Info("============= " + sXxlx + " ============= ");
                     AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                     AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
@@ -703,7 +703,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                 {
                     var sXxlx = "YY003";
                     var sSign = getMessageDigest(responsexml);
-                    //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
+                    // Gọi nền tảng mua hàng SunshineWebService Giao diện
                     AppLogger.Info("============= " + sXxlx + " ============= ");
                     AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                     AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
@@ -805,7 +805,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     //var responseXML = "<XMLDATA><HEAD><JSSJ>20130831/102341/</JSSJ><ZTCLJG>00000</ZTCLJG><CWXX/><BZXX/></HEAD></XMLDATA>";
                     var sXxlx = "YY018";
                     var sSign = getMessageDigest(responsexml);
-                    //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
+                    // Gọi nền tảng mua hàng SunshineWebService Giao diện
                     AppLogger.Info("============= " + sXxlx + " ============= ");
                     AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                     AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
@@ -862,7 +862,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
                 var sXxlx = "YY001";
                 var sSign = getMessageDigest(responsexml);
-                //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
+                // Gọi nền tảng mua hàng SunshineWebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);

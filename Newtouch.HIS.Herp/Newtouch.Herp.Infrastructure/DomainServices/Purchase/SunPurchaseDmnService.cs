@@ -227,7 +227,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY111",
-                        jymc = "耗材采购单填报",
+                        jymc = "Khai báo đơn mua sắm vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -298,7 +298,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY112",
-                        jymc = "耗材采购单确认",
+                        jymc = "Xác nhận đơn mua sắm vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -398,7 +398,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY156",
-                        jymc = "耗材按发票明细获取",
+                        jymc = "Lấy theo chi tiết hóa đơn vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -456,7 +456,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY132",
-                        jymc = "耗材发票验收确认",
+                        jymc = "Xác nhận nghiệm thu hóa đơn vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -550,7 +550,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY153",
-                        jymc = "耗材按配送明细获取",
+                        jymc = "Lấy theo chi tiết phân phối vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -608,7 +608,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY131",
-                        jymc = "耗材配送验收确认",
+                        jymc = "Xác nhận nghiệm thu phân phối vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -691,7 +691,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY113",
-                        jymc = "耗材退货单填报",
+                        jymc = "Khai báo phiếu trả hàng vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -758,7 +758,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY114",
-                        jymc = "耗材退货单确认",
+                        jymc = "Xác nhận phiếu trả hàng vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -861,7 +861,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY157",
-                        jymc = "耗材发票信息获取",
+                        jymc = "Lấy thông tin hóa đơn vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -913,7 +913,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY133",
-                        jymc = "耗材发票支付确认",
+                        jymc = "Xác nhận thanh toán hóa đơn vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -974,7 +974,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY101",
-                        jymc = "耗材配送点传报",
+                        jymc = "Báo cáo điểm phân phối vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -1072,7 +1072,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY154",
-                        jymc = "耗材配送单获取",
+                        jymc = "Lấy phiếu phân phối vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -1184,7 +1184,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY155",
-                        jymc = "耗材配送明细获取",
+                        jymc = "Lấy chi tiết phân phối vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -1299,7 +1299,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY158",
-                        jymc = "耗材发票信息获取",
+                        jymc = "Lấy thông tin hóa đơn vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -1425,7 +1425,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY151",
-                        jymc = "耗材采购明细信息获取",
+                        jymc = "Lấy thông tin chi tiết mua sắm vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -1548,7 +1548,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY152",
-                        jymc = "耗材退货明细获取",
+                        jymc = "Lấy thông tin chi tiết trả hàng vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -1645,7 +1645,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY159",
-                        jymc = "耗材按采购单获取采购明细状态",
+                        jymc = "Lấy trạng thái chi tiết mua sắm theo đơn mua sắm vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -1741,7 +1741,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY160",
-                        jymc = "耗材发票状态获取",
+                        jymc = "Lấy trạng thái hóa đơn vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -1839,7 +1839,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY161",
-                        jymc = "发票配送单状态获取",
+                        jymc = "Lấy trạng thái phiếu phân phối vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -1933,7 +1933,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY162",
-                        jymc = "耗材按退货单获取退货明细状态",
+                        jymc = "Lấy trạng thái chi tiết trả hàng theo phiếu trả hàng vật tư tiêu hao",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,
@@ -2030,7 +2030,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     {
                         OrganizeId = orgId,
                         jydm = "YY164",
-                        jymc = "企业信息获取",
+                        jymc = "Lấy thông tin doanh nghiệp",
                         param = param,
                         XmlRequest = responsexml,
                         XmlResponse = responseXML,

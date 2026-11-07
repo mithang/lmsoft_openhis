@@ -160,12 +160,12 @@ namespace Newtouch.Herp.Web.Controllers
             }
             catch
             {
-                // FIX-2B (B-HERP-01, chi chuoi hien thi): khi DB loi, exception
-                // cua SqlSugar mang tien to tieng Trung "中文提示 :" (format cung
-                // trong DLL SqlSugar, khong sua duoc bang chuoi app) va middleware
-                // tra nguyen message tho ra JSON. Chan o seam action nay va tra
-                // thong bao tieng Viet chung; khong dich framework, khong doi
-                // duong thanh cong.
+                // FIX-2B (B-HERP-01, chỉ chuỗi hiển thị): khi DB lỗi, exception
+                // của SqlSugar mang tiền tố tiếng Trung "中文提示 :" (format cùng
+                // trong DLL SqlSugar, không sửa được bằng chuỗi app) và middleware
+                // trả nguyên message thô ra JSON. Chặn ở seam action này và trả
+                // thông báo tiếng Việt chung; không dịch framework, không đổi
+                // đường thành công.
                 return Error("Không thể lấy dữ liệu từ cơ sở dữ liệu. Vui lòng thử lại sau.");
             }
         }
@@ -181,8 +181,8 @@ namespace Newtouch.Herp.Web.Controllers
             }
             catch
             {
-                // FIX-2B (B-HERP-01): nhu GetPsiByKf — chan message tho cua
-                // SqlSugar ("中文提示 :") o seam action, tra thong bao tieng Viet.
+                // FIX-2B (B-HERP-01): như GetPsiByKf — chặn message thô của
+                // SqlSugar ("中文提示 :") ở seam action, trả thông báo tiếng Việt.
                 return Error("Không thể lấy dữ liệu từ cơ sở dữ liệu. Vui lòng thử lại sau.");
             }
         }
@@ -220,8 +220,8 @@ namespace Newtouch.Herp.Web.Controllers
             }
             catch
             {
-                // FIX-2B (B-HERP-01): nhu GetPsiByKf — chan message tho cua
-                // SqlSugar ("中文提示 :") o seam action, tra thong bao tieng Viet.
+                // FIX-2B (B-HERP-01): như GetPsiByKf — chặn message thô của
+                // SqlSugar ("中文提示 :") ở seam action, trả thông báo tiếng Việt.
                 return Error("Không thể lấy dữ liệu từ cơ sở dữ liệu. Vui lòng thử lại sau.");
             }
         }

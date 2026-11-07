@@ -10,7 +10,7 @@ using System.Linq;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// Tổ chứcDmnService
+    /// Tổ chức DmnService
     /// </summary>
     public class SysOrganizeDmnService : DmnServiceBase, ISysOrganizeDmnService
     {
@@ -89,7 +89,7 @@ select ApplicationId from Sys_OrganizeApplication where OrganizeId in (select Id
         }
 
         /// <summary>
-        /// LấyOrgTên
+        /// Lấy tên Org
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -100,7 +100,7 @@ select ApplicationId from Sys_OrganizeApplication where OrganizeId in (select Id
         }
 
         /// <summary>
-        /// Lấy UserId tương ứng Cơ sở y tế List
+        /// Lấy List UserId tương ứng của cơ sở y tế
         /// </summary>
         /// <returns></returns>
         public IList<SysOrganizeEntity> GetMedicalOrganizeListByUserId(string userId)
@@ -138,7 +138,7 @@ order by dept.CreateTime desc";
         /// Cập nhật khu bệnh liên kết khoa
         /// </summary>
         /// <param name="deptId"></param>
-        /// <param name="wardList">Khu bệnhCode List</param>
+        /// <param name="wardList">List mã khu bệnh</param>
         /// <param name="OrganizeId"></param>
         public void UpdateDepartmentWard(string deptId, string[] wardList, string OrganizeId)
         {

@@ -1064,9 +1064,9 @@ where ypId=@ypId");
             modelyp.px = model.px;
             modelyp.py = model.py;
             modelyp.spm = model.spm;
-            modelyp.OrganizeId = model.OrganizeId;    //Tổ chứcId
+            modelyp.OrganizeId = model.OrganizeId;    // Tổ chức Id
             modelyp.ycmc = model.ycmc;
-            modelyp.ypbzdm = model.ypbzdm;//Mã đóng gói thuốc mặc định3
+            modelyp.ypbzdm = model.ypbzdm;// Mã đóng gói thuốc mặc định 3
             modelyp.bz = model.bz;
             modelyp.cxjje = model.cxjje;//Số tiền vượt giá giới hạn
             modelyp.ypId = model.ypId;
@@ -1087,7 +1087,7 @@ where ypId=@ypId");
             #endregion
 
             #region ThuốcSXgiá trị
-            modelypsx.OrganizeId = model.OrganizeId;    //Tổ chứcId
+            modelypsx.OrganizeId = model.OrganizeId;    // Tổ chức Id
             modelypsx.dczdjl = model.dczdjl;
             modelypsx.dczdsl = model.dczdsl;
             modelypsx.ghdw = model.ghdw;

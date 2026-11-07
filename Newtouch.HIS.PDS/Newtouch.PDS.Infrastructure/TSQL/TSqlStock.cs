@@ -253,7 +253,7 @@ BEGIN TRY
 END TRY
 BEGIN CATCH
     SELECT Error_message() as ErrorMessage  --Thông tin cụ thể của lỗi
-    ROLLBACK TRANSACTION  ---Do xảy ra lỗi，Ở đây quay lại điểm bắt đầu，Câu lệnh đầu tiên cũng không chèn thành công。
+    ROLLBACK TRANSACTION  ---Do xảy ra lỗi, ở đây quay lại điểm bắt đầu, câu lệnh đầu tiên cũng không chèn thành công.
 	RETURN 
 END CATCH
 SELECT '';
@@ -546,7 +546,7 @@ BEGIN TRY
 			If Isnull(@Kcsl,0) + @Sysl < 0
 			BEGIN
 				--ROLLBACK TRANSACTION
-				--SELECT Rtrim(Convert(Varchar(12),@Ypdm)) + 'Tồn kho không đủ！' ;
+				--SELECT Rtrim(Convert(Varchar(12),@Ypdm)) + 'Tồn kho không đủ!' ;
 				--RETURN;
 				SET @Sysl=-1*@Kcsl;	
 			END		
@@ -599,13 +599,13 @@ BEGIN TRY
 	WHERE pc=@pc AND ph=@ph AND OrganizeId=@OrganizeId AND yfbmCode=@yfbmCode AND ypdm=@ypdm AND zt=@zt
 	IF @totalDjsl>0  
 	BEGIN
-		-- Có đóng băng nghĩa là đang được sử dụng，Hủy bỏ có thể dẫn tới sau này trừ tồn kho không đủ
-		SELECT 'Lô này có tồn kho đóng băng，không thể hủy bỏ';
+		-- Có đóng băng nghĩa là đang được sử dụng, hủy bỏ có thể dẫn tới sau này trừ tồn kho không đủ
+		SELECT 'Lô này có tồn kho đóng băng, không thể hủy bỏ';
 		RETURN;
 	END
 	IF @totalKcsl<@sl
 	BEGIN
-		SELECT 'Tồn kho không đủ，không thể hủy bỏ';
+		SELECT 'Tồn kho không đủ, không thể hủy bỏ';
 		RETURN;
 	END
 
@@ -1058,7 +1058,7 @@ end
 if EXISTS(select 1 from " + DbNames.Name("CisDb", "Newtouch_CIS") + @".[dbo].[xt_ksby_kcxx] (nolock) where OrganizeId=@orgId
  and yfbmCode=@yfbmCode and ypdm=@ypdm and pc=@pc and ph=@ph and zt=1 and (kcsl-djsl)<@tsl)
  begin
- SET @resultMsg=CONCAT('Thuốc：',@ypdm,'Số lượng tồn kho hiệu lực trong thông tin tồn kho thuốc dự trữ khoa nhỏ hơn số lượng trả,không thể trả thuốc!')
+ SET @resultMsg=CONCAT('Thuốc:',@ypdm,'Số lượng tồn kho hiệu lực trong thông tin tồn kho thuốc dự trữ khoa nhỏ hơn số lượng trả,không thể trả thuốc!')
 	SELECT @resultMsg;
 	RETURN;
  end

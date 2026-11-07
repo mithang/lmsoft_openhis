@@ -23,9 +23,9 @@ namespace Newtouch.HIS.Application.Implementation
                 Detail_YY003 obj = new Detail_YY003();
                 obj.PSDH = "PSDH00"+i;
                 obj.YQBM = "00000001";
-                obj.GG = "100ml:5g*1袋";
+                obj.GG = "100ml:5g*1 túi";
                 obj.PSL = 2;
-                obj.CPM = "5%葡萄糖注射液 (直立式软袋双口管)";
+                obj.CPM = "Dung dịch tiêm Glucose 5% (túi mềm đứng, ống hai đầu)";
                 list.Add(obj);
             }
             output.Detail_YY003 = list;

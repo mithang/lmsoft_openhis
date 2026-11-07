@@ -53,15 +53,15 @@ namespace Newtouch.HIS.Application.Implementation
             }
             if (string.IsNullOrWhiteSpace(userCode))
             {
-                return "Thông tin danh tính người dùng hiện tại hết hiệu lực，Vui lòng đăng nhập lại";
+                return "Thông tin danh tính người dùng hiện tại hết hiệu lực, vui lòng đăng nhập lại";
             }
             if (string.IsNullOrWhiteSpace(yfbmCode))
             {
-                return "Bộ phận nhà thuốc người dùng hiện tại hết hiệu lực，Vui lòng đăng nhập lại";
+                return "Bộ phận nhà thuốc người dùng hiện tại hết hiệu lực, vui lòng đăng nhập lại";
             }
             if (string.IsNullOrWhiteSpace(organizeId))
             {
-                return "Cơ sở trực thuộc người dùng hiện tại hết hiệu lực，Vui lòng đăng nhập lại";
+                return "Cơ sở trực thuộc người dùng hiện tại hết hiệu lực, vui lòng đăng nhập lại";
             }
 
             List<ZyYpyzxxEntity> yzxxLs = new List<ZyYpyzxxEntity>();
@@ -185,7 +185,7 @@ namespace Newtouch.HIS.Application.Implementation
                                         apiResp.data == null)
                                     {
                                         cts.Cancel();
-                                        throw new FailedException(string.IsNullOrWhiteSpace(apiResp.sub_msg) ? "Lấy thông tin bệnh nhân từ trạm phối hợp y tế thất bại！" : apiResp.sub_msg);
+                                        throw new FailedException(string.IsNullOrWhiteSpace(apiResp.sub_msg) ? "Lấy thông tin bệnh nhân từ trạm phối hợp y tế thất bại!" : apiResp.sub_msg);
 
                                     }
 
@@ -194,11 +194,11 @@ namespace Newtouch.HIS.Application.Implementation
                                     {
                                         if (a.zybz == 1) return;
                                         cts.Cancel();
-                                        throw new FailedException("10001", string.Format("【{0}】Trạng thái không ở khu，Không thể phát thuốc，Nếu cần có thể hủy xếp thuốc！", p.patientName));
+                                        throw new FailedException("10001", string.Format("【{0}】Trạng thái không ở khu, không thể phát thuốc, nếu cần có thể hủy xếp thuốc!", p.patientName));
                                     }
 
                                     cts.Cancel();
-                                    throw new FailedException("Phân tích thông tin bệnh nhân thất bại！");
+                                    throw new FailedException("Phân tích thông tin bệnh nhân thất bại!");
                                 });
                             }
                             else
@@ -235,7 +235,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// Kiểm tra tham số và lắp ráp dữ liệu(mới)(周滋明)
+        /// Kiểm tra tham số và lắp ráp dữ liệu (mới) (周滋明)
         /// </summary>
         /// <param name="drugsParam"></param>
         /// <param name="yzxxLs"></param>
@@ -313,18 +313,18 @@ namespace Newtouch.HIS.Application.Implementation
                             if (apiResp.code != APIRequestHelper.ResponseResultCode.SUCCESS ||
                                 apiResp.data == null)
                             {
-                                errorMsg = string.IsNullOrWhiteSpace(apiResp.sub_msg) ? ("từCISLấy thông tin bệnh nhân【" + px.patientName + "】Thất bại！") : apiResp.sub_msg;
+                                errorMsg = string.IsNullOrWhiteSpace(apiResp.sub_msg) ? ("Lấy thông tin bệnh nhân từ CIS【" + px.patientName + "】thất bại!") : apiResp.sub_msg;
                                 throw new Exception(errorMsg);
                             }
                             InpatientBaseInfoDo pif = apiResp.data.ToString().ToObject<InpatientBaseInfoDo>();
                             if (pif == null)
                             {
-                                errorMsg = "Phân tíchCISThông tin bệnh nhân trả về【" + px.patientName + "】Thất bại！";
+                                errorMsg = "Phân tích thông tin bệnh nhân CIS trả về【" + px.patientName + "】thất bại!";
                                 throw new Exception(errorMsg);
                             }
                             if (pif.zybz != 1)
                             {
-                                errorMsg = string.Format("【{0}】Trạng thái không ở khu，Không thể phát thuốc，Nếu cần có thể hủy xếp thuốc！", px.patientName);
+                                errorMsg = string.Format("【{0}】Trạng thái không ở khu, không thể phát thuốc, nếu cần có thể hủy xếp thuốc!", px.patientName);
                                 throw new Exception(errorMsg);
                             }
 

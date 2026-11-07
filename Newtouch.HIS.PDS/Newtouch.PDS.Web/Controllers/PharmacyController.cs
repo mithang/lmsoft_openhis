@@ -17,7 +17,7 @@ using NewtouchHIS.Lib.Base.Exceptions;
 namespace Newtouch.HIS.Web.Controllers
 {
     /// <summary>
-    /// Nhà thuốcController
+    /// Nhà thuốc Controller
     /// </summary>
     public class PharmacyController : ControllerBase
     {
@@ -88,7 +88,7 @@ namespace Newtouch.HIS.Web.Controllers
             }
             if (slmxList == null || slmxList.Count == 0)
             {
-                throw new FailedException("Chưa gửi dữ liệu chi tiết（Định dạng không đúng）");
+                throw new FailedException("Chưa gửi dữ liệu chi tiết (Định dạng không đúng)");
             }
             _requisitionDmnService.SubmitRequisition(sldh, fybmCode, Constants.CurrentYfbm.yfbmCode, slmxList, OperatorProvider.GetCurrent().OrganizeId);
 
@@ -158,7 +158,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 
         /// <summary>
-        /// Yêu cầu lấy bộ phận hiện tại của ypCodeThuốc của Lượng tồn kho
+        /// Yêu cầu lấy bộ phận hiện tại của ypCode Thuốc của Lượng tồn kho
         /// </summary>
         /// <param name="ypCode">Mã thuốc</param>
         /// <param name="fybm">Bộ phận phát thuốc</param>

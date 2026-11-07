@@ -25,7 +25,7 @@ using Newtouch.Tools.Excel;
 namespace Newtouch.HIS.Web.Controllers
 {
 	/// <summary>
-	/// xt_yp_ls_syxx ThuốcController
+	/// xt_yp_ls_syxx Thuốc Controller
 	/// </summary>
 	public class MedicineController : ControllerBase
 	{
@@ -503,7 +503,7 @@ namespace Newtouch.HIS.Web.Controllers
 			}
 			else
 			{
-				return Content("Xuất tệp thất bại，Vui lòng quay lại trang danh sách thử lại");
+				return Content("Xuất tệp thất bại, vui lòng quay lại trang danh sách thử lại");
 			}
 		}
 

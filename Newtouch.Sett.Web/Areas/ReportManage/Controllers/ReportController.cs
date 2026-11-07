@@ -105,11 +105,11 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
         public IActionResult GetStaffByDutyCode(string orgId)
         {
-            var data = _sysUserDmnService.GetStaffByDutyCode(orgId ?? OrganizeId, "RehabDoctor");//đượclấyđiều trịđiều trịsư
+            var data = _sysUserDmnService.GetStaffByDutyCode(orgId ?? OrganizeId, "RehabDoctor");// được lấy điều trị điều trị sư
             return Content(data.ToJson());
         }
         /// <summary>
-        /// đượclấythuốckhothuốcphòngdướikéokhungsốdữ liệu
+        /// được lấy thuốc kho thuốc phòng dưới kéo khung số dữ liệu
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -220,7 +220,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         #region Kỹ thuật viên trị liệu Công việc Thống kê
 
         /// <summary>
-        /// điều trịđiều trịsưcônglàmthốngtính
+        /// điều trị điều trị sư công làm thống kê
         /// </summary>
         /// <returns></returns>
         public IActionResult TherapeWorkStatistics()
@@ -306,7 +306,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         #region từng đơn Thu nhập báo cáo
 
         /// <summary>
-        /// từngphiếuthuvàobáo cáobảng
+        /// từng phiếu thu vào báo cáo bảng
         /// </summary>
         /// <returns></returns>
         public IActionResult OutpatientFeeStatistics()
@@ -421,9 +421,9 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 		}
 		#endregion
 
-		#region bệnh nhân Thông tin khám bệnh（khám Số lần v.v.）
+		#region bệnh nhân Thông tin khám bệnh (khám Số lần v.v.)
 		/// <summary>
-		/// bệnhngườithìkhámthông tintin(thìkhámlầnsố v.v.)
+		/// bệnh người thì khám thông tin tin (thì khám lần số v.v.)
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult OutpatientTreatmentInfo()
@@ -483,7 +483,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// bệnhngườithuphítổngxem
+        /// bệnh người thu phí tổng xem
         /// </summary>
         /// <returns></returns>
         public IActionResult PatientRevenue()
@@ -500,7 +500,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// ngoại trúkhámbệnhngườimộtxembảng
+        /// ngoại trú khám bệnh người một xem bảng
         /// </summary>
         /// <returns></returns>
         public IActionResult OutpatientListChart()
@@ -510,7 +510,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// nhập việnviệnbệnhngườimộtxembảng
+        /// nhập viện viện bệnh người một xem bảng
         /// </summary>
         /// <returns></returns>
         public IActionResult InpatientListChart()
@@ -520,7 +520,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// điều trịđiều trịsưdướikéo
+        /// điều trị điều trị sư dưới kéo
         /// </summary>
         /// <returns></returns>
         public IActionResult GetRehabDoctorList(string orgId)
@@ -536,7 +536,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 		
 
 		/// <summary>
-		/// bệnhngườithuphíthực hiệnthực hiệnbáo cáobảng
+		/// bệnh người thu phí thực hiện thực hiện báo cáo bảng
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult PatientChargeExecution()
@@ -546,7 +546,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// thángđộkhaibáo cáokếttínhbảng(BHYT)
+        /// tháng độ khai báo cáo quyết toán bảng (BHYT)
         /// </summary>
         /// <returns></returns>
         public IActionResult SettMonthForYB()
@@ -562,7 +562,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// nhập việnviệntất cảviệnbáo cáobảng
+        /// nhập viện viện tất cả viện báo cáo bảng
         /// </summary>
         /// <returns></returns>
         public IActionResult InpatientWhileHospital()
@@ -573,7 +573,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// ngoại trúkhámtất cảviệnbáo cáobảng
+        /// ngoại trú khám tất cả viện báo cáo bảng
         /// </summary>
         /// <returns></returns>
         public IActionResult OutpatientWhileHospital()
@@ -595,7 +595,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
             return View();
         }
 
-        //phídùngmộtngàyxóaxembiểu đồ
+        //phí dùng một ngày xóa xem biểu đồ
         public IActionResult PrintReport()
         {
             ReportingServiceCom();
@@ -604,7 +604,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
 
 
-        //phânloạitổng hợptổngngàyxóaphiếuxembiểu đồ
+        //phân loại tổng hợp tổng ngày xóa phiếu xem biểu đồ
         public IActionResult SubtotalsReport()
         {
             ReportingServiceCom();
@@ -612,14 +612,14 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
             return View();
         }
 
-        //nhập việnviệnphídùngrõchi tiếtxembiểu đồ
+        //nhập viện viện phí dùng rõ chi tiết xem biểu đồ
         public IActionResult Hospitalizationcost() {
             ReportingServiceCom();
 
             return View();
         }
 
-        //nhập việnviệnbệnhngườiphânloạixóaphiếu
+        //nhập viện viện bệnh người phân loại xóa phiếu
         public IActionResult Hospitalizationclassification()
         {
             ReportingServiceCom();
@@ -633,7 +633,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 
         #region hợp tác nông thôn mớiKhai báo
         /// <summary>
-        /// ngoại trúkhámmớinônghợpkhaibáo cáorõchi tiết
+        /// ngoại trú khám mới nông hợp khai báo cáo rõ chi tiết
         /// </summary>
         /// <returns></returns>
         public IActionResult OutpatientXnhBcmxsqd()
@@ -667,13 +667,13 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 
         #region
         /// <summary>
-        /// ngoại trúkhámngàykếttínhbảng
+        /// ngoại trú khám ngày quyết toán bảng
         /// </summary>
         /// <returns></returns>
         public IActionResult OutpatientDailyFee()
         {
             ReportingServiceCom();
-            var DailyFeeHbOpen = _sysConfigRepo.GetValueByCode("DailyFeeHbOpen",this.OrganizeId);//ngàykếtbáo cáobảnglàkhônghợpvànơicóthuphíviênthuphíghighi
+            var DailyFeeHbOpen = _sysConfigRepo.GetValueByCode("DailyFeeHbOpen",this.OrganizeId);//ngày kết báo cáo bảng là không hợp và nơi có thu phí viên thu phí ghi ghi
             RptrptMzRjbEntity mzRjbEntity= _rptrptMzRjbRepo.GetLastMzrjEntity(this.OrganizeId, DailyFeeHbOpen == "ON"? "":this.UserIdentity.UserCode);
             ViewBag.usercode = DailyFeeHbOpen == "ON" ?"": UserIdentity.UserCode;
 			ViewBag.kssj = mzRjbEntity.jssj.ToString("yyyy-MM-dd HH:mm:ss");
@@ -694,7 +694,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 			return Content(rjList.ToJson());
 	    }
 		/// <summary>
-		/// ngoại trúkhámkếttínhrõchi tiếtthông tintinbảng
+		/// ngoại trú khám quyết toán rõ chi tiết thông tin tin bảng
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult OutpatientSettDetailsInfo()
@@ -704,7 +704,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// khoaphòngtài chínhvụkiểm tratínhtổng hợptổngbảng
+        /// khoa phòng tài chính vụ kiểm tra tính tổng hợp tổng bảng
         /// </summary>
         /// <returns></returns>
         public IActionResult DepartmentFinancialAccSummary()
@@ -720,7 +720,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// khoaphòngnghiệpvụthuvàothốngtínhbảng
+        /// khoa phòng nghiệp vụ thu vào thống kê bảng
         /// </summary>
         /// <returns></returns>
         public IActionResult DepartmentBusinessIncomeSummary()
@@ -730,7 +730,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// thuốcphẩmphânloạithốngtínhbảng
+        /// thuốc phẩm phân loại thống kê bảng
         /// </summary>
         /// <returns></returns>
         public IActionResult MedicineClassificationSettedSummary()
@@ -740,7 +740,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// ngoại trúkhámthuphíviêncônglàmlượngthốngtínhbảng
+        /// ngoại trú khám thu phí viên công làm lượng thống kê bảng
         /// </summary>
         /// <returns></returns>
         public IActionResult OutpatientTollCollectorWorkloadSummary()
@@ -750,7 +750,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// ngoại trúkhámy tếsinhcônglàmlượngthốngtínhbảng
+        /// ngoại trú khám y tế sinh công làm lượng thống kê bảng
         /// </summary>
         /// <returns></returns>
         public IActionResult OutpatientDoctorWorkloadSummary()
@@ -760,7 +760,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// hạngmụcphânloạithốngtínhbảng
+        /// hạng mục phân loại thống kê bảng
         /// </summary>
         /// <returns></returns>
         public IActionResult ChargeItemClassificationSettedSummary()
@@ -800,7 +800,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
             ViewBag.OrgId = this.OrganizeId;
             ViewBag.topOrgId = SysConfigReader.String("Top_OrganizeId");
             ViewBag.ReportServerHOST = "";
-            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //làkhônglày tếviệnquảnlýviên
+            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  // là không là y tế viện quản lý viên
             ViewBag.CurUserCode = this.UserIdentity.UserCode;
             ViewBag.curUsergh = UserIdentity.rygh;
         }
@@ -868,21 +868,21 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
         #endregion
 
-         //khoaphòngthuvàorõchi tiết
+         //khoa phòng thu vào rõ chi tiết
         public IActionResult Department_income_statement() {
             ReportingServiceCom();
 
             return View();
         }
 
-        //khoaphòngthuốcphẩmthànhnàygiá
+        //khoa phòng thuốc phẩm thành này giá
         public IActionResult Drugcostprice() {
             ReportingServiceCom();
 
             return View();
         }
         /// <summary>
-        /// thángđộthuphírõchi tiết
+        /// tháng độ thu phí rõ chi tiết
         /// </summary>
         /// <returns></returns>
         public IActionResult MonthlyFeeDetails()
@@ -912,7 +912,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         #endregion
 
 		/// <summary>
-		/// thành phốbảo hiểmphídùngphânphân tích
+		/// thành phố bảo hiểm phí dùng phân phân tích
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult MZCBFYFX()
@@ -922,7 +922,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 			return View();
 		}
 		/// <summary>
-		/// cư trúbảo hiểmphídùngphânphân tích
+		/// cư trú bảo hiểm phí dùng phân phân tích
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult MZJBFYFX()
@@ -940,7 +940,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 		}
 		
 		/// <summary>
-		/// ngoại trúkhámphídùngngàybáo cáobảngtổng hợptổng
+		/// ngoại trú khám phí dùng ngày báo cáo bảng tổng hợp tổng
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult MZFYRBHZ_Query()
@@ -952,7 +952,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 
 		#region BHYTKhai báo tải lên báo cáo
 		/// <summary>
-		/// y tếbảo hiểmkhaibáo cáotổng hợptổngxóaphiếu
+		/// y tế bảo hiểm khai báo cáo tổng hợp tổng xóa phiếu
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult YBSBHZQDQuery()
@@ -963,7 +963,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 		}
 
 		/// <summary>
-		/// y tếbảo hiểmkhaibáo cáotrênchuyểnchứccông
+		/// y tế bảo hiểm khai báo cáo trên chuyển chức công
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult YBSBSC_ZGQuery()
@@ -975,7 +975,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 
 
 		/// <summary>
-		/// y tếbảo hiểmkhaibáo cáotrênchuyểncư trúdân
+		/// y tế bảo hiểm khai báo cáo trên chuyển cư trú dân
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult YBSBSC_JMQuery()
@@ -986,7 +986,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 		}
 
 		/// <summary>
-		/// y tếbảo hiểmkhaibáo cáolẫn nhautrợgiúpkhó
+		/// y tế bảo hiểm khai báo cáo lẫn nhau trợ giúp khó
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult YBSBSC_HZBKQuery()
@@ -997,7 +997,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 		}
 
 		/// <summary>
-		/// y tếbảo hiểmkhaibáo cáokhácđịa
+		/// y tế bảo hiểm khai báo cáo khác địa
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult YBSBSC_YDQuery()
@@ -1008,7 +1008,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 		}
 
 		/// <summary>
-		/// y tếbảo hiểmkhaibáo cáodẫnravănhạngdbfĐịnh dạng vàtrảquaydướitảivănhạngđịađịa chỉ tạitrướcđầutrangmặtvàothực hiệndướitảibậtra
+		/// y tế bảo hiểm khai báo cáo dẫn ra văn hạng dbf Định dạng và trả quay dưới tải văn hạng địa địa chỉ tại trước đầu trang mặt vào thực hiện dưới tải bật ra
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult DCQuery_dbf(string types, string ksrq, string jsrq)
@@ -1054,7 +1054,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 			{
 				System.IO.File.Delete(Path.GetFullPath(filepath));
 			}
-			//đượclấysốdữ liệu xétđoạnlàkhôngcósốdữ liệucầncầndẫnradướitải
+			//được lấy số dữ liệu xét đoạn là không có số dữ liệu cần cần dẫn ra dưới tải
 			var list = _reportCommonDmnService.yBSBMX_DCdbfs(types, ksrq, jsrq, OrganizeId);
 			IEnumerable<object> data = null;
 			switch (types)
@@ -1221,7 +1221,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 			//{
 			//	string msg = ex.Message;
 			//}
-			//return File(new FileStream(filepath, FileMode.OpenOrCreate), "application/octet-stream", pathname);//“text/plain”làvănhạngMIMELoại
+			//return File(new FileStream(filepath, FileMode.OpenOrCreate), "application/octet-stream", pathname);//“text/plain” là văn hạng MIME Loại
 			//return File(filepath, "application/x-dbf", pathname);
 			#endregion
 
@@ -1253,7 +1253,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         #endregion BHYT trênbáo cáo báo cáo
         #region
         /// <summary>
-        /// tổngtrangmặt
+        /// tổng trang mặt
         /// </summary>
         /// <returns></returns>
         public IActionResult YBXXQueryUpload()
@@ -1263,7 +1263,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// nộpdễghighikho
+        /// nộp dễ ghi ghi kho
         /// </summary>
         /// <returns></returns>
         public IActionResult JYJLQueryUpload()
@@ -1273,7 +1273,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// ngoại trúcấp cứukhámlớnbệnhtreosốkho
+        /// ngoại trú cấp cứu khám lớn bệnh treo số kho
         /// </summary>
         /// <returns></returns>
         public IActionResult DBGHQueryUpload()
@@ -1283,7 +1283,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// ngoại trúcấp cứukhámnhàgiườngthuphíkho
+        /// ngoại trú cấp cứu khám nhà giường thu phí kho
         /// </summary>
         /// <returns></returns>
         public IActionResult JCSFQueryUpload()
@@ -1293,7 +1293,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// đượclấynộpdễghighithông tintin
+        /// được lấy nộp dễ ghi ghi thông tin tin
         /// </summary>
         /// <returns></returns>
         public IActionResult GetJyjlData(Pagination pagination, string ksrq, string jsrq)
@@ -1314,7 +1314,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
             return Content(rows.ToJson()); 
         }
         /// <summary>
-        /// đượclấyngoại trúcấp cứukhámlớnbệnhtreosốkho
+        /// được lấy ngoại trú cấp cứu khám lớn bệnh treo số kho
         /// </summary>
         /// <returns></returns>
         public IActionResult GetMjzdbghData(Pagination pagination, string ksrq, string jsrq)
@@ -1335,7 +1335,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
             return Content(rows.ToJson());
         }
         /// <summary>
-        /// đượclấyngoại trúcấp cứukhámlớnbệnhthêmgiườngthuphísốdữ liệu
+        /// được lấy ngoại trú cấp cứu khám lớn bệnh thêm giường thu phí số dữ liệu
         /// </summary>
         /// <returns></returns>
         public IActionResult GetMjzjcsfData(Pagination pagination, string ksrq, string jsrq)

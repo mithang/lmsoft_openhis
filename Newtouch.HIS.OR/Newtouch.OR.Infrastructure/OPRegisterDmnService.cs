@@ -53,7 +53,7 @@ namespace Newtouch.OR.ManageSystem.DomainServices
 
 
         /// <summary>
-        /// Trang đăng ký phẫu thuật,Lấy danh sách xếp lịch phẫu thuật ở trạng thái đã xếp lịch, đã đăng ký
+        /// Trang đăng ký phẫu thuật, Lấy danh sách xếp lịch phẫu thuật ở trạng thái đã xếp lịch, đã đăng ký
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>

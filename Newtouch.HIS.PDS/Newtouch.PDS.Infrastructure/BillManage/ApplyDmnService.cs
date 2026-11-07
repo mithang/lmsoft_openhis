@@ -393,7 +393,7 @@ SELECT @@ROWCOUNT;
         }
 
         /// <summary>
-        /// Theo chứng từIDLấy chi tiết chứng từ xuất nhập kho
+        /// Theo chứng từ ID lấy chi tiết chứng từ xuất nhập kho
         /// </summary>
         /// <param name="crkId"></param>
         /// <param name="djlx"></param>
@@ -429,7 +429,7 @@ WHERE crkdj.crkId=@crkId ");
             return FindList<ReceiptQueryDetailVO>(sql.ToString(), param);
         }
         /// <summary>
-        /// Theo chứng từIDLấy chi tiết chứng từ xuất nhập kho
+        /// Theo chứng từ ID lấy chi tiết chứng từ xuất nhập kho
         /// </summary>
         /// <param name="crkId"></param>
         /// <param name="djlx"></param>

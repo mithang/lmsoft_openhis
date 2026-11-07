@@ -26,7 +26,7 @@ using Newtouch.Tools.Excel;
 namespace Newtouch.HIS.Web.Controllers
 {
     /// <summary>
-    /// Kho thuốcController
+    /// Kho thuốc Controller
     /// </summary>
     public class DrugStorageController : ControllerBase
     {
@@ -468,7 +468,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// Xuất kho theo đơn lĩnhupgrade
+        /// Xuất kho theo đơn lĩnh upgrade
         /// </summary>
         /// <returns></returns>
         public IActionResult ApplyDelivery()
@@ -505,7 +505,7 @@ namespace Newtouch.HIS.Web.Controllers
 
         #endregion
 
-        #region Phát thuốc nội bộ，Xuất kho trực tiếp
+        #region Phát thuốc nội bộ, Xuất kho trực tiếp
 
         /// <summary>
         /// Khởi tạo số chứng từ
@@ -624,14 +624,14 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// (Xuất kho theo đơn lĩnh)Kết thúc
+        /// (Xuất kho theo đơn lĩnh) Kết thúc
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public IActionResult Abandonzt(string id)
         {
             _drugStorageDmnService.UpgradeStatus(id);
-            return Success("Kết thúc thành công！");
+            return Success("Kết thúc thành công!");
         }
         #endregion
 
@@ -735,7 +735,7 @@ namespace Newtouch.HIS.Web.Controllers
         public IActionResult CheckRkbmOwnMedicine(string yp, string rkbm)
         {
             var isExist = sysPharmacyDepartmentMedicineRepo.CheckRkbmOwnMedicine(yp, rkbm, OrganizeId);
-            return isExist ? Success() : Error("Xin lỗi！Bộ phận nhập kho không có quyền dùng thuốc này");
+            return isExist ? Success() : Error("Xin lỗi! Bộ phận nhập kho không có quyền dùng thuốc này");
         }
 
 
@@ -998,7 +998,7 @@ namespace Newtouch.HIS.Web.Controllers
             }
             else
             {
-                return Content("Xuất tệp thất bại，Vui lòng quay lại trang danh sách thử lại");
+                return Content("Xuất tệp thất bại, vui lòng quay lại trang danh sách thử lại");
             }
         }
 

@@ -126,7 +126,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// theoquyết toántra theo mã nội bộngoại trúkhámkhoản mục
+        /// theo quyết toán tra theo mã nội bộ ngoại trú khám khoản mục
         /// </summary>
         /// <param name="jsnm">quyết toánmã nội bộ</param>
         /// <returns></returns>
@@ -346,7 +346,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         /// </summary>
         /// <param name="oldjsnm"></param>
         /// <param name="tjsxmDict"></param>
-        /// <param name="newwjybjsh">mớicủachưa quyết toánBHYTsố quyết toán</param>
+        /// <param name="newwjybjsh">mới của chưa quyết toán BHYT số quyết toán</param>
         /// <returns></returns>
         public IActionResult DetailsUploadYb(int oldjsnm
             , Dictionary<string, decimal> tjsxmDict, string newwjybjsh)
@@ -371,8 +371,8 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         /// <param name="expectedTmxZje"></param>
         /// <param name="hcybjsh"></param>
         /// <param name="newwjybjsh"></param>
-        /// <param name="hcybfeeRelated">đảo đỏquyết toán của quyết toánBHYTliên quan số tiền</param>
-        /// <param name="newybfeeRelated">mớicủaquyết toán(không hoàn toàn bộ) của quyết toánBHYTliên quan số tiền</param>
+        /// <param name="hcybfeeRelated">đảo đỏ quyết toán của quyết toán BHYT liên quan số tiền</param>
+        /// <param name="newybfeeRelated">mới của quyết toán (không hoàn toàn bộ) của quyết toán BHYT liên quan số tiền</param>
         /// <returns></returns>
         public IActionResult YbRefundSettlement(string mzh, int jsnm
             , Dictionary<string, decimal> tjsxmDict, decimal expectedTmxZje, string hcybjsh, string newwjybjsh
@@ -396,9 +396,9 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         /// hoàn phí hợp tác nông thôn mới
         /// </summary>
         /// <param name="jsnm"></param>
-        /// <param name="tjsxmDict">hoànquyết toánchi tiết</param>
+        /// <param name="tjsxmDict">hoàn quyết toán chi tiết</param>
         /// <param name="mzh"></param>
-        /// <param name="outpId">ngoại trúkhámbồi thườngsố thứ tự</param>
+        /// <param name="outpId">ngoại trú khám bồi thường số thứ tự</param>
         /// <returns></returns>
         public IActionResult XnhTuiFei(string jsnm, Dictionary<string, decimal> tjsxmDict, string mzh, string outpId)
         {
@@ -412,7 +412,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         #region private methods
 
         /// <summary>
-        /// (đã thu phí chưaphát thuốc)đã thu phí chưaphát thuốctrạng thái sự kiện thông báo thay đổi đơn thuốc
+        /// (đã thu phí chưa phát thuốc) đã thu phí chưa phát thuốc trạng thái sự kiện thông báo thay đổi đơn thuốc
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="refundDict">jsmx tsl</param>
@@ -444,7 +444,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// (đã thu phí chưaphát thuốc)thuốcđơn thuốcthông báo thay đổiPDS
+        /// (đã thu phí chưa phát thuốc) thuốc đơn thuốc thông báo thay đổi PDS
         /// </summary>
         /// <param name="tmxList"></param>
         /// <param name="orgId"></param>
@@ -464,7 +464,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
             if (apiResp != null && apiResp.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                new NLogger().Info(string.Format("（ĐãThu phíChưaphát thuốc）Thuốcđơn thuốcthông báo thay đổiPDS，Thất bại：{0}、{1}", reqObj.ToJson(), apiResp.ToJson()));
+                new NLogger().Info(string.Format("(Đã thu phí chưa phát thuốc) Thông báo thay đổi đơn thuốc đến PDS, thất bại: {0}, {1}", reqObj.ToJson(), apiResp.ToJson()));
             }
         }
 
@@ -541,7 +541,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
 
         /// <summary>
-        /// cập nhậtCIShoàndấu hiệuvàhoàn trảnhà thuốcđóng băng tồn kho
+        /// cập nhật CIS hoàn dấu hiệu và hoàn trả nhà thuốc đóng băng tồn kho
         /// </summary>
         /// <param name="tcfh"></param>
         public void UpdateChargeTbz(List<string> tcfh, List<string> typcfh)
@@ -561,7 +561,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                   "/api/ResourcesOperate/OutpatientCancelDjYpReturn", cancalreqObj);
                     if (apiRespPush.code != APIRequestHelper.ResponseResultCode.SUCCESS)
                     {
-                        AppLogger.Info(string.Format("đơn thuốcHoàn phítrả lại tồn kho bị đóng băngCập nhậtAPIđồng bộđếnPDS，Số đơn thuốc：{0}，kết quả：{1}、{2}", tcfh, apiRespPush.code, apiRespPush.sub_code));
+                        AppLogger.Info(string.Format("API cập nhật hoàn phí đơn thuốc trả lại tồn kho bị đóng băng đồng bộ đến PDS, số đơn thuốc: {0}, kết quả: {1}, {2}", tcfh, apiRespPush.code, apiRespPush.sub_code));
                     }
                 }
             }
@@ -574,11 +574,11 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                            "api/Prescription/UpdateChargeTbz", reqObj);
             if (apiResp != null)
             {
-                AppLogger.Info(string.Format("đơn thuốchoàndấu hiệuTrạng tháiCập nhậtAPIđồng bộđếnCIS，Số đơn thuốc：{0}，kết quả：{1}、{2}", string.Join(",", tcfh), apiResp.code, apiResp.sub_code));
+                AppLogger.Info(string.Format("API cập nhật trạng thái hoàn dấu hiệu đơn thuốc đồng bộ đến CIS, số đơn thuốc: {0}, kết quả: {1}, {2}", string.Join(",", tcfh), apiResp.code, apiResp.sub_code));
             }
             else
             {
-                AppLogger.Info(string.Format("đơn thuốchoàndấu hiệuCập nhậtAPIđồng bộđếnCIS，Số đơn thuốc：{0}，kết quả：ChưaLấyđến phản hồi，đồng bộThất bại", string.Join(",", tcfh)));
+                AppLogger.Info(string.Format("API cập nhật trạng thái hoàn dấu hiệu đơn thuốc đồng bộ đến CIS, số đơn thuốc: {0}, kết quả: chưa lấy được phản hồi, đồng bộ thất bại", string.Join(",", tcfh)));
             }
         }
 

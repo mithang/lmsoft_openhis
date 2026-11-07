@@ -755,11 +755,11 @@ order by xh";
             var sqlstr = new StringBuilder();
             var par = new List<SugarParameter>();
             sqlstr = sqlstr.Append(@"select * from(
-select CONVERT(varchar(10),'长') yzlb,yz.yzlx,yz.yzzt, yz.kssj kssj ,ry.Name ysmc,yz.yznr yznr, yz.zh zh,yz.tzsj tzsj,yz.sl yl,yz.dw yldw,ypyf.yfmc yf,yzpc.yzpcmcsm pc,yz.ztnr yzt
+select CONVERT(varchar(10),'Dài hạn') yzlb,yz.yzlx,yz.yzzt, yz.kssj kssj ,ry.Name ysmc,yz.yznr yznr, yz.zh zh,yz.tzsj tzsj,yz.sl yl,yz.dw yldw,ypyf.yfmc yf,yzpc.yzpcmcsm pc,yz.ztnr yzt
   from  Newtouch_CIS.dbo.zy_cqyz yz with(nolock) left join NewtouchHIS_Base.dbo.Sys_Staff ry with(nolock) on yz.ysgh=ry.gh and yz.OrganizeId=ry.OrganizeId  left join NewtouchHIS_Base.dbo.xt_yzpc yzpc with(nolock) on yzpc.yzpcCode = yz.pcCode and yz.OrganizeId=yzpc.OrganizeId left join [NewtouchHIS_Base]..[V_S_xt_ypyf] ypyf with(nolock) on yz.ypyfdm = ypyf.yfCode
  where zyh=@zyh and yz.OrganizeId=@orgId and kssj > @kssj and kssj < DATEADD(dd, 1, @jssj) and yz.yzzt!='5' and yz.zt='1'
 union all
-select CONVERT(varchar(10),'临') yzlb,yz.yzlx,yz.yzzt, yz.kssj kssj ,ry.Name ysmc,yz.yznr yznr, yz.zh zh,yz.zxsj tzsj,yz.sl yl,yz.dw yldw,ypyf.yfmc yf,pcCode,yz.ztnr yzt
+select CONVERT(varchar(10),'Tạm thời') yzlb,yz.yzlx,yz.yzzt, yz.kssj kssj ,ry.Name ysmc,yz.yznr yznr, yz.zh zh,yz.zxsj tzsj,yz.sl yl,yz.dw yldw,ypyf.yfmc yf,pcCode,yz.ztnr yzt
   from  Newtouch_CIS.dbo.zy_lsyz yz with(nolock) left join NewtouchHIS_Base.dbo.Sys_Staff ry with(nolock) on yz.ysgh=ry.gh and yz.OrganizeId=ry.OrganizeId left join NewtouchHIS_Base.dbo.xt_yzpc yzpc with(nolock) on yzpc.yzpcCode = yz.pcCode and yz.OrganizeId=yzpc.OrganizeId left join [NewtouchHIS_Base]..[V_S_xt_ypyf] ypyf with(nolock) on yz.ypyfdm = ypyf.yfCode
  where zyh=@zyh and yz.OrganizeId=@orgId and kssj > @kssj and kssj < DATEADD(dd, 1, @jssj) and yz.yzzt!='5' and yz.zt='1' 
 ) as a ");

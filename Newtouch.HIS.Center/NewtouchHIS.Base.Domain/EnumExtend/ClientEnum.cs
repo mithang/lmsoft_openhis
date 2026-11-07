@@ -10,7 +10,7 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
     {
         /// <summary>
         /// Loại ghi nhật ký Mở rộng mục enum
-        /// ValueVui lòng bắt đầu từ101Bắt đầu
+        /// Value vui lòng bắt đầu từ 101
         /// </summary>
         public enum DbLogType_Ex
         {
@@ -548,7 +548,7 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
         }
 
         /// <summary>
-        /// Loại đăng ký khám Theo yêu cầu đặc biệt Theo yêu cầu đặc biệtV
+        /// Loại đăng ký khám theo yêu cầu đặc biệt
         /// </summary>
         [Obsolete("Mã của các cơ sở y tế khác nhau thì khác nhau")]
         public enum Enumghlx
@@ -2950,7 +2950,7 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
         }
 
         /// <summary>
-        /// Tử vongBệnh nhânKhám nghiệm tử thi
+        /// Bệnh nhân tử vong khám nghiệm tử thi
         /// </summary>
         public enum EnumSwhzsj
         {
@@ -3456,37 +3456,37 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
             /// <summary>
             /// Nhập kho thuốc
             /// </summary>
-            [Description("Nhập kho thuốc")]   //Số chứng từYPRKD111111111111
+            [Description("Nhập kho thuốc")]   // Số chứng từ YPRKD111111111111
             yaopinruku = 1,
 
             /// <summary>
             /// Xuất kho ra ngoài
             /// </summary>
-            [Description("Xuất kho ra ngoài")]   //Số chứng từWBCKD111111111111
+            [Description("Xuất kho ra ngoài")]   // Số chứng từ WBCKD111111111111
             waibucuku = 2,
 
             /// <summary>
             /// Phát thuốc trực tiếp
             /// </summary>
-            [Description("Xuất kho trực tiếp")]   //Số chứng từNBFYD111111111111
+            [Description("Xuất kho trực tiếp")]   // Số chứng từ NBFYD111111111111
             zhijiefayao = 3,
 
             /// <summary>
             /// Phát thuốc theo lĩnh
             /// </summary>
-            [Description("Xuất kho theo lĩnh")]   //Số chứng từSLCKD111111111111
+            [Description("Xuất kho theo lĩnh")]   // Số chứng từ SLCKD111111111111
             shenlingfayao = 4,
 
             /// <summary>
             /// Trả lại thuốc phát nội bộ
             /// </summary>
-            [Description("Trả lại thuốc phát nội bộ")] //Số chứng từNBFYTHD111111111111
+            [Description("Trả lại thuốc phát nội bộ")] // Số chứng từ NBFYTHD111111111111
             neibufayaotuihui = 5,
 
             /// <summary>
             /// Nhà thuốc phát thuốc cho khoa
             /// </summary>
-            [Description("Khoa phát thuốc")] //Số chứng từKSFYD111111111111
+            [Description("Khoa phát thuốc")] // Số chứng từ KSFYD111111111111
             keshifayao = 6,
 
             /// <summary>
@@ -4043,7 +4043,7 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
             /// <summary>
             /// Giao tới khoa
             /// </summary>
-            [Description("Xuất kho tới khoa")] //Số chứng từckZKS111111111111
+            [Description("Xuất kho tới khoa")] // Số chứng từ ckZKS111111111111
             chukuzhikeshi = 7,
 
             /// <summary>
