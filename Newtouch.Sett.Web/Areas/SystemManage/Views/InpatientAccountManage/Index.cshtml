@@ -491,7 +491,7 @@
     var gridIMoney = "";//Số tiền thu chi đang chọn
     var gridIpzh = ""; //Số chứng từ đang chọn
     var gridId = "";//Id đang chọn hiện tại, căn cứ đã hoàn hay chưa
-    var RefundOutTradeNo = ""; //khitrướcchọntrongcủađặtphiếusố
+    var RefundOutTradeNo = ""; //khi trước chọn trong của đặt phiếu số
     //Sự kiện nhấn
     function btn_edit() {
         var szje = $("#gridList").jqGridRowValue().szje;
@@ -513,7 +513,7 @@
     {
         var pzh = $("#txtlpzh").val();
         //if (gridIpzh == "" || pzh != gridIpzh) {
-        //    $.modalAlert("vui lòngchọnchọnmộtdòngbổ sunggiá trịrõchi tiết", 'warning');
+        //    $.modalAlert("vui lòng chọn chọn một dòng bổ sung giá trị rõ chi tiết", 'warning');
         //    return false;
         //}
 
@@ -705,7 +705,7 @@
             }
         });
     }
-    //thanh toán thành công-kế tiếptiếp tụcnêunộpkếttính
+    //thanh toán thành công-kế tiếp tiếp tục nếu nộp kết tính
     var outTradeNo;
     function PaySuccessHandle(data) {
         payingOrFailed = false;

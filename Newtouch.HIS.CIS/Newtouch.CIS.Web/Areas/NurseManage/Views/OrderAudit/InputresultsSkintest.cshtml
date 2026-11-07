@@ -258,7 +258,7 @@
     var list = new Array();
     var liststu = false;
     var j = 0;
-    //chưanhập
+    //chưa nhập
     function gridList(patzyh,selectkey) {
         var $gridList = $("#gridList");       
         $gridList.dataGrid({
@@ -342,7 +342,7 @@
                 //{ label: 'Thời gian dừng/hủy bỏ', name: 'tzsj', align: 'center', width: 100, hidden: true, formatter: function (val) { if (val != null) return $.getTime({ date: val }); else return ""; } },
                 //{ label: 'thuốc gây nghiện hướng thần', name: 'yztagName', align: 'center', width: 50, hidden: true },
                 //{
-                //    label: 'CóKhôngtínhphí', name: 'isjf', align: 'center', width: 50, hidden: true, formatter: function (val) {
+                //    label: 'Có Không tính phí', name: 'isjf', align: 'center', width: 50, hidden: true, formatter: function (val) {
                 //        return $.enum.getDescByValue("EnumSF", val);
                 //    }
                 //},
@@ -504,7 +504,7 @@
     }
 
 
-    //hộp thả xuốnghưởngứngsự kiện
+    //hộp thả xuống hưởng ứng sự kiện
     $('#LUJG').change(function () {
         getBqTreeList();
         var options = $("#LUJG option:selected");

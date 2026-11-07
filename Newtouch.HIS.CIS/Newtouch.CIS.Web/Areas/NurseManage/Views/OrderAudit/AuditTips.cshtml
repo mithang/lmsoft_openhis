@@ -58,12 +58,12 @@
                 {
                     label: "Thao tác", name: "", width: 80, align: 'left',
                     formatter: function (cellvalue, options, rowobject) {
-                        if (rowobject.ispscs == "未录入") {
+                        if (rowobject.ispscs == "Chưa nhập") {
                             return '<a class="btn btn-primary" title="Bổ sung"  onclick="printMxData(\'' + rowobject.yzid + '\',\'' + rowobject.zyh + '\',\'' + rowobject.yzxz + '\')">Bổ sung</a>';
                             
                         }
                         else {
-                            //return '<a class="btn btn-default"  style="width: 26%;" >đãnhập</a>';
+                            //return '<a class="btn btn-default"  style="width: 26%;" >đã nhập</a>';
                             return "";
                             
                         }

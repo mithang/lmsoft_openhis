@@ -162,7 +162,7 @@
             url: "/KPI/MedicalOrg/DoGenerate",
             data: { year: $('#year').val(), month: $('#month').val(), isReGene: isReGene },
             dataType: "json",
-            loadingtext: "báo cáo Tạo trong,Vui lòng chờ...",
+            loadingtext: "báo cáo Tạo trong, Vui lòng chờ...",
             success: function (ajaxResp) {
                 $.modalMsg('Tạo báo cáo thành công', 'success');
                 setTimeout("$('#btn_search').trigger('click');", 1000); //Tra cứu lại báo cáo

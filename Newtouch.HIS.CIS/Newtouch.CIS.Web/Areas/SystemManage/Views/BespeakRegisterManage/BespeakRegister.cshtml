@@ -225,10 +225,10 @@
                 var rowData = $('#deptGridList').jqGrid('getRowData', rowid);
                 $("#sp_deptName").html("/ " + rowData.Name);
                 $("#sp_zjName").html("");
-                //Lấychuyên giathông tin
+                //Lấy chuyên gia thông tin
                 rowData = $deptGridList.jqGrid('getRowData', rowid);
                 getZjData(rowData.Code);
-                //Lấytiêu điểmđiểmKhoađãBảo trìđặt hẹnđăng ký khám
+                //Lấy tiêu điểm điểm Khoa đã Bảo trì đặt hẹn đăng ký khám
                 getDeptRegData(rowData.Code);
             }
         });
@@ -253,7 +253,7 @@
         });
     }
 
-    //Lấychuyên giathông tin
+    //Lấy chuyên gia thông tin
     function getZjData(ksCode) {
         if (ksCode == null || ksCode === "") {
             var rowid = $('#deptGridList').jqGrid('getGridParam', 'selrow');
@@ -264,7 +264,7 @@
             var rowData = $('#deptGridList').jqGrid('getRowData', rowid);
             ksCode = rowData.Code;
         }
-        $('#zjGridList').jqGrid("clearGridData");//mỗi lầnnhấp đúp,Xóa trắng chi tiết trước lạilạitảitất cảĐã chọndòngchi tiết
+        $('#zjGridList').jqGrid("clearGridData");//mỗi lần nhấp đúp, Xóa trắng chi tiết trước lại lại tải tất cả Đã chọn dòng chi tiết
         $.najax({
             url: "/SystemManage/BespeakRegisterManage/GetStaff",
             data: { deptCode: ksCode },
@@ -280,7 +280,7 @@
         });
     }
 
-    //Lấychuyên giathông tin
+    //Lấy chuyên gia thông tin
     $("#zjGridList").newtouchLocalDataGrid({
         height: ($(window).height() - 120)/2-35,
         width: 250,
@@ -293,7 +293,7 @@
         onSelectRow: function (rowid) {
             var rowData = $('#zjGridList').jqGrid('getRowData', rowid);
             $("#sp_zjName").html("/ " + rowData.Name);
-            //Lấychuyên giathông tin
+            //Lấy chuyên gia thông tin
             getZjRegData(rowData.gh);
         }
     });
@@ -383,10 +383,10 @@
         var rowData = $('#deptGridList').jqGrid('getRowData', rowid);
         $("#sp_deptName").html("/ " + rowData.Name);
         $("#sp_zjName").html("");
-        //Lấychuyên giathông tin
+        //Lấy chuyên gia thông tin
         rowData = $deptGridList.jqGrid('getRowData', rowid);
         getZjData(rowData.Code);
-        //Lấytiêu điểmđiểmKhoađãBảo trìđặt hẹnđăng ký khám
+        //Lấy tiêu điểm điểm Khoa đã Bảo trì đặt hẹn đăng ký khám
         getDeptRegData(rowData.Code);
     }
 
@@ -435,7 +435,7 @@
         }
     }
 
-    //Thêmdòng
+    //Thêm dòng
     function addRow() {
         var lastRegDate = $("#tbd_content tr:last").attr("attr-regDate");
         if (lastRegDate == undefined || lastRegDate == "") return;

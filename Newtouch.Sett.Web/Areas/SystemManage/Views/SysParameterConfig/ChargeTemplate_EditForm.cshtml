@@ -172,7 +172,7 @@
         $("#dllDepartment").html('<option>==Vui lòng chọn==</option>').bindSelect({
             url: "/SystemManage/SysDepartment/GetTreeSelectJson",
         });
-        //phốiđặttayphẫu thuật thìmặc địnhnhậntayphẫu thuậthạngmục
+        //phối đặt tay phẫu thuật thì mặc định nhận tay phẫu thuật hạng mục
         if (opDept != null && opDept != "") {
             $("#dllDepartment").val(opDept).trigger('change');
 
@@ -219,7 +219,7 @@
         });
 
 
-        //thêmtảithuốcphẩmdùngphương pháp
+        //thêm tải thuốc phẩm dùng phương pháp
         $("#yf").bindSelect({
             url: "/SystemManage/SysParameterConfig/GetUsages",
             id: "yfCode",
@@ -417,7 +417,7 @@
         }
     });
 
-    //căndữ liệutêngọiđượclấytêngọiđầughép
+    //căn dữ liệu tên gọi được lấy tên gọi đầu ghép
     $('#sfmbmc').keyup(function () {
         $('#py').val($(this).toShouPin());
     })
