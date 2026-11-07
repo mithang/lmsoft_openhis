@@ -128,7 +128,7 @@ AND zyxx.zybz in ('1','2','3')
         }
 
         /// <summary>
-        /// Gửibổ sungghiChi phí
+        /// Gửi bổ sung ghi Chi phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>

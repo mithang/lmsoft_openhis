@@ -1665,7 +1665,7 @@ namespace Newtouch.CIS.Web.Controllers
             return Json(udlist);
         }
 
-        #region SửaBệnh ánliên quanThông tin
+        #region Sửa Bệnh án liên quan Thông tin
         public IActionResult UpdateMedicalRecord()
         {
             return View();
@@ -1998,7 +1998,7 @@ namespace Newtouch.CIS.Web.Controllers
 
 		public IActionResult Getdjzlist(int mjzbz)
 		{
-			#region LấyKhoa khám
+			#region Lấy Khoa khám
 
 			var kcCode = UserIdentity.DepartmentCode;
 			var visitDept = visitDeptSetRepo.SelectData(this.UserIdentity.rygh, OrganizeId);

@@ -3345,7 +3345,7 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
     public class OrClientEnum : ClientEnum
     {
         /// <summary>
-        /// Đăng kýTrạng thái
+        /// Đăng ký Trạng thái
         /// </summary>
         public enum EnumSqzt
         {

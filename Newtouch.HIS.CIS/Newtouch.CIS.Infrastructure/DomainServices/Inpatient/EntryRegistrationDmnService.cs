@@ -568,7 +568,7 @@ FROM    dbo.zy_brxxk zyxx
                 }
                 else
                 {
-                    #region khôi phụccập nhậtgiường ký tựTrạng thái
+                    #region khôi phục cập nhật giường ký tự Trạng thái
                     _hospInterfaceSyncDmnService.UpdateOccupyByCode(reqDto.bedCode, bq, false, reqDto.OrganizeId, reqDto.user);
                     _hospInterfaceSyncDmnService.UpdateOccupyByCode(dqcw, bq, true, reqDto.OrganizeId, reqDto.user);
 
@@ -1074,7 +1074,7 @@ FROM    dbo.zy_brxxk zyxx
                     }
                     #endregion
 
-                    #region hủy bỏlịch sửBác sĩthông tin
+                    #region hủy bỏ lịch sử Bác sĩ thông tin
                     var patYSList = db.IQueryable<InpatientPatientDoctorEntity>().Where(p => p.zyh == req.zyh && p.OrganizeId == req.OrganizeId && p.zt == "1").ToList();
                     foreach (var item in patYSList)
                     {
@@ -1250,7 +1250,7 @@ FROM    dbo.zy_brxxk zyxx
                 }
                 else
                 {
-                    #region khôi phụccập nhậtgiường ký tựTrạng thái
+                    #region khôi phục cập nhật giường ký tự Trạng thái
                     var reqcwNewBackObj = new
                     {
                         TimeStamp = DateTime.Now.ToString(),
@@ -1828,7 +1828,7 @@ FROM    dbo.zy_brxxk zyxx
                     }
                     #endregion
 
-                    #region hủy bỏlịch sửBác sĩthông tin
+                    #region hủy bỏ lịch sử Bác sĩ thông tin
                     var patYSList = db.IQueryable<InpatientPatientDoctorEntity>().Where(p => p.zyh == req.zyh && p.OrganizeId == req.OrganizeId && p.zt == "1").ToList();
                     foreach (var item in patYSList)
                     {

@@ -201,7 +201,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string ypyfdm { get; set; }
         /// <summary>
-        /// Khoa thực hiệnMã
+        /// Khoa thực hiện Mã
         /// </summary>
         /// <returns></returns>
         public string zxksdm { get; set; }

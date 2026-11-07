@@ -632,63 +632,63 @@ order by SSOrder ";
             string msg = "";
             if (string.IsNullOrWhiteSpace(vo.RYSJ))
             {
-                msg += "Thời gian nhập viện không được để trống；";
+                msg += "Thời gian nhập viện không được để trống;";
             }
             if (string.IsNullOrWhiteSpace(vo.LYFS))
             {
-                msg += "Phương thức ra viện không được để trống；";
+                msg += "Phương thức ra viện không được để trống;";
             }
             if (string.IsNullOrWhiteSpace(vo.RYTJ))
             {
-                msg += "Cách thức nhập viện không được để trống；";
+                msg += "Cách thức nhập viện không được để trống;";
             }
             if (string.IsNullOrWhiteSpace(vo.YLFKFS))
             {
-                msg += "Phương thức thanh toán y tế không được để trống；";
+                msg += "Phương thức thanh toán y tế không được để trống;";
             }
             if (string.IsNullOrWhiteSpace(vo.ZYCS))
             {
-                msg += "Số lần nhập viện không được để trống；";
+                msg += "Số lần nhập viện không được để trống;";
             }
             if (string.IsNullOrWhiteSpace(vo.XB))
             {
-                msg += "Giới tính không được để trống；";
+                msg += "Giới tính không được để trống;";
             }
             if (string.IsNullOrWhiteSpace(vo.CSRQ))
             {
-                msg += "Ngày sinh không được để trống；";
+                msg += "Ngày sinh không được để trống;";
             }
             if (string.IsNullOrWhiteSpace(vo.ZY))
             {
-                msg += "Nghề nghiệp không được để trống；";
+                msg += "Nghề nghiệp không được để trống;";
             }
             if (string.IsNullOrWhiteSpace(vo.SFZH))
             {
-                msg += "Số chứng minh nhân dân không được để trống；";
+                msg += "Số chứng minh nhân dân không được để trống;";
             }
             if (string.IsNullOrWhiteSpace(vo.HY))
             {
-                msg += "Tình trạng hôn nhân không được để trống；";
+                msg += "Tình trạng hôn nhân không được để trống;";
             }
             if (string.IsNullOrWhiteSpace(vo.MZZD))
             {
-                msg += "Chẩn đoán ngoại (cấp cứu) không được để trống；";
+                msg += "Chẩn đoán ngoại (cấp cứu) không được để trống;";
             }
             if (string.IsNullOrWhiteSpace(vo.MZZDDM))
             {
-                msg += "Mã bệnh chẩn đoán ngoại (cấp cứu) không được để trống；";
+                msg += "Mã bệnh chẩn đoán ngoại (cấp cứu) không được để trống;";
             }
             if (string.IsNullOrWhiteSpace(vo.RYZD))
             {
-                msg += "Chẩn đoán nhập viện không được để trống；";
+                msg += "Chẩn đoán nhập viện không được để trống;";
             }
             if (string.IsNullOrWhiteSpace(vo.RYZDDM))
             {
-                msg += "Mã bệnh chẩn đoán nhập viện không được để trống；";
+                msg += "Mã bệnh chẩn đoán nhập viện không được để trống;";
             }
             if (string.IsNullOrWhiteSpace(vo.LYFS))
             {
-                msg += "Phương thức ra viện không được để trống；";
+                msg += "Phương thức ra viện không được để trống;";
             }
             return msg;
 

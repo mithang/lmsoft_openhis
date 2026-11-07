@@ -97,7 +97,7 @@ namespace Newtouch.DomainServices
 
         //}
 
-        #region Y lệnhThực hiện trangmặtTra cứu
+        #region Y lệnh Thực hiện trang mặt Tra cứu
         /// <summary>
         /// Lấy chờ Thực hiện Y lệnh Khu bệnh cây
         /// </summary>
@@ -519,7 +519,7 @@ FROM(
 
         #endregion
 
-        #region Y lệnhThực hiện Thực hiệnthao tác
+        #region Y lệnh Thực hiện Thực hiện thao tác
 
         /// <summary>
         /// Gửi Thực hiện Thuốc
@@ -841,7 +841,7 @@ FROM(
         }
         #endregion
         
-        #region bệnh nhânChi phíthựckhiTính toán
+        #region bệnh nhân Chi phí thực khi Tính toán
         public void Updatezy_brxxexpand(string OrganizeId, string zyh)
         {
             try
@@ -860,7 +860,7 @@ FROM(
         }
         #endregion
         
-        #region tạoMụcChi phí
+        #region tạo Mục Chi phí
         /// <summary>
         /// Đồng bộ nhất mới CPOE Mục Chi phí
         /// </summary>

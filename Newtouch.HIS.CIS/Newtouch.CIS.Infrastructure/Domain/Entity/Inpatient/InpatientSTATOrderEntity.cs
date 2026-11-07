@@ -40,22 +40,22 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public int? zh { get; set; }
         /// <summary>
-        /// Khu bệnhMã
+        /// Khu bệnh Mã
         /// </summary>
         /// <returns></returns>
         public string WardCode { get; set; }
         /// <summary>
-        /// KhoaMã
+        /// Khoa Mã
         /// </summary>
         /// <returns></returns>
         public string DeptCode { get; set; }
         /// <summary>
-        /// Bác sĩMã
+        /// Bác sĩ Mã
         /// </summary>
         /// <returns></returns>
         public string ysgh { get; set; }
         /// <summary>
-        /// Tần suấtMã
+        /// Tần suất Mã
         /// </summary>
         /// <returns></returns>
         public string pcCode { get; set; }
@@ -81,7 +81,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public int? zxzqdw { get; set; }
         /// <summary>
-        /// tuầnMã
+        /// tuần Mã
         /// </summary>
         /// <returns></returns>
         public string zdm { get; set; }
@@ -126,7 +126,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public int yzlx { get; set; }
         /// <summary>
-        /// Bác sĩ dừngMã
+        /// Bác sĩ dừng Mã
         /// </summary>
         /// <returns></returns>
         public string zfysgh { get; set; }
@@ -141,7 +141,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string zfr { get; set; }
         /// <summary>
-        /// Phê duyệtNgày
+        /// Phê duyệt Ngày
         /// </summary>
         /// <returns></returns>
         public DateTime? shsj { get; set; }
@@ -201,7 +201,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string ypyfdm { get; set; }
         /// <summary>
-        /// Khoa thực hiệnMã
+        /// Khoa thực hiện Mã
         /// </summary>
         /// <returns></returns>
         public string zxksdm { get; set; }

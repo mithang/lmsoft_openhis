@@ -209,7 +209,7 @@ and ghrq >=@ghrq+' 00:00:00' and ghrq<=@ghrq+' 23:59:59'
 
         }
 
-        #region phầnkhámKhoa
+        #region phần khám Khoa
 
         /// <summary>
         /// Theo Điều kiện tìm kiếm Lấy Hiệu lực Khoa danh sách

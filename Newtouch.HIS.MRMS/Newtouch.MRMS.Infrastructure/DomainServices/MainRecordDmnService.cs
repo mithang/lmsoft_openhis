@@ -284,7 +284,7 @@ and jszt=1 and zt='1'
 
         public BasyVO GetMainRecordZyFeeDetail(BasyVO vo,string orgId,string zyh)
         {
-            //Đồng bộBệnh ánHệ thốngChi phí
+            //Đồng bộ Bệnh án Hệ thống Chi phí
            // string sql = @"exec usp_sync_basy_feefromSettbyzyh @orgId=@orgId,@zyh=@zyh ";
             string sql = @"select FeetypeCode,FeetypeName,CONVERT(DECIMAL(13,2),isnull(sum(Amount),0))Amount
 from V_HIS_InpPatFee
@@ -685,7 +685,7 @@ order by SSOrder ";
         }
 
         /// <summary>
-        /// TạoSố bệnh án
+        /// Tạo Số bệnh án
         /// </summary>
         /// <returns></returns>
         public string GetBAH(string orgId)

@@ -3172,7 +3172,7 @@ where id=@yzid");
             }
         }
 
-        #region kỹ thuật y họcKhoaThực hiện
+        #region kỹ thuật y học Khoa Thực hiện
         /// <summary>
         /// kỹ thuật y học Thực hiện
         /// </summary>

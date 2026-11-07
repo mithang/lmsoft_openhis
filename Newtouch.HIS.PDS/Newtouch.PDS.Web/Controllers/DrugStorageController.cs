@@ -887,7 +887,7 @@ namespace Newtouch.HIS.Web.Controllers
             }
             var pagination = new Pagination();
             pagination.sidx = "Ypdm desc"; //Thời gian tăng dần
-            pagination.rows = 65536 - 1;    //ExcelSố dòng tối đa
+            pagination.rows = 65536 - 1;    //Excel Số dòng tối đa
             pagination.page = 1;    //Trang đầu tiên truy vấn tất cả
             var list = _drugStorageDmnService.GetPsiStatisticsVo(pagination, sticsParam, Constants.CurrentYfbm.yfbmCode, OrganizeId);
             var colList = cols.ToObject<IList<ExcelColumn>>();

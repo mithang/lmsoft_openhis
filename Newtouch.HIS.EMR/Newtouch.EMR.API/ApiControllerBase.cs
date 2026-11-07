@@ -41,9 +41,9 @@ namespace Newtouch.EMR.API
         {
             get
             {
-                // FIX-2: CommonExecute dat _requestIdentity tu header HOAC body
-                // truoc khi chay action; neu co thi dung no (body token), neu
-                // khong thi fallback ve header/query nhu cu.
+                // FIX-2: CommonExecute đặt _requestIdentity từ header HOẶC body
+                // trước khi chạy action; nếu có thì dùng nó (body token), nếu
+                // không thì fallback về header/query như cũ.
                 if (_requestIdentity != null)
                     return _requestIdentity;
                 return ResolveIdentity(null);

@@ -1310,9 +1310,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             for (int i = 0; i < finfo.Length; i++)
             {
                 BackuptimetreeVO treelist = new BackuptimetreeVO();
-                // FIX-189: ten file ngan hon strlength (doctype do request dieu khien) hoac tien to
-                // ngay ngan hon 12 ky tu se lam Substring nem ArgumentOutOfRangeException; bo qua
-                // file khong dung dinh dang thay vi crash ca action.
+                // FIX-189: tên file ngắn hơn strlength (doctype do request điều khiển) hoặc tiền tố
+                // ngày ngắn hơn 12 ký tự sẽ làm Substring ném ArgumentOutOfRangeException; bỏ qua
+                // file không đúng định dạng thay vì crash cả action.
                 if (finfo[i].Name.Length <= strlength)
                 {
                     continue;
@@ -2003,7 +2003,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 }
                 catch (Exception ex)
                 {
-                    msg = "Tải lên thất bại！" + ex.Message;
+                    msg = "Tải lên thất bại!" + ex.Message;
                 }
             }
 
@@ -2236,7 +2236,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 _ZymeddocsrelationRepo.Update(ety);
                 return Success("Tải lên thành công");
             }
-            return Error("Tải lên thất bại，Vui lòng kiểm traBệnh ánthông tin。");
+            return Error("Tải lên thất bại, vui lòng kiểm tra Bệnh án thông tin.");
         }
         public T FieldDataCheck<T>(T entity, XTextElementList list, int isupload, out string errmsg)
         {
