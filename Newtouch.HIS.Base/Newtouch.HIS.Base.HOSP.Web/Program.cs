@@ -76,6 +76,10 @@ foreach (var type in infraAsm.GetTypes())
     }
 }
 builder.Services.AddSingleton<Newtouch.HIS.Repository.ICache, Newtouch.HIS.Repository.MemoryICache>();
+builder.Services.AddAntiforgery(options =>
+{
+    options.SuppressXFrameOptionsHeader = true;
+});
 builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 {
     options.Filters.Add(typeof(LogTrackingAttribute));

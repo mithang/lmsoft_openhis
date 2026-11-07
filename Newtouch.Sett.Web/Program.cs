@@ -230,6 +230,10 @@ builder.Services.AddScoped<Newtouch.Sett.Domain.ITTCataloguesComparisonDetailRep
 builder.Services.AddScoped<Newtouch.Sett.Domain.ITTCataloguesComparisonDmnService, Newtouch.Sett.DomainServices.TTCataloguesComparisonDmnService>();
 builder.Services.AddScoped<Newtouch.Sett.Domain.ITTCataloguesComparisonMainRepo, Newtouch.Sett.DomainServices.TTCataloguesComparisonMainRepo>();
 builder.Services.AddScoped<Newtouch.Sett.Domain.IUserRoleAuthDmnService, Newtouch.Sett.DomainServices.UserRoleAuthDmnService>();
+builder.Services.AddAntiforgery(options =>
+{
+    options.SuppressXFrameOptionsHeader = true;
+});
 builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 {
     // Cycle 21: query-string dates bind InvariantCulture in stock ASP.NET Core,

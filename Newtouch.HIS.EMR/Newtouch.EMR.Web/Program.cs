@@ -61,6 +61,11 @@ foreach (var asmName in new[] { "Newtouch.EMR.Infrastructure", "NewtouchHIS.Base
     }
 }
 
+builder.Services.AddAntiforgery(options =>
+{
+    options.SuppressXFrameOptionsHeader = true;
+});
+
 builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 {
     // Cycle 36: query-string dates bind InvariantCulture in stock ASP.NET Core,

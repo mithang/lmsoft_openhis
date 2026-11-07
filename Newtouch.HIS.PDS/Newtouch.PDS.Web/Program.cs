@@ -175,6 +175,11 @@ builder.Services.AddSingleton<Newtouch.HIS.Domain.IDomainServices.ItyDmnService,
 
 builder.Services.AddSingleton<Newtouch.HIS.Application.Interface.IHomePageStatisticsApp, Newtouch.HIS.Application.Implementation.HomePageStatisticsApp>();
 
+builder.Services.AddAntiforgery(options =>
+{
+    options.SuppressXFrameOptionsHeader = true;
+});
+
 builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 {
     // Cycle 27: query-string dates bind InvariantCulture in stock ASP.NET Core,

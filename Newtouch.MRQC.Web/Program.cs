@@ -44,6 +44,11 @@ builder.Services.AddScoped<ICommonDmnService, CommonDmnService>();
 builder.Services.AddScoped<IMrApplyRepo, MrApplyRepo>();
 builder.Services.AddScoped<IQcItemDataRepo, QcItemDataRepo>();
 
+builder.Services.AddAntiforgery(options =>
+{
+    options.SuppressXFrameOptionsHeader = true;
+});
+
 builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 {
     // Cycle 33: query-string dates bind InvariantCulture in stock ASP.NET Core,

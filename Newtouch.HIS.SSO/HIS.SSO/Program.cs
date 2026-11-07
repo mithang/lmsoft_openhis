@@ -25,6 +25,10 @@ builder.Services.AddLibLogging();
 builder.Services.AddSingleton<IHttpClientHelper, HttpClientHelper>();
 builder.Services.AddSingleton<IAuthCenterAppService, AuthCenterAppService>();
 builder.Services.AddWebServiceBase(builder.Configuration);
+builder.Services.AddAntiforgery(options =>
+{
+    options.SuppressXFrameOptionsHeader = true;
+});
 builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 {
     options.Filters.Add(typeof(LogTrackingAttribute));

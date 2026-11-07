@@ -65,6 +65,11 @@ builder.Services.AddScoped<ISysConfigRepo, SysConfigRepo>();
 builder.Services.AddScoped<ISysStaffRepo, SysStaffRepo>();
 builder.Services.AddScoped<ISysDiagnosisRepo, SysDiagnosisRepo>();
 
+builder.Services.AddAntiforgery(options =>
+{
+    options.SuppressXFrameOptionsHeader = true;
+});
+
 builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 {
     options.Filters.Add(typeof(LogTrackingAttribute));

@@ -70,6 +70,11 @@ Constants.Init(
 Constants.AppConfigReader = key =>
     builder.Configuration["BusinessConfig:" + key] ?? builder.Configuration[key];
 
+builder.Services.AddAntiforgery(options =>
+{
+    options.SuppressXFrameOptionsHeader = true;
+});
+
 builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 {
     // Cycle 30: query-string dates bind InvariantCulture in stock ASP.NET Core,

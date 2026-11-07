@@ -192,6 +192,11 @@ builder.Services.AddScoped<Newtouch.HIS.Domain.IRepository.ITreatmentRepo, Newto
 builder.Services.AddScoped<Newtouch.HIS.Domain.IRepository.IUsedDiagnosisRepo, Newtouch.HIS.Repository.UsedDiagnosisRepo>();
 builder.Services.AddScoped<Newtouch.HIS.Domain.IRepository.IWMDiagnosisRepo, Newtouch.HIS.Repository.WMDiagnosisRepo>();
 
+builder.Services.AddAntiforgery(options =>
+{
+    options.SuppressXFrameOptionsHeader = true;
+});
+
 builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 {
     // Cycle 24: query-string dates bind InvariantCulture in stock ASP.NET Core,
