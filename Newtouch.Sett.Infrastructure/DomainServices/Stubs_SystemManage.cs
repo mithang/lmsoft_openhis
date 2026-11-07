@@ -167,23 +167,23 @@ namespace Newtouch.Sett.DomainServices
 
     public class ItemsApp : IItemsApp
     {
-        // NX23-002 (D-NX23-002): port that GetList() — vendor Sett KHONG CO
-        // implementation goc trong source (khong co IItemsApp.cs /
-        // ItemsApp.cs trong lmsoft_openhis; ItemsTypeController chi tham
-        // chieu interface tu assembly bien dich san) va bang Sys_Items
-        // KHONG TON TAI trong Sett DB (NewtouchHIS_Sett: 0 bang
-        // Sys_Items/Sys_ItemsDetail, 0 view Items). Du lieu tu dien song
-        // o Base DB: dbo.Sys_Items 73 rows (72 zt='1', 1 zt='0'
-        // BodyTempMed), doc qua SettDb.GetBaseConnection() nhu
+        // NX23-002 (D-NX23-002): port thật GetList() — vendor Sett KHÔNG CÓ
+        // implementation gốc trong source (không có IItemsApp.cs /
+        // ItemsApp.cs trong lmsoft_openhis; ItemsTypeController chỉ tham
+        // chiếu interface từ assembly biên dịch sẵn) và bảng Sys_Items
+        // KHÔNG TỒN TẠI trong Sett DB (NewtouchHIS_Sett: 0 bảng
+        // Sys_Items/Sys_ItemsDetail, 0 view Items). Dữ liệu từ điển sống
+        // ở Base DB: dbo.Sys_Items 73 rows (72 zt='1', 1 zt='0'
+        // BodyTempMed), đọc qua SettDb.GetBaseConnection() như
         // ComController (V_S_Sys_Items) + vendor Base ItemDmnService
-        // (Sys_Items zt='1'). Map cot Base (Id/ParentId/Name/Code/
+        // (Sys_Items zt='1'). Map cột Base (Id/ParentId/Name/Code/
         // Description) -> ItemsEntity F_ (F_ParentId/F_EnCode/F_FullName/
-        // F_Description); F_IsTree/F_Layers khong co cot tuong ung -> null.
-        // Loc zt='1' nhu DutyApp.GetList sibling + Base ItemDmnService +
-        // ItemsDetailRepository (d.zt=1); ORDER BY px, Name (px NULL tren
-        // ca 72 row nen can sort phu de cay on dinh). Chi doc;
-        // GetForm/SubmitForm/DeleteForm giu stub (duong ghi can STG,
-        // ngoai scope NX23-002).
+        // F_Description); F_IsTree/F_Layers không có cột tương ứng -> null.
+        // Lọc zt='1' như DutyApp.GetList sibling + Base ItemDmnService +
+        // ItemsDetailRepository (d.zt=1); ORDER BY px, Name (px NULL trên
+        // cả 72 row nên cần sort phụ để cây ổn định). Chỉ đọc;
+        // GetForm/SubmitForm/DeleteForm giữ stub (đường ghi cần STG,
+        // ngoài scope NX23-002).
         public List<ItemsEntity> GetList()
         {
             return SettDb.GetBaseConnection().SqlQueryable<ItemsEntity>(
@@ -242,10 +242,10 @@ px, zt from dbo.Sys_Items where zt = '1' order by px, Name")
 
     public class ModuleApp : IModuleApp
     {
-        // NX14-001 (D-NX14-001): port that tu PDS ModuleApp — truoc day class
-        // rong, interface rong; ModuleController.GetFormJson/DeleteForm/
-        // GetTreeSelectJson can 3 method nay. DB dich: Sett DB (SettDb),
-        // SQL tho theo mau NX8-002/NX9-002 (khong dung EF nhu PDS).
+        // NX14-001 (D-NX14-001): port thật từ PDS ModuleApp — trước đây class
+        // rỗng, interface rỗng; ModuleController.GetFormJson/DeleteForm/
+        // GetTreeSelectJson cần 3 method này. DB dịch: Sett DB (SettDb),
+        // SQL thô theo mẫu NX8-002/NX9-002 (không dùng EF như PDS).
         public void DeleteForm(string keyValue)
         {
             if (string.IsNullOrWhiteSpace(keyValue))
@@ -743,21 +743,21 @@ px, zt from dbo.Sys_Items where zt = '1' order by px, Name")
 
     public class SysModuleDmnService : ISysModuleDmnService
     {
-        // NX8-002: 4 method phan quyen co so (Organizes) — port that theo mau
-        // PDS SysModuleDmnService. DB dich: Sett DB (SettDb.GetConnection() =
-        // NewtouchHIS_Sett) — xem D-NX8-002: Union khong co bang
-        // Sys_OrganizeAuthorize; Sett da co 319 row (199 ItemId khop Sett
-        // Sys_Module, 0 khop Union); dbo.SplitToTable ton tai o Sett.
-        // Doc dung kieu PDS (join [NewtouchHIS_Base]..V_S_Sys_Organize) vi
-        // Sett khong co bang/view Sys_Organize local — kieu Base.Infrastructure
-        // (join Sys_Organize local) se loi o Sett DB.
-        // Luu y: truoc NX9, chua co duong chay nao cua Sett doc
-        // Sys_OrganizeAuthorize (menu sidebar doc Sys_RoleAuthorize tren
-        // Union) — man Organizes tu nhat quan (ghi -> doc lai thay) va sua
-        // luon luong ModuleButton type-2 dang co. NX9-002 port consumer:
-        // GetOpenMenuListByTopOrg + GetOpenMenuButtonListByTopOrg (cay phan
-        // quyen vai tro), GetMenuList (loc cay Module theo vai tro),
-        // GetMenuButtonListByTopOrg (grid nut ModuleButton), xem D-NX9-002.
+        // NX8-002: 4 method phân quyền cơ sở (Organizes) — port thật theo mẫu
+        // PDS SysModuleDmnService. DB dịch: Sett DB (SettDb.GetConnection() =
+        // NewtouchHIS_Sett) — xem D-NX8-002: Union không có bảng
+        // Sys_OrganizeAuthorize; Sett đã có 319 row (199 ItemId khớp Sett
+        // Sys_Module, 0 khớp Union); dbo.SplitToTable tồn tại ở Sett.
+        // Đọc đúng kiểu PDS (join [NewtouchHIS_Base]..V_S_Sys_Organize) vì
+        // Sett không có bảng/view Sys_Organize local — kiểu Base.Infrastructure
+        // (join Sys_Organize local) sẽ lỗi ở Sett DB.
+        // Lưu ý: trước NX9, chưa có đường chạy nào của Sett đọc
+        // Sys_OrganizeAuthorize (menu sidebar đọc Sys_RoleAuthorize trên
+        // Union) — màn Organizes tự nhất quán (ghi -> đọc lại thấy) và sửa
+        // luôn luồng ModuleButton type-2 đang có. NX9-002 port consumer:
+        // GetOpenMenuListByTopOrg + GetOpenMenuButtonListByTopOrg (cây phân
+        // quyền vai trò), GetMenuList (lọc cây Module theo vai trò),
+        // GetMenuButtonListByTopOrg (grid nút ModuleButton), xem D-NX9-002.
         public void AuthAllOrganize(string moduleId, int itemType)
         {
             if (string.IsNullOrWhiteSpace(moduleId))
@@ -815,22 +815,22 @@ else
                 }).ToList();
         }
 
-        // NX9-002 (D-NX9-002): 5 method doc menu/cay — port that theo mau PDS
-        // SysModuleDmnService + vendor Sett goc
+        // NX9-002 (D-NX9-002): 5 method đọc menu/cây — port thật theo mẫu PDS
+        // SysModuleDmnService + vendor Sett gốc
         // (lmsoft_openhis/Newtouch.HIS.Sett/.../SysModuleDmnService.cs +
-        // SysModuleRepo.cs). DB dich: Sett DB (SettDb.GetConnection()),
-        // nhu NX8-002 Organizes. DOI LECH vs PDS (ghi ro trong tung method):
-        // (1) GetMenuList viet bang SQL tho (stub class khong co field repo
-        // IQueryable nhu PDS); (2) nhanh vai tro KHONG loc ItemType=1 tren
-        // Sys_RoleAuthorize vi cot nay khong ton tai o Sett DB (9 cot — cung
-        // drift nhu DDL NX2 Role, chua chay); (3) roleIdList null -> [] thay
-        // vi null nhu PDS (de caller khoi NRE); (4) nhanh isAdministrator lay
-        // du 4 ten cua vendor Sett (PDS port thieu 系统用户).
+        // SysModuleRepo.cs). DB dịch: Sett DB (SettDb.GetConnection()),
+        // như NX8-002 Organizes. ĐỘ LỆCH vs PDS (ghi rõ trong từng method):
+        // (1) GetMenuList viết bằng SQL thô (stub class không có field repo
+        // IQueryable như PDS); (2) nhánh vai trò KHÔNG lọc ItemType=1 trên
+        // Sys_RoleAuthorize vì cột này không tồn tại ở Sett DB (9 cột — cùng
+        // drift như DDL NX2 Role, chưa chạy); (3) roleIdList null -> [] thay
+        // vì null như PDS (để caller khỏi NRE); (4) nhánh isAdministrator lấy
+        // đủ 4 tên của vendor Sett (PDS port thiếu 系统用户).
         public IList<SysModuleButtonVO> GetMenuButtonListByTopOrg(string topOrgId, string moduleId)
         {
             // PDS GetMenuButtonListByTopOrg verbatim (Sys_OrganizeAuthorize
-            // CO cot ItemType o Sett DB). Grid ModuleButton/Index.cshtml:48
-            // can cot IsOpenToOrg.
+            // CÓ cột ItemType ở Sett DB). Grid ModuleButton/Index.cshtml:48
+            // cần cột IsOpenToOrg.
             var sql = @"select * from
 (
 select a.*, cast(1 as bit) IsOpenToOrg
@@ -863,23 +863,23 @@ and Id not in
 
         public List<SysModuleEntity> GetMenuList(string topOrgId, IList<string> roleIdList, bool isRoot, bool isAdministrator)
         {
-            // PDS GetMenuListByTopOrg, viet lai bang SQL tho qua SettDb.
+            // PDS GetMenuListByTopOrg, viết lại bằng SQL thô qua SettDb.
             if (isRoot)
             {
-                // Vendor goc: 系统管理/系统菜单/菜单管理/FailMsg配置/快捷菜单
-                // (ten da dich; "Quan ly menu" hien khong co row nao trong
-                // Sett Sys_Module nen nhanh nay khop 4/5 ten — vo hai).
+                // Vendor gốc: 系统管理/系统菜单/菜单管理/FailMsg配置/快捷菜单
+                // (tên đã dịch; "Quan ly menu" hiện không có row nào trong
+                // Sett Sys_Module nên nhánh này khớp 4/5 tên — vô hại).
                 return GetMenuListByNames(new[] { "Quan ly he thong", "Menu he thong", "Quan ly menu", "Cau hinh FailMsg", "Menu tac vu" });
             }
             if (isAdministrator)
             {
-                // Vendor goc: 系统管理/角色管理/系统角色/系统用户 ("Vai tro
-                // he thong" hien khong co row nao trong Sett Sys_Module).
+                // Vendor gốc: 系统管理/角色管理/系统角色/系统用户 ("Vai tro
+                // he thong" hiện không có row nào trong Sett Sys_Module).
                 return GetMenuListByNames(new[] { "Quan ly he thong", "Quan ly vai tro", "Vai tro he thong", "Nguoi dung he thong" });
             }
-            // Nhanh vai tro: roleIdList null/rong -> [] (PDS tra null; tra []
-            // de caller ModuleController.GetModuleTreeJsonByName khoi NRE o
-            // authedList.Any — ket qua hien thi nhu nhau: 0 node).
+            // Nhánh vai trò: roleIdList null/rỗng -> [] (PDS trả null; trả []
+            // để caller ModuleController.GetModuleTreeJsonByName khỏi NRE ở
+            // authedList.Any — kết quả hiển thị như nhau: 0 node).
             if (roleIdList == null || roleIdList.Count == 0)
             {
                 return new List<SysModuleEntity>();
@@ -893,11 +893,11 @@ and Id not in
                 inList.Add("@r" + i);
                 pars.Add(new SugarParameter("@r" + i, roleIdList[i]));
             }
-            // DOI LECH vs PDS (ghi ro): Sys_RoleAuthorize o Sett DB KHONG CO
-            // cot ItemType (9 cot — cung drift nhu DDL NX2 Role, chua chay)
-            // nen KHONG loc ItemType=1 nhu PDS; an toan vi Id module vs Id
-            // nut la 2 khong gian GUID khong trung nhau (khop ItemId vao
-            // Sys_Module.Id thi chi module moi khop).
+            // ĐỘ LỆCH vs PDS (ghi rõ): Sys_RoleAuthorize ở Sett DB KHÔNG CÓ
+            // cột ItemType (9 cột — cùng drift như DDL NX2 Role, chưa chạy)
+            // nên KHÔNG lọc ItemType=1 như PDS; an toàn vì Id module vs Id
+            // nút là 2 không gian GUID không trùng nhau (khớp ItemId vào
+            // Sys_Module.Id thì chỉ module mới khớp).
             var sql = $@"
 SELECT a.* FROM Sys_Module a WHERE a.zt = '1'
 AND a.Id IN (SELECT ItemId FROM Sys_OrganizeAuthorize WHERE zt = '1' AND ItemType = 1 AND (TopOrganizeId = '*' OR TopOrganizeId = @topOrgId))
@@ -937,9 +937,9 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)")
 
         public IList<SysModuleEntity> GetOpenMenuListByTopOrg(string topOrgId)
         {
-            // PDS GetOpenMenuListByTopOrg verbatim. Dung boi
-            // RoleAuthorizeController.GetPermissionTree (cay phan quyen vai
-            // tro) — day la consumer dau tien cua Organizes (NX8-002).
+            // PDS GetOpenMenuListByTopOrg verbatim. Dùng bởi
+            // RoleAuthorizeController.GetPermissionTree (cây phân quyền vai
+            // trò) — đây là consumer đầu tiên của Organizes (NX8-002).
             return SettDb.GetConnection().SqlQueryable<SysModuleEntity>(@"select a.*
 from Sys_Module a
 left join Sys_OrganizeAuthorize b
@@ -951,19 +951,19 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)")
                 }).ToList();
         }
 
-        // NX14-001 (D-NX14-001): port tu PDS SysModuleDmnService.SubmitForm.
-        // PDS dung EF (Modify/Create + EFDbTransaction); Sett dung SQL tho
-        // qua SettDb (mau NX8-002). Update 0 row -> FailedException (khong
-        // tra success gia — bai hoc BA-005/UseTranStrict). Insert moi: Id
-        // Guid moi + CreateTime/CreatorCode; neu co topOrgId thi tu dong
-        // chen 1 row uy quyen to chuc (ItemType=1) nhu PDS.
-        // D-NX24-001: 2 insert (Sys_Module + Sys_OrganizeAuthorize) boc
-        // trong 1 UseTranStrict tren CUNG 1 connection (var db lay 1 lan —
-        // SettDb.GetConnection() moi lan co the tra provider khac, goi lai
-        // trong lambda se roi khoi transaction). Insert 2 loi -> rollback
-        // ca insert 1 (khong con row module mo coi), loi nem lai cho caller
-        // thay vi success gia (gap D-NX23-002b). Nhanh update (1 lenh, da
-        // nem FailedException khi 0 row) giu nguyen, khong can transaction.
+        // NX14-001 (D-NX14-001): port từ PDS SysModuleDmnService.SubmitForm.
+        // PDS dùng EF (Modify/Create + EFDbTransaction); Sett dùng SQL thô
+        // qua SettDb (mẫu NX8-002). Update 0 row -> FailedException (không
+        // trả success giả — bài học BA-005/UseTranStrict). Insert mới: Id
+        // Guid mới + CreateTime/CreatorCode; nếu có topOrgId thì tự động
+        // chèn 1 row ủy quyền tổ chức (ItemType=1) như PDS.
+        // D-NX24-001: 2 insert (Sys_Module + Sys_OrganizeAuthorize) bọc
+        // trong 1 UseTranStrict trên CÙNG 1 connection (var db lấy 1 lần —
+        // SettDb.GetConnection() mỗi lần có thể trả provider khác, gọi lại
+        // trong lambda sẽ rơi khỏi transaction). Insert 2 lỗi -> rollback
+        // cả insert 1 (không còn row module mồ côi), lỗi ném lại cho caller
+        // thay vì success giả (gặp D-NX23-002b). Nhánh update (1 lệnh, đã
+        // ném FailedException khi 0 row) giữ nguyên, không cần transaction.
         public void SubmitForm(SysModuleEntity moduleEntity, string keyValue, string topOrgId = null)
         {
             if (moduleEntity == null)
@@ -1038,9 +1038,9 @@ values(newid(), @topOrganizeId, @moduleId, 1, GETDATE(), @creatorCode, '1')",
             }
         }
 
-        // NX14-001 (D-NX14-001): grid Module/Index.cshtml can toan bo module +
-        // cot IsOpenToOrg. Mau UNION cua GetMenuButtonListByTopOrg (NX9-002),
-        // ap dung cho Sys_Module, ItemType=1; loc keyword theo Name nhu PDS.
+        // NX14-001 (D-NX14-001): grid Module/Index.cshtml cần toàn bộ module +
+        // cột IsOpenToOrg. Mẫu UNION của GetMenuButtonListByTopOrg (NX9-002),
+        // áp dụng cho Sys_Module, ItemType=1; lọc keyword theo Name như PDS.
         public IList<SysModuleVO> GetTreeGridList(string topOrgId, string keyword)
         {
             var sql = @"select * from
@@ -1086,9 +1086,9 @@ where a.Id not in
             {
                 return;
             }
-            // NX8-002: orgList null coi nhu rong (xoa het) thay vi Trim(',') nem
-            // NRE nhu goc PDS — dung ngu nghia nhanh rong da co trong code
-            // vendor (chon 0 to chuc = thu hoi het).
+            // NX8-002: orgList null coi như rỗng (xóa hết) thay vì Trim(',') ném
+            // NRE như gốc PDS — dùng ngữ nghĩa nhánh rỗng đã có trong code
+            // vendor (chọn 0 tổ chức = thu hồi hết).
             var orgIdArr = (orgList ?? "").Trim(',');
             if (string.IsNullOrWhiteSpace(orgIdArr))
             {
@@ -1122,10 +1122,10 @@ from [NewtouchHIS_Base]..V_S_Sys_Organize where Id in (
 
     public class SysModuleExRepo : ISysModuleExRepo
     {
-        // NX9-002 (D-NX9-002): port that theo vendor Sett goc
+        // NX9-002 (D-NX9-002): port thật theo vendor Sett gốc
         // (lmsoft_openhis/Newtouch.HIS.Sett/Newtouch.Repository/SystemManage/
-        // SysModuleRepo.cs:29) verbatim — module co ten @name + cac con cua
-        // no (zt='1'). Dung boi ModuleController.GetModuleTreeJsonByName.
+        // SysModuleRepo.cs:29) verbatim — module có tên @name + các con của
+        // nó (zt='1'). Dùng bởi ModuleController.GetModuleTreeJsonByName.
         public List<SysModuleEntity> GetModuleTreeJsonByName(string name)
         {
             var sql = @"SELECT *
@@ -1371,13 +1371,13 @@ order by isnull(px, 99999), CreateTime desc";
 
         public IList<SysRoleEntity> GetUserRoleList(string userId)
         {
-            // NX10-002 (D-NX10-002): port that tu vendor Sett
-            // UserRoleAuthDmnService.GetUserRoleList, SQL goc verbatim tru
-            // dieu kien a.OrganizeId = @orgId (cot khong ton tai trong Sett
-            // Sys_UserRole — 9 cot; PDS port cung bo tham so org). DB dich:
+            // NX10-002 (D-NX10-002): port thật từ vendor Sett
+            // UserRoleAuthDmnService.GetUserRoleList, SQL gốc verbatim trừ
+            // điều kiện a.OrganizeId = @orgId (cột không tồn tại trong Sett
+            // Sys_UserRole — 9 cột; PDS port cùng bỏ tham số org). DB dịch:
             // Sett DB qua SettDb (Sys_UserRole + Sys_Role local; join
-            // [NewtouchHIS_Base]..V_C_Sys_User chi nhu vendor, khong loc).
-            // userId null/rong -> [] (khong tra null, tranh NRE o caller).
+            // [NewtouchHIS_Base]..V_C_Sys_User chỉ như vendor, không lọc).
+            // userId null/rỗng -> [] (không trả null, tránh NRE ở caller).
             if (string.IsNullOrWhiteSpace(userId))
             {
                 return new List<SysRoleEntity>();

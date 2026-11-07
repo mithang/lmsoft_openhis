@@ -52,10 +52,10 @@ namespace Newtouch.HIS.DomainServices.BillManage
             }
         }
 
-        // NX2-001: rollback receipt vua tao khi ApplyProcess that bai.
-        // Body lay nguyen mau DeleteCrkDj (DrugStorageDmnService, cung thao
-        // tac xoa header + detail trong 1 transaction). userCode khong dung
-        // vi day la xoa rollback, khong phai huy nghiep vu co nguoi duyet.
+        // NX2-001: rollback receipt vừa tạo khi ApplyProcess thất bại.
+        // Body lấy nguyên mẫu DeleteCrkDj (DrugStorageDmnService, cùng thao
+        // tác xóa header + detail trong 1 transaction). userCode không dùng
+        // vì đây là xóa rollback, không phải hủy nghiệp vụ có người duyệt.
         public void Cancel(string crkId, string userCode)
         {
             using (var db = new EFDbTransaction().BeginTrans())
