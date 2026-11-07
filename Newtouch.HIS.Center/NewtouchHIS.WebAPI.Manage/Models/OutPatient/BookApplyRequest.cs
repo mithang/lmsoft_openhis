@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.WebAPI.Manage.Models.OutPatient
 {
     /// <summary>
-    /// Đặt hẹnĐăng kýTham số yêu cầu
+    /// Đặt hẹn Đăng ký Tham số yêu cầu
     /// </summary>
     public class BookApplyRequest
     {
@@ -10,7 +10,7 @@
         /// </summary>
         public string ghxz { get; set; }
         /// <summary>
-        /// mz_ghpb_schedule Lịch trình đã định của đặt hẹnId
+        /// mz_ghpb_schedule Lịch trình đã định của đặt hẹn Id
         /// </summary>
         public string ScheduId { get; set; }
         /// <summary>

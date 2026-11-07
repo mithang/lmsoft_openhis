@@ -7,7 +7,7 @@
     @Html.Partial("_OrganizeIdDDLToolbarSearchView")
     <div class="toolbar">
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_roles()"><i class="fa fa-pencil-square-o"></i>Người dùngVai trò</a>
+            <a class="btn btn-primary" onclick="btn_roles()"><i class="fa fa-pencil-square-o"></i>Người dùng Vai trò</a>
         </div>
     </div>
     <div class="search">
@@ -50,13 +50,13 @@
                 { label: 'Họ tên', name: 'Name', width: 100, align: 'left' },
                 { label: 'OrganizeId', name: 'OrganizeId', hidden: true },
                 {
-                    label: 'Cơ sởTên', name: 'OrganizeName', width: 120, align: 'left',
+                    label: 'Cơ sở Tên', name: 'OrganizeName', width: 120, align: 'left',
                 },
                 {
-                    label: 'KhoaTên', name: 'DepartmentName', width: 80, align: 'left',
+                    label: 'Khoa Tên', name: 'DepartmentName', width: 80, align: 'left',
                 },
                 {
-                    label: "Cho phépĐăng nhập", name: "Locked", width: 100, align: "center",
+                    label: "Cho phép Đăng nhập", name: "Locked", width: 100, align: "center",
                     formatter: function (cellvalue, options, rowObject) {
                         if (cellvalue === true) {
                             return '<span class=\"label label-default\">Ngừng sử dụng</span>';
@@ -102,7 +102,7 @@
         var keyValue = $("#gridList").jqGridRowValue().Id;
         $.modalOpen({
             id: "Form",
-            title: "Người dùngVai trò",
+            title: "Người dùng Vai trò",
             url: "/SystemManage/SysUser/Roles?keyValue=" + keyValue + '&orgId=' + thisOrgId,
             width: "750px",
             height: "700px",

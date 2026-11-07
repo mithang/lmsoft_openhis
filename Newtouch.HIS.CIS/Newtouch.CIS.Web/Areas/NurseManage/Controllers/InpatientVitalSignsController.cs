@@ -49,11 +49,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         public IActionResult NursingInput() {
             ViewBag.MutipatientNursingInputFlag = _sysConfigRepo.GetIntValueByCode("MutipatientNursingInputFlag", OrganizeId, 0);
-            ViewBag.ScdCode = _sysConfigRepo.GetValueByCode("ScdTimePoint", OrganizeId);//Phiếu đo ba chỉ sốThời gianđiểmLẻ chẵnsốCài đặt 1 lẻsố 0 chẵnsố
+            ViewBag.ScdCode = _sysConfigRepo.GetValueByCode("ScdTimePoint", OrganizeId);//Phiếu đo ba chỉ số Thời gianđiểm Lẻ chẵnsố Cài đặt 1 lẻsố 0 chẵnsố
             return View();
         }
         /// <summary>
-        /// điều dưỡngTra cứu
+        /// điều dưỡng Tra cứu
         /// </summary>
         /// <returns></returns>
         public IActionResult QueryIndex()
@@ -65,12 +65,12 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         public override IActionResult  Form() {
             ViewBag.hsqm = UserIdentity.UserName;
-            ViewBag.ScdCode = _sysConfigRepo.GetValueByCode("ScdTimePoint", OrganizeId);//Phiếu đo ba chỉ sốThời gianđiểmLẻ chẵnsốCài đặt 1 lẻsố 0 chẵnsố
+            ViewBag.ScdCode = _sysConfigRepo.GetValueByCode("ScdTimePoint", OrganizeId);//Phiếu đo ba chỉ số Thời gianđiểm Lẻ chẵnsố Cài đặt 1 lẻsố 0 chẵnsố
             return View();
         }
 
         /// <summary>
-        /// phúttrangTra cứu
+        /// phúttrang Tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kssj"></param>
@@ -90,7 +90,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// điều dưỡngTra cứu(theoNgàyThời gianThứ tự)
+        /// điều dưỡng Tra cứu(theo Ngày Thời gian Thứ tự)
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -100,11 +100,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         {
             if (!kssj.HasValue || !jssj.HasValue)
             {
-                throw new FailedException("HLCX_DATE_REQUIRED", "Vui lòng chọnNgày");
+                throw new FailedException("HLCX_DATE_REQUIRED", "Vui lòng chọn Ngày");
             }
             if ((jssj.Value.Date - kssj.Value.Date).TotalDays < 0)
             {
-                throw new FailedException("Kết thúcThời gianKhông thểLớn hơnThời gian bắt đầu");
+                throw new FailedException("Kết thúc Thời gian Không thể Lớn hơn Thời gian bắt đầu");
             }
             if ((jssj.Value.Date - kssj.Value.Date).TotalDays > 30)
             {
@@ -112,19 +112,19 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             }
             if (string.IsNullOrWhiteSpace(zyh))
             {
-                throw new FailedException("HLCX_ZYH_REQUIRED", "Vui lòng chọnSố nhập viện");
+                throw new FailedException("HLCX_ZYH_REQUIRED", "Vui lòng chọn Số nhập viện");
             }
             var patInfo = _inpatientPatientDmnService.GetInfoByZyh(zyh, this.OrganizeId);
-            //2020-4-28 HủyPhiếu nhiệt độTra cứuThời gianmạnhchếđếnNhập việnThời gian xuất viện
+            //2020-4-28 Hủy Phiếu nhiệt độ Tra cứu Thời gianmạnhchếđến Nhập viện Thời gian xuất viện
             if (patInfo!=null&&patInfo.ryrq>kssj)
             {
                 kssj = patInfo.ryrq;
-                //throw new FailedException("Ngày nhập viện:"+patInfo.ryrq+";vui lòngnhậpđangxáccủaThời gian bắt đầu");
+                //throw new FailedException("Ngày nhập viện:"+patInfo.ryrq+";vui lòngnhậpđangxáccủa Thời gian bắt đầu");
             }
             if (patInfo != null && patInfo.cqrq != null && patInfo.cqrq < jssj)
             {
                 jssj = patInfo.cqrq;
-                //throw new FailedException("Ngày xuất viện:" + patInfo.cqrq + ";vui lòngnhậpđangxáccủaThời gian kết thúc");
+                //throw new FailedException("Ngày xuất viện:" + patInfo.cqrq + ";vui lòngnhậpđangxáccủa Thời gian kết thúc");
             }
            
             var ValidList = _inpatientVitalSignsRepo.GetValidList(this.OrganizeId, kssj, jssj, zyh);
@@ -193,7 +193,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// GửiLưuđiều dưỡngnhập
+        /// Gửi Lưuđiều dưỡngnhập
         /// </summary>
         /// <param name="moduleEntity"></param>
         /// <param name="keyValue"></param>
@@ -213,8 +213,8 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         {
             var data = _inpatientVitalSignsRepo.GetList(OrganizeId,kssj,jssj,zyh).ToList();
             var now = DateTime.Now;
-            var path = "\\Nhập điều dưỡngTra cứu" + now.ToString("yyyyMMdd") + "\\" + now.ToString("HHmmssfff") + ".xls";
-            var filePath = CommmHelper.GetLocalFilePath("\\ExcelXuất\\Nhập điều dưỡngTra cứu" + path);
+            var path = "\\Nhập điều dưỡng Tra cứu" + now.ToString("yyyyMMdd") + "\\" + now.ToString("HHmmssfff") + ".xls";
+            var filePath = CommmHelper.GetLocalFilePath("\\Excel Xuất\\Nhập điều dưỡng Tra cứu" + path);
             var cols = new List<ExcelColumn>()
             {
                     new ExcelColumn("rq","Ngày"),
@@ -260,7 +260,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <returns></returns>
         public IActionResult TemperatureChartIndex()
         {
-            ViewBag.ScdCode = _sysConfigRepo.GetValueByCode("ScdTimePoint", OrganizeId);//Phiếu đo ba chỉ sốThời gianđiểmLẻ chẵnsốCài đặt 1 lẻsố 0 chẵnsố
+            ViewBag.ScdCode = _sysConfigRepo.GetValueByCode("ScdTimePoint", OrganizeId);//Phiếu đo ba chỉ số Thời gianđiểm Lẻ chẵnsố Cài đặt 1 lẻsố 0 chẵnsố
             ViewBag.HospitalName = Newtouch.CIS.Compat.AppConfig.Get("HospitalName");
             return View();
         }
@@ -281,7 +281,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// LấyKhu bệnh ngườiviênThực hiệncây
+        /// Lấy Khu bệnh ngườiviên Thực hiệncây
         /// </summary>
         /// <returns></returns>
         public IActionResult GetPatWardTree(string zyzt, string keyword)
@@ -301,7 +301,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     string gender = itempat.sex == "1" ? "Nam" : "Nữ";
                     TreeViewModel treepat = new TreeViewModel();
                     treepat.id = itempat.zyh;
-                    //Số giường + Họ tên(Nhập việnSố ngày)+Số nhập viện + Tuổi +Giới tính
+                    //Số giường + Họ tên(Nhập viện Số ngày)+Số nhập viện + Tuổi +Giới tính
                     treepat.text = itempat.BedNo + "-" + itempat.hzxm + "(" + itempat.inHosDays + "ngày)" + "-" + itempat.zyh + "-" + itempat.nl + "tuổi-" + gender;
                     treepat.value = itempat.zyh;
                     treepat.parentId = item.bqCode;
@@ -362,18 +362,18 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         public IActionResult DrawData(DateTime? kssj, DateTime? jssj, string zyh,int? pagesize)
 		{
 			var patInfo = _inpatientPatientDmnService.GetInfoByZyh(zyh, this.OrganizeId);
-            //2021-9-7Sửa:Phiếu đo ba chỉ sốBỏThời gianĐiều kiện tìm kiếm
+            //2021-9-7Sửa:Phiếu đo ba chỉ số Bỏ Thời gian Điều kiện tìm kiếm
             //if (!kssj.HasValue || !jssj.HasValue)
             //{
-            //    throw new FailedException("HLCX_DATE_REQUIRED", "Vui lòng chọnNgày");
+            //    throw new FailedException("HLCX_DATE_REQUIRED", "Vui lòng chọn Ngày");
             //}
             //if ((jssj.Value.Date - kssj.Value.Date).TotalDays < 0)
             //{
-            //    throw new FailedException("Thời gian kết thúckhôngcó thểLớn hơnThời gian bắt đầu");
+            //    throw new FailedException("Thời gian kết thúckhôngcó thể Lớn hơn Thời gian bắt đầu");
             //}
             //if ((jssj.Value.Date - kssj.Value.Date).TotalDays > 30)
             //{
-            //    //2021-5-11Sửa:Nhập việnThời gianvượtqua30ngàycủaBệnh nhân có thểTra cứuNhập việnXuất việnphạm vitrongcủaNgày
+            //    //2021-5-11Sửa:Nhập viện Thời gianvượtqua30ngàycủa Bệnh nhân có thể Tra cứu Nhập viện Xuất việnphạm vitrongcủa Ngày
             //    if (!(patInfo.ryrq <= kssj && patInfo.cqrq >= jssj))
             //    {
             //        throw new FailedException("HLCX_DATE_OUTOFRANGE", "Ngàyphạm vikhôngcó thểvượtqua30ngày");
@@ -381,18 +381,18 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             //}
             if (string.IsNullOrWhiteSpace(zyh))
             {
-                throw new FailedException("HLCX_ZYH_REQUIRED", "Vui lòng chọnSố nhập viện");
+                throw new FailedException("HLCX_ZYH_REQUIRED", "Vui lòng chọn Số nhập viện");
             }
-            //2020-4-28 HủyPhiếu nhiệt độTra cứuThời gianmạnhchếđếnNhập việnThời gian xuất viện
+            //2020-4-28 Hủy Phiếu nhiệt độ Tra cứu Thời gianmạnhchếđến Nhập viện Thời gian xuất viện
             if (patInfo != null && patInfo.ryrq > kssj)
             {
                 kssj = patInfo.ryrq;
-                //throw new FailedException("Ngày nhập viện:"+patInfo.ryrq+";vui lòngnhậpđangxáccủaThời gian bắt đầu");
+                //throw new FailedException("Ngày nhập viện:"+patInfo.ryrq+";vui lòngnhậpđangxáccủa Thời gian bắt đầu");
             }
             if (patInfo != null && patInfo.cqrq != null && patInfo.cqrq < jssj  && patInfo.zybz==(int)EnumZYBZ.Ycy)
             {
                 jssj = patInfo.cqrq;
-                //throw new FailedException("Ngày xuất viện:" + patInfo.cqrq + ";vui lòngnhậpđangxáccủaThời gian kết thúc");
+                //throw new FailedException("Ngày xuất viện:" + patInfo.cqrq + ";vui lòngnhậpđangxáccủa Thời gian kết thúc");
             }
 
             var ValidList = _inpatientVitalSignsRepo.GetTempratureData(this.OrganizeId, kssj, jssj, zyh, pagesize??6);
@@ -405,7 +405,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 djzt = 2
             };
             string enableor = _sysConfigRepo.GetValueByCode("EnableLinkToOR", OrganizeId);
-            List<PatOpInfoVO> oplist = new List<PatOpInfoVO>(); //CóKhôngKích hoạtPhẫu thuậtHệ thống
+            List<PatOpInfoVO> oplist = new List<PatOpInfoVO>(); //Có Không Kích hoạt Phẫu thuật Hệ thống
             if (enableor == "ON")
             {
                 var patoplist = SiteORAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/ORPatient/ORPatList", req);

@@ -3,14 +3,14 @@ $(function () {
 })
 $.clientsInit = function () {
     var extToClients = function (data) {
-        //duyệtdatacủaThuộc tính mở rộngtriểnđếnwindow.clients
+        //duyệtdatacủa Thuộc tính mở rộngtriểnđếnwindow.clients
         if (!!!window.clients) {
             window.clients = {};
         }
         for (dataitemName in data) {
             var itemdata = data[dataitemName];
             if (typeof (itemdata) == typeof ('abc')) {
-                //chữkýchuỗithìcầnSử dụngevalPhương pháp
+                //chữkýchuỗithìcần Sử dụngeval Phương pháp
                 itemdata = eval(itemdata);
             }
             window.clients[dataitemName] = itemdata;
@@ -30,7 +30,7 @@ $.clientsInit = function () {
         });
     };
 
-    //Đồng bộyêu cầu  //VDmenuphiếunội dungphảicầndùngĐồng bộphươngkiểu
+    //Đồng bộyêu cầu  //VDmenuphiếunội dungphảicầndùng Đồng bộphươngkiểu
     funcClientsAjax("/ClientsData/GetClientsDataJson", false);
     //Yêu cầu không đồng bộ
     //funcClientsAjax("/NewtouchClientsData/GetClientsDataJson", true);

@@ -29,11 +29,11 @@ namespace Newtouch.Domain.DTO.InputDto
 
         public int? zhyz { get; set; }
         /// <summary>
-        /// trảthuốcĐăng ký người
+        /// trảthuốc Đăng ký người
         /// </summary>
         public string tysqr { get; set; }
         /// <summary>
-        /// Thực hiệnNgày
+        /// Thực hiện Ngày
         /// </summary>
         public DateTime zxrq { get; set; }
         public string ksCode { get; set; }

@@ -138,7 +138,7 @@ namespace NewtouchHIS.Base.DomainService
         /// </summary>
         /// <param name="userEntity"></param>
         /// <param name="logEntity"></param>
-        /// <param name="staffOrganizeId">Đã chỉ địnhOrganizeId</param>
+        /// <param name="staffOrganizeId">Đã chỉ định OrganizeId</param>
         public async Task<OperatorModel?> BuildLoginStatusOpr(SysUserVEntity userEntity, SysUserLoginLog logEntity, string staffOrganizeId = null)
         {
             SysStaffVEntity? staff = null;
@@ -152,7 +152,7 @@ namespace NewtouchHIS.Base.DomainService
                 // va vai tro nhu moi tai khoan khac; chi "admin" giu dac quyen nhu cu.
                 if (userEntity.Account != "admin")
                 {
-                    //admin không liên kết bệnh việnId,dù đã lập liên kết cũng bỏ qua (7-fix: root khong con mien)
+                    //admin không liên kết bệnh viện Id,dù đã lập liên kết cũng bỏ qua (7-fix: root khong con mien)
                     staffList = await _sysStaffDmn.GetStaffListByUserId(userEntity.Id);
                     if (!string.IsNullOrWhiteSpace(staffOrganizeId))
                     {
@@ -160,7 +160,7 @@ namespace NewtouchHIS.Base.DomainService
                     }
                     if (staffList.Count > 1)
                     {
-                        //Trang chủ cần làmOrgChọn
+                        //Trang chủ cần làm Org Chọn
                         writedNeedChooseOrgFlag = true;
                     }
                     else if (staffList.Count == 0)
@@ -202,7 +202,7 @@ namespace NewtouchHIS.Base.DomainService
                 logEntity.NickName = staff == null ? null : staff.Name;
                 logEntity.Result = true;
                 logEntity.Description = "Dang nhap he thong thanh cong";
-                //Liên kết nhiềuTổ chứckhi không chính xác
+                //Liên kết nhiều Tổ chứckhi không chính xác
                 logEntity.OrganizeId = staff == null ? null : staff?.OrganizeId;
             }
             return operatorModel;

@@ -10,7 +10,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
     public class OutpTreatmentEntity : IEntity
     {
         /// <summary>
-        /// Khám bệnhId
+        /// Khám bệnh Id
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public string jzId { get; set; }
@@ -27,7 +27,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public int mjzbz { get; set; }
 
         /// <summary>
-        /// Tương ứngbillingSố bệnh án trong giao diện
+        /// Tương ứngbilling Số bệnh án trong giao diện
         /// </summary>
         public string blh { get; set; }
 
@@ -127,12 +127,12 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public DateTime? zljssj { get; set; }
 
         /// <summary>
-        /// Liên kếtbaseCơ sở dữ liệu Bảng khoa
+        /// Liên kếtbase Cơ sở dữ liệu Bảng khoa
         /// </summary>
         public string jzks { get; set; }
 
         /// <summary>
-        /// Liên kếtbaseCơ sở dữ liệu Bảng nhân viên(Bác sĩ khám cuối cùng)
+        /// Liên kếtbase Cơ sở dữ liệu Bảng nhân viên(Bác sĩ khám cuối cùng)
         /// </summary>
         public string jzys { get; set; }
 
@@ -162,7 +162,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
         /// </summary>
         public string? sbbh { get; set; }
         /// <summary>
-        /// Nơi tham gia bảo hiểmMã
+        /// Nơi tham gia bảo hiểm Mã
         /// </summary>
         public string? cbdbm { get; set; }
         /// <summary>
@@ -186,7 +186,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
         /// </summary>
         public string? ContactNum { get; set; }
         /// <summary>
-        /// Khám bệnhSố thẻ
+        /// Khám bệnh Số thẻ
         /// </summary>
         public string? kh { get; set; }
 

@@ -36,7 +36,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         // GET: TemplateManage/Inspection
         
         /// <summary>
-        /// Xét nghiệmKiểm traNhóm lớn dướikéo
+        /// Xét nghiệm Kiểm tra Nhóm lớn dướikéo
         /// </summary>
         /// <returns></returns>
         public IActionResult GetCategoryList()
@@ -57,7 +57,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// mẫuChi tiết
+        /// mẫu Chi tiết
         /// </summary>
         /// <param name="mbId"></param>
         /// <returns></returns>
@@ -95,7 +95,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// Đơn thuốctrangcủaXét nghiệmKiểm tramẫucây
+        /// Đơn thuốctrangcủa Xét nghiệm Kiểm tramẫucây
         /// </summary>
         /// <returns></returns>
         public IActionResult GetTreeList(int jyjcmbLx,string TemplateId, string ztKeyword)
@@ -105,7 +105,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             var dldata = alldldata.Select(a => new { a.dlmc }).Distinct().ToList();
             foreach (var item in dldata)
             {
-                //Xét nghiệmKiểm traNhóm lớn
+                //Xét nghiệm Kiểm tra Nhóm lớn
                 treeList.Add(new TreeViewModel()
                 {
                     id = item.dlmc,
@@ -157,7 +157,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// TheoztIdTra cứuBộ mẫudướicủaMục thu phí
+        /// TheoztIdTra cứu Bộ mẫudướicủa Mục thu phí
         /// </summary>
         /// <returns></returns>
         public IActionResult GetGPackageDetailByZtId(string ztId,string mbId=null)

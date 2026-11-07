@@ -18,12 +18,12 @@ namespace Newtouch.Domain.BusinessObjects
         public List<PrescriptionDetailQueryVO> presDetailList { get; set; }
 
         /// <summary>
-        /// Đơn thuốcInThời gian
+        /// Đơn thuốc In Thời gian
         /// </summary>
         public DateTime? cfzhdysj { get; set; }
 
         /// <summary>
-        /// Điều trịphiếuInThời gian(chỉPhục hồi chức năng)
+        /// Điều trịphiếu In Thời gian(chỉ Phục hồi chức năng)
         /// </summary>
         public DateTime? zldzhdysj { get; set; }
 

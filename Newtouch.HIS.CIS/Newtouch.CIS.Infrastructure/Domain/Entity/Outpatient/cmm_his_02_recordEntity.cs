@@ -18,7 +18,7 @@ namespace Newtouch.Domain.Entity
         public long Id { get; set; }
 
         /// <summary>
-        /// ThuốcSố hiệu
+        /// Thuốc Số hiệu
         /// bắt buộc
         /// </summary>
         public string cmmId { get; set; }
@@ -46,12 +46,12 @@ namespace Newtouch.Domain.Entity
         public string manufacturer { get; set; }
 
         /// <summary>
-        /// làKhôngKích hoạt
+        /// là Không Kích hoạt
         /// </summary>
         public string activeFlg { get; set; }
 
         /// <summary>
-        /// Cơ sởMã
+        /// Cơ sở Mã
         /// </summary>
         public string orgCode { get; set; }
 
@@ -61,12 +61,12 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Quay lạikếtnếuTrạng tháimã  1: thành công; 0:thất bại
+        /// Quay lạikếtnếu Trạng tháimã  1: thành công; 0:thất bại
         /// </summary>
         public string resultCode { get; set; }
 
         /// <summary>
-        /// Quay lạikếtnếuMô tả  thành công;thất bại(Bổ sungthất bạinguyên nhânMô tả)
+        /// Quay lạikếtnếu Mô tả  thành công;thất bại(Bổ sungthất bạinguyên nhân Mô tả)
         /// </summary>
         public string resultDesc { get; set; }
 

@@ -111,14 +111,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
            string organizeId, string userCode, string returnDrugBillNo);
 
         /// <summary>
-        /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
+        /// Nội trú Book Đóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
         string HospitalizationBook(BookItemDo bookItemDo);
 
         /// <summary>
-        /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
+        /// Nội trú Book Đóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
         /// <param name="yzId">Y lệnh ID</param>
         /// <param name="zxId">Thực hiện ID</param>
@@ -139,7 +139,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string CancelForzenAndDeleteYz(string yzId, string zxId);
 
         /// <summary>
-        /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
+        /// Nội trú Book Đóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
         /// <param name="zxId">Thực hiện ID</param>
         /// <param name="yzDetails"></param>
@@ -148,7 +148,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string HospitalizationBook(string zxId, List<YzDetail> yzDetails, string organizeId);
 
         /// <summary>
-        /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
+        /// Nội trú Book Đóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
         /// <param name="zxId"></param>
         /// <param name="bookItemDo"></param>

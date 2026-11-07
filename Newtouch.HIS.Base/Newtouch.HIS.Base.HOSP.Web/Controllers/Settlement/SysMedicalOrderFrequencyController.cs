@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// Thêm mới hoặc sửaForm
+        /// Thêm mới hoặc sửa Form
         /// </summary>
         public IActionResult GetFormJson(int? yzpcId,string orgId)
         {

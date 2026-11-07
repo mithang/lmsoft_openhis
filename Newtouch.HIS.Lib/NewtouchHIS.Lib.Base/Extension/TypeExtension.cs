@@ -93,7 +93,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// Lấy theo tên thuộc tínhPropertyInfo
+        /// Lấy theo tên thuộc tính PropertyInfo
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="propertyName"></param>

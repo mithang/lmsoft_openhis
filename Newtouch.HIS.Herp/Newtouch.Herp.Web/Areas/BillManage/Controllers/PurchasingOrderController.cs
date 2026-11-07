@@ -147,7 +147,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// Nhập kho ngoài-Tham chiếu đơn mua sắmfromChế độ xem
+        /// Nhập kho ngoài-Tham chiếu đơn mua sắmfrom Chế độ xem
         /// </summary>
         public IActionResult SelectCgOrderView(DateTime kssj, DateTime jssj, string fph, string orderNo, string organizeId)
         {

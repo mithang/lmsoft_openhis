@@ -25,13 +25,13 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO
         public string sendTime { get; set; }
 
         /// <summary>
-        /// hủytinLoại:TCM_ PLAT _06
+        /// hủytin Loại:TCM_ PLAT _06
         /// bắt buộc
         /// </summary>
         public string msgType { get; set; }
 
         /// <summary>
-        /// hủytin ID(ứngdùngtrìnhthứ tựMã+Thời gian gửi) ,nếu:PLAT20170606020202
+        /// hủytin ID(ứngdùngtrìnhthứ tự Mã+Thời gian gửi) ,nếu:PLAT20170606020202
         /// bắt buộc
         /// </summary>
         public string msgID { get; set; }

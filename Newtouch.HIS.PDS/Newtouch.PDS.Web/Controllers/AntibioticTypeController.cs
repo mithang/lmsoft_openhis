@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Success();
         }
         /// <summary>
-        /// ĐạtIdLấy thể hiện
+        /// Đạt Id Lấy thể hiện
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Web.Controllers
             List<object> list = new List<object>();
             foreach (SysMedicineAntibioticTypeVO item in data)
             {
-                list.Add(new { id = item.Id + "|" + item.qxjb, text = item.typeName });//Mang thông tin cấp quyền vàoIdtrong
+                list.Add(new { id = item.Id + "|" + item.qxjb, text = item.typeName });//Mang thông tin cấp quyền vào Idtrong
             }
             return Content(list.ToJson());
         }

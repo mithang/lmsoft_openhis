@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// kỹ thuật y họcKhoaThực hiệnghi chép
+    /// kỹ thuật y học Khoa Thực hiệnghi chép
     /// </summary>
     [SugarTable("xt_jyjcexec")]
     public class XtjyjcExecEntity

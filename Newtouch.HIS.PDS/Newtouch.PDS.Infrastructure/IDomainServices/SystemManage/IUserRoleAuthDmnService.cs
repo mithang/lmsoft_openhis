@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<SysRoleEntity> GetUserRoleList(string userId);
 
         /// <summary>
-        /// LấyUserId TheoRoleId
+        /// Lấy UserId TheoRoleId
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>

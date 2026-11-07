@@ -34,8 +34,8 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         /// <summary>
         /// đượclấyvị trívịngườiviên
         /// </summary>
-        /// <param name="orgId">Tổ chứcId</param>
-        /// <param name="dutyCode">Chức vụCode</param>
+        /// <param name="orgId">Tổ chức Id</param>
+        /// <param name="dutyCode">Chức vụ Code</param>
         /// <param name="ks">Khoa</param>
         /// <param name="keyword">Từ khóa conphốingườiviêntêngọihoặccôngsố</param>
         /// <returns></returns>

@@ -41,13 +41,13 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Lấy chữđoạn/nghiệp vụ duy nhấtmộtGiá trị
+        /// Lấy chữđoạn/nghiệp vụ duy nhấtmột Giá trị
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgId"></param>
         /// <param name="initFormat"></param>
         /// <param name="dateFlag"></param>
-        /// <returns>stringLoại</returns>
+        /// <returns>string Loại</returns>
         public string GetNewFieldUniqueValue(string fieldName, string orgId, string initFormat = "", bool dateFlag = false)
         {
             var tpl = GetNewFieldUniqueObjectValue(fieldName, orgId, initFormat, dateFlag);
@@ -66,7 +66,7 @@ namespace Newtouch.Infrastructure
         /// Lấyphiếusố phiếu
         /// </summary>
         /// <param name="djmc"></param>
-        /// <param name="orgId">hiện tạiyviệntương ứngcủaTổ chứcId</param>
+        /// <param name="orgId">hiện tạiyviệntương ứngcủa Tổ chức Id</param>
         /// <param name="yfbmCode"></param>
         /// <returns></returns>
         public string GetNewMedicineReceiptNo(string djmc, string yfbmCode, string orgId)
@@ -86,13 +86,13 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Lấy chữđoạn/nghiệp vụ duy nhấtmộtGiá trị
+        /// Lấy chữđoạn/nghiệp vụ duy nhấtmột Giá trị
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgId"></param>
         /// <param name="initFormat"></param>
         /// <param name="dateFlag"></param>
-        /// <returns>stringLoại</returns>
+        /// <returns>string Loại</returns>
         public int GetNewFieldUniqueIntValue(string fieldName, string orgId, string initFormat = "", bool dateFlag = false)
         {
             var tpl = GetNewFieldUniqueObjectValue(fieldName, orgId, initFormat, dateFlag);
@@ -108,7 +108,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// LấySố đơn thuốc
+        /// Lấy Số đơn thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -122,7 +122,7 @@ namespace Newtouch.Infrastructure
         #region private methods
 
         /// <summary>
-        /// Lấy chữđoạn/nghiệp vụ duy nhấtmộtGiá trị Quay lạiTuple
+        /// Lấy chữđoạn/nghiệp vụ duy nhấtmột Giá trị Quay lại Tuple
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgId"></param>

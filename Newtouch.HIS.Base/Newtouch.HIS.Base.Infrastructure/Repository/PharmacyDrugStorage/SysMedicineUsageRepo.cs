@@ -29,13 +29,13 @@ namespace Newtouch.HIS.Repository
         {
             if (yfId!=null && yfId > 0)
             {
-                //CodeKiểm tra trùng lặp
+                //Code Kiểm tra trùng lặp
                 if (this.IQueryable().Any(a => a.yfCode == entity.yfCode && a.yfId != yfId))
                 {
                     throw new FailedException("Mã không được trùng lặp");
                 }
 
-                SysMedicineUsageEntity oldEntity = null;   //Trước khi thay đổiEntity
+                SysMedicineUsageEntity oldEntity = null;   //Trước khi thay đổi Entity
                 oldEntity = this.FindEntity(yfId.Value);
                 this.DetacheEntity(oldEntity);
 
@@ -50,7 +50,7 @@ namespace Newtouch.HIS.Repository
             }
             else
             {
-                //CodeKiểm tra trùng lặp
+                //Code Kiểm tra trùng lặp
                 if (this.IQueryable().Any(a => a.yfCode == entity.yfCode))
                 {
                     throw new FailedException("Mã không được trùng lặp");

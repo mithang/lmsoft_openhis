@@ -16,7 +16,7 @@ namespace NewtouchHIS.Lib.Services.SignalR
 
         /// <summary>
         /// Ghi lại ID kết nối của người dùng hiện tại, để tiện sau này đẩy thông báo tin nhắn nội bộ cho người dùng máy khách.
-        /// OnConnectedAsyncĐược gọi khi thiết lập kết nối mới với hub. 
+        /// OnConnectedAsync Được gọi khi thiết lập kết nối mới với hub. 
         /// </summary>
         /// <returns></returns>
         public override async Task OnConnectedAsync()
@@ -70,7 +70,7 @@ namespace NewtouchHIS.Lib.Services.SignalR
 
         /// <summary>
         /// Tác dụng chính là, khi WebSocket của người dùng ngắt kết nối, xóa ID kết nối của anh ta.
-        /// OnDisconnectedAsyncĐược gọi khi kết nối với hub bị chấm dứt.
+        /// OnDisconnectedAsync Được gọi khi kết nối với hub bị chấm dứt.
         /// </summary>
         /// <param name="exception"></param>
         /// <returns></returns>

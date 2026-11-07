@@ -7,7 +7,7 @@ namespace Newtouch.DomainServices.TSQL
     public class InpatientYz
     {
         /// <summary>
-        /// Y lệnhThực hiện góigồmvăn bảnY lệnh
+        /// Y lệnh Thực hiện góigồmvăn bảnY lệnh
         /// </summary>
         public const string zyOrderExecutionWithWzYz = @"
 BEGIN TRAN

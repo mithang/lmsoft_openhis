@@ -17,7 +17,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
-    /// Cách dùngliênđộngBảo trì
+    /// Cách dùngliênđộng Bảo trì
     /// </summary>
     [Area("SystemManage")]
     public class UsageLinkageController : OrgControllerBase

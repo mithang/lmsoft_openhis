@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Repository
                     throw new FailedException("Mã phòng không được trùng lặp!");
                 }
 
-                SysWardRoomEntity oldEntity = null;   //Trước khi thay đổiEntity
+                SysWardRoomEntity oldEntity = null;   //Trước khi thay đổi Entity
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

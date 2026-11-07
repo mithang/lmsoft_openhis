@@ -111,7 +111,7 @@ from Sys_Staff staff where  OrganizeId='9bb029d0-5da0-4118-9d19-06b829eede46' an
                 }
                 
 
-                SysWardEntity oldEntity = null;   //Trước khi thay đổiEntity
+                SysWardEntity oldEntity = null;   //Trước khi thay đổi Entity
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

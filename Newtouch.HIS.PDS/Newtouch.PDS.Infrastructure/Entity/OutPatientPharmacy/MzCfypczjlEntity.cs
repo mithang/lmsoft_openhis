@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Domain.Entity
         public long Id { get; set; }
 
         /// <summary>
-        /// Chi tiết đơn ngoại trú ID mz_cfmxKhóa chính bảng
+        /// Chi tiết đơn ngoại trú ID mz_cfmx Khóa chính bảng
         /// </summary>
         public long mzcfmxId { get; set; }
 

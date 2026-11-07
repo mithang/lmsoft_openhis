@@ -12,21 +12,21 @@
             <div role="tabpanel" class="tab-pane fade in active">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">Bảo hiểm y tếĐơn thuốcSố hiệu:</th>
+                        <th class="formTitle">Bảo hiểm y tế Đơn thuốc Số hiệu:</th>
                         <td class="formValue" style="width:70px;padding-right:50px;">
                             <input id="hiRxno" name="hiRxno" disabled="disabled" type="text" class="form-control" placeholder="" />
                         </td>
-                        <th class="formTitle">Bảo hiểm y tếDược sĩHọ tên:</th>
+                        <th class="formTitle">Bảo hiểm y tếDược sĩ Họ tên:</th>
                         <td class="formValue" style="width:70px;padding-right:50px;">
                             <input id="pharName" name="pharName" disabled="disabled" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Bảo hiểm y tếDược sĩMã:</th>
+                        <th class="formTitle">Bảo hiểm y tếDược sĩ Mã:</th>
                         <td class="formValue" style="width:70px;padding-right:50px;">
                             <input id="pharCode" name="pharCode" disabled="disabled" type="text" class="form-control" placeholder="" />
                         </td>
-                        <th class="formTitle">Đơn thuốcDuyệtTrạng tháiTên:</th>
+                        <th class="formTitle">Đơn thuốcDuyệtTrạng thái Tên:</th>
                         <td class="formValue" style="width:70px;padding-right:50px;">
                             <input id="rxChkStasCodg" name="rxChkStasCodg" disabled="disabled" type="text" class="form-control" placeholder="" />
                         </td>
@@ -74,7 +74,7 @@
                             $("#hiRxno").val(obj.hiRxno);
                             $("#pharName").val(obj.pharName);
                             $("#pharCode").val(obj.pharCode);
-                            $("#rxChkStasCodg").val(obj.rxChkStasCodg == "1" ? "DuyệtThông qua" : (obj.rxChkStasCodg == "2" ? "DuyệtKhông thông qua" : "Chờ duyệt"));
+                            $("#rxChkStasCodg").val(obj.rxChkStasCodg == "1" ? "Duyệt Thông qua" : (obj.rxChkStasCodg == "2" ? "Duyệt Không thông qua" : "Chờ duyệt"));
                             $("#rxChkOpnn").val(obj.rxChkOpnn);
                             $("#rxChkTime").val(obj.rxChkTime);
                         }
@@ -84,7 +84,7 @@
                         }
                     }
                     else {
-                        $.modalAlert("Điện tửĐơn thuốcDuyệtKết quảTra cứuthất bại:" + tfReturn.err_msg, 'error');
+                        $.modalAlert("Điện tử Đơn thuốc Duyệt Kết quả Tra cứuthất bại:" + tfReturn.err_msg, 'error');
                         return;
                     }
                 },

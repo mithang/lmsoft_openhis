@@ -318,7 +318,7 @@ $.fn.formSerialize = function (formdate, forlabel) {
         var $this = $(this);
         var id = $this.attr('id');
         if (!!!id) {
-            return; //Không cóidThuộc tính continue
+            return; //Không cóid Thuộc tính continue
         }
         var type = $this.attr('type'); switch (type) {
             case "checkbox": postdata[id] = $this.is(":checked"); break; case 'radio': postdata[id] = element.find('input[name="' + id + '"]:checked').val(); break; default: var value = ($this.val() == null || $this.val() == "") ? "" : $this.val(); if (!$.request("keyValue")) { value = value.replace(/&nbsp;/g, ''); }
@@ -639,7 +639,7 @@ $(function () { $('select[data-ItemType]').each(function () { $(this).itemDetail
         return obj;
     }
 };
-//$('any').val() Trả vềundefined ,nvalTrả về chuỗi rỗng
+//$('any').val() Trả vềundefined ,nval Trả về chuỗi rỗng
 $.fn.nval = function () {
     var val = $(this).val();
     if (!!val || !isNaN(val)) {

@@ -117,7 +117,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             return Success("Xóa thành công.");
         }
         /// <summary>
-        /// XóaKiểm traVị trí
+        /// Xóa Kiểm tra Vị trí
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -127,7 +127,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             return Success("Xóa thành công.");
         }
         /// <summary>
-        /// Vị tríLoại
+        /// Vị trí Loại
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -141,7 +141,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// Kiểm traVị tríLoại
+        /// Kiểm tra Vị trí Loại
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -156,7 +156,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Hệ thốngVị trí lớp nổi
+        /// Hệ thống Vị trí lớp nổi
         /// </summary>
         /// <returns></returns>
 
@@ -180,7 +180,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         
 
         /// <summary>
-        /// Hình ảnhVị trí lớp nổi
+        /// Hình ảnh Vị trí lớp nổi
         /// </summary>
         /// <returns></returns>
 

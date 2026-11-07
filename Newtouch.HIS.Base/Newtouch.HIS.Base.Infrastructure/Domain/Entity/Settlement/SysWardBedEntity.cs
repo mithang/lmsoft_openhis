@@ -98,7 +98,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string bfCode { get; set; }
 
         /// <summary>
-        /// Loại giường bệnh Enum tương ứngEnumWardBedType
+        /// Loại giường bệnh Enum tương ứng EnumWardBedType
         /// </summary>
         public string cwlx { get; set; }
 

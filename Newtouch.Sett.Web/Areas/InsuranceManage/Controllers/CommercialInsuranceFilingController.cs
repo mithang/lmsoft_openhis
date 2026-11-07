@@ -64,7 +64,7 @@ namespace Newtouch.Sett.Web.Areas.InsuranceManage.Controllers
         }
 
         /// <summary>
-        /// Thêm mới hoặc sửaForm
+        /// Thêm mới hoặc sửa Form
         /// </summary>
         /// <param name="sbbabId"></param>
         /// <returns></returns>

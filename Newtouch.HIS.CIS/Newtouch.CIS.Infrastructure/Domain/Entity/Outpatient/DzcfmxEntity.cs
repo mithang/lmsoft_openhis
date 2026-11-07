@@ -25,7 +25,7 @@ namespace Newtouch.Domain.Entity
         public string cfId { get; set; }
 
         /// <summary>
-        /// MụcMã
+        /// Mục Mã
         /// </summary>
         public string xmCode { get; set; }
 
@@ -55,22 +55,22 @@ namespace Newtouch.Domain.Entity
         public int? mczll { get; set; }
 
         /// <summary>
-        /// mỗi lầnLiều lượng
+        /// mỗi lần Liều lượng
         /// </summary>
         public decimal? mcjl { get; set; }
 
         /// <summary>
-        /// mỗi lầnĐơn vị liều
+        /// mỗi lần Đơn vị liều
         /// </summary>
         public string mcjldw { get; set; }
 
         /// <summary>
-        /// Cách dùngMã
+        /// Cách dùng Mã
         /// </summary>
         public string yfCode { get; set; }
 
         /// <summary>
-        /// Tần suấtMã
+        /// Tần suất Mã
         /// </summary>
         public string pcCode { get; set; }
 
@@ -85,7 +85,7 @@ namespace Newtouch.Domain.Entity
         public int? zl { get; set; }
 
         /// <summary>
-        /// Tổng lượngĐơn vị
+        /// Tổng lượng Đơn vị
         /// </summary>
         public string dw { get; set; }
 
@@ -100,7 +100,7 @@ namespace Newtouch.Domain.Entity
         public DateTime? CreateTime { get; set; }
 
         /// <summary>
-        /// tạoNgười dùngid
+        /// tạo Người dùngid
         /// </summary>
         public string CreatorCode { get; set; }
 
@@ -110,7 +110,7 @@ namespace Newtouch.Domain.Entity
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Sửa cuốiNgười dùngid
+        /// Sửa cuối Người dùngid
         /// </summary>
         public string LastModifierCode { get; set; }
 
@@ -160,7 +160,7 @@ namespace Newtouch.Domain.Entity
         public string ybwym { get; set; }
 
         /// <summary>
-        /// hạnchếSử dụngCờ
+        /// hạnchế Sử dụng Cờ
         /// </summary>
         public string xzsybz { get; set; }
 
@@ -170,7 +170,7 @@ namespace Newtouch.Domain.Entity
         public decimal? ts { get; set; }
 
         /// <summary>
-        /// Kháng sinhSử dụngnguyên nhân
+        /// Kháng sinh Sử dụngnguyên nhân
         /// </summary>
         public string kssReason { get; set; }
 

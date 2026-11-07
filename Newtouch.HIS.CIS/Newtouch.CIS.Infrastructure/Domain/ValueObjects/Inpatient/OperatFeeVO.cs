@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// Phẫu thuậtChi phíbổ sungghi
+    /// Phẫu thuật Chi phíbổ sungghi
     /// </summary>
     public class OperatFeeVO
     {

@@ -39,7 +39,7 @@ using System.IO;
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
     /// <summary>
-    /// Y lệnhThực hiện
+    /// Y lệnh Thực hiện
     /// </summary>
     [Area("NurseManage")]
     public class OrderExecutionController : OrgControllerBase
@@ -64,11 +64,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         private readonly int MaxFileSize = 10 * 1024 * 1024; // 10MB
 
         /// <summary>
-        /// văn bảnY lệnhcầnThực hiện
+        /// văn bảnY lệnhcần Thực hiện
         /// </summary>
-        private bool wnes;//true-văn bảnY lệnhcầnThực hiện  false-văn bảnY lệnhkhôngcầnThực hiện
+        private bool wnes;//true-văn bảnY lệnhcần Thực hiện  false-văn bảnY lệnhkhôngcầnThực hiện
         private string medicalInsurance;
-        private string iskfyzjf;//Phục hồi chức năngY lệnhCóKhôngtínhphí
+        private string iskfyzjf;//Phục hồi chức năngY lệnh Có Khôngtínhphí
 
         public OrderExecutionController(IOrderExecutionDmnService OrderExecutionDmnService, ISysConfigRepo sysConfigRepo, IInpatientPatientInfoRepo inpatientPatientInfoRepo, ISysUserDmnService sysUserDmnService, IDoctorserviceDmnService doctorserviceDmnService, IMedicalAdviceBindingFeeRepo medicalAdviceBindingFeeRepo, IInpatientLongTermOrderRepo inpatientLongTermOrderRepo, IInpatientSTATOrderRepo inpatientSTATOrderRepo, IXtjyjcFileUploadRepo xyjyjcfileuploadRepo)
         {
@@ -91,9 +91,9 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             iskfyzjf = _sysConfigRepo.GetValueByCode("iskfyzjf", OrganizeId);
             ViewBag.isqfswith = _sysConfigRepo.GetValueByCode("accountqfexecute_switch", OrganizeId);//Công tắc mở lập, thực hiện y lệnh khi nợ phí
         }
-        #region Y lệnhThực hiệnTrang
+        #region Y lệnh Thực hiệnTrang
         /// <summary>
-        /// LấychờThực hiệnY lệnhdanh sách
+        /// Lấychờ Thực hiệnY lệnhdanh sách
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
@@ -142,11 +142,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
         public IActionResult BindingFeeForm()
         {
-            ViewBag.openWzhckc = _sysConfigRepo.GetValueByCode("openWzhckc", OrganizeId);//Vật tư tiêu haoCóKhôngKích hoạtTồn khologictập
+            ViewBag.openWzhckc = _sysConfigRepo.GetValueByCode("openWzhckc", OrganizeId);//Vật tư tiêu hao Có Không Kích hoạt Tồn khologictập
             return View();
         }
         /// <summary>
-        /// LấyKhu bệnhBệnh nhânchờThực hiệnY lệnhcây
+        /// Lấy Khu bệnh Bệnh nhânchờ Thực hiệnY lệnhcây
         /// </summary>
         /// <param name="aa"></param>
         /// <returns></returns>
@@ -176,7 +176,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     var treepat = new TreeViewModel
                     {
                         id = itempat.zyh,
-                        //Số giường + Họ tên(Nhập việnSố ngày)+Số nhập viện + Tuổi +Giới tính
+                        //Số giường + Họ tên(Nhập viện Số ngày)+Số nhập viện + Tuổi +Giới tính
                         text = itempat.BedNo + "-" + itempat.hzxm + "(" + itempat.inHosDays + "ngày)" + "-" + itempat.zyh + "-" + itempat.nl + "tuổi-" + gender,
                         value = itempat.zyh,
                         parentId = item.bqCode,
@@ -219,12 +219,12 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// Thực hiệnhiện tạiY lệnh
         /// </summary>
         /// <param name="orderList">yzid,yzxh,zyh,yzlx</param>
-        /// <param name="Vzxsj">Thực hiệnThời gian</param>
+        /// <param name="Vzxsj">Thực hiện Thời gian</param>
         /// <returns></returns>
         public IActionResult submitOrderExecutionList(string patlist, IList<ApiResponseVO> orderList, DateTime Vzxsj)
         {
             Validatepatryrq(patlist, Vzxsj);
-            //gọigiao diệnQuay lại
+            //gọigiao diện Quay lại
             var result = doOrderExecution(orderList, Vzxsj);
             if (result.Split('|')[0] != "T") return Error(result.Split('|')[1]);
             var cnt = orderList.Where(a => a.yzlx == Convert.ToInt32(EnumYzlx.Yp) || a.yzlx == Convert.ToInt32(EnumYzlx.Cydy) || a.yzlx == Convert.ToInt32(EnumYzlx.zcy)).ToList().Count;
@@ -236,7 +236,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// Cấu trúcvàgọigiao diện
         /// </summary>
         /// <param name="orderListAll">Apilist</param>
-        /// <param name="Vzxsj">Thực hiệnThời gian</param>
+        /// <param name="Vzxsj">Thực hiện Thời gian</param>
         /// <returns></returns>
         [NonAction]
         public string doOrderExecution(IList<ApiResponseVO> orderListAll, DateTime Vzxsj, int? yzxz = null)
@@ -244,10 +244,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             try
             {
                 var user = UserIdentity;
-                //có thểlấyThực hiệncủaY lệnh
+                //có thểlấy Thực hiệncủaY lệnh
                 var isOkOrderExecutionresult = _OrderExecutionDmnService.IsOKOrderExecution(orderListAll, Vzxsj,this.OrganizeId, UserIdentity.rygh);
                 if (isOkOrderExecutionresult.Split('|')[0] != "T") return isOkOrderExecutionresult;
-                //ThuốcY lệnh(đẩyNhà thuốc)
+                //ThuốcY lệnh(đẩy Nhà thuốc)
                 IList<ApiResponseVO> orderYpList = orderListAll.Where(a => (a.yzlx == Convert.ToInt32(EnumYzlx.Yp) || a.yzlx == Convert.ToInt32(EnumYzlx.Cydy) || a.yzlx == Convert.ToInt32(EnumYzlx.zcy))
                 && a.isjf != EnumSF.f.GetDescription() && a.yply != EnumYply.ksby.GetDescription()).ToList();
                 //MụcY lệnh
@@ -255,7 +255,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 //Y lệnh không tính phí, y lệnh khoa chuẩn bị thuốc
                 IList<ApiResponseVO> nofeeorderYpList = orderListAll.Where(a => (a.yzlx == Convert.ToInt32(EnumYzlx.Yp) || a.yzlx == Convert.ToInt32(EnumYzlx.Cydy) || a.yzlx == Convert.ToInt32(EnumYzlx.zcy))
                 && (a.isjf == EnumSF.f.GetDescription() || a.yply == EnumYply.ksby.GetDescription())).ToList();
-                //lĩnhthuốcSố thứ tự
+                //lĩnhthuốc Số thứ tự
                 lyxh = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueIntValue("fyqqk_lyxh", OrganizeId);
 
                 if (orderYpList.Count > 0)
@@ -272,14 +272,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     var apiOrderExecution = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Zyypyz/Yzzx", orderExecution);
                     if (apiOrderExecution.code == APIRequestHelper.ResponseResultCode.SUCCESS && apiOrderExecution.data != null)
                     {
-                        var successDoOrder = apiOrderExecution.data.ToString().ToObject<RequestOrderExecMsgDto>(); //giao diệnQuay lạiDữ liệu 
+                        var successDoOrder = apiOrderExecution.data.ToString().ToObject<RequestOrderExecMsgDto>(); //giao diện Quay lại Dữ liệu 
                         if (successDoOrder.Data != null && successDoOrder.IsSucceed && successDoOrder.Data.Count > 0)
                         {
                             string resultMsg = "";
                             List<YzDetail> successDoOrderYp = Newtouch.CIS.Compat.Tools.Json.ToList<YzDetail>(successDoOrder.Data.ToString());
                             if (successDoOrderYp.Count >= 30)
                             {
-                                AppLogger.Info("Nhà thuốcThực hiệnthành công:" + successDoOrderYp.ToArray().ToJson());
+                                AppLogger.Info("Nhà thuốc Thực hiệnthành công:" + successDoOrderYp.ToArray().ToJson());
                                 //Ngăn bị cắt ngắn
                                 var zyhlist = successDoOrderYp.Select(p => p.zyh).Distinct();
                                 foreach (string zyh in zyhlist)
@@ -322,7 +322,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     }
                 }
                 if (orderXmList.Count <= 0) return "T|Thực hiệnthành công";
-                //MụcThực hiện
+                //Mục Thực hiện
                 var xmMsg = wnes ? _OrderExecutionDmnService.OrderExecutionXmWithWzyz(user.rygh, orderXmList, lyxh, Vzxsj, this.OrganizeId, yzxz)
                     : _OrderExecutionDmnService.OrderExecutionXM(user, orderXmList, lyxh, Vzxsj, this.OrganizeId, medicalInsurance, yzxz);
                 return xmMsg.Split('|')[0] != "T" ? xmMsg : "T|Thực hiệnthành công";
@@ -335,9 +335,9 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
         #endregion
 
-        #region Thực hiệnTạm thời, Dài hạn,Tất cả
+        #region Thực hiện Tạm thời, Dài hạn,Tất cả
         /// <summary>
-        /// Thực hiệnTạm thời,Dài hạn,Tất cảY lệnh
+        /// Thực hiện Tạm thời,Dài hạn,Tất cảY lệnh
         /// </summary>
         /// <param name="patlist">Số nhập viện</param>
         /// <param name="yzxz">Tạm thời,Dài hạn,Tất cả</param>
@@ -352,7 +352,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 if (isNurse && isRehabDoctor)
                 {
                     apiList = wnes ? _OrderExecutionDmnService.GetAllYZWithWzYz(OrganizeId, patlist, yzxz, Vzxsj) :
-                             _OrderExecutionDmnService.GetAllYZ(patlist, yzxz, Vzxsj, IsRehabAuthtoNurse);//LấyThực hiệnTất cảY lệnh
+                             _OrderExecutionDmnService.GetAllYZ(patlist, yzxz, Vzxsj, IsRehabAuthtoNurse);//Lấy Thực hiện Tất cảY lệnh
                 }
                 else if (isRehabDoctor)
                 {
@@ -361,16 +361,16 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 else if (isNurse)
                 {
                     apiList = wnes ? _OrderExecutionDmnService.GetAllYZWithWzYz(OrganizeId, patlist, yzxz, Vzxsj, IsRehabAuthtoNurse) :
-                             _OrderExecutionDmnService.GetAllYZ(patlist, yzxz, Vzxsj, IsRehabAuthtoNurse);//LấyThực hiệnTất cảY lệnh
+                             _OrderExecutionDmnService.GetAllYZ(patlist, yzxz, Vzxsj, IsRehabAuthtoNurse);//Lấy Thực hiện Tất cảY lệnh
                 }
             }
             else
             {
                 apiList = wnes ? _OrderExecutionDmnService.GetAllYZWithWzYz(OrganizeId, patlist, yzxz, Vzxsj) :
-                        _OrderExecutionDmnService.GetAllYZ(patlist, yzxz, Vzxsj);//LấyThực hiệnTất cảY lệnh
+                        _OrderExecutionDmnService.GetAllYZ(patlist, yzxz, Vzxsj);//Lấy Thực hiện Tất cảY lệnh
             }
 
-            //giao diệnQuay lại list 
+            //giao diện Quay lại list 
             var result = doOrderExecution(apiList, Vzxsj, yzxz);
             if (result.Split('|')[0] != "T") return Error(result.Split('|')[1]);
             var cnt = apiList.Where(a => a.yzlx == Convert.ToInt32(EnumYzlx.Yp) || a.yzlx == Convert.ToInt32(EnumYzlx.Cydy) || a.yzlx == Convert.ToInt32(EnumYzlx.zcy)).ToList().Count;
@@ -380,7 +380,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Thực hiệnY lệnhkhi,kiểm traNgày nhập viện+vật tưVật tư tiêu haoTồn khokiểm tra
+        /// Thực hiệnY lệnhkhi,kiểm tra Ngày nhập viện+vật tư Vật tư tiêu hao Tồn khokiểm tra
         /// </summary>
         /// <param name="patlist"></param>
         [NonAction]
@@ -388,7 +388,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         {
             if (string.IsNullOrWhiteSpace(patlist))
             {
-                throw new FailedException("Thiếu bệnh nhânSố nhập viện");
+                throw new FailedException("Thiếu bệnh nhân Số nhập viện");
             }
             string[] patarr = patlist.Split(',');
             if (patarr != null && patarr.Count() > 0)
@@ -457,7 +457,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     request.Method = "POST";
 
                     request.ContentType = "application/json";
-                    request.CookieContainer = null;//LấyMã xác minhkhichờLấyđếncủacookiesẽkèmthêmởnàydungdụng cụtrongmặt
+                    request.CookieContainer = null;//Lấy Mã xác minhkhichờ Lấyđếncủacookiesẽkèmthêmởnàydungdụng cụtrongmặt
                     request.AllowAutoRedirect = true;
                     request.KeepAlive = true;//Thiết lập kết nối duy trì
                     //request.ContentLength = cs.Length;
@@ -516,7 +516,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         // view ApplyFormUploadForm.cshtml không tồn tại; luồng upload thật đã chạy qua
         // ApplyFormUpload?sqdh=... + ApplyFormUpload.cshtml (không đụng tới).
         /// <summary>
-        /// kỹ thuật y họcKhoachờThực hiệnPhiếu
+        /// kỹ thuật y học Khoachờ Thực hiện Phiếu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kssj"></param>
@@ -551,7 +551,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Success();
         }
         /// <summary>
-        /// HủyThực hiện
+        /// Hủy Thực hiện
         /// </summary>
         /// <param name="jyjclist"></param>
         /// <returns></returns>
@@ -562,7 +562,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Success();
         }
         /// <summary>
-        /// Thực hiệnghi chépTra cứu
+        /// Thực hiệnghi chép Tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kssj"></param>
@@ -585,7 +585,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// kỹ thuật y họcKhoabáo cáo
+        /// kỹ thuật y học Khoabáo cáo
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -609,7 +609,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                                 continue;
                             }
 
-                            // kiểm travănmụcLoại
+                            // kiểm travănmục Loại
                             var fileExtension = Path.GetExtension(file.FileName).ToLower();
                             if (!AllowedImageExtensions.Contains(fileExtension) &&
                                 !AllowedPdfExtensions.Contains(fileExtension))
@@ -640,7 +640,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                                     errorMessages.Add($"{file.FileName} Đường dẫn tải lên không hợp lệ");
                                     continue;
                                 }
-                                // xácbảoTải lênDanh mụctồn tạiở
+                                // xácbảo Tải lên Danh mụctồn tạiở
                                 Directory.CreateDirectory(Path.GetDirectoryName(path));
 
                                 // Lưuvănmục
@@ -696,7 +696,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Success();
         }
         /// <summary>
-        /// báo cáoTải xuống
+        /// báo cáo Tải xuống
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>

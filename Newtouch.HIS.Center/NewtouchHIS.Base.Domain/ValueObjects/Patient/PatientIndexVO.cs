@@ -9,7 +9,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
     public class PatientIndexVO
     {
         /// <summary>
-        /// Bệnh nhânMã định danh duy nhất
+        /// Bệnh nhân Mã định danh duy nhất
         /// </summary>
         public int? PatId { get; set; }
         /// <summary>
@@ -17,7 +17,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         /// </summary>
         public string? PatName { get; set; }
         /// <summary>
-        /// Khám bệnhSố thẻ
+        /// Khám bệnh Số thẻ
         /// </summary>
         public string? Jzkh { get; set; }
         /// <summary>

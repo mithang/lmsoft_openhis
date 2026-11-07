@@ -79,14 +79,14 @@
                 }
                 },
                 { label: 'Khoa thực hiện', name: 'zxks', hidden: true },
-                { label: 'Khoa thực hiệnTên', name: 'zxksmc', width: 80, hidden: (cflx == RehabPres|| cflx == Yyhc) ? null : true },
-                { label: 'Có hay khôngBảo hiểm y tế', name: 'sfyb', width:80},
+                { label: 'Khoa thực hiện Tên', name: 'zxksmc', width: 80, hidden: (cflx == RehabPres|| cflx == Yyhc) ? null : true },
+                { label: 'Có hay không Bảo hiểm y tế', name: 'sfyb', width:80},
             ], onSelectRow: function (rowid, status) {
                 if (status === true) {
                     var data = $("#gridList").getRowData(rowid);
                     if (brxzCode!=""&&'@ViewBag.ControlbrxzCode'.indexOf(brxzCode) > -1 && data.sfyb == "Không") {
                         $.modalAlert("Bệnh nhân này là bệnh nhân BHYT, không thể chọn mục tự chi trả [" + (data.xmmc == "" ? data.ypmc : data.xmmc) + "]", "warning");
-                        $("#gridList").jqGrid('setSelection', rowid, false); //Cài đặtjqGridĐã chọn
+                        $("#gridList").jqGrid('setSelection', rowid, false); //Cài đặtjqGrid Đã chọn
                         return false;
                     }
                 }
@@ -114,7 +114,7 @@
         }
         var data = getSelectRowData();
         if(!data || data.length==0){
-            $.modalAlert("Vui lòng chọnChi tiếtTiến hànhSao chép", 'warning');
+            $.modalAlert("Vui lòng chọn Chi tiết Tiến hành Sao chép", 'warning');
             return;
         }
         debugger

@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// TheoorganizeIdLấy thông tin danh mục lớn hiệu lực
+        /// TheoorganizeId Lấy thông tin danh mục lớn hiệu lực
         /// </summary>
         /// <param name="organizeId"></param>
         /// <returns></returns>
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// Thêm mới hoặc sửaForm
+        /// Thêm mới hoặc sửa Form
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

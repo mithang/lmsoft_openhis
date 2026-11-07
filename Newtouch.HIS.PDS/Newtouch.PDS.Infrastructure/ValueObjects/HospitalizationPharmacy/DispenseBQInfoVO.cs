@@ -5,7 +5,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     //Thao tác chuẩn bị thuốc bệnh nhân khu bệnh
     public class DispenseBQInfoVO
     {
-        public int zxId { get; set; }//Thực hiện y lệnhId
+        public int zxId { get; set; }//Thực hiện y lệnh Id
         public string zyh { get; set; }//Số nội trú
         public Decimal sl { get; set; }//Số lượng
         public string lyyf { get; set; }//Loại cần nhà thuốc

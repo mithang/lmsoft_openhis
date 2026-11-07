@@ -1,6 +1,6 @@
 
 @{
-    ViewBag.Title = "KhoaVật tưTồn khoTra cứu";
+    ViewBag.Title = "Khoa Vật tư Tồn khoTra cứu";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -61,7 +61,7 @@
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <td class="formTitle">Vật tưTên:</td>
+                    <td class="formTitle">Vật tư Tên:</td>
                     <td class="formValue">
                         <input type="text" id="keyWord" class="form-control" placeholder="Pinyin/Tên" />
                         <input type="hidden" id="productId" value="" />
@@ -86,7 +86,7 @@
                     </td>
                     <th class="formTitle" colspan="2">
                         <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
-                        <input type="button" class="btn btn-primary btn-md" id="btn_sync" value="Đồng bộVật tư" />
+                        <input type="button" class="btn btn-primary btn-md" id="btn_sync" value="Đồng bộ Vật tư" />
                     </th>
                     <td class="formValue"></td>
                 </tr>
@@ -165,7 +165,7 @@
         })
     }
 
-    //Ẩntìm kiếmkhungvàHiển thịmũi tên
+    //Ẩntìm kiếmkhungvà Hiển thịmũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -206,7 +206,7 @@
                         return val.toFixed(4);
                     }
                 },
-                { label: 'Đơn giáĐơn vị', name: 'bmdwmc', width: 60, align: 'center', hidden: true },
+                { label: 'Đơn giá Đơn vị', name: 'bmdwmc', width: 60, align: 'center', hidden: true },
                 {
                     label: 'Tổng tiền bán lẻ', name: 'lsze', width: 80, align: 'center', 
                     formatter: function (val) {
@@ -252,7 +252,7 @@
                 dataType: "json",
                 success: function (data) {
                     if (data.state === 'success') {
-                        $.modalMsg("Vật tư tiêu haoĐồng bộthành công!", "success", 1000);
+                        $.modalMsg("Vật tư tiêu hao Đồng bộthành công!", "success", 1000);
                     }
                     else {
                         $.modalMsg(data, "error", 1000);
@@ -275,7 +275,7 @@
                
                
                 { label: 'Đơn giá nhập', name: 'jjStr', width: 120, align: 'right'},
-                { label: 'Đơn giáĐơn vị', name: 'bmdwmc', width: 70, align: 'center',hidden:true },
+                { label: 'Đơn giá Đơn vị', name: 'bmdwmc', width: 70, align: 'center',hidden:true },
                 {
                     label: 'Tổng giá nhập', name: 'jjze', width: 100, align: 'center',
                     formatter: function (cellvalue) {
@@ -305,7 +305,7 @@
         });
     }
 
-    //Cài đặtTồn khoHiệu lựcvàKhông
+    //Cài đặt Tồn kho Hiệu lựcvà Không
     function operateZt(obj) {
         var zt = "1";
         var mxId = $gridMxList.getRowData($(obj).attr("rowId")).Id;
@@ -324,7 +324,7 @@
             dataType: "json",
             success: function (data) {
                 if (data.state === 'success') {
-                    //$.modalMsg("SửaTồn khoTrạng tháithành công", "success", 1000);
+                    //$.modalMsg("Sửa Tồn kho Trạng tháithành công", "success", 1000);
                 }
                 else {
                     $.modalMsg(data, "error", 1000);
@@ -335,9 +335,9 @@
 
     //Lấyurltrongcủatham số
     function getQueryString(name) {
-        // khớpphốiMục tiêutham số
+        // khớpphối Mục tiêutham số
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-        var result = window.location.search.substr(1).match(reg); // đốiquerystringkhớpphốiMục tiêutham số
+        var result = window.location.search.substr(1).match(reg); // đốiquerystringkhớpphối Mục tiêutham số
         if (result != null) {
             return decodeURIComponent(result[2]);
         } else {

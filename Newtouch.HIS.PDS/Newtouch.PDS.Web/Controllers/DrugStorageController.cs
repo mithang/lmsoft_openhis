@@ -944,7 +944,7 @@ namespace Newtouch.HIS.Web.Controllers
             });
 
             var path = DateTime.Now.ToString("\\\\yyyyMMdd\\\\HHmmssfff")+"Thống kê nhập-xuất-tồn" + ".xls";
-            var filePath = CommmHelper.GetLocalFilePath("\\ExcelXuất\\Xuất truy vấn kho thuốc" + path, "D:\\");
+            var filePath = CommmHelper.GetLocalFilePath("\\Excel Xuất\\Xuất truy vấn kho thuốc" + path, "D:\\");
 
             if (isContainFilter == true)
             {

@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// TheoCodeLấy tên
+        /// Theo Code Lấy tên
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
@@ -103,7 +103,7 @@ namespace Newtouch.HIS.Repository
                     }
                 }
 
-                SysDepartmentEntity oldEntity = null;   //Trước khi thay đổiEntity
+                SysDepartmentEntity oldEntity = null;   //Trước khi thay đổi Entity
                 oldEntity = this.FindEntity(keyValue);
                 this.DetacheEntity(oldEntity);
 

@@ -1,7 +1,7 @@
 @using Newtouch.Infrastructure
 
 @{
-    ViewBag.Title = "Hết hạnVật tư khoTra cứu";
+    ViewBag.Title = "Hết hạn Vật tư khoTra cứu";
     Layout = "~/Views/Shared/_Index.cshtml";
     var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
     var reportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
@@ -61,7 +61,7 @@
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <td class="formTitle">Vật tưTên:</td>
+                    <td class="formTitle">Vật tư Tên:</td>
                     <td class="formValue" s>
                         <input type="text" id="keyWord" class="form-control" placeholder="Pinyin/Tên" />
                         <input type="hidden" id="productId" value="" />
@@ -72,7 +72,7 @@
                             <option value="">Tất cả</option>
                         </select>
                     </td>
-                    <td class="formTitle">Sử dụngTrạng thái:</td>
+                    <td class="formTitle">Sử dụng Trạng thái:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="kzbz" name="kzbz">
                             <option value="">Tất cả</option>
@@ -85,7 +85,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">Vật tưTrạng thái:</td>
+                    <td class="formTitle">Vật tư Trạng thái:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="wzzt" name="wzzt">
                             <option value="">Tất cả</option>
@@ -166,7 +166,7 @@
                 { label: 'Số lô', name: 'ph', width: 100, align: 'left' },
                 { label: 'Lô', name: 'pc', width: 100, align: 'left' },
                 { label: 'Số lượng', name: 'slStr', width: 70, align: 'right' },
-                { label: 'Đơn giáĐơn vị', name: 'lsjStr', width: 60, align: 'center' },
+                { label: 'Đơn giá Đơn vị', name: 'lsjStr', width: 60, align: 'center' },
                 {
                     label: 'Tổng giá nhập', name: 'jjze', width: 70, align: 'right',
                     formatter: function (val) {
@@ -192,9 +192,9 @@
 
     //Lấyurltrongcủatham số
     function getQueryString(name) {
-        // khớpphốiMục tiêutham số
+        // khớpphối Mục tiêutham số
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-        var result = window.location.search.substr(1).match(reg); // đốiquerystringkhớpphốiMục tiêutham số
+        var result = window.location.search.substr(1).match(reg); // đốiquerystringkhớpphối Mục tiêutham số
         if (result != null) {
             return decodeURIComponent(result[2]);
         } else {

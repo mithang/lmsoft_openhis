@@ -7,9 +7,9 @@ namespace NewtouchHIS.WebAPI.Manage.Models
         [Required(ErrorMessage = "Id ứng dụng (AppId) là bắt buộc")]
         public string AppId { get; set; }
         /// <summary>
-        /// Tổ chứcId(Đã xác định tới bệnh viện cụ thể)
+        /// Tổ chức Id(Đã xác định tới bệnh viện cụ thể)
         /// </summary>
-        [Required(ErrorMessage = "Tổ chứcId(OrganizeId) là bắt buộc")]
+        [Required(ErrorMessage = "Tổ chức Id(OrganizeId) là bắt buộc")]
         public string OrganizeId { get; set; }
         /// <summary>
         /// Số hiệu yêu cầu

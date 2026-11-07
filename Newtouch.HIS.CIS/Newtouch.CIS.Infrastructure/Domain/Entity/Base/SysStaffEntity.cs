@@ -18,12 +18,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chứcId(Khoasởtương ứngcủaOrganizeId)
+        /// Tổ chức Id(Khoasởtương ứngcủa OrganizeId)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Tổ chứcId(đỉnhcấp,Hệ thốngcấu hình)
+        /// Tổ chức Id(đỉnhcấp,Hệ thốngcấu hình)
         /// </summary>
         public string TopOrganizeId { get; set; }
 
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string py { get; set; }
 
         /// <summary>
-        /// Khoa phòngCode
+        /// Khoa phòng Code
         /// </summary>
         public string DepartmentCode { get; set; }
 
@@ -86,7 +86,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string WeChat { get; set; }
 
         /// <summary>
-        /// chínhquảnKhóa chính
+        /// chínhquản Khóa chính
         /// </summary>
         public string ManagerCode { get; set; }
 
@@ -106,7 +106,7 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// tạoNgười dùng
+        /// tạo Người dùng
         /// </summary>
         public string CreatorCode { get; set; }
 
@@ -116,7 +116,7 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Sửa cuốiNgười dùng
+        /// Sửa cuối Người dùng
         /// </summary>
         public string LastModifierCode { get; set; }
 
@@ -132,7 +132,7 @@ namespace Newtouch.HIS.Domain.Entity
 
 
         /// <summary>
-        /// góiQuyền(TheoLiệt kê)
+        /// gói Quyền(Theo Liệt kê)
         /// </summary>
         public string mbqx { get; set; }
         /// <summary>

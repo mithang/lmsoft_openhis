@@ -13,7 +13,7 @@ namespace NewtouchHIS.Base.Domain.Entity
     {
 
         /// <summary>
-        /// Desc:Người dùngKhóa chính
+        /// Desc:Người dùng Khóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           

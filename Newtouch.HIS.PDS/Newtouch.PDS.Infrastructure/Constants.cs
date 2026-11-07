@@ -16,12 +16,12 @@ namespace Newtouch.Infrastructure
     {
 
         /// <summary>
-        /// Tổ chức cấp cao nhấtId
+        /// Tổ chức cấp cao nhất Id
         /// </summary>
         private static string _topOrganizeId;
 
         /// <summary>
-        /// Tổ chứcId(Cấp cao nhất,Cấu hình hệ thống)
+        /// Tổ chức Id(Cấp cao nhất,Cấu hình hệ thống)
         /// </summary>
         public static string TopOrganizeId
         {
@@ -34,19 +34,19 @@ namespace Newtouch.Infrastructure
                 _topOrganizeId = ConfigurationHelper.GetAppConfigValue("Top_OrganizeId");
                 if (string.IsNullOrWhiteSpace(_topOrganizeId))
                 {
-                    throw new Exception("Top_OrganizeIdChưa cấu hình");
+                    throw new Exception("Top_OrganizeId Chưa cấu hình");
                 }
                 return _topOrganizeId;
             }
         }
 
         /// <summary>
-        /// Ứng dụngId
+        /// Ứng dụng Id
         /// </summary>
         private static string _AppId;
 
         /// <summary>
-        /// Tổ chứcId(Cấp cao nhất,Cấu hình hệ thống)
+        /// Tổ chức Id(Cấp cao nhất,Cấu hình hệ thống)
         /// </summary>
         public static string AppId
         {
@@ -57,7 +57,7 @@ namespace Newtouch.Infrastructure
                     _AppId = ConfigurationHelper.GetAppConfigValue("AppId") as string;
                     if (string.IsNullOrWhiteSpace(_AppId))
                     {
-                        //throw new Exception("AppIdChưa cấu hình");
+                        //throw new Exception("AppId Chưa cấu hình");
                     }
                 }
                 return _AppId;

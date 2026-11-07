@@ -6,19 +6,19 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.IRepository
 {
     /// <summary>
-    /// Chungđối tượngThao tácghi chép
+    /// Chungđối tượng Thao tácghi chép
     /// </summary>
     public interface ISysObjectActionRecordRepo : IRepositoryBase<SysObjectActionRecordEntity>
     {
         /// <summary>
-        /// Thêm mớiThao tácghi chép
+        /// Thêm mới Thao tácghi chép
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
         void Add(SysObjectActionRecordEntity entity);
 
         /// <summary>
-        /// TheophímLấyList
+        /// Theophím Lấy List
         /// </summary>
         /// <param name="objectKey"></param>
         /// <param name="orgId"></param>

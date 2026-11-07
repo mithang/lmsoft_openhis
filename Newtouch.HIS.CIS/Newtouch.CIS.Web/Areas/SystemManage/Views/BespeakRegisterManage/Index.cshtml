@@ -1,5 +1,5 @@
 @{
-    ViewBag.Title = "Đăng ký hẹn khámBảo trì";
+    ViewBag.Title = "Đăng ký hẹn khám Bảo trì";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -14,7 +14,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="KhoaTên/Chuyên giaTên" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Khoa Tên/Chuyên gia Tên" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -49,7 +49,7 @@
             colModel: [
                 { label: "Khóa chính", name: "Id", hidden: true, key: true },
                 { label: 'Khoa', name: 'ksmc', width: 120, align: 'left' },
-                { label: 'Ngoại trúLoại', name: 'mzlx', width: 100, align: 'left' },
+                { label: 'Ngoại trú Loại', name: 'mzlx', width: 100, align: 'left' },
                 { label: 'Ngày', name: 'regDate', width: 70, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
                 { label: 'Khung giờ', name: 'regTime', width: 80, align: 'left' },
                 { label: 'Chuyên gia', name: 'zjmc', width: 120, align: 'left' },
@@ -57,8 +57,8 @@
                 { label: "Hiệu lực", name: "zt", width: 50, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
                 { label: 'Người tạo', name: 'CreatorCode', width: 80, align: 'left' },
                 { label: 'Thời gian tạo', name: 'CreateTime', width: 90, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: 'Cuối cùngSửa', name: 'LastModifierCode', width: 80, align: 'left' },
-                { label: 'Cuối cùngSửaThời gian', name: 'LastModifyTime', width: 90, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } }
+                { label: 'Cuối cùng Sửa', name: 'LastModifierCode', width: 80, align: 'left' },
+                { label: 'Cuối cùng Sửa Thời gian', name: 'LastModifyTime', width: 90, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } }
             ],
             pager: "#gridPager",
             sortname: 'CreateTime desc',

@@ -236,7 +236,7 @@ WHERE 1=1";
 		{
 			foreach (var item in cfh)
 			{
-				string sql = "exec [开立物资冻结库存量] @cfh,@orgId,@rygh";//"exec NewtouchHIS_herp..herp_mởlậpvật tưđôngkếtTồn kholượng @cfh,@orgId,@rygh";
+				string sql = "exec [开立物资冻结库存量] @cfh,@orgId,@rygh";//"exec NewtouchHIS_herp..herp_mởlậpvật tưđôngkết Tồn kholượng @cfh,@orgId,@rygh";
                 var pars = new List<SqlParameter>();
 				pars.Add(new SqlParameter("@cfh", item));
 				pars.Add(new SqlParameter("@orgId", orgId));
@@ -258,7 +258,7 @@ WHERE 1=1";
 			{
 				return 1;
 			}
-			string sql = "exec 开立物资冻结库存量_作废 @cfh,@orgId,@rygh";//"exec NewtouchHIS_herp..herp_mởlậpvật tưđôngkếtTồn kholượng_Hủy bỏ @cfh,@orgId,@rygh";
+			string sql = "exec 开立物资冻结库存量_作废 @cfh,@orgId,@rygh";//"exec NewtouchHIS_herp..herp_mởlậpvật tưđôngkết Tồn kholượng_Hủy bỏ @cfh,@orgId,@rygh";
             var pars = new List<SqlParameter>();
 			pars.Add(new SqlParameter("@cfh", cfh));
 			pars.Add(new SqlParameter("@orgId", orgId));

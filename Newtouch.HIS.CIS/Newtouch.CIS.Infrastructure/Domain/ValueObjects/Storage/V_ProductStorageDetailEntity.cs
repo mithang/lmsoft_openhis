@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.ValueObjects.Storage
 {
     /// <summary>
-    /// vật tưTồn khophútLôSố lôhộitổng
+    /// vật tư Tồn khophút Lô Số lôhộitổng
     /// </summary>
     public class VProductStorageDetailEntity
     {
@@ -14,7 +14,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string productId { get; set; }
 
         /// <summary>
-        /// vật tưTên
+        /// vật tư Tên
         /// </summary>
         public string wzmc { get; set; }
 
@@ -39,12 +39,12 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string zt { get; set; }
 
         /// <summary>
-        /// Khoa phòngTên đơn vị
+        /// Khoa phòng Tên đơn vị
         /// </summary>
         public string bmdwmc { get; set; }
 
         /// <summary>
-        /// Đơn vị nhỏ nhấtTên
+        /// Đơn vị nhỏ nhất Tên
         /// </summary>
         public string zxdwmc { get; set; }
 
@@ -54,27 +54,27 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public int zhyz { get; set; }
 
         /// <summary>
-        /// Khoa phòngđôngkếtSố lượng  mangĐơn vị
+        /// Khoa phòngđôngkết Số lượng  mang Đơn vị
         /// </summary>
         public string bmdjslStr { get; set; }
 
         /// <summary>
-        /// Tồn khoSố lượng
+        /// Tồn kho Số lượng
         /// </summary>
         public int? kcsl { get; set; }
 
         /// <summary>
-        /// đôngkếtSố lượng
+        /// đôngkết Số lượng
         /// </summary>
         public int? djsl { get; set; }
 
         /// <summary>
-        /// Khoa phòngTồn khoSố lượng mangĐơn vị
+        /// Khoa phòng Tồn kho Số lượng mang Đơn vị
         /// </summary>
         public string bmkcslStr { get; set; }
 
         /// <summary>
-        /// vàogiáTổng số tiền
+        /// vàogiá Tổng số tiền
         /// </summary>
         public decimal jjze { get; set; }
 
@@ -84,7 +84,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public decimal jj { get; set; }
 
         /// <summary>
-        /// vàogiámangĐơn vị
+        /// vàogiámang Đơn vị
         /// </summary>
         public string jjStr { get; set; }
         /// <summary>
@@ -96,7 +96,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         /// </summary>
         public decimal lsze { get; set; }
         /// <summary>
-        /// Giá bán lẻmangĐơn vị
+        /// Giá bán lẻmang Đơn vị
         /// </summary>
         public string lsjStr { get; set; }
         /// <summary>
@@ -115,12 +115,12 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string brand { get; set; }
 
         /// <summary>
-        /// sinhsản xuấtTên nhà sản xuất
+        /// sinhsản xuất Tên nhà sản xuất
         /// </summary>
         public string sccj { get; set; }
 
         /// <summary>
-        /// Đơn giáĐơn vị
+        /// Đơn giá Đơn vị
         /// </summary>
         public string bmjjdjdw { get; set; }
     }

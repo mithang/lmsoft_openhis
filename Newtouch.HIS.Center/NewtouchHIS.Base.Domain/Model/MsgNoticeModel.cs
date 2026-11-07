@@ -12,7 +12,7 @@ namespace NewtouchHIS.Base.Domain.Model
 
     }
     /// <summary>
-    /// Kiểm soát chất lượng bệnh ánTin nhắnMẫu
+    /// Kiểm soát chất lượng bệnh án Tin nhắn Mẫu
     /// </summary>
     public class MrqcMsgNoticeModel: MsgNoticeModel
     {
@@ -41,7 +41,7 @@ namespace NewtouchHIS.Base.Domain.Model
         /// </summary>
         public string? zklx { get; set; }
         /// <summary>
-        /// Bệnh nhânTài liệu bệnh án
+        /// Bệnh nhân Tài liệu bệnh án
         /// </summary>
         public string? hzwd { get; set; }
         /// <summary>

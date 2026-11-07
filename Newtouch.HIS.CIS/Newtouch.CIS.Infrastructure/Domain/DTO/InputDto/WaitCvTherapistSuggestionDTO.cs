@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.DTO
 {
     /// <summary>
-    /// chờchuyểnđổiĐiều trịxâynghị
+    /// chờchuyểnđổi Điều trịxâynghị
     /// </summary>
     public class WaitCvTherapistSuggestionDTO
     {
@@ -31,7 +31,7 @@ namespace Newtouch.Domain.DTO
         public string zxksmc { get; set; }
 
         /// <summary>
-        /// mởlậpNgày
+        /// mởlập Ngày
         /// </summary>
         public DateTime CreateTime { get; set; }
         /// <summary>

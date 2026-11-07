@@ -34,7 +34,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// TheoSố bệnh ánTra cứuNgoại trúđặt hẹnđăng ký khámthông tin
+        /// Theo Số bệnh án Tra cứu Ngoại trúđặt hẹnđăng ký khámthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
@@ -62,7 +62,7 @@ AND br.regDate>=@regDate ";
         }
 
         /// <summary>
-        /// Ngoại trúđặt hẹnTra cứu
+        /// Ngoại trúđặt hẹn Tra cứu
         /// </summary>
         /// <param name="blh">Số bệnh án</param>
         /// <param name="kh">Số thẻ</param>
@@ -91,7 +91,7 @@ AND yygh.zt='1' ";
         }
 
         /// <summary>
-        /// Lấyhiện tạiKhoahoặcchuyên giađãđặt hẹnđăng ký khámtổngsố
+        /// Lấyhiện tại Khoahoặcchuyên giađãđặt hẹnđăng ký khámtổngsố
         /// </summary>
         /// <param name="ksCode"></param>
         /// <param name="ysgh"></param>
@@ -130,7 +130,7 @@ AND yygh.zt='1' ";
         /// <summary>
         /// Tra cứuđãđặt hẹnđăng ký khám
         /// </summary>
-        /// <param name="mzlx">Dấu hiệu ngoại trú/nội trú 1:thông thườngNgoại trú  2:gấpkhám   3:chuyên giaNgoại trú</param>
+        /// <param name="mzlx">Dấu hiệu ngoại trú/nội trú 1:thông thường Ngoại trú  2:gấpkhám   3:chuyên gia Ngoại trú</param>
         /// <param name="departmentCode"></param>
         /// <param name="ysgh"></param>
         /// <param name="beginTime"></param>

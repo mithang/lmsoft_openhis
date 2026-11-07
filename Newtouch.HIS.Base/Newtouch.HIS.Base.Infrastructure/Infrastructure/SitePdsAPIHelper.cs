@@ -32,7 +32,7 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// GetToken
         /// </summary>
-        /// <param name="force">Có làm mới mạnh khôngToken</param>
+        /// <param name="force">Có làm mới mạnh không Token</param>
         /// <returns></returns>
         public static string GetToken(bool force = false)
         {
@@ -62,7 +62,7 @@ namespace Newtouch.Infrastructure
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <param name="req"></param>
-        /// <param name="tokenExpireReTryTimes">DoTokenSố lần thử lại khi hết hạn</param>
+        /// <param name="tokenExpireReTryTimes">DoToken Số lần thử lại khi hết hạn</param>
         /// <returns></returns>
         private static readonly HttpClient _http = new HttpClient();
         private static readonly ConcurrentDictionary<string, TokenCacheEntry> _tokenCache =

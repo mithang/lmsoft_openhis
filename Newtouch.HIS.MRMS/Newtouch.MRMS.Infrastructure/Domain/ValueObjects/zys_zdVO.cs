@@ -38,7 +38,7 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
 		/// </summary>
 		public string zdms { get; set; }
 		/// <summary>
-		/// Điều trịKết quả
+		/// Điều trị Kết quả
 		/// </summary>
 		public string zljg { get; set; }
 		/// <summary>

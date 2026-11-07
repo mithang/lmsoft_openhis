@@ -16,7 +16,7 @@ namespace NewtouchCIS.Infrastructure
         {
             DataSet dsPrint = new DataSet();
             string filename = rptlj;
-            //định dạnghóaDữ liệutham số
+            //định dạnghóa Dữ liệutham số
             XmlDocument paraXml = Newtonsoft.Json.JsonConvert.DeserializeXmlNode(json, "parameter");
             //AppLogger.Info("GetReportDS4");
 
@@ -34,18 +34,18 @@ namespace NewtouchCIS.Infrastructure
             //if (rptTableDataSourceList.Count > 0)
             //{
             int idx = 0;
-            foreach (XmlNode item in rptTableDataSourceList) //Báo cáoNguồn dữ liệuLặp lạitải
+            foreach (XmlNode item in rptTableDataSourceList) //Báo cáo Nguồn dữ liệu Lặp lạitải
             {
-                //Nguồn dữ liệuTên
+                //Nguồn dữ liệu Tên
                 string dsname = item.Attributes["Name"].InnerText;
-                //nhauứngNguồn dữ liệuTham số đầu vàoDữ liệu
+                //nhauứng Nguồn dữ liệu Tham số đầu vào Dữ liệu
                 XmlNodeList paraList = paraXml.SelectNodes(@"/parameter/" + dsname);
-                //LấyNguồn dữ liệutham sốchữđoạn
+                //Lấy Nguồn dữ liệutham sốchữđoạn
                 DataTable dtRptPara = ConvertXMLToDataSet(dsname, "<row>" + item.InnerXml + "</row>").Tables[0];
                 if (dtRptPara != null && dtRptPara.Rows.Count > 0)
                 {
                     DataTable dt = new DataTable(dsname);
-                    foreach (DataRow rptPara in dtRptPara.Rows)  //Nguồn dữ liệutham sốLặp lại
+                    foreach (DataRow rptPara in dtRptPara.Rows)  //Nguồn dữ liệutham số Lặp lại
                     {
                         string colname = rptPara["Name"].ToString();
                         string typestring = rptPara["DataType"].ToString();
@@ -64,11 +64,11 @@ namespace NewtouchCIS.Infrastructure
                     }
 
                     int j = 0;
-                    foreach (XmlNode para in paraList)  //Nguồn dữ liệutham sốtương ứngGiá trị
+                    foreach (XmlNode para in paraList)  //Nguồn dữ liệutham sốtương ứng Giá trị
                     {
                         DataRow dr = dt.NewRow();
                         int k = 0;
-                        foreach (DataColumn rptPara in dr.Table.Columns)  //Nguồn dữ liệutham sốLặp lại
+                        foreach (DataColumn rptPara in dr.Table.Columns)  //Nguồn dữ liệutham số Lặp lại
                         {
                             string col = rptPara.ColumnName;
                             string val = para.SelectSingleNode(col) == null ? "" : para.SelectSingleNode(col).InnerText;
@@ -87,7 +87,7 @@ namespace NewtouchCIS.Infrastructure
         }
 
         /// <summary>
-        /// LấyvănmụctrongcủaDữ liệu
+        /// Lấyvănmụctrongcủa Dữ liệu
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
@@ -100,7 +100,7 @@ namespace NewtouchCIS.Infrastructure
                 // Tạo một thể hiện (instance) của StreamReader để đọc file, câu lệnh using cũng có thể đóng StreamReader
                 using (System.IO.StreamReader sr = new System.IO.StreamReader(filePath))
                 {
-                    // từvănmụcđọclấyvàHiển thịdòng,thẳngđếnvănmụccủacuối 
+                    // từvănmụcđọclấyvà Hiển thịdòng,thẳngđếnvănmụccủacuối 
                     while ((line = sr.ReadLine()) != null)
                     {
                         //Console.WriteLine(line);
@@ -110,14 +110,14 @@ namespace NewtouchCIS.Infrastructure
             }
             catch (Exception e)
             {
-                // tớiNgười dùngHiển thịrasaihủytin
+                // tới Người dùng Hiển thịrasaihủytin
                 Console.WriteLine("The file could not be read:");
                 Console.WriteLine(e.Message);
             }
             return strData;
         }
 
-        // Xmlkếtcấu trúccủavănmụcđọcđếnDataTabletrong
+        // Xmlkếtcấu trúccủavănmụcđọcđến DataTabletrong
         public static DataSet ConvertXMLToDataSet(string tbname, string xmlData)
         {
             XmlDocument xmldoc = new XmlDocument();

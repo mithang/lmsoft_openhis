@@ -8,7 +8,7 @@ namespace Newtouch.Repository
 {
 
     /// <summary>
-    /// Hệ thốngCách dùngliênđộng
+    /// Hệ thống Cách dùngliênđộng
     /// </summary>
     public class SysUsageLinkageRepo : RepositoryBase<SysUsageLinkageEntity>, ISysUsageLinkageRepo
     {

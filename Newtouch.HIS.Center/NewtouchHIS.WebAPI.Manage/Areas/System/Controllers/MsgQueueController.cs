@@ -21,7 +21,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
             _msgQueueDmn = msgQueueDmn;
         }
         /// <summary>
-        /// Thêm mớiNhóm tin nhắn
+        /// Thêm mới Nhóm tin nhắn
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -31,7 +31,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
         {
             if (request == null || request.Data == null || string.IsNullOrWhiteSpace(request.OrganizeId))
             {
-                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId là bắt buộc" };
+                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id là bắt buộc" };
             }
             request.Data.AppId = request.AppId;
             request.Data.OrganizeId = request.OrganizeId;
@@ -44,7 +44,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
 
         }
         /// <summary>
-        /// Truy vấnNhóm tin nhắnCấu hình
+        /// Truy vấn Nhóm tin nhắn Cấu hình
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -54,7 +54,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
         {
             if (request == null || request.Data == null || string.IsNullOrWhiteSpace(request.OrganizeId))
             {
-                return new BusResult<List<MsgNoticeGroupVO>> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId là bắt buộc" };
+                return new BusResult<List<MsgNoticeGroupVO>> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id là bắt buộc" };
             }
             request.Data.OrganizeId = request.OrganizeId;
             var data = await _msgQueueDmn.NoticeGroupQuery(request.Data);
@@ -77,7 +77,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
         {
             if (request == null || request.Data == null || string.IsNullOrWhiteSpace(request.OrganizeId))
             {
-                return new BusResult<List<string>> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId là bắt buộc" };
+                return new BusResult<List<string>> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id là bắt buộc" };
             }
             request.Data.AppId = request.AppId;
             request.Data.OrganizeId = request.OrganizeId;
@@ -90,7 +90,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
 
         }
         /// <summary>
-        /// Truy vấnTin nhắnChi tiết
+        /// Truy vấn Tin nhắn Chi tiết
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -100,7 +100,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
         {
             if (request == null || request.Data == null || string.IsNullOrWhiteSpace(request.OrganizeId))
             {
-                return new BusResult<List<MsgNoticeQueueVO>> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId là bắt buộc" };
+                return new BusResult<List<MsgNoticeQueueVO>> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id là bắt buộc" };
             }
             request.Data.OrganizeId = request.OrganizeId;
             var data = await _msgQueueDmn.NoticeInfoQuery(request.Data);
@@ -112,7 +112,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
 
         }
         /// <summary>
-        /// Kiểm soát chất lượngTin nhắnTruy vấn
+        /// Kiểm soát chất lượng Tin nhắn Truy vấn
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -122,7 +122,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
         {
             if (request == null || request.Data == null || string.IsNullOrWhiteSpace(request.OrganizeId))
             {
-                return new BusResult<List<MsgNoticeQueueQueryRspoVO>> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId là bắt buộc" };
+                return new BusResult<List<MsgNoticeQueueQueryRspoVO>> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id là bắt buộc" };
             }
             request.Data.OrganizeId = request.OrganizeId;
             var data = await _msgQueueDmn.NoticeQuery(request.Data, request.AppId, DBEnum.BaseDb);

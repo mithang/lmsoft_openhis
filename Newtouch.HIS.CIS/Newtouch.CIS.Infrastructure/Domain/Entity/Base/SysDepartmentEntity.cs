@@ -93,11 +93,11 @@ namespace Newtouch.HIS.Domain.Entity
         public string zlks { get; set; }
 
         /// <summary>
-        /// làKhôngTải lên BHYT Tải lên1 Chưa tải lên0
+        /// là Không Tải lên BHYT Tải lên1 Chưa tải lên0
         /// </summary>
         public int? UploadYB { get; set; }
         /// <summary>
-        /// làKhôngTải lên BHYT sau Thu hồi Thu hồi1 Thu hồi0
+        /// là Không Tải lên BHYT sau Thu hồi Thu hồi1 Thu hồi0
         /// </summary>
         public int? RevokeYB { get; set; }
 

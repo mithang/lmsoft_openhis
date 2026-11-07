@@ -34,7 +34,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         /// <summary>
         /// GhiSession
         /// </summary>
-        /// <typeparam name="T">SessionLoại của giá trị khóa</typeparam>
+        /// <typeparam name="T">Session Loại của giá trị khóa</typeparam>
         /// <param name="key">Tên khóa của Session</param>
         /// <param name="value">Sessioncủa giá trị khóa</param>
         public static void WriteSession<T>(string key, T value)
@@ -75,7 +75,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         }
 
         /// <summary>
-        /// Xóa chỉ địnhSession
+        /// Xóa chỉ định Session
         /// </summary>
         /// <param name="key">Tên khóa của Session</param>
         public static void RemoveSession(string key)
@@ -141,7 +141,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         /// <summary>
         /// Xóa đối tượng Cookie
         /// </summary>
-        /// <param name="CookiesName">CookieTên đối tượng</param>
+        /// <param name="CookiesName">Cookie Tên đối tượng</param>
         public static void RemoveCookie(string CookiesName)
         {
             HttpCurrent.Response.Cookies.Delete(CookiesName);
@@ -150,7 +150,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         #endregion
 
         /// <summary>
-        /// Lấy yêu cầu đầy đủUrl
+        /// Lấy yêu cầu đầy đủ Url
         /// </summary>
         /// <returns></returns>
         public static string GetCompleteUrl()

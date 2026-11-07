@@ -52,7 +52,7 @@
             url: "/StorageManage/ProfitAndLoss/GetSyyyGridJson",
             height: $(window).height() - 120,
             colModel: [
-                { label: "ChínhPhím", name: "Id", hidden: true, key: true },
+                { label: "Chính Phím", name: "Id", hidden: true, key: true },
                 {
                     label: "Dấu hiệu lãi lỗ", name: "sybz", width: 100, align: "center",
                     formatter: function (cellvalue) { return cellvalue === "1" ? "Báo thừa" : "Báo hỏng"; }
@@ -64,8 +64,8 @@
                 },
                 { label: 'Người tạo', name: 'CreatorCode', width: 70, align: 'left' },
                 { label: 'Thời gian tạo', name: 'CreateTime', width: 110, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
-                { label: 'Cuối cùngSửa', name: 'LastModifierCode', width: 70, align: 'left' },
-                { label: 'Cuối cùngSửaThời gian', name: 'LastModifyTime', width: 110, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' }  }
+                { label: 'Cuối cùng Sửa', name: 'LastModifierCode', width: 70, align: 'left' },
+                { label: 'Cuối cùng Sửa Thời gian', name: 'LastModifyTime', width: 110, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' }  }
             ],
             pager: "#gridPager",
             sortname: 'syyy',
@@ -79,7 +79,7 @@
         });
     }
 
-    //Kích hoạt bằng EnterTra cứuSự kiện
+    //Kích hoạt bằng EnterTra cứu Sự kiện
     $("#txt_keyword").keydownEnterEvent(function() {
         $("#btn_search").trigger("click");
     });
@@ -88,7 +88,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "Thêm mớiLãi lỗ",
+            title: "Thêm mới Lãi lỗ",
             url: "/StorageManage/ProfitAndLoss/SyyyForm",
             width: "400px",
             height: "300px",
@@ -117,7 +117,7 @@
         }*@
         $.modalOpen({
             id: "Form",
-            title: "SửaLãi lỗ",
+            title: "Sửa Lãi lỗ",
             url: "/StorageManage/ProfitAndLoss/SyyyForm?keyValue=" + keyValue,
             width: "400px",
             height: "300px",

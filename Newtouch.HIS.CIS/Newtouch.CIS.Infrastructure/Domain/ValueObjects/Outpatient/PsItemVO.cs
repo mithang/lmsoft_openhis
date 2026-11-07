@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Outpatient
 {
     /// <summary>
-    /// dathửMụcthông tin
+    /// dathử Mụcthông tin
     /// </summary>
     public class PsItemVO
     {
@@ -22,7 +22,7 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         public string cfmxId { get; set; }
 
         /// <summary>
-        /// MụcCode
+        /// Mục Code
         /// </summary>
         public string xmCode { get; set; }
 
@@ -92,7 +92,7 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         public string yznr { get; set; }
 
         /// <summary>
-        /// Y lệnhId
+        /// Y lệnh Id
         /// </summary>
         public string yzId { get; set; }
     }

@@ -11,19 +11,19 @@ namespace NewtouchHIS.Base.Domain.IDomainService
     {
         #region Quản lý nhóm thông báo
         /// <summary>
-        /// ThêmNhóm tin nhắn
+        /// Thêm Nhóm tin nhắn
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         Task<string> AddNoticeGroup(MsgNoticeGroupBasicVO request);
         /// <summary>
-        /// Cập nhậtNhóm tin nhắnCấu hình
+        /// Cập nhật Nhóm tin nhắn Cấu hình
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         Task<bool> ModifyNoticeGroup(MsgNoticeGroupBasicVO request);
         /// <summary>
-        /// Nhóm tin nhắnTruy vấn cấu hình
+        /// Nhóm tin nhắn Truy vấn cấu hình
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -32,13 +32,13 @@ namespace NewtouchHIS.Base.Domain.IDomainService
 
         #region Hàng đợi thông báo
         /// <summary>
-        /// ThêmTin nhắn
+        /// Thêm Tin nhắn
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         Task<List<string>> AddNotice(MsgNoticeQueueBasicVO request);
         /// <summary>
-        /// Cập nhậtTin nhắnTrạng thái
+        /// Cập nhật Tin nhắn Trạng thái
         /// </summary>
         /// <param name="queueId"></param>
         /// <param name="user"></param>
@@ -46,7 +46,7 @@ namespace NewtouchHIS.Base.Domain.IDomainService
         /// <returns></returns>
         Task<bool> NoticeStuModify(string queueId, string user, NoticeStuEnum noticeStu, bool procSuccess = true);
         /// <summary>
-        /// Cập nhật hàng loạtTin nhắnTrạng thái
+        /// Cập nhật hàng loạt Tin nhắn Trạng thái
         /// </summary>
         /// <param name="queueIds"></param>
         /// <param name="user"></param>
@@ -55,7 +55,7 @@ namespace NewtouchHIS.Base.Domain.IDomainService
         /// <returns></returns>
         Task<bool> NoticeStuModify(string[] queueIds, string user, NoticeStuEnum noticeStu, bool procSuccess = true);
         /// <summary>
-        /// Cập nhậtTin nhắnThông tin cơ bản
+        /// Cập nhật Tin nhắn Thông tin cơ bản
         /// </summary>
         /// <param name="ety"></param>
         /// <returns></returns>
@@ -64,20 +64,20 @@ namespace NewtouchHIS.Base.Domain.IDomainService
 
         #region Query
         /// <summary>
-        /// LấyTin nhắnChi tiết
+        /// Lấy Tin nhắn Chi tiết
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         Task<List<MsgNoticeQueueVO>> NoticeInfoQuery(MsgNoticeQueueBasicVO request);
         /// <summary>
-        /// Kiểm soát chất lượngTin nhắnDanh sách
+        /// Kiểm soát chất lượng Tin nhắn Danh sách
         /// </summary>
         /// <param name="request"></param>
         /// <param name="AppId"></param>
         /// <returns></returns>
         Task<List<MsgNoticeQueueModelVO<MrqcMsgNoticeModel>>> MrqcNoticeQuery(MsgNoticeQueueQueryVO request);
         /// <summary>
-        /// LấyTin nhắnDanh sách thông báo
+        /// Lấy Tin nhắn Danh sách thông báo
         /// </summary>
         /// <param name="request"></param>
         /// <param name="AppId"></param>

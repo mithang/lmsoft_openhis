@@ -15,13 +15,13 @@ namespace Newtouch.Domain.IRepository
         /// Lưubảngphiếu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">thựcthểđối tượng</param>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="keyValue">Khóa chính Giá trị</param>
         void SubmitForm(BlctglEntity entity, string keyValue);
 
         /// <summary>
-        /// XóaDữ liệu
+        /// Xóa Dữ liệu
         /// </summary>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="keyValue">Khóa chính Giá trị</param>
         void DeleteForm(string keyValue);
 
         BlctglEntity GetCitiaoByID(string orgId, string ID);

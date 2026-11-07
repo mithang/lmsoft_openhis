@@ -13,7 +13,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         [SugarColumn(IsPrimaryKey = true)]
         public string yfId { get; set; }
         /// <summary>
-        /// Cách dùngMã
+        /// Cách dùng Mã
         /// </summary>
         public string yfCode { get; set; }
         /// <summary>

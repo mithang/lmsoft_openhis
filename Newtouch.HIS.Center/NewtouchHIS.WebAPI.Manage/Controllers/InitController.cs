@@ -9,7 +9,7 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
     public class InitController
     {
         /// <summary>
-        /// Lắp ráphisNội bộ API Cơ sởRequest
+        /// Lắp ráphis Nội bộ API Cơ sở Request
         /// </summary>
         /// <param name="request"></param>
         /// <param name="methodcode"></param>
@@ -28,7 +28,7 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
             };
         }
         /// <summary>
-        /// Mới/cũResponseBaseChuyển đổi lớp
+        /// Mới/cũ ResponseBase Chuyển đổi lớp
         /// </summary>
         /// <param name="resp"></param>
         /// <returns></returns>

@@ -10,7 +10,7 @@ using System.Security.Claims;
 namespace NewtouchHIS.Lib.Services
 {
     /// <summary>
-    /// jwtDịch vụ
+    /// jwt Dịch vụ
     /// </summary>
     public abstract class JWTBaseService 
     {
@@ -74,7 +74,7 @@ namespace NewtouchHIS.Lib.Services
             return result;
         }
         /// <summary>
-        /// Theo phiêncodeLấy mã ủy quyền
+        /// Theo phiêncode Lấy mã ủy quyền
         /// </summary>
         /// <param name="clientId"></param>
         /// <param name="sessionCode"></param>
@@ -115,22 +115,22 @@ namespace NewtouchHIS.Lib.Services
         }
 
         /// <summary>
-        /// Theo làm mớiTokenLấyToken
+        /// Theo làm mới Token Lấy Token
         /// </summary>
         /// <param name="refreshToken"></param>
         /// <param name="clientId"></param>
         /// <returns></returns>
         public async Task<string> GetTokenByRefresh(string refreshToken, string clientId)
         {
-            //làm mớiTokenCó trong cache hay không
+            //làm mới Token Có trong cache hay không
             UserIdentity UserIdentity =await _cachelper.GetCache<UserIdentity>($"RefreshToken:{refreshToken}");
             if (UserIdentity == null)
             {
                 return String.Empty;
             }
-            //làm mớitokenThời gian hết hạn
+            //làm mớitoken Thời gian hết hạn
             DateTime refreshTokenExpiry =await _cachelper.GetCache<DateTime>($"RefreshTokenExpiry:{refreshToken}");
-            //tokenThời gian mặc định là600s
+            //token Thời gian mặc định là600s
             double tokenExpiry = 600;
             //Nếu refresh tokentokencó thời gian hết hạn chưa tới600s,tokenthời gian hết hạn bằng thời gian làm mớitokenthời gian hết hạn
             if (refreshTokenExpiry > DateTime.Now && refreshTokenExpiry < DateTime.Now.AddSeconds(600))
@@ -138,14 +138,14 @@ namespace NewtouchHIS.Lib.Services
                 tokenExpiry = (refreshTokenExpiry - DateTime.Now).TotalSeconds;
             }
 
-            //Tạo lạiToken
+            //Tạo lại Token
             string token = IssueToken(new JWTTokenRequest(), clientId, tokenExpiry);
             return token;
 
         }
 
         /// <summary>
-        /// Theo mã ủy quyền,LấyToken
+        /// Theo mã ủy quyền,Lấy Token
         /// </summary>
         /// <param name="userInfo"></param>
         /// <param name="appHSSetting"></param>
@@ -169,9 +169,9 @@ namespace NewtouchHIS.Lib.Services
 
             //Lấy cấu hình ứng dụng
             string clientId =await _cachelper.GetCache<string>(clientIdCachekey);
-            //làm mớitokenThời gian hết hạn
+            //làm mớitoken Thời gian hết hạn
             DateTime sessionExpiryTime =await _cachelper.GetCache<DateTime>(AuthCodeSessionTimeKey);
-            DateTime tokenExpiryTime = DateTime.Now.AddMinutes(10);//tokenThời gian hết hạn10phút
+            DateTime tokenExpiryTime = DateTime.Now.AddMinutes(10);//token Thời gian hết hạn10phút
                                                                    //Nếu refresh tokentokencó thời hạn ngắn hơntokenthời gian mặc định,tokenđặt thời gian hết hạn bằng thời gian làm mớitokennhư nhau
             if (sessionExpiryTime > DateTime.Now && sessionExpiryTime < tokenExpiryTime)
             {
@@ -194,7 +194,7 @@ namespace NewtouchHIS.Lib.Services
             string refreshToken = this.IssueToken(new JWTTokenRequest(), clientId, refreshTokenExpiry.TotalSeconds);
             //Lưu refresh token vào cachetoken
             _cachelper.SetCache($"RefreshToken:{refreshToken}", UserIdentity, refreshTokenExpiry);
-            //Lưu refresh token vào cachetokenThời gian hết hạn
+            //Lưu refresh token vào cachetoken Thời gian hết hạn
             _cachelper.SetCache($"RefreshTokenExpiry:{refreshToken}", DateTime.Now.AddSeconds(refreshTokenExpiry.TotalSeconds), refreshTokenExpiry);
             //result.SetSuccess(new JWTToken() { Token = token });
             Console.WriteLine($"client_id:{clientId}Lấytoken,Thời hạn hiệu lực:{sessionExpiryTime.ToString("yyyy-MM-dd HH:mm:ss")},token_present={!string.IsNullOrEmpty(token)}"); // SECURITY (G7): khong ghi JWT day du vao log
@@ -243,7 +243,7 @@ namespace NewtouchHIS.Lib.Services
                 issuer: "SSOCenter", //ai cấp
                 audience: clientId, //cấp cho ai
                 claims: claims,
-                expires: DateTime.Now.AddSeconds(second),//tokenThời hạn hiệu lực
+                expires: DateTime.Now.AddSeconds(second),//token Thời hạn hiệu lực
                 notBefore: null,//Có hiệu lực ngay  DateTime.Now.AddMilliseconds(30),//30ssau mới có hiệu lực
                 signingCredentials: creds);
             string returnToken = new JwtSecurityTokenHandler().WriteToken(token);
@@ -251,7 +251,7 @@ namespace NewtouchHIS.Lib.Services
         }
 
         /// <summary>
-        /// TheoappKeyLấy thông tin ứng dụng
+        /// TheoappKey Lấy thông tin ứng dụng
         /// </summary>
         /// <param name="clientId"></param>
         /// <returns></returns>

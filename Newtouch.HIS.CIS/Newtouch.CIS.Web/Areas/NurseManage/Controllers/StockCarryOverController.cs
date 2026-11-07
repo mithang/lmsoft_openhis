@@ -35,7 +35,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// choxemhìnhtrongOrganizeIdcủaGán giá trị
+        /// choxemhìnhtrong OrganizeIdcủa Gán giá trị
         /// </summary>
         /// <returns></returns>
         public override IActionResult Index()
@@ -45,7 +45,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// LấyLịch sửkết chuyểnThời gian
+        /// Lấy Lịch sửkết chuyển Thời gian
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -56,7 +56,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// kết chuyểnThời gian kết thúc
+        /// kết chuyển Thời gian kết thúc
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -68,7 +68,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Tra cứucái trước lầnkết chuyểncủaThời gian
+        /// Tra cứucái trước lầnkết chuyểncủa Thời gian
         /// </summary>
         /// <returns></returns>
         [HttpGet]

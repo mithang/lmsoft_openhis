@@ -16,7 +16,7 @@ namespace Newtouch.EMR.Domain.ValueObjects
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Liên quanbillingBảng đăng ký khám của hệ thống
+        /// Liên quanbilling Bảng đăng ký khám của hệ thống
         /// </summary>
         public string mzh { get; set; }
 
@@ -126,12 +126,12 @@ namespace Newtouch.EMR.Domain.ValueObjects
         public DateTime? zljssj { get; set; }
 
         /// <summary>
-        /// Liên quanbaseBảng khoa trong kho
+        /// Liên quanbase Bảng khoa trong kho
         /// </summary>
         public string jzks { get; set; }
 
         /// <summary>
-        /// Liên quanbaseBảng nhân viên trong kho(Bác sĩ khám cuối cùng)
+        /// Liên quanbase Bảng nhân viên trong kho(Bác sĩ khám cuối cùng)
         /// </summary>
         public string jzys { get; set; }
 

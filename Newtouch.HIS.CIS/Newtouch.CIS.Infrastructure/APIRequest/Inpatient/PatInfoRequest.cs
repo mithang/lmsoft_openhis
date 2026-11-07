@@ -12,7 +12,7 @@ namespace Newtouch.CIS.APIRequest.Inpatient
         public string zyh { get; set; }
 
         /// <summary>
-        /// ởviệnCờ
+        /// ởviện Cờ
         /// </summary>
         public string zybz { get; set; }
         /// <summary>
@@ -20,14 +20,14 @@ namespace Newtouch.CIS.APIRequest.Inpatient
         /// </summary>
         public string ryzd { get; set; }  
         public string ryzdmc { get; set; }
-        //bệnh nhânTính chấtMã 
+        //bệnh nhân Tính chất Mã 
         public string brxz { get; set; }
         /// <summary>
-        /// bệnh nhânTính chấtMô tả
+        /// bệnh nhân Tính chất Mô tả
         /// </summary>
         public string brxzmc { get; set; }
         /// <summary>
-        ///  Người liên hệHọ tên
+        ///  Người liên hệ Họ tên
         /// </summary>
         public string lxr { get; set; }
 
@@ -37,7 +37,7 @@ namespace Newtouch.CIS.APIRequest.Inpatient
         public string lxrgx { get; set; }
 
         /// <summary>
-        /// Người liên hệĐiện thoại
+        /// Người liên hệ Điện thoại
         /// </summary>
         public string lxrdh { get; set; }
     }

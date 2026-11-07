@@ -6,7 +6,7 @@
     public class ActResultDTO
     {
         /// <summary>
-        /// Hàm khởi tạosốKhởi tạo
+        /// Hàm khởi tạosố Khởi tạo
         /// </summary>
         public ActResultDTO()
         {
@@ -14,17 +14,17 @@
         }
 
         /// <summary>
-        /// làKhôngthành công
+        /// là Khôngthành công
         /// </summary>
         public bool IsSucceed { get; set; }
 
         /// <summary>
-        /// LỗiMã
+        /// Lỗi Mã
         /// </summary>
         public int ErrorCode { get; set; }
 
         /// <summary>
-        /// LỗiMô tả
+        /// Lỗi Mô tả
         /// </summary>
         public string ErrorMsg { get; set; }
     }

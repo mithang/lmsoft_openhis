@@ -97,7 +97,7 @@ namespace Newtouch.CIS.Web.Controllers
             return View();
 		}
 
-    #region Khám bệnhThông tin
+    #region Khám bệnh Thông tin
 
     public IActionResult SelectPatientVisitList(Pagination pagination, string kh, string xm, string jzlx,string jszt, DateTime? kssj, DateTime? jssj)
         {
@@ -164,7 +164,7 @@ namespace Newtouch.CIS.Web.Controllers
                 return Error("Số dòng mỗi trang phải lớn hơn 0.");
             }
 
-            #region LấyKhoa khám
+            #region Lấy Khoa khám
 
             var kcCode = UserIdentity.DepartmentCode;
             var visitDept = visitDeptSetRepo.SelectData(OperatorProvider.GetCurrent().rygh, OrganizeId);
@@ -365,7 +365,7 @@ namespace Newtouch.CIS.Web.Controllers
             return null;
         }
 
-        #region Nhập việnBệnh nhânmộtxem
+        #region Nhập viện Bệnh nhânmộtxem
         /// <summary>
         /// Lấy đang ở khu bệnh của bệnh người
         /// </summary>
@@ -460,7 +460,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
         #endregion
 
-        #region Nhập việnBệnh nhân
+        #region Nhập viện Bệnh nhân
 
         /// <summary>
         /// Bệnh nhân nội trú một xem
@@ -494,7 +494,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
         #endregion
 
-        #region Nhập việnBệnh nhânChọnbậtlớp
+        #region Nhập viện Bệnh nhânChọnbậtlớp
 
         /// <summary>
         /// Bệnh nhân nội trú chọn bật lớp
@@ -541,7 +541,7 @@ namespace Newtouch.CIS.Web.Controllers
 
         #endregion
 
-        #region Nhập việnBệnh nhânThông tin
+        #region Nhập viện Bệnh nhân Thông tin
 
         public IActionResult InpatientInfoShow()
         {
@@ -549,7 +549,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
         #endregion
 
-        #region Quyết toánTra cứu
+        #region Quyết toán Tra cứu
         public IActionResult PatZySettInfobyJsnm(string zyh)
         {
             var data = _inpatientPatientDmnService.PreSettbyId(zyh,this.OrganizeId);

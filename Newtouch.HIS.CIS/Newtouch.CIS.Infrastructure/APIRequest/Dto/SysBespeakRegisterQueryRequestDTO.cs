@@ -5,23 +5,23 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.CIS.APIRequest.Dto
 {
     /// <summary>
-    /// Ngoại trúđăng ký khámXếp lịchyêu cầubáovăn
+    /// Ngoại trúđăng ký khám Xếp lịchyêu cầubáovăn
     /// </summary>
     public class SysBespeakRegisterQueryRequestDTO : RequestBase
     {
         /// <summary>
-        /// KhoaMã
+        /// Khoa Mã
         /// </summary>
         [Required]
         public string ksCode { get; set; }
 
         /// <summary>
-        /// Bác sĩMã nhân viên
+        /// Bác sĩ Mã nhân viên
         /// </summary>
         public string ysgh { get; set; }
 
         /// <summary>
-        /// đăng ký khámNgày
+        /// đăng ký khám Ngày
         /// </summary>
         public DateTime regDate { get; set; }
 

@@ -20,7 +20,7 @@ namespace NewtouchHIS.Base.Domain
         public string Id { get; set; }
 
         /// <summary>
-        /// Cấp cao nhấtTổ chức
+        /// Cấp cao nhất Tổ chức
         /// </summary>
         [Required, MaxLength(50)]
         public string TopOrganizeId { get; set; }
@@ -44,13 +44,13 @@ namespace NewtouchHIS.Base.Domain
         public string UserPassword { get; set; }
 
         /// <summary>
-        /// Mật khẩuKey
+        /// Mật khẩu Key
         /// </summary>
         [Required, MaxLength(50)]
         public string UserSecretkey { get; set; }
 
         /// <summary>
-        /// Có bị khóa hay không.trueKhóa,nếu không là chưa khóa
+        /// Có bị khóa hay không.true Khóa,nếu không là chưa khóa
         /// </summary>
         [MaxLength(1)]
         public bool? Locked { get; set; }

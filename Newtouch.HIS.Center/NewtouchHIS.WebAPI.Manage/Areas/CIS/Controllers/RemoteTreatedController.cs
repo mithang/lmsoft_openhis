@@ -139,7 +139,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             var tokenResp = await TreatedMeetingToken(tokenReq);
             if (apply.sqzt != (int)EmunRemoteTreatedStu.jzz || !string.IsNullOrWhiteSpace(request.Data.mzh))
             {
-                //Ghi lại từ xaĐăng ký
+                //Ghi lại từ xa Đăng ký
                 apply.sqzt = (int)EmunRemoteTreatedStu.jzz;
                 apply.mzh = request.Data.mzh;
                 var modifyApply = await _remoteTreatedDmn.ModifiedApplyStu(apply.Adapt<TreatedApplyEntity>(), request.AppId);

@@ -314,7 +314,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
         }
 
         /// <summary>
-        /// Phương thức Post thông thường, gửi dữ liệu json, trả vềString
+        /// Phương thức Post thông thường, gửi dữ liệu json, trả về String
         /// </summary>
         /// <param name="url"></param>
         /// <param name="postDataStr"></param>
@@ -396,7 +396,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
         }
 
         /// <summary>
-        /// Phương thức Post thông thường, gửi dữ liệu json, trả vềString
+        /// Phương thức Post thông thường, gửi dữ liệu json, trả về String
         /// </summary>
         /// <param name="url"></param>
         /// <param name="postDataStr"></param>

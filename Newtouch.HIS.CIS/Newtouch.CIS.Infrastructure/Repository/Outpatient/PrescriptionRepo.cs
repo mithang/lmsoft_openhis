@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// hơnĐơn thuốc mớiCờ thu phívàĐồng bộCờ
+        /// hơn Đơn thuốc mới Cờ thu phívà Đồng bộ Cờ
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="tbbz"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// hơnĐơn thuốc mớiCờ thu phí
+        /// hơn Đơn thuốc mới Cờ thu phí
         /// </summary>
         /// <param name="part"></param>
         /// <param name="organizeId"></param>
@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// hơnĐơn thuốc mớiCờ thu phí
+        /// hơn Đơn thuốc mới Cờ thu phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfh"></param>
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// hơnĐơn thuốc mớitrảCờ
+        /// hơn Đơn thuốc mớitrả Cờ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfh"></param>
@@ -114,7 +114,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// LấyĐơn thuốcthông tin
+        /// Lấy Đơn thuốcthông tin
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="orgId"></param>
@@ -131,7 +131,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// LấyĐơn thuốcthông tin
+        /// Lấy Đơn thuốcthông tin
         /// </summary>
         /// <param name="jzId"></param>
         /// <param name="sfbz"></param>

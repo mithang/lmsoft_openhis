@@ -1,5 +1,5 @@
 @{
-    ViewBag.Title = "Ngoại trúHẹn trước";
+    ViewBag.Title = "Ngoại trú Hẹn trước";
     // QA-phase2 CIS-02/CIS-08: truoc day Layout = null nen trang doc lap khong
     // co jQuery/framework (script dung $ ngay lap tuc -> "$ is not defined")
     // va khong co layout chuan. Dung _Index nhu cac trang anh em (jQuery,
@@ -170,7 +170,7 @@
             </tr>
             <tr>
                 <td colspan="2" align="center" style="padding:10px 0;">
-                    <input type="button" class="btn btn-primary" value="LưuĐặt hẹn" onclick="SaveYy()" />
+                    <input type="button" class="btn btn-primary" value="Lưu Đặt hẹn" onclick="SaveYy()" />
                 </td>
             </tr>
         </table>
@@ -182,7 +182,7 @@
         </div>
         <span style="margin-right: 10px; color: #fe2e01;margin-left: 10px; line-height: 30px;">Lưu ý: chỉ hiển thị thông tin đặt hẹn từ ngày 1 tháng này trở đi</span>
         <div class="dv-yydetail-bottom">
-            <input type="button" class="btn btn-primary" value="HủyĐặt hẹn" onclick="CancelYy()" />
+            <input type="button" class="btn btn-primary" value="Hủy Đặt hẹn" onclick="CancelYy()" />
         </div>
     </div>
 </div>
@@ -211,7 +211,7 @@
 
     //Khởi tạo
     function init() {
-        //đăng ký khámKhoa
+        //đăng ký khám Khoa
         $('#sel_dept').bindSelect({
             url: "/SystemManage/SysBaseData/SelectDepartmentList",
             id: "Code",
@@ -259,7 +259,7 @@
             postData: { blh: window.currPatientInfo.blh, r: Math.random() },
             colModel: [
                 { label: "Khóa chính", name: "Id", hidden: true, key: true },
-                { label: 'Ngoại trúLoại', name: 'mzlx', width: 80, align: 'left' },
+                { label: 'Ngoại trú Loại', name: 'mzlx', width: 80, align: 'left' },
                 { label: 'Khoa', name: 'ksmc', width: 120, align: 'left' },
                 { label: 'Ngày', name: 'regDate', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
                 { label: 'Thời gian', name: 'regTime', width: 70, align: 'left' },
@@ -276,7 +276,7 @@
         BuildCalendar();
     };
 
-    //cắtđổiNgày
+    //cắtđổi Ngày
     function changeDay(tdObj) {
         var sp = $(tdObj).children(".sp-regInfo");
         if (sp != null && sp.length > 0) {
@@ -285,7 +285,7 @@
         }
     }
 
-    //LấychỉđịnhNgàyđặt hẹnXếp lịchthông tin
+    //Lấychỉđịnh Ngàyđặt hẹn Xếp lịchthông tin
     function GetRegTimes(ksCode, regDate, gh) {
         if (ksCode == null || regDate == null) return;
         $.najax({
@@ -298,7 +298,7 @@
         });
     }
 
-    //lắp rápđặt hẹnNgàyvàThời gian
+    //lắp rápđặt hẹn Ngàyvà Thời gian
     function BuildRegTime(data, regDate) {
         $("#td_regTime").html("");
         if (data != null && data.length > 0) {
@@ -308,7 +308,7 @@
         }
     }
 
-    //chọnKhung giờ
+    //chọn Khung giờ
     function chooseRegTime(obj) {
         var regTime = $(obj).val();
         if (regTime == undefined || regTime === "") return;
@@ -336,16 +336,16 @@
     function SaveYy() {
         var chs = $(".td-choose");
         if (chs == null || chs.length === 0) {
-            $.modalMsg("Vui lòng chọnĐặt hẹnNgày", "warning", 1500);
+            $.modalMsg("Vui lòng chọn Đặt hẹn Ngày", "warning", 1500);
             return;
         }
         if ($("#td_regTime").html() === "") {
-            $.modalMsg("Hôm nayKhông cóĐặt hẹnĐăng ký khámTài nguyên,Vui lòng chọn lại", "warning", 1500);
+            $.modalMsg("Hôm nay Không có Đặt hẹn Đăng ký khám Tài nguyên,Vui lòng chọn lại", "warning", 1500);
             return;
         }
         var obj = $("input[name=rd_regTime]:checked");
         if (obj == null || obj.length === 0) {
-            $.modalMsg("Vui lòng chọnĐặt hẹnThời gian", "warning", 1500);
+            $.modalMsg("Vui lòng chọn Đặt hẹn Thời gian", "warning", 1500);
             return;
         }
         $.najax({
@@ -355,7 +355,7 @@
             dataType: "json",
             success: function (data) {
                 if (data.state === 'success') {
-                    $.modalMsg("GửiĐặt hẹnthành công", "success", 1000);
+                    $.modalMsg("Gửi Đặt hẹnthành công", "success", 1000);
                     RefreshJqgridData();
                     BuildCalendar();
                 }
@@ -366,7 +366,7 @@
         });
     }
 
-    //Làm mớijqgridDữ liệu
+    //Làm mớijqgrid Dữ liệu
     function RefreshJqgridData() {
         $gridList.jqGrid('setGridParam', {
             url: "/SystemManage/BespeakRegisterManage/GetArrangedRegistersGridJson",
@@ -391,7 +391,7 @@
                         dataType: "json",
                         success: function (data) {
                             if (data.state === 'success') {
-                                $.modalMsg("HủyĐặt hẹnthành công", "success", 1000);
+                                $.modalMsg("Hủy Đặt hẹnthành công", "success", 1000);
                                 RefreshJqgridData();
                                 BuildCalendar();
                             } else {

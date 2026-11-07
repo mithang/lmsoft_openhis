@@ -32,7 +32,7 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// GetToken
         /// </summary>
-        /// <param name="force">Có làm mới mạnh khôngToken</param>
+        /// <param name="force">Có làm mới mạnh không Token</param>
         /// <returns></returns>
         public static string GetToken(bool force = false)
         {
@@ -72,7 +72,7 @@ namespace Newtouch.Infrastructure
         /// <typeparam name="TV"></typeparam>
         /// <param name="url"></param>
         /// <param name="req"></param>
-        /// <param name="tokenExpireReTryTimes">doTokenSố lần thử lại khi hết hạn</param>
+        /// <param name="tokenExpireReTryTimes">doToken Số lần thử lại khi hết hạn</param>
         /// <param name="httpContext"></param>
         /// <returns></returns>
         public static T Request<TV, T>(string url, TV req, int tokenExpireReTryTimes = 1, Microsoft.AspNetCore.Http.HttpContext httpContext = null)

@@ -241,7 +241,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             OperatorModel user = this.UserIdentity;
            // submitForm(mbInfo, mbId, mbly);
 
-            //Khi thêm mới lấy theo mãmbId 
+            //Khi thêm mới lấy theo mãmb Id 
             if (string.IsNullOrWhiteSpace(mbId))
             {
                 mbId = _BlmblbRepo.FindEntity(p => p.mbbm == mbbm && p.OrganizeId == OrganizeId && p.zt == "1").Id;
@@ -256,7 +256,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         public IActionResult TemplateEdit()
         {
-            //TheoidLấy mẫu
+            //Theoid Lấy mẫu
             //Nếu không tìm thấy xml để tải thì mặc định là xml trống
             string currentFileName = WebPath.Map(BlTemplatePath + "newFile.xml");
             // Tải tệp

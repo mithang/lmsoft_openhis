@@ -80,14 +80,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             };
             string retMsg = "F|";
 
-            //mớivàokhu giường ký tựCóKhôngđãchiếmdùng
+            //mớivàokhu giường ký tự Có Khôngđãchiếmdùng
             if (_ientryRegistrationDmnService.ValidationBedIsUse( this.OrganizeId, enterArea.cwCode, enterArea.bqdm) == true)
             {
                 retMsg= "F|Giường bệnh này đã có người";
             }
             else { 
             
-                //mớivàokhuBệnh nhân,gọigiao diệnLấyThông tin bệnh nhân;chuyển khuBệnh nhântrực tiếpSửa thông tin
+                //mớivàokhu Bệnh nhân,gọigiao diện Lấy Thông tin bệnh nhân;chuyển khu Bệnh nhântrực tiếp Sửa thông tin
                 if (enterArea.qqlx =="0")
                 {
                     retMsg= _ientryRegistrationDmnService.SavePatInArea(reqInarea);
@@ -145,7 +145,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 user=UserIdentity.rygh
             };
             string retMsg = "F|";
-            //chuyểngiườnggiường ký tựCóKhôngbịchiếmdùng
+            //chuyểngiườnggiường ký tự Có Khôngbịchiếmdùng
             if (_ientryRegistrationDmnService.ValidationBedIsUse(this.OrganizeId, bedCode, wardCode) == true)
             {
                 retMsg = "F|Giường bệnh này đã có người";
@@ -186,7 +186,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Success();
         }
         /// <summary>
-        /// LấyDanh sách bệnh nhân
+        /// Lấy Danh sách bệnh nhân
         /// </summary>
         /// <param name="bqdm"></param>
         /// <param name="qqlx"></param>
@@ -201,7 +201,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             var reqObj = new
             {
                 TimeStamp = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"),
-                //tạmLấymộtThángcủatrongcủaĐăng kýthông tin
+                //tạm Lấymột Thángcủatrongcủa Đăng kýthông tin
                 lastUpdateTime = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd hh:mm:ss"),//"2018-04-01 11:11:11",
                 zybz ="0",
                 bqCode=bqdm,
@@ -210,7 +210,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             List<NewPatInfoVO> apiRespList = new List<NewPatInfoVO>();
             if (qqlx=="0")
             {
-                //kéolấychờvàokhuThông tin bệnh nhân
+                //kéolấychờvàokhu Thông tin bệnh nhân
                 var apiResp = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<InPatientQueryResponseVO>>(
                     "/api/patient/InPatientQuery", reqObj);
                 if (apiResp.data != null)
@@ -233,7 +233,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     }
                 }
             }
-            else   //chuyển khuBệnh nhân
+            else   //chuyển khu Bệnh nhân
             {
                 apiRespList=_ientryRegistrationDmnService.GetPatChangeArea(bqdm);
             }
@@ -343,7 +343,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="keyword">Từ khóa</param>
         /// <param name="ksrq">Ngày bắt đầu</param>
         /// <param name="jsrq">Ngày kết thúc</param>
-        /// <param name="bqdm">Khu bệnhMã</param>
+        /// <param name="bqdm">Khu bệnh Mã</param>
         /// <returns></returns>
 
         public IActionResult GetOutAreaPatlist(Pagination pagination, string keyword, DateTime? ksrq, DateTime? jsrq,string bqdm)
@@ -361,7 +361,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// ra khỏi khutriệuvề
         /// </summary>
         /// <param name="zyh">Số nhập viện</param>
-        /// <param name="bqdm">Khu bệnhMã</param>
+        /// <param name="bqdm">Khu bệnh Mã</param>
         /// <returns></returns>
         public IActionResult SaveRecallOutArea(string zyh,string bqdm)
         {
@@ -374,7 +374,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         }
         /// <summary>
-        /// Đang ở khu bệnhThông tin bệnh nhân
+        /// Đang ở khu bệnh Thông tin bệnh nhân
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -400,7 +400,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 		}
 
 		/// <summary>
-		/// LấyNhập việngiườngthẻ
+		/// Lấy Nhập việngiườngthẻ
 		/// </summary>
 		/// <param name="zyh"></param>
 		/// <returns></returns>
@@ -417,7 +417,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
 
-        #region LấyKhu bệnh
+        #region Lấy Khu bệnh
 
 
         public IActionResult TreeViewdata() {

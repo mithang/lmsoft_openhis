@@ -40,7 +40,7 @@ namespace Newtouch.Application.Implementation
 
             switch (o.OperationType)
             {
-                case "UpdateChargeStatus"://Tra cứuvàrơiđịaS27(quyết toánTra cứu)kết quả
+                case "UpdateChargeStatus"://Tra cứuvàrơiđịaS27(quyết toán Tra cứu)kết quả
                     var pr = UpdateChargeStatus(o.Content);
                     if (!string.IsNullOrWhiteSpace(pr)) throw new FailedException(pr);
                     break;
@@ -50,7 +50,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// SửaThu phíTrạng thái
+        /// Sửa Thu phí Trạng thái
         /// </summary>
         /// <param name="body"></param>
         /// <returns></returns>

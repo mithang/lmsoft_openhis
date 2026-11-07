@@ -3,7 +3,7 @@
     public class SysDutyStaffVO
     {
         /// <summary>
-        /// Nhân viênHọ tên
+        /// Nhân viên Họ tên
         /// </summary>
         public string StaffName { get; set; }
 

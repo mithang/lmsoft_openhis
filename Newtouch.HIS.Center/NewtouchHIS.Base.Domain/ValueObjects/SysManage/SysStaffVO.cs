@@ -16,7 +16,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public string? Id { get; set; }
 
         /// <summary>
-        /// Desc:Tổ chứcKhóa chính
+        /// Desc:Tổ chức Khóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -108,7 +108,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public string? WeChat { get; set; }
 
         /// <summary>
-        /// Desc:Quản lýKhóa chính
+        /// Desc:Quản lý Khóa chính
         /// Default:
         /// Nullable:True
         /// </summary>           

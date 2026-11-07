@@ -55,10 +55,10 @@
                 { label: 'Tên tổ hợp khám chữa bệnh', name: 'zhmc', width: 150, align: 'left' },
                 { label: 'Mã tổ hợp khám chữa bệnh', name: 'zhcode', width: 100, align: 'left' },
                 { label: 'Sắp xếp', name: 'ord', width: 60, align: 'center' },
-                { label: 'Hạng mục chi tiếtTên', name: 'zlxmmc', width: 170, align: 'left' },
+                { label: 'Hạng mục chi tiết Tên', name: 'zlxmmc', width: 170, align: 'left' },
                 { label: 'Hạng mục chi tiết', name: 'zlxm', width: 100, align: 'center' },
                 { label: 'Đơn giá', name: 'price', width: 100, align: 'center', formatter: 'number', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 } },
-                { label: 'Hạng mục chi tiếtPhiên âm', name: 'zlxmpy', width: 120, align: 'left' },
+                { label: 'Hạng mục chi tiết Phiên âm', name: 'zlxmpy', width: 120, align: 'left' },
                 { label: 'Số tiền kết hợp', name: 'zhje', width: 100, align: 'left', hidden: true },
                 { label: 'Nhóm thu phí lớn', name: 'dlmc', width: 100, align: 'left' },
                 { label: 'Mã tên nhóm', name: 'zhmccode', width: 100, align: 'left' },
@@ -68,7 +68,7 @@
             viewrecords: true,
             sortname: 'zhcode',
             gridview: true,
-            grouping: true,// Có hay khôngĐiểmNhóm,mặc định làfalse
+            grouping: true,// Có hay không Điểm Nhóm,mặc định làfalse
             groupingView: {
                 groupField: ['zhmccode'], // Nhóm dòng theo cột nào
                 //groupText: ['<b>{0}</b>'],
@@ -90,7 +90,7 @@
     function btn_add() {
         $.modalOpen({
             id: "AForm",
-            title: "Thêm hạng mụcThông tin",
+            title: "Thêm hạng mục Thông tin",
             url: "/Treatment/AForm?orgId=" + $('#OrganizeId').val(),
             width: "550px",
             height: "490px",
@@ -117,7 +117,7 @@
     function btn_delete() {
 
         var rowKey = $("#gridList").jqGrid('getGridParam', "selrow");
-        var rowData = $("#gridList").jqGrid("getRowData", rowKey);//Theo phần trênrowKeyLấy tất cả dữ liệu của dòng này
+        var rowData = $("#gridList").jqGrid("getRowData", rowKey);//Theo phần trênrowKey Lấy tất cả dữ liệu của dòng này
         var zhcode = rowData.zhcode; //Lấy giá trị của cột đã chỉ định (ReservationTime là name của colModel)
 
 

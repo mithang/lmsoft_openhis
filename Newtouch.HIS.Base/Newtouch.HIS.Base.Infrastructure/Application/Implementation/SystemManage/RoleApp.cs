@@ -12,7 +12,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.Application.Implementation.SystemManage
 {
     /// <summary>
-    /// vai tròApp
+    /// vai trò App
     /// </summary>
     public class RoleApp : AppBase, IRoleApp
     {
@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Application.Implementation.SystemManage
             if (orgId == Constants.TopOrganizeId && (this.UserIdentity.IsRoot || this.UserIdentity.IsAdministrator))
             {
                 expression = expression.And(t => t.OrganizeId == orgId);
-                expression = expression.Or(t => t.OrganizeId == "*");  //Kèm quản trị viên hệ thốngAdministrator
+                expression = expression.Or(t => t.OrganizeId == "*");  //Kèm quản trị viên hệ thống Administrator
             }
             else
             {

@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string zxId { get; set; }
 
         /// <summary>
-        /// Y lệnhId,Y lệnh trạm làm việc phối hợp y tế tương ứngId
+        /// Y lệnh Id,Y lệnh trạm làm việc phối hợp y tế tương ứng Id
         /// </summary>
         public string yzId { get; set; }
 

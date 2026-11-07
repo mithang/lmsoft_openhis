@@ -420,7 +420,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Trả thuốc ngoại trú(mz_cfmxphKiểm tra)
+        /// Trả thuốc ngoại trú(mz_cfmxph Kiểm tra)
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>
@@ -457,7 +457,7 @@ namespace Newtouch.HIS.DomainServices
 
         #region new MZHandOutDetailQuery code
         /// <summary>
-        /// Truy vấn phát thuốc ngoại trú hiển thị chi tiết(mz_cfmxphKiểm tra)
+        /// Truy vấn phát thuốc ngoại trú hiển thị chi tiết(mz_cfmxph Kiểm tra)
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>

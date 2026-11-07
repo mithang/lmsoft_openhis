@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime? Yxq { get; set; }
 
         /// <summary>
-        /// Thời gian báo cáo Giá trị mặc địnhGetdate()
+        /// Thời gian báo cáo Giá trị mặc định Getdate()
         /// </summary>
         public DateTime Bgsj { get; set; }
 

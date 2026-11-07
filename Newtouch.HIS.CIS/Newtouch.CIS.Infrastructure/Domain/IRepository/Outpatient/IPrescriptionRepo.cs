@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IPrescriptionRepo : IRepositoryBase<PrescriptionEntity>
     {
         /// <summary>
-        /// hơnĐơn thuốc mớiCờ thu phívàĐồng bộCờ
+        /// hơn Đơn thuốc mới Cờ thu phívà Đồng bộ Cờ
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="tbbz"></param>
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Domain.IRepository
         void UpdateChargeStatus(string cfh, bool tbbz, bool? sfbz, string orgId, string account);
 
         /// <summary>
-        /// hơnĐơn thuốc mớiCờ thu phí
+        /// hơn Đơn thuốc mới Cờ thu phí
         /// </summary>
         /// <param name="part"></param>
         /// <param name="organizeId"></param>
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Domain.IRepository
         void UpdateChargeStatus(PrescriptionChargeRequest part, string organizeId, string userCode);
 
         /// <summary>
-        /// hơnĐơn thuốc mớiCờ thu phí
+        /// hơn Đơn thuốc mới Cờ thu phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfh"></param>
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Domain.IRepository
         void UpdateChargeStatus(string orgId, string cfh, bool sfbz, string account);
 
         /// <summary>
-        /// hơnĐơn thuốc mớitrảCờ
+        /// hơn Đơn thuốc mớitrả Cờ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfh"></param>
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Domain.IRepository
         void UpdateChargeTbz(string orgId, string cfh, bool tbz, string account);
 
         /// <summary>
-        /// LấyĐơn thuốcthông tin
+        /// Lấy Đơn thuốcthông tin
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="orgId"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Domain.IRepository
         PrescriptionEntity FindListByCfh(string cfh, string orgId);
 
         /// <summary>
-        /// LấyĐơn thuốcthông tin
+        /// Lấy Đơn thuốcthông tin
         /// </summary>
         /// <param name="jzId"></param>
         /// <param name="sfbz"></param>

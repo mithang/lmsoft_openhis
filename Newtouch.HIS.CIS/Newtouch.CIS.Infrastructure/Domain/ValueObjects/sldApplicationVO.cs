@@ -14,30 +14,30 @@ namespace Newtouch.Domain.ValueObjects
     {
         public string OrganizeId { get; set; }
         /// <summary>
-        /// Khoa đăng kýMã
+        /// Khoa đăng ký Mã
         /// </summary>
         public string sqkscode { get; set; }
         /// <summary>
-        /// Khoa đăng kýTên
+        /// Khoa đăng ký Tên
         /// </summary>
         public string sqksname { get; set; }
         /// <summary>
-        /// Đăng kýKhu bệnhMã
+        /// Đăng ký Khu bệnh Mã
         /// </summary>
         public string sqbqcode { get; set; }
 
         /// <summary>
-        /// Đăng kýKhu bệnhTên
+        /// Đăng ký Khu bệnh Tên
         /// </summary>
         public string sqbqname { get; set; }
 
         /// <summary>
-        /// Bác sĩ đăng kýMã
+        /// Bác sĩ đăng ký Mã
         /// </summary>
         public string sqyscode { get; set; }
 
         /// <summary>
-        /// Bác sĩ đăng kýTên
+        /// Bác sĩ đăng ký Tên
         /// </summary>
         public string sqysname { get; set; }
 
@@ -53,12 +53,12 @@ namespace Newtouch.Domain.ValueObjects
         public decimal zje { get; set; }
 
         /// <summary>
-        /// PhiếuGhi chú
+        /// Phiếu Ghi chú
         /// </summary>
         public string sqbz { get; set; }
 
         /// <summary>
-        /// PhiếuTrạng thái  
+        /// Phiếu Trạng thái  
         /// </summary>
         public char sldzt { get; set; }
 

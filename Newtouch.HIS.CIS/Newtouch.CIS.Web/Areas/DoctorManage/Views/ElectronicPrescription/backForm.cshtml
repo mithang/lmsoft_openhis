@@ -10,7 +10,7 @@
         <table class="form" style="margin-top:20px;">
             <tr>
 
-                <th class="formTitle">Hủy bỏNguyên nhân:</th>
+                <th class="formTitle">Hủy bỏ Nguyên nhân:</th>
                 <td class="formValue">
                     <input id="cxyy" type="text" class="form-control" style="width:75%; float:left;" />
                 </td>
@@ -55,7 +55,7 @@
                     //callback();
                 } else {
                     $.loading(false);
-                    $.modalAlert('Hủy bỏĐiện tửĐơn thuốcthất bại:' + refdata.err_msg, 'error');
+                    $.modalAlert('Hủy bỏ Điện tử Đơn thuốcthất bại:' + refdata.err_msg, 'error');
                 }
 
             },
@@ -70,7 +70,7 @@
     //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#cxyy").val() === "") {
-            $.modalAlert("Vui lòng điềnHủy bỏNguyên nhân", 'warning');
+            $.modalAlert("Vui lòng điền Hủy bỏ Nguyên nhân", 'warning');
             return false;
         }
         return true;

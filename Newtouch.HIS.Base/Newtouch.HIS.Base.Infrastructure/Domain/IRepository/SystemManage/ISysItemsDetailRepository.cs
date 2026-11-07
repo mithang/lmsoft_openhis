@@ -19,9 +19,9 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<SysItemsDetailEntity> GetCommonList(string itemId = null, string keyword = null);
 
         /// <summary>
-        /// Lấy Tổ chức đơn nhất Mục từ điểnList
+        /// Lấy Tổ chức đơn nhất Mục từ điển List
         /// </summary>
-        /// <param name="orgId">Cơ sở y tếId,không truyền thì dùng chung theo chênh lệch</param>
+        /// <param name="orgId">Cơ sở y tế Id,không truyền thì dùng chung theo chênh lệch</param>
         /// <param name="itemId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>

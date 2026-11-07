@@ -112,7 +112,7 @@ namespace NewtouchHIS.Base.Domain
         /// Xây dựng wdtree json
         /// </summary>
         /// <param name="data"></param>
-        /// <param name="parentId">ParentId của phần tử tầng cao nhấtParentId</param>
+        /// <param name="parentId">ParentId của phần tử tầng cao nhất ParentId</param>
         /// <returns></returns>
         public static string TreeViewJson(this List<TreeViewModel> data, string parentId = "0")
         {

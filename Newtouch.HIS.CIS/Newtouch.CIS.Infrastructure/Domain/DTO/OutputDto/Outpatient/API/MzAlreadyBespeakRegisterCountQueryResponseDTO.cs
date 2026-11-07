@@ -3,27 +3,27 @@ using System;
 namespace Newtouch.Domain.DTO.OutputDto.Outpatient.API
 {
     /// <summary>
-    /// Khoahoặcchuyên giađãđăng ký khámtổngsốTra cứuQuay lạibáovăn
+    /// Khoahoặcchuyên giađãđăng ký khámtổngsố Tra cứu Quay lạibáovăn
     /// </summary>
     public class MzAlreadyBespeakRegisterCountQueryResponseDTO
     {
         /// <summary>
-        /// KhoaMã
+        /// Khoa Mã
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// Bác sĩMã nhân viên
+        /// Bác sĩ Mã nhân viên
         /// </summary>
         public string ysgh { get; set; }
 
         /// <summary>
-        /// đặt hẹnNgày
+        /// đặt hẹn Ngày
         /// </summary>
         public DateTime regDate { get; set; }
 
         /// <summary>
-        /// đặt hẹnThời gian
+        /// đặt hẹn Thời gian
         /// </summary>
         public string regTime { get; set; }
 

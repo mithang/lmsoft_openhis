@@ -10,7 +10,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.EMR
     public class MedicalApplyApproveVo
     {
         /// <summary>
-        /// Phê duyệtĐăng kýSố
+        /// Phê duyệt Đăng ký Số
         /// </summary>
         [Required(ErrorMessage = "ApplyNos không được để trống")]
         

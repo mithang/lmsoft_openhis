@@ -90,7 +90,7 @@ namespace Newtouch.DomainServices
 
             if (string.IsNullOrWhiteSpace(cfmxid))
             {
-                throw new FailedException("Vui lòng chọndathửMục");
+                throw new FailedException("Vui lòng chọndathử Mục");
             }
             string sqll = "select * from xt_gmxx with(nolock) where OrganizeId=@orgId and cfmxid in(select col from dbo.f_split( @cfmxid,',')) and zt='1' and cancel='1'";
             var exist = FindList<AllergyEntity>(sqll, new SqlParameter[] {
@@ -99,7 +99,7 @@ namespace Newtouch.DomainServices
             });
             if (exist != null && exist.Count > 0)
             {
-                throw new FailedException("bộphútMụcđãnhập，vui lòngLàm mớitrangmặttrọngthử");
+                throw new FailedException("bộphút Mụcđãnhập，vui lòng Làm mớitrangmặttrọngthử");
             }
             try
             {
@@ -192,7 +192,7 @@ and not exists(select 1 from xt_gmxx c with(nolock) where a.OrganizeId=c.Organiz
             par.Add(new SqlParameter("@orgId", orgid));
             par.Add(new SqlParameter("@keyword", "%" + keyword + "%"));
 
-            if (true)//Mặc địnhTra cứuhiện tạiThángphầncủaĐơn thuốc ngườiviên
+            if (true)//Mặc định Tra cứuhiện tại Thángphầncủa Đơn thuốc ngườiviên
             {
                 sql += "  and SUBSTRING(CONVERT(varchar(15),a.ghsj,120),0,8)=SUBSTRING(CONVERT(varchar(15),GETDATE(),120),0,8)";
             }

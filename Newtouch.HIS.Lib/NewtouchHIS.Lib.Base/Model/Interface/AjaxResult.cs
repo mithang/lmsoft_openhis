@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.Lib.Base.Model
 {
     /// <summary>
-    /// AjaxNội dung phản hồi Model
+    /// Ajax Nội dung phản hồi Model
     /// </summary>
     public class AjaxResult
     {

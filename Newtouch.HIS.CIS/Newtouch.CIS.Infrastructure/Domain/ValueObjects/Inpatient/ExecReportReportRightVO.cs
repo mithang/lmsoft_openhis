@@ -10,7 +10,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
     {
         public string yzId { get; set; }
         /// <summary>
-        /// dài hạn/tạm thờiCờ
+        /// dài hạn/tạm thời Cờ
         /// </summary>
         public string clbz { get; set; }
         public string yzh { get; set; }
@@ -27,7 +27,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public int? lyxh { get; set; }
         public string hzxm { get; set; }
         /// <summary>
-        /// làKhôngtínhphí
+        /// là Khôngtínhphí
         /// </summary>
         public string isjf { get; set; }
         public string zyh { get; set; }

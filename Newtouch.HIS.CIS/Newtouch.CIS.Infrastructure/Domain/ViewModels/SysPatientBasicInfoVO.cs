@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.ViewModels
 {
     /// <summary>
-    /// Hệ thốngvàCá nhânThông tin cơ bản
+    /// Hệ thốngvà Cá nhân Thông tin cơ bản
     /// </summary>
     public class SysPatientBasicInfoVO
     {
@@ -13,17 +13,17 @@ namespace Newtouch.Domain.ViewModels
         public int patid { get; set; }
 
         /// <summary>
-        /// Tổ chứcId(cócụ thểthểnghiệp vụcủayviện)
+        /// Tổ chức Id(cócụ thểthểnghiệp vụcủayviện)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// bệnh nhânnhấtgầncủaTính chấtxt_brxz.brxz
+        /// bệnh nhânnhấtgầncủa Tính chấtxt_brxz.brxz
         /// </summary>
         public string brxz { get; set; }
 
         /// <summary>
-        /// bệnh nhânTên tính chất
+        /// bệnh nhân Tên tính chất
         /// </summary>
         public string brxzmc { get; set; }
 
@@ -138,12 +138,12 @@ namespace Newtouch.Domain.ViewModels
         public int? dybh { get; set; }
 
         /// <summary>
-        /// Đơn vịMã
+        /// Đơn vị Mã
         /// </summary>
         public string dwdm { get; set; }
 
         /// <summary>
-        /// khuhuyệnMã
+        /// khuhuyện Mã
         /// </summary>
         public string qxdm { get; set; }
 
@@ -153,12 +153,12 @@ namespace Newtouch.Domain.ViewModels
         public string dwmc { get; set; }
 
         /// <summary>
-        /// nghỉ hưuChứng từ
+        /// nghỉ hưu Chứng từ
         /// </summary>
         public string pzh { get; set; }
 
         /// <summary>
-        /// y tếMục
+        /// y tế Mục
         /// </summary>
         public string ylxm { get; set; }
 
@@ -173,7 +173,7 @@ namespace Newtouch.Domain.ViewModels
         public DateTime? pzzzrq { get; set; }
 
         /// <summary>
-        /// Chứng từChẩn đoán
+        /// Chứng từ Chẩn đoán
         /// </summary>
         public string pzzd { get; set; }
 
@@ -263,7 +263,7 @@ namespace Newtouch.Domain.ViewModels
         public short? bxgs { get; set; }
 
         /// <summary>
-        /// Bảo hiểm y tếthẻQuay lạicủaCờ ký tự,khôngBảo hiểm y tếthẻlàtrốngchữký
+        /// Bảo hiểm y tếthẻ Quay lạicủa Cờ ký tự,không Bảo hiểm y tếthẻlàtrốngchữký
         /// </summary>
         public string zhbz { get; set; }
 
@@ -323,12 +323,12 @@ namespace Newtouch.Domain.ViewModels
         public string jjllrgx { get; set; }
 
         /// <summary>
-        /// Cá nhânxãbảoSố hiệu
+        /// Cá nhânxãbảo Số hiệu
         /// </summary>
         public string sbbh { get; set; }
 
         /// <summary>
-        /// tham sốbảođịaMã(181019Bảo hiểm y tếtham sốbảođịaMã)
+        /// tham sốbảođịa Mã(181019Bảo hiểm y tếtham sốbảođịa Mã)
         /// </summary>
         public string cbdbm { get; set; }
 
@@ -338,12 +338,12 @@ namespace Newtouch.Domain.ViewModels
         public string zxsbbf { get; set; }
 
         /// <summary>
-        /// BHYT nông thôn mớiCá nhânMã
+        /// BHYT nông thôn mới Cá nhân Mã
         /// </summary>
         public string xnhgrbm { get; set; }
 
         /// <summary>
-        /// BHYT nông thôn mớiSố chứng nhận y tế
+        /// BHYT nông thôn mới Số chứng nhận y tế
         /// </summary>
         public string xnhylzh { get; set; }
 
@@ -353,12 +353,12 @@ namespace Newtouch.Domain.ViewModels
         public string CardNo { get; set; }
 
         /// <summary>
-        /// thẻLoại
+        /// thẻ Loại
         /// </summary>
         public string CardType { get; set; }
 
         /// <summary>
-        /// thẻTên loại
+        /// thẻ Tên loại
         /// </summary>
         public string CardTypeName { get; set; }
     }
@@ -369,7 +369,7 @@ namespace Newtouch.Domain.ViewModels
     public class SysPatientCardDetail
     {
         /// <summary>
-        /// thẻ ID  Hệ thốngSố thẻbảngKhóa chính
+        /// thẻ ID  Hệ thống Số thẻbảng Khóa chính
         /// </summary>
         public string CardId { get; set; }
 
@@ -389,7 +389,7 @@ namespace Newtouch.Domain.ViewModels
         public string CardType { get; set; }
 
         /// <summary>
-        /// thẻTên loại
+        /// thẻ Tên loại
         /// </summary>
         public string CardTypeName { get; set; }
 
@@ -399,17 +399,17 @@ namespace Newtouch.Domain.ViewModels
         public int patid { get; set; }
 
         /// <summary>
-        /// bệnh nhânHọ tên
+        /// bệnh nhân Họ tên
         /// </summary>
         public string hzxm { get; set; }
 
         /// <summary>
-        /// Cá nhânBảo hiểm y tếsố
+        /// Cá nhân Bảo hiểm y tếsố
         /// </summary>
         public string grybh { get; set; }
 
         /// <summary>
-        /// Đơn vịBảo hiểm y tếsố
+        /// Đơn vị Bảo hiểm y tếsố
         /// </summary>
         public string dwybh { get; set; }
 

@@ -32,7 +32,7 @@ namespace Newtouch.DomainServices
 
         #region Báo hỏng báo thừa
         /// <summary>
-        /// Tra cứulãi lỗThuốclist
+        /// Tra cứulãi lỗ Thuốclist
         /// </summary>
         /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>
@@ -89,7 +89,7 @@ order by a.ypcode,a.kcsl,a.yxq
         }
 
         /// <summary>
-        /// Tra cứuThuốccủakcslvàjj
+        /// Tra cứu Thuốccủakcslvàjj
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="ph"></param>
@@ -112,7 +112,7 @@ order by a.ypcode,a.kcsl,a.yxq
         //}
 
         /// <summary>
-        /// GửiBáo hỏngbáolợi
+        /// Gửi Báo hỏngbáolợi
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>
@@ -125,10 +125,10 @@ order by a.ypcode,a.kcsl,a.yxq
                     var kcxxRepo = new PrepareMedicineStockInfoRepo();
                     var kcxx = kcxxRepo.SelectData(syxx.Ypdm, syxx.Ph, syxx.pc, syxx.yfbmCode, syxx.OrganizeId);
                     var curKcsl = kcxx.Sum(p => p.kcsl);
-                    if (syxx.Sysl < 0)//Báo hỏng  đĩaTồn kholàKhôngnạpđủ
+                    if (syxx.Sysl < 0)//Báo hỏng  đĩa Tồn kholà Khôngnạpđủ
                     {
                         if (kcxx.Sum(p => p.kcsl) + syxx.Sysl < 0)
-                            return string.Format("mãlà{0}、Số lô{1}、Lô{2} của thuốcTồn kho không đủ", syxx.Ypdm, syxx.Ph, syxx.pc);
+                            return string.Format("mãlà{0}、Số lô{1}、Lô{2} của thuốc Tồn kho không đủ", syxx.Ypdm, syxx.Ph, syxx.pc);
                     }
 
                     kcxxRepo.UpdateKcslWithTrans(syxx.Sysl, syxx.pc, syxx.Ph, syxx.Ypdm, syxx.yfbmCode, syxx.OrganizeId,
@@ -161,7 +161,7 @@ order by a.ypcode,a.kcsl,a.yxq
         //    {
         //        //insert lãi lỗbảng
         //        var sykc = kcsl + entity.Sysl;
-        //        entity.Sykc = sykc; //lãi lỗTồn kho
+        //        entity.Sykc = sykc; //lãi lỗ Tồn kho
         //        entity.Jj = jj;  //vàogiá
         //        db.Insert(entity);
 
@@ -193,7 +193,7 @@ order by a.ypcode,a.kcsl,a.yxq
         //}
 
         /// <summary>
-        /// Báo hỏngbáo thừaTra cứu
+        /// Báo hỏngbáo thừa Tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -265,7 +265,7 @@ order by a.ypcode,a.kcsl,a.yxq
             }
 
         /// <summary>
-        /// Giá bán buônTổng số tiền,Giá bán lẻTổng số tiềnTra cứu
+        /// Giá bán buôn Tổng số tiền,Giá bán lẻ Tổng số tiền Tra cứu
         /// </summary>
         /// <param name="startTime">Thời gian bắt đầu</param>
         /// <param name="endTime">Thời gian kết thúc</param>
@@ -336,7 +336,7 @@ FROM (
 
         #endregion
 
-        #region Khoachuẩn bị thuốcTrả lại
+        #region Khoachuẩn bị thuốc Trả lại
         public string PrepareMedicineReturnSubmit(OperatorModel user, string orgId, BythDjInfoDTO Djnr)
         {
             try
@@ -424,14 +424,14 @@ FROM (
                     var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/PrepareMedicineReturn", request);
                     if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS && apires.msg == "")
                     {
-                        return "LưuvàGửithành công！";
+                        return "Lưuvà Gửithành công！";
                     }
                     else
                     {
-                        return "gọiNhà thuốcgiao diệnthất bại，vui lòngliênhệmởphát ngườiviên！";
+                        return "gọi Nhà thuốcgiao diệnthất bại，vui lòngliênhệmởphát ngườiviên！";
                     }
                 }
-                return "Khoachuẩn bị thuốcTrả lạiLưu thành công！";
+                return "Khoachuẩn bị thuốc Trả lại Lưu thành công！";
             }
             catch (Exception ex)
             {
@@ -554,7 +554,7 @@ and a.CreateTime BETWEEN @kssj  AND  @jssj+' 23:59:59' "
         }
 
         /// <summary>
-        /// Gửichuẩn bị thuốcPhiếu
+        /// Gửichuẩn bị thuốc Phiếu
         /// </summary>
         /// <param name="user"></param>
         /// <param name="orgId"></param>
@@ -636,7 +636,7 @@ select a.* from zy_ksbythmx a
         }
 
         /// <summary>
-        /// LấyThuốcTồn khoSố lượng
+        /// Lấy Thuốc Tồn kho Số lượng
         /// </summary>
         /// <param name="ypbm"></param>
         /// <param name="pc"></param>
@@ -666,7 +666,7 @@ where ypdm=@ypbm and ph=@ph and pc=@pc and OrganizeId=@orgId  and yfbmCode=@yfbm
         }
 
         /// <summary>
-        /// Khoachuẩn bị thuốcTrả lại rútvề
+        /// Khoachuẩn bị thuốc Trả lại rútvề
         /// </summary>
         /// <param name="Djh"></param>
         /// <param name="orgId"></param>
@@ -696,7 +696,7 @@ where ypdm=@ypbm and ph=@ph and pc=@pc and OrganizeId=@orgId  and yfbmCode=@yfbm
                 }
                 else
                 {
-                    return "gọiNhà thuốcgiao diệnthất bại，vui lòngliênhệmởphát ngườiviên！";
+                    return "gọi Nhà thuốcgiao diệnthất bại，vui lòngliênhệmởphát ngườiviên！";
                 }
             }
             catch (Exception ex)

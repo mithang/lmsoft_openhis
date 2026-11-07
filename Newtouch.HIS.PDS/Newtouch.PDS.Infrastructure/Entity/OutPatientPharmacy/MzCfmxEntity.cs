@@ -103,7 +103,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string czh { get; set; }
 
         /// <summary>
-        /// Tổ chứcId
+        /// Tổ chức Id
         /// </summary>
         public string OrganizeId { get; set; }
 

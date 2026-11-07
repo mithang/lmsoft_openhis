@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Application.Implementation
                 {
                     if (kcsl + item.Sysl >= 0)
                     {
-                        //Lưu(updateTồn kho insertBảng lãi lỗ)
+                        //Lưu(update Tồn kho insert Bảng lãi lỗ)
                         _medicineDmnService.SaveReportLossAndProfit(item, kcsl, jj);
                     }
                     else
@@ -71,7 +71,7 @@ namespace Newtouch.HIS.Application.Implementation
                 }
                 else  //Báo thừa
                 {
-                    //Lưu(updateTồn kho insertBảng lãi lỗ)
+                    //Lưu(update Tồn kho insert Bảng lãi lỗ)
                     _medicineDmnService.SaveReportLossAndProfit(item, kcsl, jj);
                 }
             }

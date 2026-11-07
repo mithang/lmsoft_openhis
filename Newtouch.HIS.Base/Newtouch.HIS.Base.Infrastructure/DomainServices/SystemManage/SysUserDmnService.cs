@@ -16,7 +16,7 @@ using System.Text;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// Liên quan người dùngDmnService
+    /// Liên quan người dùng DmnService
     /// </summary>
     public class SysUserDmnService : DmnServiceBase, ISysUserDmnService
     {
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.DomainServices
         {
             using (var db = new DbTrans())
             {
-                SysUserEntity oldEntity = null;   //Trước khi thay đổiEntity
+                SysUserEntity oldEntity = null;   //Trước khi thay đổi Entity
 
                 if (!string.IsNullOrEmpty(keyValue))
                 {
@@ -143,7 +143,7 @@ where 1 = 1
         }
 
         /// <summary>
-        /// Theo hệ thống(Đăng nhập)Người dùngId Lấy Nhân viên hệ thống
+        /// Theo hệ thống(Đăng nhập)Người dùng Id Lấy Nhân viên hệ thống
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -228,7 +228,7 @@ and c.TopOrganizeId = @topOrganizeId and d.TopOrganizeId = @topOrganizeId";
         }
 
         /// <summary>
-        /// TheoUserIdLấy danh sách nhân viên hệ thống liên kết
+        /// Theo UserId Lấy danh sách nhân viên hệ thống liên kết
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -246,7 +246,7 @@ where a.UserId = @userId";
         }
 
         /// <summary>
-        /// TheoOrganizeIdLấy Nhân viên hệ thống VO(và có tương ứngSysUser)
+        /// Theo OrganizeId Lấy Nhân viên hệ thống VO(và có tương ứng SysUser)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -287,7 +287,7 @@ and a.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// Theo nhân viênIdLấy tất cả vị trí
+        /// Theo nhân viên Id Lấy tất cả vị trí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="StaffId"></param>

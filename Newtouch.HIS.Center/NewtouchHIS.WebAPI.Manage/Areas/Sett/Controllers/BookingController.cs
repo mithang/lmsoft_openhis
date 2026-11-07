@@ -114,7 +114,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp,request.Data);
         }
         /// <summary>
-        /// Truy vấn danh sách đặt hẹnbyThông tin bệnh nhân
+        /// Truy vấn danh sách đặt hẹnby Thông tin bệnh nhân
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -132,7 +132,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// Truy vấn danh sách đặt hẹnbyThông tin bệnh nhân
+        /// Truy vấn danh sách đặt hẹnby Thông tin bệnh nhân
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -198,7 +198,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         {
             if (request.Data == null || (request.Data.kh == null && request.Data.BookId == null))
             {
-                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Đặt lịch đăng ký khámBookId&kh không được để trống" };
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Đặt lịch đăng ký khám BookId&kh không được để trống" };
             }
             var apiReq = InitController.BuildBookRequest(request, "Y024", "0").Adapt<BookingRequest>();
             apiReq.paradata = request.Data;
@@ -216,7 +216,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         {
             if (request.Data == null || (request.Data.kh == null && request.Data.ScheduId == null))
             {
-                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Đăng ký khám thườngScheduId&kh không được để trống" };
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Đăng ký khám thường ScheduId&kh không được để trống" };
             }
             var apiReq = InitController.BuildBookRequest(request, "Y026", null).Adapt<BookingRequest>();
             apiReq.paradata = request.Data;

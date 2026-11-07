@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string Ph { get; set; }
 
         /// <summary>
-        /// Giá trị mặc địnhGetdate()
+        /// Giá trị mặc định Getdate()
         /// </summary>
         public DateTime? Yxq { get; set; }
 
@@ -74,7 +74,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int Zhyz { get; set; }
 
         /// <summary>
-        /// Giá trị mặc địnhGetdate()
+        /// Giá trị mặc định Getdate()
         /// </summary>
         public DateTime jssj { get; set; }
 

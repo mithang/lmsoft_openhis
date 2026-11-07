@@ -20,7 +20,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
-    /// rakhámQuản lý
+    /// rakhám Quản lý
     /// </summary>
     [Area("SystemManage")]
     public class VisitDeptSetController : OrgControllerBase
@@ -39,7 +39,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// LấyBác sĩ khámthông tin
+        /// Lấy Bác sĩ khámthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -79,7 +79,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// XóaMục
+        /// Xóa Mục
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -101,7 +101,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// bảngphiếuGửi
+        /// bảngphiếu Gửi
         /// </summary>
         /// <param name="vo"></param>
         /// <returns></returns>

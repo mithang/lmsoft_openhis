@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysPharmacyDepartmentMedicineEntity : IEntity<SysPharmacyDepartmentMedicineEntity>
     {
         /// <summary>
-        /// Thuốc bộ phậnId
+        /// Thuốc bộ phận Id
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]

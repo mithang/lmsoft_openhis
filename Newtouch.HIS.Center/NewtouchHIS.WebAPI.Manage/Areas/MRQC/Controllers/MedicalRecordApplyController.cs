@@ -11,7 +11,7 @@ using NewtouchHIS.WebAPI.Manage.Controllers;
 namespace NewtouchHIS.WebAPI.Manage.Areas.MRQC.Controllers
 {
     /// <summary>
-    /// Bệnh ánĐăng ký
+    /// Bệnh án Đăng ký
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -32,7 +32,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.MRQC.Controllers
         }
 
         /// <summary>
-        /// Bệnh án kiểm soát chất lượngĐăng ký
+        /// Bệnh án kiểm soát chất lượng Đăng ký
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -42,7 +42,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.MRQC.Controllers
         {
             if (request == null || request.Data == null || string.IsNullOrWhiteSpace(request.OrganizeId))
             {
-                return new BusResult<MedicalBlApplyResponse> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId là bắt buộc" };
+                return new BusResult<MedicalBlApplyResponse> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id là bắt buộc" };
             }
             request.Data.OrganizeId = request.OrganizeId;
             var data = await _medicalrecordapplyDmn.AddMedicalApplyRecord(request.Data);

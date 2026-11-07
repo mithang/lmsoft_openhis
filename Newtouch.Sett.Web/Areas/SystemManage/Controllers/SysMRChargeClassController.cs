@@ -47,7 +47,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// Thêm mới hoặc sửaForm
+        /// Thêm mới hoặc sửa Form
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

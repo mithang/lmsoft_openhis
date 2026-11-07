@@ -152,7 +152,7 @@
         unwritten: false,
         sortable: false,
         colModel: [
-            { label: 'Phương thức thanh toánMã', name: 'zffs', hidden: true },
+            { label: 'Phương thức thanh toán Mã', name: 'zffs', hidden: true },
             { label: 'Phương thức thanh toán', name: 'zffsmc', width: 100, align: 'left' },
             { label: 'Số tiền thanh toán', name: 'zfje', width: 100, align: 'left' },
             { label: 'Tài khoản thanh toán', name: 'zfzh', width: 200, align: 'left' }
@@ -297,7 +297,7 @@
             param: postData,
             successwithtipmsg: false,
             success: function (data) {
-                //Bật một lớp khác Kết quảquyết toán phươngphương phápđịnhnghĩatạiIndextrong
+                //Bật một lớp khác Kết quảquyết toán phươngphương phápđịnhnghĩatại Indextrong
                 $.currentWindow().window.showSettSuccessDialog(data.data.yingshoukuan, data.data.ssk, data.data.srce, data.data.zhaoling);
                 $.currentWindow().window.newtouch_globalevent_f4();
             }

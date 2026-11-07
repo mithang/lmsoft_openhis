@@ -190,7 +190,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public int? px { get; set; }
 
         /// <summary>
-        /// Tổ chứcId
+        /// Tổ chức Id
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>

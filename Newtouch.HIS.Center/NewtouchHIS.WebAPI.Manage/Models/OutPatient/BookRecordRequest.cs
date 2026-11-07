@@ -28,7 +28,7 @@
         /// </summary>
         public string? ksmc { get; set; }
         /// <summary>
-        /// KhoaMã
+        /// Khoa Mã
         /// </summary>
         public string? ks { get; set; }
         /// <summary>

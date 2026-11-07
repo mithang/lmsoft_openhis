@@ -79,7 +79,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
         {
             if (string.IsNullOrWhiteSpace(organizeId))
             {
-                organizeId = base.GetAuthOrganizeId();  //mặc định quyềnOrganizeId
+                organizeId = base.GetAuthOrganizeId();  //mặc định quyền OrganizeId
             }
             //bộ nhớ đệmstart
             var organizedata = await _sysOrgDmnService.GetOrganizeTree(organizeId);

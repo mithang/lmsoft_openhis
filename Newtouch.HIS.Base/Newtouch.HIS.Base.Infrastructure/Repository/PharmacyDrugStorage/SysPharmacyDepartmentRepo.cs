@@ -94,7 +94,7 @@ namespace Newtouch.HIS.Repository
                     throw new FailedException("Mã khoa không được trùng lặp!");
                 }
 
-                SysPharmacyDepartmentEntity oldEntity = null;   //Trước khi thay đổiEntity
+                SysPharmacyDepartmentEntity oldEntity = null;   //Trước khi thay đổi Entity
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 
@@ -120,7 +120,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// LấyUserIdcái đã liên kết hiện tại cầnyfbmCode (Không bao gồm tổ chức con)
+        /// Lấy UserIdcái đã liên kết hiện tại cầnyfbmCode (Không bao gồm tổ chức con)
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

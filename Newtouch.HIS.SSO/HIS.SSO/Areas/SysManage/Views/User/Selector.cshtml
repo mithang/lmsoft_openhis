@@ -36,7 +36,7 @@
             }
         }
         else {
-            treeSeleData = $("#userStaffTree").getCheckedValues();  //Valuestương ứngUserId/
+            treeSeleData = $("#userStaffTree").getCheckedValues();  //Valuestương ứng UserId/
             if (single == 'true' && treeSeleData.length != 1) {
                 $.modalAlert('chọn tối đa một mục', 'warning');
                 return;
@@ -48,7 +48,7 @@
 
         }
         else if (fromDialog) {
-            //hành vi mặc định,callbacktrướcDialogphương thức
+            //hành vi mặc định,callbacktrước Dialogphương thức
             top.top.window.frames[fromDialog].userStaffTreeCallback(treeSeleData);
         }
         else {

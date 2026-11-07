@@ -60,7 +60,7 @@ namespace NewtouchHIS.DomainService.PatientCenter
                 throw new FailedException("Thông tin địa chỉ bệnh nhân bất thường, xác nhận số điện thoại có trùng lặp hay không!");
             }
 
-            //Điện thoại,Họ tênNhất quán,Cập nhật
+            //Điện thoại,Họ tên Nhất quán,Cập nhật
             var upentity = await baseDal.GetFirstOrDefaultWithAttr<SysPatientAddressEntity>(p => p.patid == entity.patid && p.dh == entity.dh && p.xm == entity.xm && p.OrganizeId == entity.OrganizeId && p.zt == "1");
             if (upentity != null)
             {

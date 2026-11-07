@@ -81,8 +81,8 @@ namespace NewtouchHIS.Base.DomainService.SysManage
         /// Lấy danh sách menu mở cho vai trò hiện tại(Tải cây menu mở)
         /// Phân biệt hệ thống nghiệp vụ
         /// </summary>
-        /// <param name="orgId">Y tếTổ chức</param>
-        /// <param name="appId">Ứng dụng hệ thống nghiệp vụId</param>
+        /// <param name="orgId">Y tế Tổ chức</param>
+        /// <param name="appId">Ứng dụng hệ thống nghiệp vụ Id</param>
         /// <param name="roleIdList"></param>
         /// <param name="isRoot"></param>
         /// <param name="isAdministrator"></param>
@@ -124,7 +124,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
 
                 //Tớiorganizemở
                 var orgAuthedModuleId = query.Select(p => p.Id).ToList();
-                //TớiRolemở                
+                //Tới Rolemở                
                 List<SysModuleEntity> list = new List<SysModuleEntity>();
                 var idList = (await GetByWhere<SysRoleAuthorizeEntity>(db, t => t.zt == "1" && roleIdList.Contains(t.RoleId)))?.Select(p => p.ItemId);
                 if (idList != null && idList.Any())
@@ -165,7 +165,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
         /// <summary>
         /// Lấy danh sách menu mở cho vai trò hiện tại(Tải cây menu mở)
         /// </summary>
-        /// <param name="orgId">Y tếTổ chức</param>
+        /// <param name="orgId">Y tế Tổ chức</param>
         /// <param name="roleIdList"></param>
         /// <param name="isRoot"></param>
         /// <param name="isAdministrator"></param>
@@ -202,7 +202,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
 
                 //Tớiorganizemở
                 var orgAuthedModuleId = query.Select(p => p.Id).ToList();
-                //TớiRolemở                
+                //Tới Rolemở                
                 List<SysModuleEntity> list = new List<SysModuleEntity>();
                 var idList = (await GetByWhere<SysRoleAuthorizeEntity>(t => t.zt == "1" && roleIdList.Contains(t.RoleId)))?.Select(p => p.ItemId);
                 if (idList != null && idList.Any())

@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// TheoyfbmcodeLấy thực thể bộ phận nhà thuốc
+        /// Theoyfbmcode Lấy thực thể bộ phận nhà thuốc
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>

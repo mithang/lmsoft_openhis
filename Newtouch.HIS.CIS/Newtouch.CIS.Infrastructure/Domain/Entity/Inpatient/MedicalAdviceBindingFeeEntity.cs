@@ -44,7 +44,7 @@ namespace Newtouch.Domain.Entity.Inpatient
 
 
         /// <summary>
-        /// Sửa cuốiNgười dùng
+        /// Sửa cuối Người dùng
         /// </summary>
         public string LastModifierCode { get; set; }
         /// <summary>

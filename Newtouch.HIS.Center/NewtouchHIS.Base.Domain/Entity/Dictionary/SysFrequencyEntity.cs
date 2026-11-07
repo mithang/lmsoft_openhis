@@ -14,7 +14,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         [SugarColumn(IsPrimaryKey = true)]
         public string yzpcId { get; set; }
         /// <summary>
-        /// Tần suấtMã
+        /// Tần suất Mã
         /// </summary>
         public string yzpcCode { get; set; }
         /// <summary>

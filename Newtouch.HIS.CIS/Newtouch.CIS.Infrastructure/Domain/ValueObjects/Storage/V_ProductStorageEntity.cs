@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.ValueObjects.Storage
 {
     /// <summary>
-    /// vật tưTồn kho
+    /// vật tư Tồn kho
     /// </summary>
     public class VProductStorageEntity
     {
@@ -15,7 +15,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string productId { get; set; }
 
         /// <summary>
-        /// vật tưTên
+        /// vật tư Tên
         /// </summary>
         public string wzmc { get; set; }
 
@@ -30,16 +30,16 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string lb { get; set; }
 
         /// <summary>
-        /// Khoa phòngmangĐơn vịSố lượng
+        /// Khoa phòngmang Đơn vị Số lượng
         /// </summary>
         public string slStr { get; set; }
 
         /// <summary>
-        /// tổngTồn kho  Đơn vị nhỏ nhất
+        /// tổng Tồn kho  Đơn vị nhỏ nhất
         /// </summary>
         public int zkc { get; set; }
         /// <summary>
-        /// Giá bán lẻmangĐơn vị
+        /// Giá bán lẻmang Đơn vị
         /// </summary>
         public string lsjStr { get; set; }
         /// <summary>
@@ -53,12 +53,12 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public decimal lsze { get; set; }
 
         /// <summary>
-        /// vàogiáĐơn giá(vàkcxx.zhyztương ứng)
+        /// vàogiá Đơn giá(vàkcxx.zhyztương ứng)
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// vàogiáĐơn giá(Đơn vị nhỏ nhất)
+        /// vàogiá Đơn giá(Đơn vị nhỏ nhất)
         /// </summary>
         public decimal minjj { get; set; }
 
@@ -68,12 +68,12 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public decimal jjze { get; set; }
 
         /// <summary>
-        /// Khoa phòngTên đơn vị
+        /// Khoa phòng Tên đơn vị
         /// </summary>
         public string bmdwmc { get; set; }
         
         /// <summary>
-        /// Đơn vị nhỏ nhấtTên
+        /// Đơn vị nhỏ nhất Tên
         /// </summary>
         public string zxdwmc { get; set; }
 
@@ -108,16 +108,16 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public int zhyz { get; set; }
 
         /// <summary>
-        /// có thểdùngTồn kho
+        /// có thểdùng Tồn kho
         /// </summary>
         public int kykcsl { get; set; }
         /// <summary>
         /// Giá trị cảnh báo tồn kho
         /// </summary>
         public int? kcyjz { get; set; }
-        //vật tưĐơn vị nhỏ nhấtvàogiá
+        //vật tư Đơn vị nhỏ nhấtvàogiá
         public decimal? wzjj { get; set; }
-        //vật tưĐơn vị nhỏ nhấtGiá bán lẻ
+        //vật tư Đơn vị nhỏ nhất Giá bán lẻ
         public decimal? wzlsj { get; set; }
         
         /// <summary>

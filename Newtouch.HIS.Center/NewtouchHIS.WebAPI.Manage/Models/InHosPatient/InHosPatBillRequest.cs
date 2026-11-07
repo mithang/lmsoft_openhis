@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.WebAPI.Manage.Models.InHosPatient
 {
     /// <summary>
-    /// Truy vấn hóa đơn nội trúRequest
+    /// Truy vấn hóa đơn nội trú Request
     /// </summary>
     public class InHosPatBillRequest
     {
@@ -10,7 +10,7 @@
         /// </summary>
         public string? zyh { get; set; }
         /// <summary>
-        /// Khám bệnhSố thẻ
+        /// Khám bệnh Số thẻ
         /// </summary>
         public string? kh { get; set; }
         /// <summary>

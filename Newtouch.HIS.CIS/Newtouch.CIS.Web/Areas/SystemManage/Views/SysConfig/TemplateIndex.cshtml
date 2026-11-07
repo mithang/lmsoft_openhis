@@ -23,7 +23,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keywordTmp" type="text" class="form-control" placeholder="Cấu hìnhTên/Cấu hìnhMã" style="width: 200px;">
+                        <input id="txt_keywordTmp" type="text" class="form-control" placeholder="Cấu hình Tên/Cấu hình Mã" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_searchTmp" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -59,8 +59,8 @@
                 { label: 'Sắp xếp', name: 'px', width: 40, align: 'left' },
                 { label: 'Người tạo', name: 'CreatorCode', width: 80, align: 'left' },
                 { label: 'Thời gian tạo', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: 'Cuối cùngSửa', name: 'LastModifierCode', width: 80, align: 'left' },
-                { label: 'Cuối cùngSửaThời gian', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Cuối cùng Sửa', name: 'LastModifierCode', width: 80, align: 'left' },
+                { label: 'Cuối cùng Sửa Thời gian', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
             ],
             ondblClickRow: function (rowid) { btn_editTmp(); }
         });
@@ -74,7 +74,7 @@
     function btn_addTmp() {
         $.modalOpen({
             id: "Form",
-            title: "Thêm mớiCấu hìnhMẫu",
+            title: "Thêm mới Cấu hình Mẫu",
             url: "/SystemManage/SysConfig/TemplateForm",
             width: "450px",
             height: "350px",
@@ -97,7 +97,7 @@
         }
         $.modalOpen({
             id: "Form",
-            title: "SửaCấu hình",
+            title: "Sửa Cấu hình",
             url: "/SystemManage/SysConfig/TemplateForm?keyValue=" + keyValue,
             width: "450px",
             height: "350px",

@@ -106,7 +106,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
                 VisitNo = visitNo ?? "",
                 OrderType = request.Data.OrderType,
             };
-            //Bệnh nhânThông tin địa chỉ nhận(Không bắt buộc)
+            //Bệnh nhân Thông tin địa chỉ nhận(Không bắt buộc)
             if (request.Data.addressInfo != null)
             {
                 var address = request.Data.addressInfo.Adapt<SysPatientAddressEntity>();
@@ -129,7 +129,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
         }
 
         /// <summary>
-        /// Thanh toán hóa đơnstep2:Đăng kýKhóa đơn hàng
+        /// Thanh toán hóa đơnstep2:Đăng ký Khóa đơn hàng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

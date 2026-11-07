@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.ValueObjects.Inpatient
 {
     /// <summary>
-    /// khingàyXem
+    /// khingày Xem
     /// </summary>
     public class CurrentViewVO
     {

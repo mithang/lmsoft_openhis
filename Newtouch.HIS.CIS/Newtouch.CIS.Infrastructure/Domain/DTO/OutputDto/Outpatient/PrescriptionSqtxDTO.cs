@@ -19,7 +19,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string MZH { get; set; }
 
         /// <summary>
-        /// Liệt kê 1 Thuốc TâyĐơn thuốc 2 Thuốc Đông yĐơn thuốc 3 Phục hồi chức năngĐơn thuốc 4 Xét nghiệmĐơn thuốc 5 Kiểm traĐơn thuốc 6 truyền dịchĐơn thuốc
+        /// Liệt kê 1 Thuốc Tây Đơn thuốc 2 Thuốc Đông y Đơn thuốc 3 Phục hồi chức năng Đơn thuốc 4 Xét nghiệm Đơn thuốc 5 Kiểm tra Đơn thuốc 6 truyền dịch Đơn thuốc
         /// </summary>
         public string CFH { get; set; }
 

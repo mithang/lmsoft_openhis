@@ -1,6 +1,6 @@
 
 @{
-    ViewBag.Title = "KêĐơn thuốc(Y lệnh)Nhắc trước";
+    ViewBag.Title = "Kê Đơn thuốc(Y lệnh)Nhắc trước";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -22,16 +22,16 @@
             height: $(window).height() - 80,
             shrinkToFit: false,   //true:theo tỷ lệ VD khởi tạo độ rộng cột false:Sử dụngcolModelđộ rộng đã chỉ định
             autowidth: true,
-            rownumbers: false,  //CóKhôngHiển thịSố thứ tự
+            rownumbers: false,  //Có Không Hiển thị Số thứ tự
             unwritten: false,
             colModel: [
                 { label: 'Số đơn thuốc', name: 'AKC220', width: 80, align: 'center' },
-                { label: 'Thuốc/MụcMã', name: 'AKE001', width: 80, align: 'center' },
-                { label: 'Bảo hiểm y tếThuốc/Tên mục', name: 'AKE002', width: 120, align: 'center' },
+                { label: 'Thuốc/Mục Mã', name: 'AKE001', width: 80, align: 'center' },
+                { label: 'Bảo hiểm y tế Thuốc/Tên mục', name: 'AKE002', width: 120, align: 'center' },
                 { label: 'Tên quy tắc vi phạm', name: 'BZE868', width: 80, align: 'center'},
-                { label: 'Vi phạmMô tả', name: 'AAE013', width: 150, align: 'center' },
+                { label: 'Vi phạm Mô tả', name: 'AAE013', width: 150, align: 'center' },
                 {
-                    label: 'Vi phạmCấp độ', name: 'BAZ969', width: 60, align: 'center', formatter: function (cellvalue) {
+                    label: 'Vi phạm Cấp độ', name: 'BAZ969', width: 60, align: 'center', formatter: function (cellvalue) {
                         return cellvalue == '01' ? 'Nghiêm trọng' : (cellvalue=='02' ? 'Cảnh báo':'Nhắc nhở')
                     }
                 },

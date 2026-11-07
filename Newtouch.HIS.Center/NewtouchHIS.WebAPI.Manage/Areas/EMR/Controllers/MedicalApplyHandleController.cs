@@ -13,7 +13,7 @@ using NewtouchHIS.WebAPI.Manage.Controllers;
 namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
 {
     /// <summary>
-    /// Bệnh ánĐăng kýPhê duyệt
+    /// Bệnh án Đăng ký Phê duyệt
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -32,7 +32,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
             _applyhandleDmn = applyhandleDmn;
         }
         /// <summary>
-        /// Đăng kýPhê duyệt/ Phê duyệt,Bác bỏ
+        /// Đăng ký Phê duyệt/ Phê duyệt,Bác bỏ
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -42,7 +42,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
         {
             if (request == null || request.Data == null || string.IsNullOrWhiteSpace(request.OrganizeId))
             {
-                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId là bắt buộc" };
+                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id là bắt buộc" };
             }
             var data = await _applyhandleDmn.ApplyApprove(request.Data,request.OrganizeId, DBEnum.EmrDb);
 

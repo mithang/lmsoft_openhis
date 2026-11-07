@@ -4,7 +4,7 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// Quyền vai tròApp
+    /// Quyền vai trò App
     /// </summary>
     public interface IRoleAuthorizeApp
     {

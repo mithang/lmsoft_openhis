@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.OR.ManageSystem.Domain.DTO.OutputDto
 {
 	/// <summary>
-	/// Hệ thốngTừ điển phẫu thuật
+	/// Hệ thống Từ điển phẫu thuật
 	/// </summary>
 	public class SysOpListDto
 	{
@@ -20,7 +20,7 @@ namespace Newtouch.OR.ManageSystem.Domain.DTO.OutputDto
 		/// </summary>
 		public string ssmc { get; set; }
 		/// <summary>
-		/// Phẫu thuậtMã gợi nhớ
+		/// Phẫu thuật Mã gợi nhớ
 		/// </summary>
 		public string zjm { get; set; }
 		/// <summary>

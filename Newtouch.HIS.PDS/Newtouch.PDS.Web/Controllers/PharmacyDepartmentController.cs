@@ -100,7 +100,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Success("Thao tác thành công");
         }
 
-        //#region xt_yfbm_ypBảo trì
+        //#region xt_yfbm_yp Bảo trì
 
         ///// <summary>
         ///// Trang chính 

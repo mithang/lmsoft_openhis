@@ -9,7 +9,7 @@ using NewtouchHIS.Lib.Base.Model;
 namespace NewtouchHIS.WebAPI.Manage.Areas.LIS.Controllers
 {
     /// <summary>
-    /// Bệnh nhânQuản lý thông tin cơ bản(Ưu tiên tự chi trả)
+    /// Bệnh nhân Quản lý thông tin cơ bản(Ưu tiên tự chi trả)
     /// </summary>
     [Route("api/lis")]
     [ApiController]
@@ -157,7 +157,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.LIS.Controllers
         }
 
         /// <summary>
-        /// LấyĐăng kýThông tin phiếu 
+        /// Lấy Đăng ký Thông tin phiếu 
         /// </summary>
         /// <returns>List</returns>
         //[HttpPost]

@@ -20,20 +20,20 @@ namespace Newtouch.Domain.ValueObjects
         public decimal? age { get; set; }
         public string insutype { get; set; }
         /// <summary>
-        ///  ngườiviênLoại
+        ///  ngườiviên Loại
         /// </summary>
         public string psn_type { get; set; }
         /// <summary>
-        /// côngvụviênCờ
+        /// côngvụviên Cờ
         /// </summary>
         public string cvlserv_flag { get; set; }
         public DateTime? setl_time { get; set; }
         /// <summary>
-        /// Khám bệnhChứng từLoại
+        /// Khám bệnh Chứng từ Loại
         /// </summary>
         public string mdtrt_cert_type { get; set; }
         /// <summary>
-        /// y tếLoại
+        /// y tế Loại
         /// </summary>
         public string med_type { get; set; }
         /// <summary>
@@ -41,19 +41,19 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public decimal? medfee_sumamt { get; set; }
         /// <summary>
-        /// toàntự chi trảSố tiền
+        /// toàntự chi trả Số tiền
         /// </summary>
         public decimal? fulamt_ownpay_amt { get; set; }
         /// <summary>
-        /// vượthạngiátự chi trảChi phí
+        /// vượthạngiátự chi trả Chi phí
         /// </summary>
         public decimal? overlmt_selfpay { get; set; }
         /// <summary>
-        /// trướcdòngtựtrảSố tiền
+        /// trướcdòngtựtrả Số tiền
         /// </summary>
         public decimal? preselfpay_amt { get; set; }
         /// <summary>
-        /// kýhợpchính sáchphạm viSố tiền
+        /// kýhợpchính sáchphạm vi Số tiền
         /// </summary>
         public decimal? inscp_scp_amt { get; set; }
         /// <summary>
@@ -81,7 +81,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public decimal? hifmi_pay { get; set; }
         /// <summary>
-        /// chứccônglớnmứcy tếChi phíbổ sunggiúp cơ sởkimchira
+        /// chứccônglớnmứcy tế Chi phíbổ sunggiúp cơ sởkimchira
         /// </summary>
         public decimal? hifob_pay { get; set; }
         /// <summary>
@@ -89,7 +89,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public decimal? maf_pay { get; set; }
         /// <summary>
-        /// yviệngánh nặngSố tiền
+        /// yviệngánh nặng Số tiền
         /// </summary>
         public decimal? hosp_part_amt { get; set; }
         public decimal? oth_pay { get; set; }
@@ -98,11 +98,11 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public decimal? fund_pay_sumamt { get; set; }
         /// <summary>
-        /// Cá nhângánh nặngTổng số tiền
+        /// Cá nhângánh nặng Tổng số tiền
         /// </summary>
         public decimal? psn_part_amt { get; set; }
         /// <summary>
-        /// Cá nhânTài khoảnchira
+        /// Cá nhân Tài khoảnchira
         /// </summary>
         public decimal? acct_pay { get; set; }
         /// <summary>
@@ -118,7 +118,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public decimal? acct_mulaid_pay { get; set; }
         /// <summary>
-        /// ythuốcCơ sởquyết toán ID
+        /// ythuốc Cơ sởquyết toán ID
         /// </summary>
         public string medins_setl_id { get; set; }
         public string clr_optins { get; set; }

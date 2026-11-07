@@ -33,7 +33,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
             return dic;
         }
         /// <summary>
-        /// LấyRtcuserid
+        /// Lấy Rtcuserid
         /// </summary>
         /// <param name="Rtcuserid"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         }
 
         /// <summary>
-        /// DateTimeChuyển thành dấu thời gian
+        /// DateTime Chuyển thành dấu thời gian
         /// </summary>
         /// <param name="dateTime"></param>
         /// <returns></returns>
@@ -59,7 +59,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
             return timeStamp;
         }
         /// <summary>
-        /// Dấu thời gian chuyển thànhDateTime
+        /// Dấu thời gian chuyển thành DateTime
         /// </summary>
         /// <param name="timeStamp"></param>
         /// <returns></returns>

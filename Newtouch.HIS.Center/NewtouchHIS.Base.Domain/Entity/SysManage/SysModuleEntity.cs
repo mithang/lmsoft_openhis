@@ -17,7 +17,7 @@ namespace NewtouchHIS.Base.Domain.Entity
     public partial class SysModuleEntity : IEntity
     {
         /// <summary>
-        /// Desc:Mô-đunKhóa chính
+        /// Desc:Mô-đun Khóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           

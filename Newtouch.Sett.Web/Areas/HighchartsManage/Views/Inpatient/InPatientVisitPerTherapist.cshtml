@@ -7,7 +7,7 @@
     var discharge = [];
     var visitper = [];
     $(function () {
-        //Nạp lại khi thay đổi kích thước cửa sổ trình duyệtjqGridChiều rộng
+        //Nạp lại khi thay đổi kích thước cửa sổ trình duyệtjqGrid Chiều rộng
         $(window).resize(function () {
             initLayout("tabGrid");
         });
@@ -52,7 +52,7 @@
     }
 
     function Merger(gridName, CellName) {
-        //lấy được để hiển thị lên giao diệnidTập hợp
+        //lấy được để hiển thị lên giao diệnid Tập hợp
         var mya = $("#" + gridName + "").getDataIDs();
         //Hiện đang hiển thị bao nhiêu dòng
         var length = mya.length;

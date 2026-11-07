@@ -5,7 +5,7 @@ namespace NewtouchHIS.Lib.Base.SQLSugar
     public class SqlSugarHelper
     {
         /// <summary>
-        /// Khởi tạoSqlSugarClient
+        /// Khởi tạo SqlSugarClient
         /// </summary>
         /// <returns>Trả về đối tượng SqlSugarClient</returns>
         public static SqlSugarClient GetInstance(DbType dbType, string dbName)

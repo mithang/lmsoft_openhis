@@ -113,7 +113,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// thêm mớihoặcsửaForm
+        /// thêm mớihoặcsửa Form
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>

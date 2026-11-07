@@ -6,11 +6,11 @@ namespace NewtouchHIS.Lib.Base.Model
     {
         [Required(ErrorMessage = "Id ứng dụng (AppId) bắt buộc phải truyền")]
         /// <summary>
-        /// ứng dụngId
+        /// ứng dụng Id
         /// </summary>
         public string AppId { get; set; }
         /// <summary>
-        /// tổ chứcId
+        /// tổ chức Id
         /// </summary>
         public string? OrganizeId { get; set; }
 

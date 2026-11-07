@@ -145,7 +145,7 @@
     var thistype = 1;
 
     $(function () {
-        $(window).resize(function () {//Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGridChiều rộng của
+        $(window).resize(function () {//Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGrid Chiều rộng của
             window.initLayout("div_Patlist");
             window.initLayout("dv_Medlist");
         });
@@ -291,7 +291,7 @@
     function initrightMenu(rowData) {
         var p = '.gridPanel tr[id=' + rowData.Id + ']';
         var menu = new BootstrapMenu(p, {
-            //fetchElementDataLấy siêu dữ liệu
+            //fetchElementData Lấy siêu dữ liệu
             fetchElementData: function ($rowElem) {
                 var data = rowData;
                 return data;    //mục đích của return là truyền tham số cho onClick bên dưới
@@ -385,7 +385,7 @@
     function initrightMenuJustShow(rowData) {
         var p = '.gridPanel tr[id=' + rowData.Id + ']';
         var menu = new BootstrapMenu(p, {
-            //fetchElementDataLấy siêu dữ liệu
+            //fetchElementData Lấy siêu dữ liệu
             fetchElementData: function ($rowElem) {
                 var data = rowData;
                 return data;    //mục đích của return là truyền tham số cho onClick bên dưới

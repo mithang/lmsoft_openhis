@@ -16,7 +16,7 @@ namespace NewtouchHIS.Base.DomainService.EMR
     public class MedicalHomeRDmnService : BaseServices<MedicalHomeVO>, IMedicalHomeRDmnService
     {
         /// <summary>
-        /// Truy vấnBệnh nhânThông tin trọng điểm trang đầu bệnh án(with:Chẩn đoán,Phẫu thuật)
+        /// Truy vấn Bệnh nhân Thông tin trọng điểm trang đầu bệnh án(with:Chẩn đoán,Phẫu thuật)
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

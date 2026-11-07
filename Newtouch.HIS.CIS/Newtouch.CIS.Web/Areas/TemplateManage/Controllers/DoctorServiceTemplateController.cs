@@ -38,12 +38,12 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             this._iBaseDataDmnService = iBaseDataDmnService;
         }
         public override IActionResult Index() {
-            ViewBag.bhbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId, true);//Nhập việnY lệnhgóiCóKhônggóichứaKhu bệnh
+            ViewBag.bhbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId, true);//Nhập việnY lệnhgói Có Khônggóichứa Khu bệnh
             return View();
         }
         public IActionResult ItemForm()
         {
-            ViewBag.bwhide = _sysConfigRepo.GetValueByCode("bwhide", OrganizeId) ?? "false";//Nhập việnMụcnhậpVị tríHiển thịẨncấu hình    
+            ViewBag.bwhide = _sysConfigRepo.GetValueByCode("bwhide", OrganizeId) ?? "false";//Nhập viện Mụcnhập Vị trí Hiển thị Ẩncấu hình    
             return View();
         }
         public IActionResult MedicineForm()
@@ -62,7 +62,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
         public IActionResult RehabForm()
         {
-           ViewBag.bwhide = _sysConfigRepo.GetValueByCode("bwhide", OrganizeId) ?? "false";//Nhập việnMụcnhậpVị tríHiển thịẨncấu hình    
+           ViewBag.bwhide = _sysConfigRepo.GetValueByCode("bwhide", OrganizeId) ?? "false";//Nhập viện Mụcnhập Vị trí Hiển thị Ẩncấu hình    
             return View();
         }
 
@@ -132,7 +132,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             {
                 treeList.Add(new TreeViewModel()
                 {
-                    id = "",   //mẫuId
+                    id = "",   //mẫu Id
                     value = item.tclx.ToString(),
                     text = item.tcmc,
                     parentId = item.tclx.ToString(),
@@ -153,7 +153,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             switch (mbObj.tcfw) {
                 case (int)EnumCfMbLx.personal:
                     mbObj.ysgh = UserIdentity.rygh;
-                    break; //Cá nhânkhi,Bác sĩGán giá trị
+                    break; //Cá nhânkhi,Bác sĩ Gán giá trị
                 case (int)EnumCfMbLx.department:
                     mbObj.DeptCode = UserIdentity.DepartmentCode;
                     break; //Khoakhi

@@ -58,7 +58,7 @@
                         url: "/TemplateManage/InspectionTemplate/GetGPackageDetailByZtId",
                         postData: { ztId: item.id, mbId: item.parentnodes }
                     }).trigger("reloadGrid");
-                    $grid.jqGrid("setCaption", item.text);   //Đặt lạicaptionGiá trị thuộc tính
+                    $grid.jqGrid("setCaption", item.text);   //Đặt lạicaption Giá trị thuộc tính
                 }
                 if ($griddetail) {
                     $griddetail.clearGridData();

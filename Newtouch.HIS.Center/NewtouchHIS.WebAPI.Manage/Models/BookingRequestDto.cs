@@ -6,7 +6,7 @@ namespace NewtouchHIS.WebAPI.Manage.Models
     {
         public string OrgId { get; set; }
         /// <summary>
-        /// Bệnh nhânMã định danh duy nhất
+        /// Bệnh nhân Mã định danh duy nhất
         /// </summary>
         public string patid { get; set; }
         /// <summary>
@@ -50,7 +50,7 @@ namespace NewtouchHIS.WebAPI.Manage.Models
         /// </summary>
         public string ghpbId { get; set; }
         /// <summary>
-        /// mz_ghpb_schedule Lịch trình đã định của đặt hẹnId
+        /// mz_ghpb_schedule Lịch trình đã định của đặt hẹn Id
         /// </summary>
         public string scheduId { get; set; }
         /// <summary>
@@ -90,7 +90,7 @@ namespace NewtouchHIS.WebAPI.Manage.Models
         /// </summary>
         public string ghrq { get; set; }
         /// <summary>
-        /// Mã phụ trợ nguồn đăng ký khám Phân biệt dấu hiệu khác nhau của cùng một nguồnBệnh nhân
+        /// Mã phụ trợ nguồn đăng ký khám Phân biệt dấu hiệu khác nhau của cùng một nguồn Bệnh nhân
         /// Dùng cho khám sức khỏe
         /// </summary>
         public string ghlybz { get; set; }

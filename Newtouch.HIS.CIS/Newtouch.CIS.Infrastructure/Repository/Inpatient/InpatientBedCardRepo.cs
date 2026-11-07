@@ -16,7 +16,7 @@ namespace Newtouch.Repository.Inpatient
 	public class InpatientBedCardRepo : RepositoryBase<InpatientBedCardEntity>, IInpatientBedCardRepo
 	{
 		/// <summary>
-	 /// Mặc địnhHàm khởi tạosố
+	 /// Mặc định Hàm khởi tạosố
 	 /// </summary>
 	 /// <param name="databaseFactory">EF trên dưới văn Nhà máy</param>
 		public InpatientBedCardRepo()
@@ -29,7 +29,7 @@ namespace Newtouch.Repository.Inpatient
 		/// Lưubảngphiếu(Thêm mới,Sửa)
 		/// </summary>
 		/// <param name="entity">thựcthểđối tượng</param>
-		/// <param name="keyValue">Khóa chínhGiá trị</param>
+		/// <param name="keyValue">Khóa chính Giá trị</param>
 		public bool SubmitForm(InpatientBedCardEntity entity, string zyh)
 		{
 			if (!string.IsNullOrEmpty(zyh))
@@ -66,9 +66,9 @@ namespace Newtouch.Repository.Inpatient
 		}
 
 		/// <summary>
-		/// XóaDữ liệu
+		/// Xóa Dữ liệu
 		/// </summary>
-		/// <param name="keyValue">Khóa chínhGiá trị</param>
+		/// <param name="keyValue">Khóa chính Giá trị</param>
 		public void DeleteForm(string keyValue)
 		{
 			this.Delete(p => p.Id == keyValue);

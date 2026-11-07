@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects
 {
     /// <summary>
-    /// tronggiữakhoĐồng bộđếnbảnđịa
+    /// tronggiữakho Đồng bộđếnbảnđịa
     /// </summary>
     public class SysIDBVO
     {
@@ -18,47 +18,47 @@ namespace Newtouch.Domain.ValueObjects
 
 
         /// <summary>
-        /// Dư thừađăng ký khámthông tin  Liệt kê 1 thông thườngNgoại trú 2 gấpkhám 3chuyên gia
+        /// Dư thừađăng ký khámthông tin  Liệt kê 1 thông thường Ngoại trú 2 gấpkhám 3chuyên gia
         /// </summary>
         public int mjzbz { get; set; }
 
         /// <summary>
-        /// tương ứngbillinggiao diệntrongcủaSố bệnh án
+        /// tương ứngbillinggiao diệntrongcủa Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// liên kếtbillingHệ thốngcủađăng ký khámbảng
+        /// liên kếtbilling Hệ thốngcủađăng ký khámbảng
         /// </summary>
         public string mzh { get; set; }
 
         /// <summary>
-        /// Dư thừaThông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhânchữđoạn
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// Dư thừaThông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhânchữđoạn
         /// </summary>
         public string xb { get; set; }
 
         /// <summary>
-        /// Dư thừaThông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhânchữđoạn
         /// </summary>
         public DateTime? csny { get; set; }
 
         /// <summary>
-        /// Dư thừaThông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhânchữđoạn
         /// </summary>
         public string brxzmc { get; set; }
 
         /// <summary>
-        /// Dư thừaThông tin bệnh nhânchữđoạn Liệt kê
+        /// Dư thừa Thông tin bệnh nhânchữđoạn Liệt kê
         /// </summary>
         public int? zjlx { get; set; }
 
         /// <summary>
-        /// Dư thừaThông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhânchữđoạn
         /// </summary>
         public string zjh { get; set; }
 
@@ -68,7 +68,7 @@ namespace Newtouch.Domain.ValueObjects
         public string ghksmc { get; set; }
 
         /// <summary>
-        /// Dư thừađăng ký khámbảngchữđoạn Bác sĩTên
+        /// Dư thừađăng ký khámbảngchữđoạn Bác sĩ Tên
         /// </summary>
         public string ghys { get; set; }
 

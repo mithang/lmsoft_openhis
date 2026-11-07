@@ -9,7 +9,7 @@ using Newtouch.Domain.ViewModels;
 namespace Newtouch.Application.Implementation
 {
     /// <summary>
-    /// Ngoại trúrakhámCài đặt
+    /// Ngoại trúrakhám Cài đặt
     /// </summary>
     public class VisitDeptSetApp : AppBase, IVisitDeptSetApp
     {
@@ -46,18 +46,18 @@ namespace Newtouch.Application.Implementation
                     CreateTime = DateTime.Now,
                     zt = vo.zt
                 };
-                return _visitDeptSetRepo.Insert(entity) > 0 ? "" : "Thêm mớingoại trúKhoathất bại";
+                return _visitDeptSetRepo.Insert(entity) > 0 ? "" : "Thêm mớingoại trú Khoathất bại";
             }
 
             var oldEntity = _visitDeptSetRepo.FindEntity(vo.Id);
-            if (oldEntity == null || string.IsNullOrWhiteSpace(oldEntity.ysgh)) return "Lấylịch sửngoại trúKhoathông tinthất bại";
+            if (oldEntity == null || string.IsNullOrWhiteSpace(oldEntity.ysgh)) return "Lấylịch sửngoại trú Khoathông tinthất bại";
             oldEntity.SubordinateDepartments = vo.SubordinateDepartments;
             oldEntity.visitksCode = vo.visitksCode;
             oldEntity.czlx = vo.czlx;
             oldEntity.zt = vo.zt;
             oldEntity.LastModifierCode = userCode;
             oldEntity.LastModifyTime = DateTime.Now;
-            return _visitDeptSetRepo.Update(oldEntity) > 0 ? "" : "sửangoại trúKhoathất bại";
+            return _visitDeptSetRepo.Update(oldEntity) > 0 ? "" : "sửangoại trú Khoathất bại";
         }
     }
 }

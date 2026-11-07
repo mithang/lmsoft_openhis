@@ -14,7 +14,7 @@ namespace Newtouch.Repository.Inpatient
     public class QhdZnshSqtxRepo : RepositoryBase<QhdZnshSqtxEntity>, IQhdZnshSqtxRepo
     {
         /// <summary>
-        /// Mặc địnhHàm khởi tạosố
+        /// Mặc định Hàm khởi tạosố
         /// </summary>
         /// <param name="databaseFactory">EF trên dưới văn Nhà máy</param>
         public QhdZnshSqtxRepo()
@@ -26,7 +26,7 @@ namespace Newtouch.Repository.Inpatient
         /// Lưu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">thựcthểđối tượng</param>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="keyValue">Khóa chính Giá trị</param>
         public void SubmitForm(QhdZnshSqtxEntity entity,out string rzid, string keyValue=null)
         {
             var keyId = "";

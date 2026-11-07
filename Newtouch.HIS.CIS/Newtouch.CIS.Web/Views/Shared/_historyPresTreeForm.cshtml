@@ -1,7 +1,7 @@
 @using Newtouch.Infrastructure;
 @{
     
-    //Công tắc:Có mở khôngXét nghiệmKiểm tra
+    //Công tắc:Có mở không Xét nghiệm Kiểm tra
     var iSOpenZycfnew = ViewData["ISOpenZycfnew"] as bool?;
     
 }
@@ -58,13 +58,13 @@
 					getActionStr = getdzcfActionStr();
                     grid = "griddzcf";
                 }
-                //bản lầnKhám bệnh   // Đã thu phíĐơn thuốcvàoelseTrích dẫnĐơn thuốc
+                //bản lần Khám bệnh   // Đã thu phí Đơn thuốcvàoelse Trích dẫn Đơn thuốc
                 if (item.Ex2 == "current"
                     && !(!!item.Ex1 && item.Ex1.toString().toLowerCase() === "true")) {
                     //Đặt lại đơn thuốc lịch sử, mẫu đơn thuốc
                     cfLeftFloatHide();
 
-                    //trùng lặpThêmđếnphảibêncủakiểm tra
+                    //trùng lặp Thêmđếnphảibêncủakiểm tra
                     var cfmxRepeated = false;
                     $.each($("#" + grid).jqGrid('getRowData_AllLine'), function () {
                         if (!cfmxRepeated) {
@@ -136,7 +136,7 @@
                     }
                     if (fromcflx == '@Html.Raw(((int)EnumCflx.Dzcf).ToString())') {
                         if ($("#griddzcf").jqGrid('getRowData_AllLine').length > 0) {
-                            $.modalAlert("Không thểĐồng thờiSửanhiều tờĐiện tửĐơn thuốc", 'warning');
+                            $.modalAlert("Không thể Đồng thời Sửanhiều tờ Điện tử Đơn thuốc", 'warning');
                             return;
                         }
                         if (window.alldataArray.dzcf) {
@@ -162,7 +162,7 @@
                     }
                     if (sourcecfdataArr && sourcecfdataArr.length) {
                         if (fromcflx == '@Html.Raw(((int)EnumCflx.TCMPres).ToString())') {
-                            //dánsố Cách dùng CóKhôngsắc hộ
+                            //dánsố Cách dùng Có Khôngsắc hộ
                             $("#cfyf").val(sourcecfdataArr[0].cfyf).trigger('change');
                             $("#tieshu").val(sourcecfdataArr[0].tieshu);
                             if (!!sourcecfdataArr[0].djbz) {
@@ -205,10 +205,10 @@
                     }
                 }
                 else {
-                    //Trích dẫnĐơn thuốc lịch sử
+                    //Trích dẫn Đơn thuốc lịch sử
                     $.modalOpen({
                         id: "FormShowHistoryPresForm",
-                        title: "Lịch sửĐơn thuốcChi tiết",
+                        title: "Lịch sử Đơn thuốc Chi tiết",
                         url: "/Prescription/HistoryPresForm?cfId=" + item.id + "&cflx=" + fromcflx + "&brxzCode=" + window.currPatientInfo.brxzCode,
                         width: "800px",
                         height: "650px",
@@ -222,14 +222,14 @@
                                     jj += 1;
                                     var allRowID = $("#" + grid).jqGrid('getDataIDs');
                                     var lastrowid = allRowID[allRowID.length - 1]
-                                    var lastRowData = $("#" + grid).getRowData(lastrowid);  //Lấycuối cùngmộtdòngcủaDữ liệu
+                                    var lastRowData = $("#" + grid).getRowData(lastrowid);  //Lấycuối cùngmộtdòngcủa Dữ liệu
                                     if (!!lastRowData && !!lastRowData.cfh) {
-                                        //sẽchi tiếtđuổithêmđếncuối cùngmộttờĐơn thuốc
+                                        //sẽchi tiếtđuổithêmđếncuối cùngmộttờ Đơn thuốc
                                         this.cfId = lastRowData.cfId;
                                         this.cfh = lastRowData.cfh;
                                     }
                                     else {
-                                        //xemlàĐơn thuốc mới
+                                        //xemlà Đơn thuốc mới
                                         this.cfId = null;
                                         this.cfh = GetNewPresNo();
                                     }
@@ -310,7 +310,7 @@
                                             && this.tieshu) {
                                             $('#tieshu').val(this.tieshu);
                                         }
-                                        //Thuốc Đông ycủaSố tiền
+                                        //Thuốc Đông ycủa Số tiền
                                        var tieshu = $.undefinedwith0($('#tieshu').val());    //dánsố
                                         if (tieshu) {
                                             //this.sl = roundingBy4she6ru5chengshuang((parseFloat(tieshu) * parseFloat($.undefinedwith0(this.mcjl))), 0);
@@ -339,7 +339,7 @@
                                             && this.tieshu) {
                                             $('#tieshu').val(this.tieshu);
                                         }
-                                        //Thuốc Đông ycủaSố tiền
+                                        //Thuốc Đông ycủa Số tiền
                                         var tieshu = $.undefinedwith0($('#tieshu').val());    //dánsố
                                         if (tieshu) {
                                             //this.sl = roundingBy4she6ru5chengshuang((parseFloat(tieshu) * parseFloat($.undefinedwith0(this.mcjl))), 0);
@@ -351,7 +351,7 @@
                                         }
                                     }
                                     if (isRepeatedAdd) {
-                                        $.modalAlert("Đơn lẻĐơn thuốcchi tiết trong không được trùng lặp", 'warning');
+                                        $.modalAlert("Đơn lẻ Đơn thuốcchi tiết trong không được trùng lặp", 'warning');
                                         return;
                                     }
                                     else {

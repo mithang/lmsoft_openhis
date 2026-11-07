@@ -100,7 +100,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public int Id { get; set; }//Khóa chính
         public string zxId { get; set; } //Thực hiện y lệnh ID
         public DateTime? tdrq { get; set; } //Ngày trả hồ sơ
-        public string ypCode { get; set; } //ThuốcCode
+        public string ypCode { get; set; } //Thuốc Code
         public decimal tysl { get; set; }//Số lượng trả thuốc
         public int tymxId { get; set; }//Chi tiết trả thuốc ID
         public string tybz { get; set; }// Ghi chú trả thuốc

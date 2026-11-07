@@ -39,11 +39,11 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly IOutpatientPrescriptionDetailBatchNumberRepo _mxphRepo;
 
         /// <summary>
-        /// bookHạng mục thất bại,Trả về cho bên yêu cầu
+        /// book Hạng mục thất bại,Trả về cho bên yêu cầu
         /// </summary>
         private readonly List<FailItemDetail> _failList;
         /// <summary>
-        /// bookHạng mục thành công, Khôi phục sau này
+        /// book Hạng mục thành công, Khôi phục sau này
         /// </summary>
         private readonly List<BookItemDo> _successList;
 

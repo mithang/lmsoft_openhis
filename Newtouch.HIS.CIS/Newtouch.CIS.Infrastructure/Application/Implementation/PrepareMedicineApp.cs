@@ -32,7 +32,7 @@ namespace Newtouch.Application.Implementation
 
         #region Báo hỏng báo thừa
         /// <summary>
-        /// Theolãi lỗLoạiLấynguyên nhân lãi lỗ
+        /// Theolãi lỗ Loại Lấynguyên nhân lãi lỗ
         /// </summary>
         /// <param name="sylx"></param>
         /// <returns></returns>
@@ -42,7 +42,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// Tra cứulãi lỗThuốclist
+        /// Tra cứulãi lỗ Thuốclist
         /// </summary>
         /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>
@@ -53,7 +53,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// GửiBáo hỏngbáo thừa
+        /// Gửi Báo hỏngbáo thừa
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>
@@ -102,9 +102,9 @@ namespace Newtouch.Application.Implementation
 
         #endregion
 
-        #region Báo hỏng báo thừaTra cứu
+        #region Báo hỏng báo thừa Tra cứu
         /// <summary>
-        /// Báo hỏngbáo thừaTra cứu
+        /// Báo hỏngbáo thừa Tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -119,7 +119,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// Giá bán buônTổng số tiền,Giá bán lẻTổng số tiềnTra cứu
+        /// Giá bán buôn Tổng số tiền,Giá bán lẻ Tổng số tiền Tra cứu
         /// </summary>
         /// <param name="startTime">Thời gian bắt đầu</param>
         /// <param name="endTime">Thời gian kết thúc</param>
@@ -148,7 +148,7 @@ namespace Newtouch.Application.Implementation
         //        {
         //            if (kcsl + item.Sysl >= 0)
         //            {
-        //                //Lưu(updateTồn kho insertlãi lỗbảng)
+        //                //Lưu(update Tồn kho insertlãi lỗbảng)
         //                _medicineDmnService.SaveReportLossAndProfit(item, kcsl, jj);
         //            }
         //            else
@@ -158,7 +158,7 @@ namespace Newtouch.Application.Implementation
         //        }
         //        else  //báo thừa
         //        {
-        //            //Lưu(updateTồn kho insertlãi lỗbảng)
+        //            //Lưu(update Tồn kho insertlãi lỗbảng)
         //            _medicineDmnService.SaveReportLossAndProfit(item, kcsl, jj);
         //        }
         //    }

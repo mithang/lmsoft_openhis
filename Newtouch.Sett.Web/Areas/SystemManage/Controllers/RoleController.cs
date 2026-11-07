@@ -18,7 +18,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 {
 
     /// <summary>
-    /// Vai tròController
+    /// Vai trò Controller
     /// </summary>
     [Area("SystemManage")]
 
@@ -56,7 +56,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             this._sysUserRoleRepo = sysUserRoleRepo;
         }
 
-        //Vai tròDanh sách gridjson
+        //Vai trò Danh sách gridjson
         [HttpGet]
 
         public IActionResult GetGridJson(Pagination pagination, string keyword, string OrganizeId)
@@ -106,7 +106,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// LưuVai tròdùnghộliên quanliênliên quanhệ
+        /// Lưu Vai tròdùnghộliên quanliênliên quanhệ
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -117,7 +117,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Vai trò(cây)   (dùnghộchínhđộngliên quanliênVai trò)
+        /// Vai trò(cây)   (dùnghộchínhđộngliên quanliên Vai trò)
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="organizeId"></param>

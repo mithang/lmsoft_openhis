@@ -9,7 +9,7 @@ namespace Newtouch.OR.ManageSystem.Domain
     public class PagingData<T>
     {
         /// <summary>
-        /// Cách sắp xếpascCần máy chủ của bạn sắp xếp theo thứ tự,descSắp xếp ngược
+        /// Cách sắp xếpasc Cần máy chủ của bạn sắp xếp theo thứ tự,desc Sắp xếp ngược
         /// </summary>
         public string order { get; set; }
         /// <summary>

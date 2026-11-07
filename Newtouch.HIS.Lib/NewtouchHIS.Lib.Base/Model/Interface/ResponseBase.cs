@@ -48,7 +48,7 @@
         /// </summary>
         ERROR = 20000,
         /// <summary>
-        /// TokenKhông hợp lệ
+        /// Token Không hợp lệ
         /// </summary>
         INVALIDTOKEN = 40000,
         /// <summary>

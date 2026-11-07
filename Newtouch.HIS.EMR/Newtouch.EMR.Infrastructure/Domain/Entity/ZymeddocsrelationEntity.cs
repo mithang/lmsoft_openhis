@@ -33,7 +33,7 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public string blId { get; set; }
         /// <summary>
-        /// Loại bệnh ánId
+        /// Loại bệnh án Id
         /// </summary>
         /// <returns></returns>
         public string mbId { get; set; }

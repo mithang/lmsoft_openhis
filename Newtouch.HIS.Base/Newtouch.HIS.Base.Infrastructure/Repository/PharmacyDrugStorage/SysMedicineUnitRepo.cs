@@ -67,7 +67,7 @@ namespace Newtouch.HIS.Repository
                     throw new FailedException("Tên đơn vị không được trùng lặp!");
                 }
 
-                SysMedicineUnitEntity oldEntity = null;   //Trước khi thay đổiEntity
+                SysMedicineUnitEntity oldEntity = null;   //Trước khi thay đổi Entity
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

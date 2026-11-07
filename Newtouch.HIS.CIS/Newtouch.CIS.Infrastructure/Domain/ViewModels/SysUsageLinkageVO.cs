@@ -33,12 +33,12 @@ namespace Newtouch.Domain.ViewModels
         public string sfxmmc { get; set; }
 
         /// <summary>
-        /// MụcMã nhóm lớn
+        /// Mục Mã nhóm lớn
         /// </summary>
         public string dlCode { get; set; }
 
         /// <summary>
-        /// MụcTên nhóm lớn
+        /// Mục Tên nhóm lớn
         /// </summary>
         public string dlmc { get; set; }
 

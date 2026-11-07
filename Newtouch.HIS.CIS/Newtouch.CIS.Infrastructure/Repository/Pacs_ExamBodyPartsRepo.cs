@@ -42,7 +42,7 @@ namespace Newtouch.Repository
             {
                 if (this.IQueryable().Any(p => p.OrganizeId == entity.OrganizeId && p.jcbwCode == entity.jcbwCode && p.Id != keyValue))
                 {
-                    throw new FailedException("Vị tríSố hiệu không được trùng lặp");
+                    throw new FailedException("Vị trí Số hiệu không được trùng lặp");
                 }
 
                 // FIX-2 B-CIS-03 (cung mau AuxiliaryDictionary: edit bang posted
@@ -63,7 +63,7 @@ namespace Newtouch.Repository
             {
                 if (this.IQueryable().Any(p => p.OrganizeId == entity.OrganizeId && p.jcbwCode == entity.jcbwCode))
                 {
-                    throw new FailedException("Vị tríSố hiệu không được trùng lặp");
+                    throw new FailedException("Vị trí Số hiệu không được trùng lặp");
                 }
                 entity.Create(true);
                 this.Insert(entity);

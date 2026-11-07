@@ -15,7 +15,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public int zdlx{ get; set; }
         /// <summary>
-        /// Nghi ngờCờ
+        /// Nghi ngờ Cờ
         /// </summary>
         public bool ysbz { get; set; }
         /// <summary>
@@ -27,15 +27,15 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string zdbz { get; set; }
         /// <summary>
-        /// răng ký tựhìnhLoại
+        /// răng ký tựhình Loại
         /// </summary>
         public string ywlx { get; set; }
         /// <summary>
-        /// răng ký tựhìnhVị trí
+        /// răng ký tựhình Vị trí
         /// </summary>
         public string ywstr { get; set; }
         /// <summary>
-        /// răng ký tựhìnhHiển thị
+        /// răng ký tựhình Hiển thị
         /// </summary>
         public string ywxs { get; set; }
     }

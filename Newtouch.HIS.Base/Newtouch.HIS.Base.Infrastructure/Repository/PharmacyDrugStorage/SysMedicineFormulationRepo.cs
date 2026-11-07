@@ -67,7 +67,7 @@ and (jxCode like @searchKeyword or jxmc like @searchKeyword or py like @searchKe
                     throw new FailedException("Tên dạng bào chế không được trùng lặp!");
                 }
 
-                SysMedicineFormulationEntity oldEntity = null;   //Trước khi thay đổiEntity
+                SysMedicineFormulationEntity oldEntity = null;   //Trước khi thay đổi Entity
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

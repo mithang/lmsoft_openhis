@@ -46,7 +46,7 @@ namespace NewtouchHIS.Domain.Entity.EMR
         public int SSOrder { get; set; }
 
         /// <summary>
-        /// Desc:Phẫu thuật và thủ thuậtMã
+        /// Desc:Phẫu thuật và thủ thuật Mã
         /// Default:
         /// Nullable:True
         /// </summary>           

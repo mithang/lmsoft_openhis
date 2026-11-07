@@ -1,5 +1,5 @@
 @{
-    ViewBag.Title = "Phục hồi chức năngĐề xuất";
+    ViewBag.Title = "Phục hồi chức năng Đề xuất";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <div class="gridPanel">
@@ -46,7 +46,7 @@
                { label: 'zxks', name: 'zxks', hidden: true },
                { label: 'Khoa thực hiện', name: 'zxksmc', align: 'left', width: 90 },
                { label: 'Người kê', name: 'CreatorName', align: 'left', width: 70 },
-               { label: 'KêNgày', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+               { label: 'Kê Ngày', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
             ],
             viewrecords: true,
             //gridComplete: function (data) {
@@ -73,21 +73,21 @@
                 var data = $("#gridList").getRowData(this);
                 if (data.zhbz == "1") {
                     $.modalAlert("【"+data.sfxmmc+"】Đề xuất phục hồi chức năng này đã được trích dẫn!", "warning");
-                    $("#gridList").jqGrid('setSelection', this, false); //Cài đặtjqGridĐã chọn
+                    $("#gridList").jqGrid('setSelection', this, false); //Cài đặtjqGrid Đã chọn
                     return false;
                 }
             }
         });
     }
-    ////đẩychưabịchọncủaDữ liệu
+    ////đẩychưabịchọncủa Dữ liệu
     //function GetNocheck() {
     //    var allIds = $("#gridList").jqGrid('getDataIDs');//Tất cảid 
     //    var selRowIds = jQuery("#gridList").jqGrid("getGridParam", "selarrrow");//Đã chọncủaid  
-    //    var rowList = $("#gridList").jqGrid('getRowData_AllLine', false);//Tất cảdòngDữ liệu
-    //    var NOchekcId = [];//chưabịĐã chọncủajqid
-    //    //LấychưaĐã chọncủa jqid
+    //    var rowList = $("#gridList").jqGrid('getRowData_AllLine', false);//Tất cảdòng Dữ liệu
+    //    var NOchekcId = [];//chưabị Đã chọncủajqid
+    //    //Lấychưa Đã chọncủa jqid
     //    for (key in allIds) {
-    //        var stra = allIds[key]; //chưaĐã chọncủa jqid
+    //        var stra = allIds[key]; //chưa Đã chọncủa jqid
     //        var count = 0;
     //        for (var j = 0; j < selRowIds.length; j++) {
     //            var strb = selRowIds[j];
@@ -112,14 +112,14 @@
     //}
 
     function AcceptClick(callBack) {
-        //cầnđẩycủachưachọncủaDữ liệu
+        //cầnđẩycủachưachọncủa Dữ liệu
         //var addRefeResult1 = GetNocheck();
         var rowList = $("#gridList").jqGrid('getRowData_AllLine', true);
         if (!(rowList && rowList.length)) {
             $.modalAlert("Chưa chọn đề xuất phục hồi chức năng", 'warning');
             return;
         }
-        //Quay lạiĐiều trịxâynghịTrích dẫnkếtnếu
+        //Quay lại Điều trịxâynghị Trích dẫnkếtnếu
         var addRefeResult = callBack(rowList);
         if (!(addRefeResult === false)) {
             //

@@ -16,19 +16,19 @@ namespace Newtouch.Domain.DTO.OutputDto.Inpatient.API
     }
 
     /// <summary>
-    /// Tra cứuThuốcTồn khoQuay lạibáovăn
+    /// Tra cứu Thuốc Tồn khoQuay lạibáovăn
     /// </summary>
     public class StockQueryResponseDTO
     {
         /// <summary>
-        /// ThuốcTồn khothông tin
+        /// Thuốc Tồn khothông tin
         /// </summary>
         public List<DrugStockInfo> drugStockInfos { get; set; }
 
     }
 
     /// <summary>
-    /// Tồn khoThuốcthông tin
+    /// Tồn kho Thuốcthông tin
     /// </summary>
     public class DrugStockInfo
     {
@@ -44,22 +44,22 @@ namespace Newtouch.Domain.DTO.OutputDto.Inpatient.API
         public string ypmc { get; set; }
 
         /// <summary>
-        /// lĩnhthuốcNhà thuốc
+        /// lĩnhthuốc Nhà thuốc
         /// </summary>
         public string lyyf { get; set; }
 
         /// <summary>
-        /// làmnhỏĐơn vịTồn khoSố lượng
+        /// làmnhỏ Đơn vị Tồn kho Số lượng
         /// </summary>
         public int kscl { get; set; }
 
         /// <summary>
-        /// làmnhỏĐơn vịđôngkếtSố lượng
+        /// làmnhỏ Đơn vịđôngkết Số lượng
         /// </summary>
         public int djsl { get; set; }
 
         /// <summary>
-        /// làmnhỏĐơn vịcó thểdùngSố lượng
+        /// làmnhỏ Đơn vịcó thểdùng Số lượng
         /// </summary>
         public int kysl { get; set; }
     }

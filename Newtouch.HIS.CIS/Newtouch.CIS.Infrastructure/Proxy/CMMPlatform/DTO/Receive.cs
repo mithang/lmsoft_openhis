@@ -7,7 +7,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO
     public class Receive
     {
         /// <summary>
-        /// Cơ sởMã
+        /// Cơ sở Mã
         /// bắt buộc
         /// </summary>
         public string orgCode { get; set; }

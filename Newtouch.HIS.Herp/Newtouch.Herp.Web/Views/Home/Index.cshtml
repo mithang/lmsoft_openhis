@@ -1,9 +1,9 @@
 ﻿@using Newtouch.Herp.Infrastructure;
 @{
     Layout = null;
-    //Có bắt buộc chọn ngay khi tải trang khôngOrg
+    //Có bắt buộc chọn ngay khi tải trang không Org
     var mediOrgList = ViewBag.MediOrgList as IList<Newtouch.Herp.Web.Models.HerpOrgItem>;
-    //Có bắt buộc chọn ngay khi tải trang khôngOrg
+    //Có bắt buộc chọn ngay khi tải trang không Org
     var needChooseOrg = (ViewBag.NeedChooseOrg as bool?) ?? false;
 }
 <!DOCTYPE html>

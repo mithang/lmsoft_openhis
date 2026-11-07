@@ -71,11 +71,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 {
                     list = _OrderAuditDmnService.GetOrderAuditYZList(pagination, patList, OrganizeId);
                 }
-                else if (isRehabDoctor) //Phục hồi chức năngY lệnhchỉKỹ thuật viên phục hồi chức năngPhê duyệt
+                else if (isRehabDoctor) //Phục hồi chức năngY lệnhchỉ Kỹ thuật viên phục hồi chức năng Phê duyệt
                 {
                     list = _OrderAuditDmnService.GetOrderAuditYZList_KF(pagination, patList, OrganizeId, this.UserIdentity.DepartmentCode);
                 }
-                else if (isNurse)  //Điều dưỡngkhôngủy quyềnthìkhôngphương phápPhê duyệtPhục hồi chức năngY lệnh
+                else if (isNurse)  //Điều dưỡngkhôngủy quyềnthìkhôngphương pháp Phê duyệt Phục hồi chức năngY lệnh
                 {
                     list = _OrderAuditDmnService.GetOrderAuditYZList(pagination, patList, OrganizeId, IsRehabAuthtoNurse);
                 }
@@ -150,7 +150,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// LấyKhu bệnhBệnh nhânChờ duyệtY lệnhcây
+        /// Lấy Khu bệnh Bệnh nhân Chờ duyệtY lệnhcây
         /// </summary>
         /// <param name="aa"></param>
         /// <returns></returns>
@@ -188,7 +188,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     string gender = itempat.sex == "1" ? "Nam" : "Nữ";
                     TreeViewModel treepat = new TreeViewModel();
                     treepat.id = itempat.zyh;
-                    //Số giường + Họ tên(Nhập việnSố ngày)+Số nhập viện + Tuổi +Giới tính
+                    //Số giường + Họ tên(Nhập viện Số ngày)+Số nhập viện + Tuổi +Giới tính
                     treepat.text = itempat.BedNo + "-" + itempat.hzxm + "(" + itempat.inHosDays + "ngày)" + "-" + itempat.zyh + "-" + itempat.nl + "tuổi-" + gender;
                     treepat.value = itempat.zyh;
                     treepat.parentId = item.bqCode;
@@ -224,7 +224,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         } 
          
         /// <summary>
-        /// nhậpTest dakếtnếu
+        /// nhập Test dakếtnếu
         /// </summary>
         /// <returns></returns>
         public IActionResult InputresultsSkintest()
@@ -305,7 +305,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             //entity.zt = entity.zt == "true" ? "1" : "0";
             OperatorModel user = this.UserIdentity;
             _OrderAuditDmnService.Inputskintestresults(user, orderList);
-            return Success("Test daNhậpthành công");
+            return Success("Test da Nhậpthành công");
         }
 
         public IActionResult AuditTips()
@@ -356,9 +356,9 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return View();
         }
         /// <summary>
-        /// Nhập việnY lệnhphát thuốcTra cứu
+        /// Nhập việnY lệnhphát thuốc Tra cứu
         /// </summary>
-        /// <param name="xm">bệnh ngườiHọ tên</param>
+        /// <param name="xm">bệnh người Họ tên</param>
         /// <param name="bqCode">Mã khu bệnh</param>
         /// <param name="ypmc">Tên thuốc</param>
         /// <param name="cw">giường ký tự</param>
@@ -398,7 +398,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         #region Đề nghị chuẩn bị thuốc của khoaQuản lý
         /// <summary>
-        /// Lấycầnđăng kýlĩnhcủaKhu bệnh
+        /// Lấycầnđăng kýlĩnhcủa Khu bệnh
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -408,7 +408,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// LấyKhoa
+        /// Lấy Khoa
         /// </summary>
         /// <returns></returns>
         public IActionResult GetSysDepartmentList()
@@ -417,7 +417,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Json(data);
         }
         /// <summary>
-        /// LưuKhoachuẩn bị thuốc
+        /// Lưu Khoachuẩn bị thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -447,7 +447,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Success(null, EFDBBaseFuncHelper.Instance.GetNewMedicineReceiptNo(djmc, yfbmCode, OrganizeId));
         }
         /// <summary>
-        /// chuẩn bị thuốcphiếucứGửi
+        /// chuẩn bị thuốcphiếucứ Gửi
         /// </summary>
         /// <param name="djmc"></param>
         /// <returns></returns>
@@ -466,7 +466,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         /// <summary>
-        /// Khoachuẩn bị thuốcĐăng ký
+        /// Khoachuẩn bị thuốc Đăng ký
         /// </summary>
         /// <returns></returns>
         public IActionResult PrepareMedicineApply()
@@ -476,7 +476,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return View();
         }
         /// <summary>
-        /// Khoachuẩn bị thuốcTồn khoQuản lý
+        /// Khoachuẩn bị thuốc Tồn kho Quản lý
         /// </summary>
         /// <returns></returns>
         public IActionResult PreparationStock()
@@ -528,7 +528,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-        /// LấyThuốcTồn kho
+        /// Lấy Thuốc Tồn kho
         /// </summary>
         /// <param name="djId"></param>
         /// <returns></returns>

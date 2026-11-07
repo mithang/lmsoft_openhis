@@ -21,7 +21,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Desc:Ứng dụngId
+        /// Desc:Ứng dụng Id
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -30,7 +30,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string AppAuthId { get; set; }
 
         /// <summary>
-        /// Desc:Ứng dụng bạn bèId
+        /// Desc:Ứng dụng bạn bè Id
         /// Default:
         /// Nullable:False
         /// </summary>           

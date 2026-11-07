@@ -10,7 +10,7 @@ namespace NewtouchHIS.Lib.Base.Filter
 {
 
     /// <summary>
-    /// WebApiBộ lọc kết quả trả về, thống nhất định dạng dữ liệu trả về
+    /// WebApi Bộ lọc kết quả trả về, thống nhất định dạng dữ liệu trả về
     /// </summary>
     public class AppResultFilter : Attribute, IActionFilter, IResultFilter, IExceptionFilter
     {

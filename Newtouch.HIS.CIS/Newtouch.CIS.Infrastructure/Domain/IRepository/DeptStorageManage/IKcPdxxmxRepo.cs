@@ -11,7 +11,7 @@ namespace Newtouch.Domain.IRepository.DeptStorageManage
     public interface IKcPdxxmxRepo : IRepositoryBase<KcPdxxmxEntity>
     {
         /// <summary>
-        /// Kiểm kêLưukhi đổihơnSố lượng
+        /// Kiểm kê Lưukhi đổihơn Số lượng
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         void UpdateSlBySaveInventoryInfo(List<SaveInventoryDTO> inventoryInfoList);

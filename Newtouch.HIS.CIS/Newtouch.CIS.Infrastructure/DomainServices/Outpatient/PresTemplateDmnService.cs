@@ -38,7 +38,7 @@ namespace Newtouch.DomainServices
             var cfEntity = _presTemplateRepo.FindEntity(mbId);
             if (cfEntity == null&& cflx!= ((int)EnumCflx.InspectionPres).ToString() && cflx!= ((int)EnumCflx.ExaminationPres).ToString())
             {
-                throw new FailedException("Dữ liệu bất thường，chưaTra cứuđếnmẫunội dung");
+                throw new FailedException("Dữ liệu bất thường，chưa Tra cứuđếnmẫunội dung");
             }
             var sql = "";
             if (cfEntity != null)
@@ -48,7 +48,7 @@ namespace Newtouch.DomainServices
                 bo.cfyf = cfEntity.cfyf;
                 bo.djbz = cfEntity.djbz;
                 bo.mblx = cfEntity.mblx;
-                if (cfEntity.cflx == (int)EnumCflx.RehabPres)   //Phục hồi chức năngĐơn thuốc
+                if (cfEntity.cflx == (int)EnumCflx.RehabPres)   //Phục hồi chức năng Đơn thuốc
                 {
                     sql = @"
 SELECT mbmx.mxId, mbId, xmCode, xmmc, mczll, pcCode, sl,
@@ -78,7 +78,7 @@ WHERE mbmx.OrganizeId = @orgId
         AND mbmx.mbId = @mbId
                 ";
                 }
-                else if (cfEntity.cflx == (int)EnumCflx.RegularItemPres|| cfEntity.cflx == (int)EnumCflx.Yyhc)   //Hạng mục thông thườngĐơn thuốc
+                else if (cfEntity.cflx == (int)EnumCflx.RegularItemPres|| cfEntity.cflx == (int)EnumCflx.Yyhc)   //Hạng mục thông thường Đơn thuốc
                 {
                     sql = @"
 SELECT mbmx.mxId, mbId, xmCode, xmmc, zl,mbmx.mczll,mbmx.sl,mbmx.pcCode,pc.yzpcmc pcmc,
@@ -97,7 +97,7 @@ WHERE mbmx.OrganizeId = @orgId
         AND mbmx.mbId = @mbId
                 ";
                 }
-                else if (cfEntity.cflx == (int)EnumCflx.WMPres || cfEntity.cflx == (int)EnumCflx.TCMPres) //ThuốcĐơn thuốc
+                else if (cfEntity.cflx == (int)EnumCflx.WMPres || cfEntity.cflx == (int)EnumCflx.TCMPres) //Thuốc Đơn thuốc
                 {
                     sql = @"
 SELECT mbmx.px,mbmx.mxId, mbmx.mbId, mbmx.ypCode, yp.ypmc, mcjl, mcjldw, yp.jldw AS redundant_jldw, mbmx.yfCode, pcCode, sl, mbmx.dw, zh,
@@ -166,15 +166,15 @@ WHERE mbmx.OrganizeId = @orgId
                     mbObj.Modify();
 
                     var dbMbObj = db.IQueryable<PresTemplateEntity>(p => p.mbId == mbObj.mbId).FirstOrDefault();
-                    mbObj.tieshu = dbMbObj.tieshu;  //bảogiữdánsố,sắc hộCờ,Đơn thuốcCách dùng
+                    mbObj.tieshu = dbMbObj.tieshu;  //bảogiữdánsố,sắc hộ Cờ,Đơn thuốc Cách dùng
                     mbObj.djbz = dbMbObj.djbz;
                     mbObj.cfyf = dbMbObj.cfyf;
-                    //đâynếunếulàThuốc Đông yĐơn thuốc,Số lượngkhôngCập nhậtcũngkhôngquan hệ,vìdẫndùngkhisẽ khôngháidùng
+                    //đâynếunếulà Thuốc Đông y Đơn thuốc,Số lượngkhông Cập nhậtcũngkhôngquan hệ,vìdẫndùngkhisẽ khôngháidùng
                     db.DetacheEntity(dbMbObj);
 
                     db.Update(mbObj);
 
-                    db.Delete<PresTemplateDetailEntity>(a => a.mbId == mbObj.mbId && a.OrganizeId == mbObj.OrganizeId); //trướctoànxóa,lạiThêm mới
+                    db.Delete<PresTemplateDetailEntity>(a => a.mbId == mbObj.mbId && a.OrganizeId == mbObj.OrganizeId); //trướctoànxóa,lại Thêm mới
                 }
                 else
                 {

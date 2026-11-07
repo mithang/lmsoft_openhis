@@ -162,7 +162,7 @@ where a.[OrganizeId]=@orgId and a.zt='1'
 
         #region bllx old(int)
         /// <summary>
-        /// Theo loại bệnh ánIdLấy dấu hiệu tên loại lớn bệnh án
+        /// Theo loại bệnh án Id Lấy dấu hiệu tên loại lớn bệnh án
         /// </summary>
         /// <param name="bllxId"></param>
         /// <param name="OrgId"></param>
@@ -212,7 +212,7 @@ where a.[OrganizeId]=@orgId and a.zt='1'
         }
 
         /// <summary>
-        /// Thông quabllxLấy thông tin liên quan loại lớn bệnh án
+        /// Thông quabllx Lấy thông tin liên quan loại lớn bệnh án
         /// </summary>
         /// <param name="OrgId"></param>
         /// <param name="Code"></param>

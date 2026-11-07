@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ITreatmentRepo : IRepositoryBase<TreatmentEntity>
     {
         /// <summary>
-        /// đãKhám bệnh Khám bệnhtrong danh sách( đãKhám bệnh: chỉcó thểXemtựtựtêndướicủaBệnh nhân)
+        /// đã Khám bệnh Khám bệnhtrong danh sách( đã Khám bệnh: chỉcó thể Xemtựtựtêndướicủa Bệnh nhân)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<RegisteredInfoRespVO> GetghList(string xm, string blh, string orgid);
 
         /// <summary>
-        /// khôi phụclạiKhám bệnh
+        /// khôi phụclại Khám bệnh
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="jzId"></param>
@@ -54,7 +54,7 @@ namespace Newtouch.HIS.Domain.IRepository
         List<TreatmentEntity> SelectDataByMzh(string mzh, string organizeId);
 
         /// <summary>
-        ///SửaCmmPatId
+        ///Sửa CmmPatId
         /// </summary>
         /// <param name="cmmPatId"></param>
         /// <param name="jzId"></param>

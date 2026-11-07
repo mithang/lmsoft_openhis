@@ -19,7 +19,7 @@ namespace Newtouch.Repository.Outpatient
         }
 
         /// <summary>
-        /// đăng ký khámPhòng khámLưu
+        /// đăng ký khám Phòng khám Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace Newtouch.Repository.Outpatient
         }
 
         /// <summary>
-        /// Cập nhậtgọisốTrạng thái
+        /// Cập nhậtgọisố Trạng thái
         /// </summary>
         /// <param name="id"></param>
         /// <param name="calledstu"></param>

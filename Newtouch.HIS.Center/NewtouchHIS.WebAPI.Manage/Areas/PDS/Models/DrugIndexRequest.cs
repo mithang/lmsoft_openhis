@@ -10,7 +10,7 @@
         /// </summary>
         public string? dlcode { get; set; }
         /// <summary>
-        /// ThuốcMã
+        /// Thuốc Mã
         /// </summary>
         public string? ypcode { get; set; }
         /// <summary>
@@ -18,7 +18,7 @@
         /// </summary>
         public string? ypmc { get; set; }
         /// <summary>
-        /// Tổ chứcId
+        /// Tổ chức Id
         /// </summary>
         public string orgId { get; set; }
         /// <summary>

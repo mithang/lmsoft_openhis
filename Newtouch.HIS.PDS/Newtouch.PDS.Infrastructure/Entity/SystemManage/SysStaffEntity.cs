@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string py { get; set; }
 
         /// <summary>
-        /// Bộ phậnCode
+        /// Bộ phận Code
         /// </summary>
         public string DepartmentCode { get; set; }
 

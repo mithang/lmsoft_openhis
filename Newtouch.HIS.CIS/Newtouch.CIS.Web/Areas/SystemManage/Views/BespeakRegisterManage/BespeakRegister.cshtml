@@ -221,7 +221,7 @@
                 { label: 'Tên khoa', name: 'Name', width: 150, align: 'left' }
             ],
             onSelectRow: function (rowid) {
-                //dấughiKhoa
+                //dấughi Khoa
                 var rowData = $('#deptGridList').jqGrid('getRowData', rowid);
                 $("#sp_deptName").html("/ " + rowData.Name);
                 $("#sp_zjName").html("");
@@ -379,7 +379,7 @@
         if (!rowid) {
             return;
         }
-        //dấughiKhoa
+        //dấughi Khoa
         var rowData = $('#deptGridList').jqGrid('getRowData', rowid);
         $("#sp_deptName").html("/ " + rowData.Name);
         $("#sp_zjName").html("");

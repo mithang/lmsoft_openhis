@@ -21,7 +21,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
     public class HandlerAuthorizeAttribute : ActionFilterAttribute
     {
         /// <summary>
-        /// ứng dụngId(trongconfigcấu hình AppId)
+        /// ứng dụng Id(trongconfigcấu hình AppId)
         /// </summary>
         public static string _appId { get; private set; }
 
@@ -41,7 +41,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
         /// <summary>
         /// đăng ký xác minh quyền của phương thức
         /// </summary>
-        /// <param name="func">danh sách vai trò,mô-đunId,liên kết(không mang tham số),trả về việc xác minh có thành công hay không</param>
+        /// <param name="func">danh sách vai trò,mô-đun Id,liên kết(không mang tham số),trả về việc xác minh có thành công hay không</param>
         public static void Register(Func<IList<string>, string, string, bool> func)
         {
             _func = func;

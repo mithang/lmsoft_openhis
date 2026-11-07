@@ -7,7 +7,7 @@
     {
         public string? Id { get; set; }
         /// <summary>
-        /// Tổ chứcId(Tùy chọn,nullthì là dùng chung cho mọiTổ chứctổ chức)
+        /// Tổ chức Id(Tùy chọn,nullthì là dùng chung cho mọi Tổ chứctổ chức)
         /// </summary>
         public string? OrganizeId { get; set; }
         /// <summary>
@@ -31,7 +31,7 @@
         /// <returns></returns>
         public string? Code { get; set; }
         /// <summary>
-        /// Ứng dụngId,Như CIS,Sett
+        /// Ứng dụng Id,Như CIS,Sett
         /// </summary>
         public string? AppId { get; set; }
         /// <summary>

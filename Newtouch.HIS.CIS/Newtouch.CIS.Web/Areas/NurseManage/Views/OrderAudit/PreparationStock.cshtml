@@ -29,7 +29,7 @@
                     </td>
                     <th class="formTitle"></th>
                     <td class="formValue">
-                        <input type="button" id="btn_newsqd" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="TạoPhiếu" />
+                        <input type="button" id="btn_newsqd" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tạo Phiếu" />
                     </td>
                     <td class="formValue title">
                         <input type="button" id="btn_newtyd" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tạo phiếu trả thuốc" />
@@ -62,11 +62,11 @@
             postData: { ypmc: $("#ypmc").val()},
             colModel: [
                 { label: 'Tên thuốc', name: 'ypmc',width: 300, align: 'left' },
-                { label: 'ThuốcMã', name: 'ypcode', width: 80, align: 'left' },
+                { label: 'Thuốc Mã', name: 'ypcode', width: 80, align: 'left' },
                 { label: 'Quy cách', name: 'ypgg', width: 100, align: 'left' },
                 { label: 'Viết tắt', name: 'py', width: 80, align: 'left' },
-                { label: 'Tồn khoSố lượng', name: 'kcsl', width: 80, align: 'left' },
-                { label: 'NguồnNhà thuốc', name: 'yfmc', width: 120, align: 'left' },
+                { label: 'Tồn kho Số lượng', name: 'kcsl', width: 80, align: 'left' },
+                { label: 'Nguồn Nhà thuốc', name: 'yfmc', width: 120, align: 'left' },
                 { label: 'Hạn hiệu lực', name: 'yxq', width: 150, align: 'left' },
                 { label: 'Nhà sản xuất', name: 'ycmc', width: 200, align: 'left' },
                 { label: 'yfbmCode', name: 'yfbmCode', hidden: true },
@@ -147,7 +147,7 @@
 
         $.modalOpen({
             id: "OutAreaForm",
-            title: "KhoaChuẩn bị thuốcTrả lạiĐề nghị",
+            title: "Khoa Chuẩn bị thuốc Trả lại Đề nghị",
             url: "/NurseManage/PrepareMedicine/PrepareMedicineReturnAdd?ypcode=" + ypcodestr + "&yfbm=" + yfbm + "&yfmc=" + yfmc,
             width: "95%",
             height: "95%",

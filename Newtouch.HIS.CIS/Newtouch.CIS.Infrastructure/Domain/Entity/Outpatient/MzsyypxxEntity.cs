@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// Ngoại trútruyền dịchThuốcthông tin
+    /// Ngoại trútruyền dịch Thuốcthông tin
     /// </summary>
     [SugarTable("mz_syypxx")]
     public class MzsyypxxEntity
@@ -29,7 +29,7 @@ namespace Newtouch.Domain.Entity
         public string xm { get; set; }
 
         /// <summary>
-        /// Bệnh nhânKhám bệnhSố thẻ
+        /// Bệnh nhân Khám bệnh Số thẻ
         /// </summary>
         public string kh { get; set; }
         public string mzh { get; set; }
@@ -50,7 +50,7 @@ namespace Newtouch.Domain.Entity
         public int jsmxnm { get; set; }
 
         /// <summary>
-        /// Thu phíThời gian  quyết toánThời gian
+        /// Thu phí Thời gian  quyết toán Thời gian
         /// </summary>
         public DateTime sfsj { get; set; }
 
@@ -80,7 +80,7 @@ namespace Newtouch.Domain.Entity
         public decimal? yl { get; set; }
 
         /// <summary>
-        /// dùnglượngĐơn vị
+        /// dùnglượng Đơn vị
         /// </summary>
         public string yldw { get; set; }
 
@@ -90,7 +90,7 @@ namespace Newtouch.Domain.Entity
         public decimal sl { get; set; }
 
         /// <summary>
-        /// Số lượngĐơn vị
+        /// Số lượng Đơn vị
         /// </summary>
         public string dw { get; set; }
 

@@ -488,7 +488,7 @@ update " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.V_S_xt_yp set pfj
 		}
 
 		/// <summary>
-		/// TheoypCodeLấy trường lãi lỗ điều chỉnh giá
+		/// TheoypCode Lấy trường lãi lỗ điều chỉnh giá
 		/// </summary>
 		/// <param name="ypCode"></param>
 		/// <returns></returns>

@@ -21,7 +21,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public string Id { get; set; }
 
         /// <summary>
-        /// Desc:Đăng kýThời gian
+        /// Desc:Đăng ký Thời gian
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -37,7 +37,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public DateTime? jzsj { get; set; }
 
         /// <summary>
-        /// Desc:Đăng kýKhoa
+        /// Desc:Đăng ký Khoa
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -45,7 +45,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public string ks { get; set; }
 
         /// <summary>
-        /// Desc:Đăng kýBác sĩ
+        /// Desc:Đăng ký Bác sĩ
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -53,7 +53,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public string ysgh { get; set; }
 
         /// <summary>
-        /// Desc:Đăng kýTrạng thái
+        /// Desc:Đăng ký Trạng thái
         /// Default:EmunRemoteTreatedStu
         /// Nullable:False
         /// </summary>           
@@ -68,7 +68,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         [StringLength(50, ErrorMessage = "patid giới hạn độ dài là 50")]
         public string patid { get; set; }
         /// <summary>
-        /// Khám bệnhSố thẻ
+        /// Khám bệnh Số thẻ
         /// </summary>
         [Required(ErrorMessage = "kh không được để trống")]
         public string kh { get; set; }
@@ -125,7 +125,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public string? brxz { get; set; } 
 
         /// <summary>
-        /// Desc:Cuộc họpSố
+        /// Desc:Cuộc họp Số
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -141,26 +141,26 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public string sqr { get; set; }
 
         /// <summary>
-        /// Desc:Đăng kýSố giao dịch(Do hệ thống thứ ba tạo,Không được trùng lặp)
+        /// Desc:Đăng ký Số giao dịch(Do hệ thống thứ ba tạo,Không được trùng lặp)
         /// Default:
         /// Nullable:True
         /// </summary>           
         [StringLength(50, ErrorMessage = "sqlsh giới hạn độ dài là 50")]
         public string sqlsh { get; set; }
         /// <summary>
-        /// Đăng kýAppId
+        /// Đăng ký AppId
         /// </summary>
         public string? AppId { get; set; }
         /// <summary>
-        /// Đăng kýTổ chức
+        /// Đăng ký Tổ chức
         /// </summary>
         public string? ApplyOrg { get; set; }
         /// <summary>
-        /// Tổ chứcTên
+        /// Tổ chức Tên
         /// </summary>
         public string? ApplyOrgName { get; set; }
         /// <summary>
-        /// Đăng kýMã số nhân viên
+        /// Đăng ký Mã số nhân viên
         /// </summary>
         public string? sqrgh { get; set; }
         /// <summary>

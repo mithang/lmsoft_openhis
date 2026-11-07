@@ -26,13 +26,13 @@ namespace Newtouch.HIS.Repository
         {
             if (!string.IsNullOrEmpty(sfxmId))
             {
-                //CodeKiểm tra trùng lặp
+                //Code Kiểm tra trùng lặp
                 if (this.IQueryable().Any(a => a.Code == entity.Code && a.sfxmId != sfxmId))
                 {
                     throw new FailedException("Mã không được trùng lặp");
                 }
 
-                RehabChargeItemEntity oldEntity = null;   //Trước khi thay đổiEntity
+                RehabChargeItemEntity oldEntity = null;   //Trước khi thay đổi Entity
                 oldEntity = this.FindEntity(sfxmId);
                 this.DetacheEntity(oldEntity);
 
@@ -56,7 +56,7 @@ namespace Newtouch.HIS.Repository
             }
             else
             {
-                //CodeKiểm tra trùng lặp
+                //Code Kiểm tra trùng lặp
                 if (this.IQueryable().Any(a => a.Code == entity.Code))
                 {
                     throw new FailedException("Mã không được trùng lặp");

@@ -13,12 +13,12 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// Bệnh nhânGiới tính
+        /// Bệnh nhân Giới tính
         /// </summary>
         public string sex { get; set; }
 
         /// <summary>
-        /// Bệnh nhânTuổi
+        /// Bệnh nhân Tuổi
         /// </summary>
         public string nlshow { get; set; }
         /// <summary>
@@ -32,7 +32,7 @@ namespace Newtouch.Domain.ValueObjects
         public string blh { get; set; }
 
         /// <summary>
-        /// đăng ký khámTên khoa
+        /// đăng ký khám Tên khoa
         /// </summary>
         public string ghksmc { get; set; }
     }

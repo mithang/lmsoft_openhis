@@ -27,9 +27,9 @@ namespace Newtouch.HIS.Domain
         /// <summary>
         /// Khi tạo thực thể,Cập nhật thực thể của Trường khóa chính,Người tạo,Thời gian tạo
         /// Ví dụ gọi
-        /// Guid/stringKhóa chính  Create() hoặc Create(true) hoặc Create(true, '73FD1267-79BA-4E23-A152-744AF73117E9')
+        /// Guid/string Khóa chính  Create() hoặc Create(true) hoặc Create(true, '73FD1267-79BA-4E23-A152-744AF73117E9')
         /// Khóa chính tự tăng  Create()
-        /// int/longKhóa chính không tự tăng  Create() hoặc Create(true, 9999)
+        /// int/long Khóa chính không tự tăng  Create() hoặc Create(true, 9999)
         /// </summary>
         public void Create(bool isSetPrimaryKeyValue = false, object keyValue = null, bool isSetOrgId = false, bool isSetTopOrgId = false)
         {
@@ -60,7 +60,7 @@ namespace Newtouch.HIS.Domain
         /// Ví dụ gọi
         /// Modify() , Modify('73FD1267-79BA-4E23-A152-744AF73117E9'), Modify(9999)
         /// </summary>
-        /// <param name="keyValue">!=nullCập nhật trường khóa chính,Nếu không thì không cập nhật trường khóa chính</param>
+        /// <param name="keyValue">!=null Cập nhật trường khóa chính,Nếu không thì không cập nhật trường khóa chính</param>
         public void Modify(object keyValue = null, bool isSetOrgId = false, bool isSetTopOrgId = false)
         {
             var loginInfo = OperatorProvider.GetCurrent();

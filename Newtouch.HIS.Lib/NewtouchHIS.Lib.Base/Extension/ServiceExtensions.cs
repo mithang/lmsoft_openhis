@@ -235,7 +235,7 @@ namespace NewtouchHIS.Lib.Base.Extension
 
         #region JWT
         /// <summary>
-        /// jwtCấu hình logic xác thực
+        /// jwt Cấu hình logic xác thực
         /// </summary>
         /// <param name="services"></param>
         /// <param name="enable"></param>
@@ -405,7 +405,7 @@ namespace NewtouchHIS.Lib.Base.Extension
                 //c.SwaggerDoc("v1", new OpenApiInfo
                 //{
                 //    Version = "v1",
-                //    Title = "OpenHIS Tổng hợp nguồn mởApi"
+                //    Title = "OpenHIS Tổng hợp nguồn mở Api"
                 //});
                 c.IncludeXmlComments(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{AppDomain.CurrentDomain.FriendlyName}.xml"), true);//WebAPI Tệp XML của dự án
                 //c.IncludeXmlComments(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SugarProjectCore.xml"), true);//Tệp XML cần thiết cho các dự án khác
@@ -531,7 +531,7 @@ namespace NewtouchHIS.Lib.Base.Extension
                 return services;
             }
             var dbMain = ConfigInitHelper.DbConfig.DBConf.FirstOrDefault();
-            //Đăng kýSqlSugar
+            //Đăng ký SqlSugar
             services.AddSingleton<ISqlSugarClient>(s =>
             {
                 SqlSugarScope sqlSugar = new SqlSugarScope(new ConnectionConfig()

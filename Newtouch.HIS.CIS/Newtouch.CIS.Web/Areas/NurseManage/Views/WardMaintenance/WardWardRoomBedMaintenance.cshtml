@@ -1,7 +1,7 @@
 @model dynamic
 
 @{
-    ViewBag.Title = "Khu bệnhPhòngGiườngBảo trì";
+    ViewBag.Title = "Khu bệnh Phòng Giường Bảo trì";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -78,7 +78,7 @@
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="AttributesPlusRoom()">
-                            <i class="fa fa-pencil-square-o"></i>Bổ sungThuộc tính
+                            <i class="fa fa-pencil-square-o"></i>Bổ sung Thuộc tính
                         </a>
                     </div>
                     <div class="btn-group">
@@ -114,7 +114,7 @@
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="AttributesPlusBed()">
-                            <i class="fa fa-pencil-square-o"></i>Bổ sungThuộc tính
+                            <i class="fa fa-pencil-square-o"></i>Bổ sung Thuộc tính
                         </a>
                     </div>
                     <div class="btn-group">
@@ -189,19 +189,19 @@
         { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" }
     ];
     var bedList = [
-        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "VươngBác sĩ", zzys: "VươngBác sĩ", zrys: "TrươngBác sĩ" },
-        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "VươngBác sĩ", zzys: "VươngBác sĩ", zrys: "TrươngBác sĩ" },
-        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "VươngBác sĩ", zzys: "VươngBác sĩ", zrys: "TrươngBác sĩ" },
-        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "VươngBác sĩ", zzys: "VươngBác sĩ", zrys: "TrươngBác sĩ" },
-        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "VươngBác sĩ", zzys: "VươngBác sĩ", zrys: "TrươngBác sĩ" },
-        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "VươngBác sĩ", zzys: "VươngBác sĩ", zrys: "TrươngBác sĩ" },
-        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "VươngBác sĩ", zzys: "VươngBác sĩ", zrys: "TrươngBác sĩ" },
-        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "VươngBác sĩ", zzys: "VươngBác sĩ", zrys: "TrươngBác sĩ" },
-        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "VươngBác sĩ", zzys: "VươngBác sĩ", zrys: "TrươngBác sĩ" },
-        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "VươngBác sĩ", zzys: "VươngBác sĩ", zrys: "TrươngBác sĩ" },
-        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "VươngBác sĩ", zzys: "VươngBác sĩ", zrys: "TrươngBác sĩ" },
-        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "VươngBác sĩ", zzys: "VươngBác sĩ", zrys: "TrươngBác sĩ" },
-        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "VươngBác sĩ", zzys: "VươngBác sĩ", zrys: "TrươngBác sĩ" }
+        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "Vương Bác sĩ", zzys: "Vương Bác sĩ", zrys: "Trương Bác sĩ" },
+        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "Vương Bác sĩ", zzys: "Vương Bác sĩ", zrys: "Trương Bác sĩ" },
+        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "Vương Bác sĩ", zzys: "Vương Bác sĩ", zrys: "Trương Bác sĩ" },
+        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "Vương Bác sĩ", zzys: "Vương Bác sĩ", zrys: "Trương Bác sĩ" },
+        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "Vương Bác sĩ", zzys: "Vương Bác sĩ", zrys: "Trương Bác sĩ" },
+        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "Vương Bác sĩ", zzys: "Vương Bác sĩ", zrys: "Trương Bác sĩ" },
+        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "Vương Bác sĩ", zzys: "Vương Bác sĩ", zrys: "Trương Bác sĩ" },
+        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "Vương Bác sĩ", zzys: "Vương Bác sĩ", zrys: "Trương Bác sĩ" },
+        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "Vương Bác sĩ", zzys: "Vương Bác sĩ", zrys: "Trương Bác sĩ" },
+        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "Vương Bác sĩ", zzys: "Vương Bác sĩ", zrys: "Trương Bác sĩ" },
+        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "Vương Bác sĩ", zzys: "Vương Bác sĩ", zrys: "Trương Bác sĩ" },
+        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "Vương Bác sĩ", zzys: "Vương Bác sĩ", zrys: "Trương Bác sĩ" },
+        { bedNo: "B0002", bedType: "Nữ", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "Vương Bác sĩ", zzys: "Vương Bác sĩ", zrys: "Trương Bác sĩ" }
     ];
     $(".dv-body").height($(window).height());
     $(".dv-body").width($(window).width());
@@ -267,13 +267,13 @@
         unwritten: false,
         colModel: [
             { label: 'Số giường', name: 'bedNo', align: 'center', width: 100 },
-            { label: 'Giường bệnhLoại', name: 'bedType', align: 'center', width: 80 },
-            { label: 'Đặc biệtDấu hiệu', name: 'tsbz', align: 'center', width: 100 },
-            { label: 'Có hay khôngKích hoạt', name: 'zt', align: 'center', width: 80 },
+            { label: 'Giường bệnh Loại', name: 'bedType', align: 'center', width: 80 },
+            { label: 'Đặc biệt Dấu hiệu', name: 'tsbz', align: 'center', width: 100 },
+            { label: 'Có hay không Kích hoạt', name: 'zt', align: 'center', width: 80 },
             { label: 'Có chiếm giường không', name: 'sfzc', align: 'center', width: 100 },
-            { label: 'Nhập việnBác sĩ', name: 'zysy', align: 'left', width: 100 },
-            { label: 'Điều trị chínhBác sĩ', name: 'zzys', align: 'left', width: 100 },
-            { label: 'Chủ nhiệmBác sĩ', name: 'zrys', align: 'left', width: 100 }
+            { label: 'Nhập viện Bác sĩ', name: 'zysy', align: 'left', width: 100 },
+            { label: 'Điều trị chính Bác sĩ', name: 'zzys', align: 'left', width: 100 },
+            { label: 'Chủ nhiệm Bác sĩ', name: 'zrys', align: 'left', width: 100 }
         ],
         rownumbers: false
     });
@@ -319,7 +319,7 @@
         }
     }
 
-    //ThêmPhòng bệnh
+    //Thêm Phòng bệnh
     function AddRoom() {
         var keyValue = $("#gridBqList").jqGridRowValue().bqCode;
         if (!!!keyValue) {
@@ -355,7 +355,7 @@
         });
     }
 
-    //kèmthêmThuộc tính
+    //kèmthêm Thuộc tính
     function AttributesPlusRoom() {
         var keyValue = $("#gridRoomList").jqGridRowValue().roomNo;
         if (!!!keyValue) {
@@ -364,7 +364,7 @@
         }
         $.modalOpen({
             id: "AttributesPlusRoomForm",
-            title: "Giường bệnhBổ sungThuộc tính",
+            title: "Giường bệnh Bổ sung Thuộc tính",
             url: "/NurseManage/WardMaintenance/AttributesPlusRoomForm?keyWord=" + keyValue,
             width: "500px",
             height: "550px",
@@ -377,7 +377,7 @@
     }
 
     function OpenRoomForm(roomNo) {
-        var title = roomNo === "" ? "Thêm mớiPhòng" : "SửaPhòng";
+        var title = roomNo === "" ? "Thêm mới Phòng" : "Sửa Phòng";
         $.modalOpen({
             id: "RoomForm",
             title: title,
@@ -392,13 +392,13 @@
         });
     }
 
-    //Làm mớiPhòng bệnh
+    //Làm mới Phòng bệnh
     function RefreshRoom() {
         $('#gridRoomList').jqGrid("clearGridData");
         $('#gridRoomList').newtouchLocalDataGrid(null, roomList);
     }
 
-    //ThêmPhòng bệnh
+    //Thêm Phòng bệnh
     function AddBed() {
         var keyValue = $("#gridRoomList").jqGridRowValue().roomNo;
         if (!!!keyValue) {
@@ -418,7 +418,7 @@
         OpenBedForm(keyValue);
     }
 
-    //giường ký tựkèmthêmThuộc tính
+    //giường ký tựkèmthêm Thuộc tính
     function AttributesPlusBed() {
         var keyValue = $("#gridBedList").jqGridRowValue().bedNo;
         if (!!!keyValue) {
@@ -427,7 +427,7 @@
         }
         $.modalOpen({
             id: "AttributesPlusBedForm",
-            title: "Phòng bệnhBổ sungThuộc tính",
+            title: "Phòng bệnh Bổ sung Thuộc tính",
             url: "/NurseManage/WardMaintenance/AttributesPlusBedForm?keyWord=" + keyValue,
             width: "500px",
             height: "550px",
@@ -462,7 +462,7 @@
     }
 
     function OpenBedForm(bedNo) {
-        var title = bedNo === "" ? "Thêm mớiGiường bệnh" : "SửaGiường bệnh";
+        var title = bedNo === "" ? "Thêm mới Giường bệnh" : "Sửa Giường bệnh";
         $.modalOpen({
             id: "BedForm",
             title: title,
@@ -477,7 +477,7 @@
         });
     }
 
-    //liên kếtMục thu phí
+    //liên kết Mục thu phí
     function AddCosts() {
         var keyValue = $("#gridBedList").jqGridRowValue().bedNo;
         if (!!!keyValue) {

@@ -21,7 +21,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.DomainServices.DeptStorageManage
 {
     /// <summary>
-    /// Tồn khoKiểm kê
+    /// Tồn kho Kiểm kê
     /// </summary>
     public class StockInventoryDmnService : DmnServiceBase, IStockInventoryDmnService
     {
@@ -38,7 +38,7 @@ namespace Newtouch.DomainServices.DeptStorageManage
         }
 
         /// <summary>
-        /// LấyKiểm kêThời gian
+        /// Lấy Kiểm kê Thời gian
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -65,7 +65,7 @@ ORDER BY a.CreateTime DESC
         }
 
         /// <summary>
-        /// LấychưaHoàn thànhcủaKiểm kêThời gian
+        /// Lấychưa Hoàn thànhcủa Kiểm kê Thời gian
         /// </summary>
         /// <returns></returns>
         public List<VInventoryDateDropDownEntity> GetHangUpPdDates(string warehouseId, string organizeId)
@@ -90,7 +90,7 @@ GROUP BY pdxx.Id, pdxx.Kssj, pdxx.Jssj, pdxx.CreateTime
         }
 
         /// <summary>
-        /// tạoKiểm kêthông tin
+        /// tạo Kiểm kêthông tin
         /// </summary>
         public string GenerateInventoryInfo(string warehouseId, string organizeId)
         {
@@ -195,7 +195,7 @@ FROM (
 }
 
         /// <summary>
-        /// LấyKiểm kêthông tin
+        /// Lấy Kiểm kêthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -244,16 +244,16 @@ FROM (
 //             }
 //             switch (param.kcxs)
 //             {
-//                 case (int)EnumKCXS.Xslkc://Hiển thịkhôngTồn kho
+//                 case (int)EnumKCXS.Xslkc://Hiển thịkhông Tồn kho
 //                     sql.AppendLine("AND (mx.Llsl = 0 OR mx.Sjsl = 0) ");
 //                     break;
-//                 case (int)EnumKCXS.Bxsllslwl://khôngHiển thịlýluậnSố lượnglà0
+//                 case (int)EnumKCXS.Bxsllslwl://không Hiển thịlýluận Số lượnglà0
 //                     sql.AppendLine("AND mx.Llsl <> 0 ");
 //                     break;
-//                 case (int)EnumKCXS.Bxssjslwl://khôngHiển thịthực tếSố lượnglà0
+//                 case (int)EnumKCXS.Bxssjslwl://không Hiển thịthực tế Số lượnglà0
 //                     sql.AppendLine("AND mx.Llsl Sjsl <> 0 ");
 //                     break;
-//                 case (int)EnumKCXS.Bxslzdwl://khôngHiển thịhaingườiđềulà0
+//                 case (int)EnumKCXS.Bxslzdwl://không Hiển thịhaingườiđềulà0
 //                     sql.AppendLine("AND (mx.Llsl <> 0 OR mx.Sjsl <> 0) ");
 //                     break;
 //             }
@@ -261,7 +261,7 @@ FROM (
 //         }
 
         /// <summary>
-        /// LấyKiểm kêthông tin
+        /// Lấy Kiểm kêthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -341,7 +341,7 @@ LEFT JOIN NewtouchHIS_Base.dbo.wz_unit zxdw
         }
 
         /// <summary>
-        /// HủyKiểm kê 
+        /// Hủy Kiểm kê 
         /// Xóa Kiểm kêthông tin(xt_yp_pdxx),Kiểm kêthông tinchi tiết(xt_yp_pdxxmx)
         /// </summary>
         public void CancelInventory(long pdId)
@@ -377,7 +377,7 @@ END
         }
 
         /// <summary>
-        /// Kết thúcKiểm kê
+        /// Kết thúc Kiểm kê
         /// </summary>
         /// <returns></returns>
         public string EndInventory(long pdId, string organizeId, string creatorCode)
@@ -392,7 +392,7 @@ END
         }
 
         /// <summary>
-        /// lôlượngLưulãi lỗthông tin
+        /// lôlượng Lưulãi lỗthông tin
         /// </summary>
         /// <param name="syList"></param>
         /// <param name="warehouseId"></param>
@@ -409,7 +409,7 @@ END
                     _kcSyxxRepo.Insert(p);
                     if (_kfKcxxDmnService.UpdateKcsl(p.productId, p.pc, p.Ph, warehouseId, p.Sysl, organizeId, p.CreatorCode) <= 0)
                     {
-                        throw new Exception("SửaTồn khoSố lượngthất bại");
+                        throw new Exception("Sửa Tồn kho Số lượngthất bại");
                     }
                     ++ret;
                 });
@@ -419,7 +419,7 @@ END
         }
 
         /// <summary>
-        /// LưuđổihơnsaucủaKiểm kêchi tiết
+        /// Lưuđổihơnsaucủa Kiểm kêchi tiết
         /// </summary>
         /// <param name="saveInventoryDto"></param>
         /// <param name="pdId"></param>

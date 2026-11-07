@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Outpatient
 {
     /// <summary>
-    /// Kháng sinhThuốcthông tin
+    /// Kháng sinh Thuốcthông tin
     /// </summary>
     public class KssYpVO
     {
         /// <summary>
-        /// ThuốcId
+        /// Thuốc Id
         /// </summary>
         public int ypId { get; set; }
         /// <summary>
-        /// ThuốcCode
+        /// Thuốc Code
         /// </summary>
         public string ypCode { get; set; }
         /// <summary>

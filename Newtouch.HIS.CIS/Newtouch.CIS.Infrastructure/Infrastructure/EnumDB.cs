@@ -3,7 +3,7 @@ using System.ComponentModel;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// ngàychíghi chépLoại
+    /// ngàychíghi chép Loại
     /// </summary>
     public enum DbLogType_Ex
     {
@@ -11,7 +11,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// chứngmụcLoại
+    /// chứngmục Loại
     /// </summary>
     public enum EnumZjlx
     {
@@ -38,7 +38,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Tính chất tự trả(Thuốc,Mụctừ điểncủaThuộc tính)
+    /// Tính chất tự trả(Thuốc,Mụctừ điểncủa Thuộc tính)
     /// </summary>
     public enum EnumZiFuXingZhi
     {
@@ -80,7 +80,7 @@ namespace Newtouch.Infrastructure
     }
 
 	/// <summary>
-	/// ThuốcLoại
+	/// Thuốc Loại
 	/// </summary>
 	public enum EnumYpsx
 	{
@@ -112,12 +112,12 @@ namespace Newtouch.Infrastructure
 	}
 
 	/// <summary>
-	/// Khám bệnhTrạng thái
+	/// Khám bệnh Trạng thái
 	/// </summary>
 	public enum EnumJzzt
     {
         /// <summary>
-        /// chưaKhám bệnh
+        /// chưa Khám bệnh
         /// </summary>
         [Description("Chưa khám")]
         NotYetTreate = 1,
@@ -127,19 +127,19 @@ namespace Newtouch.Infrastructure
         [Description("Đang khám")]
         Treating = 2,
         /// <summary>
-        /// Khám bệnhKết thúc
+        /// Khám bệnh Kết thúc
         /// </summary>
         [Description("Đã khám xong")]
         Treated = 3,
     }
 
     /// <summary>
-    /// Ngoại trúLoại mjzbz
+    /// Ngoại trú Loại mjzbz
     /// </summary>
     public enum EnumOutPatientType
     {
         /// <summary>
-        /// thông thườngNgoại trú
+        /// thông thường Ngoại trú
         /// </summary>
         [Description("Khám ngoại trú thông thường")]
         generalOutpat = 1,
@@ -149,22 +149,22 @@ namespace Newtouch.Infrastructure
         [Description("Cấp cứu")]
         emerDiagnosis = 2,
         /// <summary>
-        /// chuyên giaNgoại trú
+        /// chuyên gia Ngoại trú
         /// </summary>
         [Description("Khám chuyên gia")]
         expertOutpat = 3,
         /// <summary>
-        /// chuyên giaNgoại trú
+        /// chuyên gia Ngoại trú
         /// </summary>
         [Description("Khám bệnh đặc biệt")]
         SpecialOutpat = 4,
         /// <summary>
-        /// trọnglớnbệnhbệnhNgoại trú
+        /// trọnglớnbệnhbệnh Ngoại trú
         /// </summary>
         [Description("Khám bệnh hiểm nghèo")]
         MajorDiseases = 5,
         /// <summary>
-        /// Bệnh mạn tínhNgoại trú
+        /// Bệnh mạn tính Ngoại trú
         /// </summary>
         [Description("Khám bệnh mạn tính")]
         ChronicDisease = 6,
@@ -179,7 +179,7 @@ namespace Newtouch.Infrastructure
         [Description("Khám tai nạn thương tích")]
         ywshmz = 8,
         /// <summary>
-        /// sinhdụcNgoại trú
+        /// sinhdục Ngoại trú
         /// </summary>
         [Description("Khám sinh sản")]
         symz = 9,
@@ -189,7 +189,7 @@ namespace Newtouch.Infrastructure
         [Description("Khám lao đa kháng thuốc")]
         ndyjhmz = 10,
         /// <summary>
-        /// trẻ emhaibệnhNgoại trú
+        /// trẻ emhaibệnh Ngoại trú
         /// </summary>
         [Description("Hai bệnh trẻ em")]
         etlbmz = 11,
@@ -201,47 +201,47 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Đơn thuốcLoại
+    /// Đơn thuốc Loại
     /// </summary>
     public enum EnumCflx
     {
         /// <summary>
-        /// Thuốc TâyĐơn thuốc
+        /// Thuốc Tây Đơn thuốc
         /// </summary>
         [Description("Đơn thuốc Tây")]
         WMPres = 1,
         /// <summary>
-        /// Thuốc Đông yĐơn thuốc
+        /// Thuốc Đông y Đơn thuốc
         /// </summary>
         [Description("Đơn thuốc Đông y")]
         TCMPres = 2,
         /// <summary>
-        /// Phục hồi chức năngĐơn thuốc
+        /// Phục hồi chức năng Đơn thuốc
         /// </summary>
         [Description("Đơn phục hồi chức năng")]
         RehabPres = 3,
         /// <summary>
-        /// Xét nghiệmĐơn thuốc
+        /// Xét nghiệm Đơn thuốc
         /// </summary>
         [Description("Đơn xét nghiệm")]
         InspectionPres = 4,
         /// <summary>
-        /// Kiểm traĐơn thuốc
+        /// Kiểm tra Đơn thuốc
         /// </summary>
         [Description("Đơn kiểm tra")]
         ExaminationPres = 5,
         /// <summary>
-        /// Hạng mục thông thườngĐơn thuốc
+        /// Hạng mục thông thường Đơn thuốc
         /// </summary>
         [Description("Đơn hạng mục thường quy")]
         RegularItemPres = 6,
         /// <summary>
-        /// điện tửĐơn thuốc
+        /// điện tử Đơn thuốc
         /// </summary>
 		[Description("Đơn thuốc điện tử")]
 		Dzcf =7,
         /// <summary>
-        /// ydùngVật tư tiêu hao
+        /// ydùng Vật tư tiêu hao
         /// </summary>
         [Description("Vật tư y tế")]
         Yyhc = 8
@@ -261,20 +261,20 @@ namespace Newtouch.Infrastructure
     public enum EnumZdlx
     {
         /// <summary>
-        /// chínhChẩn đoán
+        /// chính Chẩn đoán
         /// </summary>
         [Description("Chẩn đoán chính")]
         Main = 1,
         /// <summary>
-        /// phụChẩn đoán
+        /// phụ Chẩn đoán
         /// </summary>
         [Description("Chẩn đoán phụ")]
         Deputy = 2
     }
 
     /// <summary>
-    /// Đơn thuốcmẫuLoại
-    /// (Hồ sơmẫuLoạicũnglàdùngnàyLiệt kê)
+    /// Đơn thuốcmẫu Loại
+    /// (Hồ sơmẫu Loạicũnglàdùngnày Liệt kê)
     /// </summary>
     public enum EnumCfMbLx
     {
@@ -296,7 +296,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Xét nghiệmKiểm traBộ mẫuLoại  (Xét nghiệmKiểm trachungdùngmộttrangmặt,chỉlàtham số(tứctype)khôngcùng)
+    /// Xét nghiệm Kiểm tra Bộ mẫu Loại  (Xét nghiệm Kiểm trachungdùngmộttrangmặt,chỉlàtham số(tứctype)khôngcùng)
     /// </summary>
     public enum EnumjyjczutaoLx
     {
@@ -313,7 +313,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Xét nghiệmKiểm tramẫuLoại  (Xét nghiệmKiểm trachungdùngmộttrangmặt,chỉlàtham số(tứctype)khôngcùng)
+    /// Xét nghiệm Kiểm tramẫu Loại  (Xét nghiệm Kiểm trachungdùngmộttrangmặt,chỉlàtham số(tứctype)khôngcùng)
     /// </summary>
     public enum EnumjyjcmbLx
     {
@@ -330,7 +330,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Mục thu phíChiến lược tính giá
+    /// Mục thu phí Chiến lược tính giá
     /// </summary>
     public enum EnumSfxmJjcl
     {
@@ -352,7 +352,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// lịch sửHồ sơđếnnguồn
+    /// lịch sử Hồ sơđếnnguồn
     /// </summary>
     public enum Enumlsblly
     {
@@ -369,7 +369,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Đăng nhậpCờ
+    /// Đăng nhập Cờ
     /// </summary>
     public enum EnumLoginFlag
     {
@@ -386,7 +386,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// uốngănLoại
+    /// uốngăn Loại
     /// </summary>
     public enum Enumyslb {
         /// <summary>
@@ -461,7 +461,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// xếpđộigọisốTrạng thái
+    /// xếpđộigọisố Trạng thái
     /// </summary>
     public enum EmunQueueCalledStu
     {
@@ -476,18 +476,18 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Dấu hiệu ngoại trú/nội trú  0 Chung 1 chỉNgoại trú 2 chỉNhập viện 3 Hệ thống(Ngoại trúNhập việnđềukhôngcó thểdùng)VD nếu:nhàgiường
+    /// Dấu hiệu ngoại trú/nội trú  0 Chung 1 chỉ Ngoại trú 2 chỉ Nhập viện 3 Hệ thống(Ngoại trú Nhập việnđềukhôngcó thểdùng)VD nếu:nhàgiường
     /// </summary>
     public enum Enummzzybz
     {
 
         /// <summary>
-        /// chỉNgoại trú
+        /// chỉ Ngoại trú
         /// </summary>
         [Description("Ngoại trú")]
         mz = 1,
         /// <summary>
-        /// chỉNhập viện
+        /// chỉ Nhập viện
         /// </summary>
         [Description("Nội trú")]
         zy = 2,
@@ -500,19 +500,19 @@ namespace Newtouch.Infrastructure
     public enum Enumzxzt
     {
         /// <summary>
-        /// chưaThực hiện
+        /// chưa Thực hiện
         /// </summary>
         [Description("Chưa thực hiện")]
         wzx = 0,
         /// <summary>
-        /// đãThực hiện
+        /// đã Thực hiện
         /// </summary>
         [Description("Đã thực hiện")]
         yzx = 1
        
     } 
     /// <summary>
-    /// phútkhámgọisốTrạng thái
+    /// phútkhámgọisố Trạng thái
     /// </summary>
     public enum EmunConsultCalledStu
     {
@@ -528,7 +528,7 @@ namespace Newtouch.Infrastructure
         recall = 5,
     }
     /// <summary>
-    /// xatrìnhkhámtrịTrạng thái
+    /// xatrìnhkhámtrị Trạng thái
     /// </summary>
     public enum Emunzlzt
     {
@@ -546,7 +546,7 @@ namespace Newtouch.Infrastructure
         yfy = 6,
     }
     /// <summary>
-    /// lãi lỗCờ
+    /// lãi lỗ Cờ
     /// </summary>
     public enum EnumSybz
     {
@@ -565,25 +565,25 @@ namespace Newtouch.Infrastructure
     public enum EnumOutOrInStorageBillType
     {
         /// <summary>
-        /// ngoàibộNhập kho
+        /// ngoàibộ Nhập kho
         /// </summary>
         [Description("Nhập kho ngoài")]
         Wbrk = 1,
 
         /// <summary>
-        /// ngoàibộXuất kho
+        /// ngoàibộ Xuất kho
         /// </summary>
         [Description("Xuất kho ngoài")]
         Wbck = 2,
 
         /// <summary>
-        /// trực tiếpXuất kho
+        /// trực tiếp Xuất kho
         /// </summary>
         [Description("Xuất kho trực tiếp")]
         Zjck = 3,
 
         /// <summary>
-        /// đăng kýlĩnhXuất kho
+        /// đăng kýlĩnh Xuất kho
         /// </summary>
         [Description("Xuất kho theo đơn lĩnh")]
         Slck = 4,
@@ -601,7 +601,7 @@ namespace Newtouch.Infrastructure
         Bsby = 6,
 
         /// <summary>
-        /// phốigửiđếnKhoa
+        /// phốigửiđến Khoa
         /// </summary>
         [Description("Xuất kho đến khoa")] //phiếusố phiếu ckZKS111111111111
         chukuzhikeshi = 7,
@@ -613,7 +613,7 @@ namespace Newtouch.Infrastructure
         kssl = 8,
 
         /// <summary>
-        /// Khoađăng kýlĩnhXuất kho
+        /// Khoađăng kýlĩnh Xuất kho
         /// </summary>
         [Description("Khoa lĩnh xuất kho")]
         ksSlck = 9,
@@ -649,7 +649,7 @@ namespace Newtouch.Infrastructure
 
     }
     /// <summary>
-    /// Phê duyệtTrạng thái
+    /// Phê duyệt Trạng thái
     /// </summary>
     public enum EnumAuditState
     {
@@ -685,7 +685,7 @@ namespace Newtouch.Infrastructure
         Temporary = 4,
     }
     /// <summary>
-    /// Tồn khoHiển thị
+    /// Tồn kho Hiển thị
     /// </summary>
     public enum EnumKCXS
     {
@@ -695,22 +695,22 @@ namespace Newtouch.Infrastructure
         [Description("Tất cả")]
         None = -1,
         /// <summary>
-        /// Hiển thịkhôngTồn kho
+        /// Hiển thịkhông Tồn kho
         /// </summary>
         [Description("Hiển thị tồn kho bằng 0")]
         Xslkc = 0,
         /// <summary>
-        /// khôngHiển thịlýluậnSố lượnglàkhông
+        /// không Hiển thịlýluận Số lượnglàkhông
         /// </summary>
         [Description("Không hiển thị số lượng lý thuyết bằng 0")]
         Bxsllslwl = 1,
         /// <summary>
-        /// khôngHiển thịthực tếSố lượnglàkhông
+        /// không Hiển thịthực tế Số lượnglàkhông
         /// </summary>
         [Description("Không hiển thị số lượng thực tế bằng 0")]
         Bxssjslwl = 2,
         /// <summary>
-        /// khôngHiển thịthực tếSố lượnglàkhông
+        /// không Hiển thịthực tế Số lượnglàkhông
         /// </summary>
         [Description("Không hiển thị khi cả hai bằng 0")]
         Bxslzdwl = 4

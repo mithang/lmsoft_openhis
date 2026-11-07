@@ -18,12 +18,12 @@ namespace Newtouch.HIS.Domain.Entity
         public int ypsxId { get; set; }
 
         /// <summary>
-        /// Thuốc liên kếtId
+        /// Thuốc liên kết Id
         /// </summary>
         public int ypId { get; set; }
 
         /// <summary>
-        /// ThuốcCode
+        /// Thuốc Code
         /// </summary>
         public string ypCode { get; set; }
 
@@ -113,7 +113,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string yptssx { get; set; }
 
         /// <summary>
-        /// Phân loại thuốcCode
+        /// Phân loại thuốc Code
         /// </summary>
         public string ypflCode { get; set; }
 

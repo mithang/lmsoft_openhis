@@ -4,7 +4,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_08
 {
     /// <summary>
-    /// nhắclấyĐơn thuốcyêu cầuthể
+    /// nhắclấy Đơn thuốcyêu cầuthể
     /// </summary>
     [XmlRoot("Request")]
     public class ReceiveRequestEntity : RequestBase

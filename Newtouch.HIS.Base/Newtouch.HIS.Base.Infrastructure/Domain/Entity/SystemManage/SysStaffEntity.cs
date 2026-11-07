@@ -18,12 +18,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chứcId(tương ứng với khoaOrganizeId)
+        /// Tổ chức Id(tương ứng với khoaOrganizeId)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Tổ chứcId(Cấp cao nhất,Cấu hình hệ thống)
+        /// Tổ chức Id(Cấp cao nhất,Cấu hình hệ thống)
         /// </summary>
         public string TopOrganizeId { get; set; }
 
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string py { get; set; }
 
         /// <summary>
-        /// Khoa phòngCode
+        /// Khoa phòng Code
         /// </summary>
         public string DepartmentCode { get; set; }
 

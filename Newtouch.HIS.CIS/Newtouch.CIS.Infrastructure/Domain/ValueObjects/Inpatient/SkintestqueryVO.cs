@@ -13,11 +13,11 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public string yzid { get; set; }
         /// <summary>
-        /// Y lệnhTính chất
+        /// Y lệnh Tính chất
         /// </summary>
         public int? yzxz { get; set; }
         /// <summary>
-        /// Y lệnhTính chấtMô tả
+        /// Y lệnh Tính chất Mô tả
         /// </summary>
         public string yzxzsm { get; set; }
         /// <summary>
@@ -25,12 +25,12 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public DateTime? kssj { get; set; }
         /// <summary>
-        /// MụcLoại
+        /// Mục Loại
         /// </summary>
         public string xmmc { get; set; }
         public string xmdm { get; set; }
         /// <summary>
-        /// ThuốcLiều lượng
+        /// Thuốc Liều lượng
         /// </summary>
         public Decimal? ypjl { get; set; }
         /// <summary>
@@ -38,26 +38,26 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public string yznr { get; set; }
         /// <summary>
-        /// Dừng/Hủy bỏThời gian
+        /// Dừng/Hủy bỏ Thời gian
         /// </summary>
         public DateTime? tzsj { get; set; }
         /// <summary>
-        /// Dừng/Hủy bỏBác sĩMã nhân viên
+        /// Dừng/Hủy bỏ Bác sĩ Mã nhân viên
         /// </summary>
         public string tzysgh { get; set; }
         /// <summary>
-        /// Dừng/Hủy bỏThao tácviên
+        /// Dừng/Hủy bỏ Thao tácviên
         /// </summary>
         public string tzr { get; set; }
 
         public string Creator { get; set; }
         /// <summary>
-        /// Y lệnhSố nhóm
+        /// Y lệnh Số nhóm
         /// </summary>
         public int? zh { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 0 chờduyệt 1Đã duyệt 2đãThực hiện 3DC 4Dừng
+        /// 0 chờduyệt 1Đã duyệt 2đã Thực hiện 3DC 4Dừng
         /// </summary>
         public int yzzt { get; set; }
         /// <summary>

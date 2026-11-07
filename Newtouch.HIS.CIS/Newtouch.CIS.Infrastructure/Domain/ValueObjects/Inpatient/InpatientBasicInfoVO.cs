@@ -17,7 +17,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string cyrq { get; set; }
         public int? zybz { get; set; }
         /// <summary>
-        /// Tài khoảnTính chất
+        /// Tài khoản Tính chất
         /// </summary>
         public int? zhxz { get; set; }
         /// <summary>
@@ -25,11 +25,11 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public string zhye { get; set; }
         /// <summary>
-        /// phátsinhcủatổngChi phí
+        /// phátsinhcủatổng Chi phí
         /// </summary>
         public decimal? zje { get; set; }
         /// <summary>
-        /// đãkếtChi phí
+        /// đãkết Chi phí
         /// </summary>
         public decimal? yjfy { get; set; }
         /// <summary>

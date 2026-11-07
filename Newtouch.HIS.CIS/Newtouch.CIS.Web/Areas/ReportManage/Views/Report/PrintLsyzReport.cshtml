@@ -1,9 +1,9 @@
 
 @{
-    ViewBag.Title = "Y lệnh tạm thờiĐơn";
+    ViewBag.Title = "Y lệnh tạm thời Đơn";
     Layout = "~/Views/Shared/_Form.cshtml";
 
-    //Báo cáoĐịa chỉ
+    //Báo cáo Địa chỉ
     var reportUrl = SysConfigReader.OrgReportLink("lsyzPrint");
 }
 
@@ -28,7 +28,7 @@
     function submit() {
         var url = getUrl();
 
-        //trực tiếpMở
+        //trực tiếp Mở
         location.href = url;
         return;
 

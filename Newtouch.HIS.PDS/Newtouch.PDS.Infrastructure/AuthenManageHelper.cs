@@ -131,7 +131,7 @@ namespace Newtouch.Infrastructure
             return Token.BusData.data.Token;
         }
         /// <summary>
-        /// Lấy sau khi người dùng đăng nhậpapiChung token
+        /// Lấy sau khi người dùng đăng nhậpapi Chung token
         /// </summary>
         /// <returns></returns>
         public static string GetUserToken(OperatorModel user)
@@ -171,7 +171,7 @@ namespace Newtouch.Infrastructure
         {
             if (string.IsNullOrWhiteSpace(accessAppId))
             {
-                throw new FailedException("[Xác thực quyền]Chưa đọc được giao diệnAppIdCấu hình（Token_ApiManage）Thông tin");
+                throw new FailedException("[Xác thực quyền]Chưa đọc được giao diện AppId Cấu hình（Token_ApiManage）Thông tin");
             }
             if (string.IsNullOrWhiteSpace(userCacheToken))
             {

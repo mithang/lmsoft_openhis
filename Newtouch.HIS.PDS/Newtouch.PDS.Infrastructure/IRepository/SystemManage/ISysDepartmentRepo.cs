@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<SysDepartmentVEntity> GetList(string orgId, string zt, string keyword);
 
         /// <summary>
-        /// TheoCodeLấy tên
+        /// Theo Code Lấy tên
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>

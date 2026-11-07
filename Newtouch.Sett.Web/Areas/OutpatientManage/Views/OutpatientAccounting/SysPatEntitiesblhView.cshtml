@@ -24,7 +24,7 @@
                 </td>
                 <th class="formTitle" style="width:50px">Họ tên:</th>
                 <td class="formValue">
-                    <input id="txt_xm" name="txt_xm" type="text" class="form-control form-an form-an-end" placeholder="Vui lòng nhậpHọ tênhoặc phiên âm đầu" />
+                    <input id="txt_xm" name="txt_xm" type="text" class="form-control form-an form-an-end" placeholder="Vui lòng nhập Họ tênhoặc phiên âm đầu" />
                 </td>
                 <th class="formTitle" style="width:50px">Số giấy tờ:</th>
                 <td class="formValue" style="width:150px">
@@ -88,7 +88,7 @@
                 width: $("#formPatSer").width() - 2,
                 url: "@Url.Action("PatSearchInfo")",
                 postData: { blh: $("#txt_blh").val(), xm: $("#txt_xm").val(), zjh: $("#txt_zjh").val() },
-                caption: 'Thông tin bệnh nhânDanh sách',
+                caption: 'Thông tin bệnh nhân Danh sách',
                 colModel: [
                     { label: 'Khóa chính', name: 'patid', hidden: true },
                     { label: 'Số hồ sơ bệnh án', name: 'blh', width: 50, align: 'left' },

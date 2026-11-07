@@ -102,7 +102,7 @@ namespace Newtouch.Sett.Web.Areas.KPI.Controllers
         }
 
         /// <summary>
-        /// CheckBáo cáo đã từng tạo chưa
+        /// Check Báo cáo đã từng tạo chưa
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>

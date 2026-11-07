@@ -11,7 +11,7 @@ namespace Newtouch.Domain.IDomainServices
     {
 
         /// <summary>
-        /// LấyrakhámBác sĩthông tin
+        /// Lấyrakhám Bác sĩthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -20,7 +20,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<VisitDeptSetVO> SelectVisitDeptSet(Pagination pagination, string keyword, string organizeId);
 
         /// <summary>
-        /// LấyrakhámBác sĩchi tiết
+        /// Lấyrakhám Bác sĩchi tiết
         /// </summary>
         /// <param name="ysgh"></param>
         /// <param name="organizeId"></param>
@@ -28,14 +28,14 @@ namespace Newtouch.Domain.IDomainServices
         IList<VisitDeptDetail> SelectVisitDeptSetDetail(string ysgh, string organizeId);
 
         /// <summary>
-        /// LấyrakhámBác sĩchi tiết
+        /// Lấyrakhám Bác sĩchi tiết
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         VisitDeptDetail SelectVisitDeptSetInfo(string id);
 
         /// <summary>
-        /// LấyrakhámBác sĩthông tin
+        /// Lấyrakhám Bác sĩthông tin
         /// </summary>
         /// <param name="ysgh"></param>
         /// <param name="organizeId"></param>

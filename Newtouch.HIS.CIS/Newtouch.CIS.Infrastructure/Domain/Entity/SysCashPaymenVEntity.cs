@@ -11,17 +11,17 @@ namespace Newtouch.Domain.Entity
         public int xjzffsbh { get; set; }
 
         /// <summary>
-        /// hiệnkimPhương thức thanh toán
+        /// hiệnkim Phương thức thanh toán
         /// </summary>
         public string xjzffs { get; set; }
 
         /// <summary>
-        /// hiệnkimPhương thức thanh toánTên
+        /// hiệnkim Phương thức thanh toán Tên
         /// </summary>
         public string xjzffsmc { get; set; }
 
         /// <summary>
-        /// Tài khoảnTính chất
+        /// Tài khoản Tính chất
         /// </summary>
         public string zhxz { get; set; }
 
@@ -31,7 +31,7 @@ namespace Newtouch.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// tạoNgười dùng ID
+        /// tạo Người dùng ID
         /// </summary>
         public string CreatorCode { get; set; }
 
@@ -46,7 +46,7 @@ namespace Newtouch.Domain.Entity
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Sửa cuốiNgười dùng ID
+        /// Sửa cuối Người dùng ID
         /// </summary>
         public string LastModifierCode { get; set; }
 

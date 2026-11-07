@@ -49,7 +49,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             return Redirect("/ReportManage/Report/ReportConfig");
         }
         /// <summary>
-        /// Phục hồi chức năngĐơn thuốc
+        /// Phục hồi chức năng Đơn thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult RehabPresReport()
@@ -59,7 +59,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// Hạng mục thông thườngĐơn thuốc
+        /// Hạng mục thông thường Đơn thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult RegularItemPresReport()
@@ -69,7 +69,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// Phục hồi chức năngĐiều trịphiếu
+        /// Phục hồi chức năng Điều trịphiếu
         /// </summary>
         /// <returns></returns>
         public IActionResult RehabPresTreatmentReport()
@@ -87,7 +87,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// Thuốc TâyĐơn thuốc
+        /// Thuốc Tây Đơn thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult WMPresReport()
@@ -97,7 +97,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// Thuốc Đông yĐơn thuốc
+        /// Thuốc Đông y Đơn thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult TCMPresReport()
@@ -116,7 +116,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// Y lệnh dài hạnIn
+        /// Y lệnh dài hạn In
         /// </summary>
         /// <returns></returns>
         public IActionResult PrintCqyzReport()
@@ -125,7 +125,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// Y lệnh tạm thờiIn
+        /// Y lệnh tạm thời In
         /// </summary>
         /// <returns></returns>
         public IActionResult PrintLsyzReport()
@@ -134,7 +134,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// Y lệnhThực hiệnsau,InThuốcphiếu
+        /// Y lệnh Thực hiệnsau,In Thuốcphiếu
         /// </summary>
         /// <returns></returns>
         public IActionResult PrintYzYpReport()
@@ -144,7 +144,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// Xét nghiệmPhiếu
+        /// Xét nghiệm Phiếu
         /// </summary>
         /// <returns></returns>
 
@@ -153,19 +153,19 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             ReportingServiceCom();
             return View();
         }
-        //Kiểm traPhiếu
+        //Kiểm tra Phiếu
         public IActionResult PrintJcReport()
         {
             ReportingServiceCom();
             return View();
         }
-        //Toàn việnKháng sinhthuốcvậtSử dụngSố tiềnxếptên
+        //Toàn viện Kháng sinhthuốcvật Sử dụng Số tiềnxếptên
         public IActionResult PrintKssJePMReport()
         {
             ReportingServiceCom();
             return View();
         }
-        //Toàn việnKháng sinhthuốcvậtSử dụnglượngxếptên
+        //Toàn viện Kháng sinhthuốcvật Sử dụnglượngxếptên
         public IActionResult PrintKssSlPMReport()
         {
             ReportingServiceCom();
@@ -189,7 +189,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             ViewBag.OrgId = this.OrganizeId;
             ViewBag.topOrgId = Constants.TopOrganizeId;
             ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
-            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //CóKhôngCóQuản trị viên bệnh viện
+            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //Có Không Có Quản trị viên bệnh viện
             ViewBag.CurUserCode = this.UserIdentity.UserCode;
             ViewBag.curUsergh = UserIdentity.rygh;
         }

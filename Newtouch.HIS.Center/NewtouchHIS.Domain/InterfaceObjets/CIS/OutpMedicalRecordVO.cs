@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.Domain.InterfaceObjets.CIS
 {
     /// <summary>
-    /// Ngoại trúBệnh nhânBệnh án
+    /// Ngoại trú Bệnh nhân Bệnh án
     /// </summary> 
     public class OutpMedicalRecordVO
     {
@@ -175,7 +175,7 @@
         public string? ysbz { get; set; }
 
         /// <summary>
-        /// Chứng hậuMã
+        /// Chứng hậu Mã
         /// </summary>
         public string? zhCode { get; set; }
 

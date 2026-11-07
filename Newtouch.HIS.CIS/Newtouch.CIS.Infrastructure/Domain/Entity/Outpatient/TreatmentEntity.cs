@@ -23,47 +23,47 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// liên kếtbillingHệ thốngcủađăng ký khámbảng
+        /// liên kếtbilling Hệ thốngcủađăng ký khámbảng
         /// </summary>
         public string mzh { get; set; }
 
         /// <summary>
-        /// Dư thừađăng ký khámthông tin  Liệt kê 1 thông thườngNgoại trú 2 gấpkhám 3chuyên gia
+        /// Dư thừađăng ký khámthông tin  Liệt kê 1 thông thường Ngoại trú 2 gấpkhám 3chuyên gia
         /// </summary>
         public int mjzbz { get; set; }
 
         /// <summary>
-        /// tương ứngbillinggiao diệntrongcủaSố bệnh án
+        /// tương ứngbillinggiao diệntrongcủa Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// Dư thừaThông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhânchữđoạn
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// Dư thừaThông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhânchữđoạn
         /// </summary>
         public string xb { get; set; }
 
         /// <summary>
-        /// Dư thừaThông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhânchữđoạn
         /// </summary>
         public DateTime? csny { get; set; }
 
         /// <summary>
-        /// Dư thừaThông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhânchữđoạn
         /// </summary>
         public string brxzmc { get; set; }
 
         /// <summary>
-        /// Dư thừaThông tin bệnh nhânchữđoạn Liệt kê
+        /// Dư thừa Thông tin bệnh nhânchữđoạn Liệt kê
         /// </summary>
         public int? zjlx { get; set; }
 
         /// <summary>
-        /// Dư thừaThông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhânchữđoạn
         /// </summary>
         public string zjh { get; set; }
 
@@ -73,7 +73,7 @@ namespace Newtouch.Domain.Entity
         public string ghksmc { get; set; }
 
         /// <summary>
-        /// Dư thừađăng ký khámbảngchữđoạn Bác sĩTên
+        /// Dư thừađăng ký khámbảngchữđoạn Bác sĩ Tên
         /// </summary>
         public string ghys { get; set; }
 
@@ -83,7 +83,7 @@ namespace Newtouch.Domain.Entity
         public DateTime ghsj { get; set; }
 
         /// <summary>
-        /// đăng ký khámThao tácThời gian
+        /// đăng ký khám Thao tác Thời gian
         /// </summary>
         public DateTime? ghczsj { get; set; }
 
@@ -138,17 +138,17 @@ namespace Newtouch.Domain.Entity
         public string jzks { get; set; }
 
         /// <summary>
-        /// liên kếtbasekho  ngườiviênbảng(cuối cùngxemkhámBác sĩ)
+        /// liên kếtbasekho  ngườiviênbảng(cuối cùngxemkhám Bác sĩ)
         /// </summary>
         public string jzys { get; set; }
 
         /// <summary>
-        /// (cuối cùng)xemkhámBác sĩTên
+        /// (cuối cùng)xemkhám Bác sĩ Tên
         /// </summary>
         public string jzysmc { get; set; }
 
         /// <summary>
-        /// Liệt kê 1 chưaKhám bệnh 2 Khám bệnhtrong 3 đãKhám bệnh (dùngđếnkhôi phụclạiKết thúcKhám bệnhcủaghi chép)
+        /// Liệt kê 1 chưa Khám bệnh 2 Khám bệnhtrong 3 đã Khám bệnh (dùngđếnkhôi phụclại Kết thúc Khám bệnhcủaghi chép)
         /// </summary>
         public int jzzt { get; set; }
 
@@ -180,19 +180,19 @@ namespace Newtouch.Domain.Entity
         public string brxzCode { get; set; }
 
         /// <summary>
-        /// Bảo hiểm y tếquyết toánsố(Bảo hiểm y tếQuay lại)
+        /// Bảo hiểm y tếquyết toánsố(Bảo hiểm y tế Quay lại)
         /// </summary>
         public string ybjsh { get; set; }
         /// <summary>
-        /// ban đầulạikhámCờ 1lạikhám
+        /// ban đầulạikhám Cờ 1lạikhám
         /// </summary>
         public string cfzbz { get; set; }
         /// <summary>
-        /// xãbảoSố hiệu
+        /// xãbảo Số hiệu
         /// </summary>
         public string sbbh { get; set; }
         /// <summary>
-        /// tham sốbảođịaMã
+        /// tham sốbảođịa Mã
         /// </summary>
         public string cbdbm { get; set; }
         /// <summary>
@@ -200,7 +200,7 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public decimal? shengao { get; set; }
         /// <summary>
-        /// thuHuyết áp tâm thu
+        /// thu Huyết áp tâm thu
         /// </summary>
         public decimal? shousuoya { get; set; }
         /// <summary>
@@ -216,7 +216,7 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public string ContactNum { get; set; }
         /// <summary>
-        /// Khám bệnhSố thẻ
+        /// Khám bệnh Số thẻ
         /// </summary>
         public string kh { get; set; }
 
@@ -227,11 +227,11 @@ namespace Newtouch.Domain.Entity
         public decimal? huxi { get; set; }
 
         /// <summary>
-        /// đăng ký khámđếnnguồnCờ
+        /// đăng ký khámđếnnguồn Cờ
         /// </summary>
         public string ghlybz { get; set; }
         /// <summary>
-        /// Bảo hiểm y tếCá nhânSố hiệu
+        /// Bảo hiểm y tế Cá nhân Số hiệu
         /// </summary>
         public string grbh { get; set; }
 

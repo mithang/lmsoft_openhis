@@ -20,12 +20,12 @@ namespace Newtouch.HIS.Domain.Entity
         public long Id { get; set; }
 
         /// <summary>
-        /// Tổ chứcId
+        /// Tổ chức Id
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Thông tin y lệnh thuốc ID zy_ypyzxxKhóa chính bảng ID
+        /// Thông tin y lệnh thuốc ID zy_ypyzxx Khóa chính bảng ID
         /// </summary>
         public long ypyzxxId { get; set; }
 

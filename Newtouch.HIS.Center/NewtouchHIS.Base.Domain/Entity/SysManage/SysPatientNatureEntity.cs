@@ -20,7 +20,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public int brxzbh { get; set; }
 
         /// <summary>
-        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
+        /// Tổ chức Id(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -136,7 +136,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public string bz { get; set; }
 
         /// <summary>
-        /// Liên kếtKhóa chínhbrxzbh
+        /// Liên kết Khóa chínhbrxzbh
         /// </summary>
         public int? ParentId { get; set; }
         public string insutype { get; set; }

@@ -22,7 +22,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
 
 
         /// <summary>
-        /// Desc:Thẻ từ của việnSố thẻ(bao gồm bệnh nhân BHYT nghỉ hưu theo chế độ),hoặc BHYT Số thẻ
+        /// Desc:Thẻ từ của viện Số thẻ(bao gồm bệnh nhân BHYT nghỉ hưu theo chế độ),hoặc BHYT Số thẻ
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -426,7 +426,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
 
     #endregion
     /// <summary>
-    /// Bệnh nhânView thông tin cơ bản
+    /// Bệnh nhân View thông tin cơ bản
     /// </summary>
     public class SysPatientBasicVO : SysPatInfoVO
     {
@@ -437,13 +437,13 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string hy { get; set; }
     }
     /// <summary>
-    /// Bệnh nhânView rút gọn thông tin cơ bản
+    /// Bệnh nhân View rút gọn thông tin cơ bản
     /// </summary>
     public class SysPatInfoVO
     {
         public int? patid { get; set; }
         /// <summary>
-        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
+        /// Tổ chức Id(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string? OrganizeId { get; set; }
 
@@ -453,7 +453,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string? brxz { get; set; }
 
         /// <summary>
-        /// Thẻ từ của việnSố thẻ(bao gồm bệnh nhân BHYT nghỉ hưu theo chế độ),hoặc BHYT Số thẻ
+        /// Thẻ từ của viện Số thẻ(bao gồm bệnh nhân BHYT nghỉ hưu theo chế độ),hoặc BHYT Số thẻ
         /// </summary>
         public string? blh { get; set; }
 
@@ -489,7 +489,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string klx { get; set; }
     }
     /// <summary>
-    /// Bệnh nhânChỉ mục truy vấn
+    /// Bệnh nhân Chỉ mục truy vấn
     /// </summary>
     public class SysPatIndexVO
     {

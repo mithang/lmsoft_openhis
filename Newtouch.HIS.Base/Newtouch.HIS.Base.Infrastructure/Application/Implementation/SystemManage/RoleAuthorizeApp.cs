@@ -9,7 +9,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.Application.Implementation.SystemManage
 {
     /// <summary>
-    /// Quyền vai tròApp
+    /// Quyền vai trò App
     /// </summary>
     public class RoleAuthorizeApp : IRoleAuthorizeApp
     {
@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Application.Implementation.SystemManage
             {
                 if (!string.IsNullOrEmpty(item.UrlAddress))
                 {
-                    //Nếu đã thêmHandlerAuthorizeAttribute,thì yêu cầu có tương ứngMeum/MenuButton và có cài đặtUrl
+                    //Nếu đã thêm HandlerAuthorizeAttribute,thì yêu cầu có tương ứng Meum/MenuButton và có cài đặt Url
                     string[] url = item.UrlAddress.Split('?');
                     if (item.Id == moduleId && url[0] == action)
                     {

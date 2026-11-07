@@ -9,10 +9,10 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
-        /// Tin nhắnId Duy nhất trong lần này
+        /// Tin nhắn Id Duy nhất trong lần này
         /// Để tiện gửi nhiều lần khi có quá nhiều người nhận
         /// </summary>
-        [Required(ErrorMessage = "Tin nhắnId  không được để trống")]
+        [Required(ErrorMessage = "Tin nhắn Id  không được để trống")]
         public string NoticeId { get; set; }
         /// <summary>
         /// Người gửi
@@ -20,7 +20,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         [Required(ErrorMessage = "Người gửi không được để trống")]
         public string SendFrom { get; set; }
         /// <summary>
-        /// Nhóm tin nhắnSố hiệu
+        /// Nhóm tin nhắn Số hiệu
         /// </summary>
         [Required(ErrorMessage = "Mã số nhóm tin nhắn không được để trống")]
         public string NoticeGroupId { get; set; }
@@ -36,7 +36,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public int NoticeRange { get; set; }
         /// <summary>
         /// Chủ đề hiển thị 
-        /// Như Bạn có thông báo kiểm soát chất lượng mớiTin nhắn,vui lòng xem ngay
+        /// Như Bạn có thông báo kiểm soát chất lượng mới Tin nhắn,vui lòng xem ngay
         /// </summary>
         [Required(ErrorMessage = "Chủ đề tin nhắn không được để trống")]
         public string? Title { get; set; }
@@ -46,7 +46,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         /// </summary>
         public string? Content { get; set; }
         /// <summary>
-        /// Dữ liệu liên kết nội dung JsonĐịnh dạng Đối tượng có thể chuyển đổi
+        /// Dữ liệu liên kết nội dung Json Định dạng Đối tượng có thể chuyển đổi
         /// </summary>
         public string? ContentData { get; set; }
         /// <summary>
@@ -81,13 +81,13 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         /// </summary>
         public string? ExecCron { get; set; }
         /// <summary>
-        /// Tin nhắnTrạng thái 
+        /// Tin nhắn Trạng thái 
         /// NoticeStuEnum
         /// </summary>
         public int NoticeStu { get; set; } = (int)NoticeStuEnum.UnSend;
         public int? px { get; set; }
         /// <summary>
-        /// Ứng dụngId
+        /// Ứng dụng Id
         /// </summary>
         public string? AppId { get; set; }
 
@@ -97,7 +97,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
     {
         public string? OrganizeId { get; set; }
         /// <summary>
-        /// Tin nhắnId Duy nhất trong lần này
+        /// Tin nhắn Id Duy nhất trong lần này
         /// Để tiện gửi nhiều lần khi có quá nhiều người nhận
         /// </summary>
         public string? NoticeId { get; set; }
@@ -106,7 +106,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         /// </summary>
         public string? SendFrom { get; set; }
         /// <summary>
-        /// Nhóm tin nhắnSố hiệu
+        /// Nhóm tin nhắn Số hiệu
         /// </summary>
         public string? NoticeGroupId { get; set; }
         /// <summary>
@@ -119,7 +119,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public int? NoticeRange { get; set; }
         /// <summary>
         /// Chủ đề hiển thị 
-        /// Như Bạn có thông báo kiểm soát chất lượng mớiTin nhắn,vui lòng xem ngay
+        /// Như Bạn có thông báo kiểm soát chất lượng mới Tin nhắn,vui lòng xem ngay
         /// </summary>
         public string? Title { get; set; }
         /// <summary>
@@ -128,7 +128,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         /// </summary>
         public string? Content { get; set; }
         /// <summary>
-        /// Dữ liệu liên kết nội dung JsonĐịnh dạng Đối tượng có thể chuyển đổi
+        /// Dữ liệu liên kết nội dung Json Định dạng Đối tượng có thể chuyển đổi
         /// </summary>
         public string? ContentData { get; set; }
         /// <summary>
@@ -160,13 +160,13 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         /// </summary>
         public string? ExecCron { get; set; }
         /// <summary>
-        /// Tin nhắnTrạng thái 
+        /// Tin nhắn Trạng thái 
         /// NoticeStuEnum
         /// </summary>
         public int? NoticeStu { get; set; }
         public int? px { get; set; }
         /// <summary>
-        /// Ứng dụngId
+        /// Ứng dụng Id
         /// </summary>
         public string? AppId { get; set; }
         public DateTime? CreateTime { get; set; }
@@ -178,7 +178,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public string? zt { get; set; } = "1";
     }
     /// <summary>
-    /// Tin nhắnTruy vấn thông báo
+    /// Tin nhắn Truy vấn thông báo
     /// </summary>
     public class MsgNoticeQueueQueryVO
     {
@@ -206,7 +206,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
 
         public T? NoticeData { get; set; }
         /// <summary>
-        /// Tin nhắnHiển thị nhắc nhở
+        /// Tin nhắn Hiển thị nhắc nhở
         /// </summary>
         public string? NoticeShow { get; set; }
         /// <summary>

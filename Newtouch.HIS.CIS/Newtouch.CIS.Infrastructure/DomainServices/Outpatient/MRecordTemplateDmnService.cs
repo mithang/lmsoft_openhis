@@ -68,7 +68,7 @@ namespace Newtouch.DomainServices
             var mbEntity = _mRTemplateRepo.IQueryable().Where(a => a.mbId == mbId && a.zt == "1").FirstOrDefault();
             if (mbEntity == null)
             {
-                throw new FailedException("Dữ liệu bất thường，chưaTra cứuraHồ sơmẫuthông tin");
+                throw new FailedException("Dữ liệu bất thường，chưa Tra cứura Hồ sơmẫuthông tin");
             }
             //Chẩn đoán Tây y
             //var wmdiagnosisEntityList = _mrTemplateWMDiagnosisRepo.IQueryable().Where(a => a.mbId == mbId && a.OrganizeId == orgId && a.zt == "1").ToList();
@@ -166,7 +166,7 @@ namespace Newtouch.DomainServices
                 }
                 else
                 {
-                    //Thêm mớiKhám bệnhbảng
+                    //Thêm mới Khám bệnhbảng
                     blmbObject.mbId = Guid.NewGuid().ToString();
                     blmbObject.Create();
 

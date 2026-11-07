@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Domain.IRepository
         void SubmitForm(SysOrganizeEntity entity, string keyValue);
 
         /// <summary>
-        /// TheoOrgIdLấyCode
+        /// Theo OrgId Lấy Code
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

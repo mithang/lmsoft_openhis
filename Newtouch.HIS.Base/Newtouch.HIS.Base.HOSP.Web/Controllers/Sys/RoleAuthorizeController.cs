@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         /// <summary>
         /// Cây quyền hệ thống (Menu+Nút)
         /// </summary>
-        /// <param name="roleId">Vai trò hiện tạiId</param>
+        /// <param name="roleId">Vai trò hiện tại Id</param>
         /// <returns></returns>
         public IActionResult GetPermissionTree(string roleId)
         {

@@ -126,7 +126,7 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public string zt { get; set; }
         /// <summary>
-        /// Đăng ký nhập việnId
+        /// Đăng ký nhập viện Id
         /// </summary>
         public string RegId { get; set; }
     }

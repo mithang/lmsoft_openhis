@@ -22,7 +22,7 @@ namespace NewtouchHIS.AuthenticationCenter.Controllers
             _appManageDmn = appManageDmn;
         }
         /// <summary>
-        /// Hệ thống thứ ba lấyToken
+        /// Hệ thống thứ ba lấy Token
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -47,7 +47,7 @@ namespace NewtouchHIS.AuthenticationCenter.Controllers
             });
         }
         /// <summary>
-        /// Ủy quyền ứng dụngĐăng kýToken
+        /// Ủy quyền ứng dụng Đăng ký Token
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -72,7 +72,7 @@ namespace NewtouchHIS.AuthenticationCenter.Controllers
             });
         }
         /// <summary>
-        /// làm mớiToken
+        /// làm mới Token
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -92,7 +92,7 @@ namespace NewtouchHIS.AuthenticationCenter.Controllers
             });
         }
         /// <summary>
-        /// Nội bộWebHệ thống lấyToken
+        /// Nội bộ Web Hệ thống lấy Token
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -106,7 +106,7 @@ namespace NewtouchHIS.AuthenticationCenter.Controllers
             }
             if (string.IsNullOrWhiteSpace(request.Data?.KeyLicense))
             {
-                return new BusResult<JWTToken> { code = ResponseResultCode.FAIL, msg = "Vui lòng truyền ứng dụng được cấp quyềnAppId" };
+                return new BusResult<JWTToken> { code = ResponseResultCode.FAIL, msg = "Vui lòng truyền ứng dụng được cấp quyền AppId" };
             }
             var appInfo = await _appManageDmn.AppKeyGen(new AppFriendAuthKeyRequest { AppId = request.Data.KeyLicense, FriendAppId = request.AppId });
             if (appInfo == null)
@@ -133,7 +133,7 @@ namespace NewtouchHIS.AuthenticationCenter.Controllers
             }
             if (string.IsNullOrWhiteSpace(request.Data?.KeyLicense))
             {
-                return new BusResult<AuthIdentity> { code = ResponseResultCode.FAIL, msg = "Vui lòng truyền ứng dụng được cấp quyềnAppId" };
+                return new BusResult<AuthIdentity> { code = ResponseResultCode.FAIL, msg = "Vui lòng truyền ứng dụng được cấp quyền AppId" };
             }
             var appInfo = await _appManageDmn.AppKeyGen(new AppFriendAuthKeyRequest { AppId = request.Data.KeyLicense, FriendAppId = request.AppId });
             if (appInfo == null)

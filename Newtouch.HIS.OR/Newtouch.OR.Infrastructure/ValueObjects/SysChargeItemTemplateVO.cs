@@ -16,14 +16,14 @@ namespace Newtouch.OR.ManageSystem.Domain.ValueObjects
         /// <summary>Tên khoản thu phí</summary>
         public string sfxmmc { get; set; }
 
-        /// <summary>Nhóm thu phí lớnCode</summary>
+        /// <summary>Nhóm thu phí lớn Code</summary>
         public string sfdlCode { get; set; }
         public string sfdlmc { get; set; }
 
-        /// <summary>Nhóm bệnh án lớnCode</summary>
+        /// <summary>Nhóm bệnh án lớn Code</summary>
         public string badlCode { get; set; }
 
-        /// <summary>Nhóm bảo hiểm nông nghiệp lớnCode</summary>
+        /// <summary>Nhóm bảo hiểm nông nghiệp lớn Code</summary>
         public string nbdlCode { get; set; }
 
         /// <summary>Tổ chức</summary>
@@ -71,7 +71,7 @@ namespace Newtouch.OR.ManageSystem.Domain.ValueObjects
         /// <summary>Số lượng đơn vị tính</summary>
         public int? dwjls { get; set; }
 
-        /// <summary>Chính sách tính giá Enum tương ứngEnumKfxmJjcl 1Theo thời gian 2Theo số lượng 3Theo diện tích</summary>
+        /// <summary>Chính sách tính giá Enum tương ứng EnumKfxmJjcl 1Theo thời gian 2Theo số lượng 3Theo diện tích</summary>
         public int? jjcl { get; set; }
 
         /// <summary>Khoa thực hiện(Khoa thực hiện mặc định)</summary>

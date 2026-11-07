@@ -39,7 +39,7 @@ namespace Newtouch.DomainServices.Inpatient
                 select zyh from zy_tyssqqk where  OrganizeId=@orgId) aaa 
                 inner join zy_brxxk b on aaa.zyh=b.zyh and b.OrganizeId=@orgId
                 left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.wardCode and c.OrganizeId=@orgId
-                where b.zybz <>'9'--khôngHủyNhập viện
+                where b.zybz <>'9'--khôngHủy Nhập viện
                 and isnull(bqcode,'')<>''";
             return this.FindList<InpWardPatTreeVO>(sql, new[] { new SqlParameter("@orgId", orgId) });
         }

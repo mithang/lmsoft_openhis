@@ -58,7 +58,7 @@
                         url: "/TemplateManage/InspectionTemplate/GetGPackageDetailByZtId",
                         postData: { ztId: item.id, mbId: item.parentnodes }
                     }).trigger("reloadGrid");
-                    $grid.jqGrid("setCaption", item.text);   //Đặt lạicaptionThuộc tínhGiá trị
+                    $grid.jqGrid("setCaption", item.text);   //Đặt lạicaption Thuộc tính Giá trị
                 }
                 if ($griddetail) {
                     $griddetail.clearGridData();
@@ -91,19 +91,19 @@
     });
 
     /**
-     * ***********************góiHiển thị**********************************
+     * ***********************gói Hiển thị**********************************
      */
     function getActionDel(id) {
         return "<i class='fa fa-minus-square-o' style='font-size: large; color: #09a3ea;' onclick='deleteGroupData(\"" + id + "\")'></i>";
     }
     function getGroupInfo($grid, ztId, parentid) {
-        var ztcd = $grid.getDataIDs();//XóaxongMụccủasaulạivàodòngXóa trắng
+        var ztcd = $grid.getDataIDs();//Xóaxong Mụccủasaulạivàodòng Xóa trắng
         if (ztcd.length==0) {
             lsid = "";
         }
         if (lsid == null || lsid == "") {
             lsid = parentid;
-        }//VD nếu Bắt đầuKhông cóMụctrực tiếpGán giá trị
+        }//VD nếu Bắt đầu Không có Mụctrực tiếp Gán giá trị
         else {
                 if (parentid != lsid) {
                     $.modalAlert("Cùng một phiếu không thể kê nhiều mục loại lớn", "warning");
@@ -174,7 +174,7 @@
             }
         });
     }
-    //XóađãchọnBộ mẫuchi tiết
+    //Xóađãchọn Bộ mẫuchi tiết
     function deleteGroupData(selRowId) {
         if (!!selRowId) {
             var $grid;

@@ -683,7 +683,7 @@ Id in('" + listls + @"')  ;";
 
         }
 
-        #region duyệtDài hạnvàTất cả
+        #region duyệt Dài hạnvàTất cả
 
         public string OrderAuditSubmitbyPat(OperatorModel user, string patList, int Yzxz, IList<OrderAuditVO> orderList, string IsRehabAuthtoNurse = null, bool Iskf = false, string zxks = null)
         {

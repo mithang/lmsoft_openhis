@@ -44,7 +44,7 @@ namespace Newtouch.Domain.IDomainServices
         /// <returns></returns>
         IList<ReportConfigVO> ReportList(Pagination pagination, string orgId, string rptname, string keyword);
         /// <summary>
-        /// Báo cáocấu hìnhChi tiết
+        /// Báo cáocấu hình Chi tiết
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyValue"></param>

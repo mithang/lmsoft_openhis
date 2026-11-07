@@ -67,7 +67,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// Bộ mẫuChi tiết(Tra cứu)
+        /// Bộ mẫu Chi tiết(Tra cứu)
         /// </summary>
         /// <param name="ztId"></param>
         /// <returns></returns>

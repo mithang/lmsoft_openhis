@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string qxjbmc { get; set; }
 
         /// <summary>
-        /// Loại cấp trênId
+        /// Loại cấp trên Id
         /// </summary>
         public string parentId { get; set; }
 

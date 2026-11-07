@@ -4,12 +4,12 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// trangmặtGửiquađếncủa
+    /// trangmặt Gửiquađếncủa
     /// </summary>
     public class PrescriptionHtmlDTO
     {
         /// <summary>
-        /// Đơn thuốcLoại
+        /// Đơn thuốc Loại
         /// </summary>
         public string cflx { get; set; }
 

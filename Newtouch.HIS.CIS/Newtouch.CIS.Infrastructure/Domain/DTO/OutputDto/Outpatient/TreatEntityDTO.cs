@@ -24,7 +24,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string address { get; set; }
         public int? queno { get; set; }
         /// <summary>
-        /// chuyểnkhámnhận dạng:làKhônglàchuyểnkhámBệnh nhân
+        /// chuyểnkhámnhận dạng:là Khônglàchuyểnkhám Bệnh nhân
         /// </summary>
         public string zzbs { get; set; }
     }
@@ -56,15 +56,15 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string ksmc { get; set; }
         /// <summary>
-        /// bệnh nhânTính chất
+        /// bệnh nhân Tính chất
         /// </summary>
         public string brxz { get; set; }
         /// <summary>
-        /// bệnh nhânTính chất
+        /// bệnh nhân Tính chất
         /// </summary>
         public string brxzmc { get; set; }
         /// <summary>
-        /// bệnh nhânHọ tên
+        /// bệnh nhân Họ tên
         /// </summary>
         public string brxm { get; set; }
         /// <summary>
@@ -76,11 +76,11 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string maritalStatusValue { get; set; }
         /// <summary>
-        /// chứngmụcLoại
+        /// chứngmục Loại
         /// </summary>
         public string zjlx { get; set; }
         /// <summary>
-        /// chứngmụcLoại
+        /// chứngmục Loại
         /// </summary>
         public string zjlxValue { get; set; }
         /// <summary>
@@ -132,52 +132,52 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string address { get; set; }
         /// <summary>
-        /// đăng ký khámThời gian
+        /// đăng ký khám Thời gian
         /// </summary>
         public string ghsj { get; set; }
         /// <summary>
-        /// gấpgấpNgười liên hệ
+        /// gấpgấp Người liên hệ
         /// </summary>
         public string contPerName { get; set; }
         /// <summary>
-        /// gấpgấpNgười liên hệĐiện thoại
+        /// gấpgấp Người liên hệ Điện thoại
         /// </summary>
         public string contPerPhoneNum { get; set; }
         /// <summary>
-        /// gấpgấpNgười liên hệquan hệ
+        /// gấpgấp Người liên hệquan hệ
         /// </summary>
         public string contPerRel { get; set; }
         /// <summary>
-        /// gấpgấpNgười liên hệquan hệ
+        /// gấpgấp Người liên hệquan hệ
         /// </summary>
         public string contPerRelValue { get; set; }
         /// <summary>
-        /// cuối cùngThời gian cập nhật
+        /// cuối cùng Thời gian cập nhật
         /// </summary>
         public string updateTime { get; set; }
 
         /// <summary>
-        /// cửagấpkhámCờ
+        /// cửagấpkhám Cờ
         /// </summary>
         public string mjzbz { get; set; }
 
         /// <summary>
-        /// cửagấpkhámCờ
+        /// cửagấpkhám Cờ
         /// </summary>
         public string mjzbzValue { get; set; }
 
         /// <summary>
-        /// Khám bệnhCờ
+        /// Khám bệnh Cờ
         /// </summary>
         public string jiuzhenbz { get; set; }
 
         /// <summary>
-        /// Khám bệnhCờ
+        /// Khám bệnh Cờ
         /// </summary>
         public string jiuzhenbzValue { get; set; }
 
         /// <summary>
-        /// đăng ký khámThao tácThời gian
+        /// đăng ký khám Thao tác Thời gian
         /// </summary>
         public string operatingTime { get; set; }
 
@@ -187,22 +187,22 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string ybjsh { get; set; }
 
         /// <summary>
-        /// lạikhámCờ 1lạikhám
+        /// lạikhám Cờ 1lạikhám
         /// </summary>
         public string fzbz { get; set; }
 
         /// <summary>
-        /// xãbảoSố hiệu
+        /// xãbảo Số hiệu
         /// </summary>
         public string sbbh { get; set; }
 
         /// <summary>
-        /// tham sốbảođịaMã
+        /// tham sốbảođịa Mã
         /// </summary>
         public string cbdbm { get; set; }
 
         /// <summary>
-        /// Pinyin(Tên bệnh nhânMã đầu chữ)
+        /// Pinyin(Tên bệnh nhân Mã đầu chữ)
         /// </summary>
         public string py { get; set; }
         /// <summary>

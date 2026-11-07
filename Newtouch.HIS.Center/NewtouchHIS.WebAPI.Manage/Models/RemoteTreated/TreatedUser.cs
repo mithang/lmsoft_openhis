@@ -3,7 +3,7 @@
 namespace NewtouchHIS.WebAPI.Manage.Models
 {
     /// <summary>
-    /// Tham và Cuộc họpngườiĐăng kýCuộc họp
+    /// Tham và Cuộc họpngười Đăng ký Cuộc họp
     /// </summary>
     public class TreatedUserRequest
     {
@@ -11,13 +11,13 @@ namespace NewtouchHIS.WebAPI.Manage.Models
         public string usercode { get; set; }
         public string username { get; set; }
         /// <summary>
-        /// Từ xaĐăng ký khám chữa bệnhSố giao dịch
+        /// Từ xa Đăng ký khám chữa bệnh Số giao dịch
         /// </summary>
         [Required(ErrorMessage = "Mã đăng ký khám chữa bệnh không được để trống")]
         public string applyId { get; set; }
         /// <summary>
-        /// Có hay khôngCuộc họpĐặt lại
-        /// Cuộc họpKhi quá hạn,LạiĐăng kýCuộc họp
+        /// Có hay không Cuộc họp Đặt lại
+        /// Cuộc họp Khi quá hạn,Lại Đăng ký Cuộc họp
         /// </summary>
         public bool roomReset { get; set; } = false;
         public string? roomid { get; set; }

@@ -56,7 +56,7 @@ namespace NewtouchHIS.DomainService.CIS
             return entity.Id;
         }
         /// <summary>
-        /// Sửa đổiĐăng kýTrạng thái phiếu,Cuộc họpSố(Chỉ khi đang khám&khi chờ xác nhận)
+        /// Sửa đổi Đăng ký Trạng thái phiếu,Cuộc họp Số(Chỉ khi đang khám&khi chờ xác nhận)
         /// </summary>
         /// <param name="applyEntity"></param>
         /// <returns></returns>
@@ -65,7 +65,7 @@ namespace NewtouchHIS.DomainService.CIS
         {
             if (string.IsNullOrWhiteSpace(applyEntity.Id) || string.IsNullOrWhiteSpace(applyEntity.sqlsh))
             {
-                throw new FailedException("Đăng ký quan trọngId không được để trống");
+                throw new FailedException("Đăng ký quan trọng Id không được để trống");
             }
             var entity = await baseDal.GetFirstOrDefault(p => p.Id == applyEntity.Id && p.OrganizeId == applyEntity.OrganizeId && p.sqlsh == applyEntity.sqlsh && p.zt == "1");
             if (entity == null || string.IsNullOrWhiteSpace(entity.Id))
@@ -84,7 +84,7 @@ namespace NewtouchHIS.DomainService.CIS
                     }
                     break;
                 case (int)EmunRemoteTreatedStu.jzz:
-                    //Cập nhậtCuộc họpSố
+                    //Cập nhật Cuộc họp Số
                     if (applyEntity.sqzt == (int)EmunRemoteTreatedStu.jzz)
                     {
                         entity.mzh = applyEntity.mzh;

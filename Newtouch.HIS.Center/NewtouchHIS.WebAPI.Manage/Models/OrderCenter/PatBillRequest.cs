@@ -3,7 +3,7 @@
 namespace NewtouchHIS.WebAPI.Manage.Models.OrderCenter
 {
     /// <summary>
-    /// Bệnh nhânHóa đơn
+    /// Bệnh nhân Hóa đơn
     /// </summary>
     public class PatBillRequest
     {
@@ -16,7 +16,7 @@ namespace NewtouchHIS.WebAPI.Manage.Models.OrderCenter
         /// </summary>
         public string? mzh { get; set; }
         /// <summary>
-        /// Khám bệnhSố thẻ
+        /// Khám bệnh Số thẻ
         /// </summary>
         public string? kh { get; set; }
         /// <summary>

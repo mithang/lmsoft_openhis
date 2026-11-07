@@ -189,7 +189,7 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         public string zjh { get; set; }
 
         /// <summary>
-        /// Đơn hàngId
+        /// Đơn hàng Id
         /// </summary>
         public long OrderId { get; set; }
 
@@ -230,7 +230,7 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         public string tjr { get; set; }
 
         /// <summary>
-        /// Đăng ký khám đặt hẹn ngoại trú ID Tương ứngNewtouch_CIS.dbo.mz_yygh.Id
+        /// Đăng ký khám đặt hẹn ngoại trú ID Tương ứng Newtouch_CIS.dbo.mz_yygh.Id
         /// </summary>
         public string yyghId { get; set; }
 
@@ -244,12 +244,12 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         /// </summary>
         public string outpId { get; set; }
         /// <summary>
-        /// Mã phụ trợ nguồn đăng ký khám Phân biệt dấu hiệu khác nhau của cùng một nguồnBệnh nhân
+        /// Mã phụ trợ nguồn đăng ký khám Phân biệt dấu hiệu khác nhau của cùng một nguồn Bệnh nhân
         /// Dùng cho khám sức khỏe
         /// </summary>
         public string ghlybz { get; set; }
         /// <summary>
-        /// Lịch đăng ký khámId
+        /// Lịch đăng ký khám Id
         /// </summary>
         public decimal? ScheduId { get; set; }
         /// <summary>

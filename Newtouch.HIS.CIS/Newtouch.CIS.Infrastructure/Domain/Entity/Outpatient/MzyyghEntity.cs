@@ -28,7 +28,7 @@ namespace Newtouch.Domain.Entity
         public string brId { get; set; }
 
         /// <summary>
-        /// chứngmụcLoại
+        /// chứngmục Loại
         /// </summary>
         public int? zjlx { get; set; }
 

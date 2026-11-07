@@ -34,7 +34,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PDS.Controllers
         {
             if (request == null || request.Data == null || string.IsNullOrWhiteSpace(request.OrganizeId))
             {
-                return new BusResult<List<DepartmentDrugsVO>> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId là bắt buộc|Dữ liệu yêu cầu không được là null" };
+                return new BusResult<List<DepartmentDrugsVO>> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id là bắt buộc|Dữ liệu yêu cầu không được là null" };
             }
             request.Data.orgId = request.OrganizeId;
             var itemData = await _departmentDrugsService.GetDepartmentDrugs(request.Data);
@@ -55,7 +55,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PDS.Controllers
         {
             if (request == null || request.Data == null || string.IsNullOrWhiteSpace(request.OrganizeId))
             {
-                return new BusResult<PageResponseRow<List<DepartmentDrugsVO>>> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId là bắt buộc|Dữ liệu yêu cầu không được là null" };
+                return new BusResult<PageResponseRow<List<DepartmentDrugsVO>>> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id là bắt buộc|Dữ liệu yêu cầu không được là null" };
             }
             request.Data.queryParams.orgId = request.OrganizeId;
             var itemData = await _departmentDrugsService.GetDepartmentDrugsPage(request.Data);
@@ -76,7 +76,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PDS.Controllers
         {
             if (request == null || request.Data == null || string.IsNullOrWhiteSpace(request.OrganizeId)|| string.IsNullOrWhiteSpace(request.Data.crkmxId))
             {
-                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId là bắt buộc|crkmxId là bắt buộc|Dữ liệu yêu cầu không được là null" };
+                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id là bắt buộc|crkmxId là bắt buộc|Dữ liệu yêu cầu không được là null" };
             }
             request.Data.orgId = request.OrganizeId;
             var itemData = await _departmentDrugsService.UpdateMedicationStatus(request.Data);

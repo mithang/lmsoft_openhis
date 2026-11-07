@@ -26,7 +26,7 @@ namespace Newtouch.MR.ManageSystem.Domain.DTO.OutputDto
     public class SysOpListDto
     {
         /// <summary>
-        /// Phẫu thuậtMã
+        /// Phẫu thuật Mã
         /// </summary>
         public string ssdm { get; set; }
         /// <summary>

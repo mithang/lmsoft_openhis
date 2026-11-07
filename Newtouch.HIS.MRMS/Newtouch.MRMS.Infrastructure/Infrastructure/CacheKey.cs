@@ -14,7 +14,7 @@ using NewtouchHIS.Lib.Framework.Operator;
 namespace Newtouch.MR.ManageSystem.Infrastructure
 {
     /// <summary>
-    /// Bộ nhớ đệmKey
+    /// Bộ nhớ đệm Key
     /// </summary>
     public class CacheKey
     {

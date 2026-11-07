@@ -2,22 +2,22 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.EMRRequest
 {
     /// <summary>
-    /// tậpthànhđiện tửHồ sơ
+    /// tậpthànhđiện tử Hồ sơ
     /// </summary>
     public class EMRRequestEntity
     {
         /// <summary>
-        /// tàinguồnTên:EMR_WRITE
+        /// tàinguồn Tên:EMR_WRITE
         /// </summary>
         public string resource { get; set; }
 
         /// <summary>
-        /// Bác sĩSố hiệu:tứcBác sĩĐăng nhậpHệ thốngcủaNgười dùngtên
+        /// Bác sĩ Số hiệu:tức Bác sĩ Đăng nhập Hệ thốngcủa Người dùngtên
         /// </summary>
         public string doctorId { get; set; }
 
         /// <summary>
-        /// Bệnh nhânSố hiệu:Bệnh nhânduy nhấtmộtnhận dạng
+        /// Bệnh nhân Số hiệu:Bệnh nhânduy nhấtmộtnhận dạng
         /// </summary>
         public string patientId { get; set; }
     }

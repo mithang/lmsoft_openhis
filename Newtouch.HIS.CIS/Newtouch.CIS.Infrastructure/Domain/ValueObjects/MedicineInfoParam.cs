@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects
 {
     /// <summary>
-    /// ThuốcĐiều kiện tìm kiếm
+    /// Thuốc Điều kiện tìm kiếm
     /// </summary>
     public class MedicineInfoParam
     {
@@ -17,7 +17,7 @@ namespace Newtouch.Domain.ValueObjects
         public string ypdm { get; set; }
 
         /// <summary>
-        /// ThuốcLoại
+        /// Thuốc Loại
         /// </summary>
         public string yplb { get; set; }
 
@@ -32,12 +32,12 @@ namespace Newtouch.Domain.ValueObjects
         public string ypjx { get; set; }
 
         /// <summary>
-        /// Sử dụngTrạng thái điều khiển,Bình thường
+        /// Sử dụng Trạng thái điều khiển,Bình thường
         /// </summary>
         public string syzt { get; set; }
 
         /// <summary>
-        /// ThuốcTrạng thái Vô hiệu,Kích hoạt
+        /// Thuốc Trạng thái Vô hiệu,Kích hoạt
         /// </summary>
         public string ypzt { get; set; }
 

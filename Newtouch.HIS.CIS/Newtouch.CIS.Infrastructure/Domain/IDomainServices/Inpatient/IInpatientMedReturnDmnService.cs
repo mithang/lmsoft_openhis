@@ -16,7 +16,7 @@ namespace Newtouch.Domain.IDomainServices
     public interface IInpatientMedReturnDmnService
     {
         /// <summary>
-        /// Khu bệnhphát thuốcBệnh nhâncây
+        /// Khu bệnhphát thuốc Bệnh nhâncây
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>

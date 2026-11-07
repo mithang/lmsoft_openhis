@@ -38,7 +38,7 @@ SET @currYearMoth=@currYear+'01';
 --select @currYearMoth
 
 ");
-            //Nếu làadminĐăng nhập,thì thống kê số người khám của tất cả bệnh viện thuộc tổ chức đó
+            //Nếu làadmin Đăng nhập,thì thống kê số người khám của tất cả bệnh viện thuộc tổ chức đó
             if (isAdministrator)
             {
                 sqlStr.Append(@"
@@ -69,7 +69,7 @@ LEFT JOIN
 			112) AS groupDate , patid
 	from NewtouchHIS_Sett..mz_xm
             ");
-            //adminĐăng nhập,Liên kết tất cả bệnh viện thuộc tổ chức đó
+            //admin Đăng nhập,Liên kết tất cả bệnh viện thuộc tổ chức đó
             if (isAdministrator)
             {
                 sqlStr.Append(@"
@@ -121,7 +121,7 @@ DECLARE @currYearMoth varchar(30)
 SET @currYearMoth=@currYear+'01';
 --select @currYearMoth
 ");
-            //Nếu làadminĐăng nhập,thì thống kê số người khám của tất cả bệnh viện thuộc tổ chức đó
+            //Nếu làadmin Đăng nhập,thì thống kê số người khám của tất cả bệnh viện thuộc tổ chức đó
             if (isAdministrator)
             {
                 sqlStr2.Append(@"
@@ -151,7 +151,7 @@ LEFT JOIN
 	select case when isnull(cxzyjfbbh, 0) = 0 then jfbbh else cxzyjfbbh end jfbbh, tdrq, zyh, sl
 	from NewtouchHIS_Sett..zy_xmjfb
             ");
-            //adminĐăng nhập,Liên kết tất cả bệnh viện thuộc tổ chức đó
+            //admin Đăng nhập,Liên kết tất cả bệnh viện thuộc tổ chức đó
             if (isAdministrator)
             {
                 sqlStr2.Append(@"
@@ -171,7 +171,7 @@ LEFT JOIN
 	) bbb
 	left join NewtouchHIS_Sett..zy_brjbxx ccc
             ");
-            //adminĐăng nhập,Liên kết tất cả bệnh viện thuộc tổ chức đó
+            //admin Đăng nhập,Liên kết tất cả bệnh viện thuộc tổ chức đó
             if (isAdministrator)
             {
                 sqlStr2.Append(@"

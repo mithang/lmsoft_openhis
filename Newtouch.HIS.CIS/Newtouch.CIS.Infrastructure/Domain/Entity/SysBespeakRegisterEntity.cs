@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// Hệ thốngđặt hẹnđăng ký khámBảo trì
+    /// Hệ thốngđặt hẹnđăng ký khám Bảo trì
     /// </summary>
     [SugarTable("xt_bespeakRegister")]
     public class SysBespeakRegisterEntity
@@ -23,37 +23,37 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Dấu hiệu ngoại trú/nội trú 1:thông thườngNgoại trú  2:gấpkhám   3:chuyên giaNgoại trú
+        /// Dấu hiệu ngoại trú/nội trú 1:thông thường Ngoại trú  2:gấpkhám   3:chuyên gia Ngoại trú
         /// </summary>
         public string mzlx { get; set; }
 
         /// <summary>
-        /// đăng ký khámNgày
+        /// đăng ký khám Ngày
         /// </summary>
         public DateTime regDate { get; set; }
 
         /// <summary>
-        /// đăng ký khámBắt đầukhiđoạn
+        /// đăng ký khám Bắt đầukhiđoạn
         /// </summary>
         public DateTime regBeginTime { get; set; }
 
         /// <summary>
-        /// đăng ký khámKết thúckhiđoạn
+        /// đăng ký khám Kết thúckhiđoạn
         /// </summary>
         public DateTime regEndTime { get; set; }
 
         /// <summary>
-        /// đăng ký khámkhiđoạn,đăng ký khámBắt đầukhiđoạnvàđăng ký khámKết thúckhiđoạnkếthợp
+        /// đăng ký khámkhiđoạn,đăng ký khám Bắt đầukhiđoạnvàđăng ký khám Kết thúckhiđoạnkếthợp
         /// </summary>
         public string regTime { get; set; }
 
         /// <summary>
-        /// KhoaMã
+        /// Khoa Mã
         /// </summary>
         public string departmentCode { get; set; }
 
         /// <summary>
-        /// Bác sĩMã nhân viên
+        /// Bác sĩ Mã nhân viên
         /// </summary>
         public string ysgh { get; set; }
 

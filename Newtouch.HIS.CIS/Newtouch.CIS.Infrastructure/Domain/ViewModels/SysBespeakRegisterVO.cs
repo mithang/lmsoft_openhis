@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.ViewModels
 {
     /// <summary>
-    /// đặt hẹnđăng ký khámQuản lýnội dung
+    /// đặt hẹnđăng ký khám Quản lýnội dung
     /// </summary>
     public class SysBespeakRegisterVO
     {
@@ -18,17 +18,17 @@ namespace Newtouch.Domain.ViewModels
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Dấu hiệu ngoại trú/nội trú 1:thông thườngNgoại trú  2:gấpkhám   3:chuyên giaNgoại trú
+        /// Dấu hiệu ngoại trú/nội trú 1:thông thường Ngoại trú  2:gấpkhám   3:chuyên gia Ngoại trú
         /// </summary>
         public string mzlx { get; set; }
 
         /// <summary>
-        /// đăng ký khámNgày
+        /// đăng ký khám Ngày
         /// </summary>
         public DateTime regDate { get; set; }
 
         /// <summary>
-        /// đăng ký khámThời gian
+        /// đăng ký khám Thời gian
         /// </summary>
         public string regTime { get; set; }
 
@@ -38,17 +38,17 @@ namespace Newtouch.Domain.ViewModels
         public string ksmc { get; set; }
 
         /// <summary>
-        /// chuyên giaTên
+        /// chuyên gia Tên
         /// </summary>
         public string zjmc { get; set; }
 
         /// <summary>
-        /// KhoaMã
+        /// Khoa Mã
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// chuyên giaMã nhân viên
+        /// chuyên gia Mã nhân viên
         /// </summary>
         public string gh { get; set; }
 

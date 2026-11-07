@@ -12,7 +12,7 @@ namespace NewtouchHIS.Base.Domain.Entity
     public partial class SysRoleAuthorizeEntity:ISysEntity
     {
         /// <summary>
-        /// Desc:Ủy quyền vai tròKhóa chính
+        /// Desc:Ủy quyền vai trò Khóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -20,7 +20,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Desc:Đối tượngKhóa chính
+        /// Desc:Đối tượng Khóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -29,7 +29,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string RoleId { get; set; }
 
         /// <summary>
-        /// Desc:Hạng mụcKhóa chính
+        /// Desc:Hạng mục Khóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           

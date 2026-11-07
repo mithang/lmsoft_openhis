@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int ReportID { get; set; }
 
         /// <summary>
-        /// Tổ chứcId(tương ứng với khoaOrganizeId)
+        /// Tổ chức Id(tương ứng với khoaOrganizeId)
         /// </summary>
         public string HospitalCode { get; set; }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Domain.Entity
         /// </summary>
         public string SystemName { get; set; }
         /// <summary>
-        /// Báo cáo tương ứngCode
+        /// Báo cáo tương ứng Code
         /// </summary>
         public string ReportCode { get; set; }
         /// <summary>

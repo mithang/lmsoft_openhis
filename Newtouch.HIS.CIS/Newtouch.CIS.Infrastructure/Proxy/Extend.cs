@@ -10,7 +10,7 @@ namespace Newtouch.CIS.Proxy
     {
 
         /// <summary>
-        /// htmlMãchuyểnthànhhtmlthựcthể
+        /// html Mãchuyểnthànhhtmlthựcthể
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace Newtouch.CIS.Proxy
         }
 
         /// <summary>
-        /// kiểm traQuay lạilàKhôngđangxác,kiểm tratheocứlàlàKhôngchứacó"<return>"
+        /// kiểm traQuay lạilà Khôngđangxác,kiểm tratheocứlàlàKhôngchứacó"<return>"
         /// </summary>
         /// <param name="response"></param>
         /// <returns></returns>

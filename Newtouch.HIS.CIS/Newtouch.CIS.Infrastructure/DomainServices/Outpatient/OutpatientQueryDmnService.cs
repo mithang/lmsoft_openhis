@@ -219,7 +219,7 @@ and jz.blh=@blh ";
 			}, false);
 		}
         /// <summary>
-        /// Ngoại trúHồ sơghi chép-lịch sửĐơn thuốcchi tiết
+        /// Ngoại trú Hồ sơghi chép-lịch sử Đơn thuốcchi tiết
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>

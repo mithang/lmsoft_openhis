@@ -8,7 +8,7 @@ namespace Newtouch.Infrastructure
     public class SiteBaseAPIHelper : SiteAPIRequestHelperBase<SiteBaseAPIHelper>
     {
         /// <summary>
-        /// lĩnh vựcAddrcấu hình của Key
+        /// lĩnh vực Addrcấu hình của Key
         /// </summary>
         private readonly static string _domainConfigKey = "SiteBaseAPIHost";
 

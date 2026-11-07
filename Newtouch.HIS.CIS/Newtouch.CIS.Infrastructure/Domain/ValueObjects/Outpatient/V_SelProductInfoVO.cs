@@ -18,7 +18,7 @@ namespace Newtouch.Domain.ValueObjects
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// vật tưTên
+        /// vật tư Tên
         /// </summary>
         public string name { get; set; }
 
@@ -28,22 +28,22 @@ namespace Newtouch.Domain.ValueObjects
         public int kcsl { get; set; }
 
         /// <summary>
-        /// có thểdùngTồn kho Đơn vị nhỏ nhất
+        /// có thểdùng Tồn kho Đơn vị nhỏ nhất
         /// </summary>
         public int kykcsl { get; set; }
 
         /// <summary>
-        /// Khoa phòngĐơn vịSố lượng(mangĐơn vị)
+        /// Khoa phòng Đơn vị Số lượng(mang Đơn vị)
         /// </summary>
         public string slstr { get; set; }
 
         /// <summary>
-        /// Đơn vị nhỏ nhấtGiá bán lẻ
+        /// Đơn vị nhỏ nhất Giá bán lẻ
         /// </summary>
         public decimal minlsj { get; set; }
 
         /// <summary>
-        /// Khoa phòngĐơn vịGiá bán lẻ
+        /// Khoa phòng Đơn vị Giá bán lẻ
         /// </summary>
         public decimal bmlsj { get; set; }
 
@@ -53,7 +53,7 @@ namespace Newtouch.Domain.ValueObjects
         public int zhyz { get; set; }
 
         /// <summary>
-        /// Khoa phòngĐơn vịchuyểnhóavìcon
+        /// Khoa phòng Đơn vịchuyểnhóavìcon
         /// </summary>
         public int bmdwzhyz { get; set; }
 
@@ -68,12 +68,12 @@ namespace Newtouch.Domain.ValueObjects
         public string gg { get; set; }
 
         /// <summary>
-        /// sinhNhà sản xuấtId
+        /// sinh Nhà sản xuất Id
         /// </summary>
         public string supplierId { get; set; }
 
         /// <summary>
-        /// sinhNhà sản xuấtTên
+        /// sinh Nhà sản xuất Tên
         /// </summary>
         public string supplierName { get; set; }
 
@@ -83,17 +83,17 @@ namespace Newtouch.Domain.ValueObjects
         public string zxdwId { get; set; }
 
         /// <summary>
-        /// Đơn vị nhỏ nhấtTên
+        /// Đơn vị nhỏ nhất Tên
         /// </summary>
         public string mindwmc { get; set; }
 
         /// <summary>
-        /// Khoa phòngĐơn vị ID
+        /// Khoa phòng Đơn vị ID
         /// </summary>
         public string bmdwId { get; set; }
 
         /// <summary>
-        /// Khoa phòngTên đơn vị
+        /// Khoa phòng Tên đơn vị
         /// </summary>
         public string bmdwmc { get; set; }
 
@@ -110,7 +110,7 @@ namespace Newtouch.Domain.ValueObjects
 
 
     /// <summary>
-    /// vật tưLôthông tin
+    /// vật tư Lôthông tin
     /// </summary>
     public class VProductBatchInfoVO
     {
@@ -125,17 +125,17 @@ namespace Newtouch.Domain.ValueObjects
         public string pc { get; set; }
 
         /// <summary>
-        /// Tồn khoSố lượng,Đơn vị nhỏ nhất
+        /// Tồn kho Số lượng,Đơn vị nhỏ nhất
         /// </summary>
         public int kcsl { get; set; }
 
         /// <summary>
-        /// có thểdùngTồn kho(kcsl-djsl),Đơn vị nhỏ nhất
+        /// có thểdùng Tồn kho(kcsl-djsl),Đơn vị nhỏ nhất
         /// </summary>
         public int kykcsl { get; set; }
 
         /// <summary>
-        /// Đơn vịTồn kho,Khoa phòngĐơn vị
+        /// Đơn vị Tồn kho,Khoa phòng Đơn vị
         /// </summary>
         public string slstr { get; set; }
 
@@ -145,12 +145,12 @@ namespace Newtouch.Domain.ValueObjects
         public DateTime yxq { get; set; }
 
         /// <summary>
-        /// sinhsản xuấtNgày
+        /// sinhsản xuất Ngày
         /// </summary>
         public DateTime? scrq { get; set; }
 
         /// <summary>
-        /// Khoa phòngĐơn vịvàogiá
+        /// Khoa phòng Đơn vịvàogiá
         /// </summary>
         public decimal bmjj { get; set; }
 
@@ -170,7 +170,7 @@ namespace Newtouch.Domain.ValueObjects
         public string fph { get; set; }
 
         /// <summary>
-        /// vàogiáĐơn vịĐơn giá
+        /// vàogiá Đơn vị Đơn giá
         /// </summary>
         public string jjdwdj { get; set; }
     }

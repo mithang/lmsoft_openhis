@@ -20,8 +20,8 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.DRGS.Controllers
         }
         /// <summary>
         /// Truy vấn qua thông tin bệnh án DRG Tình hình phân nhóm
-        /// Tham số đầu vào làString,Định dạng như"22058878,2,88,32460,,13040503,94,1,K80.302|K80.305|K83.109|K72.905|Z90.408|E14.900x001,51.8803|51.8701|54.5100x005|45.1301"
-        /// GhépMedicalRecordcủa lớp11thuộc tính bằng dấu phẩy, trong đó,:zdList,ssListkiểu làString[],nhiều phần tử phân tách bằng|;remarktrường tùy chọn
+        /// Tham số đầu vào là String,Định dạng như"22058878,2,88,32460,,13040503,94,1,K80.302|K80.305|K83.109|K72.905|Z90.408|E14.900x001,51.8803|51.8701|54.5100x005|45.1301"
+        /// Ghép MedicalRecordcủa lớp11thuộc tính bằng dấu phẩy, trong đó,:zdList,ssListkiểu là String[],nhiều phần tử phân tách bằng|;remarktrường tùy chọn
         /// </summary>
         /// <returns>GroupResult</returns>
         [HttpPost]

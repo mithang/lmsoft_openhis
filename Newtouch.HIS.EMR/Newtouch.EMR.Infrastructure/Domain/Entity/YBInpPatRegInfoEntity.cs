@@ -198,7 +198,7 @@ namespace Newtouch.EMR.Domain.Entity
         public string BKF352 { get; set; }
 
         /// <summary>
-        /// Khám thực thể--Mạch(Lần/miSố)
+        /// Khám thực thể--Mạch(Lần/mi Số)
         /// </summary>
         /// <returns></returns>
         public string BKF339 { get; set; }

@@ -9,7 +9,7 @@ namespace Newtouch.PDS.Requset.PharmacyDepartment
     public class SysPharmacyDepartmentRequestDto : RequestBase
     {
         /// <summary>
-        /// ThuốcId
+        /// Thuốc Id
         /// </summary>
         public string ypId { get; set; }
 

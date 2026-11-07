@@ -1,5 +1,5 @@
 @{
-    ViewBag.Title = "Cách dùngLiên kếtBảo trì";
+    ViewBag.Title = "Cách dùng Liên kết Bảo trì";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -8,11 +8,11 @@
         <tr>
             <th class="formTitle"><span class="required">*</span>ThuốcCách dùng:</th>
             <td class="formValue">
-                <input id="selyf" attr-yfCode="" class="form-control required" style="height: 30px;width:150px;" placeholder="Vui lòng chọnCách dùng" />
+                <input id="selyf" attr-yfCode="" class="form-control required" style="height: 30px;width:150px;" placeholder="Vui lòng chọn Cách dùng" />
             </td>
             <th class="formTitle"><span class="required">*</span>Mục thu phí:</th>
             <td class="formValue">
-                <input id="selitem" attr-xmCode="" class="form-control required" style="height: 30px;width:150px;" placeholder="Vui lòng chọnChi phí" />
+                <input id="selitem" attr-xmCode="" class="form-control required" style="height: 30px;width:150px;" placeholder="Vui lòng chọn Chi phí" />
                 <input id="sfdlCode" type="hidden" value="" />
             </td>
         </tr>
@@ -50,7 +50,7 @@
                         }
                     }
                     else {
-                        $.modalAlert("LấyThông tinthất bại", 'error');
+                        $.modalAlert("Lấy Thông tinthất bại", 'error');
                     }
                 }
             });
@@ -82,11 +82,11 @@
     //submit
     function AcceptClick(callback) {
         if (!$("#selyf").val()) {
-            $.modalMsg('Vui lòng chọnCách dùng', 'error', 1000);
+            $.modalMsg('Vui lòng chọn Cách dùng', 'error', 1000);
             return;
         }
         if (!$("#selitem").val()) {
-            $.modalMsg('Vui lòng chọnMục thu phí', 'error', 1000);
+            $.modalMsg('Vui lòng chọn Mục thu phí', 'error', 1000);
             return;
         }
         $.najax({

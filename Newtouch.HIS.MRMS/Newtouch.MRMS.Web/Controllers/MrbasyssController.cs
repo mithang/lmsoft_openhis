@@ -35,7 +35,7 @@ namespace Newtouch.MRMS.Web.Controllers
         }
 
         /// <summary>
-        /// LấyThực thể
+        /// Lấy Thực thể
         /// </summary>
         /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
@@ -58,7 +58,7 @@ namespace Newtouch.MRMS.Web.Controllers
         }
 
         /// <summary>
-        /// XóaDữ liệu
+        /// Xóa Dữ liệu
         /// </summary>
         /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>

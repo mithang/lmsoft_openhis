@@ -23,7 +23,7 @@ namespace NewtouchHIS.Base.Repository
         public async Task<long> Add(TEntity model)
         {
             var i = await Task.Run(() => Db.Insertable(model).ExecuteCommand());
-            //trả vềiCólongLoại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
+            //trả vềi Cólong Loại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
             return i;
         }
 
@@ -56,14 +56,14 @@ namespace NewtouchHIS.Base.Repository
         /// <returns></returns>
         public async Task<bool> Update(TEntity model)
         {
-            //Cách này sẽ lấyKhóa chínhlàm điều kiện
+            //Cách này sẽ lấy Khóa chínhlàm điều kiện
             var i = await Task.Run(() => Db.Updateable(model).ExecuteCommand());
             return i > 0;
         }
 
         #region Query
         /// <summary>
-        /// TheoKhóa chínhTruy vấn
+        /// Theo Khóa chính Truy vấn
         /// </summary>
         /// <param name="pkValue">Khóa chính</param>
         /// <returns></returns>
@@ -137,7 +137,7 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// TheoKhóa chính In  Truy vấn
+        /// Theo Khóa chính In  Truy vấn
         /// </summary>
         /// <typeparam name="S">Khóa chínhkiểu</typeparam>
         /// <param name="list">Khóa chính In Tập kết quả của thao tác</param>

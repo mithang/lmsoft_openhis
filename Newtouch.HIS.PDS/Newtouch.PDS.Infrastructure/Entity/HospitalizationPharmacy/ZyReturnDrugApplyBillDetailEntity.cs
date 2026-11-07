@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Đơn xin trả thuốcId  zy_returnDrugApplyBill.Id
+        /// Đơn xin trả thuốc Id  zy_returnDrugApplyBill.Id
         /// </summary>
         public string rabId { get; set; }
 

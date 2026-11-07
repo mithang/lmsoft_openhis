@@ -17,7 +17,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
     public partial class SysItemsDetailEntity : IEntity
     {
         /// <summary>
-        /// Desc:Chi tiếtKhóa chính
+        /// Desc:Chi tiết Khóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -34,7 +34,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public string TopOrganizeId { get; set; }
 
         /// <summary>
-        /// Desc:Bảng chínhKhóa chính
+        /// Desc:Bảng chính Khóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           

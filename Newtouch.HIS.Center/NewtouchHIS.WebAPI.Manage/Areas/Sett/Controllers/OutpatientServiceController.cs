@@ -13,7 +13,7 @@ using static NewtouchHIS.Base.Domain.EnumExtend.BusEnum;
 namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
 {
     /// <summary>
-    /// Ngoại trúBệnh nhânDịch vụ
+    /// Ngoại trú Bệnh nhân Dịch vụ
     /// </summary>
     [Route("api/Outpatient")]
     [ApiController]
@@ -44,7 +44,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// Bệnh nhânDanh sách đăng ký khám
+        /// Bệnh nhân Danh sách đăng ký khám
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -63,7 +63,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         }
 
         /// <summary>
-        /// Hóa đơn ngoại trú chờ thanh toánbySố ngoại trú
+        /// Hóa đơn ngoại trú chờ thanh toánby Số ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -106,7 +106,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         /// <returns></returns>
         [Route("BillOrderCreate")]
         [HttpPost]
-        [Obsolete("Phương thức đã hết hạn,Vui lòng dùngPayOrder")]
+        [Obsolete("Phương thức đã hết hạn,Vui lòng dùng PayOrder")]
         public async Task<ResponseBase> OutpBillOrderCreateAsync(RequestBus<OutpBillRequest> request)
         {
             if (request.Data == null || string.IsNullOrWhiteSpace(request.Data.mzh) || string.IsNullOrWhiteSpace(request.Data.kh))
@@ -121,13 +121,13 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         }
 
         /// <summary>
-        /// Thanh toán hóa đơnstep2:Đăng kýKhóa đơn hàng
+        /// Thanh toán hóa đơnstep2:Đăng ký Khóa đơn hàng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         [Route("BillOrderLockApply")]
         [HttpPost]
-        [Obsolete("Phương thức đã hết hạn,Vui lòng dùngPayOrder")]
+        [Obsolete("Phương thức đã hết hạn,Vui lòng dùng PayOrder")]
         public async Task<ResponseBase> BillOrderLockApplyAsync(RequestBus<OutpBillRequest> request)
         {
             if (request.Data == null || string.IsNullOrWhiteSpace(request.Data.OrderNo) || request.Data.OrderAmt <= 0 || string.IsNullOrWhiteSpace(request.Data.kh))
@@ -147,7 +147,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         /// <returns></returns>
         [Route("BillOrderPay")]
         [HttpPost]
-        [Obsolete("Phương thức đã hết hạn,Vui lòng dùngPayOrder")]
+        [Obsolete("Phương thức đã hết hạn,Vui lòng dùng PayOrder")]
         public async Task<ResponseBase> BillOrderPayAsync(RequestBus<OrderPayRequest> request)
         {
             var apiReq = InitController.BuildBookRequest(request, null, null).Adapt<BookingRequest>();
@@ -182,7 +182,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         {
             if (request.Data == null || (request.Data.kh == null && request.Data.BookId == null))
             {
-                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Đặt lịch đăng ký khámBookId&kh không được để trống" };
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Đặt lịch đăng ký khám BookId&kh không được để trống" };
             }
             var apiReq = InitController.BuildBookRequest(request, "Y024", "0").Adapt<BookingRequest>();
             apiReq.paradata = request.Data;
@@ -200,7 +200,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         {
             if (request.Data == null || (request.Data.kh == null && request.Data.ScheduId == null))
             {
-                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Đăng ký khám thườngScheduId&kh không được để trống" };
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Đăng ký khám thường ScheduId&kh không được để trống" };
             }
             var apiReq = InitController.BuildBookRequest(request, "Y026", null).Adapt<BookingRequest>();
             apiReq.paradata = request.Data;

@@ -6,7 +6,7 @@ namespace NewtouchHIS.Services
     public class RemoteTreatedHelper
     {
         /// <summary>
-        /// Âm thanh/hình ảnhCuộc họp API
+        /// Âm thanh/hình ảnh Cuộc họp API
         /// </summary>
         protected static string OuterMediaMeettingAPIHost
         {
@@ -26,7 +26,7 @@ namespace NewtouchHIS.Services
         /// </summary>
         public readonly static string OuterMediaTokenRoute = $"{OuterMediaMeettingAPIHost}chatroom/rest/rtc/token";
         /// <summary>
-        /// Lấy âm thanh/hình ảnhCuộc họpĐịa chỉ
+        /// Lấy âm thanh/hình ảnh Cuộc họp Địa chỉ
         /// </summary>
         public readonly static string RemoteTreatedMeettingRoute = $"chatroom/index.html";
         /// <summary>
@@ -58,7 +58,7 @@ namespace NewtouchHIS.Services
             return dic;
         }
         /// <summary>
-        /// LấyRtcuserid
+        /// Lấy Rtcuserid
         /// </summary>
         /// <param name="Rtcuserid"></param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace NewtouchHIS.Services
         }
 
         /// <summary>
-        /// DateTimeChuyển thành timestamp
+        /// DateTime Chuyển thành timestamp
         /// </summary>
         /// <param name="dateTime"></param>
         /// <returns></returns>
@@ -84,7 +84,7 @@ namespace NewtouchHIS.Services
             return timeStamp;
         }
         /// <summary>
-        /// Chuyển timestamp thànhDateTime
+        /// Chuyển timestamp thành DateTime
         /// </summary>
         /// <param name="timeStamp"></param>
         /// <returns></returns>

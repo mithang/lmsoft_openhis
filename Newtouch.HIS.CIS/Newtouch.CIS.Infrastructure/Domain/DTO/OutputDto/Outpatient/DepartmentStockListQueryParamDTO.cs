@@ -6,12 +6,12 @@ namespace Newtouch.Domain.DTO
     public class DepartmentStockListQueryParamDTO
     {
         /// <summary>
-        /// keyword vật tưTên/Pinyin
+        /// keyword vật tư Tên/Pinyin
         /// </summary>
         public string key { get; set; }
 
         /// <summary>
-        /// hiện tạiKho
+        /// hiện tại Kho
         /// </summary>
         public string warehouseId { get; set; }
 

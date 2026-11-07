@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string pc { get; set; }
 
         /// <summary>
-        /// Giá trị mặc địnhGetdate()
+        /// Giá trị mặc định Getdate()
         /// </summary>
         public DateTime? Yxq { get; set; }
 

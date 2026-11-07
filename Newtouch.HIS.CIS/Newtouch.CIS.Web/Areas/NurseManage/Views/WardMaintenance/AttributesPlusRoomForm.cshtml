@@ -1,7 +1,7 @@
 @model dynamic
 
 @{
-    ViewBag.Title = "Giường bệnhBổ sungThuộc tính";
+    ViewBag.Title = "Giường bệnh Bổ sung Thuộc tính";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -9,16 +9,16 @@
     <div class="panel panel-default" style="padding-right:10px;">
         <table class="form">
             <tr>
-                <th class="formTitle">Tùy chọnThuộc tính:</th>
+                <th class="formTitle">Tùy chọn Thuộc tính:</th>
                 <td class="formValue">
                     <select id="sel_attr" name="sel" class="form-control" onchange="ChangeAttr()">
-                        <option value="">Vui lòng chọnThuộc tính</option>
+                        <option value="">Vui lòng chọn Thuộc tính</option>
                         <option value="1">PhòngHướng</option>
                         <option value="2">PhòngDiện tích</option>
                         <option value="3">Số giường bệnh phòng</option>
                     </select>
                 </td>
-                <th class="formTitle"><span class="required">*</span>Thuộc tínhTên:</th>
+                <th class="formTitle"><span class="required">*</span>Thuộc tính Tên:</th>
                 <td class="formValue">
                     <input id="txt_attrName" name="txt_attrName" type="text" class="form-control required" />
                 </td>
@@ -44,7 +44,7 @@
 <script lang="javascript">
     var attrs = [];
 
-    //chọnThuộc tính
+    //chọn Thuộc tính
     function ChangeAttr() {
         if ($("#sel_attr").val() !== "") {
             $("#txt_attrName").val($("#sel_attr").find("option:selected").text());
@@ -58,7 +58,7 @@
         unwritten: false,
         colModel: [
             { label: "attrCode", name: "attrName", hidden: true },
-            { label: "Thuộc tínhTên", name: "attrName", width: 100, align: "left" },
+            { label: "Thuộc tính Tên", name: "attrName", width: 100, align: "left" },
             { label: "Mô tả", name: "attrDescribe", width: 220, align: "center" },
             {
                 label: "Thao tác",
@@ -66,7 +66,7 @@
                 width: 50,
                 align: "center",
                 formatter: function (cellvalue) {
-                    return "<a href=\#\" onclick='DeleteAttr(\"" + cellvalue + "\")'' title='XóaThuộc tính' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>Xóa</a>";
+                    return "<a href=\#\" onclick='DeleteAttr(\"" + cellvalue + "\")'' title='Xóa Thuộc tính' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>Xóa</a>";
                 }
             }
         ]
@@ -75,7 +75,7 @@
     //Thêm
     function newtouch_event_f2() {
         if ($("#txt_attrName").val() === "") {
-            $.modalAlert("Thuộc tínhTênBắt buộc", 'warning');
+            $.modalAlert("Thuộc tính Tên Bắt buộc", 'warning');
             return;
         }
         var attr = {
@@ -84,11 +84,11 @@
             attrDescribe: $("#txt_describe").val()
         };
         attrs.push(attr);
-        $("#gridAttrList").jqGrid("clearGridData");//Xóa trắng trướcDữ liệu
+        $("#gridAttrList").jqGrid("clearGridData");//Xóa trắng trước Dữ liệu
         $("#gridAttrList").newtouchLocalDataGrid(null, attrs);
     }
 
-    //XóaThuộc tính
+    //Xóa Thuộc tính
     function DeleteAttr(options) {
         if (attrs.length > 0) {
             var tmpattrs = [];
@@ -99,7 +99,7 @@
             });
             attrs = tmpattrs;
         }
-        $('#gridAttrList').jqGrid("clearGridData");//Xóa trắng trướcDữ liệu
+        $('#gridAttrList').jqGrid("clearGridData");//Xóa trắng trước Dữ liệu
         $("#gridAttrList").newtouchLocalDataGrid(null, attrs);
     }
 

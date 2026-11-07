@@ -3,11 +3,11 @@
     public class MeettingTokenRequest
     {
         /// <summary>
-        /// Số phòng âm thanh/hình ảnh,Khác nhauCuộc họpsố phòng cần duy nhất,Độ dài không vượt quá 50 ký tự,Khuyên dùng khóa chính tự tăngKhóa chínhhoặc UUID
+        /// Số phòng âm thanh/hình ảnh,Khác nhau Cuộc họpsố phòng cần duy nhất,Độ dài không vượt quá 50 ký tự,Khuyên dùng khóa chính tự tăng Khóa chínhhoặc UUID
         /// </summary>
         public string roomid { get; set; }
         /// <summary>
-        /// Là tên người dùng vào phòng nàyHọ tên,để phân biệt người dùng khác nhau
+        /// Là tên người dùng vào phòng này Họ tên,để phân biệt người dùng khác nhau
         /// </summary>
         public string username { get; set; }
         /// <summary>

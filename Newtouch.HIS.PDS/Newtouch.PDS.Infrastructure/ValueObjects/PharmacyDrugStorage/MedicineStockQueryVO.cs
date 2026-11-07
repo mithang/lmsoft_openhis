@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public string deptName { get; set; }
         /// <summary>
-        /// Bộ phận nhà thuốcCode
+        /// Bộ phận nhà thuốc Code
         /// </summary>
         public string yfbmCode { get; set; }
         /// <summary>

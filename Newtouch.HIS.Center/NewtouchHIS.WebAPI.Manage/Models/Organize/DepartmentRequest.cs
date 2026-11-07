@@ -6,7 +6,7 @@
     public class DepartmentVO
     {
         /// <summary>
-        /// KhoaMã
+        /// Khoa Mã
         /// </summary>
         public string? ks { get; set; }
         /// <summary>

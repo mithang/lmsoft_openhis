@@ -223,7 +223,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string isKss { get; set; }
 
         /// <summary>
-        /// Thông tin kháng sinh thuốcId
+        /// Thông tin kháng sinh thuốc Id
         /// </summary>
         public string kssId { get; set; }
 

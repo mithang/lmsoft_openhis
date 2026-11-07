@@ -54,7 +54,7 @@ namespace Newtouch.Domain.BusinessObjects
         /// </summary>
         public string yjs { get; set; }
         /// <summary>
-        /// quaTiền sử dị ứng
+        /// qua Tiền sử dị ứng
         /// </summary>
         public string gms { get; set; }
         /// <summary>

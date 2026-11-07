@@ -46,7 +46,7 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
             return result;
         }
         /// <summary>
-        /// webTải tệp lên
+        /// web Tải tệp lên
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -81,7 +81,7 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
             return result;
         }
         /// <summary>
-        /// ExcelTải lên
+        /// Excel Tải lên
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -115,12 +115,12 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
             }
             if (extName != ".csv")
             {
-                //Tải vàoxlsTài liệu Chuyển đổicsv
+                //Tải vàoxls Tài liệu Chuyển đổicsv
                 Workbook workbook = new Workbook();
                 workbook.LoadFromFile(filename);
                 //Lấy trang tính đầu tiên
                 Worksheet sheet = workbook.Worksheets[0];
-                //Lưu thànhcsvĐịnh dạng
+                //Lưu thànhcsv Định dạng
                 sheet.SaveToFile(filename + ".csv", ",", Encoding.UTF8);
             }
 

@@ -21,7 +21,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public string jzId { get; set; }
 
         /// <summary>
-        /// billingTrạng thái thu phí của hệ thống billing
+        /// billing Trạng thái thu phí của hệ thống billing
         /// </summary>
         public bool sfbz { get; set; }
 
@@ -41,7 +41,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public decimal zje { get; set; }
 
         /// <summary>
-        /// Liên kếtbaseMã nhân viên của cơ sở dữ liệu
+        /// Liên kếtbase Mã nhân viên của cơ sở dữ liệu
         /// </summary>
         public string ys { get; set; }
 
@@ -77,7 +77,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
         /// </summary>
         public string lcyx { get; set; }
         /// <summary>
-        /// Đăng kýGhi chú
+        /// Đăng ký Ghi chú
         /// </summary>
         public string sqbz { get; set; }
         /// <summary>
@@ -86,7 +86,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public bool? tbz { get; set; }
 
         /// <summary>
-        /// Đăng kýSố phiếu(Y tế từ xaĐăng kýcầnguid)
+        /// Đăng ký Số phiếu(Y tế từ xa Đăng kýcầnguid)
         /// </summary>
         public string sqdh { get; set; }
         /// <summary>

@@ -16,7 +16,7 @@
         /// </summary>
         public DateTime? jsrq { get; set; }
         /// <summary>
-        /// mz_ghpb_schedule Lịch trình đã định của đặt hẹnId
+        /// mz_ghpb_schedule Lịch trình đã định của đặt hẹn Id
         /// </summary>
         public string? ScheduId { get; set; }
         /// <summary>

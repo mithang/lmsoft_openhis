@@ -150,7 +150,7 @@ where ParentId is null and
                     throw new FailedException("Mã không được trùng lặp");
                 }
 
-                SysOrganizeEntity oldEntity = null;   //Trước khi thay đổiEntity
+                SysOrganizeEntity oldEntity = null;   //Trước khi thay đổi Entity
                 oldEntity = this.FindEntity(keyValue);
                 this.DetacheEntity(oldEntity);
 
@@ -186,7 +186,7 @@ where ParentId is null and
         }
 
         /// <summary>
-        /// TheoOrgIdLấyCode
+        /// Theo OrgId Lấy Code
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

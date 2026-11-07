@@ -50,7 +50,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         }
 
         /// <summary>
-        /// trả vềSuccess
+        /// trả về Success
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
@@ -60,7 +60,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         }
 
         /// <summary>
-        /// trả vềSuccess
+        /// trả về Success
         /// </summary>
         /// <param name="message"></param>
         /// <param name="data"></param>
@@ -71,7 +71,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         }
 
         /// <summary>
-        /// trả vềError
+        /// trả về Error
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>

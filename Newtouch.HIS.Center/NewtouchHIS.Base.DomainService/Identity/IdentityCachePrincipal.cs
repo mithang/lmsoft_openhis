@@ -7,7 +7,7 @@ using System.Security.Claims;
 namespace NewtouchHIS.Lib.Services
 {
     /// <summary>
-    /// Dựa trênClaimsPrincipalgiao diện thông tin người dùng được triển khai.
+    /// Dựa trên ClaimsPrincipalgiao diện thông tin người dùng được triển khai.
     /// </summary>
     [Serializable]
     public class IdentityCachePrincipal : IIdentityCache
@@ -18,7 +18,7 @@ namespace NewtouchHIS.Lib.Services
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         /// <summary>
-        /// Nếu IHttpContextAccessor.HttpContext?.Userkhông rỗng thì lấyHttpContextcủaClaimsPrincipal,nếu không thì lấy của luồngCurrentPrincipal
+        /// Nếu IHttpContextAccessor.HttpContext?.Userkhông rỗng thì lấy HttpContextcủa ClaimsPrincipal,nếu không thì lấy của luồng CurrentPrincipal
         /// </summary>
         protected ClaimsPrincipal Principal => _httpContextAccessor!.HttpContext!.User ?? (Thread.CurrentPrincipal as ClaimsPrincipal);
 

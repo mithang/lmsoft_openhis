@@ -156,7 +156,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <returns></returns>
         public IActionResult MedicalRecordEdiForAdd(string mbbh, string zyh, string mzh = null,string submitXml=null)
         {
-            //TheoidLấy mẫu
+            //Theoid Lấy mẫu
             //Nếu không tìm thấy xml để tải thì mặc định là xml trống
             string currentFileName = WebPath.Map(BlTemplatePath + "newFile.xml");
             var mb = _bl_mblbRepo.GetTemplateById(mbbh);
@@ -2656,7 +2656,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         //Tải mẫu bệnh án
         public IActionResult LoadTemplateHtml(string mbbh, string zyh, string mzh = null)
         {
-            //TheoidLấy mẫu
+            //Theoid Lấy mẫu
             //Nếu không tìm thấy xml để tải thì mặc định là xml trống
             BlTemplateVo vo = new BlTemplateVo();
             string currentFileName = WebPath.Map(BlTemplatePath + "newFile.html");

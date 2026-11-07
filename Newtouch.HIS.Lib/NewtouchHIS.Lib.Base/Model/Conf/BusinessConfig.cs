@@ -30,7 +30,7 @@ namespace NewtouchHIS.Lib.Base.Model
         /// </summary>
         public string? Top_OrganizeId { get; set; } = null;
         /// <summary>
-        /// Ứng dụng hiện tạiAppId
+        /// Ứng dụng hiện tại AppId
         /// </summary>
         public string? AppId { get; set; } = null;
         /// <summary>
@@ -66,7 +66,7 @@ namespace NewtouchHIS.Lib.Base.Model
         /// </summary>
         public string? UALoginAddress { get; set; }
         /// <summary>
-        /// Của Token xin ủy quyềnAppId
+        /// Của Token xin ủy quyền AppId
         /// </summary>
         public string[]? AuthAppIds { get; set; } = null;
         /// <summary>
@@ -94,7 +94,7 @@ namespace NewtouchHIS.Lib.Base.Model
         /// </summary>
         public string? SiteStaticHost { get; set; } = null;
         /// <summary>
-        /// Quản lý hậu trườngWeb
+        /// Quản lý hậu trường Web
         /// </summary>
         [DbTag(DBEnum.BaseDb)]
         public string? SiteBaseWebHost { get; set; } = null;
@@ -111,7 +111,7 @@ namespace NewtouchHIS.Lib.Base.Model
         public string? SiteBaseAPIHost { get; set; } = null;
 
         /// <summary>
-        /// Hệ thống quyết toánWeb
+        /// Hệ thống quyết toán Web
         /// </summary>
         [DbTag(DBEnum.SettDb)]
         public string? SiteSettWebHost { get; set; } = null;
@@ -121,7 +121,7 @@ namespace NewtouchHIS.Lib.Base.Model
         [DbTag(DBEnum.SettDb)]
         public string? SiteSettAPIHost { get; set; } = null;
         /// <summary>
-        /// Phối hợp y tế - điều dưỡngWeb
+        /// Phối hợp y tế - điều dưỡng Web
         /// </summary>
         [DbTag(DBEnum.CisDb)]
         public string? SiteCisWebHost { get; set; } = null;
@@ -131,7 +131,7 @@ namespace NewtouchHIS.Lib.Base.Model
         [DbTag(DBEnum.CisDb)]
         public string? SiteCisAPIHost { get; set; } = null;
         /// <summary>
-        /// Nhà thuốc - kho thuốcWeb
+        /// Nhà thuốc - kho thuốc Web
         /// </summary>
         [DbTag(DBEnum.PdsDb)]
         public string? SiteYfykWebHost { get; set; } = null;
@@ -141,7 +141,7 @@ namespace NewtouchHIS.Lib.Base.Model
         [DbTag(DBEnum.PdsDb)]
         public string? SiteYfykAPIHost { get; set; } = null;
         /// <summary>
-        /// Bệnh án điện tửWeb
+        /// Bệnh án điện tử Web
         /// </summary>
         [DbTag(DBEnum.EmrDb)]
         public string? SiteEmrWebHost { get; set; } = null;
@@ -151,7 +151,7 @@ namespace NewtouchHIS.Lib.Base.Model
         [DbTag(DBEnum.EmrDb)]
         public string? SiteEmrAPIHost { get; set; } = null;
         /// <summary>
-        /// Hệ thống bệnh ánWeb
+        /// Hệ thống bệnh án Web
         /// </summary>
         [DbTag(DBEnum.MrmsDb)]
         public string? SiteMrmsWebHost { get; set; } = null;
@@ -161,7 +161,7 @@ namespace NewtouchHIS.Lib.Base.Model
         [DbTag(DBEnum.MrmsDb)]
         public string? SiteMrmsAPIHost { get; set; } = null;
         /// <summary>
-        /// Hệ thống phẫu thuậtWeb
+        /// Hệ thống phẫu thuật Web
         /// </summary>
         [DbTag(DBEnum.OrDb)]
         public string? SiteOrWebHost { get; set; } = null;
@@ -179,7 +179,7 @@ namespace NewtouchHIS.Lib.Base.Model
         /// </summary>
         public string? SiteHerpAPIHost { get; set; } = null;
         /// <summary>
-        /// Hệ thống kiểm soát chất lượngWeb
+        /// Hệ thống kiểm soát chất lượng Web
         /// </summary>
         [DbTag(DBEnum.MrQcDb)]
         public string? SiteMrqcWebHost { get; set; } = null;
@@ -244,15 +244,15 @@ public class FileManageConfig
     /// </summary>
     public string? LocalFileBaseDir { get; set; }
     /// <summary>
-    /// Đường dẫn truy cập mạng mặc định của tệp cục bộHost
+    /// Đường dẫn truy cập mạng mặc định của tệp cục bộ Host
     /// </summary>
     public string? LocalFileBaseNetUrl { get; set; }
     /// <summary>
-    /// DrgThư mục tải lên
+    /// Drg Thư mục tải lên
     /// </summary>
     public string? DrgDataFileDir { get; set; }
     /// <summary>
-    /// DrgThư mục đầy đủ
+    /// Drg Thư mục đầy đủ
     /// </summary>
     public string? DrgDataFileDirPath
     {
@@ -262,7 +262,7 @@ public class FileManageConfig
         }
     }
     /// <summary>
-    /// DrgThư mục (ngày)
+    /// Drg Thư mục (ngày)
     /// </summary>
     public string? DrgDataFileDirPathWithDate
     {

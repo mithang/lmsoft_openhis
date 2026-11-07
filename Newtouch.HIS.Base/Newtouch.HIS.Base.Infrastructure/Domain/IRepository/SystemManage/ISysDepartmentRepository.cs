@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<SysDepartmentEntity> GetValidListByTopOrg(string topOrganizeId);
 
         /// <summary>
-        /// TheoCodeLấy tên
+        /// Theo Code Lấy tên
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>

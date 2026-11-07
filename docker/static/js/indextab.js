@@ -55,7 +55,7 @@
             }
         },
         activeTab: function () {
-            //NhấnTabđể kích hoạt
+            //Nhấn Tabđể kích hoạt
             var currentId = $(this).data('id');
             if (currentId && !$(this).hasClass('active')) {
                 $('.mainContent .Newtouch_iframe').each(function () {

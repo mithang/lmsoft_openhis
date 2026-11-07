@@ -27,7 +27,7 @@ using NewtouchHIS.Lib.Framework.Operator;
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
     /// <summary>
-    /// truyền dịchQuản lý
+    /// truyền dịch Quản lý
     /// </summary>
     [Area("NurseManage")]
     public class InfusionController : OrgControllerBase
@@ -51,7 +51,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         #region Chế độ xem
         /// <summary>
-        /// Lưu ýxạThực hiện
+        /// Lưu ýxạ Thực hiện
         /// </summary>
         /// <returns></returns>
         public IActionResult Injection()
@@ -60,7 +60,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Lưu ýxạLịch sửTra cứu
+        /// Lưu ýxạ Lịch sử Tra cứu
         /// </summary>
         /// <returns></returns>
         public IActionResult InfusionHistory()
@@ -69,7 +69,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// truyền dịchThực hiện
+        /// truyền dịch Thực hiện
         /// </summary>
         /// <returns></returns>
         public IActionResult InjectionForm()
@@ -78,7 +78,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// giữxemĐăng ký
+        /// giữxem Đăng ký
         /// </summary>
         /// <returns></returns>
         public IActionResult observationFrom()
@@ -95,10 +95,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
         #endregion
 
-        #region LấyDữ liệu
+        #region Lấy Dữ liệu
 
         /// <summary>
-        /// LấyNgoại trúDanh sách bệnh nhân
+        /// Lấy Ngoại trú Danh sách bệnh nhân
         /// </summary>
         /// <returns></returns>
         public IActionResult PatientListQuery(Pagination pagination, string kh, string mzh,string fph, DateTime kssj, DateTime jssj)
@@ -114,7 +114,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// LấyNgoại trúDanh sách bệnh nhân (chờlàmTest da)
+        /// Lấy Ngoại trú Danh sách bệnh nhân (chờlàm Test da)
         /// </summary>
         /// <returns></returns>
         public IActionResult PatientHistoryListQuery(Pagination pagination, string kh, string mzh,string fph, DateTime kssj, DateTime jssj)
@@ -130,7 +130,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// TheoSố thẻLấychưaKết thúctruyền dịchthông tin
+        /// Theo Số thẻ Lấychưa Kết thúctruyền dịchthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
@@ -148,7 +148,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// TheoSố thẻLấychưaKết thúctruyền dịchthông tin
+        /// Theo Số thẻ Lấychưa Kết thúctruyền dịchthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
@@ -166,7 +166,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Đồng bộĐơn thuốcthông tin
+        /// Đồng bộ Đơn thuốcthông tin
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="fph"></param>
@@ -274,7 +274,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// tạotruyền dịchTra cứuMã QR
+        /// tạotruyền dịch Tra cứu Mã QR
         /// </summary>
         /// <param name="tags"></param>
         /// <returns></returns>
@@ -322,7 +322,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// truyền dịchThực hiệnThu hồi
+        /// truyền dịch Thực hiện Thu hồi
         /// </summary>
         /// <param name="syIds"></param>
         /// <returns></returns>

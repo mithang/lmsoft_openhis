@@ -22,7 +22,7 @@ using Newtouch.Domain.ViewModels;
 namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
-    /// đặt hẹnQuản lý
+    /// đặt hẹn Quản lý
     /// </summary>
     [Area("SystemManage")]
     public class BespeakRegisterManageController : OrgControllerBase
@@ -48,7 +48,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// đặt hẹnđăng ký khámQuản lý
+        /// đặt hẹnđăng ký khám Quản lý
         /// </summary>
         /// <returns></returns>
         public IActionResult BespeakRegister()
@@ -77,7 +77,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lấyđăng ký khámXếp lịch
+        /// Lấyđăng ký khám Xếp lịch
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
@@ -96,7 +96,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lấyđăng ký khámXếp lịchNgày
+        /// Lấyđăng ký khám Xếp lịch Ngày
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="gh"></param>
@@ -117,7 +117,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// LấyKhung giờ
+        /// Lấy Khung giờ
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="regDate"></param>
@@ -185,7 +185,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// LấynhiềucáiGuid
+        /// Lấynhiềucái Guid
         /// </summary>
         /// <param name="rowCount"></param>
         /// <returns></returns>
@@ -219,7 +219,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// LấyKhoađặt hẹnđăng ký khámthông tin
+        /// Lấy Khoađặt hẹnđăng ký khámthông tin
         /// </summary>
         /// <param name="deptCode"></param>
         /// <returns></returns>
@@ -231,7 +231,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// LấyKhoaMặc địnhđặt hẹnđăng ký khám
+        /// Lấy Khoa Mặc địnhđặt hẹnđăng ký khám
         /// </summary>
         /// <param name="deptCode"></param>
         /// <returns></returns>
@@ -241,7 +241,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// TheoKhoavàMã nhân viênlắp rápđặt hẹnđăng ký khámthông tin
+        /// Theo Khoavà Mã nhân viênlắp rápđặt hẹnđăng ký khámthông tin
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="gh"></param>
@@ -291,17 +291,17 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// LấyKhoahoặcBác sĩđặt hẹnXếp lịch
+        /// Lấy Khoahoặc Bác sĩđặt hẹn Xếp lịch
         /// </summary>
         /// <param name="year">đặt hẹnnăm</param>
-        /// <param name="month">đặt hẹnTháng</param>
-        /// <param name="deptCode">đăng ký khámKhoa</param>
-        /// <param name="ysgh">chuyên giaMã nhân viên</param>
+        /// <param name="month">đặt hẹn Tháng</param>
+        /// <param name="deptCode">đăng ký khám Khoa</param>
+        /// <param name="ysgh">chuyên gia Mã nhân viên</param>
         /// <returns></returns>
         public IActionResult GetAllBespeakRegisterByMonth(int year, int month, string deptCode, string ysgh)
         {
             if (month <= 0) throw new Exception("Tháng truyền vào không hợp lệ, vui lòng truyền số tự nhiên");
-            var mzlx = string.IsNullOrWhiteSpace(ysgh) ? "1" : "3";//Dấu hiệu ngoại trú/nội trú 1:thông thườngNgoại trú  2:gấpkhám   3:chuyên giaNgoại trú
+            var mzlx = string.IsNullOrWhiteSpace(ysgh) ? "1" : "3";//Dấu hiệu ngoại trú/nội trú 1:thông thường Ngoại trú  2:gấpkhám   3:chuyên gia Ngoại trú
             var beginTime = Convert.ToDateTime(year + "-" + month + "-01");
             var endTime = beginTime.AddMonths(1).AddDays(-1);
             var yyghDetail = _mzyyghDmnService.SelectMzyyghDetail(mzlx, deptCode, ysgh, beginTime, endTime, OrganizeId);
@@ -309,7 +309,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// tạođặt hẹnXếp lịchngàylịch
+        /// tạođặt hẹn Xếp lịchngàylịch
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>

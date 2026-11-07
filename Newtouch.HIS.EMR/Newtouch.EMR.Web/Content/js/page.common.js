@@ -13,7 +13,7 @@ $.fn.dicCommonFloatingSelector = function (options) {
             { label: 'Tên', name: 'Name', widthratio: 70 },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
-            //Kiểm tra khi lưuvalvàdata-NameNhất quán
+            //Kiểm tra khi lưuvalvàdata-Name Nhất quán
             $thisinput.attr('data-code', $thistr.attr('data-code'));
             $thisinput.attr('data-name', $thistr.attr('data-name'));
             $thisinput.val($thistr.attr('data-name'));
@@ -36,7 +36,7 @@ $.fn.departmentFloatingSelector = function (options) {
             { label: 'Tên khoa', name: 'Name', widthratio: 60 },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
-            //Kiểm tra khi lưuvalvàdata-NameNhất quán
+            //Kiểm tra khi lưuvalvàdata-Name Nhất quán
             $thisinput.attr('data-code', $thistr.attr('data-code'));
             $thisinput.attr('data-name', $thistr.attr('data-name'));
             $thisinput.val($thistr.attr('data-name'));
@@ -145,7 +145,7 @@ $.fn.dutyStaffFloatingSelector = function (options) {
             { label: 'Tên khoa', name: 'ksmc', widthratio: 40 },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
-            //Kiểm tra khi lưuvalvàdata-NameNhất quán
+            //Kiểm tra khi lưuvalvàdata-Name Nhất quán
             $thisinput.attr('data-StaffGh', $thistr.attr('data-StaffGh'));
             $thisinput.attr('data-ks', $thistr.attr('data-ks'));
             $thisinput.attr('data-ksmc', $thistr.attr('data-ksmc'));
@@ -169,7 +169,7 @@ $.fn.NationalityFloatingSelector = function (options) {
             { label: 'Quốc gia', name: 'Name', widthratio: 70 },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
-            //Kiểm tra khi lưuvalvàdata-NameNhất quán
+            //Kiểm tra khi lưuvalvàdata-Name Nhất quán
             $thisinput.attr('data-code', $thistr.attr('data-code'));
             $thisinput.attr('data-name', $thistr.attr('data-name'));
             $thisinput.val($thistr.attr('data-name'));
@@ -191,7 +191,7 @@ $.fn.NationsFloatingSelector = function (options) {
             { label: 'Dân tộc', name: 'Name', widthratio: 70 },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
-            //Kiểm tra khi lưuvalvàdata-NameNhất quán
+            //Kiểm tra khi lưuvalvàdata-Name Nhất quán
             $thisinput.attr('data-code', $thistr.attr('data-code'));
             $thisinput.attr('data-name', $thistr.attr('data-name'));
             $thisinput.val($thistr.attr('data-name'));
@@ -214,7 +214,7 @@ $.fn.ZYFloatingSelector = function (options) {
             { label: 'Tên nghề nghiệp', name: 'Name', widthratio: 70 },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
-            //Kiểm tra khi lưuvalvàdata-NameNhất quán
+            //Kiểm tra khi lưuvalvàdata-Name Nhất quán
             $thisinput.attr('data-code', $thistr.attr('data-code'));
             $thisinput.attr('data-name', $thistr.attr('data-name'));
             $thisinput.val($thistr.attr('data-name'));
@@ -236,7 +236,7 @@ $.fn.GXFloatingSelector = function (options) {
             { label: 'Tên quan hệ', name: 'Name', widthratio: 70 },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
-            //Kiểm tra khi lưuvalvàdata-NameNhất quán
+            //Kiểm tra khi lưuvalvàdata-Name Nhất quán
             $thisinput.attr('data-code', $thistr.attr('data-code'));
             $thisinput.attr('data-name', $thistr.attr('data-name'));
             $thisinput.val($thistr.attr('data-name'));
@@ -263,7 +263,7 @@ $.fn.BllxFloatingSelector = function (options) {
             //{ label: "Mã rút gọn", name: "Id", width: 20, align: 'center', },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
-            //Kiểm tra khi lưuvalvàdata-NameNhất quán
+            //Kiểm tra khi lưuvalvàdata-Name Nhất quán
             $thisinput.attr('data-code', $thistr.attr('data-code'));
             $thisinput.attr('data-name', $thistr.attr('data-name'));
             $thisinput.val($thistr.attr('data-name'));

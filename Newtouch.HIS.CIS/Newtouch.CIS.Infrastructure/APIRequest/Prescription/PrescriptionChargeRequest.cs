@@ -9,7 +9,7 @@ namespace Newtouch.CIS.APIRequest.Prescription
     public class PrescriptionChargeRequest : RequestBase
     {
         /// <summary>
-        /// Số đơn thuốcList
+        /// Số đơn thuốc List
         /// </summary>
         public List<PrescriptionChargeDto> cfList { get; set; }
 
@@ -20,7 +20,7 @@ namespace Newtouch.CIS.APIRequest.Prescription
         public bool sfbz { get; set; }
 
         ///// <summary>
-        ///// Thao tácThời gian
+        ///// Thao tác Thời gian
         ///// </summary>
         //[Required]
         //public DateTime OperateTime { get; set; }
@@ -30,7 +30,7 @@ namespace Newtouch.CIS.APIRequest.Prescription
     public class PrescriptionReturnChargeRequest : RequestBase
     {
         /// <summary>
-        /// Số đơn thuốcList
+        /// Số đơn thuốc List
         /// </summary>
         public List<string> cfList { get; set; }
 

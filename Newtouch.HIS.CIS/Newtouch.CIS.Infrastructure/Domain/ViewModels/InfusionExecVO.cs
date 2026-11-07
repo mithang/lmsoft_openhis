@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.ViewModels
 {
     /// <summary>
-    /// Lưu ýxạThông tin bệnh nhân
+    /// Lưu ýxạ Thông tin bệnh nhân
     /// </summary>
     public class InfusionExecVO
     {
@@ -28,32 +28,32 @@ namespace Newtouch.Domain.ViewModels
         public string age { get; set; }
 
         /// <summary>
-        /// phốiDược sĩMã nhân viên
+        /// phối Dược sĩ Mã nhân viên
         /// </summary>
         public string dispenser { get; set; }
 
         /// <summary>
-        /// phốiDược sĩHọ tên
+        /// phối Dược sĩ Họ tên
         /// </summary>
         public string dispenserName { get; set; }
 
         /// <summary>
-        /// Thực hiệnngườiMã nhân viên
+        /// Thực hiệnngười Mã nhân viên
         /// </summary>
         public string executor { get; set; }
 
         /// <summary>
-        /// Thực hiệnngườiHọ tên
+        /// Thực hiệnngười Họ tên
         /// </summary>
         public string executorName { get; set; }
 
         /// <summary>
-        /// truyền dịchThời gian bắt đầu
+        /// truyền dịch Thời gian bắt đầu
         /// </summary>
         public DateTime? sykssj { get; set; }
 
         /// <summary>
-        /// truyền dịchThời gian kết thúc
+        /// truyền dịch Thời gian kết thúc
         /// </summary>
         public DateTime? syjssj { get; set; }
 

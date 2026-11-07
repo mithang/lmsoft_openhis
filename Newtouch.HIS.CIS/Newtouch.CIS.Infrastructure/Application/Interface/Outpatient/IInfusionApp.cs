@@ -7,12 +7,12 @@ using Newtouch.Domain.ViewModels.Outpatient;
 namespace Newtouch.Application.Interface
 {
     /// <summary>
-    /// Lưu ýxạQuản lý
+    /// Lưu ýxạ Quản lý
     /// </summary>
     public interface IInfusionApp
     {
         /// <summary>
-        /// Đồng bộđãquyết toánĐơn thuốcthông tin
+        /// Đồng bộđãquyết toán Đơn thuốcthông tin
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -22,7 +22,7 @@ namespace Newtouch.Application.Interface
         string SyncSettRpDetail(DateTime kssj, DateTime jssj, string fph, string kh, string mzh);
 
         /// <summary>
-        /// đãquyết toánĐơn thuốcchi tiếtTra cứu
+        /// đãquyết toán Đơn thuốcchi tiết Tra cứu
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -40,7 +40,7 @@ namespace Newtouch.Application.Interface
         string Grouping(List<long> tags, string groupNo);
 
         /// <summary>
-        /// truyền dịchBắt đầu
+        /// truyền dịch Bắt đầu
         /// </summary>
         /// <param name="tags">truyền dịchchi tiết ID</param>
         /// <param name="startDateTime">Thời gian bắt đầu</param>
@@ -49,7 +49,7 @@ namespace Newtouch.Application.Interface
         string StartInfusion(List<long> tags, DateTime startDateTime, string seatNum);
 
         /// <summary>
-        /// truyền dịchKết thúc
+        /// truyền dịch Kết thúc
         /// </summary>
         /// <param name="tags">truyền dịchchi tiết ID</param>
         /// <param name="endDateTime">Thời gian kết thúc</param>
@@ -57,7 +57,7 @@ namespace Newtouch.Application.Interface
         string EndInfusion(List<long> tags, DateTime endDateTime);
 
         /// <summary>
-        /// tạoSố nhóm
+        /// tạo Số nhóm
         /// </summary>
         /// <param name="kh"></param>
         /// <returns></returns>

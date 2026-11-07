@@ -463,7 +463,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 			var path = DateTime.Now.ToString("\\\\yyyyMMdd\\\\HHmmssfff") + "Truy vấn lãi lỗ điều chỉnh giá" + ".xls";
 
-			var filePath = CommmHelper.GetLocalFilePath("\\ExcelXuất\\Xuất truy vấn lãi lỗ điều chỉnh giá" + path, "D:\\");
+			var filePath = CommmHelper.GetLocalFilePath("\\Excel Xuất\\Xuất truy vấn lãi lỗ điều chỉnh giá" + path, "D:\\");
 
 			if (isContainFilter == true)
 			{

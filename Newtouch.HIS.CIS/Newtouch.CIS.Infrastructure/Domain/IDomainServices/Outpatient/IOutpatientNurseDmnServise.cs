@@ -15,7 +15,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<OutpatientNurseTreeVO> OutpatientNurseTreeVO(string orgId, string keyword, DateTime? kssj, DateTime? jssj, string type);
 
         /// <summary>
-        /// dathửThông tin bệnh nhântriểnhiển thị
+        /// dathử Thông tin bệnh nhântriểnhiển thị
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
@@ -33,7 +33,7 @@ namespace Newtouch.Domain.IDomainServices
         string Enteragain(OperatorModel user, string cfmxid, string lrjg);
 
         /// <summary>
-        /// dathửTra cứukếtnếuthông tintriểnhiển thị
+        /// dathử Tra cứukếtnếuthông tintriểnhiển thị
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -44,7 +44,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<OutpatientNursequeryVO> skintesfrom(Pagination pagination, string keyword, DateTime? kssj, DateTime? jssj, string orgId);
 
         /// <summary>
-        /// dathửHủyThực hiện
+        /// dathử Hủy Thực hiện
         /// </summary>
         /// <param name="gmxxid"></param>
         /// <returns></returns>

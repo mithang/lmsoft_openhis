@@ -110,7 +110,7 @@
 
     $(function () {
         var zyhtimes = $.request("data");
-        var currentobj = JSON.parse(sessionStorage.getItem('currentpatobj'));//Điều dưỡngBệnh nhânmộtxem
+        var currentobj = JSON.parse(sessionStorage.getItem('currentpatobj'));//Điều dưỡng Bệnh nhânmộtxem
         if(currentobj)
         {
             zyhtimes = currentobj.zyh+',';
@@ -151,7 +151,7 @@
 
         //nút cha đã chọn hiện tại
         var len = 0;
-        var single = 0; //CóKhôngphiếucáicontiếtđiểm
+        var single = 0; //Có Khôngphiếucáicontiếtđiểm
 
         if (item != null && item.Ex1 == "p") {
             patlistFath = item.ChildNodes;

@@ -6,7 +6,7 @@ using Newtouch.Core.Common;
 namespace Newtouch.HIS.Application
 {
     /// <summary>
-    /// Vai tròApp
+    /// Vai trò App
     /// </summary>
     public interface IRoleApp
     {

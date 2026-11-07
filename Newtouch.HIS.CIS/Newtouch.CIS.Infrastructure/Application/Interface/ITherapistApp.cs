@@ -10,15 +10,15 @@ namespace Newtouch.Application.Interface
     public interface ITherapistApp
     {
         /// <summary>
-        /// kéolấychờKhám bệnhĐiều trịxâynghịdanh sách
+        /// kéolấychờ Khám bệnh Điều trịxâynghịdanh sách
         /// </summary>
-        /// <param name="brlx">bệnh nhânLoại--1Ngoại trú 2Nhập viện</param>
-        /// <param name="mzzyh">Ngoại trúSố nhập viện</param>
+        /// <param name="brlx">bệnh nhân Loại--1Ngoại trú 2Nhập viện</param>
+        /// <param name="mzzyh">Ngoại trú Số nhập viện</param>
         /// <returns></returns>
         IList<WaitCvTherapistSuggestionDTO> GetWaitCvSuggestionList(string brlx, string mzzyh, int dayNum);
 
         /// <summary>
-        /// hơnTạo mớinghịcủachuyểnđổiTrạng thái
+        /// hơn Tạo mớinghịcủachuyểnđổi Trạng thái
         /// </summary>
         /// <param name="cvList"></param>
         void UpdateSuggestionCvStatus(IList<SuggestionCvStatuDTO> cvList);

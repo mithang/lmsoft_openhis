@@ -9,10 +9,10 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
     public class EngineReq
     {
         public bool ShouldSerializeMyProperty() => true;
-        public string Type { get; set; } // Đơn thuốcLoại
+        public string Type { get; set; } // Đơn thuốc Loại
         public PatientRecord Patient { get; set; } // Thông tin bệnh nhân
         public Operation Operation { get; set; } // Phẫu thuậtthông tin
-        public List<Prescription> Prescriptions { get; set; } // ThuốcĐơn thuốcdanh sách
+        public List<Prescription> Prescriptions { get; set; } // Thuốc Đơn thuốcdanh sách
 
     }
      public class PatientRecord
@@ -24,28 +24,28 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
         public string Department { get; set; } // Tên khoa
         
         [XmlElement("bedNo")]
-        public string BedNo { get; set; } // Nhập việnbệnh nhânSố giường
+        public string BedNo { get; set; } // Nhập việnbệnh nhân Số giường
         
         [XmlElement("presType")]
-        public string PresType { get; set; } // Đơn thuốcLoại
+        public string PresType { get; set; } // Đơn thuốc Loại
         
         [XmlElement("presSource")]
         public string PresSource { get; set; } // đếnnguồn
         
         [XmlElement("presDateTime")]
-        public string PresDatetime { get; set; } // Đơn thuốc/Y lệnhmởcụ thểThời gian
+        public string PresDatetime { get; set; } // Đơn thuốc/Y lệnhmởcụ thể Thời gian
         
         [XmlElement("payType")]
         public string PayType { get; set; } // phíloại
         
         [XmlElement("patientNo")]
-        public string PatientNo { get; set; } // Khám bệnhSố thẻ
+        public string PatientNo { get; set; } // Khám bệnh Số thẻ
         
         [XmlElement("presNo")]
         public string PresNo { get; set; } // Đơn thuốc/Y lệnhsố
         
         [XmlElement("name")]
-        public string Name { get; set; } // bệnh nhânHọ tên
+        public string Name { get; set; } // bệnh nhân Họ tên
         
         [XmlElement("diagnoseid")]
         public string DiagnoseID { get; set; } // Chẩn đoánid
@@ -57,7 +57,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
         public string IDCard { get; set; } // CMND/CCCD số mã
         
         [XmlElement("address")]
-        public string Address { get; set; } // bệnh nhânĐịa chỉ
+        public string Address { get; set; } // bệnh nhân Địa chỉ
         
         [XmlElement("phoneNo")]
         public string PhoneNo { get; set; } // Điện thoại liên hệ
@@ -84,43 +84,43 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
         public string NowMedicalHistory { get; set; } // hiệnbệnhsử
         
         [XmlElement("ccr")]
-        public string Ccr { get; set; } // trongsinhCreatininxóatỷ lệ
+        public string Ccr { get; set; } // trongsinh Creatininxóatỷ lệ
         
         [XmlElement("anaphylactogen")]
-        public string Anaphylactogen { get; set; } // quaTiền sử dị ứng
+        public string Anaphylactogen { get; set; } // qua Tiền sử dị ứng
         
         [XmlElement("allergicHistory")]
         public string AllergicHistory { get; set; } // quamẫnnguồn
         
         [XmlElement("pregnancy")]
-        public string Pregnancy { get; set; } // làKhôngmang thai
+        public string Pregnancy { get; set; } // là Khôngmang thai
         
         [XmlElement("timeOfPreg")]
         public string TimeOfPreg { get; set; } // Thời kỳ mang thai
         
         [XmlElement("disease")]
-        public string Disease { get; set; } // làKhôngBệnh mạn tính
+        public string Disease { get; set; } // là Không Bệnh mạn tính
         
         [XmlElement("breastFeeding")]
         public string BreastFeeding { get; set; } // Có cho con bú hay không
         
         [XmlElement("dialysis")]
-        public string Dialysis { get; set; } // làKhôngThẩm tách
+        public string Dialysis { get; set; } // là Không Thẩm tách
         
         [XmlElement("proxName")]
-        public string ProxName { get; set; } // thaylàm ngườiHọ tên
+        public string ProxName { get; set; } // thaylàm người Họ tên
         
         [XmlElement("proxIDCard")]
         public string ProxIDCard { get; set; } // thaylàm người CMND/CCCD số
         
         [XmlElement("docID")]
-        public string DocID { get; set; } // Bác sĩMã nhân viên
+        public string DocID { get; set; } // Bác sĩ Mã nhân viên
         
         [XmlElement("docName")]
-        public string DocName { get; set; } // Bác sĩHọ tên
+        public string DocName { get; set; } // Bác sĩ Họ tên
         
         [XmlElement("totalAmount")]
-        public string TotalAmount { get; set; } // Đơn thuốcSố tiền
+        public string TotalAmount { get; set; } // Đơn thuốc Số tiền
         // Add any additional fields as necessary
     }
 
@@ -139,7 +139,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
         public string OperationEndTime { get; set; } // Thời gian kết thúc phẫu thuật
         
         [XmlElement("incisionType")]
-        public string IncisionType { get; set; } // cắtmiệngLoại
+        public string IncisionType { get; set; } // cắtmiệng Loại
         
         [XmlElement("incisionStatus")]
         public string IncisionStatus { get; set; } // Loại liền vết thương
@@ -161,10 +161,10 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
         public string RegName { get; set; } // Tên thương mại
         
         [XmlElement("specification")]
-        public string Specification { get; set; } // chứalượngQuy cách
+        public string Specification { get; set; } // chứalượng Quy cách
         
         [XmlElement("package")]
-        public string Package { get; set; } // góilắpQuy cách
+        public string Package { get; set; } // góilắp Quy cách
         
         [XmlElement("quantity")]
         public float Quantity { get; set; } // Số lượng
@@ -182,22 +182,22 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
         public string GroupNo { get; set; } // Số nhóm
         
         [XmlElement("firstUse")]
-        public string FirstUse { get; set; } // đầuliềuSử dụng
+        public string FirstUse { get; set; } // đầuliều Sử dụng
         
         [XmlElement("prepForm")]
         public string PrepForm { get; set; } // Dạng bào chế
         
         [XmlElement("adminRoute")]
-        public string AdminRoute { get; set; } // chothuốcĐường
+        public string AdminRoute { get; set; } // chothuốc Đường
         
         [XmlElement("adminArea")]
-        public string AdminArea { get; set; } // chothuốcVị trí
+        public string AdminArea { get; set; } // chothuốc Vị trí
         
         [XmlElement("adminFrequency")]
         public string AdminFrequency { get; set; } // chothuốctần suấttỷ lệ
         
         [XmlElement("adminDose")]
-        public string AdminDose { get; set; } // chothuốcLiều lượng
+        public string AdminDose { get; set; } // chothuốc Liều lượng
         
         [XmlElement("adminMethod")]
         public string AdminMethod { get; set; } // chothuốckhimáy
@@ -209,13 +209,13 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
         public string AdminGoal { get; set; } // chothuốcmắtcủa
         
         [XmlElement("docID")]
-        public string DocID { get; set; } // Bác sĩMã nhân viên
+        public string DocID { get; set; } // Bác sĩ Mã nhân viên
         
         [XmlElement("docName")]
-        public string DocName { get; set; } // Bác sĩHọ tên
+        public string DocName { get; set; } // Bác sĩ Họ tên
         
         [XmlElement("docTitle")]
-        public string DocTitle { get; set; } // Bác sĩChức danh
+        public string DocTitle { get; set; } // Bác sĩ Chức danh
         
         [XmlElement("departID")]
         public string DepartID { get; set; } // KhoaID
@@ -224,7 +224,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
         public string Department { get; set; } // Tên khoa
         
         [XmlElement("nurseName")]
-        public string NurseName { get; set; } // Điều dưỡngTên
+        public string NurseName { get; set; } // Điều dưỡng Tên
         
         [XmlElement("startTime")]
         public string StartTime { get; set; } // Thời gian bắt đầu
@@ -236,6 +236,6 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
         public string SpecialPromote { get; set; } // Phương pháp sắc thuốc
         
         [XmlElement("continueDays")]
-        public string ContinueDays { get; set; } // liên tụcThời gian
+        public string ContinueDays { get; set; } // liên tục Thời gian
     }
 }

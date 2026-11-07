@@ -65,13 +65,13 @@ order by CreateTime desc";
         {
             if (keyValue.HasValue && keyValue.Value > 0)
             {
-                //CodeKiểm tra trùng lặp
+                //Code Kiểm tra trùng lặp
                 if (this.IQueryable().Any(p => p.dlCode == entity.dlCode && p.dlId != keyValue.Value && p.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("Mã không được trùng lặp");
                 }
 
-                SysAgriInsuranceChargeCategoryEntity oldEntity = null;   //Trước khi thay đổiEntity
+                SysAgriInsuranceChargeCategoryEntity oldEntity = null;   //Trước khi thay đổi Entity
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 
@@ -86,7 +86,7 @@ order by CreateTime desc";
             }
             else
             {
-                //CodeKiểm tra trùng lặp
+                //Code Kiểm tra trùng lặp
                 if (this.IQueryable().Any(p => p.dlCode == entity.dlCode && p.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("Mã không được trùng lặp");

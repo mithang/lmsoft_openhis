@@ -13,7 +13,7 @@ namespace Newtouch.Domain.IDomainServices
     public interface IMzyyghDmnService
     {
         /// <summary>
-        /// TheoSố bệnh ánTra cứuNgoại trúđặt hẹnđăng ký khámthông tin
+        /// Theo Số bệnh án Tra cứu Ngoại trúđặt hẹnđăng ký khámthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
@@ -23,7 +23,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<MzyyghVO> SelectMzyyghDetail(Pagination pagination, string blh, string organizeId, DateTime regDate);
 
         /// <summary>
-        /// Ngoại trúđặt hẹnTra cứu
+        /// Ngoại trúđặt hẹn Tra cứu
         /// </summary>
         /// <param name="blh">Số bệnh án</param>
         /// <param name="kh">Số thẻ</param>
@@ -32,7 +32,7 @@ namespace Newtouch.Domain.IDomainServices
         List<MzBespeakRegisterQueryResponseDTO> MzBespeakRegisterQuery(string blh, string kh, string zjh, string organizeId);
 
         /// <summary>
-        /// Lấyhiện tạiKhoahoặcchuyên giađãđặt hẹnđăng ký khámtổngsố
+        /// Lấyhiện tại Khoahoặcchuyên giađãđặt hẹnđăng ký khámtổngsố
         /// </summary>
         /// <param name="ksCode"></param>
         /// <param name="ysgh"></param>
@@ -45,7 +45,7 @@ namespace Newtouch.Domain.IDomainServices
         /// <summary>
         /// Tra cứuđãđặt hẹnđăng ký khám
         /// </summary>
-        /// <param name="mzlx">Dấu hiệu ngoại trú/nội trú 1:thông thườngNgoại trú  2:gấpkhám   3:chuyên giaNgoại trú</param>
+        /// <param name="mzlx">Dấu hiệu ngoại trú/nội trú 1:thông thường Ngoại trú  2:gấpkhám   3:chuyên gia Ngoại trú</param>
         /// <param name="departmentCode"></param>
         /// <param name="ysgh"></param>
         /// <param name="beginTime"></param>

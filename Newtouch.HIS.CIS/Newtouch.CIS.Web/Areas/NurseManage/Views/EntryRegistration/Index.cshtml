@@ -1,7 +1,7 @@
 @model dynamic
 @using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "Vào khuĐăng ký";
+    ViewBag.Title = "Vào khu Đăng ký";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -248,7 +248,7 @@
         <div class="dv-mid-info" style="border-radius:10px">
             <table>
                 <tr>
-                    <td class="panel-title">&nbsp;&nbsp;Bệnh nhânThông tin:</td>
+                    <td class="panel-title">&nbsp;&nbsp;Bệnh nhân Thông tin:</td>
                     <td class="panel-title">&nbsp;&nbsp;Họ tên:</td>
                     <td class="td-info panel-title" id="labName"></td>
                     <td>&nbsp;&nbsp;Giới tính:</td>
@@ -276,20 +276,20 @@
     var aabb="";
     var eleDv;//
     var zyh;//Số nhập viện
-    var bedCode;//giường ký tựMã
-    var bqdm = $("#bqc").val();//Khu bệnhMã
+    var bedCode;//giường ký tự Mã
+    var bqdm = $("#bqc").val();//Khu bệnh Mã
     var bedInfoStr = "";
     var qqlx = 0;//0mớivàokhu,1chuyển khu
     var ysgh;
     var ysmc;
     var djrq;
     var lastcwCode = null; //chuyển khu-trướcmộtgiường ký tự
-    var DeptCode = null; //hiện tạiKhoa
+    var DeptCode = null; //hiện tại Khoa
     $(document).ready(function () {
 
         DefaultCheck();
     });
-    //Mặc địnhĐã chọngốctiếtđiểm.
+    //Mặc định Đã chọngốctiếtđiểm.
     function DefaultCheck() {
         debugger;
         var dss = $("div[id^='wardTree_']:first").attr("id");
@@ -297,15 +297,15 @@
         // attr("id") tra undefined, .replace se throw va chet ca ready handler.
         // Khong co node thi khong co gi de chon mac dinh: thoat lang.
         if (dss == undefined) { return; }
-        var firstid = dss.replace("wardTree_", "");//gốctiếtđiểmKhu bệnhMã
-        //var firstid = $("div[id^='BQtree_']:first").attr("id").replace("BQtree_", "");//gốctiếtđiểmKhu bệnhMã
-        //var firstid = "nkbq01";//gốctiếtđiểmKhu bệnhMã
+        var firstid = dss.replace("wardTree_", "");//gốctiếtđiểm Khu bệnh Mã
+        //var firstid = $("div[id^='BQtree_']:first").attr("id").replace("BQtree_", "");//gốctiếtđiểm Khu bệnh Mã
+        //var firstid = "nkbq01";//gốctiếtđiểm Khu bệnh Mã
         
         //var addstyleid = 'BQtree_' + firstid;
         var addstyleid = 'wardTree_' + firstid;
         var item = new Object();
         item.id = firstid;
-        $("#" + addstyleid + "").addClass('bbit-tree-selected');//tăng thêmĐã chọnkiểu
+        $("#" + addstyleid + "").addClass('bbit-tree-selected');//tăng thêm Đã chọnkiểu
         wardTree_onnodeclick(item);
         //$("div[id^='wardTree_']").each(function () {
         //    var tpath = $(this).attr("tpath");
@@ -375,7 +375,7 @@
         getPatInitList(bqdm);
         //InitTZ();
     })
-    //Khởi tạoDanh sách bệnh nhân
+    //Khởi tạo Danh sách bệnh nhân
     function getPatInitList(bqdm)
     {
         $.loading(true, "sss");
@@ -406,7 +406,7 @@
                         } else {
                             nls = item.nlshow;
                         }
-                        var title = "Số nhập viện:" + item.zyh + "; Tuổi:" + nls + "; Giới tính:" + item.xb + "; Nhập việnThời gian:" + item.ryrq + "; Chẩn đoán nhập viện:" + item.zd + "";
+                        var title = "Số nhập viện:" + item.zyh + "; Tuổi:" + nls + "; Giới tính:" + item.xb + "; Nhập viện Thời gian:" + item.ryrq + "; Chẩn đoán nhập viện:" + item.zd + "";
                         var hidInfo = "{\"zyh\":\"" + item.zyh + "\",\"name\":\"" + item.xm + "\",\"xb\":\"" + item.xb + "\",\"type\":\"" + item.brxzmc + "\",\"ryrq\":\"" + item.ryrq + "\",\"ysgh\":\"" + item.ysgh + "\",\"ysmc\":\"" + item.ysmc + "\",\"lastcwCode\":\"" + item.lastcwCode + "\",\"DeptCode\":\"" + item.DeptCode + "\"}";
                         $("#ul_new").append("<li draggable=\"true\" title=\"" + title + "\"><i class=\"fa " + hzxb + " li-sex\" aria-hidden=\"true\"></i><span>" + item.xm + "</span><span>" + nls + "</span><span>" + item.brxzmc + "</span><input type=\"hidden\" name=\"hid_patInfo\" value='" + hidInfo + "' /></li>");
                     })
@@ -434,7 +434,7 @@
                         var hidInfo = "{\"zyh\":\"" + item.zyh + "\",\"name\":\"" + item.xm + "\",\"xb\":\"" + item.xb + "\",\"doctor\":\"" + item.ysmc + "\",\"cwCode\":\"" + item.cwCode + "\",\"type\":\"" + item.zyh + "\",\"bedNo\":\"" + item.cwmc + "\"}";
                         var hzxb = "";
                         bedInfoStr += '"' + item.cwCode + '"' + ':[{"cwCode":"' + item.cwCode + '","zyh":"' + item.zyh + '","cwsystu":"' + item.cwsystu + '"}],';
-                        //giường ký tựCóKhôngchiếmdùng
+                        //giường ký tự Có Khôngchiếmdùng
                         if (item.sfzy) {
 
                             if (item.xb == "1") {
@@ -655,11 +655,11 @@
                     });
                 }
             },  {
-                name: 'Bảo trìĐăng ký vào khuThông tin',
+                name: 'Bảo trì Đăng ký vào khu Thông tin',
                 onClick: function (row) {
                     $.modalOpen({
                         id: "updatWZForm",
-                        title: "Bảo trìĐăng ký vào khuThông tin",
+                        title: "Bảo trì Đăng ký vào khu Thông tin",
                         url: "/NurseManage/EntryRegistration/EntryAreaFrom?ysgh=" + ysgh + "&ysmc=" + ysmc + "&zyh=" + row[0].zyh+"&type="+"update",
                         width: "500px",
                         height: "480px",
@@ -690,7 +690,7 @@
             }, {
                 name: 'Bệnh nhân chuyển khu',
                 onClick: function (row) {
-                    $.modalConfirm("Xác nhậnChuyển khu?", function (flag) {
+                    $.modalConfirm("Xác nhận Chuyển khu?", function (flag) {
                         if (flag) {
                             $.modalOpen({
                                 id: "OutAreaForm",
@@ -712,7 +712,7 @@
             }, {
                 name: 'Bệnh nhân chuyển khu',
                 onClick: function (row) {
-                    $.modalConfirm("Xác nhậnChuyển khu?", function (flag) {
+                    $.modalConfirm("Xác nhận Chuyển khu?", function (flag) {
                         if (flag) {
                             $.modalOpen({
                                 id: "ChangeAreaForm",
@@ -732,7 +732,7 @@
                     });
                 }
             }, {
-                name: 'HủyĐăng ký vào khu',
+                name: 'Hủy Đăng ký vào khu',
                 onClick: function (row) {
                     $.modalConfirm("Xác nhận muốn hủy đăng ký vào khu?", function (flag) {
                         if (flag) {
@@ -778,7 +778,7 @@
             ]
         });
     }
-    //bậtravàokhuThời gianvànguytrọngLoạinhậpkhung
+    //bậtravàokhu Thời gianvànguytrọng Loạinhậpkhung
     function OpenRqdjForm() {
         debugger;
         $.modalOpen({

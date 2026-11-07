@@ -51,15 +51,15 @@
                 { label: 'Số tiền', name: 'je', width: 80, align: 'left', hidden: cflx == TCMPres ? true : null, formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }},
                     { label: 'Khoa thực hiện', name: 'zxks', hidden: true },
-                    { label: 'Khoa thực hiệnTên', name: 'zxksmc', hidden: (cflx == RehabPres||cflx==RegularItemPres) ? null : true  },
-                    { label: 'Có hay khôngBảo hiểm y tế', name: 'sfyb', width: 80 },
+                    { label: 'Khoa thực hiện Tên', name: 'zxksmc', hidden: (cflx == RehabPres||cflx==RegularItemPres) ? null : true  },
+                    { label: 'Có hay không Bảo hiểm y tế', name: 'sfyb', width: 80 },
             ],
             onSelectRow: function (rowid, status) {
                 if (status === true) {
                     var data = $("#gridList").getRowData(rowid);
                     if (brxzCode != "" &&'@ViewBag.ControlbrxzCode'.indexOf(brxzCode) > -1 && data.sfyb == "Không") {
                         $.modalAlert("Bệnh nhân này là bệnh nhân BHYT, không thể chọn mục tự chi trả [" + data.xmmc + "]", "warning");
-                        $gridList.jqGrid('setSelection', rowid, false); //Cài đặtjqGridĐã chọn
+                        $gridList.jqGrid('setSelection', rowid, false); //Cài đặtjqGrid Đã chọn
                         return false;
                     }
                 }
@@ -72,7 +72,7 @@
         debugger;
         var data = $("#gridList").jqGrid('getRowData_AllLine', true, true);
         if(!data || data.length==0){
-            $.modalAlert("Vui lòng chọnChi tiếtTiến hànhSao chép", 'warning');
+            $.modalAlert("Vui lòng chọn Chi tiết Tiến hành Sao chép", 'warning');
             return;
         }
         var cfmxIdStr = "";

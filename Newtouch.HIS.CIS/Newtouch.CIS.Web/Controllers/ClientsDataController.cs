@@ -20,7 +20,7 @@ using NewtouchHIS.Base.Domain.EnumExtend;
 namespace Newtouch.CIS.Web.Controllers
 {
     /// <summary>
-    /// Home/Indextảikhi Mặc địnhtảicủa chậmtồn tạiDữ liệu
+    /// Home/Indextảikhi Mặc địnhtảicủa chậmtồn tại Dữ liệu
     /// </summary>
     public class ClientsDataController : ClientsDataBaseController
     {
@@ -137,7 +137,7 @@ namespace Newtouch.CIS.Web.Controllers
             if (!string.IsNullOrWhiteSpace(opr.OrganizeId))
             {
                 sysStaffDutyList = _sysUserDmnService.GetStaffDutyListByOrganizeId(opr.OrganizeId);//(Bác sĩ,sức khỏehuấn luyện viên)
-                doctorInHosBookkeep = _sysUserDmnService.GetStaffByDutyCode(opr.OrganizeId, "Doctor");//Ghi nợ nội trúLấyNgoại trúBác sĩ
+                doctorInHosBookkeep = _sysUserDmnService.GetStaffByDutyCode(opr.OrganizeId, "Doctor");//Ghi nợ nội trú Lấy Ngoại trú Bác sĩ
                 sysDepartList = _sysDepartmentRepo.GetList(opr.OrganizeId, "1");//Khoa
                 sysPatientNatureList = _sysNationalityRepo.GetBRXZList(opr.OrganizeId);//Tính chất bệnh nhân,báobánchính sách
             }
@@ -150,7 +150,7 @@ namespace Newtouch.CIS.Web.Controllers
                 sysPatientNatureList = sysPatientNatureList,
                 sysStaffDutyList = sysStaffDutyList == null ? null : sysStaffDutyList.ToJson(new[] { "StaffGh", "StaffName", "StaffPY", "DutyCode" }),//sức khỏehuấn luyện viên,Bác sĩ
                 sysNationList = _sysNationRepo.GetmzList(),//dântộc
-                SysForCashPayList = _sysNationalityRepo.GetCashPay(), //LấyhiệnkimPhương thức thanh toán
+                SysForCashPayList = _sysNationalityRepo.GetCashPay(), //Lấyhiệnkim Phương thức thanh toán
                 sysNationalityList = _sysNationalityRepo.GetgjList()//quốc tịch
         };
             return Content(data.ToJson());

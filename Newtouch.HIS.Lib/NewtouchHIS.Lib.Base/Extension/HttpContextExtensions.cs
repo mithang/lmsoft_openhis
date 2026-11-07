@@ -34,7 +34,7 @@ namespace NewtouchHIS.Lib.Base.Extension
             return false;
         }
         /// <summary>
-        /// Xác định yêu cầu có phải làAjax
+        /// Xác định yêu cầu có phải là Ajax
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

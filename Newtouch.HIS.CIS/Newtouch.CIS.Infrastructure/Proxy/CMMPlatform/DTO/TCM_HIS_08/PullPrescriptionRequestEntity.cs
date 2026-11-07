@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_08
 {
     /// <summary>
-    /// nhắclấyĐơn thuốcyêu cầuthể
+    /// nhắclấy Đơn thuốcyêu cầuthể
     /// </summary>
     [XmlRoot("Request")]
     public class PullPrescriptionRequestEntity : RequestBase
@@ -29,13 +29,13 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_08
         public string serialNo { get; set; }
 
         /// <summary>
-        /// Cơ sởMã
+        /// Cơ sở Mã
         /// bắt buộc
         /// </summary>
         public string orgCode { get; set; }
 
         /// <summary>
-        /// trực tiếpchọnphươngcủaphươngconTên
+        /// trực tiếpchọnphươngcủaphươngcon Tên
         /// </summary>
         public string preName { get; set; }
 

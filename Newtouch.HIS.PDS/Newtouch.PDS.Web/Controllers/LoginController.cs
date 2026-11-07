@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Web.Controllers
         [HttpGet]
         public override IActionResult Index()
         {
-            //Ghi vào máy kháchId
+            //Ghi vào máy khách Id
             Response.Cookies.Append(Constants.AppId + "_ClientId", Guid.NewGuid().ToString("N").ToLower());
 
             ViewBag.IsCheckChkCode = ConfigurationHelper.GetAppConfigBoolValue("Is_CheckChkCode");
@@ -88,7 +88,7 @@ namespace Newtouch.HIS.Web.Controllers
                 }
                 if (opr.yfbmCodeList != null && opr.yfbmCodeList.Count > 0)
                 {
-                    //Bộ phận nhà thuốc hiện cần thao tác    //tạiOrgIdĐã liên kết nhiềuyfbmLàm thế nào
+                    //Bộ phận nhà thuốc hiện cần thao tác    //tại OrgId Đã liên kết nhiềuyfbm Làm thế nào
                     var curYfbmCode = opr.yfbmCodeList.FirstOrDefault();
                     var curYfbmObj = _sysPharmacyDepartmentRepo.GetUserYfbmByCode(curYfbmCode, opr.OrganizeId);
                     if (curYfbmObj != null)

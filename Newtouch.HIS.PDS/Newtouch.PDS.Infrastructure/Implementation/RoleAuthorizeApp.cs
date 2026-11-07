@@ -12,7 +12,7 @@ using Newtouch.HIS.Application.Interface;
 namespace Newtouch.HIS.Application
 {
     /// <summary>
-    /// Quyền vai tròApp
+    /// Quyền vai trò App
     /// </summary>
     public sealed class RoleAuthorizeApp : AppBase, IRoleAuthorizeApp
     {
@@ -42,7 +42,7 @@ namespace Newtouch.HIS.Application
         {
             if (action.StartsWith("/Home", System.StringComparison.OrdinalIgnoreCase))
             {
-                return true;    //Home/IndexĐặc biệt
+                return true;    //Home/Index Đặc biệt
             }
 
             if (roleIdList == null || roleIdList.Count == 0)
@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Application
             {
                 if (!string.IsNullOrEmpty(item.UrlAddress))
                 {
-                    //Nếu đã thêmHandlerAuthorizeAttribute,thì yêu cầu có tương ứngMeum/MenuButton và có cài đặtUrl
+                    //Nếu đã thêm HandlerAuthorizeAttribute,thì yêu cầu có tương ứng Meum/MenuButton và có cài đặt Url
                     string[] url = item.UrlAddress.Split('?');
                     if (url[0].Equals(action, System.StringComparison.OrdinalIgnoreCase))
                     {
@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Application
         {
             if (action.StartsWith("/Home", System.StringComparison.OrdinalIgnoreCase))
             {
-                return true;    //Home/IndexĐặc biệt
+                return true;    //Home/Index Đặc biệt
             }
 
             if (roleIdList == null || roleIdList.Count == 0)
@@ -105,7 +105,7 @@ namespace Newtouch.HIS.Application
             {
                 if (!string.IsNullOrEmpty(item.UrlAddress))
                 {
-                    //Nếu đã thêmHandlerAuthorizeAttribute,thì yêu cầu có tương ứngMeum/MenuButton và có cài đặtUrl
+                    //Nếu đã thêm HandlerAuthorizeAttribute,thì yêu cầu có tương ứng Meum/MenuButton và có cài đặt Url
                     string[] url = item.UrlAddress.Split('?');
                     if (url[0].Equals(action, System.StringComparison.OrdinalIgnoreCase))
                     {

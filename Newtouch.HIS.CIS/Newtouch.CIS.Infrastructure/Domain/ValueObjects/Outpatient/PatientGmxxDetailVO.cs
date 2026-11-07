@@ -12,7 +12,7 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
     public class PatientGmxxDetailVO
     {
         /// <summary>
-        /// quamẫnthông tinbảngKhóa chính
+        /// quamẫnthông tinbảng Khóa chính
         /// </summary>
         public string Id { get; set; }
 
@@ -22,7 +22,7 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         public string xm { get; set; }
 
         /// <summary>
-        /// rasinhnămTháng
+        /// rasinhnăm Tháng
         /// </summary>
         public DateTime csrq { get; set; }
 
@@ -42,27 +42,27 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         public string mzh { get; set; }
 
         /// <summary>
-        /// quamẫnMục
+        /// quamẫn Mục
         /// </summary>
         public string xmCode { get; set; }
 
         /// <summary>
-        /// quamẫnTên mục
+        /// quamẫn Tên mục
         /// </summary>
         public string xmmc { get; set; }
 
         /// <summary>
-        /// quamẫnLoại
+        /// quamẫn Loại
         /// </summary>
         public string gmlx { get; set; }
 
         /// <summary>
-        /// quamẫnTên loại
+        /// quamẫn Tên loại
         /// </summary>
         public string gmlxmc { get; set; }
 
         /// <summary>
-        /// quamẫnThuốc
+        /// quamẫn Thuốc
         /// </summary>
         public string gmyp { get; set; }
 

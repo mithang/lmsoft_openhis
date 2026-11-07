@@ -24,7 +24,7 @@ namespace Newtouch.CIS.Proxy.Dapper
         public abstract void ExecuteProxy();
 
         /// <summary>
-        /// nhắclấyQuay lạiDữ liệu
+        /// nhắclấy Quay lại Dữ liệu
         /// </summary>
         /// <returns></returns>
         public abstract TResult ExtractProxyResponse();

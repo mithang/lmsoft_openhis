@@ -178,7 +178,7 @@ namespace Newtouch.HIS.DomainServices
                     foreach (var item in list)
                     {
                         var strSql = new StringBuilder();
-                        //Sửa trạng thái phát thuốcLastModiFierCode
+                        //Sửa trạng thái phát thuốc LastModiFierCode
                         strSql.Append(@"UPDATE " + DbNames.Name("PdsDb", "NewtouchHIS_PDS") + @".dbo.zy_ypyzxx
                                   SET       fybz = @fybz,
                                             LastModiFierCode = @user,
@@ -285,7 +285,7 @@ namespace Newtouch.HIS.DomainServices
                     foreach (var item in list)
                     {
                         var strSql = new StringBuilder();
-                        //Sửa trạng thái phát thuốcLastModiFierCode
+                        //Sửa trạng thái phát thuốc LastModiFierCode
                         strSql.Append(@"UPDATE " + DbNames.Name("PdsDb", "NewtouchHIS_PDS") + @".dbo.zy_ypyzxx
                                   SET       fybz = @fybz,
                                             LastModiFierCode = @user,
@@ -612,7 +612,7 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
                     foreach (var item in list)
                     {
                         var strSql = new StringBuilder();
-                        //Sửa trạng thái phát thuốcLastModiFierCode
+                        //Sửa trạng thái phát thuốc LastModiFierCode
                         strSql.Append(@"UPDATE " + DbNames.Name("PdsDb", "NewtouchHIS_PDS") + @".dbo.zy_ypyzxx
                                   SET       fybz = @fybz,
                                             LastModiFierCode = @user,

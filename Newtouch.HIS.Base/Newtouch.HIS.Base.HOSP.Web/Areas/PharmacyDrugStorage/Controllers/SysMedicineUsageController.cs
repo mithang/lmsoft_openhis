@@ -59,7 +59,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.PharmacyDrugStorage.Controllers
         }
 
         /// <summary>
-        /// Thêm mới hoặc sửaForm
+        /// Thêm mới hoặc sửa Form
         /// </summary>
         public IActionResult GetFormJson(int? yfId)
         {

@@ -224,7 +224,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string isKss { get; set; }
 
         /// <summary>
-        /// Thông tin kháng sinh của thuốcId
+        /// Thông tin kháng sinh của thuốc Id
         /// </summary>
         public string kssId { get; set; }
 

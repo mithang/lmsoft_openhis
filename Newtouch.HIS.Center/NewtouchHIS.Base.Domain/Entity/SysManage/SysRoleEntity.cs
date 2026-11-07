@@ -12,7 +12,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
     public partial class SysRoleEntity : IEntity
     {
         /// <summary>
-        /// Desc:Vai tròKhóa chính
+        /// Desc:Vai trò Khóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           

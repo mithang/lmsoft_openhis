@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// LấyĐơn thuốcchi tiết
+        /// Lấy Đơn thuốcchi tiết
         /// </summary>
         /// <param name="cfId"></param>
         /// <returns></returns>
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Repository
 
         }
         /// <summary>
-        /// LấyĐơn thuốcchi tiết
+        /// Lấy Đơn thuốcchi tiết
         /// </summary>
         /// <param name="cfId"></param>
         /// <returns></returns>

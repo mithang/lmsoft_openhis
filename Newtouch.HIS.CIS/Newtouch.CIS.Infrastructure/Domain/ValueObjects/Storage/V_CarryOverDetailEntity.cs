@@ -9,7 +9,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
     public class VCarryOverDetailEntity
     {
         /// <summary>
-        /// vật tưTên
+        /// vật tư Tên
         /// </summary>
         public string wzmc { get; set; }
 
@@ -24,7 +24,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string gg { get; set; }
 
         /// <summary>
-        /// kết chuyểnSố lượng(mangĐơn vị)
+        /// kết chuyển Số lượng(mang Đơn vị)
         /// </summary>
         public string jzsl { get; set; }
 
@@ -39,12 +39,12 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string ph { get; set; }
 
         /// <summary>
-        /// Nhà cung cấpTên
+        /// Nhà cung cấp Tên
         /// </summary>
         public string supplierName { get; set; }
 
         /// <summary>
-        /// Giá bán lẻ tương ứngzhyzĐơn vị
+        /// Giá bán lẻ tương ứngzhyz Đơn vị
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal lsj { get; set; }
@@ -55,12 +55,12 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public decimal lsze { get; set; }
 
         /// <summary>
-        /// Khoa phòngTên đơn vị
+        /// Khoa phòng Tên đơn vị
         /// </summary>
         public string bmdwmc { get; set; }
 
         /// <summary>
-        /// Tồn khoSố lượng Đơn vị nhỏ nhất
+        /// Tồn kho Số lượng Đơn vị nhỏ nhất
         /// </summary>
         public int kcsl { get; set; }
 

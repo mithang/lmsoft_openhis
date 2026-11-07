@@ -23,17 +23,17 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// liên kếtKhám bệnhbảng
+        /// liên kết Khám bệnhbảng
         /// </summary>
         public string jzId { get; set; }
 
         /// <summary>
-        /// billingHệ thốngcủaThu phíTrạng thái
+        /// billing Hệ thốngcủa Thu phí Trạng thái
         /// </summary>
         public bool sfbz { get; set; }
 
         /// <summary>
-        /// Liệt kê 1 Thuốc TâyĐơn thuốc 2 Thuốc Đông yĐơn thuốc 3 Phục hồi chức năngĐơn thuốc 4 Xét nghiệmĐơn thuốc 5 Kiểm traĐơn thuốc 6 truyền dịchĐơn thuốc
+        /// Liệt kê 1 Thuốc Tây Đơn thuốc 2 Thuốc Đông y Đơn thuốc 3 Phục hồi chức năng Đơn thuốc 4 Xét nghiệm Đơn thuốc 5 Kiểm tra Đơn thuốc 6 truyền dịch Đơn thuốc
         /// </summary>
         public int cflx { get; set; }
 
@@ -48,7 +48,7 @@ namespace Newtouch.Domain.Entity
         public decimal zje { get; set; }
 
         /// <summary>
-        /// liên kếtbasekhocủa ngườiviênMã nhân viên
+        /// liên kếtbasekhocủa ngườiviên Mã nhân viên
         /// </summary>
         public string ys { get; set; }
 
@@ -107,16 +107,16 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public string lcyx { get; set; }
         /// <summary>
-        /// Đăng kýGhi chú
+        /// Đăng ký Ghi chú
         /// </summary>
         public string sqbz { get; set; }
         /// <summary>
-        /// trảCờ
+        /// trả Cờ
         /// </summary>
         public bool? tbz { get; set; }
 
         /// <summary>
-        /// Số phiếu(xatrìnhy tếĐăng kýcầnguid)
+        /// Số phiếu(xatrìnhy tế Đăng kýcầnguid)
         /// </summary>
         public string sqdh { get; set; }
         /// <summary>
@@ -136,6 +136,6 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public string cfzt { get; set; }
 
-        public string isdzcf { get; set; }//điện tửĐơn thuốc 1 là  0 Không
+        public string isdzcf { get; set; }//điện tử Đơn thuốc 1 là  0 Không
     }
 }

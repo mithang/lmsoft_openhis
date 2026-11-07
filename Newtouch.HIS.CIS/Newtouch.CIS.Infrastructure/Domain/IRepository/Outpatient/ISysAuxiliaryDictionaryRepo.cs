@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IAuxiliaryDictionaryRepo : IRepositoryBase<SysAuxiliaryDictionaryEntity>
     {
         /// <summary>
-        /// Lấyhiện tạitổ chứcdướicủatất cảHiệu lựctừ điển
+        /// Lấyhiện tạitổ chứcdướicủatất cả Hiệu lựctừ điển
         /// </summary>
         /// <returns></returns>
         IList<SysAuxiliaryDictionaryEntity> GetValidListByOrg(string orgId, bool withCache = false);

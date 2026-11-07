@@ -20,7 +20,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
     /// <summary>
-    /// Tồn khoKiểm kê
+    /// Tồn kho Kiểm kê
     /// </summary>
     [Area("NurseManage")]
     public class StockInventoryController : OrgControllerBase
@@ -37,7 +37,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Bắt đầuKiểm kê
+        /// Bắt đầu Kiểm kê
         /// </summary>
         /// <returns></returns>
         public IActionResult InventoryAction()
@@ -46,7 +46,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Bắt đầuKiểm kê
+        /// Bắt đầu Kiểm kê
         /// </summary>
         /// <returns></returns>
         public IActionResult InventoryQuery()
@@ -56,7 +56,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// LấyKiểm kêThời gian
+        /// Lấy Kiểm kê Thời gian
         /// </summary>
         /// <returns></returns>
         public IActionResult GetPdsj()
@@ -66,7 +66,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Bắt đầuKiểm kê
+        /// Bắt đầu Kiểm kê
         /// </summary>
         /// <returns></returns>
         public IActionResult StartInventory()
@@ -75,7 +75,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Tra cứuKiểm kêthông tin
+        /// Tra cứu Kiểm kêthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inventorySearchDTO"></param>
@@ -93,7 +93,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Tra cứuKiểm kêthông tin khôngphútLô
+        /// Tra cứu Kiểm kêthông tin khôngphút Lô
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inventorySearchDTO"></param>
@@ -111,11 +111,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// LưuKiểm kê
+        /// Lưu Kiểm kê
         /// </summary>
         /// <param name="resultObjArr"></param>
         /// <param name="pdId"></param>
-        /// <param name="noPc">0:theoLôKiểm kê  1:khôngtheoLôKiểm kê</param>
+        /// <param name="noPc">0:theo Lô Kiểm kê  1:khôngtheo Lô Kiểm kê</param>
         /// <returns></returns>
         public IActionResult SaveInventory(string resultObjArr, long pdId, string noPc)
         {
@@ -124,7 +124,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// HủyKiểm kê
+        /// Hủy Kiểm kê
         /// </summary>
         /// <returns></returns>
         public IActionResult CancelInventory(long pdId)
@@ -134,7 +134,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Kết thúcKiểm kê
+        /// Kết thúc Kiểm kê
         /// </summary>
         /// <param name="pdId">Kiểm kê phiếu ID</param>
         /// <param name="autoCarryDown">null/0:khôngtựđộngkết chuyển  1:tựđộngkết chuyển</param>

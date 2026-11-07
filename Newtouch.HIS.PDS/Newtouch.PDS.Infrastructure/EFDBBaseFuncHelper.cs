@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// Thường dùng(đặtRepo,DmnServiceđều không phù hợp,nhưng lại phải yêu cầu cơ sở dữ liệu)
+    /// Thường dùng(đặt Repo,DmnServiceđều không phù hợp,nhưng lại phải yêu cầu cơ sở dữ liệu)
     /// Ví dụ lấy số hiệu duy nhất(Tự tăng,nhưng không thể trùng lặp)
     /// </summary>
     public class EFDBBaseFuncHelper
@@ -56,7 +56,7 @@ namespace Newtouch.Infrastructure
         #region DBHelper
 
         /// <summary>
-        /// Lấy duy nhất trường khóa chínhId
+        /// Lấy duy nhất trường khóa chính Id
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
@@ -72,7 +72,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Lấy duy nhất trường khóa chínhId
+        /// Lấy duy nhất trường khóa chính Id
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
@@ -88,7 +88,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Lấy duy nhất trường khóa chínhId
+        /// Lấy duy nhất trường khóa chính Id
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
@@ -134,7 +134,7 @@ namespace Newtouch.Infrastructure
         /// Lấy số chứng từ
         /// </summary>
         /// <param name="djmc"></param>
-        /// <param name="orgId">Tổ chức tương ứng bệnh viện hiện tạiId</param>
+        /// <param name="orgId">Tổ chức tương ứng bệnh viện hiện tại Id</param>
         /// <param name="yfbmCode"></param>
         /// <returns></returns>
         public string GetNewMedicineReceiptNo(string djmc, string yfbmCode, string orgId)

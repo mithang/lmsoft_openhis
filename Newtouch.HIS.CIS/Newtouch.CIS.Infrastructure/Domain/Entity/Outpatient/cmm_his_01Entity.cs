@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// trongyquán_đẩyBệnh nhân
+    /// trongyquán_đẩy Bệnh nhân
     /// </summary>
     [SugarTable("cmm_his_01")]
     public class CmmHis01Entity
@@ -18,7 +18,7 @@ namespace Newtouch.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Bệnh nhânSố hiệu(mộtBệnh nhântương ứngmộtSố hiệu,vàvà CMND/CCCD số mã một một tương ứng),tương ứnggiao diệnidchữđoạn,bảnđịaLưublh
+        /// Bệnh nhân Số hiệu(một Bệnh nhântương ứngmột Số hiệu,vàvà CMND/CCCD số mã một một tương ứng),tương ứnggiao diệnidchữđoạn,bảnđịa Lưublh
         /// </summary>
         public string cmmId { get; set; }
 
@@ -29,13 +29,13 @@ namespace Newtouch.Domain.Entity
         public string name { get; set; }
 
         /// <summary>
-        /// Bệnh nhânGiới tínhMã
+        /// Bệnh nhân Giới tính Mã
         /// bắt buộc
         /// </summary>
         public string genderCode { get; set; }
 
         /// <summary>
-        /// Bệnh nhânGiới tính
+        /// Bệnh nhân Giới tính
         /// bắt buộc
         /// </summary>
         public string gender { get; set; }
@@ -47,13 +47,13 @@ namespace Newtouch.Domain.Entity
         public string birthday { get; set; }
 
         /// <summary>
-        /// chứngmụcMã loại
+        /// chứngmục Mã loại
         /// bắt buộc
         /// </summary>
         public string cardTypeCode { get; set; }
 
         /// <summary>
-        /// chứngmụcLoại(Bình thườngchỉcư dân CMND/CCCD số)
+        /// chứngmục Loại(Bình thườngchỉcư dân CMND/CCCD số)
         /// bắt buộc
         /// </summary>
         public string cardType { get; set; }
@@ -75,7 +75,7 @@ namespace Newtouch.Domain.Entity
         public string occupation { get; set; }
 
         /// <summary>
-        /// Tình trạng hôn nhânMã
+        /// Tình trạng hôn nhân Mã
         /// </summary>
         public string marriedCode { get; set; }
 
@@ -85,7 +85,7 @@ namespace Newtouch.Domain.Entity
         public string married { get; set; }
 
         /// <summary>
-        /// quốc tịchMã
+        /// quốc tịch Mã
         /// </summary>
         public string countryCode { get; set; }
 
@@ -95,7 +95,7 @@ namespace Newtouch.Domain.Entity
         public string country { get; set; }
 
         /// <summary>
-        /// dântộcMã
+        /// dântộc Mã
         /// </summary>
         public string nationalityCode { get; set; }
 
@@ -105,35 +105,35 @@ namespace Newtouch.Domain.Entity
         public string nationality { get; set; }
 
         /// <summary>
-        /// nhàTỉnh địa chỉ nhàMã
+        /// nhà Tỉnh địa chỉ nhà Mã
         /// bắt buộc
         /// </summary>
         public string provinceCode { get; set; }
 
         /// <summary>
-        /// nhàThành phố địa chỉ nhàcấpMã
+        /// nhà Thành phố địa chỉ nhàcấp Mã
         /// bắt buộc
         /// </summary>
         public string cityCode { get; set; }
 
         /// <summary>
-        /// nhàĐịa chỉ nhàkhuhuyệnMã(bảogiữvàmâybìnhbàncủaPhân vùng hành chínhMãnhất quán)
+        /// nhà Địa chỉ nhàkhuhuyện Mã(bảogiữvàmâybìnhbàncủa Phân vùng hành chính Mãnhất quán)
         /// bắt buộc
         /// </summary>
         public string areaCode { get; set; }
 
         /// <summary>
-        /// nhàTỉnh địa chỉ nhà
+        /// nhà Tỉnh địa chỉ nhà
         /// </summary>
         public string province { get; set; }
 
         /// <summary>
-        /// nhàThành phố địa chỉ nhàcấp
+        /// nhà Thành phố địa chỉ nhàcấp
         /// </summary>
         public string city { get; set; }
 
         /// <summary>
-        /// nhàĐịa chỉ nhàkhuhuyện
+        /// nhà Địa chỉ nhàkhuhuyện
         /// </summary>
         public string area { get; set; }
 
@@ -148,48 +148,48 @@ namespace Newtouch.Domain.Entity
         public string postcode { get; set; }
 
         /// <summary>
-        /// Người liên hệTên
+        /// Người liên hệ Tên
         /// </summary>
         public string ctName { get; set; }
 
         /// <summary>
-        /// vàNgười liên hệquan hệ
+        /// và Người liên hệquan hệ
         /// </summary>
         public string ctRoleId { get; set; }
 
         /// <summary>
-        /// Người liên hệĐịa chỉ
+        /// Người liên hệ Địa chỉ
         /// </summary>
         public string ctAddr { get; set; }
 
         /// <summary>
-        /// Người liên hệĐiện thoại
+        /// Người liên hệ Điện thoại
         /// </summary>
         public string ctTelephone { get; set; }
 
         /// <summary>
-        /// Bệnh nhânMã loại
+        /// Bệnh nhân Mã loại
         /// </summary>
         public string patiTypeCode { get; set; }
 
         /// <summary>
-        /// Bệnh nhânLoại
+        /// Bệnh nhân Loại
         /// </summary>
         public string patiType { get; set; }
 
         /// <summary>
-        /// Bệnh nhânĐiện thoại
+        /// Bệnh nhân Điện thoại
         /// </summary>
         public string telephone { get; set; }
 
         /// <summary>
-        /// Số khám ngoại trú, tứcKhám bệnhdòngchảysố
+        /// Số khám ngoại trú, tức Khám bệnhdòngchảysố
         /// bắt buộc
         /// </summary>
         public string outpatientNo { get; set; }
 
         /// <summary>
-        /// Cơ sởMã
+        /// Cơ sở Mã
         /// bắt buộc
         /// </summary>
         public string orgCode { get; set; }
@@ -210,12 +210,12 @@ namespace Newtouch.Domain.Entity
         public string sendTime { get; set; }
 
         /// <summary>
-        /// hủytinLoại:TCM_HIS_01
+        /// hủytin Loại:TCM_HIS_01
         /// </summary>
         public string msgType { get; set; }
 
         /// <summary>
-        /// hủytin ID(ứngdùngtrìnhthứ tựMã+phát gửi khi giữa ) , nếu :HIS20170606020202
+        /// hủytin ID(ứngdùngtrìnhthứ tự Mã+phát gửi khi giữa ) , nếu :HIS20170606020202
         /// </summary>
         public string msgID { get; set; }
 
@@ -225,12 +225,12 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Quay lạikếtnếuTrạng tháimã  1: thành công; 0:thất bại
+        /// Quay lạikếtnếu Trạng tháimã  1: thành công; 0:thất bại
         /// </summary>
         public string resultCode { get; set; }
 
         /// <summary>
-        /// Quay lạikếtnếuMô tả  thành công;thất bại(Bổ sungthất bạinguyên nhânMô tả)
+        /// Quay lạikếtnếu Mô tả  thành công;thất bại(Bổ sungthất bạinguyên nhân Mô tả)
         /// </summary>
         public string resultDesc { get; set; }
 

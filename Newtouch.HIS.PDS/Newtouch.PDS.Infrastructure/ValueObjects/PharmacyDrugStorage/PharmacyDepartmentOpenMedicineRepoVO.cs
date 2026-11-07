@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
     public class PharmacyDepartmentOpenMedicineRepoVO
     {
         /// <summary>
-        /// Khóa chínhId
+        /// Khóa chính Id
         /// </summary>
         public string Id { get; set; }
 
@@ -19,12 +19,12 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// Tổ chứcId
+        /// Tổ chức Id
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Tổ chức cấp cao nhấtId
+        /// Tổ chức cấp cao nhất Id
         /// </summary>
         public string TopOrganizeId { get; set; }
 

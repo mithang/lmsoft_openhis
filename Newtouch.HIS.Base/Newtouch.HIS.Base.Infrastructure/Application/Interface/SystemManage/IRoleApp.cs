@@ -7,7 +7,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// vai tròApp
+    /// vai trò App
     /// </summary>
     public interface IRoleApp
     {

@@ -17,11 +17,11 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public int lyxh { get; set; }
         /// <summary>
-        /// Y lệnhTính chất
+        /// Y lệnh Tính chất
         /// </summary>
         public int? yzxz { get; set; }
         /// <summary>
-        /// Y lệnhTính chấtMô tả
+        /// Y lệnh Tính chất Mô tả
         /// </summary>
         public string yzxzsm { get; set; }
         /// <summary>
@@ -29,11 +29,11 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public DateTime? kssj { get; set; }
         /// <summary>
-        /// MụcLoại
+        /// Mục Loại
         /// </summary>
         public string xmmc { get; set; }
         /// <summary>
-        /// ThuốcLiều lượng
+        /// Thuốc Liều lượng
         /// </summary>
         public Decimal? ypjl { get; set; }
         /// <summary>
@@ -48,7 +48,7 @@ namespace Newtouch.Domain.ValueObjects
         public string yfmc { get; set; }
         public string yzpcmc { get; set; }
         /// <summary>
-        /// Dừng/Hủy bỏThời gian
+        /// Dừng/Hủy bỏ Thời gian
         /// </summary>
         public DateTime? tzsj { get; set; }
         /// <summary>
@@ -56,11 +56,11 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public DateTime? zxsj { get; set; }
         /// <summary>
-        /// Dừng/Hủy bỏBác sĩMã nhân viên
+        /// Dừng/Hủy bỏ Bác sĩ Mã nhân viên
         /// </summary>
         public string tzysgh { get; set; }
         /// <summary>
-        /// Dừng/Hủy bỏThao tácviên
+        /// Dừng/Hủy bỏ Thao tácviên
         /// </summary>
         public string tzr { get; set; }
 
@@ -78,7 +78,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string shr { get; set; }
         /// <summary>
-        /// Mục thu phíĐơn giá
+        /// Mục thu phí Đơn giá
         /// </summary>
         public decimal? dj { get; set; }
         /// <summary>
@@ -90,7 +90,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string zxr { get; set; }
         /// <summary>
-        /// làKhôngtínhphí
+        /// là Khôngtínhphí
         /// </summary>
         public int? isjf { get; set; }
         public string yztag { get; set; }
@@ -98,7 +98,7 @@ namespace Newtouch.Domain.ValueObjects
         public string zh1 { get; set; }
         public string yfztbs { get; set; }
         /// <summary>
-        /// ThuốcmởlậpTồn khođếnnguồn 1:Bác sĩtrạmKhoachuẩn bị thuốcTồn kho 2:Nhà thuốcTồn kho
+        /// Thuốcmởlập Tồn khođếnnguồn 1:Bác sĩtrạm Khoachuẩn bị thuốc Tồn kho 2:Nhà thuốc Tồn kho
         /// </summary>
         public int? yply { get; set; }
         public decimal? je { get; set; }
@@ -122,11 +122,11 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string yzid { get; set; }
         /// <summary>
-        /// Y lệnhTính chất
+        /// Y lệnh Tính chất
         /// </summary>
         public int yzxz { get; set; }
         /// <summary>
-        /// Kiểu y lệnh,ThuốcOrMục
+        /// Kiểu y lệnh,Thuốc Or Mục
         /// </summary>
         public int yzlx { get; set; }
         /// <summary>
@@ -134,7 +134,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public int lyxh { get; set; }
         /// <summary>
-        /// Mục thu phíĐơn giá
+        /// Mục thu phí Đơn giá
         /// </summary>
         public Decimal dj { get; set; }
         /// <summary>
@@ -142,7 +142,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string ypmc { get; set; }
         /// <summary>
-        /// TableThời gian thực hiện
+        /// Table Thời gian thực hiện
         /// </summary>
          public DateTime? zxsj { get; set; }
         /// <summary>
@@ -154,13 +154,13 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public int ? zh { get; set; }
         /// <summary>
-        /// làKhôngtínhphí 1:là 0:Không
+        /// là Khôngtínhphí 1:là 0:Không
         /// </summary>
         public string isjf { get; set; }
         public string zh1 { get; set; }
         public string yfztbs { get; set; }
         /// <summary>
-        /// Thuốcđếnnguồn 1:Bác sĩtrạmKhoachuẩn bị thuốcTồn kho  2:Nhà thuốcTồn kho
+        /// Thuốcđếnnguồn 1:Bác sĩtrạm Khoachuẩn bị thuốc Tồn kho  2:Nhà thuốc Tồn kho
         /// </summary>
         public string yply { get; set; }
         /// <summary>

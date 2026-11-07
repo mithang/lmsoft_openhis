@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    /// Nhóm tin nhắnBảng cấu hình
+    /// Nhóm tin nhắn Bảng cấu hình
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("Msg_NoticeGroup", "MsgNoticeGroupEntity")]
@@ -21,7 +21,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         
         /// <summary>
         /// Nhãn nhóm
-        /// Hệ thốngTin nhắn / Trong việnTin nhắn /Nội bộ khoaTin nhắn  Kiểm soát chất lượngTin nhắn
+        /// Hệ thống Tin nhắn / Trong viện Tin nhắn /Nội bộ khoaTin nhắn  Kiểm soát chất lượng Tin nhắn
         /// </summary>
         [Required(ErrorMessage = "GroupTag không được để trống")]
         public string GroupTag { get; set; }
@@ -31,7 +31,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         [Required(ErrorMessage = "GroupName không được để trống")]
         public string GroupName { get; set; }
         /// <summary>
-        /// Nhóm tin nhắnGiải thích
+        /// Nhóm tin nhắn Giải thích
         /// </summary>
         public string? GroupDesc { get; set; }
         /// <summary>
@@ -46,7 +46,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public int NoticeRange { get; set; }
         /// <summary>
         /// Chủ đề hiển thị 
-        /// Như Bạn có thông báo kiểm soát chất lượng mớiTin nhắn,vui lòng xem ngay
+        /// Như Bạn có thông báo kiểm soát chất lượng mới Tin nhắn,vui lòng xem ngay
         /// </summary>
         public string? DefaultTitle { get; set; }
         /// <summary>
@@ -55,7 +55,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         /// </summary>
         public string? DefaultContent { get; set; }
         /// <summary>
-        /// Dữ liệu liên kết nội dung JsonĐịnh dạng Đối tượng có thể chuyển đổi
+        /// Dữ liệu liên kết nội dung Json Định dạng Đối tượng có thể chuyển đổi
         /// </summary>
         public string? DefaultContentData { get; set; }
         /// <summary>
@@ -69,7 +69,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         /// </summary>
         public string? DefaultOpenPathPara { get; set; }
         /// <summary>
-        /// Ứng dụngId
+        /// Ứng dụng Id
         /// </summary>
         public string? AppId { get; set; }
         ///// <summary>

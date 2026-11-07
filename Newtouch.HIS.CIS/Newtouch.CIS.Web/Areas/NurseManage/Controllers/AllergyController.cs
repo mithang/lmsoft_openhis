@@ -56,9 +56,9 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
         #endregion
 
-        #region LấyDữ liệu
+        #region Lấy Dữ liệu
         /// <summary>
-        /// LấyNgoại trúDanh sách bệnh nhân (chờlàmTest da)
+        /// Lấy Ngoại trú Danh sách bệnh nhân (chờlàm Test da)
         /// </summary>
         /// <returns></returns>
         public IActionResult GetMzPatientListJson(Pagination pagination, string keyword, string ks, string kssj, string jssj, string zxzt)
@@ -78,7 +78,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// LấyNhập việnDanh sách bệnh nhân (chờlàmTest da)
+        /// Lấy Nhập viện Danh sách bệnh nhân (chờlàm Test da)
         /// </summary>
         /// <returns></returns>
         public IActionResult GetZyPatientListJson(Pagination pagination, string keyword, string ks, string kssj, string jssj, string zxzt)
@@ -98,7 +98,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// LấyNgoại trúBệnh nhânTest daMục
+        /// Lấy Ngoại trú Bệnh nhân Test da Mục
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Id"></param>
@@ -121,7 +121,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// LấyBệnh nhân nội trúTest daMục
+        /// Lấy Bệnh nhân nội trú Test da Mục
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Id"></param>
@@ -167,7 +167,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// LấyKháng sinhThuốcthông tin
+        /// Lấy Kháng sinh Thuốcthông tin
         /// </summary>
         /// <returns></returns>
         public IActionResult GetKssYpListJson()
@@ -177,7 +177,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// LấyKháng sinhThuốcLoại
+        /// Lấy Kháng sinh Thuốc Loại
         /// </summary>
         /// <returns></returns>
         public IActionResult GetKssYpLbJson(string ypCode)
@@ -207,14 +207,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         /// <summary>
-        /// XóaThực hiệncủaquamẫnthông tin
+        /// Xóa Thực hiệncủaquamẫnthông tin
         /// </summary>
         /// <param name="xmCode"></param>
         /// <returns></returns>
         public IActionResult DeleteExecutedGmxx(string gmxxId)
         {
             int ret = _IAllergyManageDmnService.DeleteAllergyInfo(gmxxId, this.OrganizeId, UserIdentity.UserCode, UserIdentity.UserName);
-            return ret > 0 ? Success("Thao tác thành công") : Error("HủyThực hiệnthất bại,Vui lòng liên hệQuản trị viên!");
+            return ret > 0 ? Success("Thao tác thành công") : Error("Hủy Thực hiệnthất bại,Vui lòng liên hệ Quản trị viên!");
         }
         #endregion
     }

@@ -166,7 +166,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
                 }
                 catch(Exception ex)
                 {
-                    phResult = "HospitalizationBookNgoại lệ：" + ex.Message;
+                    phResult = "HospitalizationBook Ngoại lệ：" + ex.Message;
                 }
                 if (!string.IsNullOrWhiteSpace(phResult))
                 {
@@ -179,7 +179,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
 
             if (string.IsNullOrWhiteSpace(errorMsg.ToString()))
             {
-                actResult.Data = Request.yzList;//Do kiểm soát giao dịch,vì vậy hoặc tất cả thất bại,nếu không tất cả thành công,DataTrả về hàng đợi thành công
+                actResult.Data = Request.yzList;//Do kiểm soát giao dịch,vì vậy hoặc tất cả thất bại,nếu không tất cả thành công,Data Trả về hàng đợi thành công
                 return;
             }
 

@@ -15,7 +15,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
         /// <returns></returns>
         Task<T> PostAsync<T>(string url, string data);
         /// <summary>
-        /// PostYêu cầu (Header thêm Authorization)
+        /// Post Yêu cầu (Header thêm Authorization)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
@@ -24,7 +24,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
         /// <returns></returns>
         Task<T> PostAsync<T>(string url, string data, string token);
         /// <summary>
-        /// PostYêu cầu (hỗ trợ Https)
+        /// Post Yêu cầu (hỗ trợ Https)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>

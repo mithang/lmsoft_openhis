@@ -100,8 +100,8 @@ namespace NewtouchHIS.Lib.Base.Utilities
 
 
         /// <summary>
-        /// Thiết lậpStringKey
-        /// Phiên bản thấpRedis
+        /// Thiết lập StringKey
+        /// Phiên bản thấp Redis
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>

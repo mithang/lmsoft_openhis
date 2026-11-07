@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             return Success();
         }
         /// <summary>
-        /// Thông quaIdLấy thực thể
+        /// Thông qua Id Lấy thực thể
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             {
                 foreach (SysMedicineAntibioticTypeEntity item in data)
                 {
-                    list.Add(new { id = item.Id + "|" + item.qxjb, text = item.typeName });//Mang thông tin cấp quyền vàoIdtrong
+                    list.Add(new { id = item.Id + "|" + item.qxjb, text = item.typeName });//Mang thông tin cấp quyền vào Idtrong
                 }
             }
             

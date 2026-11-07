@@ -79,7 +79,7 @@ namespace Newtouch.HIS.DomainServices.SystemManage
 					throw new FailedException("Mã nhân viên không được trùng lặp");
 				}
 
-				SysStaffEntity oldEntity = null;   //Trước khi thay đổiEntity
+				SysStaffEntity oldEntity = null;   //Trước khi thay đổi Entity
 				oldEntity = _sysStaffRepo.FindEntity(keyValue);
 				_sysStaffRepo.DetacheEntity(oldEntity);
 
@@ -118,7 +118,7 @@ namespace Newtouch.HIS.DomainServices.SystemManage
                             //Tạo tài khoản hệ thống
 
                             if (!_sysUserRepo.IQueryable().Any(p => p.TopOrganizeId == entity.TopOrganizeId
-    && p.Account == accont))    //Trong cùng một tổ chức cấp cao nhất không được cóAccountgiống nhau
+    && p.Account == accont))    //Trong cùng một tổ chức cấp cao nhất không được có Accountgiống nhau
                             {
                                 var userEntity = new SysUserEntity()    //
                                 {

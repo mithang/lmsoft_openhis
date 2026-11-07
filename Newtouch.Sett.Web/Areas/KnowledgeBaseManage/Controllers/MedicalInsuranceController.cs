@@ -78,7 +78,7 @@ namespace Newtouch.Sett.Web.Areas.KnowledgeBaseManage.Controllers
         }
 
         /// <summary>
-        /// Thêm mới hoặc sửaForm
+        /// Thêm mới hoặc sửa Form
         /// </summary>
         /// <param name="ybbabId"></param>
         /// <returns></returns>

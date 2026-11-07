@@ -2,7 +2,7 @@
 @model dynamic
 
 @{
-    ViewBag.Title = "Tổn thất/lãiNguyên nhân";
+    ViewBag.Title = "Tổn thất/lãi Nguyên nhân";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -64,8 +64,8 @@
                 },
                 { label: 'Người tạo', name: 'CreatorCode', width: 70, align: 'left' },
                 { label: 'Thời gian tạo', name: 'CreateTime', width: 110, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
-                { label: 'Cuối cùngSửa', name: 'LastModifierCode', width: 70, align: 'left' },
-                { label: 'Cuối cùngSửaThời gian', name: 'LastModifyTime', width: 110, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' }  }
+                { label: 'Cuối cùng Sửa', name: 'LastModifierCode', width: 70, align: 'left' },
+                { label: 'Cuối cùng Sửa Thời gian', name: 'LastModifyTime', width: 110, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' }  }
             ],
             pager: "#gridPager",
             sortname: 'syyy',
@@ -79,7 +79,7 @@
         });
     }
 
-    //vềxekích hoạtTra cứusự kiện
+    //vềxekích hoạt Tra cứusự kiện
     $("#txt_keyword").keydownEnterEvent(function() {
         $("#btn_search").trigger("click");
     });
@@ -88,7 +88,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "Thêm mớiThừa thiếu",
+            title: "Thêm mới Thừa thiếu",
             url: "/NurseManage/ProfitAndLoss/SyyyForm",
             width: "400px",
             height: "300px",
@@ -117,7 +117,7 @@
         }*@
         $.modalOpen({
             id: "Form",
-            title: "SửaThừa thiếu",
+            title: "Sửa Thừa thiếu",
             url: "/NurseManage/ProfitAndLoss/SyyyForm?keyValue=" + keyValue,
             width: "400px",
             height: "300px",

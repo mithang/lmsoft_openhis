@@ -32,7 +32,7 @@ namespace NewtouchHIS.DomainService.CIS
             return presList.Adapt<List<OutpPrescriptionDataVO>>();
         }
         /// <summary>
-        /// LấyBệnh nhânThông tin đơn thuốc trong bệnh án by jzId
+        /// Lấy Bệnh nhân Thông tin đơn thuốc trong bệnh án by jzId
         /// </summary>
         /// <param name="jzId"></param>
         /// <returns></returns>

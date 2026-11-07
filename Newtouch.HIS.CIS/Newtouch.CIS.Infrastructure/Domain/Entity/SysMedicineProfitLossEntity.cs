@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// Hệ thốngThuốclãi lỗthông tin
+    /// Hệ thống Thuốclãi lỗthông tin
     /// </summary>
     [SugarTable("zy_ksby_syxx")]
     public class SysMedicineProfitLossEntity
@@ -28,7 +28,7 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Nhà thuốcMãSố hiệu
+        /// Nhà thuốc Mã Số hiệu
         /// </summary>
         public string yfbmCode { get; set; }
 
@@ -48,12 +48,12 @@ namespace Newtouch.Domain.Entity
         public DateTime? Yxq { get; set; }
 
         /// <summary>
-        /// báo cáoThời gian Mặc địnhGiá trịGetdate()
+        /// báo cáo Thời gian Mặc định Giá trị Getdate()
         /// </summary>
         public DateTime Bgsj { get; set; }
 
         /// <summary>
-        /// đangsố:báo thừa,âmsố:Báo hỏng  Đơn vị nhỏ nhấtSố lượng
+        /// đangsố:báo thừa,âmsố:Báo hỏng  Đơn vị nhỏ nhất Số lượng
         /// </summary>
         public int Sysl { get; set; }
 
@@ -70,13 +70,13 @@ namespace Newtouch.Domain.Entity
         public decimal Lsj { get; set; }
 
         /// <summary>
-        /// Kho thuốcGiá bán buôn
+        /// Kho thuốc Giá bán buôn
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Ykpfj { get; set; }
 
         /// <summary>
-        /// Kho thuốcGiá bán lẻ
+        /// Kho thuốc Giá bán lẻ
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Yklsj { get; set; }
@@ -102,7 +102,7 @@ namespace Newtouch.Domain.Entity
         public string Djh { get; set; }
 
         /// <summary>
-        /// còn lạiTồn kho
+        /// còn lại Tồn kho
         /// </summary>
         public int Sykc { get; set; }
 

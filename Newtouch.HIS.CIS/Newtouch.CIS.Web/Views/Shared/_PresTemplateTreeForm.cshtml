@@ -68,10 +68,10 @@
                     presTempClieckHandling = false;
                     return;
                 }
-                //Trích dẫnĐơn thuốc lịch sử
+                //Trích dẫn Đơn thuốc lịch sử
                 $.modalOpen({
                     id: "FormShowPresTemplateDetail",
-                    title: "Đơn thuốcMẫu",
+                    title: "Đơn thuốc Mẫu",
                     url: "/TemplateManage/PresTemplate/PresTemplateDetail?mbId=" + item.Ex1 + "&cflx=" + pageFlag + "&brxzCode=" + window.currPatientInfo.brxzCode,
                     width: "800px",
                     height: "650px",
@@ -229,13 +229,13 @@
                         });
                     }
                     if (iscfcf) {
-                        $.modalAlert("Đơn lẻĐơn thuốcchi tiết trong không được trùng lặp", 'warning');
+                        $.modalAlert("Đơn lẻ Đơn thuốcchi tiết trong không được trùng lặp", 'warning');
                         return;
                     } else {
                         $("#" + grid).jqGrid("addRowData", undefined, data.mbmxList[i], "last");
                     }
                 } else {
-                    //khôngĐơn thuốc mớikhikiểm tratrùng lặp
+                    //không Đơn thuốc mớikhikiểm tratrùng lặp
                 var isRepeatedAdd = false;
                 var addypCode = data.mbmxList[i].ypCode;
                 var existRowIds = $("#" + grid).getDataIDs();
@@ -250,7 +250,7 @@
                     });
                 }
                 if (isRepeatedAdd) {
-                    $.modalAlert("Đơn lẻĐơn thuốcchi tiết trong không được trùng lặp", 'warning');
+                    $.modalAlert("Đơn lẻ Đơn thuốcchi tiết trong không được trùng lặp", 'warning');
                     return;
                 }
                 else {

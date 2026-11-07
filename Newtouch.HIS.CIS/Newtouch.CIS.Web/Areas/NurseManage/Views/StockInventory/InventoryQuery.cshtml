@@ -38,28 +38,28 @@
                 </td>
                 <th class="formTitle">Từ khóa:</th>
                 <td class="formValue">
-                    <input id="txtSRM" type="text" class="form-control" placeholder="Vật tưTên/Pinyin" />
+                    <input id="txtSRM" type="text" class="form-control" placeholder="Vật tư Tên/Pinyin" />
                 </td>
-                <th class="formTitle">Vật tưTrạng thái:</th>
+                <th class="formTitle">Vật tư Trạng thái:</th>
                 <td class="formValue">
                     @Html.DropDownList("ddlwzzt", Enumzt.Enable.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Vật tưLoại:</th>
+                <th class="formTitle">Vật tư Loại:</th>
                 <td class="formValue">
                     <select id="ddllb" class="form-control">
                         <option value="">Tất cả</option>
                     </select>
                 </td>
-                <th class="formTitle">Tồn khoHiển thị:</th>
+                <th class="formTitle">Tồn kho Hiển thị:</th>
                 <td class="formValue">
                     @Html.DropDownList("ddlKCXS", EnumKCXS.None.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                 </td>
                 <td class="formTitle" colspan="2">
                     <input type="button" id="btn_search" class="btn btn-primary" value="Tra cứu" />
                     <input type="button" id="btn_print" class="btn btn-primary" value="In" />
-                    <input type="button" id="btn_backIndex" class="btn btn-primary" value="Quay lạiTrang chủ" style="float:right;" />
+                    <input type="button" id="btn_backIndex" class="btn btn-primary" value="Quay lại Trang chủ" style="float:right;" />
                 </td>
             </tr>
         </table>
@@ -90,7 +90,7 @@
         //$("#btn_search").trigger("click");
     });
 
-    //Khởi tạoKiểm kê
+    //Khởi tạo Kiểm kê
     function Initial() {
         GetPdsj();
         $("#ddllb").bindSelect({
@@ -126,7 +126,7 @@
         });
     }
 
-    //LấyKiểm kêThời gian
+    //Lấy Kiểm kê Thời gian
     function GetPdsj() {
         $("#ddlRQ").empty();//Xóa trắng trước,lạiđiền
         $("#ddlRQ").bindSelect({
@@ -136,7 +136,7 @@
         });
     }
 
-    //CóKhôngtheoLô
+    //Có Khôngtheo Lô
     function accordingBatch(obj) {
         if ($(obj).hasClass("fa-toggle-off")) {
             $(obj).removeClass("fa-toggle-off");
@@ -156,9 +156,9 @@
     function gridKCInfo() {
         $gridKCInfo.dataGrid({
             height: $(window).height() - 225,
-            editurl: "clientArray",  //dòngSửakhông gửi lên máy chủGửiDữ liệu
+            editurl: "clientArray",  //dòng Sửakhông gửi lên máy chủ Gửi Dữ liệu
             colModel: [
-                { label: 'Vật tưTên', name: 'wzmc', width: 120, align: 'left' },
+                { label: 'Vật tư Tên', name: 'wzmc', width: 120, align: 'left' },
                 { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
                 { label: 'Số lý thuyết', name: 'llsl', width: 80, align: 'left' },
                 { label: 'Số phòng ban (thực tế)', name: 'deptSjsl', width: 70, align: 'center' },
@@ -190,7 +190,7 @@
             postData: getSearchPostData(),
             url: "/NurseManage/StockInventory/QueryInventoryInfoListNoPc?r=" + Math.random(),
             colModel: [
-                { label: 'Vật tưTên', name: 'wzmc', width: 150, align: 'left' },
+                { label: 'Vật tư Tên', name: 'wzmc', width: 150, align: 'left' },
                 { label: 'Quy cách', name: 'gg', width: 100, align: 'left' },
                 { label: 'Số lý thuyết', name: 'llsl', width: 80, align: 'right' },
                 { label: 'Số phòng ban (thực tế)', name: 'deptSjsl', width: 70, align: 'right' },
@@ -219,7 +219,7 @@
             viewrecords: true
         });
 
-        $("#btn_search").click(function () {//gắnTra cứuTra cứu
+        $("#btn_search").click(function () {//gắn Tra cứu Tra cứu
             if ($("#i-noPc").hasClass("fa-toggle-off")) {
                 $gridKCInfoNoPc.jqGrid('setGridParam',
                     {

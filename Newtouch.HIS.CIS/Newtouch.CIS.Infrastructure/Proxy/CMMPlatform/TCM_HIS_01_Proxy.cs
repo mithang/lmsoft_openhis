@@ -7,7 +7,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.CIS.Proxy.CMMPlatform
 {
     /// <summary>
-    /// đẩyThông tin bệnh nhân
+    /// đẩy Thông tin bệnh nhân
     /// </summary>
     internal class TcmHis01Proxy : GuiAnTelemedicinePlatformProxy<PushPatientRequestEntity, PushPatientResponseEntity>
     {
@@ -24,7 +24,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform
             try
             {
                 responseXml = Newtouch.CIS.Compat.CmmStub.Throw<string>("CMM SOAP endpoint is unavailable on Linux (WCF client not ported)");
-if (!responseXml.IsReturnSuccess()) throw new Exception("đẩyThông tin bệnh nhângiao diệngọithất bại");
+if (!responseXml.IsReturnSuccess()) throw new Exception("đẩy Thông tin bệnh nhângiao diệngọithất bại");
                 return new PushPatientResponseEntity
                 {
                     Result = new Result

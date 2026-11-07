@@ -5,7 +5,7 @@ using Newtouch.CIS.Repository;
 namespace Newtouch.Domain.IRepository
 {
     /// <summary>
-    /// rakhámCài đặt
+    /// rakhám Cài đặt
     /// </summary>
     public interface IVisitDeptSetRepo : IRepositoryBase<VisitDeptSetEntity>
     {

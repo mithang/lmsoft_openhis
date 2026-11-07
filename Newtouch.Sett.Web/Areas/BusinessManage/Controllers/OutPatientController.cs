@@ -71,7 +71,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
 
         #region Lịch trực đăng ký khám
         /// <summary>
-        /// Lịch trực đăng ký khámList
+        /// Lịch trực đăng ký khám List
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

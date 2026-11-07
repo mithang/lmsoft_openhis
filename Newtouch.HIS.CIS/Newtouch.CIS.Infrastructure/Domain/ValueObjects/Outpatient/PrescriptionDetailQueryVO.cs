@@ -23,7 +23,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string ypgg { get; set; }
         /// <summary>
-        /// Đơn vị ngoại trútháokhôngsố(mởcủa,tínhtiềncủamộtđịnhlàdùngĐơn vị ngoại trú)
+        /// Đơn vị ngoại trútháokhôngsố(mởcủa,tínhtiềncủamộtđịnhlàdùng Đơn vị ngoại trú)
         /// </summary>
         public decimal? cls { get; set; }
         /// <summary>
@@ -44,7 +44,7 @@ namespace Newtouch.Domain.ValueObjects
         public string cfh { get; set; }
 
         /// <summary>
-        /// Khoa thực hiệnTên
+        /// Khoa thực hiện Tên
         /// </summary>
         public string zxksmc { get; set; }
 

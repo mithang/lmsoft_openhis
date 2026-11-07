@@ -21,15 +21,15 @@
 
                 <th class="formTitle" style="width:48px;padding-right:4px">Số giường:</th>
                 <td class="formValue">
-                    <input id="ch" name="ch" type="text" class="form-control" placeholder="Vui lòng nhậpSố giường" />
+                    <input id="ch" name="ch" type="text" class="form-control" placeholder="Vui lòng nhập Số giường" />
                 </td>
                 <th class="formTitle">Số nhập viện:</th>
                 <td class="formValue">
-                    <input id="zyh" name="zyh" type="text" class="form-control" placeholder="Vui lòng nhậpSố nhập viện" />
+                    <input id="zyh" name="zyh" type="text" class="form-control" placeholder="Vui lòng nhập Số nhập viện" />
                 </td>
                 <th class="formTitle" style="width:48px;padding-right:4px">Họ tên:</th>
                 <td class="formValue">
-                    <input id="xm" name="xm" type="text" class="form-control" placeholder="Vui lòng nhậpHọ tên" />
+                    <input id="xm" name="xm" type="text" class="form-control" placeholder="Vui lòng nhập Họ tên" />
 
                 </td>
                 <td style="padding-left:20px;" class="formValue">
@@ -71,7 +71,7 @@
             height: $(window).height() - 200,
             url: "/PatientList/InPatSearchInfo?zybz=" + zybz + "&t=" + Math.random(),
             postData: { zyh: $("#zyh").val(), ch: $("#ch").val(), xm: $("#xm").val(), bq: $("#bq").val() },
-            caption: 'Nhập việnBệnh nhânThông tinDanh sách',
+            caption: 'Nhập viện Bệnh nhân Thông tinDanh sách',
             colModel: [
                 { label: 'Khu bệnh', name: 'WardName', width: 100, align: 'left' },
                 { label: 'Số bệnh án', name: 'blh', width: 120, align: 'left' },

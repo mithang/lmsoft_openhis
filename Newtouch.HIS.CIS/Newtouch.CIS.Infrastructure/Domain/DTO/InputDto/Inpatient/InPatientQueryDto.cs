@@ -78,17 +78,17 @@ namespace Newtouch.Domain.DTO.InputDto
     public class RequestOrderExecMsgDto
     {
         /// <summary>
-        /// làKhôngthành công true:Tất cảthành công/bộphútthành công  false:Tất cảthất bại/kiểm trathất bại
+        /// là Khôngthành công true:Tất cảthành công/bộphútthành công  false:Tất cảthất bại/kiểm trathất bại
         /// </summary>
         public bool IsSucceed { get; set; }
 
         /// <summary>
-        /// Trạng tháimã tham sốchiếuLiệt kêResultCode
+        /// Trạng tháimã tham sốchiếu Liệt kê ResultCode
         /// </summary>
         public int ResultCode { get; set; }
 
         /// <summary>
-        /// LỗiMô tả
+        /// Lỗi Mô tả
         /// </summary>
         public string ResultMsg { get; set; }
 
@@ -149,7 +149,7 @@ namespace Newtouch.Domain.DTO.InputDto
     //    public string sjap { get; set; }
 
     //    /// <summary>
-    //    /// vàThực hiệnSố lượngtương ứng
+    //    /// và Thực hiện Số lượngtương ứng
     //    /// </summary>
     //    public string pcmc { get; set; }
 
@@ -159,12 +159,12 @@ namespace Newtouch.Domain.DTO.InputDto
     //    public decimal yl { get; set; }
 
     //    /// <summary>
-    //    /// dùnglượngĐơn vị
+    //    /// dùnglượng Đơn vị
     //    /// </summary>
     //    public string yldw { get; set; }
 
     //    /// <summary>
-    //    /// Bác sĩMã nhân viên
+    //    /// Bác sĩ Mã nhân viên
     //    /// </summary>
     //    public string ysgh { get; set; }
 
@@ -179,7 +179,7 @@ namespace Newtouch.Domain.DTO.InputDto
     //    public DateTime jsrq { get; set; }
 
     //    /// <summary>
-    //    /// phát thuốcNhà thuốc
+    //    /// phát thuốc Nhà thuốc
     //    /// </summary>
     //    public string fyyf { get; set; }
 
@@ -224,7 +224,7 @@ namespace Newtouch.Domain.DTO.InputDto
     //    public string ksmc { get; set; }
 
     //    /// <summary>
-    //    /// Khu bệnhTên
+    //    /// Khu bệnh Tên
     //    /// </summary>
     //    public string bqmc { get; set; }
 
@@ -239,12 +239,12 @@ namespace Newtouch.Domain.DTO.InputDto
     //    public char fybz { get; set; }
 
     //    /// <summary>
-    //    /// Y lệnhThực hiệnĐăng ký người
+    //    /// Y lệnh Thực hiện Đăng ký người
     //    /// </summary>
     //    public string yzzxsqr { get; set; }
 
     //    /// <summary>
-    //    /// Thực hiệnNgày
+    //    /// Thực hiện Ngày
     //    /// </summary>
     //    public DateTime zxrq { get; set; }
     //}

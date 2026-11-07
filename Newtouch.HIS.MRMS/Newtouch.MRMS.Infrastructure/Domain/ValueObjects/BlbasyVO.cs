@@ -112,7 +112,7 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
         /// <returns></returns>
         public string czydm_zzys { get; set; }
         /// <summary>
-        /// Bệnh ánNgày
+        /// Bệnh án Ngày
         /// </summary>
         /// <returns></returns>
         public DateTime? blrq { get; set; }

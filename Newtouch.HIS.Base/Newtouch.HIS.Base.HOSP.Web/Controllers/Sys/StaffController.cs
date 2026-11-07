@@ -114,7 +114,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 
 			var pagination = new Pagination();
 			pagination.sidx = "CreateTime desc"; //Thời gian tăng dần
-			pagination.rows = 65536 - 1;    //ExcelSố dòng tối đa
+			pagination.rows = 65536 - 1;    //Excel Số dòng tối đa
 			pagination.page = 1;    //Trang đầu tra cứu tất cả
 
 			var list = _sysStaffDmnService.GetPaginationList(pagination, OrganizeId, keyword);
@@ -153,7 +153,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 
 			var path = DateTime.Now.ToString("\\\\yyyyMMdd\\\\HHmmssfff") + "Nhân viên.xls";
 
-			var filePath = CommmHelper.GetLocalFilePath("\\ExcelXuất ra\\Xuất nhân viên" + path);
+			var filePath = CommmHelper.GetLocalFilePath("\\Excel Xuất ra\\Xuất nhân viên" + path);
 
 			if (isContainFilter == true)
 			{
@@ -236,7 +236,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 				}
 				//Lấy tên tệp
 				string sFilename = System.IO.Path.GetFileName(pUpImage.FileName).ToLower();
-				//LấyupImagePhần mở rộng của tệp
+				//LấyupImage Phần mở rộng của tệp
 				string extendName = System.IO.Path.GetExtension(sFilename);
 				//Xét xem có phải định dạng hình ảnh không
 				if (extendName != ".jpg" && extendName != ".png")
@@ -331,7 +331,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 		{
 			if (string.IsNullOrWhiteSpace(organizeId))
 			{
-				organizeId = base.GetAuthOrganizeId();  //Mặc định QuyềnOrganizeId
+				organizeId = base.GetAuthOrganizeId();  //Mặc định Quyền OrganizeId
 			}
 			//Bộ nhớ đệmstart
 			var organizedata = _sysOrganizeRepository.GetValidListByParentOrg(organizeId);

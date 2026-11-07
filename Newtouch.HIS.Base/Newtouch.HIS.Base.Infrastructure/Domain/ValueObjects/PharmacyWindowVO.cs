@@ -12,7 +12,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class PharmacyWindowVO
     {
         /// <summary>
-        /// Cửa sổ nhà thuốcId
+        /// Cửa sổ nhà thuốc Id
         /// </summary>
         public int yfckId { get; set; }
 
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// Tổ chức cấp cao nhấtId
+        /// Tổ chức cấp cao nhất Id
         /// </summary>
         public string TopOrganizeId { get; set; }
     }

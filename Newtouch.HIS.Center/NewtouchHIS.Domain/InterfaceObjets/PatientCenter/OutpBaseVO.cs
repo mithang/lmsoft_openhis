@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Domain.InterfaceObjets.PatientCenter
 {
     /// <summary>
-    /// Ngoại trúBệnh nhânThông tin cơ bản
+    /// Ngoại trú Bệnh nhân Thông tin cơ bản
     /// </summary>
     public class OutpBaseVO
     {
@@ -16,7 +16,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.PatientCenter
         /// </summary>
         public string? OrganizeId { get; set; }
         /// <summary>
-        /// Bệnh nhânId
+        /// Bệnh nhân Id
         /// </summary>
         public string? patid { get; set; }
         /// <summary>

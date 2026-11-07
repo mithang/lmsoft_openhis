@@ -16,7 +16,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public bool sfbz { get; set; }
 
         /// <summary>
-        /// Liệt kê 1 Thuốc TâyĐơn thuốc 2 Thuốc Đông yĐơn thuốc 3 Phục hồi chức năngĐơn thuốc 4 Xét nghiệmĐơn thuốc 5 Kiểm traĐơn thuốc 6 truyền dịchĐơn thuốc
+        /// Liệt kê 1 Thuốc Tây Đơn thuốc 2 Thuốc Đông y Đơn thuốc 3 Phục hồi chức năng Đơn thuốc 4 Xét nghiệm Đơn thuốc 5 Kiểm tra Đơn thuốc 6 truyền dịch Đơn thuốc
         /// </summary>
         public int cflx { get; set; }
 
@@ -60,7 +60,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string lcyx { get; set; }
         /// <summary>
-        /// Đăng kýGhi chú
+        /// Đăng ký Ghi chú
         /// </summary>
         public string sqbz { get; set; }
 
@@ -76,7 +76,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string jzId { get; set; }
 
 
-        public string isdzcf { get; set; }//điện tửĐơn thuốc 1 là  0 Không
+        public string isdzcf { get; set; }//điện tử Đơn thuốc 1 là  0 Không
         public string gjybdm { get; set; }
 
         /// <summary>
@@ -93,12 +93,12 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string cfzt { get; set; }
 
 		/// <summary>
-		/// Đồng bộCờ
+		/// Đồng bộ Cờ
 		/// </summary>
 		public bool? tbbz { get; set; }
 
 		/// <summary>
-		/// trảCờ
+		/// trả Cờ
 		/// </summary>
 		public bool? tbz { get; set; }
 
@@ -108,28 +108,28 @@ namespace Newtouch.Domain.DTO.OutputDto
 		public string sqdh { get; set; }
 
 		/// <summary>
-		/// xatrìnhy tếTải lênTrạng thái
+		/// xatrìnhy tế Tải lên Trạng thái
 		/// </summary>
 		public string SyncStatus { get; set; }
 
 
 		/// <summary>
-		/// Đơn thuốcchỉnhliềuY lệnhMô tả
+		/// Đơn thuốcchỉnhliềuY lệnh Mô tả
 		/// </summary>
 		public string rxDrordDscr { get; set; }
 
 		/// <summary>
-		/// Đơn thuốcHiệu lựcSố ngày
+		/// Đơn thuốc Hiệu lực Số ngày
 		/// </summary>
 		public int? valiDays { get; set; }
 
 		/// <summary>
-		/// lạidùng(nhiều lần)Sử dụngCờ
+		/// lạidùng(nhiều lần)Sử dụng Cờ
 		/// </summary>
 		public string reptFlag { get; set; }
 
 		/// <summary>
-		/// nhấtlớnSử dụng lầnsố
+		/// nhấtlớn Sử dụng lầnsố
 		/// </summary>
 		public int? maxReptCnt { get; set; }
 
@@ -139,12 +139,12 @@ namespace Newtouch.Domain.DTO.OutputDto
 		public int? minInrvDays { get; set; }
 
 		/// <summary>
-		/// tiếpphươngCờ
+		/// tiếpphương Cờ
 		/// </summary>
 		public string rxCotnFlag { get; set; }
 
 		/// <summary>
-		/// Dài hạnĐơn thuốcCờ
+		/// Dài hạn Đơn thuốc Cờ
 		/// </summary>
 		public string longRxFlag { get; set; }
 
@@ -154,7 +154,7 @@ namespace Newtouch.Domain.DTO.OutputDto
 		public string rxTraceCode { get; set; }
 
 		/// <summary>
-		/// Bảo hiểm y tếĐơn thuốcSố hiệu
+		/// Bảo hiểm y tế Đơn thuốc Số hiệu
 		/// </summary>
 		public string hiRxno { get; set; }
 	}

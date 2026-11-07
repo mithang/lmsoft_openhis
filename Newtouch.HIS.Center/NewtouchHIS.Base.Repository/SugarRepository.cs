@@ -15,13 +15,13 @@ namespace NewtouchHIS.Base.Repository
         public SugarRepository()
         {
             //Mẫu singleton
-            base.Context = SqlSugarDbContext.Db.GetConnectionScopeWithAttr<TEntity>();//Lấy cơ sở dữ liệu con theo đặc tính thực thểDb
+            base.Context = SqlSugarDbContext.Db.GetConnectionScopeWithAttr<TEntity>();//Lấy cơ sở dữ liệu con theo đặc tính thực thể Db
         }
 
         public SugarRepository(string db)
         {
             //Mẫu singleton
-            base.Context = SqlSugarDbContext.Db.GetConnection(db);//Lấy cơ sở dữ liệu con theo đặc tính thực thểDb
+            base.Context = SqlSugarDbContext.Db.GetConnection(db);//Lấy cơ sở dữ liệu con theo đặc tính thực thể Db
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace NewtouchHIS.Base.Repository
         /// <returns></returns>
         public List<TEntity> CommQuery(string json)
         {
-            //base.Context.Queryable<T>().ToList();có thể lấy đượcSqlSugarClient để làm thao tác phức tạp
+            //base.Context.Queryable<T>().ToList();có thể lấy được SqlSugarClient để làm thao tác phức tạp
             return null;
         }
         #region Thao tác bảng thực thể không nhất quán với cơ sở dữ liệu chính
@@ -43,7 +43,7 @@ namespace NewtouchHIS.Base.Repository
         public async Task<long> Add<T>(T model) where T : class, new()
         {
             var i = await Task.Run(() => Context.Insertable<T>(model).ExecuteCommand());
-            //trả vềiCólongLoại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
+            //trả vềi Cólong Loại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
             return i;
         }
         /// <summary>
@@ -55,12 +55,12 @@ namespace NewtouchHIS.Base.Repository
         public async Task<long> Delete<T>(T model) where T : class, new()
         {
             var i = await Task.Run(() => Context.Deleteable<T>(model).ExecuteCommand());
-            //trả vềiCólongLoại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
+            //trả vềi Cólong Loại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
             return i;
         }
         public async Task<bool> Update<T>(T model) where T : class, new()
         {
-            //Cách này sẽ lấyKhóa chínhlàm điều kiện
+            //Cách này sẽ lấy Khóa chínhlàm điều kiện
             var i = await Task.Run(() => Context.Updateable<T>(model).ExecuteCommand());
             return i > 0;
         }
@@ -74,13 +74,13 @@ namespace NewtouchHIS.Base.Repository
         public async Task<long> Add(TEntity model)
         {
             var i = await Task.Run(() => Context.Insertable(model).ExecuteCommand());
-            //trả vềiCólongLoại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
+            //trả vềi Cólong Loại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
             return i;
         }
         public async Task<long> AddRange(List<TEntity> model)
         {
             var i = await Task.Run(() => Context.Insertable(model).ExecuteCommand());
-            //trả vềiCólongLoại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
+            //trả vềi Cólong Loại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
             return i;
         }
         /// <summary>
@@ -112,7 +112,7 @@ namespace NewtouchHIS.Base.Repository
         /// <returns></returns>
         public async Task<bool> Update(TEntity model)
         {
-            //Cách này sẽ lấyKhóa chínhlàm điều kiện
+            //Cách này sẽ lấy Khóa chínhlàm điều kiện
             var i = await Task.Run(() => Context.Updateable(model).ExecuteCommand());
             return i > 0;
         }
@@ -123,14 +123,14 @@ namespace NewtouchHIS.Base.Repository
         /// <returns></returns>
         public async Task<bool> UpdateRange(List<TEntity> model)
         {
-            //Cách này sẽ lấyKhóa chínhlàm điều kiện
+            //Cách này sẽ lấy Khóa chínhlàm điều kiện
             var i = await Task.Run(() => Context.Updateable(model).ExecuteCommand());
             return i > 0;
         }
 
         #region Query
         /// <summary>
-        /// TheoKhóa chínhTruy vấn
+        /// Theo Khóa chính Truy vấn
         /// </summary>
         /// <param name="pkValue">Khóa chính</param>
         /// <returns></returns>
@@ -204,7 +204,7 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// TheoKhóa chính In  Truy vấn
+        /// Theo Khóa chính In  Truy vấn
         /// </summary>
         /// <typeparam name="S">Khóa chínhkiểu</typeparam>
         /// <param name="list">Khóa chính In Tập kết quả của thao tác</param>
@@ -410,7 +410,7 @@ namespace NewtouchHIS.Base.Repository
         public async Task<long> AddWithAttr<T>(T model) where T : class, new()
         {
             var i = await Task.Run(() => dbTran.GetConnectionScopeWithAttr<T>().Insertable(model).ExecuteCommand());
-            //trả vềiCólongLoại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
+            //trả vềi Cólong Loại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
             return i;
         }
 
@@ -421,7 +421,7 @@ namespace NewtouchHIS.Base.Repository
         /// <returns></returns>
         public async Task<bool> UpdateWithAttr<T>(T model) where T : class, new()
         {
-            //Cách này sẽ lấyKhóa chínhlàm điều kiện
+            //Cách này sẽ lấy Khóa chínhlàm điều kiện
             var i = await Task.Run(() => dbTran.GetConnectionScopeWithAttr<T>().Updateable(model).ExecuteCommand());
             return i > 0;
         }
@@ -449,7 +449,7 @@ namespace NewtouchHIS.Base.Repository
         #endregion
 
         /// <summary>
-        /// TheoKhóa chínhTruy vấn
+        /// Theo Khóa chính Truy vấn
         /// </summary>
         /// <param name="pkValue">Khóa chính</param>
         /// <returns></returns>
@@ -486,7 +486,7 @@ namespace NewtouchHIS.Base.Repository
             return await dbTran.GetConnectionScopeWithAttr<T>().Queryable<T>().Where(where).FirstAsync();//Truy vấn một bản ghi, không có dữ liệu thì trả về NULL, Singlevượt quá1bản ghi sẽ báo lỗi,Firstsẽ không
         }
         /// <summary>
-        ///  Theo điều kiện Truy vấn(Theo T củaDb Truy vấn theo đặc tính)
+        ///  Theo điều kiện Truy vấn(Theo T của Db Truy vấn theo đặc tính)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="where"></param>
@@ -500,7 +500,7 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// Truy vấn hai bảng,(Theo T1 củaDb Truy vấn theo đặc tính)
+        /// Truy vấn hai bảng,(Theo T1 của Db Truy vấn theo đặc tính)
         /// </summary>
         /// <typeparam name="T1">Bảng trái</typeparam>
         /// <typeparam name="T2">Bảng phải</typeparam>

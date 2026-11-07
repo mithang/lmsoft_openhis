@@ -14,7 +14,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public SysUserEntity() { }
 
         /// <summary>
-        /// Desc:Người dùngKhóa chính
+        /// Desc:Người dùng Khóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           

@@ -20,7 +20,7 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public string xm { get; set; }
 
         /// <summary>
-        /// Bệnh nhânKhám bệnhSố thẻ
+        /// Bệnh nhân Khám bệnh Số thẻ
         /// </summary>
         public string kh { get; set; }
 
@@ -45,7 +45,7 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public string seatNum { get; set; }
 
         /// <summary>
-        /// Thu phíThời gian  quyết toánThời gian
+        /// Thu phí Thời gian  quyết toán Thời gian
         /// </summary>
         public DateTime sfsj { get; set; }
 
@@ -70,12 +70,12 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public string ypgg { get; set; }
 
         /// <summary>
-        /// dùnglượng+dùnglượngĐơn vị
+        /// dùnglượng+dùnglượng Đơn vị
         /// </summary>
         public string ylStr { get; set; }
 
         /// <summary>
-        /// Số lượng+Số lượngĐơn vị
+        /// Số lượng+Số lượng Đơn vị
         /// </summary>
         public string slStr { get; set; }
 
@@ -91,22 +91,22 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public string groupNo { get; set; }
 
         /// <summary>
-        /// phốiDược sĩMã nhân viên
+        /// phối Dược sĩ Mã nhân viên
         /// </summary>
         public string dispenser { get; set; }
 
         /// <summary>
-        /// phốiDược sĩTên
+        /// phối Dược sĩ Tên
         /// </summary>
         public string dispenserName { get; set; }
 
         /// <summary>
-        /// Thực hiệnngườiMã nhân viên
+        /// Thực hiệnngười Mã nhân viên
         /// </summary>
         public string executor { get; set; }
 
         /// <summary>
-        /// Thực hiệnngườiTên
+        /// Thực hiệnngười Tên
         /// </summary>
         public string executorName { get; set; }
 
@@ -116,12 +116,12 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public string remark { get; set; }
 
         /// <summary>
-        /// truyền dịchThời gian bắt đầu
+        /// truyền dịch Thời gian bắt đầu
         /// </summary>
         public DateTime? sykssj { get; set; }
 
         /// <summary>
-        /// truyền dịchThời gian kết thúc
+        /// truyền dịch Thời gian kết thúc
         /// </summary>
         public DateTime? syjssj { get; set; }
 
@@ -151,11 +151,11 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         /// </summary>
         public string psjg { get; set; }
         /// <summary>
-        /// dathửCờ 0:Không 1:là
+        /// dathử Cờ 0:Không 1:là
         /// </summary>
         public string ispsbz { get; set; }
         /// <summary>
-        /// giữxemCờ
+        /// giữxem Cờ
         /// </summary>
 
         public string islgbz { get; set; }

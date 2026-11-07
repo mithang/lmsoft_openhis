@@ -24,7 +24,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// Bộ mẫuChi tiết
+        /// Bộ mẫu Chi tiết
         /// </summary>
         /// <param name="ztId"></param>
         public GroupPackageDetailBO GetGroupPackageDetail(string ztId, string orgId)
@@ -38,9 +38,9 @@ namespace Newtouch.DomainServices
             var ztEntity = _groupPackageRepo.IQueryable().Where(a => a.ztId == ztId).FirstOrDefault();
             if (ztEntity == null)
             {
-                throw new FailedException("Dữ liệu bất thường，Không cótìmđếnBộ mẫuthông tin");
+                throw new FailedException("Dữ liệu bất thường，Không cótìmđến Bộ mẫuthông tin");
             }
-            //Bộ mẫuMục
+            //Bộ mẫu Mục
             var sql = @"
 SELECT ztxm.sfxmCode,ztxm.sfxmmc,ztxm.sfdl,ztxm.dj,ztxm.dw,
         sfdl.dlmc AS sfdlmc,ztxm.sl,ztxm.px 
@@ -75,7 +75,7 @@ WHERE ztxm.OrganizeId=@orgId
 
                     db.Update(ztobj);
 
-                    db.Delete<GroupPackageItemEntity>(a => a.ztId == ztobj.ztId); //trướctoànxóa,lạiThêm mới
+                    db.Delete<GroupPackageItemEntity>(a => a.ztId == ztobj.ztId); //trướctoànxóa,lại Thêm mới
                 }
                 else
                 {
@@ -85,7 +85,7 @@ WHERE ztxm.OrganizeId=@orgId
                     db.Insert(ztobj);
                 }
 
-                //Bộ mẫuMục
+                //Bộ mẫu Mục
                 if (ztxmlist != null)
                 {
                     foreach (var item in ztxmlist)

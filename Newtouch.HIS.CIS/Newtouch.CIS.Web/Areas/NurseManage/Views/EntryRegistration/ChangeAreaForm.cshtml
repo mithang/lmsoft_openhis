@@ -1,6 +1,6 @@
 
 @{
-    ViewBag.Title = "Bệnh nhânChuyển khu";
+    ViewBag.Title = "Bệnh nhân Chuyển khu";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -34,7 +34,7 @@
     {
         var bqdm = $('#sel_inpatientArea').val();
         if (bqdm == "" || bqdm==null) {
-            $.modalAlert('Vui lòng chọnKhu bệnh!', 'warning');
+            $.modalAlert('Vui lòng chọn Khu bệnh!', 'warning');
             return;
         }
         $.ajax({

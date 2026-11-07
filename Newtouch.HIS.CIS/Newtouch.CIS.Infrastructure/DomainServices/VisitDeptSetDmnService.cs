@@ -19,7 +19,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// LấyrakhámBác sĩthông tin
+        /// Lấyrakhám Bác sĩthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -47,7 +47,7 @@ AND vd.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// LấyrakhámBác sĩchi tiết
+        /// Lấyrakhám Bác sĩchi tiết
         /// </summary>
         /// <param name="ysgh"></param>
         /// <param name="organizeId"></param>
@@ -74,7 +74,7 @@ AND vd.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// LấyrakhámBác sĩchi tiết
+        /// Lấyrakhám Bác sĩchi tiết
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -98,7 +98,7 @@ WHERE vd.Id=@vId
         }
 
         /// <summary>
-        /// LấyrakhámBác sĩthông tin
+        /// Lấyrakhám Bác sĩthông tin
         /// </summary>
         /// <param name="ysgh"></param>
         /// <param name="organizeId"></param>

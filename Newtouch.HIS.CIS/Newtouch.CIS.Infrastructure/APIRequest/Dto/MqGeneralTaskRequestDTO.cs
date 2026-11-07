@@ -19,7 +19,7 @@ namespace Newtouch.CIS.APIRequest.Dto
     public class MqGeneralTaskBody
     {
         /// <summary>
-        /// Thao tácLoại
+        /// Thao tác Loại
         /// </summary>
         public string OperationType { get; set; }
 

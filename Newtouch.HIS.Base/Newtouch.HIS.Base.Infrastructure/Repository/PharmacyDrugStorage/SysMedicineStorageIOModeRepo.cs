@@ -68,13 +68,13 @@ namespace Newtouch.HIS.Repository
         {
             if (keyValue.HasValue && keyValue.Value > 0)
             {
-                //CodeKiểm tra trùng lặp
+                //Code Kiểm tra trùng lặp
                 if (this.IQueryable().Any(p => p.crkfsCode == entity.crkfsCode && p.crkfsId != keyValue))
                 {
                     throw new FailedException("Mã không được trùng lặp");
                 }
 
-                SysMedicineStorageIOModeEntity oldEntity = null;   //Trước khi thay đổiEntity
+                SysMedicineStorageIOModeEntity oldEntity = null;   //Trước khi thay đổi Entity
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Repository
             }
             else
             {
-                //CodeKiểm tra trùng lặp
+                //Code Kiểm tra trùng lặp
                 if (this.IQueryable().Any(p => p.crkfsCode == entity.crkfsCode))
                 {
                     throw new FailedException("Mã không được trùng lặp");

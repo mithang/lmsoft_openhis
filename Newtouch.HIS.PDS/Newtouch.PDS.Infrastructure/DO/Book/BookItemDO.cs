@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Domain.DO
         /// </summary>
         public string Cfh { get; set; }
         /// <summary>
-        /// Chi tiết đơn thuốcId
+        /// Chi tiết đơn thuốc Id
         /// </summary>
         public string CfmxId { get; set; }
 
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Domain.DO
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// Ngày lấy hồ sơ/(hoặcCreateTime)
+        /// Ngày lấy hồ sơ/(hoặc CreateTime)
         /// </summary>
         public DateTime AdtTdrq { get; set; }
 
@@ -108,7 +108,7 @@ namespace Newtouch.HIS.Domain.DO
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// Tổ chứcId
+        /// Tổ chức Id
         /// </summary>
         public string OrganizeId { get; set; }
 

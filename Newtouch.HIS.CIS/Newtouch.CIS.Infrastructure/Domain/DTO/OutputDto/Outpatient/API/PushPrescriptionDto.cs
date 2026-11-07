@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// đẩyĐơn thuốc
+    /// đẩy Đơn thuốc
     /// </summary>
     public class PrescriptionAPIDto
     {
@@ -17,7 +17,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public int cflxxf { get; set; }
         /// <summary>
-        /// Đơn thuốcTên loại
+        /// Đơn thuốc Tên loại
         /// </summary>
         public string cflxmc { get; set; }
         /// <summary>
@@ -34,17 +34,17 @@ namespace Newtouch.Domain.DTO.OutputDto
         public bool? djbz { get; set; }
 
         /// <summary>
-        /// phiếumộtđăng ký khámcó thểcó thểcókhôngcùngcủaBác sĩchomởĐơn thuốc
+        /// phiếumộtđăng ký khámcó thểcó thểcókhôngcùngcủa Bác sĩchomở Đơn thuốc
         /// </summary>
         public string ys { get; set; }
 
         /// <summary>
-        /// phiếumộtđăng ký khámcó thểcó thểcókhôngcùngcủaBác sĩchomởĐơn thuốc
+        /// phiếumộtđăng ký khámcó thểcó thểcókhôngcùngcủa Bác sĩchomở Đơn thuốc
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// lĩnhthuốcNhà thuốcCode
+        /// lĩnhthuốc Nhà thuốc Code
         /// </summary>
         public string lyyf { get; set; }
 

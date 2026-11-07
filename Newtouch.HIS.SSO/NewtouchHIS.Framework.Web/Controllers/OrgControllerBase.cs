@@ -15,7 +15,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
 
 
         /// <summary>
-        /// tổ chứcId
+        /// tổ chức Id
         /// </summary>
         protected string? OrganizeId
         {
@@ -31,7 +31,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
 
 
         /// <summary>
-        /// lấy quyềnOrg
+        /// lấy quyền Org
         /// </summary>
         /// <param name="throwFailedException"></param>
         /// <returns></returns>
@@ -50,7 +50,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
             }
             else
             {
-                //mặc định dùng ... của người dùng liên kết hiện tạiOrganizeId
+                //mặc định dùng ... của người dùng liên kết hiện tại OrganizeId
                 orgId = UserIdentity.OrganizeId;
             }
             if (throwFailedException && string.IsNullOrWhiteSpace(orgId))

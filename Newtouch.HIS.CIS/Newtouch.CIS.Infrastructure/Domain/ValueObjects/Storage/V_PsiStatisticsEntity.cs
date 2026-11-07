@@ -1,7 +1,7 @@
 namespace Newtouch.Domain.ValueObjects.Storage
 {
     /// <summary>
-    /// vàobántồn tạiThống kê
+    /// vàobántồn tại Thống kê
     /// </summary>
     public class VPsiStatisticsEntity
     {
@@ -11,7 +11,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string productId { get; set; }
 
         /// <summary>
-        /// vật tưTên
+        /// vật tư Tên
         /// </summary>
         public string wzmc { get; set; }
 
@@ -26,32 +26,32 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string gg { get; set; }
 
         /// <summary>
-        /// bảnKhoa phòngTên đơn vị
+        /// bản Khoa phòng Tên đơn vị
         /// </summary>
         public string bmdwmc { get; set; }
 
         /// <summary>
-        /// kỳban đầuSố lượng,mangĐơn vị
+        /// kỳban đầu Số lượng,mang Đơn vị
         /// </summary>
         public string qcsl { get; set; }
 
         /// <summary>
-        /// Nhập khoSố lượng,mangĐơn vị
+        /// Nhập kho Số lượng,mang Đơn vị
         /// </summary>
         public string rksl { get; set; }
 
         /// <summary>
-        /// Xuất khoSố lượng,mangĐơn vị
+        /// Xuất kho Số lượng,mang Đơn vị
         /// </summary>
         public string cksl { get; set; }
 
         /// <summary>
-        /// lãi lỗSố lượng,mangĐơn vị
+        /// lãi lỗ Số lượng,mang Đơn vị
         /// </summary>
         public string sysl { get; set; }
 
         /// <summary>
-        /// cuối kỳSố lượng,mangĐơn vị
+        /// cuối kỳ Số lượng,mang Đơn vị
         /// </summary>
         public string qmsl { get; set; }
 

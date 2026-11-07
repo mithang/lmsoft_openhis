@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Domain.IRepository
         string GetMzzybzByCode(string code, string orgId);
 
         /// <summary>
-        /// TheoyfbmcodeLấy thực thể bộ phận nhà thuốc
+        /// Theoyfbmcode Lấy thực thể bộ phận nhà thuốc
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>

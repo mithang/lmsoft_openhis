@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace Newtouch.EMR.Web.Controllers
 {
     /// <summary>
-    /// Home/IndexDữ liệu đệm tải mặc định khi tải.
+    /// Home/Index Dữ liệu đệm tải mặc định khi tải.
     /// GetAsyncClientsDataJson mirrors the Framework version: record-element trees
     /// from IBlysRepo, item details from the base controller, and enums scanned from
     /// the EMR Infrastructure assembly (the old GetEnumList("Newtouch.EMR.Infrastructure")).

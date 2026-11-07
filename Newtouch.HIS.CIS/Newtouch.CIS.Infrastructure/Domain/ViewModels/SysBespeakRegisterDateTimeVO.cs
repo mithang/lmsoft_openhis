@@ -4,17 +4,17 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.ViewModels
 {
     /// <summary>
-    /// đặt hẹnNgày
+    /// đặt hẹn Ngày
     /// </summary>
     public class SysBespeakRegisterDateTimeVO
     {
         /// <summary>
-        /// Tạm thờiKhóa chính
+        /// Tạm thời Khóa chính
         /// </summary>
         public string tmpId { get; set; }
 
         /// <summary>
-        /// đặt hẹnNgày
+        /// đặt hẹn Ngày
         /// </summary>
         public string regDate { get; set; }
 
@@ -24,18 +24,18 @@ namespace Newtouch.Domain.ViewModels
         public string week { get; set; }
 
         /// <summary>
-        /// đặt hẹnThời gianđoạn
+        /// đặt hẹn Thời gianđoạn
         /// </summary>
         public List<SysBespeakRegisterTimeVO> regTimes { get; set; }
     }
 
     /// <summary>
-    /// đặt hẹnThời gian
+    /// đặt hẹn Thời gian
     /// </summary>
     public class SysBespeakRegisterTimeVO
     {
         /// <summary>
-        /// Tạm thờiKhóa chính
+        /// Tạm thời Khóa chính
         /// </summary>
         public string tmpId { get; set; }
 
@@ -45,17 +45,17 @@ namespace Newtouch.Domain.ViewModels
         public string tabId { get; set; }
 
         /// <summary>
-        /// đặt hẹnThời gian
+        /// đặt hẹn Thời gian
         /// </summary>
         public DateTime regBeginTime { get; set; }
 
         /// <summary>
-        /// đặt hẹnThời gian
+        /// đặt hẹn Thời gian
         /// </summary>
         public DateTime regEndTime { get; set; }
 
         /// <summary>
-        /// đặt hẹnThời gian  regBeginTimevàregEndTimekếthợp
+        /// đặt hẹn Thời gian  regBeginTimevàregEndTimekếthợp
         /// </summary>
         public string regTime { get; set; }
 

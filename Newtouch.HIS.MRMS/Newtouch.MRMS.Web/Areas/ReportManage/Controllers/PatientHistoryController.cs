@@ -37,7 +37,7 @@ namespace Newtouch.MRMS.Web.Areas.ReportManage.Controllers
             return View();
         }
 
-        //LấyThông tin nội trú
+        //Lấy Thông tin nội trú
         public IActionResult GetPagintionHospitalList(Pagination pagination,  string jkkh, string keyword)
         {
 
@@ -66,11 +66,11 @@ namespace Newtouch.MRMS.Web.Areas.ReportManage.Controllers
 			var pat = new List<zys_zdVO>();
 			if (id != "")
 			{
-				//LấyChẩn đoán ngoại trú
+				//Lấy Chẩn đoán ngoại trú
 				var mzzdList = _PatientHistoryDmnService.GetmzzdList(OrganizeId, id);
 				//Lấy chẩn đoán xuất viện và chẩn đoán khác
 				var zdList = _PatientHistoryDmnService.GetzdList(OrganizeId, id);
-				//NốiChẩn đoánDữ liệu
+				//Nối Chẩn đoán Dữ liệu
 				foreach (var mzzdObj in mzzdList)
 				{
 					pat.Add(mzzdObj);
@@ -93,7 +93,7 @@ namespace Newtouch.MRMS.Web.Areas.ReportManage.Controllers
 		}
 
 
-		//LấyThông tin phẫu thuật
+		//Lấy Thông tin phẫu thuật
 		public IActionResult GetPagintionSSList(string id)
 		{
 			IList<zys_ssVO> pat = new List<zys_ssVO>();

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// Liên quan người dùngDmnService
+    /// Liên quan người dùng DmnService
     /// </summary>
     public interface ISysUserExDmnService
     {
@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         SysUserVEntity CheckLogin(string username, string password);
 
         /// <summary>
-        /// TheoUserIdLấy danh sách nhân sự hệ thống liên kết
+        /// Theo UserId Lấy danh sách nhân sự hệ thống liên kết
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void UpdateUserRole(string keyValue, string[] roleList);
 
         /// <summary>
-        /// TheoOrganizeIdLấy Nhân sự hệ thống VO(và có tương ứngSysUser)
+        /// Theo OrganizeId Lấy Nhân sự hệ thống VO(và có tương ứng SysUser)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<string> GetStaffIdListByParentOrg(string parentOrgId, string dutyCode);
 
         /// <summary>
-        /// Theo nhân viênIdLấy tất cả vị trí
+        /// Theo nhân viên Id Lấy tất cả vị trí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="StaffId"></param>
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void RevisePassword(string userPassword, string userId);
 
         /// <summary>
-        /// TheoUserIdLấy bộ phận nhà thuốc mà người dùng hệ thống có thể thao tácCode List
+        /// Theo UserId Lấy bộ phận nhà thuốc mà người dùng hệ thống có thể thao tác Code List
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="orgId"></param>
@@ -100,7 +100,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<string> GetYfbmCodeListByUserId(string userId, string orgId);
 
         /// <summary>
-        /// TheoUserIdLấy bộ phận nhà thuốc mà người dùng hệ thống có thể thao tác List
+        /// Theo UserId Lấy bộ phận nhà thuốc mà người dùng hệ thống có thể thao tác List
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="orgId"></param>

@@ -3,7 +3,7 @@
 namespace NewtouchHIS.Domain.InterfaceObjets
 {
     /// <summary>
-    /// Bệnh nhânTrang đầu bệnh án
+    /// Bệnh nhân Trang đầu bệnh án
     /// </summary>
     public class MedicalHomeVO: MedicalHomeBaseVO
     {
@@ -116,7 +116,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string MZZD { get; set; }
 
         /// <summary>
-        /// BệnhMã
+        /// Bệnh Mã
         /// </summary>
         /// <returns></returns>
         public string MZZDDM { get; set; }

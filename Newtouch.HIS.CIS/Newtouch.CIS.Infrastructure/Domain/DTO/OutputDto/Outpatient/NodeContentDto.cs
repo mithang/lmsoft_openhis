@@ -7,7 +7,7 @@ namespace Newtouch.Domain.DTO.OutputDto
 {
     public class NodeContentDto
     {
-        #region Bệnh nhânKhám bệnhthông tin
+        #region Bệnh nhân Khám bệnhthông tin
 
         public string jzysmc { get; set; }
         public string jzys { get; set; }
@@ -22,7 +22,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string mzh { get; set; }
         /// <summary>
-        /// đăng ký khámBác sĩ
+        /// đăng ký khám Bác sĩ
         /// </summary>
         public string ghys { get; set; }
         /// <summary>
@@ -76,7 +76,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public decimal? huxi { get; set; }
         public string cfzbz { get; set; }
         /// <summary>
-        /// xãbảoSố hiệu
+        /// xãbảo Số hiệu
         /// </summary>
         public string sbbh { get; set; }
         public lastzcfDto lastzcfDto { get; set; }
@@ -89,7 +89,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string zs { get; set; }
 
         /// <summary>
-        /// phátbệnhThời gian
+        /// phátbệnh Thời gian
         /// </summary>
         public DateTime? fbsj { get; set; }
 
@@ -107,7 +107,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string yjs { get; set; }
         /// <summary>
-        /// quaTiền sử dị ứng
+        /// qua Tiền sử dị ứng
         /// </summary>
         public string gms { get; set; }
         /// <summary>
@@ -128,7 +128,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string fzjc { get; set; }
         #endregion
 
-        #region Hồ sơChẩn đoán
+        #region Hồ sơ Chẩn đoán
         /// <summary>
         /// 
         /// </summary>
@@ -152,11 +152,11 @@ namespace Newtouch.Domain.DTO.OutputDto
 
     public class lastzcfDto {
         /// <summary>
-        /// cuối cùngmột lầnthulấykhámtraphíThời gian
+        /// cuối cùngmột lầnthulấykhámtraphí Thời gian
         /// </summary>
         public string zcfsj { get; set; }
         /// <summary>
-        /// cuối cùngmột lầnthulấykhámtraphíMục thu phíChi tiết
+        /// cuối cùngmột lầnthulấykhámtraphí Mục thu phí Chi tiết
         /// </summary>
         public string zcfsfxm { get; set; }
     }

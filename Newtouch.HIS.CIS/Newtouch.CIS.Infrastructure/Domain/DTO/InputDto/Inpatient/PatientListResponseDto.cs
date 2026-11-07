@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.DTO.InputDto
 {
     /// <summary>
-    /// Bệnh nhân nội trúmộtxem ởKhu bệnhcủabệnh nhânQuay lạiđối tượngtậphợp
+    /// Bệnh nhân nội trúmộtxem ở Khu bệnhcủabệnh nhân Quay lạiđối tượngtậphợp
     /// </summary>
    public class PatientzbqResponseDto: PatientyzxxResponseDto
     {
@@ -34,7 +34,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public DateTime? kssj { get; set; }
         public string ztnr { get; set; }
         /// <summary>
-        /// làKhôngHiển thịdựXuất việnBiểu tượng (cókssj Hiển thị:null / khôngHiển thị:none)
+        /// là Không Hiển thịdự Xuất viện Biểu tượng (cókssj Hiển thị:null / không Hiển thị:none)
         /// </summary>
         public string display { get; set; }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public int? cnt { get; set; }
     }
     /// <summary>
-    /// Bệnh nhân nội trúmộtxem đãra khỏi khucủabệnh nhânQuay lạiđối tượngtậphợp
+    /// Bệnh nhân nội trúmộtxem đãra khỏi khucủabệnh nhân Quay lạiđối tượngtậphợp
     /// </summary>
     public class PatientycqResponseDto
     {

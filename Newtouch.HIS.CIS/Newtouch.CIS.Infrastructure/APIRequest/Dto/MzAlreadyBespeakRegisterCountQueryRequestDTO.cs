@@ -4,27 +4,27 @@ using System;
 namespace Newtouch.CIS.APIRequest.Dto
 {
     /// <summary>
-    /// đãđặt hẹnNgoại trúđăng ký khámthông tinTra cứuyêu cầubáovăn
+    /// đãđặt hẹn Ngoại trúđăng ký khámthông tinTra cứuyêu cầubáovăn
     /// </summary>
     public class MzAlreadyBespeakRegisterCountQueryRequestDTO : RequestBase
     {
         /// <summary>
-        /// KhoaMã
+        /// Khoa Mã
         /// </summary>
         public string ksCode { get; set; }
         
         /// <summary>
-        /// Bác sĩMã nhân viên
+        /// Bác sĩ Mã nhân viên
         /// </summary>
         public string ysgh { get; set; }
 
         /// <summary>
-        /// đặt hẹnNgày
+        /// đặt hẹn Ngày
         /// </summary>
         public DateTime regDate { get; set; }
 
         /// <summary>
-        /// đặt hẹnThời gian
+        /// đặt hẹn Thời gian
         /// </summary>
         public string regTime { get; set; }
 

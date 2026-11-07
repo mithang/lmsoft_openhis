@@ -26,11 +26,11 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// Tra cứuBệnh nhânđăng ký khámthông tin
+        /// Tra cứu Bệnh nhânđăng ký khámthông tin
         /// </summary>
         /// <param name="ksCode"></param>
         /// <param name="ysgh">//Lọcchuyên giasố chỉ xemtreotựtựsốcủa</param>
-        /// <param name="mjzbz">//1thông thườngNgoại trú 2gấpkhám 3chuyên giaNgoại trú</param>
+        /// <param name="mjzbz">//1thông thường Ngoại trú 2gấpkhám 3chuyên gia Ngoại trú</param>
         /// <param name="jiuzhenbz"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -38,11 +38,11 @@ namespace Newtouch.DomainServices
         {
             if (jiuzhenbz < 0)
             {
-                throw new FailedException("Khám bệnhCờlàtrống");
+                throw new FailedException("Khám bệnh Cờlàtrống");
             }
             if (jiuzhenbz == (int)EnumJzzt.NotYetTreate)
             {
-                jiuzhenbz = 0;  //tương ứngtronggiữakhochờKhám bệnh0
+                jiuzhenbz = 0;  //tương ứngtronggiữakhochờ Khám bệnh0
             }
 
             const  string sqlstr = @"
@@ -105,8 +105,8 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         }
 
         /// <summary>
-        /// sẽmzhcủaChưa thu phíĐơn thuốcđợithông tin Đồng bộđếntronggiữakho   
-        /// (vàĐồng bộĐơn thuốcthành côngsaucầnvềviếtĐơn thuốcTrạng thái đồng bộ)
+        /// sẽmzhcủa Chưa thu phí Đơn thuốcđợithông tin Đồng bộđếntronggiữakho   
+        /// (và Đồng bộ Đơn thuốcthành côngsaucầnvềviết Đơn thuốc Trạng thái đồng bộ)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -128,7 +128,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         }
 
         /// <summary>
-        /// Hủy bỏhisMột lầnKhám bệnhcủatất cảĐơn thuốc
+        /// Hủy bỏhis Một lần Khám bệnhcủatất cả Đơn thuốc
         /// </summary>
         /// <param name="jzId"></param>
         /// <param name="orgId"></param>
@@ -165,7 +165,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
             }
             if (string.IsNullOrWhiteSpace(cfId)&& string.IsNullOrWhiteSpace(apicfh))
             {
-                throw new FailedException("thiếuĐơn thuốcthông tin");
+                throw new FailedException("thiếu Đơn thuốcthông tin");
             }
             var par = new List<SqlParameter>();
             par.Add(new SqlParameter("@orgId", orgId));
@@ -176,7 +176,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         }
 
         /// <summary>
-        /// CIS Đơn thuốcDữ liệu
+        /// CIS Đơn thuốc Dữ liệu
         /// </summary>
         /// <param name="Opt"></param>
         /// <param name="Brwym"></param>
@@ -198,7 +198,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
 
         }
         /// <summary>
-        /// tronggiữakho Đồng bộĐơn thuốcThu phíTrạng thái
+        /// tronggiữakho Đồng bộ Đơn thuốc Thu phí Trạng thái
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="orgId"></param>
@@ -206,7 +206,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         {
             if (string.IsNullOrWhiteSpace(blh))
             {
-                throw new FailedException("thiếuSố bệnh án");
+                throw new FailedException("thiếu Số bệnh án");
             }
             var par = new List<SqlParameter>();
             par.Add(new SqlParameter("@orgId", orgId));

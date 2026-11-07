@@ -12,7 +12,7 @@ namespace Newtouch.Domain.IRepository.Clinic
     public interface IClinicApplyRepo
     {
         /// <summary>
-        /// Cập nhậtTrạng thái đăng ký
+        /// Cập nhật Trạng thái đăng ký
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="sqzt"></param>

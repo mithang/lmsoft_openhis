@@ -51,40 +51,40 @@ namespace Newtouch.Domain.ValueObjects.API
         /// </summary>
         public DateTime ghsj { get; set; }
         /// <summary>
-        /// Khám bệnhLoại 1thông thườngNgoại trú 2gấpkhám 3chuyên giaNgoại trú
+        /// Khám bệnh Loại 1thông thường Ngoại trú 2gấpkhám 3chuyên gia Ngoại trú
         /// </summary>
         public string mjzbz { get; set; }
 
         /// <summary>
-        /// Thao tácThời gian
+        /// Thao tác Thời gian
         /// </summary>
         public DateTime operatingTime { get; set; }
         /// <summary>
-        /// Bác sĩMã
+        /// Bác sĩ Mã
         /// </summary>
         public string ys { get; set; }
         /// <summary>
-        /// KhoaMã
+        /// Khoa Mã
         /// </summary>
         public string ks { get; set; }
         /// <summary>
-        /// Bảo hiểm y tếquyết toánsố(Bảo hiểm y tếQuay lại)
+        /// Bảo hiểm y tếquyết toánsố(Bảo hiểm y tế Quay lại)
         /// </summary>
         public string ybjsh { get; set; }
         /// <summary>
-        /// lạikhámCờ 1lạikhám
+        /// lạikhám Cờ 1lạikhám
         /// </summary>
         public string fzbz { get; set; }
         /// <summary>
-        /// xãbảoSố hiệu
+        /// xãbảo Số hiệu
         /// </summary>
         public string sbbh { get; set; }
         /// <summary>
-        /// tham sốbảođịaMã
+        /// tham sốbảođịa Mã
         /// </summary>
         public string cbdbm { get; set; }
         /// <summary>
-        /// Họ tênPinyin
+        /// Họ tên Pinyin
         /// </summary>
         public string py { get; set; }
         /// <summary>
@@ -115,11 +115,11 @@ namespace Newtouch.Domain.ValueObjects.API
 
         public string nlshow { get; set; }
         /// <summary>
-        /// đăng ký khámđếnnguồnCờ
+        /// đăng ký khámđếnnguồn Cờ
         /// </summary>
         public string ghlybz { get; set; }
         /// <summary>
-        /// Bảo hiểm y tếCá nhânSố hiệu
+        /// Bảo hiểm y tế Cá nhân Số hiệu
         /// </summary>
         public string grbh { get; set; }
         public short? queno { get; set; }

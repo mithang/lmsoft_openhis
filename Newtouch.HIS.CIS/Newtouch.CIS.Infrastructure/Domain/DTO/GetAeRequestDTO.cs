@@ -6,12 +6,12 @@ namespace Newtouch.Domain.DTO
     public class GetAeRequestDto
     {
         /// <summary>
-        /// Số khám ngoại trú nhậnkhámSố hiệu
+        /// Số khám ngoại trú nhậnkhám Số hiệu
         /// </summary>
         public string mzh { get; set; }
 
         /// <summary>
-        /// Bác sĩMã nhân viên:tứcBác sĩĐăng nhậpHệ thốngcủaNgười dùngtên
+        /// Bác sĩ Mã nhân viên:tức Bác sĩ Đăng nhập Hệ thốngcủa Người dùngtên
         /// </summary>
         public string jzys { get; set; }
 

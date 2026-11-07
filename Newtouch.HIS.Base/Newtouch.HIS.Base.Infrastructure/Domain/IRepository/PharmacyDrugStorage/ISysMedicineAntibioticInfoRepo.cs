@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Domain.IRepository
         /// <returns>Id</returns>
         string SubmitForm(SysMedicineAntibioticInfoEntity entity);
         /// <summary>
-        /// Thông quaIdLấy thông tin kháng sinh của thuốc
+        /// Thông qua Id Lấy thông tin kháng sinh của thuốc
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="OrganizeId"></param>

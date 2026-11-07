@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    /// Nhóm tin nhắnBảng cấu hình
+    /// Nhóm tin nhắn Bảng cấu hình
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("Msg_NoticeQueue", "MsgNoticeQueueEntity")]
@@ -14,7 +14,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
         /// <summary>
-        /// Tin nhắnId Duy nhất trong lần này
+        /// Tin nhắn Id Duy nhất trong lần này
         /// Để tiện gửi nhiều lần khi có quá nhiều người nhận
         /// </summary>
         [Required(ErrorMessage = "NoticeId không được để trống")]
@@ -25,7 +25,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         [Required(ErrorMessage = "SendFrom không được để trống")]
         public string SendFrom { get; set; }
         /// <summary>
-        /// Nhóm tin nhắnSố hiệu
+        /// Nhóm tin nhắn Số hiệu
         /// </summary>
         [Required(ErrorMessage = "NoticeGroupId không được để trống")]
         public string NoticeGroupId { get; set; }
@@ -41,7 +41,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public int NoticeRange { get; set; }
         /// <summary>
         /// Chủ đề hiển thị 
-        /// Như Bạn có thông báo kiểm soát chất lượng mớiTin nhắn,vui lòng xem ngay
+        /// Như Bạn có thông báo kiểm soát chất lượng mới Tin nhắn,vui lòng xem ngay
         /// </summary>
         public string? Title { get; set; }
         /// <summary>
@@ -50,7 +50,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         /// </summary>
         public string? Content { get; set; }
         /// <summary>
-        /// Dữ liệu liên kết nội dung JsonĐịnh dạng Đối tượng có thể chuyển đổi
+        /// Dữ liệu liên kết nội dung Json Định dạng Đối tượng có thể chuyển đổi
         /// </summary>
         public string? ContentData { get; set; }
         /// <summary>
@@ -84,12 +84,12 @@ namespace NewtouchHIS.Base.Domain.Entity
         /// </summary>
         public string? ExecCron { get; set; }
         /// <summary>
-        /// Tin nhắnTrạng thái NoticeStuEnum
+        /// Tin nhắn Trạng thái NoticeStuEnum
         /// </summary>
         public int NoticeStu { get; set; }
         public int? px { get; set; }
         /// <summary>
-        /// Ứng dụngId
+        /// Ứng dụng Id
         /// </summary>
         public string? AppId { get; set; }     
 

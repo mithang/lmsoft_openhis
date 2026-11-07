@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity.DeptStorageManage
 {
     /// <summary>
-    /// Tồn khoKiểm kêbảng
+    /// Tồn kho Kiểm kêbảng
     /// </summary>
     [SugarTable("dept_pdxx")]
     public class KcPdxxEntity
@@ -19,7 +19,7 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public long Id { get; set; }
 
         /// <summary>
-        /// Tổ chứcId(cócụ thểthểnghiệp vụcủayviện)
+        /// Tổ chức Id(cócụ thểthểnghiệp vụcủayviện)
         /// </summary>
         public string OrganizeId { get; set; }
 

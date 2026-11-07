@@ -1,7 +1,7 @@
 namespace Newtouch.Domain.DTO.InputDto
 {
     /// <summary>
-    /// SửaTồn khotham số
+    /// Sửa Tồn khotham số
     /// </summary>
     public class UpdateKcslDTO
     {
@@ -21,12 +21,12 @@ namespace Newtouch.Domain.DTO.InputDto
         public string ph { get; set; }
 
         /// <summary>
-        /// Mục tiêuKho
+        /// Mục tiêu Kho
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// Đơn vị nhỏ nhấtSố lượng
+        /// Đơn vị nhỏ nhất Số lượng
         /// </summary>
         public int sl { get; set; }
 

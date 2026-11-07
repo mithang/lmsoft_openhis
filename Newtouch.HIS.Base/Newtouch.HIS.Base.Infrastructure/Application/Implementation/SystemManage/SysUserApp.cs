@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Application.Implementation
                     }
 
                     var startTime = DateTime.Now.AddMinutes(-_loginFailedTimesLimit_Minutes);
-                    //LấyMtrong vòng phút mới nhấtN-1bản ghi nhật ký đăng nhập
+                    //Lấy Mtrong vòng phút mới nhấtN-1bản ghi nhật ký đăng nhập
                     var loginLogList = _sysLogRepository.IQueryable().Where(p => p.Type == "Login" && p.Account == username && p.TopOrganizeId == Constants.TopOrganizeId && p.CreateTime > startTime).OrderByDescending(p => p.CreateTime).Take(_loginFailedTimesLimit_Count - 1).Select(p => p.Result).ToList();
                     if (loginLogList.Count == _loginFailedTimesLimit_Count - 1 && !loginLogList.Any(p => p.HasValue && p.Value))  //Nếu làN-1dòng,và không có bản ghi đăng nhập thành công
                     {
@@ -123,7 +123,7 @@ namespace Newtouch.HIS.Application.Implementation
         /// <param name="keyValue"></param>
         public void RevisePassword(string userPassword, string keyValue)
         {
-            var userLogOnEntity = _sysUserLogOnRepository.FindEntity(p => p.UserId == keyValue);    //CóUserId
+            var userLogOnEntity = _sysUserLogOnRepository.FindEntity(p => p.UserId == keyValue);    //Có UserId
 
             if (userLogOnEntity == null)
             {

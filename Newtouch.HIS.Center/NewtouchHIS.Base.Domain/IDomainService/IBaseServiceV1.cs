@@ -59,7 +59,7 @@ namespace NewtouchHIS.Base.Domain
         #region Delete
 
         /// <summary>
-        /// TheoKhóa chínhXóa,và trả về thao tác có thành công hay không
+        /// Theo Khóa chính Xóa,và trả về thao tác có thành công hay không
         /// </summary>
         /// <typeparam name="S">Khóa chínhkiểu</typeparam>
         /// <param name="key">Khóa chính</param>
@@ -68,9 +68,9 @@ namespace NewtouchHIS.Base.Domain
 
 
         /// <summary>
-        /// TheoKhóa chínhXóa,và trả về thao tác có thành công hay không
+        /// Theo Khóa chính Xóa,và trả về thao tác có thành công hay không
         /// </summary>
-        /// <typeparam name="S">Khóa chínhLoại</typeparam>
+        /// <typeparam name="S">Khóa chính Loại</typeparam>
         /// <param name="keys">Khóa chính</param>
         /// <returns></returns>
         public Task<bool> DeleteRange<S>(params S[] keys);
@@ -89,7 +89,7 @@ namespace NewtouchHIS.Base.Domain
         #region Update
 
         /// <summary>
-        /// TheoKhóa chínhCập nhật ,trả về thao tác có thành công hay không
+        /// Theo Khóa chính Cập nhật ,trả về thao tác có thành công hay không
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -97,7 +97,7 @@ namespace NewtouchHIS.Base.Domain
 
 
         /// <summary>
-        /// TheoKhóa chínhCập nhật,trả về thao tác có thành công hay không
+        /// Theo Khóa chính Cập nhật,trả về thao tác có thành công hay không
         /// </summary>
         /// <param name="list">Tập hợp thực thể</param>
         /// <returns></returns>
@@ -113,7 +113,7 @@ namespace NewtouchHIS.Base.Domain
 
 
         /// <summary>
-        /// TheoKhóa chính,Cập nhật cột chỉ định,trả về thao tác có thành công hay không
+        /// Theo Khóa chính,Cập nhật cột chỉ định,trả về thao tác có thành công hay không
         /// </summary>
         /// <param name="model">Đối tượng thực thể</param>
         /// <param name="columns">Cột cần cập nhật</param>
@@ -122,7 +122,7 @@ namespace NewtouchHIS.Base.Domain
 
 
         /// <summary>
-        /// TheoKhóa chính,Cập nhật cột chỉ định,trả về thao tác có thành công hay không
+        /// Theo Khóa chính,Cập nhật cột chỉ định,trả về thao tác có thành công hay không
         /// </summary>
         /// <param name="model">Đối tượng thực thể</param>
         /// <param name="columns">Cột cần cập nhật</param>
@@ -131,7 +131,7 @@ namespace NewtouchHIS.Base.Domain
 
 
         /// <summary>
-        /// TheoKhóa chính , Bỏ qua cập nhật cột chỉ định,trả về thao tác có thành công hay không
+        /// Theo Khóa chính , Bỏ qua cập nhật cột chỉ định,trả về thao tác có thành công hay không
         /// </summary>
         /// <param name="model">Đối tượng thực thể</param>
         /// <param name="columns">không cập nhật Cột bỏ qua</param>
@@ -140,7 +140,7 @@ namespace NewtouchHIS.Base.Domain
 
 
         /// <summary>
-        /// TheoKhóa chính , Bỏ qua cập nhật cột chỉ định,trả về thao tác có thành công hay không
+        /// Theo Khóa chính , Bỏ qua cập nhật cột chỉ định,trả về thao tác có thành công hay không
         /// </summary>
         /// <param name="model">Đối tượng thực thể</param>
         /// <param name="columns">không cập nhật Cột bỏ qua</param>
@@ -148,7 +148,7 @@ namespace NewtouchHIS.Base.Domain
         public Task<bool> UpdateColumnsByIgnoreColumns(T model, Expression<Func<T, object>> columns);
 
         /// <summary>
-        /// TheoKhóa chínhCập nhật Cột
+        /// Theo Khóa chính Cập nhật Cột
         /// </summary>
         /// <param name="model">Đối tượng thực thể</param>
         /// <param name="ignoreAllNullColumns">Có hay không NULL cột không cập nhật</param>
@@ -210,7 +210,7 @@ namespace NewtouchHIS.Base.Domain
 
 
         /// <summary>
-        /// TheoKhóa chínhTruy vấn
+        /// Theo Khóa chính Truy vấn
         /// </summary>
         /// <param name="pkValue">Khóa chính</param>
         /// <returns></returns>
@@ -226,7 +226,7 @@ namespace NewtouchHIS.Base.Domain
 
 
         /// <summary>
-        /// TheoKhóa chính In  Truy vấn
+        /// Theo Khóa chính In  Truy vấn
         /// </summary>
         /// <typeparam name="S">Khóa chínhkiểu</typeparam>
         /// <param name="list">Khóa chính In Tập kết quả của thao tác</param>

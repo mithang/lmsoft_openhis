@@ -39,7 +39,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
         //}
 
         /// <summary>
-        /// lấy trong định tuyếnIntgiá trị
+        /// lấy trong định tuyến Intgiá trị
         /// </summary>
         /// <param name="name"></param>
         /// <param name="dftVal">giá trị mặc định0</param>
@@ -61,7 +61,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
         }
 
         /// <summary>
-        /// lấy trong định tuyếnStringgiá trị
+        /// lấy trong định tuyến Stringgiá trị
         /// </summary>
         /// <param name="name"></param>
         /// <param name="dftVal">giá trị mặc địnhnull</param>

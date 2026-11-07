@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.DTO.InputDto
 {
     /// <summary>
-    /// lãi lỗGửi
+    /// lãi lỗ Gửi
     /// </summary>
     public class LossAndProditSubmitDTO
     {
@@ -33,7 +33,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public string syyyId { get; set; }
 
         /// <summary>
-        /// lãi lỗCờ
+        /// lãi lỗ Cờ
         /// </summary>
         public string sybz { get; set; }
 
@@ -48,7 +48,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public string productId { get; set; }
 
         /// <summary>
-        /// vật tưTên
+        /// vật tư Tên
         /// </summary>
         public string wzmc { get; set; }
 
@@ -68,7 +68,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public decimal Lsjze { get; set; }
 
         /// <summary>
-        /// Đơn vị nhỏ nhấtTên
+        /// Đơn vị nhỏ nhất Tên
         /// </summary>
         public string zxdw { get; set; }
 
@@ -103,12 +103,12 @@ namespace Newtouch.Domain.DTO.InputDto
         public string Zrr { get; set; }
 
         /// <summary>
-        /// Trách nhiệm ngườiTên
+        /// Trách nhiệm người Tên
         /// </summary>
         public string zrrmc { get; set; }
 
         /// <summary>
-        /// còn lạiTồn kho hiệncóTồn kho Đơn vị nhỏ nhất
+        /// còn lại Tồn kho hiệncó Tồn kho Đơn vị nhỏ nhất
         /// </summary>
         public int Sykc { get; set; }
 
@@ -118,12 +118,12 @@ namespace Newtouch.Domain.DTO.InputDto
         public string remark { get; set; }
 
         /// <summary>
-        /// Đơn vị giáôĐơn vị,vàzhyzmộtthẳng
+        /// Đơn vị giáô Đơn vị,vàzhyzmộtthẳng
         /// </summary>
         public string UnitId { get; set; }
 
         /// <summary>
-        /// Số lượng,Khoa phòngĐơn vị
+        /// Số lượng,Khoa phòng Đơn vị
         /// </summary>
         public int bmsl { get; set; }
 
@@ -133,7 +133,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public int zxsl { get; set; }
 
         /// <summary>
-        /// Số lượng,mangĐơn vị  
+        /// Số lượng,mang Đơn vị  
         /// </summary>
         public string slstr { get; set; }
 

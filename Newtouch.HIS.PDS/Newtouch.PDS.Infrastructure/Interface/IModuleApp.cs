@@ -4,7 +4,7 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Application
 {
     /// <summary>
-    /// Thực đơnApp
+    /// Thực đơn App
     /// </summary>
     public interface IModuleApp
     {

@@ -51,7 +51,7 @@ namespace Newtouch.Domain.ValueObjects
         //public short kzbz { get; set; }
 
         /// <summary>
-        /// đãphốithuốcchưaphát(lĩnh)thuốccủaSố lượng
+        /// đãphốithuốcchưaphát(lĩnh)thuốccủa Số lượng
         /// </summary>
         public int djsl { get; set; }
 
@@ -72,12 +72,12 @@ namespace Newtouch.Domain.ValueObjects
         public decimal? jj { get; set; }
 
         /// <summary>
-        /// tương ứngNhà thuốcNhà thuốccủatháokhôngsố
+        /// tương ứng Nhà thuốc Nhà thuốccủatháokhôngsố
         /// </summary>
         public int? zhyz { get; set; }
 
         /// <summary>
-        /// Nơi sản xuấtDanh mục
+        /// Nơi sản xuất Danh mục
         /// </summary>
         public int? cd { get; set; }
 
@@ -87,7 +87,7 @@ namespace Newtouch.Domain.ValueObjects
         public string pc { get; set; }
 
         /// <summary>
-        /// làKhôngđãkhóa  0:chưakhóa ;    1/null:đãkhóa
+        /// là Khôngđãkhóa  0:chưakhóa ;    1/null:đãkhóa
         /// </summary>
         public string locked { get; set; }
 
@@ -149,7 +149,7 @@ namespace Newtouch.Domain.ValueObjects
         public string syzt { get; set; }
 
         /// <summary>
-        /// Kho thuốcTồn kho
+        /// Kho thuốc Tồn kho
         /// </summary>
         public decimal? YkKcsl { get; set; }
 
@@ -159,7 +159,7 @@ namespace Newtouch.Domain.ValueObjects
         public string YkDw { get; set; }
 
         /// <summary>
-        /// Khoa phòngĐơn vị
+        /// Khoa phòng Đơn vị
         /// </summaYkDwry>
         public string deptdw { get; set; }
 
@@ -209,7 +209,7 @@ namespace Newtouch.Domain.ValueObjects
         public string klsl { get; set; }
 
         /// <summary>
-        /// bảnKhoa phòng Thuốc ID XT_YP_BMYPXX Khóa chính
+        /// bản Khoa phòng Thuốc ID XT_YP_BMYPXX Khóa chính
         /// </summary>
         public string bmypId { get; set; }
         /// <summary>

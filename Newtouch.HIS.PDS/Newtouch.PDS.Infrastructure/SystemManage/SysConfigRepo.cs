@@ -133,7 +133,7 @@ namespace Newtouch.HIS.Repository
         {
             if (!string.IsNullOrWhiteSpace(keyValue))
             {
-                //CodeĐánh giá trùng lặp
+                //Code Đánh giá trùng lặp
                 if (IQueryable().Any(p => p.Code == entity.Code && p.Id != keyValue && p.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("Mã không thể trùng lặp");
@@ -143,7 +143,7 @@ namespace Newtouch.HIS.Repository
             }
             else
             {
-                //CodeĐánh giá trùng lặp
+                //Code Đánh giá trùng lặp
                 if (IQueryable().Any(p => p.Code == entity.Code && p.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("Mã không thể trùng lặp");

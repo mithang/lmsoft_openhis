@@ -6,7 +6,7 @@
     public class OutpatientRegistRequest
     {
         /// <summary>
-        /// Khám bệnhSố thẻ
+        /// Khám bệnh Số thẻ
         /// </summary>
         public string? kh { get; set; }
         /// <summary>
@@ -14,7 +14,7 @@
         /// </summary>
         public string? BookId { get; set; }
         /// <summary>
-        /// Lịch trựcId
+        /// Lịch trực Id
         /// </summary>
         public string? ScheduId { get; set; }
         /// <summary>
@@ -41,7 +41,7 @@
     public class OutpRegistQueryRequest
     {
         /// <summary>
-        /// Khám bệnhSố thẻ
+        /// Khám bệnh Số thẻ
         /// </summary>
         public string? kh { get; set; }
         /// <summary>

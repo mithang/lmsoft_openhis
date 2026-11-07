@@ -13,7 +13,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO
         public string code { get; set; }
 
         /// <summary>
-        /// thành công;thất bại(Bổ sungthất bạinguyên nhânMô tả)
+        /// thành công;thất bại(Bổ sungthất bạinguyên nhân Mô tả)
         /// bắt buộc
         /// </summary>
         public string desc  {get; set; }

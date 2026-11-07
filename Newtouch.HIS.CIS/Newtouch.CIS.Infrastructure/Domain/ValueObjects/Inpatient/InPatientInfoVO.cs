@@ -14,7 +14,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// bệnh nhânTính chất
+        /// bệnh nhân Tính chất
         /// </summary>
         public string brxz { get; set; }
         /// <summary>
@@ -22,15 +22,15 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public string ksmc { get; set; }
         /// <summary>
-        /// Nhập việnBác sĩ
+        /// Nhập viện Bác sĩ
         /// </summary>
         public string zyys { get; set; }
         /// <summary>
-        /// chínhđiều trịBác sĩ
+        /// chínhđiều trị Bác sĩ
         /// </summary>
         public string zzys { get; set; }
         /// <summary>
-        /// chínhnhiệmBác sĩ
+        /// chínhnhiệm Bác sĩ
         /// </summary>
         public string zrys { get; set; }
         /// <summary>
@@ -38,7 +38,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public string ryzd { get; set; }
         /// <summary>
-        /// Xuất việnChẩn đoán
+        /// Xuất viện Chẩn đoán
         /// </summary>
         public string cyzd { get; set; }
         /// <summary>
@@ -50,7 +50,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public DateTime? cyrq { get; set; }
         /// <summary>
-        /// ởviệnCờ
+        /// ởviện Cờ
         /// </summary>
         public string zybz { get; set; }
         public List<WMDiagnosisHtmlVO> ryzdList { get; set; }

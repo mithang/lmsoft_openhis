@@ -21,7 +21,7 @@ namespace NewtouchHIS.Base.DomainService
         public async Task<string> AddNoticeGroup(MsgNoticeGroupBasicVO request)
         {
             MsgNoticeGroupVO vo = request.Adapt<MsgNoticeGroupVO>();
-            vo.NewEntity(request.OrganizeId ?? throw new FailedException("Tổ chứcId không được để trống"), request.CreatorCode ?? throw new FailedException("Thông tin người vận hành không được để trống"));
+            vo.NewEntity(request.OrganizeId ?? throw new FailedException("Tổ chức Id không được để trống"), request.CreatorCode ?? throw new FailedException("Thông tin người vận hành không được để trống"));
             vo.Id = string.IsNullOrWhiteSpace(vo.Id) ? Guid.NewGuid().ToString() : vo.Id;
             if (!Enum.IsDefined((GroupYwlxEnum)vo.GroupYwlx))
             {
@@ -55,7 +55,7 @@ namespace NewtouchHIS.Base.DomainService
         {
             if (string.IsNullOrWhiteSpace(request.Id))
             {
-                throw new FailedException("Nhóm tin nhắnId không được để trống");
+                throw new FailedException("Nhóm tin nhắn Id không được để trống");
             }
             var entity = await FindKeyWithAttr<MsgNoticeGroupEntity>(request.Id);
             if (entity == null)
@@ -80,7 +80,7 @@ namespace NewtouchHIS.Base.DomainService
                 }
             }
 
-            entity.ModifiedEntity(request.OrganizeId ?? throw new FailedException("Tổ chứcId không được để trống"), request.LastModifierCode ?? throw new FailedException("Thông tin người vận hành không được để trống"));
+            entity.ModifiedEntity(request.OrganizeId ?? throw new FailedException("Tổ chức Id không được để trống"), request.LastModifierCode ?? throw new FailedException("Thông tin người vận hành không được để trống"));
             entity.GroupYwlx = request.GroupYwlx != null ? (int)request.GroupYwlx : entity.GroupYwlx;
             entity.NoticeRange = request.NoticeRange != null ? (int)request.NoticeRange : entity.NoticeRange;
             entity.GroupDesc = string.IsNullOrWhiteSpace(request.GroupDesc) ? entity.GroupDesc : request.GroupDesc;
@@ -107,7 +107,7 @@ namespace NewtouchHIS.Base.DomainService
             List<string> resultIds = new List<string>();
             if (string.IsNullOrWhiteSpace(request.NoticeGroupId))
             {
-                throw new FailedException("Nhóm tin nhắnId không được để trống");
+                throw new FailedException("Nhóm tin nhắn Id không được để trống");
             }
             var group = await FindKeyWithAttr<MsgNoticeGroupEntity>(request.NoticeGroupId);
             if (group == null || group.zt != "1" || group.OrganizeId != request.OrganizeId)
@@ -119,7 +119,7 @@ namespace NewtouchHIS.Base.DomainService
             request.NoticeId = Guid.NewGuid().ToString().Replace("-", string.Empty);
 
             MsgNoticeQueueVO vo = request.Adapt<MsgNoticeQueueVO>();
-            vo.NewEntity(request.OrganizeId ?? throw new FailedException("Tổ chứcId không được để trống"), request.CreatorCode ?? throw new FailedException("Thông tin người vận hành không được để trống"));
+            vo.NewEntity(request.OrganizeId ?? throw new FailedException("Tổ chức Id không được để trống"), request.CreatorCode ?? throw new FailedException("Thông tin người vận hành không được để trống"));
             vo.Id = string.IsNullOrWhiteSpace(vo.Id) ? Guid.NewGuid().ToString() : vo.Id;
             vo.QueueExecType = vo.QueueExecType == 0 ? (int)MsgQueueExecTypeEnum.Immediately : vo.QueueExecType;
             vo.RecipientType = vo.RecipientType == 0 ? (int)RecipientTypeEnum.user : vo.RecipientType;
@@ -244,7 +244,7 @@ namespace NewtouchHIS.Base.DomainService
         }
 
         /// <summary>
-        /// Cập nhậtTin nhắnTrạng thái xử lý 
+        /// Cập nhật Tin nhắn Trạng thái xử lý 
         /// Mỗi lần xử lý thất bại thì px +1
         /// </summary>
         /// <param name="queueId"></param>
@@ -503,7 +503,7 @@ namespace NewtouchHIS.Base.DomainService
         }
 
         /// <summary>
-        /// LấyTin nhắnDanh sách thông báo
+        /// Lấy Tin nhắn Danh sách thông báo
         /// </summary>
         /// <param name="request"></param>
         /// <param name="AppId"></param>

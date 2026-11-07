@@ -66,7 +66,7 @@ and (ypflCode like @searchKeyword or ypflmc like @searchKeyword or py like @sear
                     throw new FailedException("Tên không được trùng lặp!");
                 }
 
-                SysMedicineClassificationEntity oldEntity = null;   //Trước khi thay đổiEntity
+                SysMedicineClassificationEntity oldEntity = null;   //Trước khi thay đổi Entity
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

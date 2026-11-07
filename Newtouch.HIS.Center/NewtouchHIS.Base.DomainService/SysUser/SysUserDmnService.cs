@@ -10,7 +10,7 @@ namespace NewtouchHIS.Base.DomainService
 {
     /// <summary>
     /// Người dùng hệ thống
-    /// (baseCơ sở dữ liệu)
+    /// (base Cơ sở dữ liệu)
     /// </summary>
     public class SysUserDmnService : BaseDmnService<SysUserEntity>, ISysUserDmnService
     {
@@ -34,7 +34,7 @@ namespace NewtouchHIS.Base.DomainService
             }
             else
             {
-                //Chỉ hiển thị củaTổ chứcngười dùng
+                //Chỉ hiển thị của Tổ chứcngười dùng
                 orgName = orgList.FirstOrDefault(p => p.Id == orgId)?.Name;
                 whereExp.And((a, b, c, d) => c.OrganizeId == orgId && !string.IsNullOrWhiteSpace(c.Id));
 
@@ -174,7 +174,7 @@ namespace NewtouchHIS.Base.DomainService
         #endregion
 
         /// <summary>
-        /// TheoOrganizeIdLấy Nhân viên hệ thống VO(và có tương ứngSysUser)
+        /// Theo OrganizeId Lấy Nhân viên hệ thống VO(và có tương ứng SysUser)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -199,7 +199,7 @@ namespace NewtouchHIS.Base.DomainService
             return staffList;
         }
         /// <summary>
-        /// Lấy thông tin nhân viên TheoTổ chứcvà từ khóa
+        /// Lấy thông tin nhân viên Theo Tổ chứcvà từ khóa
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>

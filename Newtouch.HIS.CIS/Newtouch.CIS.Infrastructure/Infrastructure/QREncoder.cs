@@ -16,12 +16,12 @@ namespace Newtouch.Infrastructure
     public static class QrEncoder
     {
         /// <summary>
-        /// tạoMã QR
+        /// tạo Mã QR
         /// </summary>
         /// <param name="msg">thông tin</param>
         /// <param name="version">bảnbản 1 ~ 40</param>
         /// <param name="pixel">tốtốđiểmlớnnhỏ</param>
-        /// <param name="iconPath">Biểu tượngĐường dẫn (ignored when iconSize is 0)</param>
+        /// <param name="iconPath">Biểu tượng Đường dẫn (ignored when iconSize is 0)</param>
         /// <param name="iconSize">Biểu tượngkích thước</param>
         /// <param name="iconBorder">Độ dày khung bên của biểu tượng</param>
         /// <param name="whiteEdge">Mã QR trắng bên (quiet zone)</param>

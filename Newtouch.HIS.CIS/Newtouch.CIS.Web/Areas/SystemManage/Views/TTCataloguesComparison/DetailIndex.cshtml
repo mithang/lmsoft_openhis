@@ -31,7 +31,7 @@
             {
                 <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
                 <ul class="dropdown-menu pull-right">
-                    <li><a onclick="btn_main()" href="javascript:void()">Phân loạiBảo trì</a></li>
+                    <li><a onclick="btn_main()" href="javascript:void()">Phân loại Bảo trì</a></li>
                 </ul>
             }
         </div>
@@ -47,7 +47,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="Đối chiếuTên/Đối chiếuMã" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Đối chiếu Tên/Đối chiếu Mã" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -78,14 +78,14 @@
                 { label: "Hiệu lực", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
                   { label: "Tên", name: "Name", width: 100, align: 'left' },
                   { label: 'Mã', name: 'Code', width: 100, align: 'left' },
-                  { label: "Bên thứ baTên", name: "TTName", width: 100, align: 'left' },
-                  { label: 'Bên thứ baMã', name: 'TTCode', width: 100, align: 'left' },
+                  { label: "Bên thứ ba Tên", name: "TTName", width: 100, align: 'left' },
+                  { label: 'Bên thứ ba Mã', name: 'TTCode', width: 100, align: 'left' },
                   { label: 'Mô tả', name: 'TTExplain', width: 150, align: 'left' },
                   { label: 'Sắp xếp', name: 'px', width: 40, align: 'left' },
                 { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
                 { label: 'Thời gian tạo', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: 'Cuối cùngSửa', name: 'LastModifierCode', width: 100, align: 'left' },
-                { label: 'Cuối cùngSửaThời gian', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Cuối cùng Sửa', name: 'LastModifierCode', width: 100, align: 'left' },
+                { label: 'Cuối cùng Sửa Thời gian', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
             ],
         });
         $("#btn_search").click(function () {
@@ -110,12 +110,12 @@
         var MainTypeId = $('#MainType').val();
         var MainTypeText = $('#MainType option:selected').html();
         if (!!!MainTypeId || !!!MainTypeText) {
-            $.modalAlert("Vui lòng chọnPhân loại", "error");
+            $.modalAlert("Vui lòng chọn Phân loại", "error");
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "Thêm mớiĐối chiếu",
+            title: "Thêm mới Đối chiếu",
             url: "/SystemManage/TTCataloguesComparison/DetailFrom?MainTypeId=" + MainTypeId + "&MainTypeText=" + MainTypeText,
             width: "550px",
             height: "570px",
@@ -132,7 +132,7 @@
         var MainTypeId = $('#MainType').val();
         var MainTypeText = $('#MainType option:selected').html();
         if (!!!MainTypeId || !!!MainTypeText) {
-            $.modalAlert("Vui lòng chọnPhân loại", "error");
+            $.modalAlert("Vui lòng chọn Phân loại", "error");
             return;
         }
         var keyValue = $("#gridList").jqGridRowValue().Id;
@@ -142,7 +142,7 @@
         }
         $.modalOpen({
             id: "Form",
-            title: "SửaĐối chiếu",
+            title: "Sửa Đối chiếu",
             url: "/SystemManage/TTCataloguesComparison/DetailFrom?MainTypeId=" + MainTypeId + "&MainTypeText=" + MainTypeText + "&keyValue=" + keyValue,
             width: "550px",
             height: "570px",
@@ -175,7 +175,7 @@
     function btn_main() {
         $.modalOpen({
             id: "MAIN",
-            title: "Phân loạiBảo trì",
+            title: "Phân loại Bảo trì",
             url: "/SystemManage/TTCataloguesComparison/MainIndex",
             width: "900px",
             height: "500px",

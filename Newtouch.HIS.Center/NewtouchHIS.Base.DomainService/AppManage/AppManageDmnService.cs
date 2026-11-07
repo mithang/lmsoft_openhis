@@ -43,7 +43,7 @@ namespace NewtouchHIS.Base.DomainService
         }
         /// <summary>
         /// Thông tin ủy quyền bạn bè của ứng dụng AppId Xin cấp quyền 
-        /// Tìm Friend quan hệ bạn bè của ứng dụng có chứa hay khôngAppId
+        /// Tìm Friend quan hệ bạn bè của ứng dụng có chứa hay không AppId
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -98,7 +98,7 @@ namespace NewtouchHIS.Base.DomainService
             var existsApp = await GetByWhere(p => (p.AuthId == authApp.AuthId || p.AppName == authApp.AppName) && p.zt == "1");
             if (existsApp != null && existsApp!.Count > 0)
             {
-                throw new FailedException(existsApp.FirstOrDefault()!.AppId == authApp.AppId ? "Ứng dụngIdđã được đăng ký,Vui lòng đổiId" : "Tên ứng dụng đã được đăng ký,Vui lòng đổi");
+                throw new FailedException(existsApp.FirstOrDefault()!.AppId == authApp.AppId ? "Ứng dụng Idđã được đăng ký,Vui lòng đổi Id" : "Tên ứng dụng đã được đăng ký,Vui lòng đổi");
             }
             if (authApp.AuthType > 0 && string.IsNullOrWhiteSpace(Enum.GetName(typeof(AuthTypeEnum), authApp.AuthType)))
             {
@@ -127,7 +127,7 @@ namespace NewtouchHIS.Base.DomainService
         {
             if (authapp == null || string.IsNullOrWhiteSpace(authapp.AuthId))
             {
-                throw new FailedException("Vui lòng truyền quyền hệ thốngId");
+                throw new FailedException("Vui lòng truyền quyền hệ thống Id");
             }
             bool result = false;
             var ety = await GetByWhere(p => p.AuthId == authapp.AuthId && p.zt == "1");

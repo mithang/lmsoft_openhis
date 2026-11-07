@@ -33,7 +33,7 @@ namespace Newtouch.Domain.Entity
         public string mbmc { get; set; }
 
         /// <summary>
-        /// tương ứng jyjc_dl khôngNhóm thu phí lớn
+        /// tương ứng jyjc_dl không Nhóm thu phí lớn
         /// </summary>
         public string dlCode { get; set; }
 

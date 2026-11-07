@@ -15,7 +15,7 @@ namespace NewtouchHIS.Base.Domain
         public string? AuthId { get; set; }
 
         /// <summary>
-        /// Desc:Dùng chung cho ứng dụngId
+        /// Desc:Dùng chung cho ứng dụng Id
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -33,11 +33,11 @@ namespace NewtouchHIS.Base.Domain
 
     }
     /// <summary>
-    /// Đăng kýToken key
+    /// Đăng ký Token key
     /// App to Friend
     /// </summary>
     public class AppFriendAuthKeyRequest {
-        [Required(ErrorMessage = "Xin cấp quyềnAppId không được để trống")]
+        [Required(ErrorMessage = "Xin cấp quyền AppId không được để trống")]
         public string AppId { get; set; }
         public string? FriendAppId { get; set; }
     }

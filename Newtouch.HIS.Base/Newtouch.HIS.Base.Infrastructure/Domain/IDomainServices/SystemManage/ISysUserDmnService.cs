@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// Liên quan người dùngDmnService
+    /// Liên quan người dùng DmnService
     /// </summary>
     public interface ISysUserDmnService
     {
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<SysUserVO> GetPagintionList(Pagination pagination, string OrganizeId, string keyword = null);
 
         /// <summary>
-        /// Theo hệ thống(Đăng nhập)Người dùngId Lấy Nhân viên hệ thống
+        /// Theo hệ thống(Đăng nhập)Người dùng Id Lấy Nhân viên hệ thống
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -56,14 +56,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void CreateUser(SysUserEntity userEntity, SysUserLogOnEntity userLogOnEntity);
 
         /// <summary>
-        /// TheoUserIdLấy danh sách nhân viên hệ thống liên kết
+        /// Theo UserId Lấy danh sách nhân viên hệ thống liên kết
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         IList<SysStaffEntity> GetStaffListByUserId(string userId);
 
         /// <summary>
-        /// TheoOrganizeIdLấy Nhân viên hệ thống VO(và có tương ứngSysUser)
+        /// Theo OrganizeId Lấy Nhân viên hệ thống VO(và có tương ứng SysUser)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string GetLanguageTypeByUserId(string userId);
 
         /// <summary>
-        /// Theo nhân viênIdLấy tất cả vị trí
+        /// Theo nhân viên Id Lấy tất cả vị trí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="StaffId"></param>

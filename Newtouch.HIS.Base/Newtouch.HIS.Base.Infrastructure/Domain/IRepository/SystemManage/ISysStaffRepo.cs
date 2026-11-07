@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<SysStaffEntity> GetsatffListByOrg(string OrganizeId);
 
         /// <summary>
-        /// Lấy nhân viên quản lýIdDanh sách TheoUserId
+        /// Lấy nhân viên quản lý Id Danh sách TheoUserId
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>

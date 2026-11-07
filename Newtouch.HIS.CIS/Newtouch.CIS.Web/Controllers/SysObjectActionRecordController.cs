@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.CIS.Web.Controllers
 {
     /// <summary>
-    /// Chungđối tượngThao tácghi chép
+    /// Chungđối tượng Thao tácghi chép
     /// </summary>
     public class SysObjectActionRecordController : OrgControllerBase
     {
@@ -27,7 +27,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// ThêmThao tácghi chép
+        /// Thêm Thao tácghi chép
         /// </summary>
         /// <returns></returns>
         public IActionResult Add(SysObjectActionRecordEntity entity)

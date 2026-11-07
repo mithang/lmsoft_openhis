@@ -40,7 +40,7 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         /// <returns></returns>
         public int? dbcs { get; set; }
         /// <summary>
-        /// từ điểnkhôngkhuphútOrg
+        /// từ điểnkhôngkhuphút Org
         /// </summary>
         /// <returns></returns>
         public string dbcsbz { get; set; }
@@ -100,7 +100,7 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         /// <returns></returns>
         public decimal? tw { get; set; }
         /// <summary>
-        /// Nhiệt độđolượngMô tả miệngnhiệt Nhiệt độ nách Nhiệt độ hậu môn
+        /// Nhiệt độđolượng Mô tả miệngnhiệt Nhiệt độ nách Nhiệt độ hậu môn
         /// </summary>
         /// <returns></returns>
         public int? twclfs { get; set; }
@@ -110,7 +110,7 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         /// <returns></returns>
         public decimal? tz { get; set; }
         /// <summary>
-        /// từ điểnkhôngkhuphútOrg
+        /// từ điểnkhôngkhuphút Org
         /// </summary>
         /// <returns></returns>
         public string tzclbz { get; set; }
@@ -135,7 +135,7 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         /// <returns></returns>
         public int? xybhd { get; set; }
         /// <summary>
-        /// từ điểnkhôngkhuphútOrg
+        /// từ điểnkhôngkhuphút Org
         /// </summary>
         /// <returns></returns>
         public string xyfs { get; set; }

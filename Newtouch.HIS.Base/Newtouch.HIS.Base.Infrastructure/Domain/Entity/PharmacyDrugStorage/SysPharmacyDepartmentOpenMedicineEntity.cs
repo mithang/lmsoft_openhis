@@ -12,7 +12,7 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysPharmacyDepartmentOpenMedicineEntity : EntityBase
     {
         /// <summary>
-        /// Khóa chínhId
+        /// Khóa chính Id
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string dlCode { get; set; }
 
         /// <summary>
-        /// Tổ chứcId
+        /// Tổ chức Id
         /// </summary>
         public string OrganizeId { get; set; }
 

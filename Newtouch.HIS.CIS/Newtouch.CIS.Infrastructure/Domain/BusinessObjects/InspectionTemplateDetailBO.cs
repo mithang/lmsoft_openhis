@@ -12,7 +12,7 @@ namespace Newtouch.Domain.BusinessObjects
         public InspectionTemplateVO mbEntity { get; set; }
 
         /// <summary>
-        /// mẫuBộ mẫu
+        /// mẫu Bộ mẫu
         /// </summary>
         public List<GroupPackageEntity> mbztList { get; set; }
     }

@@ -315,7 +315,7 @@ namespace Newtouch.MRMS.Web.Areas.MRHomePage.Controllers
         }
 
 
-        //------------------Lưu trữNút
+        //------------------Lưu trữ Nút
         public IActionResult guidang(string dataId,string ZYH,string XM) {
            var data= _MrbasyRepo.Updatebazt(dataId,ZYH,XM);
             return Content(data.ToJson());

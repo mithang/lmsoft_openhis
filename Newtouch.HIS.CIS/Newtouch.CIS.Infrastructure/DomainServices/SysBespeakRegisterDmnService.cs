@@ -96,7 +96,7 @@ AND br.zt='1'
         }
 
         /// <summary>
-        /// TheoKhoavàXếp lịchNgàyLấyHệ thốngđặt hẹnXếp lịch
+        /// Theo Khoavà Xếp lịch Ngày Lấy Hệ thốngđặt hẹn Xếp lịch
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="regDate"></param>
@@ -122,7 +122,7 @@ AND br.regDate=@regDate
         }
 
         /// <summary>
-        /// TheoKhoaLấyHệ thốngđặt hẹnXếp lịch
+        /// Theo Khoa Lấy Hệ thốngđặt hẹn Xếp lịch
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="organizeId"></param>

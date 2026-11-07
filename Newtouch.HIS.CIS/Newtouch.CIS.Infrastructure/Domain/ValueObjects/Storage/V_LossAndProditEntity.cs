@@ -12,7 +12,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
     public class VLossAndProditEntity
     {
         /// <summary>
-        /// lãi lỗCờ
+        /// lãi lỗ Cờ
         /// </summary>
         public string sybz { get; set; }
 
@@ -32,7 +32,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string productId { get; set; }
 
         /// <summary>
-        /// vật tưTên
+        /// vật tư Tên
         /// </summary>
         public string wzmc { get; set; }
 
@@ -42,7 +42,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public decimal jj { get; set; }
 
         /// <summary>
-        /// báo cáoThời gian
+        /// báo cáo Thời gian
         /// </summary>
         public DateTime Bgsj { get; set; }
 
@@ -57,7 +57,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string gg { get; set; }
 
         /// <summary>
-        /// Nơi sản xuấtTên
+        /// Nơi sản xuất Tên
         /// </summary>
         public string cd { get; set; }
 
@@ -77,7 +77,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string Zrr { get; set; }
 
         /// <summary>
-        /// lãi lỗSố lượng(mangĐơn vị)
+        /// lãi lỗ Số lượng(mang Đơn vị)
         /// </summary>
         public string syslStr { get; set; }
 

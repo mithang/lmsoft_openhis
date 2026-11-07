@@ -38,7 +38,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         #region bệnh nhân Thu phíThuật toán
 
         /// <summary>
-        /// đượclấybệnhngườithuphíThuật toángridGiá trị
+        /// đượclấybệnhngườithuphí Thuật toángrid Giá trị
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -96,7 +96,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 
         /// <summary>
         /// bệnhngườitínhchấtdướikéokhung 
-        /// bệnhngườithuphíThuật toánbệnhngườitínhchấtdướikéokhungđãkhônglạikhiếndùng,
+        /// bệnhngườithuphí Thuật toánbệnhngườitínhchấtdướikéokhungđãkhônglạikhiếndùng,
         /// nàyphươngphương pháptạithuphígiảmmiễnnơicũngkhiếndùngđến,nhưkết quảgiảmmiễnsửasửarồibệnhngườitínhchấtmở rộnghiệnphươngkiểu,khônglạikhiếndùngnàyphươngphương pháp,vui lòngghiđượcxóatrừ
         /// </summary>
         /// <returns></returns>

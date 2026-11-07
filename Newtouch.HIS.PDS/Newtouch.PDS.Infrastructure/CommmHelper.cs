@@ -51,7 +51,7 @@ namespace Newtouch.Infrastructure
         /// <returns></returns>
         public static string GetLocalFilePath(string path,string filepaths)
         {
-            // Linux port: original built a Windows drive path (e.g. D:\ExcelXuất\...).
+            // Linux port: original built a Windows drive path (e.g. D:\Excel Xuất\...).
             // Map to a temp-dir path instead so File() downloads work on Linux.
             var clean = (path ?? "").Replace('\\', '/').Trim('/');
             var full = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "pds-export", clean);

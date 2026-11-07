@@ -6,12 +6,12 @@ namespace Newtouch.Domain.DTO
     public class IntegrateRcDto
     {
         /// <summary>
-        /// Bác sĩTài khoản
+        /// Bác sĩ Tài khoản
         /// </summary>
         public string doctorId { get; set; }
 
         /// <summary>
-        /// Bác sĩHọ tên
+        /// Bác sĩ Họ tên
         /// </summary>
         public string doctorName { get; set; }
 
@@ -26,7 +26,7 @@ namespace Newtouch.Domain.DTO
         public string patientName { get; set; }
 
         /// <summary>
-        /// Bệnh nhânSố điện thoại
+        /// Bệnh nhân Số điện thoại
         /// </summary>
         public string mobile { get; set; }
 
@@ -36,27 +36,27 @@ namespace Newtouch.Domain.DTO
         public string certid { get; set; }
 
         /// <summary>
-        /// Bệnh nhânGiới tính: 1 Nam 2 Nữ
+        /// Bệnh nhân Giới tính: 1 Nam 2 Nữ
         /// </summary>
         public string gender { get; set; }
 
         /// <summary>
-        /// Bệnh nhânNgày sinh
+        /// Bệnh nhân Ngày sinh
         /// </summary>
         public string birthday { get; set; }
 
         /// <summary>
-        /// Bệnh nhânLoại: 1 tự chi trả 2 Bảo hiểm y tế
+        /// Bệnh nhân Loại: 1 tự chi trả 2 Bảo hiểm y tế
         /// </summary>
         public string patientType { get; set; }
 
         /// <summary>
-        /// Bảo hiểm y tếthẻSố thẻhoặcKhám bệnhthẻSố thẻ
+        /// Bảo hiểm y tếthẻ Số thẻhoặc Khám bệnhthẻSố thẻ
         /// </summary>
         public string series { get; set; }
 
         /// <summary>
-        /// Cơ sởMã
+        /// Cơ sở Mã
         /// </summary>
         public string organCode { get; set; }
     }

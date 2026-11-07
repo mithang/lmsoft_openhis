@@ -7,13 +7,13 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.RCIntegrateRequest
     public class RCIntegrateRequestEntity
     {
         /// <summary>
-        /// bìnhbànNgười dùngduy nhấtmột:Bác sĩĐăng nhậpHệ thốngcủaNgười dùngtên
+        /// bìnhbàn Người dùngduy nhấtmột:Bác sĩ Đăng nhập Hệ thốngcủa Người dùngtên
         /// bắt buộc
         /// </summary>
         public string openid { get; set; }
 
         /// <summary>
-        /// Người dùngTên
+        /// Người dùng Tên
         /// bắt buộc
         /// </summary>
         public string userName { get; set; }
@@ -25,18 +25,18 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.RCIntegrateRequest
         public string patientId { get; set; }
 
         /// <summary>
-        /// bệnh nhânKhám bệnhdòngchảysố
+        /// bệnh nhân Khám bệnhdòngchảysố
         /// </summary>
         public string series { get; set; }
 
         /// <summary>
-        /// bệnh nhânHọ tên
+        /// bệnh nhân Họ tên
         /// bắt buộc
         /// </summary>
         public string patientName { get; set; }
 
         /// <summary>
-        /// bệnh nhânSố điện thoại
+        /// bệnh nhân Số điện thoại
         /// </summary>
         public string mobile { get; set; }
 
@@ -59,18 +59,18 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.RCIntegrateRequest
         public string birthday { get; set; }
 
         /// <summary>
-        /// Bảo hiểm y tếLoại 1 tự chi trả 2 Bảo hiểm y tế
+        /// Bảo hiểm y tế Loại 1 tự chi trả 2 Bảo hiểm y tế
         /// bắt buộc
         /// </summary>
         public string patientType { get; set; }
 
         /// <summary>
-        /// Bảo hiểm y tếthẻSố thẻhoặcKhám bệnhthẻSố thẻ
+        /// Bảo hiểm y tếthẻ Số thẻhoặc Khám bệnhthẻSố thẻ
         /// </summary>
         public string cardId { get; set; }
 
         /// <summary>
-        /// Cơ sởMã
+        /// Cơ sở Mã
         /// bắt buộc
         /// </summary>
         public string organCode { get; set; }
@@ -82,7 +82,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.RCIntegrateRequest
         public string m { get; set; }
 
         /// <summary>
-        /// gọi pc đầuchỉđịnhmẫukhốicủanào đócáiPhương pháp:/eh.bus.web.cloud.wizard.Wizard
+        /// gọi pc đầuchỉđịnhmẫukhốicủanào đócái Phương pháp:/eh.bus.web.cloud.wizard.Wizard
         /// bắt buộc
         /// </summary>
         public string clz { get; set; }

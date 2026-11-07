@@ -6,7 +6,7 @@
     public abstract class Identity
     {
         /// <summary>
-        /// ứng dụngId
+        /// ứng dụng Id
         /// </summary>
         public string? AppId { get; set; }
 
@@ -17,7 +17,7 @@
         public string? Token { get; set; }
 
         /// <summary>
-        /// người dùngId
+        /// người dùng Id
         /// </summary>
         public string? UserId { get; set; }
 

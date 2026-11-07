@@ -99,12 +99,12 @@
         ybjyFeeReturn = ybjyFeeReturn.xxnr;
 		if (!!ybjyFeeReturn) {
 		    var xjzfje = 0.000;//Số tiền thanh toán tiền mặt BHYT
-		    var zfxjzf = 0.000;//khôngThanh toán tiền mặt BHYT Số tiền
+		    var zfxjzf = 0.000;//không Thanh toán tiền mặt BHYT Số tiền
 		    var yjs = 0.000;//Số dư tài khoản sautạm ứng
 		    //Số tiền thanh toán tiền mặt BHYT
 		    xjzfje = ovpraseFloat(ybjyFeeReturn.qfdxjzfs) + ovpraseFloat(ybjyFeeReturn.tcdxjzfs)
                 + ovpraseFloat(ybjyFeeReturn.fjdxjzfs);
-		    //không BHYT Tiền mặtSố tiền
+		    //không BHYT Tiền mặt Số tiền
 		    zfxjzf = ovpraseFloat(hisfyze) -
 				ovpraseFloat(ybjyFeeReturn.ybjsfwfyze);
 		    //Tính thanh toán tiền mặt
@@ -119,7 +119,7 @@
 
 		    !!hisfyze && $('#ZFY').html(ovpraseFloat(hisfyze).toFixed(2));
 		    !!ybjyFeeReturn.calc_xjzf && $('#XJZF').html(ovpraseFloat(ybjyFeeReturn.calc_xjzf).toFixed(2));//Tổng thanh toán tiền mặt
-		    !!zfxjzf && $('#ZFJF').html(zfxjzf.toFixed(2));//khôngThanh toán tiền mặt BHYT
+		    !!zfxjzf && $('#ZFJF').html(zfxjzf.toFixed(2));//không Thanh toán tiền mặt BHYT
 		    !!xjzfje && $('#YBJF').html(xjzfje.toFixed(2));//Thanh toán tiền mặt BHYT
 
 		    !!ybjyFeeReturn.curaccountpay && $('#curaccountpay').html(ovpraseFloat(ybjyFeeReturn.curaccountpay).toFixed(2));

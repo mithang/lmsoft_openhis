@@ -12,16 +12,16 @@ namespace NewtouchHIS.Base.Domain.Entity
     public class SysUserLoginLog
     {
         /// <summary>
-        /// Nhật kýKhóa chính
+        /// Nhật ký Khóa chính
         /// </summary>
         /// <returns></returns>
         public string Id { get; set; }
         /// <summary>
-        /// Cấp cao nhấtTổ chứcId(có thể xác định duy nhấtAccount)
+        /// Cấp cao nhất Tổ chức Id(có thể xác định duy nhất Account)
         /// </summary>
         public string TopOrganizeId { get; set; }
         /// <summary>
-        /// Y tếTổ chức
+        /// Y tế Tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
@@ -55,7 +55,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         /// <returns></returns>
         public string? IPAddressName { get; set; }
         /// <summary>
-        /// Mô-đun hệ thốngId
+        /// Mô-đun hệ thống Id
         /// </summary>
         /// <returns></returns>
         public string? ModuleId { get; set; }

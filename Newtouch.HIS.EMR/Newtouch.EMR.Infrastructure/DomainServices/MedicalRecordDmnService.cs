@@ -60,7 +60,7 @@ namespace Newtouch.EMR.DomainServices
         ///Khóa/Mở khóa chỉnh sửa bệnh án
         /// </summary>
         /// <param name="blId"></param>
-        /// <param name="blgxId">Quan hệ bệnh ánId</param>
+        /// <param name="blgxId">Quan hệ bệnh án Id</param>
         /// <param name="OrgId"></param>
         /// <param name="user"></param>
         public void LockRecord(string blid, string bllx, string OrganizeId, string UserCode, int isLock)

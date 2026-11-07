@@ -66,7 +66,7 @@
                     </div>
                     <div class="btn-group">
                         <a id="btn_input" class="btn btn-primary" onclick="InputResult()" style="width:80px;">
-                            <i class="fa fa-pencil-square-o"></i>Test daThực hiện
+                            <i class="fa fa-pencil-square-o"></i>Test da Thực hiện
                         </a>
                     </div>
                     @*<div class="btn-group">
@@ -106,7 +106,7 @@
         gridList("");
         //gridListYl("", "1");
 
-        //tìm kiếmThông tin bệnh nhân
+        //tìm kiếm Thông tin bệnh nhân
         $('#keyword').keyup(function () {
             getBqTreeList();
         });
@@ -142,9 +142,9 @@
         var patjzid = "";
         var patzyhItem = "";
 
-        //hiện tạiĐã chọnNút cha
+        //hiện tại Đã chọn Nút cha
         var len = 0;
-        var single = 0; //CóKhôngphiếucáicontiếtđiểm
+        var single = 0; //Có Khôngphiếucáicontiếtđiểm
 
         if (item != null && item.Ex1 == "p") {
             patlistFath = item.ChildNodes;
@@ -196,7 +196,7 @@
         }).trigger("reloadGrid");
 
     }
-    //liên cấpĐã chọntất cảcontiếtđiểm
+    //liên cấp Đã chọntất cảcontiếtđiểm
     function checkAllSon(node) {
         $('#BqTreeList').treeview('checkNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -206,7 +206,7 @@
         }
     }
 
-    //liên cấpHủytất cảcontiếtđiểm
+    //liên cấp Hủytất cảcontiếtđiểm
     function uncheckAllSon(node) {
         $('#BqTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -226,14 +226,14 @@
             shrinkToFit: true,   //true:theo tỷ lệ VD khởi tạo độ rộng cột false:Sử dụngcolModelđộ rộng đã chỉ định
             autowidth: true,
             colModel: [
-                { label: 'Đơn thuốcChi tiết ID', name: 'cfmxId', align: 'center', hidden: true, width: 50,  key: true },
+                { label: 'Đơn thuốc Chi tiết ID', name: 'cfmxId', align: 'center', hidden: true, width: 50,  key: true },
                 { label: 'mzh', name: 'mzh', align: 'center', hidden: true },
                 { label: 'blh', name: 'blh', align: 'center', hidden: true },
                 { label: 'Tên bệnh nhân', name: 'xm', align: 'center', width: 80 },
-                { label: 'Test daMục', name: 'ypmc', align: 'left', width: 150 },
-                { label: 'Đơn thuốcSố nhóm', name: 'zh', align: 'center', width: 70, formatter: function (val) { if (val != null) return val; else return ""; } },
+                { label: 'Test da Mục', name: 'ypmc', align: 'left', width: 150 },
+                { label: 'Đơn thuốc Số nhóm', name: 'zh', align: 'center', width: 70, formatter: function (val) { if (val != null) return val; else return ""; } },
                 { label: 'Thời gian bắt đầu', name: 'kssj', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
-                //{ label: 'kếtnếuGiá trị', name: 'lrjg', align: 'center', width: 100, },
+                //{ label: 'kếtnếu Giá trị', name: 'lrjg', align: 'center', width: 100, },
                 { label: 'Nội dung y lệnh', name: 'cfmxnr', align: 'center', width: 230},
                 { label: 'ypcode', name: 'ypcode', align: 'center', hidden: true },
                 { label: 'sex', name: 'sex', align: 'center', hidden: true }
@@ -248,7 +248,7 @@
         });
     }
 
-    //Test daThực hiện
+    //Test da Thực hiện
     function InputResult() {
         var selRowIds = jQuery("#gridList").jqGrid("getGridParam", "selarrrow");
         if (selRowIds.length == 0) {
@@ -267,7 +267,7 @@
         }
         $.modalOpen({
             id: "InpatientVitalSignsForm",
-            title: "Test daNhập",
+            title: "Test da Nhập",
             url: "/NurseManage/OrderAudit/Inputresults",
             width: "400px",
             height: "200px",
@@ -283,7 +283,7 @@
                         success: function (data) {
                             RefreshOrder();
                             if (!!data && data.state == "success") {
-                                $.modalMsg('Test daThực hiệnthành công', 'success');
+                                $.modalMsg('Test da Thực hiệnthành công', 'success');
                             }
                             else if (!!data && data.state == "error") {
                                 $.modalMsg(data.message, 'error');

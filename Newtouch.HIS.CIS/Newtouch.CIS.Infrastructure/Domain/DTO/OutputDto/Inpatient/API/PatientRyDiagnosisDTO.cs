@@ -3,12 +3,12 @@ using System;
 namespace Newtouch.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// Bệnh nhânChẩn đoán nhập viện
+    /// Bệnh nhân Chẩn đoán nhập viện
     /// </summary>
     public class PatientRyDiagnosisDto
     {
         /// <summary>
-        /// Nhập việnnhiềuChẩn đoán ID
+        /// Nhập việnnhiều Chẩn đoán ID
         /// </summary>
         public string rydzdId { get; set; }
         
@@ -18,7 +18,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string zyh { get; set; }
 
         /// <summary>
-        /// Chẩn đoánMã
+        /// Chẩn đoán Mã
         /// </summary>
         public string zdCode { get; set; }
 
@@ -33,12 +33,12 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string zdmc { get; set; }
 
         /// <summary>
-        /// Chẩn đoánThứ tự   1:Chẩn đoán1 2:Chẩn đoán2  3:Chẩn đoán3
+        /// Chẩn đoán Thứ tự   1:Chẩn đoán1 2:Chẩn đoán2  3:Chẩn đoán3
         /// </summary>
         public string zdpx { get; set; }
 
         /// <summary>
-        /// Tổ chứcId(cócụ thểthểnghiệp vụcủayviện)
+        /// Tổ chức Id(cócụ thểthểnghiệp vụcủayviện)
         /// </summary>
         public string OrganizeId { get; set; }
         
@@ -48,12 +48,12 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// tạoNgày
+        /// tạo Ngày
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// SửaNgày
+        /// Sửa Ngày
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 

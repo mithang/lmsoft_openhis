@@ -13,7 +13,7 @@ namespace NewtouchHIS.Domain.IDomainService.PatientCenter
     public interface IPatientInfoDmnService:IScopedDependency
     {
         /// <summary>
-        /// Bệnh nhânTruy vấn thông tin cơ bản(Cơ sở)
+        /// Bệnh nhân Truy vấn thông tin cơ bản(Cơ sở)
         /// </summary>
         /// <param name="patIndex"></param>
         /// <param name="brxz">Ưu tiên lấy thông tin loại thẻ</param>
@@ -27,7 +27,7 @@ namespace NewtouchHIS.Domain.IDomainService.PatientCenter
         /// <returns></returns>
         Task<SysPatInfoVO> GetPatientbyPatid(int patid, string orgId);
         /// <summary>
-        /// Truy vấnBệnh nhânThông tin thẻ khám List
+        /// Truy vấn Bệnh nhân Thông tin thẻ khám List
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="orgId"></param>

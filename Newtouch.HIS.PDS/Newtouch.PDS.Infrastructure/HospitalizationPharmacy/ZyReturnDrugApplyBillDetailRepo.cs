@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Repository
         public ZyReturnDrugApplyBillDetailRepo(FrameworkBase.MultiOrg.Infrastructure.IDefaultDatabaseFactory databaseFactory) : base(databaseFactory) { }
         
         /// <summary>
-        /// Theo đơn xin trả thuốcIdLấy chi tiết đơn xin trả thuốc
+        /// Theo đơn xin trả thuốc Id Lấy chi tiết đơn xin trả thuốc
         /// </summary>
         /// <param name="rabId"></param>
         /// <returns></returns>

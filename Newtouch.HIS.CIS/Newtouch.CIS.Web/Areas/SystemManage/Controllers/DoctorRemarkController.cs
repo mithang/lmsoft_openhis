@@ -82,7 +82,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Hệ thốngDặn dò lớp nổi
+        /// Hệ thống Dặn dò lớp nổi
         /// </summary>
         /// <returns></returns>
 

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace Newtouch.Repository.Outpatient
 {
     /// <summary>
-    /// truyền dịchThực hiệnthông tin
+    /// truyền dịch Thực hiệnthông tin
     /// </summary>
     public class MzsyzxxxRepo : RepositoryBase<MzsyzxxxEntity>, IMzsyzxxxRepo
     {
@@ -18,7 +18,7 @@ namespace Newtouch.Repository.Outpatient
         }
 
         /// <summary>
-        /// GửiThực hiện
+        /// Gửi Thực hiện
         /// </summary>
         /// <param name="syIds"></param>
         /// <param name="zt"></param>
@@ -60,7 +60,7 @@ namespace Newtouch.Repository.Outpatient
                     successCount += Insert(entity);
                // }
             });
-            return successCount != syIds.Count ? "một phầnThực hiệnthất bại" : "";
+            return successCount != syIds.Count ? "một phần Thực hiệnthất bại" : "";
         }
 
         public string CanCelExec(List<string> syIds, string OrganizeId)
@@ -77,7 +77,7 @@ namespace Newtouch.Repository.Outpatient
                     successCount += Update(entity);
                 }
             });
-            return successCount != syIds.Count ? "một phầnHủyThực hiệnthất bại" : "";
+            return successCount != syIds.Count ? "một phần Hủy Thực hiệnthất bại" : "";
         }
 
     }

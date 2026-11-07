@@ -61,7 +61,7 @@ namespace NewtouchHIS.Lib.Base.Model
         /// </summary>
         public string? Domain { get; set; }
         /// <summary>
-        /// hệ thốngId
+        /// hệ thống Id
         /// </summary>
         public string AppId { get; set; }
         /// <summary>

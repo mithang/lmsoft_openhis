@@ -1,7 +1,7 @@
 namespace Newtouch.Domain.ViewModels
 {
     /// <summary>
-    /// Ngoại trútruyền dịchThông tin bệnh nhân
+    /// Ngoại trútruyền dịch Thông tin bệnh nhân
     /// </summary>
     public class MzsyhzxxVO
     {

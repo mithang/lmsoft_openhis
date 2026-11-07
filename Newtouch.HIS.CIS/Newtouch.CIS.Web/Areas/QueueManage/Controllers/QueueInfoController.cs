@@ -74,7 +74,7 @@ namespace Newtouch.CIS.Web.Areas.QueueManage.Controllers
             return true;
         }
         /// <summary>
-        /// xếpđộiTrạng tháiSửa
+        /// xếpđội Trạng thái Sửa
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="calledstu"></param>

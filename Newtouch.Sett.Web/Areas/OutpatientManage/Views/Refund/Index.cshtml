@@ -142,7 +142,7 @@
         //xóa
         newtouch_event_f4();
 
-        $("#brlx").html("<font color='red'>TạmKhông cóthông tin</font>");
+        $("#brlx").html("<font color='red'>Tạm Không cóthông tin</font>");
         gridListTuifei([]); //danh sách hoàn phí
 
 
@@ -162,7 +162,7 @@
 
     //xóa hóa đơnbác sĩthông tin
     function clearFPYSInfo() {
-        $("#brlx").html("<font color='red'>TạmKhông cóthông tin</font>");
+        $("#brlx").html("<font color='red'>Tạm Không cóthông tin</font>");
         $("#ghks").html("");
         $("#ys").html("");
         $("#fph").html("");
@@ -258,7 +258,7 @@
             height: 180,
             autowidth: false,
             width: $("#tabGrid").width() - 2,
-            caption: "Hoàn phíDanh sách",
+            caption: "Hoàn phí Danh sách",
             colModel: [
                     { label: 'id', name: 'id', hidden: true },
                     { label: 'CF_MXNM', name: 'CF_MXNM', hidden: true },
@@ -350,7 +350,7 @@
         if (flag) {
             var kh = $("#kh").val();
             var refundData = JSON.stringify(tuifei).toString();
-            $.modalConfirm("Bạn có chắc muốnHoàn phíkhông？", function (flag) {
+            $.modalConfirm("Bạn có chắc muốn Hoàn phíkhông？", function (flag) {
                 if (flag) {
                     $.loading(true, "Đang yêu cầu dữ liệu...");
 
@@ -383,7 +383,7 @@
                             }
                         });
                     } else {
-                        $.modalAlert("Dữ liệu chưa đầy đủ,Vui lòng kiểm traSố thẻhoặc liên hệ quản trị viên！", "error");
+                        $.modalAlert("Dữ liệu chưa đầy đủ,Vui lòng kiểm tra Số thẻhoặc liên hệ quản trị viên！", "error");
                     }
                 }
             }, false);

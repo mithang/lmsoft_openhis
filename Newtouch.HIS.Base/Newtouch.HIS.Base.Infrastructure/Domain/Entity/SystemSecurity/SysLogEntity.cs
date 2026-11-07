@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string IPAddressName { get; set; }
 
         /// <summary>
-        /// Mô-đun hệ thốngId
+        /// Mô-đun hệ thống Id
         /// </summary>
         public string ModuleId { get; set; }
 

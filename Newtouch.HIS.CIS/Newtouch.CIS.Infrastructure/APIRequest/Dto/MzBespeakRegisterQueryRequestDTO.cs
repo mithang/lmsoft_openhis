@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.CIS.APIRequest.Dto
 {
     /// <summary>
-    /// Ngoại trúđặt hẹnTra cứuyêu cầubáovăn
+    /// Ngoại trúđặt hẹn Tra cứuyêu cầubáovăn
     /// </summary>
     public class MzBespeakRegisterQueryRequestDTO : RequestBase
     {
         /// <summary>
-        /// chứngmụcLoại
+        /// chứngmục Loại
         /// </summary>
         public int? zjlx { get; set; }
 

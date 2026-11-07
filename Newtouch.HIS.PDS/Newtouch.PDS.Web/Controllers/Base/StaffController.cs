@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(organizeId))
             {
-                organizeId = base.GetAuthOrganizeId();  //Mặc định QuyềnOrganizeId
+                organizeId = base.GetAuthOrganizeId();  //Mặc định Quyền OrganizeId
             }
             //Đệmstart
             var treeList = _cache.Get<List<TreeViewModel>>(string.Format(CacheKey.OrganizeStaffTreeSetKey, organizeId), () =>

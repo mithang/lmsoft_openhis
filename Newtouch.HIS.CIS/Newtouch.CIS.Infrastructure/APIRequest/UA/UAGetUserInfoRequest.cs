@@ -3,7 +3,7 @@
 namespace Newtouch.CIS.APIRequest.UA
 {
     /// <summary>
-    /// lấyTruy cậpmã thông báođổilấyNgười dùngthânphầnthông tin
+    /// lấy Truy cậpmã thông báođổilấy Người dùngthânphầnthông tin
     /// </summary>
     public class UAGetUserInfoRequest : RequestBase
     {

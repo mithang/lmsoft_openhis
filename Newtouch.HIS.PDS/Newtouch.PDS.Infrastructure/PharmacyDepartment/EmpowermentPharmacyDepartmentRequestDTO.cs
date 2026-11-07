@@ -22,7 +22,7 @@ namespace Newtouch.PDS.Requset.PharmacyDepartment
     public class EmpowermentPharmacyDepartmentRequestDto :  RequestBase
     {
         /// <summary>
-        /// Thuốc bộ phậnId
+        /// Thuốc bộ phận Id
         /// </summary>
         public string bmypId { get; set; }
 
@@ -133,7 +133,7 @@ namespace Newtouch.PDS.Requset.PharmacyDepartment
     public class EmpowermentPharmacyDepartment
     {
         /// <summary>
-        /// Thuốc bộ phậnId
+        /// Thuốc bộ phận Id
         /// </summary>
         public string bmypId { get; set; }
 

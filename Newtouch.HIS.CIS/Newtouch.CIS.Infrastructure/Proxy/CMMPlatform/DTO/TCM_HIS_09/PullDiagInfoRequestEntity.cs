@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
 {
     /// <summary>
-    /// nhắclấyChẩn đoánthông tinyêu cầuthể
+    /// nhắclấy Chẩn đoánthông tinyêu cầuthể
     /// </summary>
     [XmlRoot("Request")]
     public class PullDiagInfoRequestEntity : RequestBase
@@ -29,7 +29,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
         public string serialNo { get; set; }
 
         /// <summary>
-        /// Cơ sởMã
+        /// Cơ sở Mã
         /// bắt buộc
         /// </summary>
         public string orgCode { get; set; }
@@ -46,7 +46,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
     public class Diagnosis
     {
         /// <summary>
-        /// bảnđịaChẩn đoánMã
+        /// bảnđịa Chẩn đoán Mã
         /// </summary>
         public string localCode { get; set; }
 
@@ -57,7 +57,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
         public string code { get; set; }
 
         /// <summary>
-        ///Chẩn đoánLoại 0:tâyy 1:trongy
+        ///Chẩn đoán Loại 0:tâyy 1:trongy
         /// bắt buộc
         /// </summary>
         public string cate { get; set; }
@@ -69,18 +69,18 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
         public string name { get; set; }
 
         /// <summary>
-        ///Chẩn đoán YHCT Loại 0:bệnhbệnh 1:hội chứng; khiChẩn đoánPhân loạilàtrongykhibắt buộc
+        ///Chẩn đoán YHCT Loại 0:bệnhbệnh 1:hội chứng; khi Chẩn đoán Phân loạilàtrongykhibắt buộc
         /// bắt buộc
         /// </summary>
         public string type { get; set; }
 
         /// <summary>
-        ///Chẩn đoán YHCT phút nhóm nàynhận dạngnhaucùngcủabệnhbệnhvàhội chứngChẩn đoánlàmộtnhóm
+        ///Chẩn đoán YHCT phút nhóm nàynhận dạngnhaucùngcủabệnhbệnhvàhội chứng Chẩn đoánlàmộtnhóm
         /// </summary>
         public string group { get; set; }
 
         /// <summary>
-        ///Chẩn đoán YHCT cấp loại 0:chínhcầnChẩn đoán 1: lầncầnChẩn đoán
+        ///Chẩn đoán YHCT cấp loại 0:chínhcần Chẩn đoán 1: lầncầnChẩn đoán
         /// </summary>
         public string level { get; set; }
 

@@ -38,7 +38,7 @@ namespace Newtouch.MR.ManageSystem.Domain.IRepository
         int DeleteForm(string keyValue);
 
         /// <summary>
-        /// LấyDanh sách bệnh án
+        /// Lấy Danh sách bệnh án
         /// </summary>
         /// <param name="organizeId"></param>
         /// <returns></returns>

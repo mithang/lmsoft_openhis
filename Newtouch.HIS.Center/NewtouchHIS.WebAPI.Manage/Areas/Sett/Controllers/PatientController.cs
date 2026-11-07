@@ -23,7 +23,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         {
         }
         /// <summary>
-        /// TheoHọ tên/Lấy thông tin bệnh nhân theo họ tên/số CMND
+        /// Theo Họ tên/Lấy thông tin bệnh nhân theo họ tên/số CMND
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -38,7 +38,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// Tự chi trảBệnh nhânTự lập hồ sơ
+        /// Tự chi trả Bệnh nhân Tự lập hồ sơ
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -54,7 +54,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         }
 
         /// <summary>
-        /// Bệnh nhânTruy vấn thông tin nội trú của bệnh nhân:bySố nhập viện/Số thẻ/Họ tên
+        /// Bệnh nhân Truy vấn thông tin nội trú của bệnh nhân:by Số nhập viện/Số thẻ/Họ tên
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

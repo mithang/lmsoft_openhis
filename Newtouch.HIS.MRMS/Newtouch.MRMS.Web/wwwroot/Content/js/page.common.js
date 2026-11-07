@@ -50,7 +50,7 @@ $.fn.zdFloatingSelector = function (options) {
         width: 600,
         height: 300,
         clickautotrigger: true,
-        caption: "ChọnChẩn đoán",
+        caption: "Chọn Chẩn đoán",
         ajaxparameters: function ($thisinput) {
             if (!!!options.ybnhlx) {
                 return "keyword=" + $thisinput.val() + "&zdlx=" + options.zdlx;
@@ -80,7 +80,7 @@ $.fn.opFloatingSelector = function (options) {
         width: 600,
         height: 300,
         clickautotrigger: true,
-        caption: "ChọnPhẫu thuật",
+        caption: "Chọn Phẫu thuật",
         ajaxparameters: function ($thisinput) {
             return "keyword=" + $thisinput.val() + "&type=true";
         },
@@ -97,7 +97,7 @@ $.fn.opFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector(options);
 }
 
-//Vị tríngườiBộ chọn nhân viên
+//Vị tríngười Bộ chọn nhân viên
 $.fn.dutyStaffFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector({
         url: '/SystemManage/Common/GetStaffListByDutyCode',
@@ -123,7 +123,7 @@ $.fn.dutyStaffFloatingSelector = function (options) {
     });
 }
 
-//Quốc tịchBộ chọn
+//Quốc tịch Bộ chọn
 $.fn.NationalityFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector({
         url: '/SystemManage/Common/GetNationality',
@@ -134,7 +134,7 @@ $.fn.NationalityFloatingSelector = function (options) {
             return "keyword=" + $thisinput.val();
         },
         colModel: [
-            { label: 'Quốc giaMã', name: 'Code', widthratio: 30 },
+            { label: 'Quốc gia Mã', name: 'Code', widthratio: 30 },
             { label: 'Quốc gia', name: 'Name', widthratio: 70 },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
@@ -145,7 +145,7 @@ $.fn.NationalityFloatingSelector = function (options) {
         }
     });
 }
-//Dân tộcBộ chọn
+//Dân tộc Bộ chọn
 $.fn.NationsFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector({
         url: '/SystemManage/Common/GetNationas',
@@ -156,7 +156,7 @@ $.fn.NationsFloatingSelector = function (options) {
             return "keyword=" + $thisinput.val();
         },
         colModel: [
-            { label: 'Dân tộcMã', name: 'Code', widthratio: 30 },
+            { label: 'Dân tộc Mã', name: 'Code', widthratio: 30 },
             { label: 'Dân tộc', name: 'Name', widthratio: 70 },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
@@ -167,7 +167,7 @@ $.fn.NationsFloatingSelector = function (options) {
         }
     });
 }
-//Nhóm thu phí lớnBộ chọn
+//Nhóm thu phí lớn Bộ chọn
 $.fn.hissfdlFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector({
         url: '/SystemManage/Common/GetHisSfdl',

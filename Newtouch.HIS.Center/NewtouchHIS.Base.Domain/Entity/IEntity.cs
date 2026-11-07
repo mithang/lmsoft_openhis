@@ -4,7 +4,7 @@ namespace NewtouchHIS.Base.Domain.Entity
 {
     /// <summary>
     /// Lớp cơ sở trường dùng chung
-    /// (Liên kếtThông tin tổ chức)
+    /// (Liên kết Thông tin tổ chức)
     /// </summary>
     public class IEntity
     {

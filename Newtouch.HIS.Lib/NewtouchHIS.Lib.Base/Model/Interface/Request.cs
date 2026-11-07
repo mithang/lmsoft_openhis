@@ -22,7 +22,7 @@ namespace NewtouchHIS.Lib.Base.Model
     }
 
     /// <summary>
-    /// Tự động đóng góiRequest
+    /// Tự động đóng gói Request
     /// </summary>
     public static class RequestApiGen
     {

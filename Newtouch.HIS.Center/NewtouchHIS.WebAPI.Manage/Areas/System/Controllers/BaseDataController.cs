@@ -32,7 +32,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
         {
             if (request == null || request.Data == null || string.IsNullOrWhiteSpace(request.OrganizeId))
             {
-                return new BusResult<List<SysChargeCategoryVO>> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId là bắt buộc|Dữ liệu yêu cầu không được là null" };
+                return new BusResult<List<SysChargeCategoryVO>> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id là bắt buộc|Dữ liệu yêu cầu không được là null" };
             }
             request.Data.orgId = request.OrganizeId;
             var itemData = await _chargeItemService.GetChargeCategory(request.Data);
@@ -53,7 +53,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
         {
             if (request == null || string.IsNullOrWhiteSpace(request.OrganizeId))
             {
-                return new BusResult<List<SysMedicineVVO>> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId là bắt buộc" };
+                return new BusResult<List<SysMedicineVVO>> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id là bắt buộc" };
             }
             request.Data.orgId = request.OrganizeId;
             var itemData = await _sysMedicine.GetMedicineList(request.Data);
@@ -74,7 +74,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
         {
             if (request == null || string.IsNullOrWhiteSpace(request.OrganizeId) || request.Data == null || request.Data.limit == 0)
             {
-                return new BusResult<PageResponseRow<List<SysMedicineVVO>>> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId là bắt buộc và tham số phân trang là bắt buộc" };
+                return new BusResult<PageResponseRow<List<SysMedicineVVO>>> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id là bắt buộc và tham số phân trang là bắt buộc" };
             }
             request.Data.queryParams.orgId = request.OrganizeId;
             var itemData = await _sysMedicine.GetMedicinePage(request.Data);
@@ -96,7 +96,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
         {
             if (request == null || string.IsNullOrWhiteSpace(request.OrganizeId))
             {
-                return new BusResult<List<SysChargeItemVO>> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId là bắt buộc" };
+                return new BusResult<List<SysChargeItemVO>> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id là bắt buộc" };
             }
             request.Data.orgId= request.OrganizeId;
             var itemData = await _chargeItemService.GetChargeItemList(request.Data);
@@ -117,7 +117,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
         {
             if (request == null || string.IsNullOrWhiteSpace(request.OrganizeId) || request.Data == null || request.Data.limit == 0)
             {
-                return new BusResult<PageResponseRow<List<SysChargeItemVO>>> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId là bắt buộc và tham số phân trang là bắt buộc" };
+                return new BusResult<PageResponseRow<List<SysChargeItemVO>>> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id là bắt buộc và tham số phân trang là bắt buộc" };
             }
             request.Data.queryParams.orgId = request.OrganizeId;
             var itemData = await _chargeItemService.GetChargeItemPage(request.Data);
@@ -138,7 +138,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
         {
             if (request == null || string.IsNullOrWhiteSpace(request.OrganizeId))
             {
-                return new BusResult<List<SysChargeItemVO>> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId là bắt buộc" };
+                return new BusResult<List<SysChargeItemVO>> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id là bắt buộc" };
             }
             request.Data.orgId = request.OrganizeId;
             var itemData = await _chargeItemService.GetMaterialItemList(request.Data);
@@ -159,7 +159,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
         {
             if (request == null || string.IsNullOrWhiteSpace(request.OrganizeId) || request.Data == null || request.Data.limit == 0)
             {
-                return new BusResult<PageResponseRow<List<SysChargeItemVO>>> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId là bắt buộc và tham số phân trang là bắt buộc" };
+                return new BusResult<PageResponseRow<List<SysChargeItemVO>>> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id là bắt buộc và tham số phân trang là bắt buộc" };
             }
             request.Data.queryParams.orgId = request.OrganizeId;
             var itemData = await _chargeItemService.GetMaterialItemPage(request.Data);

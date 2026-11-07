@@ -47,9 +47,9 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Lấy Tổ chức đơn nhất Mục từ điểnList
+        /// Lấy Tổ chức đơn nhất Mục từ điển List
         /// </summary>
-        /// <param name="orgId">Cơ sở y tếId,không truyền thì dùng chung theo chênh lệch</param>
+        /// <param name="orgId">Cơ sở y tế Id,không truyền thì dùng chung theo chênh lệch</param>
         /// <param name="itemId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -91,7 +91,7 @@ order by CreateTime desc";
                     throw new FailedException("Mã không được trùng lặp");
                 }
 
-                SysItemsDetailEntity oldEntity = null;   //Trước khi thay đổiEntity
+                SysItemsDetailEntity oldEntity = null;   //Trước khi thay đổi Entity
                 oldEntity = this.FindEntity(keyValue);
                 this.DetacheEntity(oldEntity);
 
@@ -125,7 +125,7 @@ order by CreateTime desc";
         /// <summary>
         /// Lấy Sơ đồ cây phân loại môn học
         /// </summary>
-        /// <param name="orgId">Cơ sở y tếId,không truyền thì dùng chung theo chênh lệch</param>
+        /// <param name="orgId">Cơ sở y tế Id,không truyền thì dùng chung theo chênh lệch</param>
         /// <returns></returns>
         public List<ProjectZbVO> GetTreeViewdata(string orgId)
         {

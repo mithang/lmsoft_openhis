@@ -16,7 +16,7 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
         {
         }
         /// <summary>
-        /// Hệ thống thứ ba lấyToken
+        /// Hệ thống thứ ba lấy Token
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -31,7 +31,7 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
             return new BusResult<JWTToken> { code = ResponseResultCode.FAIL, msg = "Chức năng này đã ngừng, vui lòng dùng trung tâm xác thực" };
         }
         /// <summary>
-        /// Nội bộWebHệ thống lấyToken
+        /// Nội bộ Web Hệ thống lấy Token
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

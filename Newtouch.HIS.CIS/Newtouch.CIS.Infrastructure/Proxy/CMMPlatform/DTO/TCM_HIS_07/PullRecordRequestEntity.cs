@@ -4,7 +4,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
 {
     /// <summary>
-    /// nhắclấyđiện tửHồ sơhưởngứngthể
+    /// nhắclấyđiện tử Hồ sơhưởngứngthể
     /// </summary>
     [XmlRoot("Request")]
     public class PullRecordRequestEntity : RequestBase
@@ -27,13 +27,13 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
         public string serialNo { get; set; }
 
         /// <summary>
-        /// Cơ sởMã
+        /// Cơ sở Mã
         /// bắt buộc
         /// </summary>
         public string orgCode { get; set; }
 
         /// <summary>
-        /// Bệnh nhânSố hiệu
+        /// Bệnh nhân Số hiệu
         /// bắt buộc
         /// </summary>
         public string patiId { get; set; }
@@ -45,31 +45,31 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
         public string name { get; set; }
 
         /// <summary>
-        /// Bệnh nhânTuổi
+        /// Bệnh nhân Tuổi
         /// bắt buộc
         /// </summary>
         public string age { get; set; }
 
         /// <summary>
-        /// Bệnh nhânGiới tính
+        /// Bệnh nhân Giới tính
         /// bắt buộc
         /// </summary>
         public string gender { get; set; }
 
         /// <summary>
-        /// Khám bệnhNgày-YYYYMMDD
+        /// Khám bệnh Ngày-YYYYMMDD
         /// bắt buộc
         /// </summary>
         public string clinicDate { get; set; }
 
         /// <summary>
-        /// Bác sĩSố hiệu(Người dùngtên)
+        /// Bác sĩ Số hiệu(Người dùngtên)
         /// bắt buộc
         /// </summary>
         public string doctorId { get; set; }
 
         /// <summary>
-        /// Bác sĩTên
+        /// Bác sĩ Tên
         /// bắt buộc
         /// </summary>
         public string doctorName { get; set; }
@@ -85,7 +85,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
         public string localDisHis { get; set; }
 
         /// <summary>
-        /// quaTiền sử dị ứng
+        /// qua Tiền sử dị ứng
         /// </summary>
         public string allergicHis { get; set; }
 
@@ -130,7 +130,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
         public string syndrome { get; set; }
 
         /// <summary>
-        /// thểôKiểm tra
+        /// thểô Kiểm tra
         /// </summary>
         public string psyCheck { get; set; }
 
@@ -140,7 +140,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
         public string suggession { get; set; }
 
         /// <summary>
-        /// Y lệnhSố hiệu
+        /// Y lệnh Số hiệu
         /// </summary>
         public string recordId { get; set; }
     }

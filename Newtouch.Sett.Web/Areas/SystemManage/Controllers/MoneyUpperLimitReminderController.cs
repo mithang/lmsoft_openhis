@@ -81,7 +81,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Thêm mớiorSửa
+        /// Thêm mớior Sửa
         /// </summary>
         /// <param name="sxtxId"></param>
         /// <returns></returns>

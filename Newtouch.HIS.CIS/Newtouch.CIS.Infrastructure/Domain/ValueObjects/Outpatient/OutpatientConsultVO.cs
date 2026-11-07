@@ -9,7 +9,7 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
     public class OutpatientConsultVO
     {
         /// <summary>
-        /// đăng ký khámPhòng khámbảngKhóa chính ID
+        /// đăng ký khám Phòng khámbảng Khóa chính ID
         /// </summary>
         public int ghzsId { get; set; }
         /// <summary>
@@ -25,7 +25,7 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// đăng ký khámNgày
+        /// đăng ký khám Ngày
         /// </summary>
         public DateTime ghrq { get; set; }
         /// <summary>
@@ -37,11 +37,11 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         /// </summary>
         public string ksmc { get; set; }
         /// <summary>
-        /// Bác sĩMã nhân viên
+        /// Bác sĩ Mã nhân viên
         /// </summary>
         public string ys { get; set; }
         /// <summary>
-        /// Bác sĩTên
+        /// Bác sĩ Tên
         /// </summary>
         public string ysmc { get; set; }
         /// <summary>
@@ -53,7 +53,7 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         /// </summary>
         public string zsmc { get; set; }
         /// <summary>
-        /// gọisốTrạng thái
+        /// gọisố Trạng thái
         /// </summary>
         public int? calledstu { get; set; }
 		/// <summary>

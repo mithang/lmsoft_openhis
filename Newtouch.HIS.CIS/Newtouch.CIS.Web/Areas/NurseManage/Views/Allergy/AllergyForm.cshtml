@@ -1,6 +1,6 @@
 @using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "Dị ứngThông tinQuản lý";
+    ViewBag.Title = "Dị ứng Thông tin Quản lý";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <form id="form1">
@@ -58,7 +58,7 @@
     var xmmc = $.request("xmmc");
     $(function () {
         $("#form1 input[name='checkbox0']").bind('click', function () {
-            //hiện tạicủacheckboxCóKhôngĐã chọn
+            //hiện tạicủacheckbox Có Không Đã chọn
             if (this.checked) {
                 $("#form1 input[name='checkbox0']").not(this).attr("checked", false);
             } else {
@@ -66,7 +66,7 @@
             }
         });
 
-        //gắnKháng sinh
+        //gắn Kháng sinh
         $("#ypCode").bindSelect({
             url: "@Url.Action("GetKssYpListJson")",
             id: "ypCode",

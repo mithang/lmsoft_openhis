@@ -28,7 +28,7 @@ namespace Newtouch.Domain.Entity
         public string mbId { get; set; }
 
         /// <summary>
-        /// Liệt kê 1 chínhChẩn đoán 2 phụChẩn đoán
+        /// Liệt kê 1 chính Chẩn đoán 2 phụ Chẩn đoán
         /// </summary>
         public int zdlx { get; set; }
 
@@ -68,7 +68,7 @@ namespace Newtouch.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// Nghi ngờCờ
+        /// Nghi ngờ Cờ
         /// </summary>
         public bool ysbz { get; set; }
 

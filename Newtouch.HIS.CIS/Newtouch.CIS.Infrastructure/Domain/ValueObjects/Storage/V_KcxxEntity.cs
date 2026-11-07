@@ -32,17 +32,17 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// Tồn khoSố lượng Đơn vị nhỏ nhất
+        /// Tồn kho Số lượng Đơn vị nhỏ nhất
         /// </summary>
         public int kcsl { get; set; }
 
         /// <summary>
-        /// Khoa phòngGiá bán lẻ chuyểnhóavìcontương ứngĐơn vị
+        /// Khoa phòng Giá bán lẻ chuyểnhóavìcontương ứng Đơn vị
         /// </summary>
         public decimal bmlsj { get; set; }
 
         /// <summary>
-        /// vàogiá chuyểnhóavìcontương ứngĐơn vị
+        /// vàogiá chuyểnhóavìcontương ứng Đơn vị
         /// </summary>
         public decimal jj { get; set; }
 

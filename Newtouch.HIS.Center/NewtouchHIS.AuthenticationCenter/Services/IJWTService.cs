@@ -16,7 +16,7 @@ namespace NewtouchHIS.AuthenticationCenter.Services
         ///// <exception cref="NotImplementedException"></exception>
         //Task<BusResult<string>> GetCode(string clientId, string userName, string password);
         ///// <summary>
-        ///// Theo phiênCodeLấy mã ủy quyền
+        ///// Theo phiên Code Lấy mã ủy quyền
         ///// </summary>
         ///// <param name="clientId"></param>
         ///// <param name="sessionCode"></param>
@@ -24,14 +24,14 @@ namespace NewtouchHIS.AuthenticationCenter.Services
         //Task<BusResult<string>> GetCodeBySessionCode(string clientId, string sessionCode);
 
         ///// <summary>
-        ///// Lấy theo mã ủy quyềnToken+RefreshToken
+        ///// Lấy theo mã ủy quyền Token+RefreshToken
         ///// </summary>
         ///// <param name="authCode"></param>
         ///// <returns>Token+RefreshToken</returns>
         //Task<BusResult<JWTToken>> GetTokenWithRefresh(string authCode);
 
         ///// <summary>
-        ///// TheoRefreshTokenlàm mớiToken
+        ///// Theo RefreshTokenlàm mới Token
         ///// </summary>
         ///// <param name="refreshToken"></param>
         ///// <param name="clientId"></param>

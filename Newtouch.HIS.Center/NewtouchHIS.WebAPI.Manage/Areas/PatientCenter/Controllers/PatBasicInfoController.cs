@@ -10,7 +10,7 @@ using NewtouchHIS.Lib.Base.Model;
 namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
 {
     /// <summary>
-    /// Bệnh nhânQuản lý thông tin cơ bản(Ưu tiên tự chi trả)
+    /// Bệnh nhân Quản lý thông tin cơ bản(Ưu tiên tự chi trả)
     /// </summary>
     [Route("api/patient")]
     [ApiController]
@@ -24,7 +24,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
             _patientAddressDmn = patientAddressDmn;
         }
         /// <summary>
-        /// Bệnh nhânTruy vấn thông tin cơ bản 
+        /// Bệnh nhân Truy vấn thông tin cơ bản 
         /// Ưu tiên tự chi trả
         /// </summary>
         /// <param name="request"></param>
@@ -47,7 +47,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
         }
 
         /// <summary>
-        /// Bệnh nhânTruy vấn thông tin địa chỉ
+        /// Bệnh nhân Truy vấn thông tin địa chỉ
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
         }
 
         /// <summary>
-        /// Bệnh nhânCập nhật thông tin địa chỉ
+        /// Bệnh nhân Cập nhật thông tin địa chỉ
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -91,7 +91,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
         }
 
         /// <summary>
-        /// Bệnh nhânThêm thông tin địa chỉ
+        /// Bệnh nhân Thêm thông tin địa chỉ
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -113,7 +113,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
         }
 
         /// <summary>
-        /// Bệnh nhânXóa thông tin địa chỉ
+        /// Bệnh nhân Xóa thông tin địa chỉ
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

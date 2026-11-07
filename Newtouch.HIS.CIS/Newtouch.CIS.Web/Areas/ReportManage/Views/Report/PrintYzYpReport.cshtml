@@ -1,6 +1,6 @@
 
 @{
-    ViewBag.Title = "Dài hạn lâm sàngY lệnhThuốcPhiếu";
+    ViewBag.Title = "Dài hạn lâm sàngY lệnh Thuốc Phiếu";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -16,16 +16,16 @@
     var lyxh = $.request('lyxh');
     var yzh = $.request('yzh');
     var zxrq = $.request('zxrq');
-    //Báo cáourlĐịa chỉ
+    //Báo cáourl Địa chỉ
     //var uri = '/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%e9%95%bf%e4%b8%b4%e5%8c%bb%e5%98%b1%e8%8d%af%e5%93%81%e7%94%b3%e8%af%b7%e5%8d%95&rs:Command=Render'
-    var uri = '/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2fDài hạn/Tạm thờiY lệnhThuốcPhiếu&rs:Command=Render'
+    var uri = '/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2fDài hạn/Tạm thờiY lệnh Thuốc Phiếu&rs:Command=Render'
     $(function () {
         submit();
     });
     function submit() {
         var url = getUrl();
 
-        //trực tiếpMở
+        //trực tiếp Mở
         location.href = url;
         return;
 

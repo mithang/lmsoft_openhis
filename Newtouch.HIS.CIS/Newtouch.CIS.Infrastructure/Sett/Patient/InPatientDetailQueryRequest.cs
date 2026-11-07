@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Sett.Request
 {
     /// <summary>
-    /// Bệnh nhân nội trúTra cứu
+    /// Bệnh nhân nội trú Tra cứu
     /// </summary>
     public class InPatientDetailQueryRequest : RequestBase
     {

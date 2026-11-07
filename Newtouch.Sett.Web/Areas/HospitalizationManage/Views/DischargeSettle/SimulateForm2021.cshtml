@@ -82,11 +82,11 @@
 			var ybjyFeeReturn = ybjyFeeReturn.output.setlinfo;
 			var mzjzje = 0.000;//Số tiền cứu trợ dân chính
 			var xjzfje = 0.000;//Số tiền thanh toán tiền mặt BHYT
-			var zfxjzf = 0.000;//khôngThanh toán tiền mặt BHYT Số tiền
+			var zfxjzf = 0.000;//không Thanh toán tiền mặt BHYT Số tiền
 			var yjs = 0.000;//Số dư tài khoản sautạm ứng
 			//Số tiền thanh toán tiền mặt BHYT
 			xjzfje = ovpraseFloat(ybjyFeeReturn.psn_cash_pay);
-			//không BHYT Tiền mặtSố tiền
+			//không BHYT Tiền mặt Số tiền
 			zfxjzf = ovpraseFloat(hisfyze) -
 				ovpraseFloat(ybjyFeeReturn.medfee_sumamt);
 			//Tính thanh toán tiền mặt
@@ -104,7 +104,7 @@
 
 			!!hisfyze && $('#cq_fyze').html(ovpraseFloat(hisfyze).toFixed(2));
 			!!ybjyFeeReturn.calc_xjzf && $('#cq_xjzf').html(ovpraseFloat(ybjyFeeReturn.calc_xjzf).toFixed(2));//Tổng thanh toán tiền mặt
-			!!zfxjzf && $('#zf_xjzf').html(zfxjzf.toFixed(2));//khôngThanh toán tiền mặt BHYT
+			!!zfxjzf && $('#zf_xjzf').html(zfxjzf.toFixed(2));//không Thanh toán tiền mặt BHYT
 			!!xjzfje && $('#yb_xjzf').html(xjzfje.toFixed(2));//Thanh toán tiền mặt BHYT
 			!!ybjyFeeReturn.acct_pay && $('#cq_zhzf').html(ovpraseFloat(ybjyFeeReturn.acct_pay).toFixed(2));
 			!!ybjyFeeReturn.hifp_pay && $('#cq_tczf').html((ovpraseFloat(ybjyFeeReturn.hifp_pay)));

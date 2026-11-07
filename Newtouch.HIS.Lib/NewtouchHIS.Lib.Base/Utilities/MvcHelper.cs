@@ -11,8 +11,8 @@ namespace NewtouchHIS.Lib.Base.Utilities
             _SiteStaticHost = ConfigInitHelper.SysConfig.AppAPIHost?.SiteStaticHost ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "SiteStaticHost");
         }
         /// <summary>
-        /// Tài nguyên tĩnhHost
-        /// configcấu hìnhSiteStaticHost
+        /// Tài nguyên tĩnh Host
+        /// configcấu hình SiteStaticHost
         /// </summary>
         public static string? SiteStaticHost
         {
@@ -57,10 +57,10 @@ namespace NewtouchHIS.Lib.Base.Utilities
             }
         }
         /// <summary>
-        /// Trả về tài nguyên tĩnh kèm số phiên bản phần mềmUri
+        /// Trả về tài nguyên tĩnh kèm số phiên bản phần mềm Uri
         /// </summary>
         /// <param name="url">url như'~/Home/Index'</param>
-        /// <param name="isInSiteStatic">Tài nguyên có nằm trong tĩnh độc lập khôngDomain</param>
+        /// <param name="isInSiteStatic">Tài nguyên có nằm trong tĩnh độc lập không Domain</param>
         /// <returns></returns>
         public static string GetStaticResourceScriptUrl(string url, bool isInSiteStatic = true)
         {

@@ -9,7 +9,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Repository
 {
     /// <summary>
-    /// Ngoại trútruyền dịchThuốcthông tin
+    /// Ngoại trútruyền dịch Thuốcthông tin
     /// </summary>
     public class MzsyypxxRepo : RepositoryBase<MzsyypxxEntity>, IMzsyypxxRepo
     {

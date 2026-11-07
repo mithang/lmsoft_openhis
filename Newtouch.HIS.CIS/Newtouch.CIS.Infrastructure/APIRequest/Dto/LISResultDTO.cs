@@ -12,7 +12,7 @@ namespace Newtouch.CIS.APIRequest.Dto
 
             public string type { get; set; }
             /// <summary>
-            /// LIS Dữ liệukhoKết nốichữkýchuỗi
+            /// LIS Dữ liệukho Kết nốichữkýchuỗi
             /// </summary>
             public string Ado_lis { get; set; }
             /// <summary>

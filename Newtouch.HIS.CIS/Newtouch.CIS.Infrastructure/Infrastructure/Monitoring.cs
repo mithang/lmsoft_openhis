@@ -11,7 +11,7 @@ namespace Newtouch.Infrastructure
     public class Monitoring
     {
         /// <summary>
-        /// Mãvận hànhdòngThời gian
+        /// Mãvận hànhdòng Thời gian
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="missingHandler"></param>
@@ -22,7 +22,7 @@ namespace Newtouch.Infrastructure
         public static dynamic Running<T>(Func<T> missingHandler, string title, string message, Dictionary<string, string> tags = null)
         {
             var stopwatch = new Stopwatch();
-            stopwatch.Start();//  Bắt đầugiám sátxemMãvận hànhdòngThời gian
+            stopwatch.Start();//  Bắt đầugiám sátxem Mãvận hànhdòng Thời gian
             dynamic value = missingHandler.Invoke(); //Mãchínhthể
             stopwatch.Stop();//Dừnggiám sátxem
             LogCore.Info(string.Format("Title:{0};\n message:{1} Phương pháptiêu haokhi-{2}", title, message, stopwatch.Elapsed.TotalMilliseconds), message, tags);//ghi chépngàychí
@@ -30,7 +30,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// phụcGiám sát nghiệp vụ mangQuay lạiGiá trị
+        /// phục Giám sát nghiệp vụ mangQuay lại Giá trị
         /// </summary>
         /// <typeparam name="TRequest"></typeparam>
         /// <typeparam name="TResponse"></typeparam>
@@ -60,7 +60,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// phụcGiám sát nghiệp vụ khôngmangQuay lạiGiá trị
+        /// phục Giám sát nghiệp vụ khôngmang Quay lại Giá trị
         /// </summary>
         /// <typeparam name="TRequest"></typeparam>
         /// <param name="action"></param>

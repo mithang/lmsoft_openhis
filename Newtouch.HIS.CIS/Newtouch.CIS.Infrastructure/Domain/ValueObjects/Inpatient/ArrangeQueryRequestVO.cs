@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Inpatient
 {
     /// <summary>
-    /// Phẫu thuậtY lệnhTra cứuGrid request
+    /// Phẫu thuậtY lệnh Tra cứu Grid request
     /// </summary>
     public class ArrangeQueryRequestVO
     {

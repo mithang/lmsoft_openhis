@@ -78,7 +78,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
         }
 
         /// <summary>
-        /// Thêm mới hoặc sửaForm
+        /// Thêm mới hoặc sửa Form
         /// </summary>
         public IActionResult GetFormJson(string sfxmId)
         {

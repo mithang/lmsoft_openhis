@@ -14,7 +14,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="Vui lòng nhậpTài khoản" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Vui lòng nhập Tài khoản" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -55,9 +55,9 @@
                 },
                 { label: 'Tài khoản', name: 'Account', width: 80, align: 'left' },
                 { label: 'Họ tên', name: 'NickName', width: 80, align: 'left' },
-                { label: 'Thao tácMenu', name: 'ModuleName', width: 100, align: 'left' },
+                { label: 'Thao tác Menu', name: 'ModuleName', width: 100, align: 'left' },
                 {
-                    label: 'Thao tácLoại', name: 'Type', width: 80, align: 'left',
+                    label: 'Thao tác Loại', name: 'Type', width: 80, align: 'left',
                     formatter: function (cellvalue) {
                         return $.itemDetails.getNameByCode('DbLogType', cellvalue);
                     }
@@ -73,7 +73,7 @@
                         }
                     }
                 },
-                { label: 'Nhật kýNội dung', name: 'Description', width: 300, align: 'left' }
+                { label: 'Nhật ký Nội dung', name: 'Description', width: 300, align: 'left' }
             ],
             pager: "#gridPager",
             sortname: 'Date desc',
@@ -98,7 +98,7 @@
             }).trigger('reloadGrid');
         });
 
-        //vềxekích hoạtTra cứusự kiện
+        //vềxekích hoạt Tra cứusự kiện
         $('#txt_keyword').keydownEnterEvent(function () {
             $('#btn_search').trigger('click');
         })

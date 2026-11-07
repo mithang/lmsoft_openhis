@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// thông qua API hơn Đơn thuốc mớicủaQuay lạikếtnếu
+    /// thông qua API hơn Đơn thuốc mớicủa Quay lạikếtnếu
     /// </summary>
     public class PresUpdateResultDTO
     {

@@ -67,7 +67,7 @@ namespace Newtouch.HIS.Repository.SystemManage
             }
             else
             {
-                //CodeKiểm tra trùng lặp
+                //Code Kiểm tra trùng lặp
                 if (this.IQueryable().Any(p => p.zsCode == entity.zsCode))
                 {
                     throw new FailedException("Mã không được trùng lặp");

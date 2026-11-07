@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///Tin nhắnLớp cơ sở thông báo
+    ///Tin nhắn Lớp cơ sở thông báo
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("dic_msg_queue", "MsgQueueEntity")]
@@ -59,7 +59,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string msgcontent { get; set; }
 
         /// <summary>
-        /// Desc:Tin nhắnXử lý định dạng nội dung cần truyền tham số
+        /// Desc:Tin nhắn Xử lý định dạng nội dung cần truyền tham số
         /// Default:
         /// Nullable:True
         /// </summary>           

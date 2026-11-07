@@ -14,7 +14,7 @@ namespace Newtouch.Application.Implementation
         private readonly ISysUsageLinkageRepo sysUsageLinkageRepo;
 
         /// <summary>
-        /// GửiCách dùnggắn
+        /// Gửi Cách dùnggắn
         /// </summary>
         /// <param name="sysUsageLinkageEntity"></param>
         /// <returns></returns>

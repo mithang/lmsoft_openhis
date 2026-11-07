@@ -41,7 +41,7 @@ namespace Newtouch.MR.ManageSystem.Repository
 			// GetFormJson -> oldEntity null; dereference oldEntity.Lev o day
 			// gay NRE. Khi khong co ban cu, flag = false: tao moi di nhanh
 			// insert (keyValue rong), sua doi ten thi di nhanh update nhu cu.
-			var flag = oldEntity != null && ((oldEntity.Lev == 1 && entity.name1 == oldEntity.name1) || (oldEntity.Lev == 2 && entity.name1 == oldEntity.name1 && entity.name2 == oldEntity.name2));//trueThực hiệnThêm mới
+			var flag = oldEntity != null && ((oldEntity.Lev == 1 && entity.name1 == oldEntity.name1) || (oldEntity.Lev == 2 && entity.name1 == oldEntity.name1 && entity.name2 == oldEntity.name2));//true Thực hiện Thêm mới
 
 			if ( (!string.IsNullOrEmpty(keyValue)) && (!flag) )
             {
@@ -75,7 +75,7 @@ namespace Newtouch.MR.ManageSystem.Repository
                 }
                 if (entity.Lev == dbEntity.Lev && entity.ParentCode == dbEntity.ParentCode)
                 {
-                    //Nhóm lớnChưaSửa
+                    //Nhóm lớn Chưa Sửa
                     dbEntity.px = entity.px;
                     dbEntity.Code = entity.code;
                 }

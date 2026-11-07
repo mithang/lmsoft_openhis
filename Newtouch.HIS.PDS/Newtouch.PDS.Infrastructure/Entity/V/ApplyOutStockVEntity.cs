@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Domain.Entity.V
         public int xfsl { get; set; }
 
         /// <summary>
-        /// Số lượng chờ phát còn lại Tải lần đầu vớixfslGiống nhau Đơn vị nhỏ nhất
+        /// Số lượng chờ phát còn lại Tải lần đầu vớixfsl Giống nhau Đơn vị nhỏ nhất
         /// </summary>
         public int sysl { get; set; }
 

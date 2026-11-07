@@ -65,10 +65,10 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// GửiLưuquyết toán
+        /// Gửi Lưuquyết toán
         /// </summary>
         /// <param name="zyh"></param>
-        /// <param name="expectedyjjzhye">Tài khoảntạm ứngHiện tạiSố dư(cònChưaquyết toán) Ngăn thay đổi phí trong quá trình</param>
+        /// <param name="expectedyjjzhye">Tài khoảntạm ứng Hiện tại Số dư(còn Chưaquyết toán) Ngăn thay đổi phí trong quá trình</param>
         /// <param name="expectedjsje">Số tiềnquyết toán Ngăn thay đổi phí trong quá trình</param>
         /// <param name="expectedzhaoling">Tiền thừa Ngăn thay đổi phí trong quá trình</param>
         /// <param name="xjzfListStr"></param>
@@ -83,7 +83,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// quyết toán thành côngcủaDialogNhắc nhở
+        /// quyết toán thành côngcủa Dialog Nhắc nhở
         /// </summary>
         /// <param name="yingshoukuan"></param>
         /// <param name="ssk"></param>
@@ -257,7 +257,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         #endregion
 
         /// <summary>
-        /// cập nhậtquyết toánBản ghicủaSố hóa đơn
+        /// cập nhậtquyết toán Bản ghicủa Số hóa đơn
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="fph"></param>

@@ -26,7 +26,7 @@ namespace Newtouch.Domain.IDomainServices
         List<DrugStockInfoVEntity> GetDrugAndStock(string yfcode,string keyword, string OrganizeId);
         IList<PharmacyInfoVEntity> GetTheLowerYfbmCodeList(string keyword, string OrganizeId);
         /// <summary>
-        /// Phê duyệtDài hạn/Tạm thời/Tất cả 
+        /// Phê duyệt Dài hạn/Tạm thời/Tất cả 
         /// </summary>
         /// <param name="user"></param>
         /// <param name="patList"></param>
@@ -51,7 +51,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<SkintestVO> SkintestVO(string orgId,string keyword,string selectkey);
 
         /// <summary>
-        /// dathửThông tin bệnh nhântriểnhiển thị
+        /// dathử Thông tin bệnh nhântriểnhiển thị
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
@@ -74,7 +74,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<DisplayinformationVO> Displayinformation(string patList,string orgId);
 
 		/// <summary>
-		/// Nhập việnY lệnhphát thuốcTra cứu
+		/// Nhập việnY lệnhphát thuốc Tra cứu
 		/// </summary>
 		/// <param name="xm"></param>
 		/// <param name="bqCode"></param>

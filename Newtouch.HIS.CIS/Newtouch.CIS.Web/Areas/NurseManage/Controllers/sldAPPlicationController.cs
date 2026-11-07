@@ -80,7 +80,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         ///// <summary>
-        ///// dướikéovật tưSố lôLôthông tin
+        ///// dướikéovật tư Số lô Lôthông tin
         ///// </summary>
         ///// <param name="proId">vật tư ID</param>
         ///// <param name="gysId">Nhà cung cấp ID</param>
@@ -94,7 +94,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         //}
 
         ///// <summary>
-        ///// LấyKho
+        ///// Lấy Kho
         ///// </summary>
         ///// <returns></returns>
         //public IActionResult GetDeptByKf(string keyword)
@@ -104,7 +104,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         //}
 
         ///// <summary>
-        ///// LấyKhu bệnh
+        ///// Lấy Khu bệnh
         ///// </summary>
         ///// <returns></returns>
         //public IActionResult GetDeptBy(string keyword)

@@ -7,7 +7,7 @@ namespace Newtouch.CIS.APIRequest.Dto
     {
 
         /// <summary>
-        /// đặt hẹnđăng ký khámKhóa chính mz_yygh.id
+        /// đặt hẹnđăng ký khám Khóa chính mz_yygh.id
         /// </summary>
         public string mzyyghId { get; set; }
 

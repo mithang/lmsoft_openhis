@@ -17,7 +17,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
     public partial class SysItemsEntity : ISysEntity
     {
         /// <summary>
-        /// Desc:Chi tiếtKhóa chính
+        /// Desc:Chi tiết Khóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           

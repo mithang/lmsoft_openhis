@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.Base.Domain.Model
 {
     /// <summary>
-    /// Phân trangPhản hồi Model
+    /// Phân trang Phản hồi Model
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class PageRespModel<T>
@@ -17,7 +17,7 @@
         /// </summary>
         public string? keyword { get; set; }
         /// <summary>
-        /// Tổ chứcId
+        /// Tổ chức Id
         /// </summary>
         public string? orgId { get; set; }
         /// <summary>
@@ -26,7 +26,7 @@
         public string? code { get;set; }
         public List<string>? stringList { get; set; }
         /// <summary>
-        /// KhoaMã
+        /// Khoa Mã
         /// </summary>
         public string? kscode { get; set; }
         /// <summary>
@@ -38,7 +38,7 @@
         /// </summary>
         public DateTime? fyjssj { get; set; }
         /// <summary>
-        /// ThuốcMã
+        /// Thuốc Mã
         /// </summary>
         public string? ypdm { get; set; }
         /// <summary>

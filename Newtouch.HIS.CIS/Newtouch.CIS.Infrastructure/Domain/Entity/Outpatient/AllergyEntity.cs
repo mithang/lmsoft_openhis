@@ -38,12 +38,12 @@ namespace Newtouch.Domain.Entity
         public string sex { get; set; }
 
         /// <summary>
-        /// quamẫnMụcCode
+        /// quamẫn Mục Code
         /// </summary>
         public string xmCode { get; set; }
 
         /// <summary>
-        /// quamẫnTên mục
+        /// quamẫn Tên mục
         /// </summary>
         public string xmmc { get; set; }
 
@@ -103,17 +103,17 @@ namespace Newtouch.Domain.Entity
         public string cfmxid { get; set; }
 
         /// <summary>
-        /// Thực hiệnTrạng thái
+        /// Thực hiện Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// quamẫnLoại
+        /// quamẫn Loại
         /// </summary>
         public string gmlx { get; set; }
 
         /// <summary>
-        /// quamẫnThuốcCode
+        /// quamẫn Thuốc Code
         /// </summary>
         public string ypCode { get; set; }
     }

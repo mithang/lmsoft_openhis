@@ -45,7 +45,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.EMR
         public string Bllx { get; set; }
     }
     /// <summary>
-    /// Bệnh án và mẫutreeDữ liệu cấu trúc
+    /// Bệnh án và mẫutree Dữ liệu cấu trúc
     /// </summary>
     public class MedicalBllxMbTreeVo
     {

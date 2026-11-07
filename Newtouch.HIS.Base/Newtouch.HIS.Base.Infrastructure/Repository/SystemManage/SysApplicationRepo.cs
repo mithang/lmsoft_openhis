@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Repository
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                SysApplicationEntity oldEntity = null;   //Trước khi thay đổiEntity
+                SysApplicationEntity oldEntity = null;   //Trước khi thay đổi Entity
                 oldEntity = this.FindEntity(keyValue);
                 this.DetacheEntity(oldEntity);
 

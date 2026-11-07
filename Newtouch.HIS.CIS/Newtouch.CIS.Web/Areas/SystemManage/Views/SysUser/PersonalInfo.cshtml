@@ -68,7 +68,7 @@
         var newpwd = $.trim($('#newpwd').val());
         var renewpwd = $.trim($('#renewpwd').val());
         if (!!!newpwd || !!!renewpwd) {
-            $.modalAlert("Vui lòng điềnMật khẩu", "error");
+            $.modalAlert("Vui lòng điền Mật khẩu", "error");
             return false;
         }
         if (newpwd != renewpwd) {
@@ -87,10 +87,10 @@
             dataType: "json",
             success: function (data) {
                 if (data.state == "success") {
-                    $.modalAlert("Đặt lạiMật khẩuthành công.", "success");
+                    $.modalAlert("Đặt lại Mật khẩuthành công.", "success");
                     location.href = location.href;
                 } else {
-                    $.modalAlert("Đặt lạiMật khẩuthất bại.", "error");
+                    $.modalAlert("Đặt lại Mật khẩuthất bại.", "error");
                     location.href = location.href;s
                 }
             }

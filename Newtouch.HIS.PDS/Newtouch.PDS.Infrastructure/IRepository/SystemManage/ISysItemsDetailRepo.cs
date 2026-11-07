@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysItemsDetailRepo : IRepositoryBase<SysItemsDetailEntity>
     {
         /// <summary>
-        /// Lấy Tổ chức Mục từ điểnList
+        /// Lấy Tổ chức Mục từ điển List
         /// </summary>
         /// <param name="itemId"></param>
         /// <param name="keyword"></param>

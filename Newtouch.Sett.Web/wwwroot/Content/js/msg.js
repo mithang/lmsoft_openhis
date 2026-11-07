@@ -34,7 +34,7 @@ document.getElementById("sendButton").addEventListener("click", function (event)
 //}
 
 //$.connection.hub.start().done(function () {
-//    // Kết nối nút gửi để gọi lên máy chủNewContosoChatMessage.
+//    // Kết nối nút gửi để gọi lên máy chủ NewContosoChatMessage.
 //    $("#sendButton").click(function () {
 //        contosoChatHubProxy.server.newContosoChatMessage($("#userInput").val(), $("#messageInput").val());
 //        $("#messageInput").val('').focus();

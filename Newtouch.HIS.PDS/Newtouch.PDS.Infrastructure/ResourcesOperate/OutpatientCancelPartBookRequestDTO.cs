@@ -57,7 +57,7 @@ namespace Newtouch.PDS.Requset.ResourcesOperate
         public int sl { get; set; }
 
         /// <summary>
-        /// Hệ số quy đổi vàslDùng kết hợp  sl*zhyz=Số lượng đơn vị nhỏ nhất
+        /// Hệ số quy đổi vàsl Dùng kết hợp  sl*zhyz=Số lượng đơn vị nhỏ nhất
         /// </summary>
         public int zhyz { get; set; }
     }

@@ -1,6 +1,6 @@
 
 @{
-    ViewBag.Title = "MụcNhậpVào";
+    ViewBag.Title = "Mục Nhập Vào";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <div style="background-color: #fff;width:100%;">
@@ -27,7 +27,7 @@
                 { label: 'Thời gian bắt đầu', name: 'kssj', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); }},
                 { label: 'Người nhập', name: 'lrz', align: 'center', width: 70 },
                 { label: 'Y lệnh', name: 'yznr', align: 'center', width: 240 },
-                { label: 'DừngThời gian', name: 'tzsj', align: 'center', width: 120, formatter: "date", formatoptions: { srcformat: 'Y-m-d h:m:s', newformat: 'Y-m-d h:m:s' } },
+                { label: 'Dừng Thời gian', name: 'tzsj', align: 'center', width: 120, formatter: "date", formatoptions: { srcformat: 'Y-m-d h:m:s', newformat: 'Y-m-d h:m:s' } },
                 {
                     label: 'Trạng thái', name: 'yzzt', align: 'center', width: 70, formatter: function (val) {
                         return $.enum.getDescByValue("EnumYzzt", val)

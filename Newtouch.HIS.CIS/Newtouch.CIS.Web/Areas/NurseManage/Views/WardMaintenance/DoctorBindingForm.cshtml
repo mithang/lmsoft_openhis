@@ -1,7 +1,7 @@
 @model dynamic
 
 @{
-    ViewBag.Title = "Bác sĩLiên kết";
+    ViewBag.Title = "Bác sĩ Liên kết";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -9,14 +9,14 @@
     <div class="panel panel-default" style="padding-right:10px;">
         <table class="form">
             <tr>
-                <th class="formTitle">Bác sĩPhân loại:</th>
+                <th class="formTitle">Bác sĩ Phân loại:</th>
                 <td class="formValue">
                     <select id="sel_doctorType" name="sel_doctorType" class="form-control required" data-EnumType="EnumYslx">
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Bác sĩHọ tên:</th>
+                <th class="formTitle">Bác sĩ Họ tên:</th>
                 <td class="formValue">
                     <input id="txt_doctor" name="txt_doctor" type="text" class="form-control required" />
                 </td>
@@ -114,8 +114,8 @@
             { label: "Id", name: "Id", hidden: true },
             { label: "ysgh", name: "ysgh", hidden: true },
             { label: "Type", name: "Type", hidden: true },
-            { label: "Bác sĩHọ tên", name: "ysmc", width: 150, align: "center" },
-            { label: "Bác sĩPhân loại", name: "TypeName", width: 150, align: "left" },
+            { label: "Bác sĩ Họ tên", name: "ysmc", width: 150, align: "center" },
+            { label: "Bác sĩ Phân loại", name: "TypeName", width: 150, align: "left" },
             {
                 label: "Thao tác",
                 name: "doctorGh",
@@ -128,7 +128,7 @@
         ]
     });
 
-    //XóaBác sĩ
+    //Xóa Bác sĩ
     function DeleteDoctors(selRowId) {
         if (!!selRowId) {
             $("#gridDoctorList").jqGrid("delRowData", selRowId);
@@ -150,7 +150,7 @@
         //}
         var ishy = getDocIsZTYS();
         if (!ishy) {
-            $.modalAlert("Vui lòng chọn trướcNhập việnBác sĩ!", 'warning');
+            $.modalAlert("Vui lòng chọn trước Nhập viện Bác sĩ!", 'warning');
             return;
         }
         var rowIds = $("#gridDoctorList").jqGrid('getDataIDs');

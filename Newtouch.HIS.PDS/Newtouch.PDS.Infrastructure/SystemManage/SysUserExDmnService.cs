@@ -99,7 +99,7 @@ and A.zt = '1' and B.zt = '1' and C.zt = '1'";
                         throw new FailedException("Mật khẩu không đúng，Vui lòng nhập lại");
                     }
 
-                    //lấyMtrong vài phút mới nhấtN-1bản ghi(Lần này cũng đăng nhập thất bại)
+                    //lấy Mtrong vài phút mới nhấtN-1bản ghi(Lần này cũng đăng nhập thất bại)
                     var loginLogList = this.FindList<bool?>(string.Format(@"select top {0} Result from sys_log where [Type] = 'Login' and Account = @account and TopOrganizeId = @topOrgId and CreateTime > @startTime order by CreateTime desc", _loginFailedTimesLimit_Count - 1)
 , new[] { new SugarParameter("@account", username), new SugarParameter("@startTime", DateTime.Now.AddMinutes(-_loginFailedTimesLimit_Minutes))
 , new SugarParameter("@topOrgId", Constants.TopOrganizeId)});
@@ -125,7 +125,7 @@ and A.zt = '1' and B.zt = '1' and C.zt = '1'";
         }
 
         /// <summary>
-        /// TheoUserIdLấy danh sách nhân sự hệ thống liên kết
+        /// Theo UserId Lấy danh sách nhân sự hệ thống liên kết
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -182,7 +182,7 @@ where a.UserId = @userId";
         }
 
         /// <summary>
-        /// TheoOrganizeIdLấy Nhân sự hệ thống VO(và có tương ứngSysUser)
+        /// Theo OrganizeId Lấy Nhân sự hệ thống VO(và có tương ứng SysUser)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -279,7 +279,7 @@ and cc.Code = @dutyCode";
         }
 
         /// <summary>
-        /// Theo nhân viênIdLấy tất cả vị trí
+        /// Theo nhân viên Id Lấy tất cả vị trí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="StaffId"></param>
@@ -314,7 +314,7 @@ and cc.Code = @dutyCode";
         }
 
         /// <summary>
-        /// TheoUserIdLấy bộ phận nhà thuốc mà người dùng hệ thống có thể thao tácCode List
+        /// Theo UserId Lấy bộ phận nhà thuốc mà người dùng hệ thống có thể thao tác Code List
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="orgId"></param>
@@ -326,7 +326,7 @@ and cc.Code = @dutyCode";
         }
 
         /// <summary>
-        /// TheoUserIdLấy bộ phận nhà thuốc mà người dùng hệ thống có thể thao tácList
+        /// Theo UserId Lấy bộ phận nhà thuốc mà người dùng hệ thống có thể thao tác List
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="orgId"></param>

@@ -13,7 +13,7 @@ namespace Newtouch.Domain.IDomainServices.Clinic
         IList<ClinicApplyInfoVO> GetClinicApplyGridJson(Pagination pagination, string orgId, string xm, string zjh, string kssj, string jssj, string ksCode, string ysgh, int sqzt,string userCode);
 
         OutBookScheduleVO getClinicScheduleId(string orgId, string czks);
-        //LấyxatrìnhkhámtrịXemChi tiếtThông tin bệnh nhân
+        //Lấyxatrìnhkhámtrị XemChi tiết Thông tin bệnh nhân
         ClinicPatVO getClinicPatInfo(string orgId, string Id);
     }
 }

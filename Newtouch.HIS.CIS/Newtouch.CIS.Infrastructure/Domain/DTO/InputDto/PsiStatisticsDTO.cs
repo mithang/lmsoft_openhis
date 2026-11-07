@@ -1,22 +1,22 @@
 namespace Newtouch.Domain.DTO.InputDto
 {
     /// <summary>
-    /// vàobántồn tạiThống kêĐiều kiện tìm kiếm
+    /// vàobántồn tại Thống kê Điều kiện tìm kiếm
     /// </summary>
     public class PsiStatisticsDTO
     {
         /// <summary>
-        /// Bắt đầukết chuyểnThời gian
+        /// Bắt đầukết chuyển Thời gian
         /// </summary>
         public string ksjzsj { get; set; }
 
         /// <summary>
-        /// Kết thúckết chuyểnThời gian
+        /// Kết thúckết chuyển Thời gian
         /// </summary>
         public string jsjzsj { get; set; }
 
         /// <summary>
-        /// vật tưTrạng thái
+        /// vật tư Trạng thái
         /// </summary>
         public string wzzt { get; set; }
 
@@ -36,7 +36,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public string rate { get; set; }
 
         /// <summary>
-        /// Hiển thịkhôngvàobántồn tạiThuốc
+        /// Hiển thịkhôngvàobántồn tại Thuốc
         /// </summary>
         public string noPSI { get; set; }
     }

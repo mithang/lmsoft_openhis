@@ -8,7 +8,7 @@ namespace Newtouch.Domain.IDomainServices
     public interface IAllergyManageDmnService
     {
         /// <summary>
-        /// Ngoại trúbệnh nhânLọc
+        /// Ngoại trúbệnh nhân Lọc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -20,7 +20,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<OutHosPatientVO> GetOutPatientPaginationList(Pagination pagination, string keyword, string ks, string kssj, string jssj, string orgId, string PsItemCode, string Status);
 
         /// <summary>
-        /// Nhập việnbệnh nhânLọc
+        /// Nhập việnbệnh nhân Lọc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -33,19 +33,19 @@ namespace Newtouch.Domain.IDomainServices
 
 
         /// <summary>
-        /// LưuBệnh nhânquamẫnthông tin
+        /// Lưu Bệnh nhânquamẫnthông tin
         /// </summary>
         /// <param name="entity"></param>
         void SaveAllergyInfo(AllergyEntity entity);
 
         /// <summary>
-        /// XóaThực hiệnquamẫnthông tin
+        /// Xóa Thực hiệnquamẫnthông tin
         /// </summary>
         /// <param name="entity"></param>
         int DeleteAllergyInfo(string gmxxId, string orgId, string UserCode, string UserName);
 
         /// <summary>
-        /// LấyNgoại trúBệnh nhânmởcủadathửMục
+        /// Lấy Ngoại trú Bệnh nhânmởcủadathử Mục
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Id"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<PsItemVO> GetMzPatientPsItemsList(Pagination pagination, string Id, string orgId, string PsItemCode);
 
         /// <summary>
-        /// LấyBệnh nhân nội trúmởcủadathửMục
+        /// Lấy Bệnh nhân nội trúmởcủadathử Mục
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Id"></param>
@@ -65,7 +65,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<PsItemVO> GetZyPatientPsItemsList(Pagination pagination, string zyh, string orgId, string PsItemCode);
 
         /// <summary>
-        /// LấyBệnh nhânquamẫnthông tin
+        /// Lấy Bệnh nhânquamẫnthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -74,14 +74,14 @@ namespace Newtouch.Domain.IDomainServices
         IList<PatientGmxxDetailVO> GetPatientGmxxList(Pagination pagination, string keyword, string orgId);
 
         /// <summary>
-        /// LấyKháng sinhThuốcthông tin
+        /// Lấy Kháng sinh Thuốcthông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<KssYpVO> GetKssYpListData(string orgId);
 
         /// <summary>
-        /// LấyKháng sinhLoại
+        /// Lấy Kháng sinh Loại
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="orgId"></param>

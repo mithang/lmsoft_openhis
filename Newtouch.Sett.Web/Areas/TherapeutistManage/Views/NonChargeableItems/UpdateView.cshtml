@@ -84,7 +84,7 @@
 
     //bật khung sửa trong dòng
     function EnableInlineEditBox() {
-        //GridNạp xong thì bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt và gọieditRowphương thức
+        //Grid Nạp xong thì bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trước Id  2.Duyệt và gọieditRowphương thức
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
 
@@ -97,7 +97,7 @@
         var ysgh = $("#ysgh").html();
         var par = {};
         var dic = [];
-        //Lấy tất cả các dòngId,Duyệt để hộp chỉnh sửa ở trạng thái lưu
+        //Lấy tất cả các dòng Id,Duyệt để hộp chỉnh sửa ở trạng thái lưu
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);

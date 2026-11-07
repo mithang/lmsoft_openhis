@@ -27,7 +27,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         public string mzh { get; set; }
 
         /// <summary>
-        /// Dư thừađăng ký khámthông tin  Liệt kê 1 thông thườngNgoại trú 2 gấpkhám 3chuyên gia
+        /// Dư thừađăng ký khámthông tin  Liệt kê 1 thông thường Ngoại trú 2 gấpkhám 3chuyên gia
         /// </summary>
         public int? mjzbz { get; set; }
 
@@ -66,7 +66,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public decimal? shengao { get; set; }
         /// <summary>
-        /// thuHuyết áp tâm thu
+        /// thu Huyết áp tâm thu
         /// </summary>
         public decimal? shousuoya { get; set; }
         /// <summary>
@@ -89,7 +89,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         public string zs { get; set; }
 
         /// <summary>
-        /// phátbệnhThời gian
+        /// phátbệnh Thời gian
         /// </summary>
         public DateTime? fbsj { get; set; }
 
@@ -112,7 +112,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public string clfa { get; set; }
         /// <summary>
-        /// hỗ trợKiểm tra
+        /// hỗ trợ Kiểm tra
         /// </summary>
         public string fzjc { get; set; }
         /// <summary>
@@ -120,7 +120,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public string yjs { get; set; }
         /// <summary>
-        /// quaTiền sử dị ứng
+        /// qua Tiền sử dị ứng
         /// </summary>
         public string gms { get; set; }
         public List<WMDiagnosisVO> xyzd { get; set; }
@@ -142,7 +142,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public int zdlx { get; set; }
         /// <summary>
-        /// Nghi ngờCờ
+        /// Nghi ngờ Cờ
         /// </summary>
         public bool? ysbz { get; set; }
         /// <summary>
@@ -172,17 +172,17 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public int zdlx { get; set; }
         /// <summary>
-        /// Nghi ngờCờ
+        /// Nghi ngờ Cờ
         /// </summary>
         public bool? ysbz { get; set; }
 
         /// <summary>
-        /// hội chứngMã
+        /// hội chứng Mã
         /// </summary>
         public string zhCode { get; set; }
 
         /// <summary>
-        /// hội chứngTên
+        /// hội chứng Tên
         /// </summary>
         public string zhmc { get; set; }
         /// <summary>

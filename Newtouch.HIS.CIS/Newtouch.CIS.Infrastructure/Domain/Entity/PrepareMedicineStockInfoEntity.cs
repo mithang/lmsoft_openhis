@@ -61,7 +61,7 @@ namespace Newtouch.Domain.Entity
         //public short kzbz { get; set; }
 
         /// <summary>
-        /// đãphốithuốcchưaphát(lĩnh)thuốccủaSố lượng
+        /// đãphốithuốcchưaphát(lĩnh)thuốccủa Số lượng
         /// </summary>
         public int djsl { get; set; }
 
@@ -82,12 +82,12 @@ namespace Newtouch.Domain.Entity
         public decimal? jj { get; set; }
 
         /// <summary>
-        /// tương ứngNhà thuốcNhà thuốccủatháokhôngsố
+        /// tương ứng Nhà thuốc Nhà thuốccủatháokhôngsố
         /// </summary>
         public int? zhyz { get; set; }
 
         /// <summary>
-        /// Nơi sản xuấtDanh mục
+        /// Nơi sản xuất Danh mục
         /// </summary>
         public int? cd { get; set; }
 
@@ -98,7 +98,7 @@ namespace Newtouch.Domain.Entity
         public string pc { get; set; }
 
         /// <summary>
-        /// làKhôngđãkhóa  0:chưakhóa ;    1/null:đãkhóa
+        /// là Khôngđãkhóa  0:chưakhóa ;    1/null:đãkhóa
         /// </summary>
         public string locked { get; set; }
 

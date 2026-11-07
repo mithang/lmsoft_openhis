@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<string> MzDistributingMedicines(List<GetfyDetailCFList> reqdata);
 
         /// <summary>
-        /// Trả thuốc ngoại trú(mz_cfmxphKiểm tra)
+        /// Trả thuốc ngoại trú(mz_cfmxph Kiểm tra)
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>
@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void ReleaseFrozenStock(List<OutpatientPrescriptionDetailBatchNumberEntity> list);
 
         /// <summary>
-        /// Truy vấn phát thuốc ngoại trú hiển thị chi tiết(mz_cfmxphKiểm tra)
+        /// Truy vấn phát thuốc ngoại trú hiển thị chi tiết(mz_cfmxph Kiểm tra)
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>

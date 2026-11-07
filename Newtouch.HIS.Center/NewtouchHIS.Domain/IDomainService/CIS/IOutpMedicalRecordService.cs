@@ -15,14 +15,14 @@ namespace NewtouchHIS.Domain.IDomainService.CIS
     {
 
         /// <summary>
-        /// Bệnh nhânBệnh án ngoại trú by mzh
+        /// Bệnh nhân Bệnh án ngoại trú by mzh
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         Task<OutpMedicalRecordVO> OutpMedicalRecordByMzh(string mzh, string orgId);
         /// <summary>
-        /// Bệnh nhânThông tin đơn thuốc trong bệnh án
+        /// Bệnh nhân Thông tin đơn thuốc trong bệnh án
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>

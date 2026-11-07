@@ -12,12 +12,12 @@ using System.Data;
 namespace NewtouchHIS.Lib.Base.Extension
 {
     /// <summary>
-    /// JsonLớp hỗ trợ tuần tự hóa
+    /// Json Lớp hỗ trợ tuần tự hóa
     /// </summary>
     public static class Json
     {
         /// <summary>
-        /// stringGiải tuần tự hóa thành object
+        /// string Giải tuần tự hóa thành object
         /// </summary>
         /// <param name="json"></param>
         /// <returns></returns>

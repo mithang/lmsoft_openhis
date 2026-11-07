@@ -37,9 +37,9 @@ namespace NewtouchHIS.Lib.Services.ApiService
             _httpClient = httpClient;
         }
         /// <summary>
-        /// AppLấy ủy quyềnToken
+        /// App Lấy ủy quyền Token
         /// </summary>
-        /// <param name="appId">Ứng dụng nàyId</param>
+        /// <param name="appId">Ứng dụng này Id</param>
         /// <param name="accessAppId">Ứng dụng xin truy cậpId</param>
         /// <returns></returns>
         public async Task<string> GetAppToken(string appId, string accessAppId)
@@ -68,7 +68,7 @@ namespace NewtouchHIS.Lib.Services.ApiService
             return tokenResult?.ToJson() ?? "";
         }
         /// <summary>
-        /// Người dùng lấyToken
+        /// Người dùng lấy Token
         /// </summary>
         /// <returns></returns>
         public async Task<BusResult<string>> GetUserToken(OperatorModel user, string accessAppId)

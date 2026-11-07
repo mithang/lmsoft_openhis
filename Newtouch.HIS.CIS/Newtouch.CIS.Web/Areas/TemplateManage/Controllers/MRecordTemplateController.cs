@@ -50,7 +50,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             {
                 treeList.Add(new TreeViewModel()
                 {
-                    id = item.mbId,   //mẫuId
+                    id = item.mbId,   //mẫu Id
                     value = item.mbId,
                     text = item.mbmc,
                     parentId = null,
@@ -71,8 +71,8 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         public IActionResult SelectTemplateDetailByMbId(string mbId)
         {
             var data = _mRecordTemplateDmnService.SelectTemplateDetailByMbId(mbId, this.OrganizeId);
-            data.xyzdList = data.xyzdList.OrderBy(a => a.zdlx).ToList();   //chínhChẩn đoánxếpởtrướcmặt
-            data.zyzdList = data.zyzdList.OrderBy(a => a.zdlx).ToList();   //chínhChẩn đoánxếpởtrướcmặt
+            data.xyzdList = data.xyzdList.OrderBy(a => a.zdlx).ToList();   //chính Chẩn đoánxếpởtrướcmặt
+            data.zyzdList = data.zyzdList.OrderBy(a => a.zdlx).ToList();   //chính Chẩn đoánxếpởtrướcmặt
             
 
             return Content(data.ToJson());

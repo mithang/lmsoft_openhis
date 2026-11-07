@@ -59,7 +59,7 @@ namespace Newtouch.PDS.Requset.ResourcesOperate
         public decimal ItemCount { get; set; }
 
         /// <summary>
-        /// Hệ số quy đổi vàItemCountSử dụng phối hợp ItemCount*Zhyz=Số lượng đơn vị nhỏ nhất
+        /// Hệ số quy đổi và ItemCount Sử dụng phối hợp ItemCount*Zhyz=Số lượng đơn vị nhỏ nhất
         /// </summary>
         public int Zhyz { get; set; }
 
@@ -74,12 +74,12 @@ namespace Newtouch.PDS.Requset.ResourcesOperate
         public string ItemSpecifications { get; set; }
 
         /// <summary>
-        /// Hạng mục/Đơn giá thuốc (Đơn giá đơn vị bộ phận nhà thuốc vớiItemUnitKhớp)
+        /// Hạng mục/Đơn giá thuốc (Đơn giá đơn vị bộ phận nhà thuốc với ItemUnit Khớp)
         /// </summary>
         public decimal ItemUnitPrice { get; set; }
 
         /// <summary>
-        /// Hạng mục/Tên đơn vị thuốc (Đơn vị bộ phận nhà thuốc,vàItemCountKhớp)
+        /// Hạng mục/Tên đơn vị thuốc (Đơn vị bộ phận nhà thuốc,và ItemCount Khớp)
         /// </summary>
         public string ItemUnitName { get; set; }
 

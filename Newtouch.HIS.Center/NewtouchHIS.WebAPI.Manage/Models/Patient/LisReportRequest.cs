@@ -7,11 +7,11 @@
         /// </summary>
         public string? kh { get; set; }
         /// <summary>
-        /// Đăng kýTrạng thái phiếu EnumReportStu
+        /// Đăng ký Trạng thái phiếu EnumReportStu
         /// </summary>
         public string? sqdzt { get; set; }
         /// <summary>
-        /// Đăng kýSố phiếu
+        /// Đăng ký Số phiếu
         /// </summary>
         public string? sqdh { get; set; }
         /// <summary>

@@ -62,7 +62,7 @@ namespace NewtouchHIS.Base.Domain.IDomainService
         /// <returns></returns>
         Task<BusResult<string>> DelEntity(string keyValue, string user, string orgId);
         /// <summary>
-        /// TheoTổ chứcLấy danh sách menu hiệu lực
+        /// Theo Tổ chức Lấy danh sách menu hiệu lực
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

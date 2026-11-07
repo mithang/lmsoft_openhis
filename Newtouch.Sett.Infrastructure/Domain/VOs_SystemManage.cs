@@ -255,7 +255,7 @@ namespace Newtouch.Sett.Domain
             public string ry { get; set; }
     
             /// <summary>
-            /// Tổ chứcId(cócụthểnghiệpvụcủay tếviện)
+            /// Tổ chức Id(cócụthểnghiệpvụcủay tếviện)
             /// </summary>
             public string OrganizeId { get; set; }
     

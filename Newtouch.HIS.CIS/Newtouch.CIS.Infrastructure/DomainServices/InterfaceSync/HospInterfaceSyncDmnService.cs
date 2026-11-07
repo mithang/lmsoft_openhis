@@ -26,7 +26,7 @@ namespace Newtouch.DomainServices
 
         #region máy chủgiao diện SiteBaseAPIHelper
         /// <summary>
-        /// Cập nhậtgiường ký tựlàKhôngchiếmdùng
+        /// Cập nhậtgiường ký tựlà Khôngchiếmdùng
         /// </summary>
         /// <param name="cwcode"></param>
         /// <param name="bq"></param>
@@ -63,7 +63,7 @@ select @@ROWCOUNT as [rowcount] ";
                 else
                 {
                     resp.code = ResponseResultCode.FAIL;
-                    resp.msg = "giường ký tựCập nhậtthất bại";
+                    resp.msg = "giường ký tự Cập nhậtthất bại";
                 }
             }
             catch (Exception ex)

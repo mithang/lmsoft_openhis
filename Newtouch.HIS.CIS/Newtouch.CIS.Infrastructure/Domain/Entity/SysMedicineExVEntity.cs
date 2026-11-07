@@ -2,7 +2,7 @@
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// mở rộngtriểnThuốcthông tin
+    /// mở rộngtriển Thuốcthông tin
     /// </summary>
     public class SysMedicineExVEntity: SysMedicineVEntity
     {

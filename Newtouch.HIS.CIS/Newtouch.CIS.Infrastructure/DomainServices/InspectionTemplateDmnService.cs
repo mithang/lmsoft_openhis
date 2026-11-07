@@ -23,7 +23,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// Theotype Tra cứuXét nghiệmKiểm tramẫu
+        /// Theotype Tra cứu Xét nghiệm Kiểm tramẫu
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="jyjcmbLx">Xét nghiệm or Kiểm tra</param>
@@ -47,7 +47,7 @@ WHERE mb.zt='1'
         }
 
         /// <summary>
-        /// TheombId Tra cứumẫudướiBộ mẫuMục
+        /// TheombId Tra cứumẫudưới Bộ mẫu Mục
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mbId"></param>
@@ -72,7 +72,7 @@ WHERE zt.ztId is not null and mb.mbId=@mbId
         }
 
         /// <summary>
-        /// TheoztIdTra cứuBộ mẫudướicủaMục thu phí
+        /// TheoztIdTra cứu Bộ mẫudướicủa Mục thu phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ztId"></param>
@@ -132,7 +132,7 @@ group by  ztxm.ztId,zt.ztmc,mb.zxks, Department.Name,sfxm.sqlx ";
         }
 
         /// <summary>
-        /// mẫuChi tiết
+        /// mẫu Chi tiết
         /// </summary>
         /// <param name="ztId"></param>
         public InspectionTemplateDetailBO GetTemplateDetail(string mbId, string orgId)
@@ -156,10 +156,10 @@ WHERE mb.mbId=@mbId
 
             if (mbEntity == null)
             {
-                throw new FailedException("Dữ liệu bất thường，Không cótìmđếnBộ mẫuthông tin");
+                throw new FailedException("Dữ liệu bất thường，Không cótìmđến Bộ mẫuthông tin");
             }
 
-            //mẫuBộ mẫu
+            //mẫu Bộ mẫu
             var sql = @"
 SELECT zutao.*      --zutao.ztId, zutao.ztmc, zutao.[Type], zutao.[Description], zutao.Remark
 FROM [dbo].[jyjc_mb] mb
@@ -196,7 +196,7 @@ WHERE mb.mbId=@mbId
 
                     db.Update(mbobj);
 
-                    db.Delete<TemplateGroupPackageEntity>(a => a.mbId == mbobj.mbId); //trướctoànxóa,lạiThêm mới
+                    db.Delete<TemplateGroupPackageEntity>(a => a.mbId == mbobj.mbId); //trướctoànxóa,lại Thêm mới
                 }
                 else
                 {
@@ -206,7 +206,7 @@ WHERE mb.mbId=@mbId
                     db.Insert(mbobj);
                 }
                 
-                //mẫuBộ mẫu
+                //mẫu Bộ mẫu
                 if (mbztlist != null)
                 {
                     foreach (var item in mbztlist)

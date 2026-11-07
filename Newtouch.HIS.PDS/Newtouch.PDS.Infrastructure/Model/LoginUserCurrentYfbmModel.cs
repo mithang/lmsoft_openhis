@@ -8,7 +8,7 @@ namespace Newtouch.Infrastructure.Model
     public class LoginUserCurrentYfbmModel
     {
         /// <summary>
-        /// Bộ phận nhà thuốcCode
+        /// Bộ phận nhà thuốc Code
         /// </summary>
         public string yfbmCode { get; set; }
 
@@ -18,7 +18,7 @@ namespace Newtouch.Infrastructure.Model
         public string yfbmjb { get; set; }
 
         /// <summary>
-        /// Danh tính đăng nhập hiện tại của Bộ phận nhà thuốc:0Kho thuốc;1Nhà thuốc ngoại trú;2Nhà thuốc nội trú   Kho thuốc trực tiếp thông quayjbmjbKiểm tra là được
+        /// Danh tính đăng nhập hiện tại của Bộ phận nhà thuốc:0Kho thuốc;1Nhà thuốc ngoại trú;2Nhà thuốc nội trú   Kho thuốc trực tiếp thông quayjbmjb Kiểm tra là được
         /// </summary>
         public string mzzybz { get; set; }
 

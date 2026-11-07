@@ -8,7 +8,7 @@
         public int? OrderType { get; set; }
 
         /// <summary>
-        /// Khám bệnhSố thẻ
+        /// Khám bệnh Số thẻ
         /// </summary>
         public string CardNo { get; set; }
         /// <summary>
@@ -20,7 +20,7 @@
         /// </summary>
         public int patId { get; set; }
         /// <summary>
-        /// Địa chỉId
+        /// Địa chỉ Id
         /// </summary>
         public string dzId { get; set; }
     }
@@ -37,7 +37,7 @@
         /// </summary>
         public int? OrderType { get; set; }
         /// <summary>
-        /// Khám bệnhSố thẻ
+        /// Khám bệnh Số thẻ
         /// </summary>
         public string? CardNo { get; set; }
         /// <summary>

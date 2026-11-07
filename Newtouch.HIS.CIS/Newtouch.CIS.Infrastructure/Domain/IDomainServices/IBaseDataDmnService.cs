@@ -22,52 +22,52 @@ namespace Newtouch.Domain.IDomainServices
         /// <returns></returns>
         IList<SysAuxiliaryDictionaryEntity> GetDjfsUsageList(string OrganizeId);
         /// <summary>
-        /// LấyThuốc Đông ysắc hộphí
+        /// Lấy Thuốc Đông ysắc hộphí
         /// </summary>
         /// <returns></returns>
         decimal? GetDjFee(string orgId);
 
         /// <summary>
-        /// Vị tríNhóm lớn
+        /// Vị trí Nhóm lớn
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<GetSysBodyPartsVO> GetSysBodyBwFl(string orgId);
         /// <summary>
-        /// Kiểm traVị tríNhóm lớn
+        /// Kiểm tra Vị trí Nhóm lớn
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<GetSysBodyPartsVO> GetSysBodyJcBwFl(string orgId);
 
         /// <summary>
-        /// LấyHệ thốngVị trí
+        /// Lấy Hệ thống Vị trí
         /// </summary>
         /// <returns></returns>
         IList<GetSysBodyPartsVO> GetSysBodyParts(string orgId);
 
 
         /// <summary>
-        /// LấyHệ thốngVị trí
+        /// Lấy Hệ thống Vị trí
         /// </summary>
         /// <returns></returns>
         IList<GetYxBodyPartsVO> GetYxBodyParts(string orgId);
 
         /// <summary>
-        /// LấyHình ảnhPhương pháp
+        /// Lấy Hình ảnh Phương pháp
         /// </summary>
         /// <returns></returns>
         IList<string> GetYxBodyMethod(string orgId, string jcbw);
 
         IList<GetSysJcBodyPartsVo> GetJcListByOrg(string orgId);
         /// <summary>
-        /// LấyHệ thốngDặn dò
+        /// Lấy Hệ thống Dặn dò
         /// </summary>
         /// <returns></returns>
         IList<SysDoctorRemarkVO2> GetSysDoctorRemark(string orgId, string ksCode);
 
         /// <summary>
-        /// LấyBác sĩKhoa
+        /// Lấy Bác sĩ Khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ysgh"></param>
@@ -77,7 +77,7 @@ namespace Newtouch.Domain.IDomainServices
         void UpdatebrxzInfo(string orgId, string mzh, string zyh, string brxzCode, string brxzmc);
 
         /// <summary>
-        /// Lấybệnh nhânThông tin cơ bản
+        /// Lấybệnh nhân Thông tin cơ bản
         /// </summary>
         /// <param name="blh">Số bệnh án</param>
         /// <param name="mzh">Số khám ngoại trú</param>
@@ -101,7 +101,7 @@ namespace Newtouch.Domain.IDomainServices
         List<SysDeptWardRelVO> GetDeptWardRel(string orgId, string ks, string bq);
 
 		/// <summary>
-		/// LấyBác sĩmởthuốcQuyền
+		/// Lấy Bác sĩmởthuốc Quyền
 		/// </summary>
 		/// <param name="orgid"></param>
 		/// <param name="gh"></param>

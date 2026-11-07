@@ -28,7 +28,7 @@ namespace Newtouch.Domain.Entity
         public int type { get; set; }
 
         /// <summary>
-        /// liên kếtbasekhocủaKhoabảng
+        /// liên kếtbasekhocủa Khoabảng
         /// </summary>
         public string ksCode { get; set; }
 
@@ -38,7 +38,7 @@ namespace Newtouch.Domain.Entity
         public string ysgh { get; set; }
 
         /// <summary>
-        /// liên kếtbasekhocủaHệ thốngThuốcbảng
+        /// liên kếtbasekhocủa Hệ thống Thuốcbảng
         /// </summary>
         public string zdCode { get; set; }
 

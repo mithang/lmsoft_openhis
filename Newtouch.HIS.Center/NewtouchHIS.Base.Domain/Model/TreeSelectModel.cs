@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.Base.Domain.Model
 {
     /// <summary>
-    /// Chọn thả xuốngModel
+    /// Chọn thả xuống Model
     /// (select Điều khiển)
     /// </summary>
     public class TreeSelectModel
@@ -11,7 +11,7 @@
         public string parentId { get; set; }
     }
     /// <summary>
-    /// treeview Model Không cóNodesLớp cơ sở
+    /// treeview Model Không có Nodes Lớp cơ sở
     /// </summary>
     public class BsTreeSelectBaseModel
     {

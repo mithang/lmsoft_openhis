@@ -26,36 +26,36 @@ namespace Newtouch.Domain.IDomainServices
         /// <returns></returns>
         string SavePatInArea(patInAreaRequestDto inareaReq);
         /// <summary>
-        /// Bệnh nhânchuyển khuBệnh nhânvàokhuthông tinSửa
+        /// Bệnh nhânchuyển khu Bệnh nhânvàokhuthông tin Sửa
         /// </summary>
         /// <param name="patChangeAreaRequestDto"></param>
         string SaveChangeAreaPatInfo(patChangeAreaRequestDto patChangeAreaRequestDto);
         string UpdatePatInfo(string zyh,string wzjb,string orgId);
         /// <summary>
-        /// LưuvàokhukhiThông tin bệnh nhân
+        /// Lưuvàokhukhi Thông tin bệnh nhân
         /// </summary>
         /// <param name="patInfoRes"></param>
         void SavePatInfo(InPatientDetailQueryDto patInfoRes);
         /// <summary>
-        /// vàokhukhithulấykhingàygiường ký tựgắnChi phí
+        /// vàokhukhithulấykhingàygiường ký tựgắn Chi phí
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         string AddPatBedItemFee(patBedFeeRequestDto req);
         /// <summary>
-        /// Lấychuyển khuBệnh nhân
+        /// Lấychuyển khu Bệnh nhân
         /// </summary>
         /// <param name="bqdm"></param>
         /// <returns></returns>
         List<NewPatInfoVO> GetPatChangeArea(string bqdm);
         /// <summary>
-        /// LấycầnChènđếngiường ký tựSử dụngghi chépbảngcủaDữ liệu
+        /// Lấycần Chènđếngiường ký tự Sử dụngghi chépbảngcủa Dữ liệu
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         patBedSyjlInfoVO GetPatBedSyInfo(string zyh);
         /// <summary>
-        /// Lưugiường ký tựSử dụngghi chép
+        /// Lưugiường ký tự Sử dụngghi chép
         /// </summary>
         /// <param name="patBedSyInfo"></param>
         void SavePatBedSYInfo(patBedSyjlInfoVO patBedSyInfo);
@@ -66,17 +66,17 @@ namespace Newtouch.Domain.IDomainServices
         /// <param name="keyword">Từ khóa</param>
         /// <param name="ksrq">Ngày bắt đầu</param>
         /// <param name="jsrq">Ngày kết thúc</param>
-        /// <param name="bqdm">Khu bệnhMã</param>
+        /// <param name="bqdm">Khu bệnh Mã</param>
         /// <returns></returns>
         IList<OutAreapatientInfo> GetOutAreaPatlist(Pagination pagination, string keyword, DateTime? ksrq, DateTime? jsrq, string bqdm, string orgId);
         /// <summary>
         /// ra khỏi khutriệuvề
         /// </summary>
         /// <param name="zyh">Số nhập viện</param>
-        /// <param name="bqdm">Khu bệnhMã</param>
+        /// <param name="bqdm">Khu bệnh Mã</param>
         string SaveRecallOutArea(string zyh, string bqdm);
         /// <summary>
-        /// kiểm traBệnh nhâncó thểKhôngHủyvàokhu
+        /// kiểm tra Bệnh nhâncó thể Không Hủyvàokhu
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -94,7 +94,7 @@ namespace Newtouch.Domain.IDomainServices
         /// <param name="reqDto"></param>
         string ChangeBed(patBedRequestDto reqDto);
         /// <summary>
-        /// ởKhu bệnhThông tin bệnh nhân
+        /// ở Khu bệnh Thông tin bệnh nhân
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -105,7 +105,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<InAreapatientInfo> GetINAreaPatlist(Pagination pagination, string keyword, string bqdm,string orgId);
 
         /// <summary>
-        /// mớivàokhu,chuyển khu giường ký tựlàKhôngbịchiếmdùng
+        /// mớivàokhu,chuyển khu giường ký tựlà Khôngbịchiếmdùng
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="OrganizeId"></param>

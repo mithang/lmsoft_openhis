@@ -1,6 +1,6 @@
 @using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "Tồn khoKết chuyển";
+    ViewBag.Title = "Tồn kho Kết chuyển";
     Layout = "~/Views/Shared/_Index.cshtml";
     var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
     var reportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
@@ -37,7 +37,7 @@
                     </td>
                     <th class="formTitle">Nhập mã:</th>
                     <td class="formValue">
-                        <input id="txtSRM" type="text" class="form-control" placeholder="Vật tưTên/Pinyin" />
+                        <input id="txtSRM" type="text" class="form-control" placeholder="Vật tư Tên/Pinyin" />
                     </td>
                     <td class="formValue" colspan="3">
                         <input type="button" id="btn_search" class="btn btn-primary" value="Tra cứu" style="margin-left:10px;" />
@@ -54,7 +54,7 @@
     @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new[] { 8 },
-    F8Text = "Kết chuyểnHiện tại"
+    F8Text = "Kết chuyển Hiện tại"
 })
 </form>
 <script>
@@ -63,7 +63,7 @@
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
-        GetlsjzSel();//LấyLịch sửkết chuyểnThời gian
+        GetlsjzSel();//Lấy Lịch sửkết chuyển Thời gian
         gridDrugsList();//vật tưthông tin
     });
 
@@ -74,7 +74,7 @@
         }
     });
 
-    //LấyLịch sửkết chuyểnThời gian
+    //Lấy Lịch sửkết chuyển Thời gian
     function GetlsjzSel() {
         $("#lsjz").html("");
         $("#lsjz").bindSelect({
@@ -86,7 +86,7 @@
 
     //Thực hiệnkết chuyểnhiện tại
     function newtouch_event_f8() {
-        //Lấycuối cùngmột lầnkết chuyểnThời gian
+        //Lấycuối cùngmột lầnkết chuyển Thời gian
         $.najax({
             type: "Get",
             url: "/NurseManage/StockCarryOver/QueryLastCarryTime?r=" + Math.random(),
@@ -106,7 +106,7 @@
                                         success: function (ajaxresp) {
                                             if (ajaxresp.state === "success") {
                                                 $.modalMsg("Kết chuyểnthành công", 'success', 1500);
-                                                GetlsjzSel();//Làm mớikết chuyểnThời gian
+                                                GetlsjzSel();//Làm mớikết chuyển Thời gian
                                                 $("#btn_search").trigger("click");
                                             }
                                             else {
@@ -140,9 +140,9 @@
             url: "/NurseManage/StockCarryOver/SelectCarryOverDetail",
             caption: captionCon,
             colModel: [
-                { label: 'Vật tưTên', name: 'wzmc', width: 120, align: 'left' },
+                { label: 'Vật tư Tên', name: 'wzmc', width: 120, align: 'left' },
                 { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
-                { label: 'Kết chuyểnSố lượng', name: 'jzsl', width: 60, align: 'left' },
+                { label: 'Kết chuyển Số lượng', name: 'jzsl', width: 60, align: 'left' },
                 { label: 'Lô', name: 'pc', width: 120, align: 'left' },
                 { label: 'Số lô', name: 'ph', width: 110, align: 'left' },
                 {
@@ -160,7 +160,7 @@
                 },
                 { label: 'Nhà sản xuất', name: 'supplierName', width: 120, align: 'left' },
                 { label: 'Thời gian tạo', name: 'CreateTime', width: 50, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
-                { label: 'Kết chuyểnTồn khoSố lượng', name: 'kcsl', hidden: true },
+                { label: 'Kết chuyển Tồn kho Số lượng', name: 'kcsl', hidden: true },
                 { label: 'productId', name: 'productId', hidden: true }
             ],
             multiselect: false,

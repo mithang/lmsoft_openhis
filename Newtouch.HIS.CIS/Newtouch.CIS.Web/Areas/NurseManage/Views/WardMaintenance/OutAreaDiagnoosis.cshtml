@@ -1,7 +1,7 @@
 @model dynamic
 
 @{
-    ViewBag.Title = "Ra khuChẩn đoán";
+    ViewBag.Title = "Ra khu Chẩn đoán";
     Layout = "~/Views/Shared/_Index.cshtml";
     var isShowDiag = SysConfigReader.String("Inpatient_OutAre");
 }
@@ -82,13 +82,13 @@
 
         DefaultCheck();
     });
-    //Mặc địnhĐã chọngốctiếtđiểm.
+    //Mặc định Đã chọngốctiếtđiểm.
     function DefaultCheck() {
-        var firstid = $("div[id^='wardTree_']:first").attr("id").replace("wardTree_", "");//gốctiếtđiểmKhu bệnhMã
+        var firstid = $("div[id^='wardTree_']:first").attr("id").replace("wardTree_", "");//gốctiếtđiểm Khu bệnh Mã
         var addstyleid = 'wardTree_' + firstid;
         var item = new Object();
         item.id = firstid;
-        $("#" + addstyleid + "").addClass('bbit-tree-selected');//tăng thêmĐã chọnkiểu
+        $("#" + addstyleid + "").addClass('bbit-tree-selected');//tăng thêm Đã chọnkiểu
         wardTree_onnodeclick(item);
     }
     var bqdm = null;
@@ -131,7 +131,7 @@
         Querydata["bqdm"] = bqdm;
         //alert(bqdm);
         $gridList.dataGrid({
-            //LấyBệnh nhân đang nằm việnthông tin
+            //Lấy Bệnh nhân đang nằm việnthông tin
             url: "/EntryRegistration/GetINAreaPatlist",
             postData: Querydata,
             dataType: "json",
@@ -154,15 +154,15 @@
                 { label: 'Số giường', name: 'cwmc', align: 'center', width: 70 },
                 { label: 'Ngày nhập viện', name: 'ryrq', align: 'center', width: 85, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
                 { label: 'Tính chất bệnh nhân', name: 'brxz', hidden: true },
-                { label: 'Chi phíLoại', name: 'brxzmc', align: 'center', width: 80 },
+                { label: 'Chi phí Loại', name: 'brxzmc', align: 'center', width: 80 },
                 { label: 'Chẩn đoán nhập viện', name: 'zzdmc', align: 'center', width: 150 },
-                { label: 'Xuất việnChẩn đoán', name: 'cyzdmc', align: 'center', width: 150 },
-                { label: 'Giường bệnhBác sĩ', name: 'ysxm', align: 'center', width: 90 },
+                { label: 'Xuất viện Chẩn đoán', name: 'cyzdmc', align: 'center', width: 150 },
+                { label: 'Giường bệnh Bác sĩ', name: 'ysxm', align: 'center', width: 90 },
                 {
                     label: "Thao tác", name: "", align: "center", width: 100,
                     formatter: function (cellvalue, options, rowobject) {
                         return "<a href=\#\" onclick='recall1(\"" + rowobject.zyh + "\",\"" + rowobject.brxz + "\")'' title='Chẩn đoán nhập viện' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>Chẩn đoán nhập viện</a>" +
-                            "<a href=\#\" onclick='recall2(\"" + rowobject.zyh + "\",\"" + rowobject.brxz + "\")'' title='Chuyển khuChẩn đoán' style='text-decoration: none;color: #dd4b39;cursor: pointer;margin-left:5px;'>Chuyển khuChẩn đoán</a>";
+                            "<a href=\#\" onclick='recall2(\"" + rowobject.zyh + "\",\"" + rowobject.brxz + "\")'' title='Chuyển khu Chẩn đoán' style='text-decoration: none;color: #dd4b39;cursor: pointer;margin-left:5px;'>Chuyển khu Chẩn đoán</a>";
                     }
                 }
             ],
@@ -178,7 +178,7 @@
     //Chẩn đoán nhập viện
     function recall1(zyh,brxz) {
         if (zyh == null || zyh === "") {
-            $.modalAlert("Vui lòng chọnmộtBệnh nhân", 'warning');
+            $.modalAlert("Vui lòng chọnmột Bệnh nhân", 'warning');
             return;
         }
         $.modalOpen({
@@ -196,10 +196,10 @@
         });
     }
     
-    //Xuất việnChẩn đoán
+    //Xuất viện Chẩn đoán
     function recall2(zyh, brxz) {
         if (zyh == null || zyh === "") {
-            $.modalAlert("Vui lòng chọnmộtBệnh nhân", 'warning');
+            $.modalAlert("Vui lòng chọnmột Bệnh nhân", 'warning');
             return;
         }
         var btn = ['Xác nhận', 'Đóng'];

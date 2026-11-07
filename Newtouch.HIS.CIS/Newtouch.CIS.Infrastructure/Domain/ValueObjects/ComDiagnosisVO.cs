@@ -13,15 +13,15 @@ namespace Newtouch.Domain.ValueObjects
         //public string py { get; set; }
         public string Id { get; set; }
         /// <summary>
-        /// Cơ sởMã
+        /// Cơ sở Mã
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// thường dùngTên chẩn đoán
+        /// thường dùng Tên chẩn đoán
         /// </summary>
         public string cyzdmc { get; set; }
         /// <summary>
-        /// thường dùngMã chẩn đoán
+        /// thường dùng Mã chẩn đoán
         /// </summary>
         public string cyzdbm { get; set; }
         /// <summary>
@@ -29,7 +29,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string icd10 { get; set; }
         /// <summary>
-        /// thường dùngLoại chẩn đoán(1 tâyy 2 trongy)
+        /// thường dùng Loại chẩn đoán(1 tâyy 2 trongy)
         /// </summary>
         public string cyzdtype { get; set; }
         /// <summary>
@@ -41,7 +41,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string ksCode { get; set; }
         /// <summary>
-        /// Bác sĩMã nhân viên
+        /// Bác sĩ Mã nhân viên
         /// </summary>
         public string ys { get; set; }
         /// <summary>
@@ -65,7 +65,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// Cá nhâncònlàKhoa
+        /// Cá nhâncònlà Khoa
         /// </summary>
         public string isgr { get; set; }
         /// <summary>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.DTO.InputDto.Inpatient
 {
     /// <summary>
-    /// kiểm traY lệnhlàKhôngtrùng lặp
+    /// kiểm traY lệnhlà Khôngtrùng lặp
     /// </summary>
     public class DSrepeatResponseDto
     {

@@ -6,7 +6,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class RequisitionDepartmentMedicineSubmitItemVO
     {
         /// <summary>
-        /// ThuốcCode
+        /// Thuốc Code
         /// </summary>
         public string ypCode { get; set; }
 

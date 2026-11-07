@@ -63,7 +63,7 @@
         /// </summary>
         public string? ysgh { get; set; }
         /// <summary>
-        /// Bác sĩHọ tên
+        /// Bác sĩ Họ tên
         /// </summary>
         public string? ysxm { get; set; }
     }

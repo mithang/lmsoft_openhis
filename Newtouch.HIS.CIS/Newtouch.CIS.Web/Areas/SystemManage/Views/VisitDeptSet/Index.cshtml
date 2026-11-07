@@ -2,7 +2,7 @@
 @using Newtouch.Tools
 
 @{
-    ViewBag.Title = "Khám bệnhCài đặt";
+    ViewBag.Title = "Khám bệnh Cài đặt";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <div style="width: 26%; float: left;">
@@ -84,9 +84,9 @@
             height: $(window).height() - 120,
             colModel: [
                 { label: "Khóa chính", name: "Id", hidden: true, key: true },
-                { label: 'Khoa khámTên', name: 'visitDeptName', width: 120, align: 'left' },
+                { label: 'Khoa khám Tên', name: 'visitDeptName', width: 120, align: 'left' },
                 {
-                    label: 'KhámLoại', name: 'czlx', width: 100, align: "left", formatter: function(cellvalue) {
+                    label: 'Khám Loại', name: 'czlx', width: 100, align: "left", formatter: function(cellvalue) {
                     switch (cellvalue) {
                         case @((int)EnumOutPatientType.emerDiagnosis):
                             return "@EnumOutPatientType.emerDiagnosis.GetDescription()";
@@ -98,7 +98,7 @@
                             return "";
                     }
                 } },
-                { label: "ThuộcKhoa", name: "subordinateDeptName", width: 120, align: "left" },
+                { label: "Thuộc Khoa", name: "subordinateDeptName", width: 120, align: "left" },
                 { label: 'Thời gian tạo', name: 'CreateTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:s', newformat: 'Y-m-d H:s' }},
                 { label: 'Người tạo', name: 'CreatorCode', width: 80, align: 'left' },
                 { label: "Hiệu lực", name: "zt", width: 70, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
@@ -125,13 +125,13 @@
         var mainRowId = $gridList.jqGrid("getGridParam", "selrow");
         var mRowData = $gridList.jqGrid("getRowData", mainRowId);
         if (!mRowData) {
-            $.modalAlert("Vui lòng chọnBác sĩ", 'warning');
+            $.modalAlert("Vui lòng chọn Bác sĩ", 'warning');
             return false;
         }
         var ysgh = mRowData.StaffGh;
         $.modalOpen({
             id: "Form",
-            title: "Thêm mớiKhoa khám",
+            title: "Thêm mới Khoa khám",
             url: "/SystemManage/VisitDeptSet/Form?keyValue=&ysgh=" + ysgh,
             width: "550px",
             height: "350px",
@@ -154,7 +154,7 @@
         var mainRowId = $gridList.jqGrid("getGridParam", "selrow");
         var mRowData = $gridList.jqGrid("getRowData", mainRowId);
         if (!mRowData) {
-            $.modalAlert("Vui lòng chọnBác sĩ", 'warning');
+            $.modalAlert("Vui lòng chọn Bác sĩ", 'warning');
             return false;
         }
         var ysgh = mRowData.StaffGh;

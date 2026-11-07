@@ -18,7 +18,7 @@ namespace Newtouch.DomainServices.Inpatient
     public class LevelChargeDmnService : DmnServiceBase, ILevelChargeDmnService
     {
         /// <summary>
-        /// Mặc địnhHàm khởi tạosố
+        /// Mặc định Hàm khởi tạosố
         /// </summary>
         /// <param name="databaseFactory">EF trên dưới văn Nhà máy</param>
         public LevelChargeDmnService()
@@ -27,7 +27,7 @@ namespace Newtouch.DomainServices.Inpatient
 
         }
         /// <summary>
-        /// LấyđợicấpChi phí
+        /// Lấyđợicấp Chi phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="bqCode"></param>
@@ -63,7 +63,7 @@ namespace Newtouch.DomainServices.Inpatient
         {
             if (string.IsNullOrWhiteSpace(keyValue))
             {
-                throw new FailedException("chưaĐã chọnGiá trị");
+                throw new FailedException("chưa Đã chọn Giá trị");
             }
             var sql = @"SELECT  a.LevelCode ,
                         a.sfxmCode ,

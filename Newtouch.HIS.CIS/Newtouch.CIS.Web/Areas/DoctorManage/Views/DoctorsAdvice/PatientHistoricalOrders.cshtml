@@ -31,9 +31,9 @@
                 { label: 'Họ tên', name: 'xm', width: 50, align: 'left' },
                 { label: 'Giới tính', name: 'xb', width: 30, align: 'left' },
                 { label: 'Ngày nhập viện', name: 'ryrq', width: 70, align: 'left' },
-                { label: 'Xuất việnNgày', name: 'cyrq', width: 70, align: 'left' },
+                { label: 'Xuất viện Ngày', name: 'cyrq', width: 70, align: 'left' },
                 { label: 'Chẩn đoán nhập viện', name: 'ryzd', width: 120, align: 'left' },
-                { label: 'Xuất việnChẩn đoán', name: 'cyzd', width: 120, align: 'left' },
+                { label: 'Xuất viện Chẩn đoán', name: 'cyzd', width: 120, align: 'left' },
             ],
             viewrecords: true,
             sortname: 'zh desc',
@@ -80,7 +80,7 @@
     //    CalculateInsPresJYAmount();
     //}
 
-    //Tính toánPhiếuSố tiền
+    //Tính toán Phiếu Số tiền
     //function CalculateInsPresJYAmount() {
     //    var totalAmount = 0.00;
     //    var allData = $("#gridList").jqGrid('getRowData_AllLine', true, true);
@@ -88,12 +88,12 @@
     //        totalAmount += parseFloat(this.dj) * parseFloat(this.sl);
     //    });
     //    $("#gridList").jqGrid("setCaption", "hợptính:" + "<label style='color:red;'>₫"
-    //        + totalAmount.toFixed(2) + "</label>");   //Đặt lạicaptionThuộc tínhGiá trị
+    //        + totalAmount.toFixed(2) + "</label>");   //Đặt lạicaption Thuộc tính Giá trị
     //}
 
     function submitForm() {
         if (returnzyh==""){
-            $.modalAlert("Vui lòng chọnLịch sửBệnh nhânThông tinTiến hànhSao chép", 'warning');
+            $.modalAlert("Vui lòng chọn Lịch sử Bệnh nhân Thông tin Tiến hành Sao chép", 'warning');
             return;
         }
        

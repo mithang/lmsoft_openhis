@@ -376,7 +376,7 @@ END CATCH
 SELECT @resultMsg resultMsg;
 ";
         /// <summary>
-        /// Hủy đặt trước ngoại trú Giải đông--TheocfmxphidGiải đông
+        /// Hủy đặt trước ngoại trú Giải đông--Theocfmxphid Giải đông
         /// </summary>
         public const string mz_yp_book_cancel_v2 = @"
 IF EXISTS(SELECT 1 FROM tempdb..sysobjects WHERE id=OBJECT_ID(N'tempdb..#ArrData') AND type='U')

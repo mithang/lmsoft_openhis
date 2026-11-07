@@ -5,7 +5,7 @@ using Newtouch.HIS.API.Common;
 namespace Newtouch.PDS.Requset.Zyypyz
 {
     /// <summary>
-    /// Nhập việnThuốcY lệnhThực hiện
+    /// Nhập viện ThuốcY lệnh Thực hiện
     /// </summary>
     public class ZyypyzzxRequest : RequestBase
     {
@@ -66,12 +66,12 @@ namespace Newtouch.PDS.Requset.Zyypyz
         public string dl { get; set; }
 
         /// <summary>
-        /// Số lượng(Khoa phòngĐơn vị)
+        /// Số lượng(Khoa phòng Đơn vị)
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// chuyểnhóavìcon  sl*zhyz=Đơn vị nhỏ nhấtSố lượng
+        /// chuyểnhóavìcon  sl*zhyz=Đơn vị nhỏ nhất Số lượng
         /// </summary>
         public int zhyz { get; set; }
 
@@ -86,7 +86,7 @@ namespace Newtouch.PDS.Requset.Zyypyz
         public string sjap { get; set; }
 
         /// <summary>
-        /// vàThực hiệnSố lượngtương ứng
+        /// và Thực hiện Số lượngtương ứng
         /// </summary>
         public string pcmc { get; set; }
 
@@ -96,12 +96,12 @@ namespace Newtouch.PDS.Requset.Zyypyz
         public decimal yl { get; set; }
 
         /// <summary>
-        /// dùnglượngĐơn vị
+        /// dùnglượng Đơn vị
         /// </summary>
         public string yldw { get; set; }
 
         /// <summary>
-        /// Bác sĩMã nhân viên
+        /// Bác sĩ Mã nhân viên
         /// </summary>
         public string ysgh { get; set; }
 
@@ -116,12 +116,12 @@ namespace Newtouch.PDS.Requset.Zyypyz
         public DateTime jsrq { get; set; }
 
         /// <summary>
-        /// phát thuốcNhà thuốc
+        /// phát thuốc Nhà thuốc
         /// </summary>
         public string fyyf { get; set; }
 
         /// <summary>
-        /// Y lệnhTính chất 1:Tạm thời;2:Dài hạn
+        /// Y lệnh Tính chất 1:Tạm thời;2:Dài hạn
         /// </summary>
         public string yzxz { get; set; }
 
@@ -131,7 +131,7 @@ namespace Newtouch.PDS.Requset.Zyypyz
         public string yzbz { get; set; }
 
         /// <summary>
-        /// Thực hiệnSố lượng
+        /// Thực hiện Số lượng
         /// </summary>
         public int zxsl { get; set; }
 
@@ -171,12 +171,12 @@ namespace Newtouch.PDS.Requset.Zyypyz
         public string cw { get; set; }
 
         /// <summary>
-        /// Y lệnhThực hiệnĐăng ký người
+        /// Y lệnh Thực hiện Đăng ký người
         /// </summary>
         public string yzzxsqr { get; set; }
 
         /// <summary>
-        /// Thực hiệnNgày
+        /// Thực hiện Ngày
         /// </summary>
         public DateTime zxrq { get; set; }
 

@@ -22,7 +22,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// Lấylịch sửkết chuyểnThời gian
+        /// Lấylịch sửkết chuyển Thời gian
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>

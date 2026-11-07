@@ -9,7 +9,7 @@ using Newtouch.Domain.IRepository;
 namespace Newtouch.Repository
 {
     /// <summary>
-    /// trongyquánđẩyThông tin bệnh nhân
+    /// trongyquánđẩy Thông tin bệnh nhân
     /// </summary>
     public class CmmHis01Repo : RepositoryBase<CmmHis01Entity>, ICmmHis01Repo
     {

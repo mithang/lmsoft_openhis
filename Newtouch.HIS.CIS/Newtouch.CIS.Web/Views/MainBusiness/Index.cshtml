@@ -3,16 +3,16 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Index.cshtml";
 
-    //Công tắc:Có mở khôngXét nghiệmKiểm tra
+    //Công tắc:Có mở không Xét nghiệm Kiểm tra
     var IsOpenJyJcSwitch = ViewBag.IsOpenJyJcSwitch as bool?;
-    //Công tắc:Ngoại trúCó mở khôngPhục hồi chức năngĐơn thuốc
+    //Công tắc:Ngoại trú Có mở không Phục hồi chức năng Đơn thuốc
     var isOpenKfcf = (ViewBag.ISOpenKfcf as bool?);
-    //Công tắc:Ngoại trúCó mở khôngHạng mục thông thườngĐơn thuốc
+    //Công tắc:Ngoại trú Có mở không Hạng mục thông thường Đơn thuốc
     var isOpenCgxmcf = (ViewBag.ISOpenCgxmcf as bool?);
-    //Công tắc:Ngoại trúCó mở khôngThuốc Đông yĐơn thuốc
+    //Công tắc:Ngoại trú Có mở không Thuốc Đông y Đơn thuốc
     var iSOpenZycf = (ViewBag.ISOpenZycf as bool?);
     var iSOpenZycfnew = (ViewBag.ISOpenZycfnew as bool?);
-    //Công tắc:Ngoại trúCó mở khôngydùngVật tư tiêu haoĐơn thuốc
+    //Công tắc:Ngoại trú Có mở khôngydùng Vật tư tiêu hao Đơn thuốc
     var iSOpenWzhc = (ViewBag.ISOpenWzhc as bool?);
     //Công tắc:đặt hẹnđăng ký khám
     var isOpenBespeakRegister = (ViewBag.ISOpenBespeakRegister as bool?);
@@ -103,9 +103,9 @@
         <li role="presentation" id="libespeakRegister"><a href="#linkbespeakRegister" role="tab" data-toggle="tab">Đặt hẹn</a></li>
     }
 
-    <!--ZYHY20230630điện tửĐơn thuốc-->
-    <!--<li role="presentation" id="linkmzdzcf"><a href="#linkmzdzcf" role="tab" data-toggle="tab">điện tửĐơn thuốc</a></li>-->
-    @*<li role="presentation"><a href="#linkdzcf" role="tab" data-toggle="tab">điện tửĐơn thuốc</a></li>*@
+    <!--ZYHY20230630điện tử Đơn thuốc-->
+    <!--<li role="presentation" id="linkmzdzcf"><a href="#linkmzdzcf" role="tab" data-toggle="tab">điện tử Đơn thuốc</a></li>-->
+    @*<li role="presentation"><a href="#linkdzcf" role="tab" data-toggle="tab">điện tử Đơn thuốc</a></li>*@
 </ul>
 <div id="divPatientBasicInfo"></div>
 @if (cmmSwitch) //trongyquánnội dung
@@ -159,7 +159,7 @@
             @Html.Partial("~/Views/BespeakRegister/BespeakRegister.cshtml", new ViewDataDictionary(ViewData) { ["CisEmbeddedPartial"] = true })
         }
 
-        <!--ZYHY20230630điện tửĐơn thuốc-->
+        <!--ZYHY20230630điện tử Đơn thuốc-->
         @*@Html.Partial("~/Views/Prescription/Dzcf.cshtml")*@
     </div>
 </div>
@@ -176,17 +176,17 @@
     }
 
     var pageType = $.request("pageType");
-    var Id = $.request("Id");//Chẩn đoán từ xaĐăng kýthông tinId
+    var Id = $.request("Id");//Chẩn đoán từ xa Đăng kýthông tinId
     $(function () {
-        //show:CóKhônghiển thịhiệntabnội dungcủasự kiện
+        //show:Có Khônghiển thịhiệntabnội dungcủasự kiện
         $('a[data-toggle="tab"]').on('show.bs.tab',
             function (e) {
                 //console.log(e)
                 var targetHref = $(e.target).attr('href'); //e.target  kíchsốngcủanhãntrang
                 if (targetHref && targetHref.indexOf('linkbrlb') == -1) {
-                    //khôngDanh sách bệnh nhântrang
+                    //không Danh sách bệnh nhântrang
                     if (!!!window.currPatientInfo || JSON.stringify(window.currPatientInfo) == '{}') {
-                        $.modalAlert("Vui lòng chọn trước mộtBệnh nhân", 'warning');
+                        $.modalAlert("Vui lòng chọn trước một Bệnh nhân", 'warning');
                         return false;
                     }
                     if (window.currPatientInfo &&
@@ -258,7 +258,7 @@
                                     return true;
                                 });
                         }
-                    }//20230704điện tửĐơn thuốc
+                    }//20230704điện tử Đơn thuốc
                     else if (relatedTargetHref.indexOf('linkdzcf') != -1 && $("#griddzcf:visible").length == 1) {
                         if ($("#griddzcf").jqGrid('getDataIDs').length > 0) {
                             //Lưu trước
@@ -360,7 +360,7 @@
                             SaveJCbyZT(null, true);
                         }
                     }
-                //ZYHY20230630điện tửĐơn thuốc
+                //ZYHY20230630điện tử Đơn thuốc
                 //}
                 //else if (relatedTargetHref.indexOf('linkmzdzcf') != -1 && $("#griddzcf:visible").length == 1) {
                 //    if ($("#griddzcf").jqGrid('getDataIDs').length > 0) {
@@ -399,16 +399,16 @@
                     targetHref.indexOf('linkzycf') == -1 &&
                     targetHref.indexOf('linkzycfnew') == -1 &&
                     targetHref.indexOf('linkwzhccf') == -1 &&
-                    //20230704điện tửĐơn thuốc
-                    targetHref.indexOf('linkdzcf') == -1 ) { //khôngĐơn thuốctrang
+                    //20230704điện tử Đơn thuốc
+                    targetHref.indexOf('linkdzcf') == -1 ) { //không Đơn thuốctrang
                     $('#floatLeftMostPartDiv').hide();
                 } else {
-                    $('#floatLeftMostPartDiv').show(); //Hiển thịĐơn thuốcLịch sửmẫucây
+                    $('#floatLeftMostPartDiv').show(); //Hiển thị Đơn thuốc Lịch sửmẫucây
                 }
-                if (targetHref.indexOf('linkjy') == -1 && targetHref.indexOf('linkjc') == -1) { //Xét nghiệmKiểm tratrang
+                if (targetHref.indexOf('linkjy') == -1 && targetHref.indexOf('linkjc') == -1) { //Xét nghiệm Kiểm tratrang
                     $('#floatInspectTemplateTree').hide();
                 } else {
-                    $('#floatInspectTemplateTree').show(); //Hiển thịXét nghiệmKiểm tramẫucây
+                    $('#floatInspectTemplateTree').show(); //Hiển thị Xét nghiệm Kiểm tramẫucây
                 }
 
                 switch ($(this).attr('href')) {
@@ -458,15 +458,15 @@
                 }
             });
         if (pageType == "yczl") {//Chẩn đoán từ xa
-            //$('#myTab [href="#linkbl"').trigger('click'); //Khởi tạoHiển thịnàotab
+            //$('#myTab [href="#linkbl"').trigger('click'); //Khởi tạo Hiển thịnàotab
             getyczlDetail(Id);
         } else {
-            $('#myTab a:first').trigger('click'); //Khởi tạoHiển thịnàotab
+            $('#myTab a:first').trigger('click'); //Khởi tạo Hiển thịnàotab
         }
 
     });
 
-    //LấymớicủaSố đơn thuốc
+    //Lấymớicủa Số đơn thuốc
     function GetNewPresNo() {
         var newPresNo;
         $.najax({
@@ -495,7 +495,7 @@
         { color: '#2d61d9', zhcolor: ['#17194c', '#002c8b', '#2d61db', '#6a8ee4', '#97b8e5'] }
     ];
 
-    //LấyĐơn thuốchiển thịhiệnmàu sắc
+    //Lấy Đơn thuốchiển thịhiệnmàu sắc
     function getCfColor(cflx, cfh) {
         var matched = $.jsonWhere(cfColorArr, function (v) {
             return v && v.cflx === cflx && v.cfh === cfh;
@@ -538,7 +538,7 @@
         });
     }
 
-    //LấyĐơn thuốcSố nhómhiển thịhiệnmàu sắc
+    //Lấy Đơn thuốc Số nhómhiển thịhiệnmàu sắc
     function getCfZhColor(cflx, cfh, zh) {
         var cfcolor = getCfColor(cflx, cfh);
         var matched = $.jsonWhere(cfSourceColorArr, function (v) {
@@ -609,7 +609,7 @@
     }
 
 	function checkItemActivity($li, $thisinput) {
-        var selected = false;//Mặc địnhKhông cóĐã chọnhiện tạiGiá trị
+        var selected = false;//Mặc định Không có Đã chọnhiện tại Giá trị
 		var selectval = $thisinput.val();
 
         if (selectval) {
@@ -625,7 +625,7 @@
 	}
 
 	function newcheckItemActivity($val, $thisinput) {
-		var selected = false;//Mặc địnhKhông cóĐã chọnhiện tạiGiá trị
+		var selected = false;//Mặc định Không có Đã chọnhiện tại Giá trị
 		var selectval = $thisinput.val();
 		if (selectval) {
 			selectval = selectval.split(',');
@@ -650,7 +650,7 @@
         }
         ypkcArr.push({ yfbmCode: yfbmCode, ypCode: ypCode, sl: sl });
     }
-    //Tồn khoXét nghiệm
+    //Tồn kho Xét nghiệm
     function ypkccheck(yfbmCode, ypCode, sl) {
         for (var iIndex = 0; iIndex < ypkcArr.length; iIndex++) {
             if (ypkcArr[iIndex].yfbmCode == yfbmCode
@@ -679,7 +679,7 @@
     function updatePatInfo() {
         PatientBasicInfoModify($('#mzh').text());
     }
-    //bậtkhungSửaBệnh nhânThông tin cơ bản
+    //bậtkhung Sửa Bệnh nhân Thông tin cơ bản
     function PatientBasicInfoModify(mzh) {
         $.ajax({
             url: '/Login/GetUALoginAddres',
@@ -694,7 +694,7 @@
                         url = url + "&returnUrl=" + encodeURIComponent(returnUrl);
                     $.modalOpen({
                         id: "PatientBasicInfoModify",
-                        title: "Thông tin cơ bảnSửa",
+                        title: "Thông tin cơ bản Sửa",
                         url: url,
                         width: "1000px",
                         height: "400px",
@@ -719,7 +719,7 @@
     $('a[data-toggle="tab"]').on('click', function (e, v) {
         var currentlink = $('.nav-tabs').find("li.active a").attr("href");//hiện tạitrangmặt
         var targetlink = e.target.hash;//Mục tiêutrangmặt
-        if ((currentlink !== "#linkbrlb" || currentlink !== "#linkbl") && targetlink == "#linkbrlb") {//Danh sách bệnh nhân,Ngoại trúHồ sơ khôngNhắc nhở//KháctrangmặtcóDữ liệutồn tạiởkhibậtcửa sổNhắc nhở
+        if ((currentlink !== "#linkbrlb" || currentlink !== "#linkbl") && targetlink == "#linkbrlb") {//Danh sách bệnh nhân,Ngoại trú Hồ sơ không Nhắc nhở//Kháctrangmặtcó Dữ liệutồn tạiởkhibậtcửa sổ Nhắc nhở
             if ($("#gridcgxmcf").jqGrid('getDataIDs').length > 0 || $("#gridkfcf").jqGrid('getDataIDs').length > 0
                 || $("#gridxycf").jqGrid('getDataIDs').length > 0 || $("#gridzycf").jqGrid('getDataIDs').length > 0
                 || $("#gridwzhccf").jqGrid('getDataIDs').length > 0
@@ -730,14 +730,14 @@
             }
         } else {
             transferbool = true;
-            $('#myTab a[href="' + $(this).attr("href") + '"]').tab('show')//Khởi tạoHiển thịnàotab
+            $('#myTab a[href="' + $(this).attr("href") + '"]').tab('show')//Khởi tạo Hiển thịnàotab
         }
     });
     function confirm(TargetHref) {
         $.modalConfirm("Hiện tại trang còn dữ liệu y lệnh chưa lưu, rời trang sẽ xóa trắng dữ liệu, có vẫn cần chuyển không?", function (flag) {
             if (flag) {
                 transferbool = true;
-                $('#myTab a[href="' + TargetHref + '"]').tab('show')//.trigger('click'); //Khởi tạoHiển thịnàotab
+                $('#myTab a[href="' + TargetHref + '"]').tab('show')//.trigger('click'); //Khởi tạo Hiển thịnàotab
             } else {
                 return false;
             }

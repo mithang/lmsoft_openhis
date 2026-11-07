@@ -43,27 +43,27 @@ namespace Newtouch.Domain.Entity
         public string ypCode { get; set; }
 
         /// <summary>
-        /// Dư thừaMã
+        /// Dư thừa Mã
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// kimđốiPhục hồi chức năngĐơn thuốc
+        /// kimđối Phục hồi chức năng Đơn thuốc
         /// </summary>
         public int? mczll { get; set; }
 
         /// <summary>
-        /// kimđốiThuốc
+        /// kimđối Thuốc
         /// </summary>
         public decimal? mcjl { get; set; }
 
         /// <summary>
-        /// kimđốiThuốc
+        /// kimđối Thuốc
         /// </summary>
         public string mcjldw { get; set; }
 
         /// <summary>
-        /// kimđốiThuốc
+        /// kimđối Thuốc
         /// </summary>
         public string yfCode { get; set; }
 
@@ -73,12 +73,12 @@ namespace Newtouch.Domain.Entity
         public string pcCode { get; set; }
 
         /// <summary>
-        /// kimđốiThuốc
+        /// kimđối Thuốc
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// kimđốiPhục hồi chức năngĐơn thuốc
+        /// kimđối Phục hồi chức năng Đơn thuốc
         /// </summary>
         public int? zl { get; set; }
 
@@ -127,7 +127,7 @@ namespace Newtouch.Domain.Entity
         public string Remark { get; set; }
 
         /// <summary>
-        /// Khoa thực hiện(ThuốccủalĩnhthuốcKhoa phòng yfbmCode)
+        /// Khoa thực hiện(Thuốccủalĩnhthuốc Khoa phòng yfbmCode)
         /// </summary>
         public string zxks { get; set; }
         /// <summary>

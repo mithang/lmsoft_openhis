@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IZyReturnDrugApplyBillDetailRepo : IRepositoryBase<ZyReturnDrugApplyBillDetailEntity>
     {
         /// <summary>
-        /// Theo đơn xin trả thuốcIdLấy chi tiết đơn xin trả thuốc
+        /// Theo đơn xin trả thuốc Id Lấy chi tiết đơn xin trả thuốc
         /// </summary>
         /// <param name="rabId"></param>
         /// <returns></returns>

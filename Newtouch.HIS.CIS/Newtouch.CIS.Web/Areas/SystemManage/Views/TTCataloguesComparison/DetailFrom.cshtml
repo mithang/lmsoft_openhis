@@ -7,7 +7,7 @@
     <div style="padding-top: 20px; margin-right: 30px;">
         <table class="form">
             <tr>
-                <td class="formTitle">Đối chiếuPhân loại:</td>
+                <td class="formTitle">Đối chiếu Phân loại:</td>
                 <td class="formValue">
                     <label id="MainTypeText"></label>
                     <input id="MainId" name="MainId" style="display:none;" type="text" class="form-control required" />
@@ -16,23 +16,23 @@
             <tr>
                 <td class="formTitle"><span class="required">*</span>Tên:</td>
                 <td class="formValue">
-                    <input id="Name" name="Name" type="text" class="form-control required" placeholder="Vui lòng nhậpTên" />
+                    <input id="Name" name="Name" type="text" class="form-control required" placeholder="Vui lòng nhập Tên" />
                 </td>
             </tr>
             <tr>
                 <td class="formTitle"><span class="required">*</span>Mã:</td>
                 <td class="formValue">
-                    <input id="Code" name="Code" type="text" class="form-control required" placeholder="Vui lòng nhậpMã" />
+                    <input id="Code" name="Code" type="text" class="form-control required" placeholder="Vui lòng nhập Mã" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>Bên thứ baTên:</td>
+                <td class="formTitle"><span class="required">*</span>Bên thứ ba Tên:</td>
                 <td class="formValue">
-                    <input id="TTName" name="TTName" type="text" class="form-control required" placeholder="Vui lòng nhậpBên thứ baTên" />
+                    <input id="TTName" name="TTName" type="text" class="form-control required" placeholder="Vui lòng nhập Bên thứ ba Tên" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>Bên thứ baMã:</td>
+                <td class="formTitle"><span class="required">*</span>Bên thứ ba Mã:</td>
                 <td class="formValue">
                     <input id="TTCode" name="TTCode" type="text" class="form-control required" placeholder="Vui lòng nhập mã bên thứ ba" />
                 </td>
@@ -67,7 +67,7 @@
     var keyValue = $.request("keyValue");
     $(function () {
         if (!!!MainTypeId || !!!MainTypeText) {
-            $.modalAlert("ThiếuPhân loại", "error");
+            $.modalAlert("Thiếu Phân loại", "error");
             $.modalClose();
             return;
         }

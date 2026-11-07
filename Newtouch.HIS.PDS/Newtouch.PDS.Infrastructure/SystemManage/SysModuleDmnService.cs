@@ -53,7 +53,7 @@ namespace Newtouch.HIS.DomainServices
                 //tớiorganizeđang mở
                 var orgItemIdList = _sysOrganizeAuthorizeRepo.IQueryable(t => t.zt == "1" && t.ItemType == 1
 && (t.TopOrganizeId == "*" || t.TopOrganizeId == topOrgId)).Select(p => p.ItemId);
-                //tớiRoleđang mở
+                //tới Roleđang mở
                 // NX21-002 (D-NX21-002): Sys_RoleAuthorize KHONG co cot ItemType
                 // (NX20-004) nen khong loc ItemType tren _sysRoleAuthorizeRepository
                 // duoc nua — loc do sinh "Invalid column name 'ItemType'" (harness
@@ -100,7 +100,7 @@ namespace Newtouch.HIS.DomainServices
                 //tớiorganizeđang mở
                 var orgIdList = _sysOrganizeAuthorizeRepo.IQueryable(t => t.zt == "1" && t.ItemType == 2
 && (t.TopOrganizeId == "*" || t.TopOrganizeId == topOrgId)).Select(p => p.ItemId);
-                //tớiRoleđang mở — NX21-002 (D-NX21-002): nhu nhanh menu o tren,
+                //tới Roleđang mở — NX21-002 (D-NX21-002): nhu nhanh menu o tren,
                 // khong loc ItemType tren Sys_RoleAuthorize (khong co cot);
                 // giao ItemId cua role voi tap Id cua Sys_ModuleButton.
                 var buttonIdList = _moduleButtonRepo.IQueryable().Where(p => p.zt == "1").Select(p => p.Id).ToList();
@@ -230,7 +230,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SugarParam
 
                     if (!string.IsNullOrWhiteSpace(topOrgId))
                     {
-                        //Tự động chotopOrganizeIdPhân bổModulequyền của
+                        //Tự động chotopOrganizeId Phân bổ Modulequyền của
                         var authEntity = new SysOrganizeAuthorizeEntity()
                         {
                             TopOrganizeId = topOrgId,
@@ -268,7 +268,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SugarParam
 
                     if (!string.IsNullOrWhiteSpace(topOrgId))
                     {
-                        //Tự động chotopOrganizeIdPhân bổModuleButtonquyền của
+                        //Tự động chotopOrganizeId Phân bổ ModuleButtonquyền của
                         var authEntity = new SysOrganizeAuthorizeEntity()
                         {
                             TopOrganizeId = topOrgId,

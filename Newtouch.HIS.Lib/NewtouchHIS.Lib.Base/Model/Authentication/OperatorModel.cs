@@ -32,22 +32,22 @@
         public string? UserName { get; set; }
 
         /// <summary>
-        /// Khoa của nhân viên hệ thốngCode
+        /// Khoa của nhân viên hệ thống Code
         /// </summary>
         public string? DepartmentCode { get; set; }
 
         /// <summary>
-        /// Bộ phận dược hệ thống mở cho người dùng đăng nhập hiện tạiCode List
+        /// Bộ phận dược hệ thống mở cho người dùng đăng nhập hiện tại Code List
         /// </summary>
         public List<string>? yfbmCodeList { get; set; }
 
         /// <summary>
-        /// Vai trò người dùng hệ thốngList
+        /// Vai trò người dùng hệ thống List
         /// </summary>
         public List<string>? RoleIdList { get; set; }
 
         /// <summary>
-        /// Vai trò người dùng hệ thốngList
+        /// Vai trò người dùng hệ thống List
         /// </summary>
         public List<string>? RoleCodeList { get; set; }
 

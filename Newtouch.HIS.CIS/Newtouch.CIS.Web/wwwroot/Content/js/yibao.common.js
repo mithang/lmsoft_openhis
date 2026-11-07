@@ -7,20 +7,20 @@ $.yibao = {
     /// <summary>
     /// Ngoại trúđăng ký khám
     /// </summary>
-    /// <param name="DAC001">xãbảoSố hiệu</param>
-    /// <param name="AKE556">Chi phíTính chất</param>
-    /// <param name="AKE186">Khám bệnhLoại</param>
+    /// <param name="DAC001">xãbảo Số hiệu</param>
+    /// <param name="AKE556">Chi phí Tính chất</param>
+    /// <param name="AKE186">Khám bệnh Loại</param>
     /// <param name="AKE162">Khám bệnhnguyên nhân</param>
     /// <param name="DAE147">Mã xác minh(có thểlàtrống)</param>
-    /// <param name="AKE276">đăng ký khám/Nhập việnThao tácviênMã</param>
-    /// <param name="AKE277">đăng ký khám/Nhập việnThao tácviên</param>
+    /// <param name="AKE276">đăng ký khám/Nhập viện Thao tácviên Mã</param>
+    /// <param name="AKE277">đăng ký khám/Nhập viện Thao tácviên</param>
     /// <param name="AKE189">Khám bệnhthứ tựsố/Số nhập viện</param>
     /// <param name="CUSTNAME">Họ tên người mua thuốc (nhân viên tự chi trả bắt buộc)</param>
     RegClinic: function (DAC001, AKE556, AKE186, AKE162, DAE147, AKE276, AKE277, AKE189, CUSTNAME) {
         return eval('(' + this.$yibaoAX.RegClinic(DAC001, AKE556, AKE186, AKE162, DAE147, AKE276, AKE277, AKE189, CUSTNAME) + ')');
     },
     /// <summary>
-    /// đăng ký khámHủy
+    /// đăng ký khám Hủy
     /// </summary>
     /// <param name="DKE005"></param>
     /// <param name="DAC001"></param>
@@ -76,8 +76,8 @@ $.yibao = {
     /// Hoàn phíquyết toánxác nhận
     /// </summary>
     /// <param name="DKE005">quyết toánsố</param>
-    /// <param name="DAC001">xãbảoSố hiệu</param>
-    /// <param name="AKE279">quyết toánqualàm ngườiMã</param>
+    /// <param name="DAC001">xãbảo Số hiệu</param>
+    /// <param name="AKE279">quyết toánqualàm người Mã</param>
     /// <param name="AKE278">quyết toánqualàm người</param>
     DenySettle: function (DKE005, DAC001, AKE279, AKE278) {
         return eval('(' + this.$yibaoAX.DenySettle(DKE005, DAC001, AKE279, AKE278) + ')');
@@ -85,14 +85,14 @@ $.yibao = {
     /// <summary>
     /// Tra cứuchưaquyết toánthông tin
     /// </summary>
-    /// <param name="DAC001">xãbảoSố hiệu</param>
+    /// <param name="DAC001">xãbảo Số hiệu</param>
     QUnSettleFee: function (DAC001) {
         return eval('(' + this.$yibaoAX.QUnSettleFee(DAC001) + ')');
     },
     /// <summary>
     /// Tra cứuđãquyết toánthông tin
     /// </summary>
-    /// <param name="DAC001">xãbảoSố hiệu</param>
+    /// <param name="DAC001">xãbảo Số hiệu</param>
     QSettleFee: function (DAC001) {
         return eval('(' + this.$yibaoAX.QSettleFee(DAC001) + ')');
     }
@@ -104,7 +104,7 @@ $.shiqian = {
     MzjzInfo: function (Head, JzInfo) {
         this.$shiqianAX.MzjzInfo(Head, JzInfo);
     },
-    //Ngoại trúnhậpChẩn đoán
+    //Ngoại trúnhập Chẩn đoán
     MzlrZDInfo: function (Head, ZD, ZDList) {
         this.$shiqianAX.MzlrZDInfo(Head, ZD, ZDList);
     },
@@ -112,7 +112,7 @@ $.shiqian = {
     MzcfxxlrInfo: function (Head, CFInfo, YP, XM) {
         this.$shiqianAX.MzcfxxlrInfo(Head, CFInfo, YP, XM);
     },
-    //Đơn thuốc ngoại trúLưu
+    //Đơn thuốc ngoại trú Lưu
     MzcfxxSaveInfo: function (Head, CFInfo, YP, XM) {
         this.$shiqianAX.MzcfxxSaveInfo(Head, CFInfo, YP, XM);
     }

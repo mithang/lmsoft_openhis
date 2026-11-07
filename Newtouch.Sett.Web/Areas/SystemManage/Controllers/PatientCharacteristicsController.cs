@@ -70,7 +70,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             foreach (SysPatientNatureEntity item in data)
             {
                 TreeSelectModel treeModel = new TreeSelectModel();
-                treeModel.id = item.brxzbh.ToString();  //chọncủalàId
+                treeModel.id = item.brxzbh.ToString();  //chọncủalà Id
                 treeModel.text = item.brxzmc;
                 treeModel.parentId = item.ParentId == null ? null : item.ParentId.ToString();
                 treeList.Add(treeModel);

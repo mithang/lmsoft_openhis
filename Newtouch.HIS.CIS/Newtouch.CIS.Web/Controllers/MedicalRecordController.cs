@@ -1887,7 +1887,7 @@ namespace Newtouch.CIS.Web.Controllers
         #endregion
 
 
-        #region Thường dùngChẩn đoán
+        #region Thường dùng Chẩn đoán
         /// <summary>
         /// Hồ sơ chẩn đoán bật khung
         /// </summary>

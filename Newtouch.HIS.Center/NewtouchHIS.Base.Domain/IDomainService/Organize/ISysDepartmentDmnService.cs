@@ -6,7 +6,7 @@ namespace NewtouchHIS.Base.Domain.Organize
     public interface ISysDepartmentDmnService : IScopedDependency
     {
         /// <summary>
-        /// TheoCodeLấy tên khoa
+        /// Theo Code Lấy tên khoa
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>

@@ -4,7 +4,7 @@ using System;
 namespace Newtouch.Domain.ValueObjects
 {
     /// <summary>
-    /// Nhập việnThông tin bệnh nhân
+    /// Nhập viện Thông tin bệnh nhân
     /// </summary>
     public class InPatientPatientSearchVO
     {
@@ -34,12 +34,12 @@ namespace Newtouch.Domain.ValueObjects
         public string WardCode { get; set; }
 
         /// <summary>
-        /// Khu bệnhTên
+        /// Khu bệnh Tên
         /// </summary>
         public string WardName { get; set; }
 
         /// <summary>
-        /// rasinhnămTháng
+        /// rasinhnăm Tháng
         /// </summary>
         public DateTime? birth { get; set; }
 
@@ -49,7 +49,7 @@ namespace Newtouch.Domain.ValueObjects
         public DateTime? ryrq { get; set; }
 
         /// <summary>
-        /// vàokhuNgày
+        /// vàokhu Ngày
         /// </summary>
         public DateTime? rqrq { get; set; }
 
@@ -80,12 +80,12 @@ namespace Newtouch.Domain.ValueObjects
         public string WardCode { get; set; }
 
         /// <summary>
-        /// Khu bệnhTên
+        /// Khu bệnh Tên
         /// </summary>
         public string WardName { get; set; }
 
         /// <summary>
-        /// rasinhnămTháng
+        /// rasinhnăm Tháng
         /// </summary>
         public DateTime? birth { get; set; }
 
@@ -95,7 +95,7 @@ namespace Newtouch.Domain.ValueObjects
         public DateTime? ryrq { get; set; }
 
         /// <summary>
-        /// vàokhuNgày
+        /// vàokhu Ngày
         /// </summary>
         public DateTime? rqrq { get; set; }
         /// <summary>
@@ -134,7 +134,7 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public decimal? tw { get; set; }
         /// <summary>
-        /// Nhiệt độđolượngMô tả miệngnhiệt Nhiệt độ nách Nhiệt độ hậu môn
+        /// Nhiệt độđolượng Mô tả miệngnhiệt Nhiệt độ nách Nhiệt độ hậu môn
         /// </summary>
         /// <returns></returns>
         public int? twclfs { get; set; }
@@ -179,7 +179,7 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public string tz { get; set; }
         /// <summary>
-        /// từ điểnkhôngkhuphútOrg
+        /// từ điểnkhôngkhuphút Org
         /// </summary>
         /// <returns></returns>
         public string tzclbz { get; set; }
@@ -204,7 +204,7 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public int? dbcs { get; set; }
         /// <summary>
-        /// từ điểnkhôngkhuphútOrg
+        /// từ điểnkhôngkhuphút Org
         /// </summary>
         /// <returns></returns>
         public string dbcsbz { get; set; }
@@ -254,7 +254,7 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public int? xyll { get; set; }
         /// <summary>
-        /// từ điểnkhôngkhuphútOrg
+        /// từ điểnkhôngkhuphút Org
         /// </summary>
         /// <returns></returns>
         public string xyfs { get; set; }
@@ -294,18 +294,18 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public string zt { get; set; }
         /// <summary>
-        /// tựđịnhnghĩaThời gianđiểm
+        /// tựđịnhnghĩa Thời gianđiểm
         /// </summary>
         public string zdysjd { get; set; }
 
         public string lrflag { get; set; }
 
         /// <summary>
-        /// bệnh nhânTrạng thái-giờ
+        /// bệnh nhân Trạng thái-giờ
         /// </summary>
         public string brzt_hh { get; set; }
         /// <summary>
-        /// bệnh nhânTrạng thái-phút
+        /// bệnh nhân Trạng thái-phút
         /// </summary>
         public string brzt_mi { get; set; }
         /// <summary>
@@ -329,12 +329,12 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string sg { get; set; }
         /// <summary>
-        /// ĐauChấm điểm
+        /// Đau Chấm điểm
         /// </summary>
         public string ttpf { get; set; }
 
         /// <summary>
-        /// Huyết áptrêndướiGiá trịhợpvàHiển thị
+        /// Huyết áptrêndưới Giá trịhợpvà Hiển thị
         /// </summary>
         public string xysxz { get; set; }
     }

@@ -51,7 +51,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(patList.ToJson());
         }
         /// <summary>
-        /// LấyKhu bệnh ngườiviênphát thuốccây
+        /// Lấy Khu bệnh ngườiviênphát thuốccây
         /// </summary>
         /// <returns></returns>
         public IActionResult GetPatWardTree(string keyword)
@@ -71,7 +71,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     string gender = itempat.sex == "1" ? "Nam" : "Nữ";
                     TreeViewModel treepat = new TreeViewModel();
                     treepat.id = itempat.zyh;
-                    //Số giường + Họ tên(Nhập việnSố ngày)+Số nhập viện + Tuổi +Giới tính
+                    //Số giường + Họ tên(Nhập viện Số ngày)+Số nhập viện + Tuổi +Giới tính
                     treepat.text = itempat.BedNo + "-"  + itempat.hzxm + "(" + itempat.inHosDays + "ngày)" + "-" + itempat.zyh+ "-" + itempat.nl + "tuổi-" + gender;
                     treepat.value = itempat.zyh;
                     treepat.parentId = item.bqCode;
@@ -113,7 +113,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             }
             else
             {
-                return Error("Vui lòng chọnThuốc");
+                return Error("Vui lòng chọn Thuốc");
             }
 
         }
@@ -121,7 +121,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
 
-        //--------------------------------------lấydướiCó:Y lệnhtrảthuốcTra cứu--------------------------------------
+        //--------------------------------------lấydưới Có:Y lệnhtrảthuốc Tra cứu--------------------------------------
 
         public IActionResult Drug_withdrawal() {
             ViewBag.OrgId = this.OrganizeId;

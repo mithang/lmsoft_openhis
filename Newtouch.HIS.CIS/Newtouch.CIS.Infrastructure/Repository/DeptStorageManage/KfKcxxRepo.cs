@@ -19,7 +19,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// Tra cứuTồn khothông tin
+        /// Tra cứu Tồn khothông tin
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="productId"></param>
@@ -42,7 +42,7 @@ AND kcxx.zt='1'
         }
 
         /// <summary>
-        /// SửaTồn khoTrạng thái
+        /// Sửa Tồn kho Trạng thái
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="ph"></param>

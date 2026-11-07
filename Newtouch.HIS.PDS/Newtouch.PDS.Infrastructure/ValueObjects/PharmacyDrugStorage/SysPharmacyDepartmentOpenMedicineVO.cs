@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
     public class SysPharmacyDepartmentOpenMedicineVO : IEntity<SysPharmacyDepartmentOpenMedicineVO>
     {
         /// <summary>
-        /// Khóa chínhId
+        /// Khóa chính Id
         /// </summary>
         public string Id { get; set; }
 
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string dlCode { get; set; }
 
         /// <summary>
-        /// Tổ chứcId
+        /// Tổ chức Id
         /// </summary>
         public string OrganizeId { get; set; }
 

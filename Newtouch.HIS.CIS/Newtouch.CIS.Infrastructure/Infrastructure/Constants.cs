@@ -12,7 +12,7 @@ namespace Newtouch.Infrastructure
     public class Constants
     {
         /// <summary>
-        /// Tổ chứcId(đỉnhcấp,Hệ thốngcấu hình)
+        /// Tổ chức Id(đỉnhcấp,Hệ thốngcấu hình)
         /// </summary>
         public static string TopOrganizeId
         {
@@ -23,7 +23,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Tổ chứcId(đỉnhcấp,Hệ thốngcấu hình)
+        /// Tổ chức Id(đỉnhcấp,Hệ thốngcấu hình)
         /// </summary>
         public static string AppId
         {
@@ -34,7 +34,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Lấyhiện tạicủathuốcliềuKhoa phòng(Nhà thuốchoặcKho thuốc)
+        /// Lấyhiện tạicủathuốcliều Khoa phòng(Nhà thuốchoặc Kho thuốc)
         /// </summary>
         public static LoginUserCurrentYfbmModel CurrentYfbm
         {
@@ -46,7 +46,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Lấyhiện tạicủathuốcliềuKhoa phòng(Nhà thuốchoặcKho thuốc)
+        /// Lấyhiện tạicủathuốcliều Khoa phòng(Nhà thuốchoặc Kho thuốc)
         /// </summary>
         /// <param name="userId"></param>
         public static LoginUserCurrentYfbmModel GetCurrentYfbm(string userId)
@@ -60,7 +60,7 @@ namespace Newtouch.Infrastructure
         public const string DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
 
         /// <summary>
-        /// Quay lạinhấtnhỏThời gian 1970-01-01 00:00:000
+        /// Quay lạinhấtnhỏ Thời gian 1970-01-01 00:00:000
         /// </summary>
         public static DateTime MinDateTime
         {

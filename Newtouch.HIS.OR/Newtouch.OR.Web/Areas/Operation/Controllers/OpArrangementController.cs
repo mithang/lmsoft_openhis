@@ -181,7 +181,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
                 entity.OrganizeId = OrganizeId;
             }
             var ApplyId = keyValue;
-            //Chuyển số đơn đăng ký thành lịch phẫu thuậtId
+            //Chuyển số đơn đăng ký thành lịch phẫu thuật Id
             var ArrangeId = getArrangeIdByApplyId(ApplyId);
             //Đổi trạng thái đơn của bảng xếp lịch thành Đã duyệt
             _ORApplyInfoRepo.UpdateSqzt(ApplyId, "2");

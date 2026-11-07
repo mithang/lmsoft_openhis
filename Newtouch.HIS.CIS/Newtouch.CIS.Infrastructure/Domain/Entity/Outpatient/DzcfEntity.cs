@@ -31,7 +31,7 @@ namespace Newtouch.Domain.Entity
         public bool sfbz { get; set; }
 
         /// <summary>
-        /// Đơn thuốcLoại
+        /// Đơn thuốc Loại
         /// </summary>
         public int cflx { get; set; }
 
@@ -56,7 +56,7 @@ namespace Newtouch.Domain.Entity
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// tạoNgười dùng
+        /// tạo Người dùng
         /// </summary>
         public string CreatorCode { get; set; }
 
@@ -66,7 +66,7 @@ namespace Newtouch.Domain.Entity
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Sửa cuốiNgười dùng
+        /// Sửa cuối Người dùng
         /// </summary>
         public string LastModifierCode { get; set; }
 
@@ -86,7 +86,7 @@ namespace Newtouch.Domain.Entity
         public string cfyf { get; set; }
 
         /// <summary>
-        /// làKhôngsắc hộ   1là  0Không
+        /// là Khôngsắc hộ   1là  0Không
         /// </summary>
         public bool? djbz { get; set; }
 
@@ -96,7 +96,7 @@ namespace Newtouch.Domain.Entity
         public string ks { get; set; }
 
         /// <summary>
-        /// Đồng bộCờ
+        /// Đồng bộ Cờ
         /// </summary>
         public bool? tbbz { get; set; }
 
@@ -106,12 +106,12 @@ namespace Newtouch.Domain.Entity
         public string lcyx { get; set; }
 
         /// <summary>
-        /// Đăng kýGhi chú
+        /// Đăng ký Ghi chú
         /// </summary>
         public string sqbz { get; set; }
 
         /// <summary>
-        /// trảCờ
+        /// trả Cờ
         /// </summary>
         public bool? tbz { get; set; }
 
@@ -121,7 +121,7 @@ namespace Newtouch.Domain.Entity
         public string sqdh { get; set; }
 
         /// <summary>
-        /// xatrìnhy tếTải lênTrạng thái
+        /// xatrìnhy tế Tải lên Trạng thái
         /// </summary>
         public string SyncStatus { get; set; }
 
@@ -141,27 +141,27 @@ namespace Newtouch.Domain.Entity
         public string djts { get; set; }
 
         /// <summary>
-        /// Đơn thuốcTrạng thái
+        /// Đơn thuốc Trạng thái
         /// </summary>
         public string cfzt { get; set; }
 
         /// <summary>
-        /// Đơn thuốcchỉnhliềuY lệnhMô tả
+        /// Đơn thuốcchỉnhliềuY lệnh Mô tả
         /// </summary>
         public string rxDrordDscr { get; set; }
 
         /// <summary>
-        /// Đơn thuốcHiệu lựcSố ngày
+        /// Đơn thuốc Hiệu lực Số ngày
         /// </summary>
         public int? valiDays { get; set; }
 
         /// <summary>
-        /// lạidùng(nhiều lần)Sử dụngCờ
+        /// lạidùng(nhiều lần)Sử dụng Cờ
         /// </summary>
         public string reptFlag { get; set; }
 
         /// <summary>
-        /// nhấtlớnSử dụng lầnsố
+        /// nhấtlớn Sử dụng lầnsố
         /// </summary>
         public int? maxReptCnt { get; set; }
 
@@ -171,12 +171,12 @@ namespace Newtouch.Domain.Entity
         public int? minInrvDays { get; set; }
 
         /// <summary>
-        /// tiếpphươngCờ
+        /// tiếpphương Cờ
         /// </summary>
         public string rxCotnFlag { get; set; }
 
         /// <summary>
-        /// Dài hạnĐơn thuốcCờ
+        /// Dài hạn Đơn thuốc Cờ
         /// </summary>
         public string longRxFlag { get; set; }
 
@@ -186,7 +186,7 @@ namespace Newtouch.Domain.Entity
         public string rxTraceCode { get; set; }
 
         /// <summary>
-        /// Bảo hiểm y tếĐơn thuốcSố hiệu
+        /// Bảo hiểm y tế Đơn thuốc Số hiệu
         /// </summary>
         public string hiRxno { get; set; }
     }

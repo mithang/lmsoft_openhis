@@ -25,7 +25,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// LấyKhám bệnhthông tin
+        /// Lấy Khám bệnhthông tin
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -49,7 +49,7 @@ WHERE jz.mzh=@mzh AND jz.OrganizeId=@orgId AND jz.zt='1'
         }
 
         /// <summary>
-        /// LấyKhám bệnhthông tin
+        /// Lấy Khám bệnhthông tin
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>

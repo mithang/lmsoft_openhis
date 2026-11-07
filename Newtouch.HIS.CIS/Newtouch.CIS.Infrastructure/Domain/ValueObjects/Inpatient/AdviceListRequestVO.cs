@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Inpatient
 {
     /// <summary>
-    /// Y lệnhTra cứuGrid request
+    /// Y lệnh Tra cứu Grid request
     /// </summary>
    public class AdviceListRequestVO
     {
@@ -19,7 +19,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         
         public string yzlb { get; set; }
         /// <summary>
-        /// chưaPhê duyệt
+        /// chưa Phê duyệt
         /// </summary>
         public bool wsh { get; set; }
         /// <summary>

@@ -22,7 +22,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
         #region Khoachuẩn bị thuốc
         /// <summary>
-        /// Tra cứuchuẩn bị thuốcPhiếuTrạng thái
+        /// Tra cứuchuẩn bị thuốc Phiếu Trạng thái
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="sqdArr"></param>
@@ -46,7 +46,7 @@ where  organizeid=@orgId and zt=1 and djh in ( select col from f_split(@sqdArr,'
         }
 
         /// <summary>
-        /// Cập nhậtPhiếuTrạng thái
+        /// Cập nhật Phiếu Trạng thái
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="sqdArr"></param>
@@ -85,7 +85,7 @@ where  organizeid=@orgId and zt=1 and djh =@djh
         }
 
         /// <summary>
-        /// Cập nhậttrảKhoaTồn khoPhiếuTrạng thái
+        /// Cập nhậttrả Khoa Tồn kho Phiếu Trạng thái
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="sqdArr"></param>

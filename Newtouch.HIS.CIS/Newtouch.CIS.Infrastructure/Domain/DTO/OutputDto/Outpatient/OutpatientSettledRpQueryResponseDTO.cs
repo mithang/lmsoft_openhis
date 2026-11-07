@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.DTO
 {
     /// <summary>
-    /// đãquyết toánĐơn thuốcchi tiếtTra cứugiao diệnQuay lạibáovăn
+    /// đãquyết toán Đơn thuốcchi tiết Tra cứugiao diện Quay lạibáovăn
     /// </summary>
     public class OutpatientSettledRpQueryResponseDTO
     {
@@ -47,7 +47,7 @@ namespace Newtouch.Domain.DTO
         public int jsmxnm { get; set; }
 
         /// <summary>
-        /// Thu phíThời gian
+        /// Thu phí Thời gian
         /// </summary>
         public DateTime sfsj { get; set; }
 
@@ -77,12 +77,12 @@ namespace Newtouch.Domain.DTO
         public decimal? yl { get; set; }
 
         /// <summary>
-        /// dùnglượngĐơn vị
+        /// dùnglượng Đơn vị
         /// </summary>
         public string yldw { get; set; }
 
         /// <summary>
-        /// dùnglượng+dùnglượngĐơn vị
+        /// dùnglượng+dùnglượng Đơn vị
         /// </summary>
         public string ylstr { get; set; }
 
@@ -92,12 +92,12 @@ namespace Newtouch.Domain.DTO
         public decimal sl { get; set; }
 
         /// <summary>
-        /// Số lượngĐơn vị
+        /// Số lượng Đơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// Số lượng+Số lượngĐơn vị
+        /// Số lượng+Số lượng Đơn vị
         /// </summary>
         public string slstr { get; set; }
 

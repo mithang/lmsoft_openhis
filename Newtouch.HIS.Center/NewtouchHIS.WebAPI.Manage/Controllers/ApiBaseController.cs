@@ -14,11 +14,11 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
     {
         protected readonly IHttpClientHelper _httpClient;
         /// <summary>
-        /// Hệ thống quyết toánApi Host
+        /// Hệ thống quyết toán Api Host
         /// </summary>
         protected readonly string SettHttpUrl = ConfigInitHelper.SysConfig!.AppAPIHost!.SiteSettAPIHost ?? "";
         /// <summary>
-        /// Phối hợp y hộApi Host
+        /// Phối hợp y hộ Api Host
         /// </summary>
         protected readonly string CisHttpUrl = ConfigInitHelper.SysConfig!.AppAPIHost!.SiteCisAPIHost ?? "";
         /// <summary>

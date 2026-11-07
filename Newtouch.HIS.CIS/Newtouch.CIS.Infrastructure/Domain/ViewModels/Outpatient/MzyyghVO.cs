@@ -8,7 +8,7 @@ namespace Newtouch.Domain.ViewModels.Outpatient
     public class MzyyghVO
     {
         /// <summary>
-        /// đặt hẹnđăng ký khám ID mz_yyghbảngKhóa chính
+        /// đặt hẹnđăng ký khám ID mz_yyghbảng Khóa chính
         /// </summary>
         public string Id { get; set; }
 
@@ -18,7 +18,7 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// KhoaMã
+        /// Khoa Mã
         /// </summary>
         public string ksCode { get; set; }
 
@@ -28,12 +28,12 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public string ksmc { get; set; }
 
         /// <summary>
-        /// Ngoại trúLoại  1:thông thườngNgoại trú    2:Cấp cứu     3:chuyên giaNgoại trú
+        /// Ngoại trú Loại  1:thông thường Ngoại trú    2:Cấp cứu     3:chuyên gia Ngoại trú
         /// </summary>
         public string mzlx { get; set; }
 
         /// <summary>
-        /// đặt hẹnNgày
+        /// đặt hẹn Ngày
         /// </summary>
         public DateTime regDate { get; set; }
 
@@ -43,12 +43,12 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public string regTime { get; set; }
 
         /// <summary>
-        /// chuyên giaMã nhân viên
+        /// chuyên gia Mã nhân viên
         /// </summary>
         public string gh { get; set; }
 
         /// <summary>
-        /// chuyên giaTên
+        /// chuyên gia Tên
         /// </summary>
         public string zjmc { get; set; }
 
@@ -58,7 +58,7 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public int bespeakNo { get; set; }
 
         /// <summary>
-        /// GửiThời gian
+        /// Gửi Thời gian
         /// </summary>
         public DateTime CreateTime { get; set; }
 
@@ -74,7 +74,7 @@ namespace Newtouch.Domain.ViewModels.Outpatient
     public class MzyyghDetailVo
     {
         /// <summary>
-        /// nhấtlớnHỗ trợđặt hẹnsố
+        /// nhấtlớn Hỗ trợđặt hẹnsố
         /// </summary>
         public int bespeakMaxCount { get; set; }
 
@@ -89,23 +89,23 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public string departmentCode { get; set; }
 
         /// <summary>
-        /// chuyên giaMã nhân viên
+        /// chuyên gia Mã nhân viên
         /// </summary>
         public string ysgh { get; set; }
 
         /// <summary>
-        /// đặt hẹnNgày
+        /// đặt hẹn Ngày
         /// </summary>
         public DateTime regDate { get; set; }
     }
 
     /// <summary>
-    /// đăng ký khámđặt hẹnXếp lịch
+    /// đăng ký khámđặt hẹn Xếp lịch
     /// </summary>
     public class BespeakRegisterScheduling
     {
         /// <summary>
-        /// ngàylịchNgày
+        /// ngàylịch Ngày
         /// </summary>
         public DateTime CalendarDate { get; set; }
 

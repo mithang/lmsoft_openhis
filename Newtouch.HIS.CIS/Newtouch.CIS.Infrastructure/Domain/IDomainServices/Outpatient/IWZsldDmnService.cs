@@ -21,7 +21,7 @@ namespace Newtouch.Domain.IDomainServices
         List<VSelProductInfoVO> DepartmentStockListQuery(DepartmentStockListQueryParamDTO param);
 
         /// <summary>
-        /// Lấyvật tưSố lôLôthông tin  top 20
+        /// Lấyvật tư Số lô Lôthông tin  top 20
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="warehouseId"></param>

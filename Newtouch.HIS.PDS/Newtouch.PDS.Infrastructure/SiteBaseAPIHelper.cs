@@ -12,7 +12,7 @@ namespace Newtouch.Infrastructure
     public class SiteBaseApiHelper
     {
         /// <summary>
-        /// BaseHệ thống API
+        /// Base Hệ thống API
         /// </summary>
         private static readonly string _SiteBaseAPIHost;
 
@@ -31,7 +31,7 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="force">Có làm mới mạnh khôngToken</param>
+        /// <param name="force">Có làm mới mạnh không Token</param>
         /// <returns></returns>
         public static string GetToken(bool force = false)
         {
@@ -67,7 +67,7 @@ namespace Newtouch.Infrastructure
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <param name="req"></param>
-        /// <param name="tokenExpireReTryTimes">doTokenSố lần thử lại khi hết hạn</param>
+        /// <param name="tokenExpireReTryTimes">doToken Số lần thử lại khi hết hạn</param>
         /// <returns></returns>
         public static T Request<TV, T>(string url, TV req, int tokenExpireReTryTimes = 1)
             where T : new()
@@ -80,7 +80,7 @@ namespace Newtouch.Infrastructure
 
         /// <summary>
         /// BaseAPIHost
-        /// configCấu hình_SiteBaseAPIHost
+        /// config Cấu hình_SiteBaseAPIHost
         /// </summary>
         private static string SiteBaseApiHost
         {

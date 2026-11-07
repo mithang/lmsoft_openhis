@@ -32,7 +32,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         string CarryOverProduct(string warehouseId, string organizeId, string userCode);
 
         /// <summary>
-        /// vàobántồn tạiThống kê
+        /// vàobántồn tại Thống kê
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="searchParam"></param>

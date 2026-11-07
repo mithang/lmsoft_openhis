@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers.Settlement
         //        //var qxkzRelList = _sysMedicineAuthorityRelationRepo.FindEntity(p => p.gh == obj.gh && p.OrganizeId == OrganizeId && p.zt == "1");
         //        //foreach (var qxkzRel in qxkzRelList) {
         //        //    var qxid = qxkzRel.qxId;
-        //        //    //Thông quaidLấy tên quyền
+        //        //    //Thông quaid Lấy tên quyền
 
         //        //}
         //        List.Add(obj);

@@ -83,7 +83,7 @@ namespace Newtouch.DomainServices.Inpatient
                                 db.Insert(item);
                             }
                         }
-                        //vậtlýXóa
+                        //vậtlý Xóa
                         if (dto.DelIds != null && dto.DelIds.Count() > 0)
                         {
                             var sql = @"UPDATE  dbo.zy_Dietsfxmdy
@@ -108,9 +108,9 @@ namespace Newtouch.DomainServices.Inpatient
                 // exception khác trả đúng business error với Message gốc.
                 if (e is Newtouch.CIS.Compat.FailedException failedException)
                 {
-                    throw new FailedException("Mục thu phíLưu thất bại，" + failedException.Msg);
+                    throw new FailedException("Mục thu phí Lưu thất bại，" + failedException.Msg);
                 }
-                throw new FailedException("Mục thu phíLưu thất bại，" + e.Message);
+                throw new FailedException("Mục thu phí Lưu thất bại，" + e.Message);
             }
         }
 

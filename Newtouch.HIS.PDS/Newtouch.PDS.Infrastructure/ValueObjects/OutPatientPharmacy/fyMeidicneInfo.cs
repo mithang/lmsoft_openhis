@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class fyMeidicneInfo
     {
         /// <summary>
-        /// Số lô chi tiết đơn thuốcId
+        /// Số lô chi tiết đơn thuốc Id
         /// </summary>
         public string cfmxphId { get; set; }
 

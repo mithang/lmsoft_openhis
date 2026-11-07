@@ -57,7 +57,7 @@ namespace Newtouch.EMR.DomainServices
         }
 
         /// <summary>
-        ///  Đồng bộhisGiao diện thông tin bệnh nhân(API)
+        ///  Đồng bộhis Giao diện thông tin bệnh nhân(API)
         /// </summary>
         /// <param name="lastUpdate"></param>
         /// <param name="user"></param>
@@ -132,7 +132,7 @@ namespace Newtouch.EMR.DomainServices
             }
         }
         /// <summary>
-        /// Đồng bộhisThông tin bệnh nhân(Cơ sở dữ liệu)
+        /// Đồng bộhis Thông tin bệnh nhân(Cơ sở dữ liệu)
         /// </summary>
         /// <param name="OrgId"></param>
         /// <param name="Bdate"></param>
@@ -588,7 +588,7 @@ FROM    dbo.zy_brjbxx zyxx  with(nolock)
         /// Xóa bệnh án(Xóa logic)
         /// </summary>
         /// <param name="blId"></param>
-        /// <param name="blgxId">Quan hệ bệnh ánId</param>
+        /// <param name="blgxId">Quan hệ bệnh án Id</param>
         /// <param name="OrgId"></param>
         /// <param name="user"></param>
         public void UpdtPatMedRecord(string blId, string blgxId, string OrgId, OperatorModel user)

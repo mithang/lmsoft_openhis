@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Lấy Tổ chức Mục từ điểnList
+        /// Lấy Tổ chức Mục từ điển List
         /// </summary>
         /// <param name="itemId"></param>
         /// <param name="keyword"></param>

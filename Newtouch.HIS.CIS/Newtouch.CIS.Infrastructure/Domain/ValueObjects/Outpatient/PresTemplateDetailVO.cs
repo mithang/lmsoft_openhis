@@ -44,11 +44,11 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string redundant_jldw { get; set; }
         /// <summary>
-        /// làKhôngBảo hiểm y tế add by sunny Giai đoạn 3 Tần Hoàng Đảo dẫndùnglịch sửĐơn thuốckhi,Bảo hiểm y tếbệnh nhânkhôngphương phápchọnmục tự chi trả
+        /// là Không Bảo hiểm y tế add by sunny Giai đoạn 3 Tần Hoàng Đảo dẫndùnglịch sử Đơn thuốckhi,Bảo hiểm y tếbệnh nhânkhôngphương phápchọnmục tự chi trả
         /// </summary>
         public string sfyb { get; set; }
         /// <summary>
-        /// add by huangshanshan Ngoại trúmẫusao chépCách dùngvàDạng bào chếliên kết,Cách dùngkhôngphương phápBình thườngHiển thị
+        /// add by huangshanshan Ngoại trúmẫusao chép Cách dùngvà Dạng bào chếliên kết,Cách dùngkhôngphương pháp Bình thường Hiển thị
         /// </summary>
         public string jxCode { get; set; }
         public string ztId { get; set; }

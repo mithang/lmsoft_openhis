@@ -8,7 +8,7 @@ using Newtouch.Infrastructure.Log;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// xmlMở rộng tuần tự hóa
+    /// xml Mở rộng tuần tự hóa
     /// </summary>
     public static class XmlSerializerExt
     {

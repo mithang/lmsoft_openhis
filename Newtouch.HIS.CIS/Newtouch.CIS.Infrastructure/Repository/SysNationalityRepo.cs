@@ -23,7 +23,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// LấyHiệu lựcquốc tịch
+        /// Lấy Hiệu lựcquốc tịch
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -34,7 +34,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// Lấybệnh nhânTính chất
+        /// Lấybệnh nhân Tính chất
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -51,7 +51,7 @@ namespace Newtouch.Repository
             return this.FindList<SysBrxzVEntity>(sql,param);
         }
         /// <summary>
-        /// hiệnkimPhương thức thanh toán
+        /// hiệnkim Phương thức thanh toán
         /// </summary>
         /// <returns></returns>
         public IList<SysCashPaymenVEntity> GetCashPay()

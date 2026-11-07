@@ -34,7 +34,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// Bắt đầuKiểm kê
+        /// Bắt đầu Kiểm kê
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -54,37 +54,37 @@ namespace Newtouch.Application.Implementation
             var result = _stockInventoryDmnService.GetPdSj(warehouseId, organizeId).FirstOrDefault();
             if (result == null)
             {
-                throw new FailedException("lạiLấyKiểm kêThời gianthất bại");
+                throw new FailedException("lại Lấy Kiểm kê Thời gianthất bại");
             }
             return result;
         }
 
         /// <summary>
-        /// Kiểm kêLưu
+        /// Kiểm kê Lưu
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         /// <param name="pdId">Kiểm kê phiếu ID</param>
-        /// <param name="noPc">  0:theoLôKiểm kê 1:khôngtheoLôKiểm kê</param>
+        /// <param name="noPc">  0:theo Lô Kiểm kê 1:khôngtheo Lô Kiểm kê</param>
         public void SaveInventoryInfo(List<SaveInventoryDTO> inventoryInfoList, long pdId, string noPc = "0")
         {
             var pdInfo = _kcPdxxRepo.SelectPdInfByPdId(pdId, OperatorProvider.GetCurrent().OrganizeId);
             if (pdInfo == null)
             {
-                throw new FailedException("chưatìmđếnchỉđịnhKiểm kêthông tin");
+                throw new FailedException("chưatìmđếnchỉđịnh Kiểm kêthông tin");
             }
             if (pdInfo.jssj != null || pdInfo.jssj >= Constants.MinDateTime)
             {
-                throw new FailedException("Kiểm kêđãKết thúc");
+                throw new FailedException("Kiểm kêđã Kết thúc");
             }
             SaveInventoryInfo(inventoryInfoList, pdId, noPc, UserIdentity.DepartmentCode, OrganizeId);
         }
 
         /// <summary>
-        /// Kiểm kêLưu
+        /// Kiểm kê Lưu
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         /// <param name="pdId"></param>
-        /// <param name="noPc">0:theoLôKiểm kê 1:khôngtheoLôKiểm kê</param>
+        /// <param name="noPc">0:theo Lô Kiểm kê 1:khôngtheo Lô Kiểm kê</param>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
         private void SaveInventoryInfo(List<SaveInventoryDTO> inventoryInfoList, long pdId, string noPc, string warehouseId, string organizeId)
@@ -102,22 +102,22 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// HủyKiểm kê
+        /// Hủy Kiểm kê
         /// </summary>
         /// <param name="pdId"></param>
         public void CancelInventory(long pdId)
         {
-            //kiểm tralàKhôngcóchưaHoàn thànhcủaKiểm kê
+            //kiểm tralà Khôngcóchưa Hoàn thànhcủa Kiểm kê
             var count = _kcPdxxRepo.SelectUnfinishedInventoryByPdId(pdId, OrganizeId);
             if (count != 1)
             {
-                throw new FailedException("Kiểm kêđãKết thúc,không thểHủy");
+                throw new FailedException("Kiểm kêđã Kết thúc,không thể Hủy");
             }
             _stockInventoryDmnService.CancelInventory(pdId);
         }
 
         /// <summary>
-        /// Kết thúcKiểm kê
+        /// Kết thúc Kiểm kê
         /// </summary>
         /// <returns></returns>
         public void EndInventory(long pdId)
@@ -125,13 +125,13 @@ namespace Newtouch.Application.Implementation
             var pdInfo = _kcPdxxRepo.SelectPdInfByPdId(pdId, OrganizeId);
             if (pdInfo == null)
             {
-                throw new FailedException("chưatìmđếnchỉđịnhKiểm kêthông tin");
+                throw new FailedException("chưatìmđếnchỉđịnh Kiểm kêthông tin");
             }
             if (pdInfo.jssj != null || pdInfo.jssj >= Constants.MinDateTime)
             {
-                throw new FailedException("Kiểm kêđãKết thúc");
+                throw new FailedException("Kiểm kêđã Kết thúc");
             }
-            //tạoKiểm kêthông tin
+            //tạo Kiểm kêthông tin
             var resultMessage = _stockInventoryDmnService.EndInventory(pdId, OrganizeId, OperatorProvider.GetCurrent().UserCode);
             if (!string.IsNullOrEmpty(resultMessage) && resultMessage.IndexOf("thành công", StringComparison.OrdinalIgnoreCase) < 0)
             {

@@ -24,7 +24,7 @@ namespace Newtouch.Domain.IDomainServices
 
          void DeleteTemplate(string mbId, string orgId);
         /// <summary>
-        /// Đơn thuốcmẫuTìm kiếm
+        /// Đơn thuốcmẫu Tìm kiếm
         /// </summary>
         /// <param name="cflx"></param>
         /// <param name="mblx"></param>

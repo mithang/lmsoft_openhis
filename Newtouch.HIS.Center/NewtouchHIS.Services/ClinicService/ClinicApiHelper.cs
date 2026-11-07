@@ -51,19 +51,19 @@ namespace NewtouchHIS.Services
 
         #region ApiRoute
         /// <summary>
-        /// Lấy phòng khámTokenPhương thức
+        /// Lấy phòng khám Token Phương thức
         /// </summary>
         public readonly static string GetTokenRoute = $"{OuterClinicSystemAPIHost}lease-backend-test/auth/getToken";
         /// <summary>
-        /// Đăng ký khám chữa bệnhThông báo kết quả
+        /// Đăng ký khám chữa bệnh Thông báo kết quả
         /// </summary>
         public readonly static string TreatedApplyResultNotice = $"{OuterClinicSystemAPIHost}lease-backend-test/outpatient/remoteDiagnosisTreatment/modifiedState";
         /// <summary>
-        /// Lấy phòng khámBệnh nhânBệnh án
+        /// Lấy phòng khám Bệnh nhân Bệnh án
         /// </summary>
         public readonly static string GetPatMedicalRecord = $"{OuterClinicSystemAPIHost}lease-backend-test/outpatient/medicalRecord/medical/";
         /// <summary>
-        /// Đồng bộ HIS Bệnh nhânBệnh án
+        /// Đồng bộ HIS Bệnh nhân Bệnh án
         /// </summary>
         public readonly static string SendHisPatMedicalRecord = $"{OuterClinicSystemAPIHost}lease-backend-test/outpatient/medicalRecord/saveAdd";
         /// <summary>

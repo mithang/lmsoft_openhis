@@ -28,12 +28,12 @@ namespace Newtouch.Domain.Entity
         public int mblx { get; set; }
 
         /// <summary>
-        /// liên kếtbasekhocủaKhoabảng
+        /// liên kếtbasekhocủa Khoabảng
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// Liệt kê 1 Thuốc TâyĐơn thuốc 2 Thuốc Đông yĐơn thuốc 3 Phục hồi chức năngĐơn thuốc 4 Xét nghiệmĐơn thuốc 5 Kiểm traĐơn thuốc
+        /// Liệt kê 1 Thuốc Tây Đơn thuốc 2 Thuốc Đông y Đơn thuốc 3 Phục hồi chức năng Đơn thuốc 4 Xét nghiệm Đơn thuốc 5 Kiểm tra Đơn thuốc
         /// </summary>
         public int cflx { get; set; }
 
@@ -43,7 +43,7 @@ namespace Newtouch.Domain.Entity
         public string mbmc { get; set; }
 
         /// <summary>
-        /// tạoBác sĩ
+        /// tạo Bác sĩ
         /// </summary>
         public string ysgh { get; set; }
 

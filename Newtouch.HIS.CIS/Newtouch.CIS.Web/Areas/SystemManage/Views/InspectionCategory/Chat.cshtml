@@ -226,29 +226,29 @@
             else {
                 $('#discussion').append('<li class="msgleft"><p class="touxiangleft">' + htmlEncode(name) +'</p><p class="msgcardleft">' + htmlEncode(message) + '</p></li >');
             }
-            // sẽhủytinThêmđếnultrên.
+            // sẽhủytin Thêmđếnultrên.
             //$('#discussion').append('<li class="msgleft"><p class="msgcardleft>' + htmlEncode(name)+htmlEncode(message)
             //    + '</p></li>');
         };
 
-        // LấyNgười dùngtên.
+        // Lấy Người dùngtên.
         $('#displayname').val(prompt('Vui lòng nhập tên của bạn:', ''));
 
         // Cài đặttiêu điểmđiểmđếnnhậpkhung.
         $('#message').focus();
 
-        // Bắt đầuLiên kếtphụcvụdụng cụ,Liên kếtthành côngsaulàGửiNútLưu ýsáchclicksự kiện.
+        // Bắt đầu Liên kếtphụcvụdụng cụ,Liên kếtthành côngsaulà Gửi Nút Lưu ýsáchclicksự kiện.
         connection.start().then(function () {
             $('#sendbtn').click(function () {
-                // gọiphụcvụdụng cụđầutậpđườngdụng cụcủaSendPhương pháp.
+                // gọiphụcvụdụng cụđầutậpđườngdụng cụcủa Send Phương pháp.
                 connection.invoke("Send", $('#displayname').val(), $('#message').val());
-                // Xóa trắngnhậpkhungthông tinvàLấytiêu điểmđiểm.
+                // Xóa trắngnhậpkhungthông tinvà Lấytiêu điểmđiểm.
                 $('#message').val('').focus();
             });
         });
     });
 
-    // nàycó thểchọncôngcó thểsẽhtml-encodeshủytinHiển thịởtrangmặttrên.
+    // nàycó thểchọncôngcó thểsẽhtml-encodeshủytin Hiển thịởtrangmặttrên.
     function htmlEncode(value) {
         var encodedValue = $('<div />').text(value).html();
         return encodedValue;

@@ -24,7 +24,7 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         /// </summary>
         public int? OrderType { get; set; }
         /// <summary>
-        /// Khám bệnhSố thẻ
+        /// Khám bệnh Số thẻ
         /// </summary>
         public string CardNo { get; set; }
         /// <summary>

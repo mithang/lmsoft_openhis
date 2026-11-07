@@ -26,7 +26,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public string cfId { get; set; }
 
         /// <summary>
-        /// Liên kếtbaseBảng hạng mục thu phí của cơ sở dữ liệu
+        /// Liên kếtbase Bảng hạng mục thu phí của cơ sở dữ liệu
         /// </summary>
         public string xmCode { get; set; }
 
@@ -36,7 +36,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public string xmmc { get; set; }
 
         /// <summary>
-        /// Liên kếtbaseBảng thuốc của cơ sở dữ liệu
+        /// Liên kếtbase Bảng thuốc của cơ sở dữ liệu
         /// </summary>
         public string ypCode { get; set; }
 
@@ -51,17 +51,17 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public decimal? mcjl { get; set; }
 
         /// <summary>
-        /// LấybaseBảng thuộc tính thuốc của cơ sở dữ liệu
+        /// Lấybase Bảng thuộc tính thuốc của cơ sở dữ liệu
         /// </summary>
         public string mcjldw { get; set; }
 
         /// <summary>
-        /// Liên kếtbaseBảng cách dùng thuốc của cơ sở dữ liệu
+        /// Liên kếtbase Bảng cách dùng thuốc của cơ sở dữ liệu
         /// </summary>
         public string yfCode { get; set; }
 
         /// <summary>
-        /// Liên kếtbaseTần suất y lệnh của cơ sở dữ liệu
+        /// Liên kếtbase Tần suất y lệnh của cơ sở dữ liệu
         /// </summary>
         public string pcCode { get; set; }
 

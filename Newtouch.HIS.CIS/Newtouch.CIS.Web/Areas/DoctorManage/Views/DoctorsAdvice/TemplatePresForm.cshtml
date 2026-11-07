@@ -66,7 +66,7 @@
                 { label: sltext, name: 'sl', width: 70, align: 'center', hidden: tclx == wz ? true : tclx == ssyz ? true : null },
                 { label: 'Vị trí', name: 'bw', width: 60, align: 'center', hidden: (tclx == sfxm||tclx==kfyz) ? null : true },
                 {
-                    label: 'Tự chuẩn bịDấu hiệu', name: 'zbbzzzzzzz', width: 50, align: 'center', hidden: tclx == yp ? null : true, formatter: function (val) {
+                    label: 'Tự chuẩn bị Dấu hiệu', name: 'zbbzzzzzzz', width: 50, align: 'center', hidden: tclx == yp ? null : true, formatter: function (val) {
                         return val == 1 ? "Có" : "Không";
                     }
                 },
@@ -106,10 +106,10 @@
                     var kcsl = $gridList.jqGrid('getRowData', rowid).kcsl;
                     var kzbz = $gridList.jqGrid('getRowData', rowid).kzbz;
                     if ((kcsl != "" && kzbz != "Vô hiệu hóa" && (tclx == yp || tclx == zyyz || tclx == cydy)) || (tclx != yp && tclx != cydy && tclx != zyyz)) {
-                        $gridList.jqGrid('setSelection', rowid); //Cài đặtjqGridĐã chọn
+                        $gridList.jqGrid('setSelection', rowid); //Cài đặtjqGrid Đã chọn
                     }
                 });
-                $('#cb_gridList').prop('checked', true);//Chọn tất cảNút
+                $('#cb_gridList').prop('checked', true);//Chọn tất cả Nút
             },
             onSelectRow: function (rowid, status) {
                 if (status && (tclx == yp || tclx == zyyz)) {
@@ -117,12 +117,12 @@
                     var kzbz = $gridList.jqGrid('getRowData', rowid).kzbz;
                     if (kcsl == "") {
                         $.modalAlert("Thuốc này không có tồn kho, không thể chọn", "warning");
-                        $gridList.jqGrid('setSelection', rowid, false); //Cài đặtjqGridĐã chọn
+                        $gridList.jqGrid('setSelection', rowid, false); //Cài đặtjqGrid Đã chọn
                         return;
                     }
                     if (kzbz == "Vô hiệu hóa") {
                         $.modalAlert("Thuốc này ở trạng thái vô hiệu hóa, không thể chọn", "warning");
-                        $gridList.jqGrid('setSelection', rowid, false); //Cài đặtjqGridĐã chọn
+                        $gridList.jqGrid('setSelection', rowid, false); //Cài đặtjqGrid Đã chọn
                         return;
                     }
                 }
@@ -138,7 +138,7 @@
         CalculateInsPresJYAmount();
     }
 
-    //Tính toánPhiếuSố tiền
+    //Tính toán Phiếu Số tiền
     function CalculateInsPresJYAmount() {
         var totalAmount = 0.00;
         var allData = $("#gridList").jqGrid('getRowData_AllLine', true, true);
@@ -146,13 +146,13 @@
             totalAmount += parseFloat(this.dj) * parseFloat(this.sl);
         });
         $("#gridList").jqGrid("setCaption", "Tổng cộng:" + "<label style='color:red;'>₫"
-            + totalAmount.toFixed(2) + "</label>");   //Đặt lạicaptionThuộc tínhGiá trị
+            + totalAmount.toFixed(2) + "</label>");   //Đặt lạicaption Thuộc tính Giá trị
     }
 
     function submitForm() {
         var data = $("#gridList").jqGrid('getRowData_AllLine', true, true);
         if(!data || data.length==0){
-            $.modalAlert("Vui lòng chọnChi tiếtTiến hànhSao chép", 'warning');
+            $.modalAlert("Vui lòng chọn Chi tiết Tiến hành Sao chép", 'warning');
             return;
         }
         var cfmxIdStr = "";

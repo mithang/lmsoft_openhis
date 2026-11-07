@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Outpatient
 {
     /// <summary>
-    /// Nhập việnThông tin bệnh nhân
+    /// Nhập viện Thông tin bệnh nhân
     /// </summary>
     public class InHosPatientVO
     {
@@ -42,7 +42,7 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         public string sex { get; set; }
 
         /// <summary>
-        /// rasinhnămTháng
+        /// rasinhnăm Tháng
         /// </summary>
         public DateTime birth { get; set; }
 

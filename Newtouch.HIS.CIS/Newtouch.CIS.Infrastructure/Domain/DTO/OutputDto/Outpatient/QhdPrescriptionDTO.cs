@@ -16,15 +16,15 @@ namespace Newtouch.Domain.DTO.OutputDto
     public class REQUESTDATA
     {
         /// <summary>
-        /// địnhđiểmy tếCơ sởMã
+        /// địnhđiểmy tế Cơ sở Mã
         /// </summary>
         public string AKB020 { get; set; }
         /// <summary>
-        /// địnhđiểmy tếTên cơ sở
+        /// địnhđiểmy tế Tên cơ sở
         /// </summary>
         public string AKB021 { get; set; }
         /// <summary>
-        /// giao dịchMã
+        /// giao dịch Mã
         /// </summary>
         public string MSGNO { get; set; }
         /// <summary>
@@ -36,11 +36,11 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string GRANTID { get; set; }
         /// <summary>
-        /// Thao tácviênSố hiệu
+        /// Thao tácviên Số hiệu
         /// </summary>
         public string OPERID { get; set; }
         /// <summary>
-        /// Thao tácviênHọ tên
+        /// Thao tácviên Họ tên
         /// </summary>
         public string OPERNAME { get; set; }
         public KC21XML KC21XML { get; set; }
@@ -54,7 +54,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string AKC190 { get; set; }
         /// <summary>
-        /// y tếLoại
+        /// y tế Loại
         /// </summary>
         public string AKA130 { get; set; }
         /// <summary>
@@ -62,11 +62,11 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string AKC192 { get; set; }
         /// <summary>
-        /// Chẩn đoán nhập việnbệnhbệnhMã/Ngoại trúChẩn đoánbệnhbệnhMã
+        /// Chẩn đoán nhập việnbệnhbệnh Mã/Ngoại trú Chẩn đoánbệnhbệnh Mã
         /// </summary>
         public string AKC193 { get; set; }
         /// <summary>
-        /// Chẩn đoán nhập việnbệnhbệnhTên/Ngoại trúChẩn đoánbệnhbệnhTên
+        /// Chẩn đoán nhập việnbệnhbệnh Tên/Ngoại trú Chẩn đoánbệnhbệnh Tên
         /// </summary>
         public string ZKC274 { get; set; }
         /// <summary>
@@ -78,11 +78,11 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string AKC195 { get; set; }
         /// <summary>
-        /// Xuất việnChẩn đoánbệnhbệnhMã
+        /// Xuất viện Chẩn đoánbệnhbệnh Mã
         /// </summary>
         public string AKC196 { get; set; }
         /// <summary>
-        /// Xuất việnChẩn đoánbệnhbệnhTên
+        /// Xuất viện Chẩn đoánbệnhbệnh Tên
         /// </summary>
         public string ZKC275 { get; set; }
         /// <summary>
@@ -102,15 +102,15 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string ZKC272 { get; set; }
         /// <summary>
-        /// Bác sĩ điều trịMã
+        /// Bác sĩ điều trị Mã
         /// </summary>
         public string BKF050 { get; set; }
         /// <summary>
-        /// Bác sĩ điều trịHọ tên
+        /// Bác sĩ điều trị Họ tên
         /// </summary>
         public string ZKC271 { get; set; }
         /// <summary>
-        /// Bảo hiểm y tếSố hiệu
+        /// Bảo hiểm y tế Số hiệu
         /// </summary>
         public string AAC001 { get; set; }
         /// <summary>
@@ -138,7 +138,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string AAE011 { get; set; }
         /// <summary>
-        /// qualàmThời gianYYYYMMDDHH24MISS
+        /// qualàm Thời gianYYYYMMDDHH24MISS
         /// </summary>
         public string AAE036 { get; set; }
     }
@@ -154,27 +154,27 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string AKC220 { get; set; }
         /// <summary>
-        /// Đơn thuốcNgày YYYYMMDDHH24MISS
+        /// Đơn thuốc Ngày YYYYMMDDHH24MISS
         /// </summary>
         public string AKC221 { get; set; }
         /// <summary>
-        /// Bảo hiểm y tếThuốc/Mã hạng mục
+        /// Bảo hiểm y tế Thuốc/Mã hạng mục
         /// </summary>
         public string AKE001 { get; set; }
         /// <summary>
-        /// Bảo hiểm y tếThuốc/Tên mục
+        /// Bảo hiểm y tế Thuốc/Tên mục
         /// </summary>
         public string AKE002 { get; set; }
         /// <summary>
-        /// yviệnMục thu phíMã
+        /// yviện Mục thu phí Mã
         /// </summary>
         public string AKC515 { get; set; }
         /// <summary>
-        /// yviệnTên hạng mục thu phí
+        /// yviện Tên hạng mục thu phí
         /// </summary>
         public string AKC223 { get; set; }
         /// <summary>
-        /// MụcLoại1:Thuốc 2:Hạng mục chẩn trị 3:phụcvụthiếtthi
+        /// Mục Loại1:Thuốc 2:Hạng mục chẩn trị 3:phụcvụthiếtthi
         /// </summary>
         public string AKC224 { get; set; }
         /// <summary>
@@ -198,7 +198,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string AKA070 { get; set; }
         /// <summary>
-        /// ThuốcĐơn vị liều
+        /// Thuốc Đơn vị liều
         /// </summary>
         public string CKC132 { get; set; }
         /// <summary>
@@ -210,11 +210,11 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public decimal? AKA071 { get; set; }
         /// <summary>
-        /// ThuốcmỗingàynhấtlớnLiều lượng
+        /// Thuốcmỗingàynhấtlớn Liều lượng
         /// </summary>
         public decimal? AKA075 { get; set; }
         /// <summary>
-        /// Sử dụngTần suất
+        /// Sử dụng Tần suất
         /// </summary>
         public string AKA072 { get; set; }
         /// <summary>
@@ -222,27 +222,27 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string AKA073 { get; set; }
         /// <summary>
-        /// bánbánĐơn vị
+        /// bánbán Đơn vị
         /// </summary>
         public string ZKA101 { get; set; }
         /// <summary>
-        /// hiện tạiĐơn vịdấughi
+        /// hiện tại Đơn vịdấughi
         /// </summary>
         public string AKA067 { get; set; }
         /// <summary>
-        /// Thực hiệnSố ngày
+        /// Thực hiện Số ngày
         /// </summary>
         public decimal AKC229 { get; set; }
         /// <summary>
-        /// thảo dượcphiếulạiphươngCờ
+        /// thảo dượcphiếulạiphương Cờ
         /// </summary>
         public string BKC127 { get; set; }
         /// <summary>
-        /// Đơn thuốcBác sĩMã
+        /// Đơn thuốc Bác sĩ Mã
         /// </summary>
         public string BKF050 { get; set; }
         /// <summary>
-        /// Đơn thuốcBác sĩHọ tên
+        /// Đơn thuốc Bác sĩ Họ tên
         /// </summary>
         public string ZKC271 { get; set; }
         /// <summary>
@@ -250,7 +250,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string AAE011 { get; set; }
         /// <summary>
-        /// qualàmThời gian YYYYMMDDHH24MISS
+        /// qualàm Thời gian YYYYMMDDHH24MISS
         /// </summary>
         public string AAE036 { get; set; }
     }
@@ -266,7 +266,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public int BKE150 { get; set; }
         /// <summary>
-        /// làKhôngchínhChẩn đoán
+        /// là Khôngchính Chẩn đoán
         /// </summary>
         public string CKC305 { get; set; }
         /// <summary>
@@ -282,11 +282,11 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string CKC303 { get; set; }
         /// <summary>
-        /// Chẩn đoánBác sĩMã
+        /// Chẩn đoán Bác sĩ Mã
         /// </summary>
         public string BKF050 { get; set; }
         /// <summary>
-        /// Chẩn đoánBác sĩHọ tên
+        /// Chẩn đoán Bác sĩ Họ tên
         /// </summary>
         public string ZKC271 { get; set; }
         /// <summary>

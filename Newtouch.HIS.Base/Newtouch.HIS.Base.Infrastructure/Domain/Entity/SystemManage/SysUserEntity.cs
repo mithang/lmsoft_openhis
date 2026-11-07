@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chứcId(Cấp cao nhất,Cấu hình hệ thống)
+        /// Tổ chức Id(Cấp cao nhất,Cấu hình hệ thống)
         /// </summary>
         public string TopOrganizeId { get; set; }
 
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string Account { get; set; }
 
         /// <summary>
-        /// Loại ngôn ngữ:enTiếng Anh
+        /// Loại ngôn ngữ:en Tiếng Anh
         /// </summary>
         public string LanguageType { get; set; }
 

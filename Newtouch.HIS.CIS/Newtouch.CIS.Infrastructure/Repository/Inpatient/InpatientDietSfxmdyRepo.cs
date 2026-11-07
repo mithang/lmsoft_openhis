@@ -14,7 +14,7 @@ namespace Newtouch.Repository
     public class InpatientDietSfxmdyRepo : RepositoryBase<InpatientDietSfxmdyEntity>, IInpatientDietSfxmdyRepo
     {
         /// <summary>
-        /// Mặc địnhHàm khởi tạosố
+        /// Mặc định Hàm khởi tạosố
         /// </summary>
         /// <param name="databaseFactory">EF trên dưới văn Nhà máy</param>
         public InpatientDietSfxmdyRepo()
@@ -27,7 +27,7 @@ namespace Newtouch.Repository
         /// Lưubảngphiếu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">thựcthểđối tượng</param>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="keyValue">Khóa chính Giá trị</param>
         public void SubmitForm(InpatientDietSfxmdyEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -46,9 +46,9 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// XóaDữ liệu
+        /// Xóa Dữ liệu
         /// </summary>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="keyValue">Khóa chính Giá trị</param>
         public void DeleteForm(string keyValue)
         {
             this.Delete(p => p.Id == keyValue);

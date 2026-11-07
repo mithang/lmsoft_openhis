@@ -8,7 +8,7 @@ namespace NewtouchHIS.Base.Domain.Organize
     {
         Task<SysStaffEntity> FindKey(string userId);
         /// <summary>
-        /// TheoUserIdLấy thông tin công nhân viên chức
+        /// Theo UserId Lấy thông tin công nhân viên chức
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>

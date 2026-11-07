@@ -16,7 +16,7 @@ namespace Newtouch.Repository
     public class ComDiagnosisRepo : RepositoryBase<ComDiagnosisEntity>, IComDiagnosisRepo
     {
         /// <summary>
-        /// Mặc địnhHàm khởi tạosố
+        /// Mặc định Hàm khởi tạosố
         /// </summary>
         /// <param name="databaseFactory">EF trên dưới văn Nhà máy</param>
         public ComDiagnosisRepo()
@@ -24,7 +24,7 @@ namespace Newtouch.Repository
         {
 
         }
-        //Lấythường dùngChẩn đoánthông tin--lớp nổi
+        //Lấythường dùng Chẩn đoánthông tin--lớp nổi
         public IList<ComDiagnosisVO> GetComDiagnosis(string ys,string ks, string orgId, string type,string keyword,string lx)
         {
             try
@@ -58,7 +58,7 @@ namespace Newtouch.Repository
                 throw new FailedException("Lỗithông tin："+ex.Message);
             }
         }
-        //Lấythường dùngChẩn đoánthông tin--Bảo trì
+        //Lấythường dùng Chẩn đoánthông tin--Bảo trì
         public IList<ComDiagnosisVO> GetComDiagnosisAdmin(string ys, string ks, string orgId, string type, string keyword, string lx)
         {
             try
@@ -92,7 +92,7 @@ namespace Newtouch.Repository
                 throw new FailedException("Lỗithông tin：" + ex.Message);
             }
         }
-        //LấyHồ sơ chẩn đoánthông tin
+        //Lấy Hồ sơ chẩn đoánthông tin
         public List<ComDiagnosisVO> GetDiagsLists(string orgId, string type, string mzh)
         {
             try
@@ -128,7 +128,7 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
             }
             
         }
-        //LấyChẩn đoánPinyin
+        //Lấy Chẩn đoán Pinyin
         public List<ComDiagnosisVO> Getzdpy( string zdmc, string zdbm)
         {
             try
@@ -146,7 +146,7 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
             }
 
         }
-        //Thêmthường dùngChẩn đoán
+        //Thêmthường dùng Chẩn đoán
         public void SubmitDiag(ComDiagnosisEntity entity)
         {
             try
@@ -154,7 +154,7 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
                 ComDiagnosisEntity zdbm = this.FindEntity(p => p.cyzdbm == entity.cyzdbm && p.cyzdtype == entity.cyzdtype && p.ys == entity.ys);
                 if (zdbm != null)
                 {
-                    throw new FailedException("không thểThêmtrùng lặpthường dùngChẩn đoán");
+                    throw new FailedException("không thể Thêmtrùng lặpthường dùng Chẩn đoán");
                 }
                 else
                 {
@@ -171,7 +171,7 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
             }
 
         }
-        //Xóathường dùngChẩn đoán
+        //Xóathường dùng Chẩn đoán
         public void DelDiagnosticTemplate(string Id)
         {
             try

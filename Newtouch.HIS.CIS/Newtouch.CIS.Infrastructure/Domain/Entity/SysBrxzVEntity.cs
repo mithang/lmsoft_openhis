@@ -11,7 +11,7 @@ namespace Newtouch.Domain.Entity
         public int brxzbh { get; set; }
 
         /// <summary>
-        /// Tổ chứcId(cócụ thểthểnghiệp vụcủayviện)
+        /// Tổ chức Id(cócụ thểthểnghiệp vụcủayviện)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -31,7 +31,7 @@ namespace Newtouch.Domain.Entity
         public string py { get; set; }
 
         /// <summary>
-        /// 0 tất cảthẻđềucó thểchọncủaLoại   1 Bảo hiểm y tếthẻcó thểchọncủaLoại
+        /// 0 tất cảthẻđềucó thểchọncủa Loại   1 Bảo hiểm y tếthẻcó thểchọncủa Loại
         /// </summary>
         public string brxzlb { get; set; }
 
@@ -51,12 +51,12 @@ namespace Newtouch.Domain.Entity
         public string jyfyfw { get; set; }
 
         /// <summary>
-        /// 0 khôngSử dụngChứng từ   1 Sử dụngChứng từ
+        /// 0 không Sử dụng Chứng từ   1 Sử dụng Chứng từ
         /// </summary>
         public string pzbz { get; set; }
 
         /// <summary>
-        /// 0 Chung 1 chỉNgoại trú 2 chỉNhập viện    3 Hệ thống(Ngoại trúNhập việnđềukhôngcó thểdùng)VD nếu:nhàgiường
+        /// 0 Chung 1 chỉ Ngoại trú 2 chỉ Nhập viện    3 Hệ thống(Ngoại trú Nhập việnđềukhôngcó thểdùng)VD nếu:nhàgiường
         /// </summary>
         public string mzzybz { get; set; }
 
@@ -71,7 +71,7 @@ namespace Newtouch.Domain.Entity
         public string sqjmbz { get; set; }
 
         /// <summary>
-        /// from xt_zhxz   nếunếucóCài đặt:thìởquyết toánkhi,ưutrướckhấutrừCài đặtcủaTài khoản   (VD nếu:Hỗ trợ khó khănbệnh nhânnàychữđoạnCài đặtlà4,khiquyết toánkhi,trướckhấutrừHỗ trợ khó khănTài khoản)
+        /// from xt_zhxz   nếunếucó Cài đặt:thìởquyết toánkhi,ưutrướckhấutrừ Cài đặtcủa Tài khoản   (VD nếu:Hỗ trợ khó khănbệnh nhânnàychữđoạn Cài đặtlà4,khiquyết toánkhi,trướckhấutrừHỗ trợ khó khănTài khoản)
         /// </summary>
         public string zhxz { get; set; }
 
@@ -127,7 +127,7 @@ namespace Newtouch.Domain.Entity
         public string bz { get; set; }
 
         /// <summary>
-        /// liên kếtKhóa chínhbrxzbh
+        /// liên kết Khóa chínhbrxzbh
         /// </summary>
         public int? ParentId { get; set; }
         public string insutype { get; set; }

@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// TheoorganizeIdLấy khoa dược
+        /// TheoorganizeId Lấy khoa dược
         /// </summary>
         /// <returns></returns>
         public IActionResult PharmacyDepartmentList(string organizeId ,byte? yjbmjb)

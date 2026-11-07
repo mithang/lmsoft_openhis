@@ -30,7 +30,7 @@ using static Newtouch.Common.Web.APIRequestHelper;
 namespace Newtouch.HIS.Web.Controllers
 {
     /// <summary>
-    /// Nhà thuốc nội trúController
+    /// Nhà thuốc nội trú Controller
     /// </summary>
     public class HospitalizationPharmacyController : ControllerBase
     {

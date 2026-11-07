@@ -39,7 +39,7 @@
 
 
     function submitForm(callback) {
-        //lấydòng đã chọnId
+        //lấydòng đã chọn Id
         var selRowIds = $("#parentgridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds.length == 0) {
             $.modalAlert("Vui lòng chọn trước đơn thuốc", 'warning');

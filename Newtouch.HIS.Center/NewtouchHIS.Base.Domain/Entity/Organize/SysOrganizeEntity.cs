@@ -9,7 +9,7 @@ namespace NewtouchHIS.Base.Domain.Entity
     public partial class SysOrganizeEntity : ISysEntity
     {
         /// <summary>
-        /// Desc:Tổ chứcKhóa chính
+        /// Desc:Tổ chức Khóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           

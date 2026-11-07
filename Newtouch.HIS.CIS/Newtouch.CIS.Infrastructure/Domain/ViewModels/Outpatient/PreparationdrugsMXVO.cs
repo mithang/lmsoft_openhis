@@ -36,7 +36,7 @@ namespace Newtouch.Domain.ViewModels
 
 
         /// <summary>
-        /// Sửa cuốiNgười dùng
+        /// Sửa cuối Người dùng
         /// </summary>
         public string LastModifierCode { get; set; }
         /// <summary>

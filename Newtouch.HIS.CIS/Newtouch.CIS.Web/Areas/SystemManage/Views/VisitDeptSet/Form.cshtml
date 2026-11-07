@@ -1,6 +1,6 @@
 @using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "Chỉnh sửaKhám bệnhKhoa";
+    ViewBag.Title = "Chỉnh sửa Khám bệnh Khoa";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <form id="form1">
@@ -9,7 +9,7 @@
             <div class="panel-body" style="width: 98%; margin-left: -34px;">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">Bác sĩTên:</th>
+                        <th class="formTitle">Bác sĩ Tên:</th>
                         <td class="formValue">
                             <input id="staffName" name="staffName" type="text" class="form-control" disabled="disabled" style="background-color: rgb(241, 244, 246);" />
                             <input id="Id" name="Id" type="hidden" value="" />
@@ -22,7 +22,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">ThuộcKhoa:</th>
+                        <th class="formTitle">Thuộc Khoa:</th>
                         <td class="formValue">
                             <input id="subordinateDeptName" name="subordinateDeptName" type="text" class="form-control" disabled="disabled" style="background-color: rgb(241, 244, 246);"/>
                             <input id="SubordinateDepartments" name="SubordinateDepartments" type="hidden" />
@@ -37,7 +37,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Ngoại trúLoại:</th>
+                        <th class="formTitle">Ngoại trú Loại:</th>
                         <td class="formValue">
                             @Html.DropDownList("czlx", EnumOutPatientType.generalOutpat.ToDescSelectList(), new { @class = "form-control" })
                         </td>

@@ -16,7 +16,7 @@ namespace Newtouch.Domain.ValueObjects
         public bool? sfbz { get; set; }
 
         /// <summary>
-        /// Liệt kê 1 Thuốc TâyĐơn thuốc 2 Thuốc Đông yĐơn thuốc 3 Phục hồi chức năngĐơn thuốc 4 Xét nghiệmĐơn thuốc 5 Kiểm traĐơn thuốc 6 truyền dịchĐơn thuốc
+        /// Liệt kê 1 Thuốc Tây Đơn thuốc 2 Thuốc Đông y Đơn thuốc 3 Phục hồi chức năng Đơn thuốc 4 Xét nghiệm Đơn thuốc 5 Kiểm tra Đơn thuốc 6 truyền dịch Đơn thuốc
         /// </summary>
         public int cflx { get; set; }
 
@@ -65,7 +65,7 @@ namespace Newtouch.Domain.ValueObjects
         /// Dặn dò
         /// </summary>
         public string cfzt { get; set; }
-        public string isdzcf { get; set; }//điện tửĐơn thuốc 1 là  0 Không
+        public string isdzcf { get; set; }//điện tử Đơn thuốc 1 là  0 Không
         #endregion
 
 
@@ -93,7 +93,7 @@ namespace Newtouch.Domain.ValueObjects
         public string ypmc { get; set; }
 
         /// <summary>
-        /// Liều mỗi lần điều trị  kimđốiPhục hồi chức năngMục
+        /// Liều mỗi lần điều trị  kimđối Phục hồi chức năng Mục
         /// </summary>
         public int? mczll { get; set; }
 
@@ -118,7 +118,7 @@ namespace Newtouch.Domain.ValueObjects
         public string pcCode { get; set; }
 
         /// <summary>
-        /// ThuốctrongcủaSố lượng=Tổng lượng   Phục hồi chức năngtrongcủaTổng lượng(khônglàSố lượng)=Tổng lượng
+        /// Thuốctrongcủa Số lượng=Tổng lượng   Phục hồi chức năngtrongcủa Tổng lượng(khônglà Số lượng)=Tổng lượng
         /// </summary>
         public int? zl { get; set; }
         
@@ -128,7 +128,7 @@ namespace Newtouch.Domain.ValueObjects
         public int sl { get; set; }
 
         /// <summary>
-        /// khôngPhục hồi chức năngĐơn thuốc tạmkhiSử dụng
+        /// không Phục hồi chức năng Đơn thuốc tạmkhi Sử dụng
         /// </summary>
         public string dw { get; set; }
 
@@ -143,7 +143,7 @@ namespace Newtouch.Domain.ValueObjects
         public decimal je { get; set; }
 
         /// <summary>
-        /// Số nhóm(ThuốccủaSố nhóm)
+        /// Số nhóm(Thuốccủa Số nhóm)
         /// </summary>
         public string zh { get; set; }
 
@@ -168,7 +168,7 @@ namespace Newtouch.Domain.ValueObjects
         public string Remark { get; set; }
 
         /// <summary>
-        /// Khoa thực hiện(ThuốccủaKhoa dược,Xét nghiệmKiểm tracủaKhoa thực hiện)(Phục hồi chức năngĐơn thuốccủaKhoa thực hiện)
+        /// Khoa thực hiện(Thuốccủa Khoa dược,Xét nghiệm Kiểm tracủaKhoa thực hiện)(Phục hồi chức năng Đơn thuốccủaKhoa thực hiện)
         /// </summary>
         public string zxks { get; set; }
 
@@ -181,7 +181,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string ybwym { get; set; }
         /// <summary>
-        /// hạnchếSử dụngCờ
+        /// hạnchế Sử dụng Cờ
         /// </summary>
         public string xzsybz { get; set; }
         /// <summary>
@@ -197,7 +197,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string kssReason { get; set; }
         /// <summary>
-        /// Vị tríPhương pháp
+        /// Vị trí Phương pháp
         /// </summary>
         public string bwff { get; set; }
 
@@ -211,7 +211,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public int? ds { get; set; }
         /// <summary>
-        /// Chuyển sang tự chi trảCờ
+        /// Chuyển sang tự chi trả Cờ
         /// </summary>
         public int? zzfbz { get; set; }
 
@@ -222,7 +222,7 @@ namespace Newtouch.Domain.ValueObjects
 
         public string sfzt { get; set; }
         /// <summary>
-        /// Thuốc Đông yĐơn thuốcMô tả
+        /// Thuốc Đông y Đơn thuốc Mô tả
         /// </summary>
         public string zysm { get; set; }
 
@@ -256,7 +256,7 @@ namespace Newtouch.Domain.ValueObjects
         public int? sl2 { get; set; }
 
         /// <summary>
-        /// khôngPhục hồi chức năngĐơn thuốc tạmkhiSử dụng
+        /// không Phục hồi chức năng Đơn thuốc tạmkhi Sử dụng
         /// </summary>
         public string dw2 { get; set; }
 
@@ -275,16 +275,16 @@ namespace Newtouch.Domain.ValueObjects
         public string Remark2 { get; set; }
 
         /// <summary>
-        /// Khoa thực hiện(ThuốccủaKhoa dược,Xét nghiệmKiểm tracủaKhoa thực hiện)(Phục hồi chức năngĐơn thuốccủaKhoa thực hiện)
+        /// Khoa thực hiện(Thuốccủa Khoa dược,Xét nghiệm Kiểm tracủaKhoa thực hiện)(Phục hồi chức năng Đơn thuốccủaKhoa thực hiện)
         /// </summary>
         public string zxks2 { get; set; }
 
         /// <summary>
-        /// Chuyển sang tự chi trảCờ
+        /// Chuyển sang tự chi trả Cờ
         /// </summary>
         public int? zzfbz2 { get; set; }
         /// <summary>
-        /// Thuốc Đông yĐơn thuốcMô tả
+        /// Thuốc Đông y Đơn thuốc Mô tả
         /// </summary>
         public string zysm2 { get; set; }
 
@@ -295,7 +295,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string lcyx { get; set; }
         /// <summary>
-        /// Đăng kýGhi chú
+        /// Đăng ký Ghi chú
         /// </summary>
         public string sqbz { get; set; }
         /// <summary>
@@ -309,7 +309,7 @@ namespace Newtouch.Domain.ValueObjects
         public int? ztsl { get; set; }
 
 		/// <summary>
-		/// Đơn thuốcHiệu lựcSố ngày
+		/// Đơn thuốc Hiệu lực Số ngày
 		/// </summary>
 		public int? yxts { get; set; }
         public string gjybdm { get; set; }

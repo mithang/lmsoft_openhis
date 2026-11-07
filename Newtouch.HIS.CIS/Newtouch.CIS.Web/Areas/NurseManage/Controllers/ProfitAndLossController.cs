@@ -126,7 +126,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         #region Thừa thiếuTra cứu
 
         /// <summary>
-        /// lãi lỗTra cứu
+        /// lãi lỗ Tra cứu
         /// </summary>
         /// <returns></returns>
         public IActionResult QueryProfitAndLoss()
@@ -145,7 +145,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         {
             var list = new
             {
-                // hiện tạiKhoađănglục người
+                // hiện tại Khoađănglục người
                 rows = _kcSyxxDmnService.SelectLossAndProditInfoList(pagination, param, UserIdentity.DepartmentCode, OrganizeId),
                 total = pagination.total,
                 page = pagination.page,
@@ -159,7 +159,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         #region Generate profit or loss
 
         /// <summary>
-        /// LấyBáo hỏngbáo thừaphiếusố phiếu
+        /// Lấy Báo hỏngbáo thừaphiếusố phiếu
         /// </summary>
         /// <returns></returns>
         public IActionResult GenerateDjh()
@@ -169,7 +169,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         /// <summary>
-        /// LấyTrách nhiệm ngườilist
+        /// Lấy Trách nhiệm ngườilist
         /// </summary>
         /// <param name="inputCode"></param>
         /// <returns></returns>
@@ -180,14 +180,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// lãi lỗGửi
+        /// lãi lỗ Gửi
         /// </summary>
         /// <param name="plist"></param>
         /// <returns></returns>
         [ValidateAntiForgeryToken]
         public IActionResult LossAndProfitSubmit(List<LossAndProditSubmitDTO> plist)
         {
-            //todo Lấyhiện tạiKhoa
+            //todo Lấyhiện tại Khoa
             var result = _stockInventoryApp.LossAndProfitSubmit(plist, "");
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
         }

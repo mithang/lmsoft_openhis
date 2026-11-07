@@ -21,11 +21,11 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string blh { get; set; }
         /// <summary>
-        /// Bệnh nhânTên
+        /// Bệnh nhân Tên
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// Bệnh nhânGiới tính 1:Nam 2:Nữ
+        /// Bệnh nhân Giới tính 1:Nam 2:Nữ
         /// </summary>
         public string sex { get; set; }
         /// <summary>
@@ -42,7 +42,7 @@ namespace Newtouch.Domain.ValueObjects
         public string zh { get; set; }
 
         /// <summary>
-        /// mởlậpThời gian
+        /// mởlập Thời gian
         /// </summary>
         public DateTime? kssj { get; set; }
 
@@ -52,7 +52,7 @@ namespace Newtouch.Domain.ValueObjects
         public string cfmxnr { get; set; }
 
         /// <summary>
-        /// Cách dùngMã
+        /// Cách dùng Mã
         /// </summary>
         public string yfcode { get; set; }
         /// <summary>

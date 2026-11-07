@@ -6,7 +6,7 @@ namespace NewtouchHIS.Base.Domain.Organize
     public interface ISysOrgDmnService : IScopedDependency
     {
         /// <summary>
-        /// Lấy hiện tạiTổ chứcDanh sách 
+        /// Lấy hiện tại Tổ chức Danh sách 
         /// </summary>
         /// <param name="topOrgId"></param>
         /// <returns></returns>

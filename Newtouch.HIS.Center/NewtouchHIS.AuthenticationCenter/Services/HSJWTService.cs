@@ -79,10 +79,10 @@ namespace NewtouchHIS.AuthenticationCenter.Services
                     RequireExpirationTime = true,
                     IssuerSigningKey = new SymmetricSecurityKey(secretBytes),
                     ClockSkew = TimeSpan.Zero,
-                    ValidateIssuer = true,//Có kiểm chứng hay khôngIssuer
-                    ValidateAudience = true,//Có kiểm chứng hay khôngAudience
+                    ValidateIssuer = true,//Có kiểm chứng hay không Issuer
+                    ValidateAudience = true,//Có kiểm chứng hay không Audience
                     ValidateLifetime = _jWTOptions.ValidateLifetime ?? true,//Có kiểm chứng thời gian hết hiệu lực hay không
-                    ValidateIssuerSigningKey = true,//Có kiểm chứng hay khôngSecurityKey
+                    ValidateIssuerSigningKey = true,//Có kiểm chứng hay không SecurityKey
                     ValidAudience = authApp.AppId,
                     ValidIssuer = _jWTOptions.Issuer
                 };
@@ -158,7 +158,7 @@ namespace NewtouchHIS.AuthenticationCenter.Services
             var authApp = _jWTOptions.SSOAuthApp?.FirstOrDefault(p => p.AppId == (request.authIdentity.KeyLicense ?? request.authIdentity.AppId));
             if (authApp == null)
             {
-                throw new FailedException($"{_MsgPrefix}AppIdChưa được cấp quyền");
+                throw new FailedException($"{_MsgPrefix}AppId Chưa được cấp quyền");
             }
             switch (request.authType)
             {

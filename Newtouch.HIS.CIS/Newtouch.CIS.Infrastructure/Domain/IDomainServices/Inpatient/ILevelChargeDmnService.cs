@@ -9,7 +9,7 @@ namespace Newtouch.Domain.IDomainServices
     {
 
         /// <summary>
-        /// LấyđợicấpChi phí
+        /// Lấyđợicấp Chi phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="bqCode"></param>

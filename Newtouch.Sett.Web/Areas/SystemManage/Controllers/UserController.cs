@@ -139,7 +139,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             #region Bổ sungNút cha start
             // by haijiang.mo sửalạitìmtìmhaicấpbằngdướicủaconbộngoại trúdùnghộ,vìkhôngphương phápcơ quanlậpracâykếtcơ quan,màtìmtìmmấtthất bại
             var parentDeptList = new HashSet<string>();
-            // điều khiểnchếtổngtínhtínhsâuđộ,phòng ngừadừngvìlàsốdữ liệusaisai,tìmkhôngđếnNút chachếttuân theovòng
+            // điều khiểnchếtổngtínhtínhsâuđộ,phòng ngừadừngvìlàsốdữ liệusaisai,tìmkhôngđến Nút chachếttuân theovòng
             var totalReFindParent = 10;
             do
             {

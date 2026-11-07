@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class RequisitionSelectVO
     {
         /// <summary>
-        /// Đơn lĩnhId
+        /// Đơn lĩnh Id
         /// </summary>
         public string sldId { get; set; }
 

@@ -155,7 +155,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                     }
                 });
             } else {
-                //jsonpTải dữ liệu
+                //jsonp Tải dữ liệu
                 $.ajax({
                     url: thisUrl,
                     dataType: 'JSONP',
@@ -214,7 +214,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
         }
     }
     var selectorsList = [];
-    //bindSự kiện nhấn chọn
+    //bind Sự kiện nhấn chọn
     options.binddbclickchooseevent = function () {
         if (options.container && options.itemdbclickhandler) {
             options.container.unbind();
@@ -336,7 +336,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
             options.okload();
         });
 
-        //bindSự kiện phím lên/xuống
+        //bind Sự kiện phím lên/xuống
         options.$this.keydown(function (event) {
             event = event || window.event;
             if (event.keyCode == 37 || event.keyCode == 39 && options.container) {
@@ -588,7 +588,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
                 });
             }
             else {
-                //jsonpTải dữ liệu
+                //jsonp Tải dữ liệu
                 $.ajax({
                     url: thisUrl,
                     dataType: 'JSONP',
@@ -653,7 +653,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
             }
         }
     }
-    //bindSự kiện nhấn chọn
+    //bind Sự kiện nhấn chọn
     options.binddbclickchooseevent = function () {
         if (options.container && options.itemdbclickhandler) {
             options.container.unbind();
@@ -754,7 +754,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
             options.okload();
         });
 
-        //bindSự kiện phím lên/xuống
+        //bind Sự kiện phím lên/xuống
         options.$this.keydown(function (event) {
             event = event || window.event;
             if (event.keyCode == 37 || event.keyCode == 39 && options.container) {

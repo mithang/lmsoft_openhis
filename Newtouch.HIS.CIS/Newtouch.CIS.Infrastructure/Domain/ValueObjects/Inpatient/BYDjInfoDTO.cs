@@ -45,7 +45,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         
 
         /// <summary>
-        /// Giá bán buôn  Khoa phòngĐơn vị
+        /// Giá bán buôn  Khoa phòng Đơn vị
         /// </summary>
         public string pfj { get; set; }
         /// <summary>
@@ -53,7 +53,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public string  gg { get; set; }
         /// <summary>
-        /// Giá bán lẻ  Khoa phòngĐơn vị
+        /// Giá bán lẻ  Khoa phòng Đơn vị
         /// </summary>
         public string lsj { get; set; }
 
@@ -63,37 +63,37 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string jj { get; set; }
 
         /// <summary>
-        /// Đơn vị kho thuốcGiá bán buôn
+        /// Đơn vị kho thuốc Giá bán buôn
         /// </summary>
         public string ykpfj { get; set; }
 
         /// <summary>
-        /// Đơn vị kho thuốcGiá bán lẻ
+        /// Đơn vị kho thuốc Giá bán lẻ
         /// </summary>
         public string yklsj { get; set; }
 
         /// <summary>
-        /// Tổng số tiền  vàogiáTổng số tiền
+        /// Tổng số tiền  vàogiá Tổng số tiền
         /// </summary>
         public string zje { get; set; }
 
         /// <summary>
-        /// Số lượng Khoa phòngĐơn vịSố lượng vàXuất khochuyểnhóavìcontương ứng
+        /// Số lượng Khoa phòng Đơn vị Số lượng và Xuất khochuyểnhóavìcontương ứng
         /// </summary>
         public string sl { get; set; }
 
         /// <summary>
-        /// Xuất khoKhoa phòngTồn kho  Đơn vị nhỏ nhất
+        /// Xuất khoKhoa phòng Tồn kho  Đơn vị nhỏ nhất
         /// </summary>
         public int? ckbmkc { get; set; }
 
         /// <summary>
-        /// Xuất khoĐơn vị(Tên đơn vị)
+        /// Xuất kho Đơn vị(Tên đơn vị)
         /// </summary>
         public string ckdw { get; set; }
 
         /// <summary>
-        /// Nhập khoKhoa phòngTồn kho  Đơn vị nhỏ nhất
+        /// Nhập khoKhoa phòng Tồn kho  Đơn vị nhỏ nhất
         /// </summary>
         public int? rkbmkc { get; set; }
 
@@ -103,7 +103,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public int? rkzhyz { get; set; }
 
         /// <summary>
-        /// Nhập khoĐơn vị(Tên đơn vị)
+        /// Nhập kho Đơn vị(Tên đơn vị)
         /// </summary>
         public string rkdw { get; set; }
         public string dw { get; set; }
@@ -128,7 +128,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string kprq { get; set; }
 
         /// <summary>
-        /// sinhsản xuấtNgày
+        /// sinhsản xuất Ngày
         /// </summary>
         public string scrq { get; set; }
 
@@ -137,7 +137,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public string thyy { get; set; }
         /// <summary>
-        /// Đơn vị kho thuốcGiá bán buôn
+        /// Đơn vị kho thuốc Giá bán buôn
         /// </summary>
         public decimal pfjze { get; set; }
 
@@ -150,7 +150,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public string ksbm { get; set; }
         /// <summary>
-        /// ThuốcLoại
+        /// Thuốc Loại
         /// </summary>
         public string dlmc { get; set; }
 

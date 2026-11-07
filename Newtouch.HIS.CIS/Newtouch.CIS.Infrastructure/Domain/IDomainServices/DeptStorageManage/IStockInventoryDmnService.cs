@@ -8,12 +8,12 @@ using Newtouch.Domain.ValueObjects.Storage;
 namespace Newtouch.Domain.IDomainServices.DeptStorageManage
 {
     /// <summary>
-    /// Tồn khoKiểm kê
+    /// Tồn kho Kiểm kê
     /// </summary>
     public interface IStockInventoryDmnService
     {
         /// <summary>
-        /// LấytreotừKiểm kêThời gian
+        /// Lấytreotừ Kiểm kê Thời gian
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -21,7 +21,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         List<VInventoryDateDropDownEntity> GetHangUpPdDates(string warehouseId, string organizeId);
 
         /// <summary>
-        /// Lấytất cảKiểm kêThời gian
+        /// Lấytất cả Kiểm kê Thời gian
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -29,12 +29,12 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         List<VInventoryDateDropDownEntity> GetPdSj(string warehouseId, string organizeId);
 
         /// <summary>
-        /// tạoKiểm kêthông tin
+        /// tạo Kiểm kêthông tin
         /// </summary>
         string GenerateInventoryInfo(string warehouseId, string organizeId);
 
         /// <summary>
-        /// LấyKiểm kêthông tin
+        /// Lấy Kiểm kêthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -44,7 +44,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         IList<VInventoryInfoEntity> QueryInventoryInfoList(Pagination pagination, InventorySearchDTO param, string warehouseId, string organizeId);
 
         /// <summary>
-        /// LấyKiểm kêthông tin
+        /// Lấy Kiểm kêthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -53,19 +53,19 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         /// <returns></returns>
         IList<VInventoryInfoEntity> QueryInventoryInfoListNoPc(Pagination pagination, InventorySearchDTO param, string warehouseId, string organizeId);
         /// <summary>
-        /// HủyKiểm kê 
+        /// Hủy Kiểm kê 
         /// Xóa Kiểm kêthông tin(xt_yp_pdxx),Kiểm kêthông tinchi tiết(xt_yp_pdxxmx)
         /// </summary>
         void CancelInventory(long pdId);
 
         /// <summary>
-        /// Kết thúcKiểm kê
+        /// Kết thúc Kiểm kê
         /// </summary>
         /// <returns></returns>
         string EndInventory(long pdId, string organizeId, string creatorCode);
 
         /// <summary>
-        /// lôlượngLưulãi lỗthông tin
+        /// lôlượng Lưulãi lỗthông tin
         /// </summary>
         /// <param name="syList"></param>
         /// <param name="warehouseId"></param>
@@ -74,7 +74,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         int InsertSyxxBatch(List<KcSyxxEntity> syList, string warehouseId, string organizeId);
 
         /// <summary>
-        /// LưuđổihơnsaucủaKiểm kêchi tiết
+        /// Lưuđổihơnsaucủa Kiểm kêchi tiết
         /// </summary>
         /// <param name="saveInventoryDto"></param>
         /// <param name="pdId"></param>

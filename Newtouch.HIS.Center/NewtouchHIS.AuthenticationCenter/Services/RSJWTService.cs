@@ -31,7 +31,7 @@ namespace NewtouchHIS.AuthenticationCenter.Services
             return creds;
         }
         /// <summary>
-        /// TheoappKeyLấy thông tin ứng dụng
+        /// TheoappKey Lấy thông tin ứng dụng
         /// </summary>
         /// <param name="clientId"></param>
         /// <returns></returns>

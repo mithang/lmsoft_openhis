@@ -23,7 +23,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="Đối chiếuPhân loạiTên/Đối chiếuPhân loạiMã" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Đối chiếu Phân loại Tên/Đối chiếu Phân loại Mã" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -53,14 +53,14 @@
                 { label: "Khóa chính", name: "Id", hidden: true, key: true },
                 { label: "Hiệu lực", name: "zt", width: 50, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
                 { label: 'Mã', name: 'Code', width: 80, align: 'left' },
-                { label: 'Bên thứ baMã', name: 'TTCode', width: 100, align: 'left' },
+                { label: 'Bên thứ ba Mã', name: 'TTCode', width: 100, align: 'left' },
                 { label: 'Dấu hiệu bên thứ ba', name: 'TTMark', width: 100, align: 'left' },
                 { label: "Mô tả", name: "Description", width: 100, align: 'left' },
                 { label: 'Sắp xếp', name: 'px', width: 40, align: 'left' },
                 { label: 'Người tạo', name: 'CreatorCode', width: 80, align: 'left' },
                 { label: 'Thời gian tạo', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: 'Cuối cùngSửa', name: 'LastModifierCode', width: 80, align: 'left' },
-                { label: 'Cuối cùngSửaThời gian', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Cuối cùng Sửa', name: 'LastModifierCode', width: 80, align: 'left' },
+                { label: 'Cuối cùng Sửa Thời gian', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
             ],
             ondblClickRow: function (rowid) { btn_edit(); }
         });
@@ -74,7 +74,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "Thêm mớiĐối chiếuPhân loại",
+            title: "Thêm mới Đối chiếu Phân loại",
             url: "/SystemManage/TTCataloguesComparison/MainFrom",
             width: "450px",
             height: "370px",
@@ -97,7 +97,7 @@
         }
         $.modalOpen({
             id: "Form",
-            title: "SửaĐối chiếuPhân loại",
+            title: "Sửa Đối chiếu Phân loại",
             url: "/SystemManage/TTCataloguesComparison/MainFrom?keyValue=" + keyValue,
             width: "550px",
             height: "570px",

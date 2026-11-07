@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///Tin nhắnLớp cơ sở thông báo
+    ///Tin nhắn Lớp cơ sở thông báo
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("dic_msg", "MsgNoticeEntity")]

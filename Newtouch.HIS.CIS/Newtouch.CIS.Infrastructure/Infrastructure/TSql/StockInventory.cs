@@ -3,7 +3,7 @@ namespace Newtouch.Infrastructure.TSql
     public class StockInventory
     {
         /// <summary>
-        /// tạoKiểm kêthông tin
+        /// tạo Kiểm kêthông tin
         /// </summary>
         public const string generate_inventory_info = @"
 BEGIN TRANSACTION;
@@ -142,14 +142,14 @@ BEGIN TRY
 	SELECT '' AS Jgxx;
 END TRY
 BEGIN CATCH
-	SELECT 'tạoKiểm kêthông tinthất bại！' AS Jgxx;
+	SELECT 'tạo Kiểm kêthông tinthất bại！' AS Jgxx;
 	PRINT ERROR_MESSAGE();
 	ROLLBACK TRANSACTION;
 END CATCH
 ";
 
         /// <summary>
-        /// LưuKiểm kêchi tiết
+        /// Lưu Kiểm kêchi tiết
         /// </summary>
         public const string save_inventory_info = @"
 BEGIN TRANSACTION
@@ -159,7 +159,7 @@ BEGIN
 END
 
 DECLARE @pdmxId BIGINT;
-DECLARE @sjsl INT;--Kiểm kêchi tiếtbảngthực tếSố lượng
+DECLARE @sjsl INT;--Kiểm kêchi tiếtbảngthực tế Số lượng
 
 SELECT xm.productId, wz.name wzmc, xm.Id pdmxId, xm.pc,xm.ph,xm.sjsl
 INTO #tmpData
@@ -192,7 +192,7 @@ DECLARE @sysl INT;-- Số lượng còn lại, số lượng sau mỗi lần bù
 SET @sysl=@sl;
 WHILE EXISTS(SELECT 1 FROM #tmpData WHERE sjsl>0)
 BEGIN
-	IF @sysl>=0 --tất cảSố lượng còn lạiđềuphầnphốixong，thìThoátLặp lại，Kết thúcLưu
+	IF @sysl>=0 --tất cả Số lượng còn lạiđềuphầnphốixong，thìThoátLặp lại，Kết thúcLưu
 	BEGIN
 		BREAK;
 	END 
@@ -237,7 +237,7 @@ RETURN
 ";
 
         /// <summary>
-        /// Kết thúcKiểm kê
+        /// Kết thúc Kiểm kê
         /// </summary>
         public const string end_Inventory = @"
 IF EXISTS(SELECT 1 FROM tempdb..sysobjects where id=object_id(N'tempdb..#pdInfo') and type='U')

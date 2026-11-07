@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Services.ClinicService
 {
     /// <summary>
-    /// Từ điển phòng khám:Từ xaĐăng ký khám chữa bệnhTrạng thái
+    /// Từ điển phòng khám:Từ xa Đăng ký khám chữa bệnh Trạng thái
     /// (0:Chưa nộp, 1:Chờ xác nhận,2:Đang khám,3:Đã kết thúc,4:Đã phát thuốc,5:Đã trả lại)
     /// </summary>
     public enum EmunClinicRemoteTreatedStu

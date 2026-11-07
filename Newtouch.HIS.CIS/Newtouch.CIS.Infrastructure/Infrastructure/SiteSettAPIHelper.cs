@@ -11,7 +11,7 @@ namespace Newtouch.Infrastructure
     public class SiteSettAPIHelper : SiteAPIRequestHelperBase<SiteSettAPIHelper>
     {
         /// <summary>
-        /// lĩnh vựcAddrcấu hình của Key
+        /// lĩnh vực Addrcấu hình của Key
         /// </summary>
         private readonly static string _domainConfigKey = "SiteSettAPIHost";
 
@@ -22,7 +22,7 @@ namespace Newtouch.Infrastructure
         private static APIRequestHelper.DefaultResponse apiResp;
 
         /// <summary>
-        /// Đồng bộThông tin bệnh nhân cho CIS
+        /// Đồng bộ Thông tin bệnh nhân cho CIS
         /// </summary>
         /// <param name="dto"></param>
         public static APIRequestHelper.DefaultResponse UpdateInpatientBasicInfo(InpatientPatientInfoDTO dto)
@@ -43,13 +43,13 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// đãquyết toánĐơn thuốcchi tiếtTra cứu
+        /// đãquyết toán Đơn thuốcchi tiết Tra cứu
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
         /// <param name="fph"></param>
         /// <param name="kh"></param>
-        /// <param name="yfCode">Cách dùngMã</param>
+        /// <param name="yfCode">Cách dùng Mã</param>
         /// <returns></returns>
         public static APIRequestHelper.DefaultResponse OutpatientSettledRpQuery(DateTime kssj, DateTime jssj, string fph, string kh, string yfCode,string mzh)
         {
@@ -67,7 +67,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Đồng bộNhập việnThông tin bệnh nhân
+    /// Đồng bộ Nhập viện Thông tin bệnh nhân
     /// </summary>
     public class InpatientPatientInfoDTO
     {
@@ -76,7 +76,7 @@ namespace Newtouch.Infrastructure
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// ởviệnCờ
+        /// ởviện Cờ
         /// </summary>
         public int zybz { get; set; }
         /// <summary>
@@ -96,7 +96,7 @@ namespace Newtouch.Infrastructure
         /// </summary>
         public string doctor { get; set; }
         /// <summary>
-        /// Xuất việnChẩn đoán
+        /// Xuất viện Chẩn đoán
         /// </summary>
         public string cyzd { get; set; }
     }

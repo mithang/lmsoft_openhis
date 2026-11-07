@@ -5,7 +5,7 @@
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chứcId(OrganizeId tương ứng với khoaOrganizeId)
+        /// Tổ chức Id(OrganizeId tương ứng với khoaOrganizeId)
         /// </summary>
         public string OrganizeId { get; set; }
 

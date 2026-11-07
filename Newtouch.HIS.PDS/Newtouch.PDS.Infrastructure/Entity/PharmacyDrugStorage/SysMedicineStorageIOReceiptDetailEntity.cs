@@ -61,12 +61,12 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime? Yxq { get; set; }
 
         /// <summary>
-        /// Giá bán buôn vàzhyzvàslTương ứng
+        /// Giá bán buôn vàzhyzvàsl Tương ứng
         /// </summary>
         public decimal Pfj { get; set; }
 
         /// <summary>
-        /// Giá bán lẻ vàzhyzvàslTương ứng
+        /// Giá bán lẻ vàzhyzvàsl Tương ứng
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Lsj { get; set; }

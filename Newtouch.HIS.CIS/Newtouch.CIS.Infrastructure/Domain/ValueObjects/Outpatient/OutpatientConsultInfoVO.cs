@@ -20,11 +20,11 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         /// </summary>
         public string zsmc { get; set; }
         /// <summary>
-        /// Bác sĩHọ tên
+        /// Bác sĩ Họ tên
         /// </summary>
         public string ysxm { get; set; }
         /// <summary>
-        /// Bác sĩGiới thiệu
+        /// Bác sĩ Giới thiệu
         /// </summary>
         public string ysjs { get; set; }
         /// <summary>
@@ -36,11 +36,11 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         /// </summary>
         public Int16? jzzxh { get; set; }
         /// <summary>
-        /// chờKhám bệnh
+        /// chờ Khám bệnh
         /// </summary>
         public string djz { get; set; }
         /// <summary>
-        /// chờKhám bệnhthứ tựsố
+        /// chờ Khám bệnhthứ tựsố
         /// </summary>
         public Int16? djzxh { get; set; }
     }

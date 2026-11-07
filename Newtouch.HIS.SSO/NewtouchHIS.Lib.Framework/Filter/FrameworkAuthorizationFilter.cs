@@ -14,7 +14,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
     public class FrameworkAuthorizationFilter : IAuthorizationFilter
     {
         /// <summary>
-        /// ứng dụngId(trongconfigcấu hình AppId)
+        /// ứng dụng Id(trongconfigcấu hình AppId)
         /// </summary>
         public static string _appId { get; private set; }
 

@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             return result.IsSucceed ? Success() : Error(result.ResultMsg);
         }
         /// <summary>
-        /// getHóa đơn nhập kho
+        /// get Hóa đơn nhập kho
         /// </summary>
         /// <param name="djlx"></param>
         /// <param name="fph"></param>

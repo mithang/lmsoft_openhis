@@ -7,7 +7,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Domain.Entity.DeptStorageManage
 {
     /// <summary>
-    /// Tồn khoKiểm kêthông tinchi tiết
+    /// Tồn kho Kiểm kêthông tinchi tiết
     /// </summary>
     [SugarTable("dept_pdxxmx")]
     public class KcPdxxmxEntity
@@ -45,12 +45,12 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// lýluậnSố lượng
+        /// lýluận Số lượng
         /// </summary>
         public int llsl { get; set; }
 
         /// <summary>
-        /// thực tếSố lượng
+        /// thực tế Số lượng
         /// </summary>
         public int sjsl { get; set; }
 

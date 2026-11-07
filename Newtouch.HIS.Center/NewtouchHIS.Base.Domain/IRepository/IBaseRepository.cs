@@ -42,7 +42,7 @@ namespace NewtouchHIS.Base.Domain
         Task<bool> Update(TEntity model);
 
         /// <summary>
-        /// TheoidXóa theo danh sách
+        /// Theoid Xóa theo danh sách
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -102,7 +102,7 @@ namespace NewtouchHIS.Base.Domain
 
 
         /// <summary>
-        /// TheoKhóa chính In  Truy vấn
+        /// Theo Khóa chính In  Truy vấn
         /// </summary>
         /// <typeparam name="S">Khóa chínhkiểu</typeparam>
         /// <param name="list">Khóa chính In Tập kết quả của thao tác</param>

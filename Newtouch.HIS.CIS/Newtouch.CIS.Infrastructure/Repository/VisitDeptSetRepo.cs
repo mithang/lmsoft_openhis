@@ -11,7 +11,7 @@ using DbParameter = System.Data.Common.DbParameter;
 namespace Newtouch.Repository
 {
     /// <summary>
-    /// rakhámCài đặt
+    /// rakhám Cài đặt
     /// </summary>
     public class VisitDeptSetRepo : RepositoryBase<VisitDeptSetEntity>, IVisitDeptSetRepo
     {

@@ -29,7 +29,7 @@ namespace Newtouch.Domain.ValueObjects
         public string zh { get; set; }
 
         /// <summary>
-        /// Cách dùngMã
+        /// Cách dùng Mã
         /// </summary>
         public string yfCode { get; set; }
         public int? zzfbz { get; set; }

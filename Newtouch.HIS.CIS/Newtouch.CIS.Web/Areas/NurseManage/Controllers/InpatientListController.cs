@@ -132,7 +132,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         public IActionResult InHosNursingInput()
         {
             ViewBag.MutipatientNursingInputFlag = _sysConfigRepo.GetIntValueByCode("MutipatientNursingInputFlag", OrganizeId, 0);
-            ViewBag.ScdCode = _sysConfigRepo.GetValueByCode("ScdTimePoint", OrganizeId);//Phiếu đo ba chỉ sốThời gianđiểmLẻ chẵnsốCài đặt 1 lẻsố 0 chẵnsố
+            ViewBag.ScdCode = _sysConfigRepo.GetValueByCode("ScdTimePoint", OrganizeId);//Phiếu đo ba chỉ số Thời gianđiểm Lẻ chẵnsố Cài đặt 1 lẻsố 0 chẵnsố
             return View();
         }
         public IActionResult InHosPrint()
@@ -159,7 +159,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     string gender = itempat.sex == "1" ? "Nam" : "Nữ";
                     TreeViewModel treepat = new TreeViewModel();
                     treepat.id = itempat.zyh;
-                    //Số giường + Họ tên(Nhập việnSố ngày)+Số nhập viện + Tuổi +Giới tính+Tính chất bệnh nhân
+                    //Số giường + Họ tên(Nhập viện Số ngày)+Số nhập viện + Tuổi +Giới tính+Tính chất bệnh nhân
                     treepat.text = itempat.BedNo + "-" + itempat.hzxm + "(" + itempat.inHosDays + "ngày)" + "-" + itempat.zyh + "-" + itempat.nl + "tuổi-" + gender + "-" + itempat.brxzmc;
                     treepat.value = itempat.zyh;
                     treepat.parentId = item.bqCode;

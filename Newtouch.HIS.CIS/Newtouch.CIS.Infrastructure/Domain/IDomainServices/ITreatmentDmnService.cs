@@ -14,7 +14,7 @@ namespace Newtouch.Domain.IDomainServices
     public interface ITreatmentDmnService
     {
         /// <summary>
-        /// Tra cứuKhám bệnhthông tin
+        /// Tra cứu Khám bệnhthông tin
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -23,7 +23,7 @@ namespace Newtouch.Domain.IDomainServices
 
         TreatEntityObj SelectTreatmentEntitie(string mzh, string orgId);
         /// <summary>
-        /// Tra cứuBệnh nhânKhám bệnhthông tin
+        /// Tra cứu Bệnh nhân Khám bệnhthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
@@ -34,7 +34,7 @@ namespace Newtouch.Domain.IDomainServices
         /// <returns></returns>
         IList<PatientVisitInfoVO> GetPatientVisitList(Pagination pagination, string kh, string xm, string jzlx, string jszt, DateTime? kssj, DateTime? jssj, string orgId);
         /// <summary>
-        /// LấyNhập việnthông tin
+        /// Lấy Nhập việnthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>

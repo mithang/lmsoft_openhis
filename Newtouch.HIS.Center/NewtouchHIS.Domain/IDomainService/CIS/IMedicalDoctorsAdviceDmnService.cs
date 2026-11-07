@@ -24,7 +24,7 @@ namespace NewtouchHIS.Domain.IDomainService.CIS
         /// <returns></returns>
         Task<List<MedicalDoctorsAdviceVo>> MedicalDoctorsAdviceRecord(string zyh, string orgId, string yzlx, DBEnum db = DBEnum.CisDb);
         /// <summary>
-        /// Xét nghiệm/kiểm tra ngoại trú, nội trúĐăng kýPhiếu
+        /// Xét nghiệm/kiểm tra ngoại trú, nội trú Đăng ký Phiếu
         /// </summary>
         /// <param name="jzh"></param>
         /// <param name="orgId"></param>

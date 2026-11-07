@@ -94,7 +94,7 @@ select * from #yzdata  where '1'='1' ";
         }
 
         /// <summary>
-        /// Xét nghiệm/kiểm tra ngoại trú, nội trúĐăng kýPhiếu
+        /// Xét nghiệm/kiểm tra ngoại trú, nội trú Đăng ký Phiếu
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

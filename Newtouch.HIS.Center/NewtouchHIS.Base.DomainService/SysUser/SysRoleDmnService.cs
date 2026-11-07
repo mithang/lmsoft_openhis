@@ -67,7 +67,7 @@ namespace NewtouchHIS.Base.DomainService
             SysRoleEntity sysRoleEntity = result[0];
             if (sysRoleEntity.Code == "Administrator")
             {
-                throw new FailedException("MãAdministrator được hệ thống giữ lại,không thể xóa");
+                throw new FailedException("Mã Administrator được hệ thống giữ lại,không thể xóa");
             }
             await Delete<SysRoleEntity>(sysRoleEntity);
             var sql = "delete from " + DbNames.Name("UnionDb", "Newtouch_Union") + "..Sys_RoleAuthorize where RoleId=@RoleId";
@@ -90,7 +90,7 @@ namespace NewtouchHIS.Base.DomainService
                 if (string.IsNullOrWhiteSpace(keyValue)
                     || (!string.IsNullOrEmpty(keyValue) && roleEntity.OrganizeId != "*"))
                 {
-                    throw new FailedException("MãAdministrator được hệ thống giữ lại");
+                    throw new FailedException("Mã Administrator được hệ thống giữ lại");
                 }
             }
             var result = await GetByWhere<SysRoleEntity>(DBEnum.UnionDb.ToString(), p => p.zt == "1" && p.Id == keyValue);

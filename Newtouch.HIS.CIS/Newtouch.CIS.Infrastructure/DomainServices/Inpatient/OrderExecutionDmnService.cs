@@ -891,7 +891,7 @@ FROM(
         }
         #endregion
         
-        #region Thực hiệnY lệnhTra cứu
+        #region Thực hiệnY lệnh Tra cứu
         /// <summary>
         /// Lấy Thực hiện Tất cả Y lệnh ALLYZ
         /// </summary>

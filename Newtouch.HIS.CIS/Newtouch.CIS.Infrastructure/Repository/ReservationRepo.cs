@@ -14,7 +14,7 @@ namespace Newtouch.Repository
     public class ReservationRepo : RepositoryBase<ReservationEntity>, IReservationRepo
     {
         /// <summary>
-        /// Mặc địnhHàm khởi tạosố
+        /// Mặc định Hàm khởi tạosố
         /// </summary>
         /// <param name="databaseFactory">EF trên dưới văn Nhà máy</param>
         public ReservationRepo()
@@ -26,7 +26,7 @@ namespace Newtouch.Repository
         /// Lưu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">thựcthểđối tượng</param>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="keyValue">Khóa chính Giá trị</param>
         public void SubmitForm(ReservationEntity entity)
         {
             // C130: bo catch (Exception) { } — loi Insert truoc day bi nuot, caller tra

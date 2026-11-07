@@ -14,14 +14,14 @@ namespace NewtouchHIS.Base.DomainService
     {
         public BusinessConfig sysConfig = ConfigInitHelper.SysConfig;
         /// <summary>
-        /// Ngữ cảnh là thực thểAttr Cơ sở dữ liệu thuộc về
+        /// Ngữ cảnh là thực thể Attr Cơ sở dữ liệu thuộc về
         /// </summary>
         public SugarRepository<TEntity> baseDal => new SugarRepository<TEntity>();
 
 
         #region Identity
         /// <summary>
-        /// Hiện tạiApiThông tin người dùng
+        /// Hiện tại Api Thông tin người dùng
         /// </summary>
         public IIdentityCache CurrentIdentity { get; set; }
         #endregion
@@ -89,7 +89,7 @@ namespace NewtouchHIS.Base.DomainService
             return valid;
         }
         /// <summary>
-        /// Kiểm chứng enumvalueTính hợp lệ 
+        /// Kiểm chứng enumvalue Tính hợp lệ 
         /// </summary>
         /// <typeparam name="TEnum"></typeparam>
         /// <param name="value"></param>
@@ -104,7 +104,7 @@ namespace NewtouchHIS.Base.DomainService
             return true;
         }
         /// <summary>
-        /// Tự động lắp rápwhere Truy vấn(Theo T củaDb Truy vấn theo đặc tính)
+        /// Tự động lắp rápwhere Truy vấn(Theo T của Db Truy vấn theo đặc tính)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>

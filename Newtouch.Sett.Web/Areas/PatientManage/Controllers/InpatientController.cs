@@ -56,7 +56,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         {
             //if (string.IsNullOrWhiteSpace(organizeId))
             //{
-            //    organizeId = base.GetAuthOrganizeId();  //mặc định QuyềnOrganizeId
+            //    organizeId = base.GetAuthOrganizeId();  //mặc định Quyền OrganizeId
             //}
             ////
             //var organizedata = _sysOrganizeDmnService.GetValidListByParentOrg(organizeId);
@@ -163,7 +163,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             List<PendingExecutionPatientVO> data = new List<PendingExecutionPatientVO> { };
             if (string.IsNullOrWhiteSpace(organizeId))
             {
-                organizeId = base.GetAuthOrganizeId();  //mặc định QuyềnOrganizeId
+                organizeId = base.GetAuthOrganizeId();  //mặc định Quyền OrganizeId
             }
             //
             var organizedata = _sysOrganizeDmnService.GetValidListByParentOrg(organizeId);
@@ -489,7 +489,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                         }
                         else
                         {
-                            //1.hisChuyển BHYT sang tự chi trả   2.đồng bộcpoe
+                            //1.his Chuyển BHYT sang tự chi trả   2.đồng bộcpoe
                             _inpatientApp.YBToZF_Step_5(zyh, patinfo.patid);
                             YBToZF_Step_7(zyh);
                         }

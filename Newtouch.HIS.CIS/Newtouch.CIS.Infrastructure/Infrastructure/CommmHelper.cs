@@ -15,10 +15,10 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// Mục thu phí Điều trịlượng đổitínhthành Số lượng
         /// </summary>
-        /// <param name="zll">chỉcủalàPhục hồi chức năngĐơn thuốctrangcủaTổng lượng</param>
+        /// <param name="zll">chỉcủalà Phục hồi chức năng Đơn thuốctrangcủa Tổng lượng</param>
         /// <param name="dwjls"></param>
-        /// <param name="jjcl">Liệt kêEnumSfxmJjcl</param>
-        /// <param name="throwExWhenZero">khiSố lượngkếtnếulà0khi làKhôngnémNgoại lệ,Mặc địnhném</param>
+        /// <param name="jjcl">Liệt kê EnumSfxmJjcl</param>
+        /// <param name="throwExWhenZero">khi Số lượngkếtnếulà0khi là Khôngném Ngoại lệ,Mặc địnhném</param>
         /// <returns></returns>
         public static int CalcSfxmSl(int? mczll, int? dwjls, int? jjcl,
             bool throwExWhenZero = true)
@@ -44,9 +44,9 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Lấybảnđịavănmụctương ứngcủabảnđịaĐường dẫn
+        /// Lấybảnđịavănmụctương ứngcủabảnđịa Đường dẫn
         /// </summary>
-        /// <param name="path">nhauđốiĐường dẫn</param>
+        /// <param name="path">nhauđối Đường dẫn</param>
         /// <returns>Trả về đường dẫn tuyệt đối</returns>
         public static string GetLocalFilePath(string path)
         {
@@ -81,7 +81,7 @@ namespace Newtouch.Infrastructure
             // so the original Bitmap.Save path cannot run here.
             var writer = new BarcodeWriterPixelData();
             // Sử dụng định dạng ITF, không thể bị quét bởi Alipay, WeChat thường dùng hiện nay
-            //nếunếunghĩtạocó thểbiếtloạicủacó thểlấySử dụng CODE_128 định dạng
+            //nếunếunghĩtạocó thểbiếtloạicủacó thểlấy Sử dụng CODE_128 định dạng
             //writer.Format = BarcodeFormat.ITF;
             writer.Format = BarcodeFormat.CODE_128;
             EncodingOptions options = new EncodingOptions()

@@ -7,7 +7,7 @@ namespace Newtouch.Domain.Entity
 {
 
     /// <summary>
-    /// Hệ thốngCách dùngliênđộng
+    /// Hệ thống Cách dùngliênđộng
     /// </summary>
     [SugarTable("xt_usageLinkage")]
     public class SysUsageLinkageEntity
@@ -35,7 +35,7 @@ namespace Newtouch.Domain.Entity
         public string sfxmCode { get; set; }
 
         /// <summary>
-        /// MụcMã nhóm lớn
+        /// Mục Mã nhóm lớn
         /// </summary>
         public string dlCode { get; set; }
 

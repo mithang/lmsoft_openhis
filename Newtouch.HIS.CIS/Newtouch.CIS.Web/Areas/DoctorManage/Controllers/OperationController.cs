@@ -49,7 +49,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// <returns></returns>
         public IActionResult ArrangeForm()
         {
-            ViewBag.OperationAssistant = _sysConfigRepo.GetIntValueByCode("OperationAssistant", OrganizeId, 3);//Nhập việnPhẫu thuậtgiúptaycáisố
+            ViewBag.OperationAssistant = _sysConfigRepo.GetIntValueByCode("OperationAssistant", OrganizeId, 3);//Nhập viện Phẫu thuậtgiúptaycáisố
             return View();
         }
 
@@ -81,7 +81,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// Sắp xếp phẫu thuậtdanh sáchTra cứu
+        /// Sắp xếp phẫu thuậtdanh sách Tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -112,7 +112,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// GửiLưuSắp xếp phẫu thuậtDữ liệu
+        /// Gửi Lưu Sắp xếp phẫu thuật Dữ liệu
         /// </summary>
         /// <param name="xm"></param>
         /// <param name="keyvalue"></param>
@@ -124,11 +124,11 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             if (_inpatientOperationArrangementRepo.SubmitForm(xm, keyvalue))
                 return Success();
             else
-                return Error("LưuPhẫu thuậtSắp xếpThông tinthất bại");
+                return Error("Lưu Phẫu thuật Sắp xếp Thông tinthất bại");
         }
 
         /// <summary>
-        /// LấyPhẫu thuậtbệnh người(Phẫu thuậtbổ sungghi)
+        /// Lấy Phẫu thuậtbệnh người(Phẫu thuậtbổ sungghi)
         /// </summary>
         /// <returns></returns>
         public IActionResult GetOperatPatSearchList()
@@ -137,7 +137,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// GửiPhẫu thuậtbổ sungghiChi phí
+        /// Gửi Phẫu thuậtbổ sungghiChi phí
         /// </summary>
         /// <param name="FeeDetails"></param>
         /// <returns></returns>
@@ -146,13 +146,13 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
 
             InpatientPatientInfoEntity zybr = _IInpatientPatientInfoRepo.GetByZyh(OrganizeId, zyh);
             if (zybr == null)//Nhập việnbệnh ngườiphántrống
-                throw new Exception(string.Format("orgId:{0}, Số nhập viện:{1} Bệnh nhânKhông tồn tại", OrganizeId, zyh));
+                throw new Exception(string.Format("orgId:{0}, Số nhập viện:{1} Bệnh nhân Không tồn tại", OrganizeId, zyh));
             InpatientOperationArrangementEntity Arrangement = _inpatientOperationArrangementRepo.FindEntity(p => p.zyh == zyh && p.zt == "1");
             if (Arrangement == null)//Sắp xếp phẫu thuậtphántrống
                 throw new Exception("Vui lòng vào giao diện “Sắp xếp phẫu thuật”, nhập thông tin liên quan đến phẫu thuật.");
             string lsDepartment = _IIBaseDataDmnService.GetDoctorDepartCode(OrganizeId, Arrangement.surgeonId);
-            if (lsDepartment.Length == 0)//Phẫu thuậtBác sĩKhoaphántrống
-                throw new Exception("LấyPhẫu thuậtBác sĩKhoathất bại!");
+            if (lsDepartment.Length == 0)//Phẫu thuật Bác sĩ Khoaphántrống
+                throw new Exception("Lấy Phẫu thuật Bác sĩ Khoathất bại!");
             //Gán giá trị
             foreach (InpatientFeeDetailEntity item in RequestItems)
             {
@@ -164,28 +164,28 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                 item.qqrq = item.zxrq = DateTime.Now;
                 item.zfdj = item.yhdj = item.yhje = item.flzfje = 0;
                 item.zfje = item.zje;
-                item.yzxz = 7;//Phẫu thuậtChi phí
+                item.yzxz = 7;//Phẫu thuật Chi phí
                 item.gdzxbz = 1;
                 item.zt = "1";
-                item.ysksdm = item.DeptCode = lsDepartment;//Phẫu thuậtBác sĩKhoa
+                item.ysksdm = item.DeptCode = lsDepartment;//Phẫu thuật Bác sĩ Khoa
                 item.WardCode = item.qrksdm = item.zxksdm = zybr.WardCode;
                 item.cwdm = zybr.BedCode;
                 item.ysgh = zybr.ysgh;
             }
-            RequestItems = RequestItems.FindAll(p => p.sl > 0);//đitrừtínhphíbảngcủaHoàn phíthông tin
+            RequestItems = RequestItems.FindAll(p => p.sl > 0);//đitrừtínhphíbảngcủa Hoàn phíthông tin
             _iIOperationDmnService.InpatientFeeDetailSubmit(OrganizeId, zyh, RequestItems);
             return Success();
         }
 
         /// <summary>
-        /// LấyNhập việnbệnh ngườiPhẫu thuậtChi phí
+        /// Lấy Nhập việnbệnh người Phẫu thuật Chi phí
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         public IActionResult getSupplement(string zyh)
         {
             return Content((new List<OperatFeeVO>()).ToJson());
-            //return Content(_iIOperationDmnService.GetOperatFee(OrganizeId, zyh, "7").ToJson());//Phẫu thuậtChi phí
+            //return Content(_iIOperationDmnService.GetOperatFee(OrganizeId, zyh, "7").ToJson());//Phẫu thuật Chi phí
         }
     }
 }

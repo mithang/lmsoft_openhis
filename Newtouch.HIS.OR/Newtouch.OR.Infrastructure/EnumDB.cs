@@ -55,7 +55,7 @@ namespace Newtouch.OR.ManageSystem.Infrastructure
     }
 
     /// <summary>
-    /// Phẫu thuậtTrạng thái
+    /// Phẫu thuật Trạng thái
     /// </summary>
     public enum EnumSSzt
     {
@@ -83,7 +83,7 @@ namespace Newtouch.OR.ManageSystem.Infrastructure
     }
 
     /// <summary>
-    /// Đăng ký phẫu thuậtTrạng thái
+    /// Đăng ký phẫu thuật Trạng thái
     /// </summary>
     public enum EnumSSdjzt
     {

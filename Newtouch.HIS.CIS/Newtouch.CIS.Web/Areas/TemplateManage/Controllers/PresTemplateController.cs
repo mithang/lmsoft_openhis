@@ -52,7 +52,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// Hạng mục thông thườngĐơn thuốc
+        /// Hạng mục thông thường Đơn thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult RegularItemForm()
@@ -113,7 +113,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         
         
         /// <summary>
-        /// LấyĐơn thuốcmẫu
+        /// Lấy Đơn thuốcmẫu
         /// </summary>
         /// <param name="mblx"></param>
         /// <param name="cflx"></param>
@@ -249,7 +249,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             {
                 treeList.Add(new TreeViewModel()
                 {
-                    id = "",   //mẫuId
+                    id = "",   //mẫu Id
                     value = item.cflx.ToString(),
                     text = item.mbmc,
                     parentId = item.cflx.ToString(),

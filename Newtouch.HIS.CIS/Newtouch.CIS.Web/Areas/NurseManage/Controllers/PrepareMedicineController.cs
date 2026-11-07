@@ -48,7 +48,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return View();
         }
 
-        #region KhoaChuẩn bị thuốcThừa thiếu
+        #region Khoa Chuẩn bị thuốcThừa thiếu
         public IActionResult ReportLossAndProfit()
         {
             return View();
@@ -65,7 +65,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// TheoLoạitảinguyên nhân lãi lỗ
+        /// Theo Loạitảinguyên nhân lãi lỗ
         /// </summary>
         /// <param name="sylx"></param>
         /// <returns></returns>
@@ -77,7 +77,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// LấyTrách nhiệm ngườilist
+        /// Lấy Trách nhiệm ngườilist
         /// </summary>
         /// <param name="inputCode"></param>
         /// <returns></returns>
@@ -88,7 +88,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Tra cứulãi lỗThuốclist
+        /// Tra cứulãi lỗ Thuốclist
         /// </summary>
         /// <param name="inputCode"></param>
         /// <returns></returns>
@@ -99,7 +99,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// GửiBáo hỏngbáolợi
+        /// Gửi Báo hỏngbáolợi
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>
@@ -172,10 +172,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         #endregion
 
-        #region KhoaChuẩn bị thuốcThừa thiếuTra cứu
+        #region Khoa Chuẩn bị thuốcThừa thiếuTra cứu
 
         /// <summary>
-        /// Khoachuẩn bị thuốcTrả lại
+        /// Khoachuẩn bị thuốc Trả lại
         /// </summary>
         /// <returns></returns>
         public IActionResult ReportLossAndProfitQuery()
@@ -187,7 +187,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         /// <summary>
-        /// Báo hỏngbáo thừaTra cứu
+        /// Báo hỏngbáo thừa Tra cứu
         /// </summary>
         /// <returns></returns>
         public IActionResult SelectLossAndProditInfoList(Pagination pagination, string startTime, string endTime, string syyy, string inputCode, int syqk)
@@ -218,10 +218,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
         #endregion
 
-        #region KhoaChuẩn bị thuốcTrả lại
+        #region Khoa Chuẩn bị thuốc Trả lại
 
         /// <summary>
-        /// Khoachuẩn bị thuốcTrả lại
+        /// Khoachuẩn bị thuốc Trả lại
         /// </summary>
         /// <returns></returns>
         public IActionResult PrepareMedicineReturn()
@@ -232,7 +232,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Tạo mớiTrả lạiPhiếu
+        /// Tạo mới Trả lại Phiếu
         /// </summary>
         /// <returns></returns>
         public IActionResult PrepareMedicineReturnAdd() {
@@ -240,7 +240,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// LưuKhoachuẩn bị thuốcTrả lại
+        /// Lưu Khoachuẩn bị thuốc Trả lại
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -252,7 +252,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Khoachuẩn bị thuốcPhiếu:Thuốcthông tingắn
+        /// Khoachuẩn bị thuốc Phiếu:Thuốcthông tingắn
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="yfbm"></param>
@@ -263,7 +263,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-        /// Khoachuẩn bị thuốcThuốcđiềnTra cứu
+        /// Khoachuẩn bị thuốc Thuốcđiền Tra cứu
         /// </summary>
         /// <param name="ypcodestr"></param>
         /// <param name="yfbmstr"></param>
@@ -274,7 +274,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-        /// Khoachuẩn bị thuốcTrả lạiTra cứudanh sách
+        /// Khoachuẩn bị thuốc Trả lại Tra cứudanh sách
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="xm"></param>
@@ -310,7 +310,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// chuẩn bị thuốcphiếucứGửi
+        /// chuẩn bị thuốcphiếucứ Gửi
         /// </summary>
         /// <param name="djmc"></param>
         /// <returns></returns>
@@ -346,7 +346,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-        /// LấyThuốcTồn khoSố lượng
+        /// Lấy Thuốc Tồn kho Số lượng
         /// </summary>
         /// <param name="ypbm"></param>
         /// <param name="pc"></param>

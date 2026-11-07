@@ -6,7 +6,7 @@ namespace Newtouch.Infrastructure
     public class SitePDSAPIHelper
     {
         /// <summary>
-        /// BaseHệ thống API
+        /// Base Hệ thống API
         /// </summary>
         private static readonly string SitePdsapiHost;
 
@@ -29,7 +29,7 @@ namespace Newtouch.Infrastructure
         /// <typeparam name="TV">Loại tham Số yêu cầu</typeparam>
         /// <param name="url"></param>
         /// <param name="req"></param>
-        /// <param name="tokenExpireReTryTimes">doTokenSố lần thử lại khi hết hạn</param>
+        /// <param name="tokenExpireReTryTimes">doToken Số lần thử lại khi hết hạn</param>
         /// <returns></returns>
         public static T Request<TV, T>(string url, TV req, int tokenExpireReTryTimes = 1)
             where T : new()
@@ -42,7 +42,7 @@ namespace Newtouch.Infrastructure
 
         /// <summary>
         /// BaseAPIHost
-        /// configCấu hình_SitePDSApiHost
+        /// config Cấu hình_SitePDSApiHost
         /// </summary>
         private static string SitePDSApiHost
         {

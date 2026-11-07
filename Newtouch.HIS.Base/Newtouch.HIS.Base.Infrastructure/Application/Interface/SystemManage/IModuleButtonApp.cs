@@ -4,7 +4,7 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// NútApp
+    /// Nút App
     /// </summary>
     public interface IModuleButtonApp
     {

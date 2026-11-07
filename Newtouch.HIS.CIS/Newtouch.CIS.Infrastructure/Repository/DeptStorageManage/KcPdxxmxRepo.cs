@@ -19,7 +19,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// Kiểm kêLưukhi đổihơnSố lượng
+        /// Kiểm kê Lưukhi đổihơn Số lượng
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         public void UpdateSlBySaveInventoryInfo(List<SaveInventoryDTO> inventoryInfoList)
@@ -38,7 +38,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// Kiểm kêLưukhi đổihơnSố lượng
+        /// Kiểm kê Lưukhi đổihơn Số lượng
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         public void UpdateSlBySaveInventoryInfoNoPc(List<SaveInventoryDTO> inventoryInfoList)

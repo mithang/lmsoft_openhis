@@ -13,7 +13,7 @@ namespace NewtouchHIS.Base.DomainService
     /// <summary>
     /// Kế thừa DBContext,vớiservice mở ISqlSugarClient Giao diện
     /// Hỗ trợ base.Context Đổi cơ sở dữ liệu
-    /// Mặc định base.Context là TEntity đã gắnTenantAttr
+    /// Mặc định base.Context là TEntity đã gắn TenantAttr
     /// Ghi chú:Thêm,Xóa,Sửa Cấm xuyên cơ sở dữ liệu,Cấm dùngsqlcâu lệnh,nếu cần thì thêm mớiservice,Đạtbase.Context Chỉ định cơ sở dữ liệu đích
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
@@ -90,7 +90,7 @@ namespace NewtouchHIS.Base.DomainService
             return valid;
         }
         /// <summary>
-        /// Kiểm chứng enumvalueTính hợp lệ 
+        /// Kiểm chứng enumvalue Tính hợp lệ 
         /// </summary>
         /// <typeparam name="TEnum"></typeparam>
         /// <param name="value"></param>
@@ -105,7 +105,7 @@ namespace NewtouchHIS.Base.DomainService
             return true;
         }
         /// <summary>
-        /// Tự động lắp rápwhere Truy vấn(Theo T củaDb Truy vấn theo đặc tính)
+        /// Tự động lắp rápwhere Truy vấn(Theo T của Db Truy vấn theo đặc tính)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>

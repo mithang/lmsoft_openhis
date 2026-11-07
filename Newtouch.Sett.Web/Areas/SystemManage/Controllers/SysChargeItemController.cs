@@ -85,7 +85,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         {
             if (string.IsNullOrWhiteSpace(organizeId))
             {
-                organizeId = base.GetAuthOrganizeId();  //mặc định QuyềnOrganizeId
+                organizeId = base.GetAuthOrganizeId();  //mặc định Quyền OrganizeId
             }
 
             IList<string> checkedStaffIdList = new List<string>();

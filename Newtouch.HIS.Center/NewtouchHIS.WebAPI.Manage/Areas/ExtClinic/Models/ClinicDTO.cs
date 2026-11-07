@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic
 {
     /// <summary>
-    /// Xác thực danh tính phòng khámToken
+    /// Xác thực danh tính phòng khám Token
     /// </summary>
     public class ClinicTokenDTO
     {
@@ -16,12 +16,12 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic
     }
 
     /// <summary>
-    /// Đăng ký khám chữa bệnhThông báo kết quả
+    /// Đăng ký khám chữa bệnh Thông báo kết quả
     /// </summary>
     public class TreatedApplyResultDTO
     {
         /// <summary>
-        /// Từ xaĐăng ký khám chữa bệnh ID
+        /// Từ xa Đăng ký khám chữa bệnh ID
         /// </summary>
         public string id { get; set; }
         /// <summary>
@@ -29,23 +29,23 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic
         /// </summary>
         public string status { get; set; }
         /// <summary>
-        /// Cuộc họpSố
+        /// Cuộc họp Số
         /// </summary>
         public string? conferenceId { get; set; }
         /// <summary>
-        /// Đăng kýKết quả(0:Đạt:1:Không đạt)
+        /// Đăng ký Kết quả(0:Đạt:1:Không đạt)
         /// </summary>
         public string applicationResults { get; set; }
     }
     /// <summary>
-    /// Phòng khámBệnh nhânBệnh án
+    /// Phòng khám Bệnh nhân Bệnh án
     /// </summary>
     public class ClinicPatMedicalRecordDTO
     {
         public ClinicDicDTO? doctor { get; set; }
         public string? name { get; set; }
         /// <summary>
-        /// Phòng khámĐăng kýId
+        /// Phòng khám Đăng ký Id
         /// </summary>
         public string? diagnosisId { get; set; }
         public string? department { get; set; }

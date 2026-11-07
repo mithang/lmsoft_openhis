@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Domain.Entity
         public List<AccessAuth> authlist { get; set; }
         //
         // Tóm tắt:
-        //     Ứng dụngId
+        //     Ứng dụng Id
         public string AppId { get; set; }
         //
         // Tóm tắt:
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string TokenType { get; set; }
         //
         // Tóm tắt:
-        //     Người dùngId
+        //     Người dùng Id
         public string UserId { get; set; }
         public string UserCode { get; set; }
         public string UserName { get; set; }

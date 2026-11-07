@@ -11,7 +11,7 @@ namespace Newtouch.Domain.IRepository.DeptStorageManage
     public interface IKcKcjzRepo : IRepositoryBase<KcKcjzEntity>
     {
         /// <summary>
-        /// Lấylịch sửkết chuyểnThời gian
+        /// Lấylịch sửkết chuyển Thời gian
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>

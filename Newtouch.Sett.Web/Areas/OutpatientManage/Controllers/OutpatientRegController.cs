@@ -73,7 +73,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
 		#region Lịch trực đăng ký khám
 		/// <summary>
-		/// đăng ký khámlịch trựcList
+		/// đăng ký khámlịch trực List
 		/// </summary>
 		/// <param name="keyword">khoa/bác sĩ</param>
 		/// <param name="mzlx">ngoại trúloại khám thườngngoại trúkhám/cấp cứuchứng/chuyên giangoại trúkhám</param>
@@ -407,7 +407,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                 if (!string.IsNullOrWhiteSpace(ybjsh))
                 {
                     //BHYT phía đãđăng ký khám,HIS đăng ký khámthất bại,phải hủy BHYT phía của đăng ký khám,nhắc đăng ký lại
-                    //20181018tạiClientgọi
+                    //20181018tại Clientgọi
 
                 }
                 throw ex;

@@ -15,7 +15,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
     public interface ICommonDmnService
     {
         /// <summary>
-        /// Theo loại bệnh ánIdLấy dấu hiệu tên loại lớn bệnh án
+        /// Theo loại bệnh án Id Lấy dấu hiệu tên loại lớn bệnh án
         /// </summary>
         /// <param name="bllxId"></param>
         /// <param name="OrgId"></param>
@@ -29,7 +29,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
         /// <returns></returns>
         string GetBllxTB(int bllx);
         /// <summary>
-        /// Thông quabllxLấy thông tin liên quan loại lớn bệnh án
+        /// Thông quabllx Lấy thông tin liên quan loại lớn bệnh án
         /// </summary>
         /// <param name="OrgId"></param>
         /// <param name="Code"></param>
@@ -118,7 +118,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
         /// <returns></returns>
         List<SysDutyStaffVO> GetStaffByDutyCode(string orgId, string dutyCode, string keyword = null);
         /// <summary>
-        /// LấyhisDanh sách khoa
+        /// Lấyhis Danh sách khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="code"></param>

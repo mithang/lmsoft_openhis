@@ -7,7 +7,7 @@ namespace Newtouch.Domain.IDomainServices
     public interface IGroupPackageDmnService
     {
         /// <summary>
-        /// Bộ mẫuMục
+        /// Bộ mẫu Mục
         /// </summary>
         /// <param name="ztId"></param>
         GroupPackageDetailBO GetGroupPackageDetail(string ztId, string orgId);

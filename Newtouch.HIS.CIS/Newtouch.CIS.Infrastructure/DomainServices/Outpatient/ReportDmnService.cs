@@ -38,7 +38,7 @@ namespace Newtouch.DomainServices
             OutpatientCFDDto dto = new OutpatientCFDDto();
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                throw new FailedException("Đơn thuốcKhóa chínhlàtrống");
+                throw new FailedException("Đơn thuốc Khóa chínhlàtrống");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
@@ -69,7 +69,7 @@ namespace Newtouch.DomainServices
         public string GetJYDjson(string cfId, string mzh,string orgId) {
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                throw new FailedException("Đơn thuốcKhóa chínhlàtrống");
+                throw new FailedException("Đơn thuốc Khóa chínhlàtrống");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
@@ -81,7 +81,7 @@ namespace Newtouch.DomainServices
             }
             OutpatientJYDDto dto = new OutpatientJYDDto();
             dto.PatientInfo = GetOutpatientInfo(orgId, mzh);
-            string sql = @" select * from ( select row_number()over(partition by ztmc order by a.createtime) num,(case a.cflx  when 4 then 'Xét nghiệmPhiếu' when 5 then 'Kiểm traPhiếu' when 6 then 'Đơn thuốc hạng mục' end)cflxmc,
+            string sql = @" select * from ( select row_number()over(partition by ztmc order by a.createtime) num,(case a.cflx  when 4 then 'Xét nghiệm Phiếu' when 5 then 'Kiểm tra Phiếu' when 6 then 'Đơn thuốc hạng mục' end)cflxmc,
 a.cflx,a.cfh,(b.dj*b.sl)zje,a.createtime, ztmc xmmc,b.dj,b.sl,c.name zxks,d.name sqys,e.name sqks
 from xt_cf a with(nolock)
 left join xt_cfmx b with(nolock) on a.cfid=b.cfid and a.organizeid=b.organizeid  
@@ -105,7 +105,7 @@ and exists(select 1 from xt_jz  d with(nolock) where a.jzid=d.jzid and a.organiz
         public string GetJCDjson(string cfId, string mzh,string orgId) {
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                throw new FailedException("Đơn thuốcKhóa chínhlàtrống");
+                throw new FailedException("Đơn thuốc Khóa chínhlàtrống");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
@@ -151,7 +151,7 @@ and exists(select 1 from xt_jz  d with(nolock) where a.jzid=d.jzid and a.organiz
         {
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                throw new FailedException("Đơn thuốcKhóa chínhlàtrống");
+                throw new FailedException("Đơn thuốc Khóa chínhlàtrống");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
@@ -257,7 +257,7 @@ DROP TABLE #zhfz";
         {
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                throw new FailedException("Đơn thuốcKhóa chínhlàtrống");
+                throw new FailedException("Đơn thuốc Khóa chínhlàtrống");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
@@ -382,7 +382,7 @@ DROP TABLE #zhfz";
             OutpatientZCYCFDto dto = new OutpatientZCYCFDto();
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                throw new FailedException("Đơn thuốcKhóa chínhlàtrống");
+                throw new FailedException("Đơn thuốc Khóa chínhlàtrống");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
@@ -523,7 +523,7 @@ where OrganizeId = @orgId and zt = '1'";
                 });
             if (ck > 0)
             {
-                throw new FailedException("Báo cáoMãđãtồn tạiở！");
+                throw new FailedException("Báo cáo Mãđãtồn tạiở！");
             }
 
             if (!string.IsNullOrWhiteSpace(keyValue))

@@ -5,7 +5,7 @@ namespace NewtouchHIS.WebAPI.Manage.Models.OrderCenter
     public class OrderPayRequest
     {
         /// <summary>
-        /// Khám bệnhSố thẻ
+        /// Khám bệnh Số thẻ
         /// </summary>
         [Required(ErrorMessage = "Số thẻ khám bệnh không được để trống")]
         public string CardNo { get; set; }

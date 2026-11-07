@@ -11,13 +11,13 @@ namespace Newtouch.HIS.Domain.IRepository
     {
 
         /// <summary>
-        /// LấyĐơn thuốcchi tiết
+        /// Lấy Đơn thuốcchi tiết
         /// </summary>
         /// <param name="cfId"></param>
         /// <returns></returns>
         List<PrescriptionDetailEntity> SelectData(string cfId, bool djbz);
         /// <summary>
-        /// Lấysắc hộMục
+        /// Lấysắc hộ Mục
         /// </summary>
         /// <param name="cfId"></param>
         /// <returns></returns>

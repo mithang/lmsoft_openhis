@@ -4,7 +4,7 @@ using Newtouch.Domain.ViewModels;
 namespace Newtouch.Application.Interface
 {
     /// <summary>
-    /// Ngoại trúrakhámCài đặt
+    /// Ngoại trúrakhám Cài đặt
     /// </summary>
     public interface IVisitDeptSetApp
     {

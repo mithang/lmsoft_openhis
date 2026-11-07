@@ -98,7 +98,7 @@ $.fn.sfxmFloatingSelector = function (options) {
         itemdbclickhandler: null,   //Vui lòng chỉ định
         djDecimalPlaces: 2,  //Độ chính xác đơn giá Mặc định2
         searchType: null,   //Chỉ kiểm soát hiện/ẩn cột,Không tham gia lọc//Mục tiêu tìm kiếm "yp,sfxm","yp","sfxm","yp.kc","sfxm.dwjls","yp,sfxm.dwjls","yp.kc,sfxm","yp.kc,sfxm.dwjls"
-        showColModel: null,   //Có thể chỉ định [{name:;widthratio:;},{name:;widthratio:;}] widthratioTùy chọn
+        showColModel: null,   //Có thể chỉ định [{name:;widthratio:;},{name:;widthratio:;}] widthratio Tùy chọn
     ypkccbjc: true,    //Kiểm tra sơ bộ tồn kho thuốc: có bị kiểm soát không, có tồn kho không (0)
         colModel: [
             { label: 'Mã', name: 'sfxmCode', widthratio: 14 },
@@ -280,7 +280,7 @@ $.fn.sfxmFloatingSelector = function (options) {
     }
 
     if (options.showColModel) {
-        //[{name:;widthratio:;},{name:;widthratio:;}] widthratioTùy chọn
+        //[{name:;widthratio:;},{name:;widthratio:;}] widthratio Tùy chọn
         $.each(options.colModel, function () {
             var thisCol = this;
             var matchedShow = $.jsonWhere(options.showColModel, function (v) {

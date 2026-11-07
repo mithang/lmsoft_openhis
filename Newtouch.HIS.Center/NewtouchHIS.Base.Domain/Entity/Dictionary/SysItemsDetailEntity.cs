@@ -8,8 +8,8 @@ namespace NewtouchHIS.Base.Domain.Entity.Dictionary
     ///Nhóm thu phí lớn 
     ///Thông thường phân loại theo yêu cầu của cơ quan chủ quản cấp trên
     ///    (Phí đăng ký khám00,Phí khám chữa bệnh01,Phí thẻ từ02,Phí làm thẻ03 v.v.
-    ///    BHYT ngoại trúMã varchar(2)
-    ///    BHYT nội trúMã varchar(2) 
+    ///    BHYT ngoại trú Mã varchar(2)
+    ///    BHYT nội trú Mã varchar(2) 
     ///    Lập lại bảng để đối ứng mã BHYT
     ///</summary>
     [Tenant(DBEnum.BaseDb)]

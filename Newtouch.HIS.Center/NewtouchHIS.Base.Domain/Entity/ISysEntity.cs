@@ -5,7 +5,7 @@ namespace NewtouchHIS.Base.Domain.Entity
 {
     /// <summary>
     /// Lớp cơ sở trường dùng chung của bảng hệ thống
-    /// (Không liên kếtThông tin tổ chức)
+    /// (Không liên kết Thông tin tổ chức)
     /// </summary>
     public class ISysEntity
     {

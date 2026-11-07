@@ -48,7 +48,7 @@ namespace Newtouch.CIS.Web.Controllers
 
         #region View
         /// <summary>
-        /// tâyyĐơn thuốc
+        /// tâyy Đơn thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult WMPrescription()
@@ -57,7 +57,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// trongyĐơn thuốc
+        /// trongy Đơn thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult TCMPrescription()
@@ -65,7 +65,7 @@ namespace Newtouch.CIS.Web.Controllers
             return View();
         }
         /// <summary>
-         /// trongyĐơn thuốc NEW
+         /// trongy Đơn thuốc NEW
          /// </summary>
          /// <returns></returns>
         public IActionResult TCMPrescription2022()
@@ -74,7 +74,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Phục hồi chức năngĐơn thuốc
+        /// Phục hồi chức năng Đơn thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult RehabPrescription()
@@ -83,7 +83,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Hạng mục thông thườngĐơn thuốc
+        /// Hạng mục thông thường Đơn thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult RegularItemPrescription()
@@ -115,8 +115,8 @@ namespace Newtouch.CIS.Web.Controllers
         {
             var treeList = new List<TreeViewModel>();
             var blList = _medicalRecordRepo.IQueryable().Where(a => a.blh == blh && a.zt == "1"&&a.OrganizeId==OrganizeId).Select(a => new { a.CreateTime, a.jzId }).ToList();
-            var historyPartList = blList.Where(p => p.jzId != jzId);    //elseKhám bệnh
-            var thisPart = blList.FirstOrDefault(p => p.jzId == jzId);  //bản lầnKhám bệnh
+            var historyPartList = blList.Where(p => p.jzId != jzId);    //else Khám bệnh
+            var thisPart = blList.FirstOrDefault(p => p.jzId == jzId);  //bản lần Khám bệnh
             if (thisPart == null)
             {
                 var ptreeItem = new TreeViewModel()
@@ -166,7 +166,7 @@ namespace Newtouch.CIS.Web.Controllers
             //nhấtmớicủaxếpởphía trên
             foreach (var rq in historyPartList.Select(p => p.CreateTime.ToString("yyyy-MM-dd")).Distinct().OrderByDescending(p => p))
             {
-                //Ngàydướicủatất cảHồ sơ
+                //Ngàydướicủatất cả Hồ sơ
                 var newId = Guid.NewGuid().ToString();
                 bool hasChildren = false;
 
@@ -195,7 +195,7 @@ namespace Newtouch.CIS.Web.Controllers
 
                 if (!hasChildren)
                 {
-                    continue;   //khôngHồ sơcủakhôngHiển thị
+                    continue;   //không Hồ sơcủakhông Hiển thị
                 }
                 var ptreeItem = new TreeViewModel()
                 {
@@ -224,7 +224,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Tra cứuSố đơn thuốc
+        /// Tra cứu Số đơn thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult GetNewPresNo()
@@ -234,7 +234,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// TheocfIdhoặccfmxIdStrTra cứuchi tiết
+        /// TheocfIdhoặccfmxIdStr Tra cứuchi tiết
         /// </summary>
         /// <param name="cflx"></param>
         /// <param name="cfId"></param>
@@ -247,7 +247,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Trích dẫnĐiều trịxâynghị
+        /// Trích dẫn Điều trịxâynghị
         /// </summary>
         /// <returns></returns>
         public IActionResult AddKfjyForm()
@@ -256,7 +256,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// kéolấyChờ khám bệnhĐiều trịxâynghịdanh sách
+        /// kéolấy Chờ khám bệnh Điều trịxâynghịdanh sách
         /// </summary>
         /// <param name="brlx"></param>
         /// <param name="mzzyh"></param>
@@ -273,7 +273,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// hơnTạo mớinghịcủachuyểnđổiTrạng thái
+        /// hơn Tạo mớinghịcủachuyểnđổi Trạng thái
         /// </summary>
         /// <param name="cvList"></param>
         /// <returns></returns>
@@ -286,9 +286,9 @@ namespace Newtouch.CIS.Web.Controllers
         /// <summary>
         /// Tần Hoàng Đảosổphiếugiao diện(nhắccung cấp cho HIS)
         /// </summary>
-        /// <param name="Opt">giao diệnLoại:lấyGiá trị:zd(sổphiếu)</param>
+        /// <param name="Opt">giao diện Loại:lấy Giá trị:zd(sổphiếu)</param>
         /// <param name="Brwym">bệnh ngườiduy nhấtmộtmã(bệnh ngườiởHIStrongcủaduy nhấtmộtmã,khônglàmSPcủatham sốdùng,chỉlàmhạt nhânđốidùng)</param>
-        /// <param name="Zdlx">sổphiếuLoại:00:dònghìnhmã01:Thuốc02:Kiểm tra03:Xét nghiệm04:Điều trịkhôngtruyềnnàychữđoạnthìQuay lạiTất cảsổphiếu(Đơn thuốc,LIS,PACS,Điều trị)</param>
+        /// <param name="Zdlx">sổphiếu Loại:00:dònghìnhmã01:Thuốc02:Kiểm tra03:Xét nghiệm04:Điều trịkhôngtruyềnnàychữđoạnthì Quay lại Tất cảsổphiếu(Đơn thuốc,LIS,PACS,Điều trị)</param>
         /// <param name="Brxz">Tính chất bệnh nhân</param>
         /// <param name="startDate">Thời gian bắt đầu</param>
         /// <param name="endDate">Thời gian kết thúc</param>
@@ -335,7 +335,7 @@ namespace Newtouch.CIS.Web.Controllers
 
 		#region Vật tư
 		/// <summary>
-		/// mởlậpvật tưMụcđôngkếtTồn khoSố lượng
+		/// mởlậpvật tư Mụcđôngkết Tồn kho Số lượng
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult Sumwzdj(string[] cfh)
@@ -349,7 +349,7 @@ namespace Newtouch.CIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// mởlậpvật tưMụcđôngkếtTồn khoSố lượng
+		/// mởlậpvật tư Mụcđôngkết Tồn kho Số lượng
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult ZUOFwzdj(string cfh)
@@ -388,7 +388,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Bảo hiểm y tếđiện tửĐơn thuốc
+        /// Bảo hiểm y tếđiện tử Đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <returns></returns>

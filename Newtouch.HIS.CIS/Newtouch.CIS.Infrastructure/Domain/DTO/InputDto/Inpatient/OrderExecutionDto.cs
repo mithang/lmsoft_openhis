@@ -53,7 +53,7 @@ namespace Newtouch.Domain.DTO.InputDto
         /// </summary>
         public string sjap { get; set; }
         /// <summary>
-        /// vàThực hiệnSố lượngtương ứng
+        /// và Thực hiện Số lượngtương ứng
         /// </summary>
         public int? pcmc { get; set; }
         /// <summary>
@@ -61,11 +61,11 @@ namespace Newtouch.Domain.DTO.InputDto
         /// </summary>
         public string yl { get; set; }
         /// <summary>
-        /// dùnglượngĐơn vị
+        /// dùnglượng Đơn vị
         /// </summary>
         public string yldw { get; set; }
         /// <summary>
-        /// Bác sĩMã nhân viên
+        /// Bác sĩ Mã nhân viên
         /// </summary>
         public string ysgh { get; set; }
         /// <summary>
@@ -77,7 +77,7 @@ namespace Newtouch.Domain.DTO.InputDto
         /// </summary>
         public DateTime jsrq { get; set; }
         /// <summary>
-        /// phát thuốcNhà thuốc
+        /// phát thuốc Nhà thuốc
         /// </summary>
         public string fyyf { get; set; }
         /// <summary>
@@ -113,7 +113,7 @@ namespace Newtouch.Domain.DTO.InputDto
         /// </summary>
         public string ksmc { get; set; }
         /// <summary>
-        /// Khu bệnhTên
+        /// Khu bệnh Tên
         /// </summary>
         public string bqmc { get; set; }
         /// <summary>
@@ -125,7 +125,7 @@ namespace Newtouch.Domain.DTO.InputDto
         /// </summary>
         public char fybz { get; set; }
         /// <summary>
-        /// Y lệnhThực hiệnĐăng ký người
+        /// Y lệnh Thực hiện Đăng ký người
         /// </summary>
         public string yzzxsqr { get; set; }
 
@@ -146,15 +146,15 @@ namespace Newtouch.Domain.DTO.InputDto
 
         }
         /// <summary>
-        /// làKhôngthành công
+        /// là Khôngthành công
         /// </summary>
         public bool IsSucceed { get; set; }
         /// <summary>
-        /// LỗiMã
+        /// Lỗi Mã
         /// </summary>
         public int ErrorCode { get; set; }
         /// <summary>
-        /// LỗiMô tả
+        /// Lỗi Mô tả
         /// </summary>
         public string ErrorMsg { get; set; }
         /// <summary>
@@ -174,7 +174,7 @@ public class FailYzDetail : OrderExecutionDto
     /// </summary>
     public string FailMsg { get; set; }
     /// <summary>
-    /// thất bạiMã
+    /// thất bại Mã
     /// </summary>
     public string FailCode { get; set; }
 }

@@ -161,7 +161,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(organizeId))
             {
-                organizeId = base.GetAuthOrganizeId();  //Mặc định QuyềnOrganizeId
+                organizeId = base.GetAuthOrganizeId();  //Mặc định Quyền OrganizeId
             }
             //Bộ nhớ đệmstart
             var organizedata = _sysOrganizeRepository.GetValidListByParentOrg(organizeId);
@@ -260,7 +260,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// LưuSys_UserStaff
+        /// Lưu Sys_UserStaff
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -315,7 +315,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// LưuSys_UserYfbm
+        /// Lưu Sys_UserYfbm
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="yfbmCode"></param>

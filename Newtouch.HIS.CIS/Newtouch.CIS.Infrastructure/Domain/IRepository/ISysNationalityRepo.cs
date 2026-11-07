@@ -7,7 +7,7 @@ namespace Newtouch.Domain.IRepository
     public interface ISysNationalityRepo : IRepositoryBase<SysNationalityVEntity>
     {
         /// <summary>
-        /// LấyHiệu lựcquốc tịch
+        /// Lấy Hiệu lựcquốc tịch
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -15,7 +15,7 @@ namespace Newtouch.Domain.IRepository
 
         IList<SysBrxzVEntity> GetBRXZList(string orgId);
         /// <summary>
-        /// hiệnkimPhương thức thanh toán
+        /// hiệnkim Phương thức thanh toán
         /// </summary>
         /// <returns></returns>
         IList<SysCashPaymenVEntity>  GetCashPay();

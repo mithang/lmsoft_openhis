@@ -30,7 +30,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
             HttpWebHelper.RemoveCookie(nLanguageTypeKey);
             if (!string.IsNullOrWhiteSpace(UserIdentity?.OrganizeId))
             {
-                //hiện tạiOrgtên(liên kếtStaff)
+                //hiện tại Orgtên(liên kết Staff)
                 ViewBag.OrgName = _organizeApp.GetNameByOrgId(this.UserIdentity.OrganizeId);
             }
             else
@@ -42,14 +42,14 @@ namespace NewtouchHIS.Framework.Web.Controllers
 
             //if (!this.UserIdentity.IsRoot && !this.UserIdentity.IsAdministrator)    //hằngtrue
             //{
-            //    //hiện tạiUserId tất cả những cái tương ứng cơ sở y tế List
+            //    //hiện tại UserId tất cả những cái tương ứng cơ sở y tế List
             //    var mediOrgList = _organizeApp.GetMedicalOrganizeListByUserId(this.UserIdentity.UserId);
 
             //    ViewBag.MediOrgList = mediOrgList;
 
             //    if (mediOrgList != null && mediOrgList.Count() > 1)
             //    {
-            //        //khi tải trang có bắt buộc phải chọn hay khôngOrg
+            //        //khi tải trang có bắt buộc phải chọn hay không Org
             //        var needChooseOrg = HttpWebHelper.GetCookie(_config.AppId + "_" + "CookieKey_ChooseOrg");
             //        ViewBag.NeedChooseOrg = !string.IsNullOrWhiteSpace(needChooseOrg);
             //    }

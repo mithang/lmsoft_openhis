@@ -37,7 +37,7 @@ namespace Newtouch.CIS.Web.Controllers
         #region View Chế độ xem
         // GET: OutpatientNurse
         /// <summary>
-        /// Test daThực hiệntrangmặt
+        /// Test da Thực hiệntrangmặt
         /// </summary>
         /// <returns></returns>
         public IActionResult PerformIndex()
@@ -55,7 +55,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Đơn thuốc ngoại trúTra cứu
+        /// Đơn thuốc ngoại trú Tra cứu
         /// </summary>
         /// <returns></returns>
         public IActionResult prescriptionquery()
@@ -65,7 +65,7 @@ namespace Newtouch.CIS.Web.Controllers
             return View();
         }
         /// <summary>
-        /// Ngoại trúgiữxemTra cứu
+        /// Ngoại trúgiữxem Tra cứu
         /// </summary>
         /// <returns></returns>
         public IActionResult observationQuery()
@@ -188,14 +188,14 @@ namespace Newtouch.CIS.Web.Controllers
             }
             else
             {
-                return Success("HủyThực hiệnthành công");
+                return Success("Hủy Thực hiệnthành công");
             }
         }
         #endregion
 
-        #region Ngoại trúBệnh ánIn
+        #region Ngoại trú Bệnh ánIn
         /// <summary>
-        /// LấyĐơn thuốc ngườiviênTra cứucây
+        /// Lấy Đơn thuốc ngườiviên Tra cứucây
         /// </summary>
         /// <returns></returns>
         public IActionResult GetPatcfTree(string keyword)

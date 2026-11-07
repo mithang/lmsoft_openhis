@@ -1562,7 +1562,7 @@ namespace NewtouchHIS.Lib.Redis
         #region   Phương thức đồng bộ
 
         /// <summary>
-        /// Xóa chỉ địnhKey
+        /// Xóa chỉ định Key
         /// </summary>
         /// <param name="redisKey">khóa</param>
         /// <returns>Kết quả trả về (true: nghĩa là thành công)</returns>
@@ -1615,7 +1615,7 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// Đổi tênKey
+        /// Đổi tên Key
         /// </summary>
         /// <param name="redisKey">Khóa ban đầu</param>
         /// <param name="redisNewKey">Tên khóa mới</param>

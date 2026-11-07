@@ -1628,7 +1628,7 @@ namespace Newtouch.DomainServices.Inpatient
 
         #endregion
 
-        #region Y lệnhTra cứu
+        #region Y lệnh Tra cứu
         public List<AdviceListGridVO> AdviceGridView(Pagination pagination, AdviceListRequestVO req)
         {
             if (req == null || req.zyh == null)

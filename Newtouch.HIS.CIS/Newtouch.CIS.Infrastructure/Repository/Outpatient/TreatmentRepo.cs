@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// đãKhám bệnh Khám bệnhtrong danh sách( đãKhám bệnh: chỉcó thểXemtựtựtêndướicủaBệnh nhân)
+        /// đã Khám bệnh Khám bệnhtrong danh sách( đã Khám bệnh: chỉcó thể Xemtựtựtêndướicủa Bệnh nhân)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -149,7 +149,7 @@ from [192.168.0.100].[bshrp].[dbo].[kk_1]
 		}
 		
 		/// <summary>
-		/// khôi phụclạiKhám bệnh
+		/// khôi phụclại Khám bệnh
 		/// </summary>
 		/// <param name="orgId"></param>
 		/// <param name="jzId"></param>
@@ -158,7 +158,7 @@ from [192.168.0.100].[bshrp].[dbo].[kk_1]
             var entity = this.FindEntity(a => a.jzId == jzId && a.OrganizeId == orgId && a.zt == "1");
             if (entity == null)
             {
-                throw new FailedException("chưaTra cứuđếnKhám bệnhghi chép，khôi phụclạiKhám bệnhthất bại");
+                throw new FailedException("chưa Tra cứuđến Khám bệnhghi chép，khôi phụclại Khám bệnhthất bại");
             }
             entity.jzzt = (int)EnumJzzt.Treating;
             entity.Modify();
@@ -206,7 +206,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
         }
 
         /// <summary>
-        ///SửaCmmPatId
+        ///Sửa CmmPatId
         /// </summary>
         /// <param name="cmmPatId"></param>
         /// <param name="jzId"></param>

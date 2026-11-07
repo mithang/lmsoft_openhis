@@ -15,7 +15,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.MRQC
         [StringLength(50, ErrorMessage = "OrganizeId giới hạn độ dài là 50")]
         public string? OrganizeId { get; set; }
         /// <summary>
-        /// Đăng kýKhoa
+        /// Đăng ký Khoa
         /// </summary>
         [Required(ErrorMessage = "ApplyDept không được để trống")]
         public string ApplyDept { get; set; }
@@ -35,12 +35,12 @@ namespace NewtouchHIS.Domain.InterfaceObjets.MRQC
         [Required(ErrorMessage = "PatName không được để trống")]
         public string PatName { get; set; }
         /// <summary>
-        /// Đăng kýBác sĩ
+        /// Đăng ký Bác sĩ
         /// </summary>
         [Required(ErrorMessage = "ApplyDoctor không được để trống")]
         public string ApplyDoctor { get; set; }
         /// <summary>
-        /// Đăng kýLoại 0:Lập bệnh án mới 1:Sửa bệnh án
+        /// Đăng ký Loại 0:Lập bệnh án mới 1:Sửa bệnh án
         /// </summary>
         [Required(ErrorMessage = "ApplyType không được để trống")]
         public int ApplyType { get; set; }
@@ -55,17 +55,17 @@ namespace NewtouchHIS.Domain.InterfaceObjets.MRQC
         [Required(ErrorMessage = "CompletionDate không được để trống")]
         public DateTime? CompletionDate { get; set; }
         /// <summary>
-        /// Đăng kýThời gian
+        /// Đăng ký Thời gian
         /// </summary>
         [Required(ErrorMessage = "ApplyDate không được để trống")]
         public DateTime? ApplyDate { get; set; }
         /// <summary>
-        /// Đăng kýThời gian hoàn thành
+        /// Đăng ký Thời gian hoàn thành
         /// </summary>
         [Required(ErrorMessage = "ApplyCompletionDate không được để trống")]
         public DateTime? ApplyCompletionDate { get; set; }
         /// <summary>
-        /// Đăng kýNguyên nhân
+        /// Đăng ký Nguyên nhân
         /// </summary>
         [Required(ErrorMessage = "ApplyReason không được để trống")]
         public string ApplyReason { get; set; }

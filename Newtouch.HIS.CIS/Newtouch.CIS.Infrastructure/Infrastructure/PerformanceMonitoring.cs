@@ -23,14 +23,14 @@ namespace Newtouch.Infrastructure
         public static void TimeConsuming<T>(Action<T> missingHandler, T request, string title, string message, Dictionary<string, string> tags = null)
         {
             var stopwatch = new Stopwatch();
-            stopwatch.Start();//  Bắt đầugiám sátxemMãvận hànhdòngThời gian
+            stopwatch.Start();//  Bắt đầugiám sátxem Mãvận hànhdòng Thời gian
             missingHandler.Invoke(request);//Mãchínhthể
             stopwatch.Stop();//  Dừnggiám sátxem
             LogCore.Info(string.Format("Title:{0};\n message:{1} Phương pháptiêu haokhi-{2}", title, message, stopwatch.Elapsed.TotalMilliseconds), message, tags);//ghi chépngàychí
         }
 
         /// <summary>
-        /// Mãvận hànhdòngThời gian
+        /// Mãvận hànhdòng Thời gian
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="missingHandler"></param>
@@ -41,7 +41,7 @@ namespace Newtouch.Infrastructure
         public static T Running<T>(Func<T> missingHandler, string title, string message, Dictionary<string, string> tags = null)
         {
             var stopwatch = new Stopwatch();
-            stopwatch.Start();//  Bắt đầugiám sátxemMãvận hànhdòngThời gian
+            stopwatch.Start();//  Bắt đầugiám sátxem Mãvận hànhdòng Thời gian
             dynamic value = missingHandler.Invoke();//Mãchínhthể
             stopwatch.Stop();//  Dừnggiám sátxem
             LogCore.Info(string.Format("Title:{0};\n message:{1} Phương pháptiêu haokhi-{2}", title, message, stopwatch.Elapsed.TotalMilliseconds), message, tags);//ghi chépngàychí
@@ -49,7 +49,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// phụcGiám sát nghiệp vụ
+        /// phục Giám sát nghiệp vụ
         /// </summary>
         /// <typeparam name="TRequest"></typeparam>
         /// <typeparam name="TResponse"></typeparam>
@@ -79,7 +79,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// phụcGiám sát nghiệp vụ
+        /// phục Giám sát nghiệp vụ
         /// </summary>
         /// <typeparam name="TRequest"></typeparam>
         /// <param name="action"></param>

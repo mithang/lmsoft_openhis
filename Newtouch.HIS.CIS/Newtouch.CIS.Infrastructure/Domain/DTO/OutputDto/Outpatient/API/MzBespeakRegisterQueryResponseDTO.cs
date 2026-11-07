@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// Ngoại trúđặt hẹnTra cứuQuay lạibáovăn
+    /// Ngoại trúđặt hẹn Tra cứu Quay lạibáovăn
     /// </summary>
     public class MzBespeakRegisterQueryResponseDTO
     {
@@ -13,7 +13,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string mzyyghId { get; set; }
         
         /// <summary>
-        /// chứngmụcLoại
+        /// chứngmục Loại
         /// </summary>
         public int? zjlx { get; set; }
 
@@ -28,22 +28,22 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string blh { get; set; }
         
         /// <summary>
-        /// Dấu hiệu ngoại trú/nội trú 1:thông thườngNgoại trú  2:gấpkhám   3:chuyên giaNgoại trú
+        /// Dấu hiệu ngoại trú/nội trú 1:thông thường Ngoại trú  2:gấpkhám   3:chuyên gia Ngoại trú
         /// </summary>
         public string mzlx { get; set; }
 
         /// <summary>
-        /// đăng ký khámNgày
+        /// đăng ký khám Ngày
         /// </summary>
         public DateTime regDate { get; set; }
 
         /// <summary>
-        /// đăng ký khámThời gian
+        /// đăng ký khám Thời gian
         /// </summary>
         public string regTime { get; set; }
 
         /// <summary>
-        /// KhoaMã
+        /// Khoa Mã
         /// </summary>
         public string ksCode { get; set; }
 
@@ -53,12 +53,12 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string ksmc { get; set; }
 
         /// <summary>
-        /// Bác sĩMã nhân viên
+        /// Bác sĩ Mã nhân viên
         /// </summary>
         public string ysgh { get; set; }
 
         /// <summary>
-        /// Bác sĩTên
+        /// Bác sĩ Tên
         /// </summary>
         public string ysmc { get; set; }
 
@@ -83,12 +83,12 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string arrivalOpereater { get; set; }
 
         /// <summary>
-        /// đặt hẹnThao tácThời gian
+        /// đặt hẹn Thao tác Thời gian
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// đặt hẹnThao tác ngườiviên
+        /// đặt hẹn Thao tác ngườiviên
         /// </summary>
         public string CreatorCode { get; set; }
     }

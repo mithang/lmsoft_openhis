@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.IRepository
         /// <returns></returns>
         IList<SysMedicineAntibioticTypeEntity> GetValidListByOrg(string OrganizeId, string Level, string parentId);
         /// <summary>
-        /// Theo tổ chức,Cấp trênId,Lấy danh sách phân loại kháng sinh
+        /// Theo tổ chức,Cấp trên Id,Lấy danh sách phân loại kháng sinh
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="parentId"></param>

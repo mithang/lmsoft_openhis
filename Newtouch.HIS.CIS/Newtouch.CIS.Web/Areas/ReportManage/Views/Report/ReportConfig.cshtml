@@ -51,15 +51,15 @@
                 { label: "Khóa chính", name: "Id", hidden: true, key: true },
                 //{ label: "Hiệu lực", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
                 { label: 'Tên', name: 'RptName', width: 200, align: 'left' },
-                { label: 'Báo cáoDịch vụĐịa chỉ', name: 'RptHost', width: 150, align: 'left' },
-                { label: 'Báo cáoĐịa chỉ', name: 'RptUrl', width: 200, align: 'left' },
+                { label: 'Báo cáo Dịch vụ Địa chỉ', name: 'RptHost', width: 150, align: 'left' },
+                { label: 'Báo cáo Địa chỉ', name: 'RptUrl', width: 200, align: 'left' },
                 { label: 'Nguồn dữ liệu', name: 'RptSource', width: 100, align: 'left' },
                 { label: 'Tham số', name: 'Paras', width: 200, align: 'left' },
                 //{ label: 'côngcụ thểcột', name: 'Tools', width: 100, align: 'left' },
                 { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
                 { label: 'Thời gian tạo', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: 'Cuối cùngSửa', name: 'LastModifierCode', width: 100, align: 'left' },
-                { label: 'Cuối cùngSửaThời gian', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Cuối cùng Sửa', name: 'LastModifierCode', width: 100, align: 'left' },
+                { label: 'Cuối cùng Sửa Thời gian', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
             ],
             pager: "#gridPager",
             sortname: 'RptName desc',
@@ -81,7 +81,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "ThêmBáo cáo",
+            title: "Thêm Báo cáo",
             url: "/ReportManage/Report/ReportConfigForm",
             width: "650px",
             height: "600px",
@@ -103,7 +103,7 @@
         }
         $.modalOpen({
             id: "Form",
-            title: "SửaBáo cáoCấu hình",
+            title: "Sửa Báo cáo Cấu hình",
             url: "/ReportManage/Report/ReportConfigForm?keyValue=" + keyValue,
             width: "650px",
             height: "600px",

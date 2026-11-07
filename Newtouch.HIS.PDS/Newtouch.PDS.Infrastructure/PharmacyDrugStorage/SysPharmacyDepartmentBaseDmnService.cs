@@ -204,7 +204,7 @@ where yfbmId=@yfbmId");
         }
 
         /// <summary>
-        /// LấyUserIdđã liên kết hiện tạiyfbmCode (Không gồm tổ chức con)
+        /// Lấy UserIdđã liên kết hiện tạiyfbmCode (Không gồm tổ chức con)
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

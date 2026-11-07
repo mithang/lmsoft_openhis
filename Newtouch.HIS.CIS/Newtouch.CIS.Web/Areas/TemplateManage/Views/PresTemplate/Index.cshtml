@@ -15,7 +15,7 @@
         <table class="form">
             <tr>
                 <td class="formValue">
-                    <input id="mbKeyword" type="text" class="form-control" placeholder="Nhập mẫuTên/Nhập mã rút gọn rồi nhấn Enter" />
+                    <input id="mbKeyword" type="text" class="form-control" placeholder="Nhập mẫu Tên/Nhập mã rút gọn rồi nhấn Enter" />
                 </td>
             </tr>
         </table>
@@ -62,10 +62,10 @@
                     return;
                 }
                 if (item.value == '@Html.Raw(((int)@EnumCflx.RehabPres).ToString())') {   //Phục hồi chức năng
-                    $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/PresTemplate/RehabForm?mbId=" + item.Ex1);  //item.Ex1làmẫuId
+                    $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/PresTemplate/RehabForm?mbId=" + item.Ex1);  //item.Ex1làmẫu Id
                 }
                 if (item.value == '@Html.Raw(((int)@EnumCflx.RegularItemPres).ToString())') {   //Hạng mục thông thường
-                    $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/PresTemplate/RegularItemForm?mbId=" + item.Ex1);  //item.Ex1làmẫuId
+                    $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/PresTemplate/RegularItemForm?mbId=" + item.Ex1);  //item.Ex1làmẫu Id
                 }
                 else if (item.value == '@Html.Raw(((int)@EnumCflx.WMPres).ToString())') {   //Thuốc Tây
                     $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/PresTemplate/WMForm?mbId=" + item.Ex1);

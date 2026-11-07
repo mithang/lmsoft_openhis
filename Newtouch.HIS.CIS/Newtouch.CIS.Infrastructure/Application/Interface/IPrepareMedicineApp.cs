@@ -13,21 +13,21 @@ namespace Newtouch.Application.Interface
     public interface IPrepareMedicineApp
     {
         /// <summary>
-        /// Theolãi lỗLoạiLấynguyên nhân lãi lỗ
+        /// Theolãi lỗ Loại Lấynguyên nhân lãi lỗ
         /// </summary>
         /// <param name="sylx"></param>
         /// <returns></returns>
         List<SysMedicineProfitLossReasonEntity> GetLossProfitReasonListByType(string sylx);
 
         /// <summary>
-        /// Tra cứulãi lỗThuốclist
+        /// Tra cứulãi lỗ Thuốclist
         /// </summary>
         /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>
         List<ReportLossAndProfitMedicineInfoVO> SelectLossAndProfitMedicineList(string inputCode);
 
         /// <summary>
-        /// GửiBáo hỏngbáo thừa
+        /// Gửi Báo hỏngbáo thừa
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ namespace Newtouch.Application.Interface
         //void SaveReportLossAndProfit(List<SysMedicineProfitLossEntity> profitLossEntityList);
 
         /// <summary>
-        /// Báo hỏngbáo thừaTra cứu
+        /// Báo hỏngbáo thừa Tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -52,7 +52,7 @@ namespace Newtouch.Application.Interface
         IList<LossAndProditInfoVO> SelectLossAndProditInfoList(Pagination pagination, string startTime, string endTime, string inputCode, string syyy, int syqk);
 
         /// <summary>
-        /// Giá bán buônTổng số tiền,Giá bán lẻTổng số tiềnTra cứu
+        /// Giá bán buôn Tổng số tiền,Giá bán lẻ Tổng số tiền Tra cứu
         /// </summary>
         /// <param name="startTime">Thời gian bắt đầu</param>
         /// <param name="endTime">Thời gian kết thúc</param>

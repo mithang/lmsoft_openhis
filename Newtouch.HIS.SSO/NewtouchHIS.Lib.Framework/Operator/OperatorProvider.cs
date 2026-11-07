@@ -13,7 +13,7 @@ namespace NewtouchHIS.Lib.Framework.Operator
     public class OperatorProvider
     {
         /// <summary>
-        /// ứng dụngId(trongconfigcấu hình AppId)
+        /// ứng dụng Id(trongconfigcấu hình AppId)
         /// </summary>
         public static string _appId { get; private set; }
 
@@ -21,12 +21,12 @@ namespace NewtouchHIS.Lib.Framework.Operator
         private static string _loginUserKeyPart1 = "newtouch_loginuserkey_2016";
 
         /// <summary>
-        /// liên kếtkey,keycó thể đổi nhómModel
+        /// liên kếtkey,keycó thể đổi nhóm Model
         /// </summary>
         private static string _loginUserKey = _loginUserKeyPart1;
 
         /// <summary>
-        /// lắp ráp cục bộCookiecủa
+        /// lắp ráp cục bộ Cookiecủa
         /// </summary>
         public static string LocalhostCookieKey
         {
@@ -261,7 +261,7 @@ namespace NewtouchHIS.Lib.Framework.Operator
                 return;     //được coi là không hợp lệ danh tính
             }
 
-            //tokentương ứng trực tiếpUserInfo Model
+            //tokentương ứng trực tiếp UserInfo Model
             var token = Guid.NewGuid().ToString();
 
             if (string.IsNullOrWhiteSpace(operatorModel.token))
@@ -273,7 +273,7 @@ namespace NewtouchHIS.Lib.Framework.Operator
             {
                 //đã vô hiệu hóa đăng nhập nhiều nơi
 
-                //ứng dụng+UserId+tài khoản đăng nhập duy nhất người dùng đó của hệ thống,những cái đã đăng nhậpTokenList
+                //ứng dụng+UserId+tài khoản đăng nhập duy nhất người dùng đó của hệ thống,những cái đã đăng nhập TokenList
                 var keyUserTokenList = string.Format("list:Token_WithUser_{0}_{1}_{2}"
                     , _appId, operatorModel.UserId, operatorModel.UserCode);
                 var existTokenList = RedisHelper.GetList<string>(keyUserTokenList)
@@ -316,7 +316,7 @@ namespace NewtouchHIS.Lib.Framework.Operator
                     }
                     if (existTokenList.Count > limitCount + 20)
                     {
-                        //sau khi bị đẩy ra không cóGetCurrent,thao tác thoát. dẫn đếnexistTokenListkhông thểRemoveAt
+                        //sau khi bị đẩy ra không có GetCurrent,thao tác thoát. dẫn đếnexistTokenListkhông thể RemoveAt
                         //existTokenList.RemoveRange(5, limitCount + 20 - 5);  //xóa những cái phía trước(lần đăng nhập mới nhất bịreverseđã lên phía trước)
                         existTokenList.RemoveRange(limitCount, 20 - 1);  //xóa những cái phía trước(lần đăng nhập mới nhất bịreverseđã lên phía trước)
                     }
@@ -383,7 +383,7 @@ namespace NewtouchHIS.Lib.Framework.Operator
         }
 
         /// <summary>
-        /// lấy ... của mã thông báo danh tính hiện tạiKey
+        /// lấy ... của mã thông báo danh tính hiện tại Key
         /// </summary>
         /// <returns></returns>
         public static string? GetCurrentToken()

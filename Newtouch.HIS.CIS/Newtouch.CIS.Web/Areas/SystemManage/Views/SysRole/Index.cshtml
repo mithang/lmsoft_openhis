@@ -20,7 +20,7 @@
             <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_users()"><i class="fa fa-pencil-square-o"></i>Vai tròNgười dùng</a>
+            <a class="btn btn-primary" onclick="btn_users()"><i class="fa fa-pencil-square-o"></i>Vai trò Người dùng</a>
         </div>
     </div>
     <div class="search">
@@ -63,8 +63,8 @@
                 { label: 'Sắp xếp', name: 'px', width: 40, align: 'left' },
                 { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
                 { label: 'Thời gian tạo', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: 'Cuối cùngSửa', name: 'LastModifierCode', width: 100, align: 'left' },
-                { label: 'Cuối cùngSửaThời gian', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Cuối cùng Sửa', name: 'LastModifierCode', width: 100, align: 'left' },
+                { label: 'Cuối cùng Sửa Thời gian', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
             ],
             pager: "#gridPager",
             sortname: 'CreateTime desc',
@@ -86,7 +86,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "Thêm mớiVai trò",
+            title: "Thêm mới Vai trò",
             url: "/SystemManage/SysRole/Form?orgId=" + $('#OrganizeId').val(),
             width: "550px",
             height: "535px",
@@ -102,7 +102,7 @@
         }
         $.modalOpen({
             id: "Form",
-            title: "SửaVai trò",
+            title: "Sửa Vai trò",
             url: "/SystemManage/SysRole/Form?keyValue=" + keyValue,
             width: "550px",
             height: "535px",
@@ -132,7 +132,7 @@
         }
         $.modalOpen({
             id: "FormRoleUsers",
-            title: "Vai tròNgười dùng",
+            title: "Vai trò Người dùng",
             url: "/SystemManage/SysUser/Selector?from=rolerelatioinuser&callbackType=json&keyValue=" + keyValue + "&isContansChildOrg=false&organizeId=" + $('#OrganizeId').val(),
             width: "650px",
             height: "570px",
@@ -144,7 +144,7 @@
         });
     }
 
-    //Người dùng ngườiviêncâyvềgọiPhương pháp
+    //Người dùng ngườiviêncâyvềgọi Phương pháp
     function userStaffTreeCallback(data) {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {

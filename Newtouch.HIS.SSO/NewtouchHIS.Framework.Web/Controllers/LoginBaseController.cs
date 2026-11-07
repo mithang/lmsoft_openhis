@@ -26,7 +26,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         /// </summary>
         public virtual IActionResult Index()
         {
-            //ghi vào máy kháchId
+            //ghi vào máy khách Id
             HttpWebHelper.WriteCookie(ConfigInitHelper.SysConfig.AppId + "_ClientId", Guid.NewGuid().ToString("N").ToLower());
 
             //có cần mã xác minh hay không

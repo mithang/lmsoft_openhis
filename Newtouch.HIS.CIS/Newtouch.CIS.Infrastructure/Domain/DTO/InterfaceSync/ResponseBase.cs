@@ -16,15 +16,15 @@ namespace Newtouch.Domain.DTO.InterfaceSync
         public string msg { get; set; }
         //
         // háicần:
-        //     nghiệp vụQuay lạimã
+        //     nghiệp vụ Quay lạimã
         public string sub_code { get; set; }
         //
         // háicần:
-        //     nghiệp vụQuay lạimãMô tả
+        //     nghiệp vụ Quay lạimã Mô tả
         public string sub_msg { get; set; }
         //
         // háicần:
-        //     hưởngứngDữ liệu(ResponseResultCode.SUCCESS khi của Quay lạiDữ liệu)
+        //     hưởngứng Dữ liệu(ResponseResultCode.SUCCESS khi của Quay lại Dữ liệu)
         public object data { get; set; }
         public int rowcount { get; set; }
     }

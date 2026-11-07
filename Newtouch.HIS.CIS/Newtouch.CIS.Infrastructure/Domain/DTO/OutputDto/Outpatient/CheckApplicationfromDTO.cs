@@ -13,7 +13,7 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient
     }
     public class RequestHost
     {
-        //Cơ sởMã  Y
+        //Cơ sở Mã  Y
         public string MedNo { get; set; }
         //Tên cơ sở  Y
         public string MedName { get; set; }
@@ -21,7 +21,7 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient
     }
     public class Patient
     {
-        //cư dânHọ tên Y
+        //cư dân Họ tên Y
         public string Name { get; set; }
         //Giới tính  Nam/Nữ Y
         public string Gender { get; set; }
@@ -33,7 +33,7 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient
         public string WardNo { get; set; }
         //giường ký tựsố
         public string BedNo { get; set; }
-        //bệnh nhânSố thẻ  Y
+        //bệnh nhân Số thẻ  Y
         public string CardID { get; set; }
 
         public Request Request;
@@ -44,41 +44,41 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient
         public string Reqno { get; set; }
         //Ngày đăng ký  Y
         public DateTime? Indate { get; set; }
-        //Bác sĩ đăng kýMã nhân viên
+        //Bác sĩ đăng ký Mã nhân viên
         public string DoctorID { get; set; }
-        // Bác sĩ đăng kýHọ tên
+        // Bác sĩ đăng ký Họ tên
         public string DoctorName { get; set; }
         // Bác sĩ đăng ký CMND/CCCD
         public string DoctorIdCard { get; set; }
-        // Khám bệnhghi chépMã  Y Ngoại trú,Nhập viện,thểkiểm trasố
+        // Khám bệnhghi chép Mã  Y Ngoại trú,Nhập viện,thểkiểm trasố
         public string RecordID { get; set; }
         //đếnnguồn   Y Ngoại trú MagQ700001   Nhập viện MagQ700002  thểkiểm tra MagQ700003
         public string Source { get; set; }
-        //Hình ảnhbáo cáoLoại
+        //Hình ảnhbáo cáo Loại
         public string Pic { get; set; }
-        //báo cáochi tiếtLoại  Y
+        //báo cáochi tiết Loại  Y
         public string PicDetail { get; set; }
-        //PhiếuTên
+        //Phiếu Tên
         public string ApplyName { get; set; }
         //Vị trí:Phương pháp
         public string BodyPart { get; set; }
         //thứ tựsố
         public int? WhichNo { get; set; }
-        // Cờ hiệu lực ký tự  N/Y,N biểu thịHủy
+        // Cờ hiệu lực ký tự  N/Y,N biểu thị Hủy
         public string IsVaild { get; set; }
-        //làKhôngđãquaThu phí
+        //là Khôngđãqua Thu phí
         public string IsCharge { get; set; }
-        //Thu phíNgày
+        //Thu phí Ngày
         public DateTime? ChargeDate { get; set; }
         //nghiệp vụphiếusố phiếu
         public string InvoiceID { get; set; }
-        //HủyNgày
+        //Hủy Ngày
         public DateTime? CancelDate { get; set; }
         //Ghi chú
         public string Comment { get; set; }
-        //Khoa đăng kýMã Y
+        //Khoa đăng ký Mã Y
         public string ApplyDepartmentCode { get; set; }
-        //Khoa đăng kýTên Y
+        //Khoa đăng ký Tên Y
         public string ApplyDepartmentName { get; set; }
         // Tên chẩn đoán lâm sàng
         public string DiagnoseName { get; set; }
@@ -107,27 +107,27 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient
 
     public class CheckfromDTO
     {
-        // Khám bệnhghi chépMã  Y Ngoại trú,Nhập viện,thểkiểm trasố
+        // Khám bệnhghi chép Mã  Y Ngoại trú,Nhập viện,thểkiểm trasố
         public string RecordID { get; set; }
-        //PhiếuTên
+        //Phiếu Tên
         public string ApplyName { get; set; }
         //Số phiếu  Y
         public string Reqno { get; set; }
         //Ngày đăng ký  Y
         public DateTime? Indate { get; set; }
-        //Bác sĩ đăng kýMã nhân viên
+        //Bác sĩ đăng ký Mã nhân viên
         public string DoctorID { get; set; }
-        // Bác sĩ đăng kýHọ tên
+        // Bác sĩ đăng ký Họ tên
         public string DoctorName { get; set; }
-        //Khoa đăng kýMã Y
+        //Khoa đăng ký Mã Y
         public string ApplyDepartmentCode { get; set; }
-        //Khoa đăng kýTên Y
+        //Khoa đăng ký Tên Y
         public string ApplyDepartmentName { get; set; }
         // Khu bệnhsố
         public string WardNo { get; set; }
         //giường ký tựsố
         public string BedNo { get; set; }
-        //bệnh nhânSố thẻ  Y
+        //bệnh nhân Số thẻ  Y
         public string CardID { get; set; }
         //Phiếuchi tiếtsố  Y
         public string Seqno { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.DTO.InputDto
 {
     /// <summary>
-    /// Kiểm kêĐiều kiện tìm kiếm
+    /// Kiểm kê Điều kiện tìm kiếm
     /// </summary>
     public class InventorySearchDTO
     {
@@ -17,17 +17,17 @@ namespace Newtouch.Domain.DTO.InputDto
         public long pdId { get; set; }
 
         /// <summary>
-        /// Kiểm kêThời gian
+        /// Kiểm kê Thời gian
         /// </summary>
         public string pdsj { get; set; }
 
         /// <summary>
-        /// Từ khóa  vật tưTên/Pinyin
+        /// Từ khóa  vật tư Tên/Pinyin
         /// </summary>
         public string keyWord { get; set; }
 
         /// <summary>
-        /// vật tưTrạng thái 0:Vô hiệu  1:Hiệu lực
+        /// vật tư Trạng thái 0:Vô hiệu  1:Hiệu lực
         /// </summary>
         public string wzzt { get; set; }
 
@@ -37,14 +37,14 @@ namespace Newtouch.Domain.DTO.InputDto
         public string lb { get; set; }
 
         /// <summary>
-        /// Tồn khoHiển thị -1hoặctrống:Tất cả
+        /// Tồn kho Hiển thị -1hoặctrống:Tất cả
         /// </summary>
         public int kcxs { get; set; }
 
     }
 
     /// <summary>
-    /// LưuKiểm kê
+    /// Lưu Kiểm kê
     /// </summary>
     public class SaveInventoryDTO
     {
@@ -59,7 +59,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public string productId { get; set; }
 
         /// <summary>
-        /// thực tếSố lượng
+        /// thực tế Số lượng
         /// </summary>
         public int sjsl { get; set; }
     }

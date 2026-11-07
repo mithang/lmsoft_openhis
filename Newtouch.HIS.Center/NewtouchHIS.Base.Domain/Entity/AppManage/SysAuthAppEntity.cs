@@ -20,7 +20,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string AuthId { get; set; }
 
         /// <summary>
-        /// Desc:Dùng chung cho ứng dụngId
+        /// Desc:Dùng chung cho ứng dụng Id
         /// Default:
         /// Nullable:False
         /// </summary>           

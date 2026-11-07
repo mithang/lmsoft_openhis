@@ -40,7 +40,7 @@ where a.UserId = @userId and a.zt = '1' and c.zt = '1'";
         }
 
         /// <summary>
-        /// LấyUserId TheoRoleId
+        /// Lấy UserId TheoRoleId
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>

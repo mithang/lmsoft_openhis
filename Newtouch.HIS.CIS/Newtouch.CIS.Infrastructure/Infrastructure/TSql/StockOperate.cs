@@ -6,7 +6,7 @@ namespace Newtouch.Infrastructure.TSql
     public class StockOperate
     {
         /// <summary>
-        /// giảmTồn kho khôngcầnRã đông
+        /// giảm Tồn kho khôngcần Rã đông
         /// </summary>
         public const string just_subtract_kcsl = @"
 BEGIN TRANSACTION
@@ -79,7 +79,7 @@ BEGIN CATCH
 END CATCH
 ";
         /// <summary>
-        /// chỉđôngkếtTồn kho
+        /// chỉđôngkết Tồn kho
         /// </summary>
         public const string just_frozen_kcsl = @"
 BEGIN TRANSACTION
@@ -138,13 +138,13 @@ END CATCH
 ";
 
         /// <summary>
-        /// giảmđôngkếtvàkhấuTồn kho  Bình thườngdùng làmPhê duyệtthông qua
+        /// giảmđôngkếtvàkhấu Tồn kho  Bình thườngdùng làm Phê duyệtthông qua
         /// </summary>
         public const string subtract_freeze_and_kcsl = @"
 BEGIN TRANSACTION
 BEGIN TRY
 	DECLARE @kcsl INT; --Tồn kho hiện tại
-	DECLARE @djsl INT; --hiện tạiđôngkếtTồn kho
+	DECLARE @djsl INT; --hiện tạiđôngkết Tồn kho
 	SELECT @kcsl=ISNULL(SUM(kcsl),0), @djsl=ISNULL(SUM(djsl),0)
 	FROM dbo.Dept_kcxx 
 	WHERE productId=@proId AND pc=@pc AND ph=@ph AND OrganizeId=@OrganizeId AND zt='1' AND ks=@warehouseId AND djsl>0 AND kcsl>0
@@ -212,7 +212,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// chỉRã đông
+        /// chỉ Rã đông
         /// </summary>
         public const string just_unfreeze = @"
 BEGIN TRANSACTION
@@ -241,7 +241,7 @@ BEGIN TRY
 	SELECT Id, djsl INTO #allkcxx FROM dbo.Dept_kcxx 
 	WHERE productId=@proId AND ks=@warehouseId AND OrganizeId=@OrganizeId AND pc=@pc AND ph=@ph AND zt='1' AND djsl>0
 		
-	DECLARE @djsl INT; --hiện tạiđôngkếtSố lượng
+	DECLARE @djsl INT; --hiện tạiđôngkết Số lượng
 	DECLARE @kcId VARCHAR(50); --Tồn kho hiện tạiID
 	DECLARE @sysl INT; --Số lượng còn lại
 	SET @sysl=@sl; 
@@ -273,7 +273,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// Hủy bỏ  giảmTồn kho
+        /// Hủy bỏ  giảm Tồn kho
         /// </summary>
         public const string cancel_subtract_kcsl = @"
 BEGIN TRANSACTION
@@ -290,7 +290,7 @@ BEGIN TRY
 	WHERE pc=@pc AND ph=@ph AND OrganizeId=@OrganizeId AND ks=@warehouseId AND productId=@proId AND zt=@zt
 	IF @totalDjsl>0  
 	BEGIN
-		-- cóđôngkếtMô tảđangởbịsử dụng，hủy bỏcó thểhướnggâysaukỳkhấuTồn khoTồn kho không đủ
+		-- cóđôngkếtMô tảđangởbịsử dụng，hủy bỏcó thểhướnggâysaukỳkhấu Tồn kho Tồn kho không đủ
 		SELECT 'Lô này còn tồn kho đóng băng, không thể hủy bỏ';
 		ROLLBACK TRANSACTION;
 		RETURN;

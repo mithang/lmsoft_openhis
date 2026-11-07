@@ -8,7 +8,7 @@ namespace NewtouchHIS.Lib.Base
         /// <summary>
         /// Lấy luồng byte của hình ảnh mã xác minh ngẫu nhiên (và ghi mã xác minh vào Session)
         /// </summary>
-        /// <param name="chkCode">outMã xác minh</param>
+        /// <param name="chkCode">out Mã xác minh</param>
         /// <returns></returns>
         public byte[] GetVerifyCode(out string chkCode)
         {

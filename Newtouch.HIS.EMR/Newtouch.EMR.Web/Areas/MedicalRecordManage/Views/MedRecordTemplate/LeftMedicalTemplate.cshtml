@@ -87,7 +87,7 @@
     function initrightMenu(rowData) {
        var p = '.gridPanel tr[id=' + rowData.Id + ']';
         var menu = new BootstrapMenu(p, {
-            //fetchElementDataLấy siêu dữ liệu
+            //fetchElementData Lấy siêu dữ liệu
             fetchElementData: function ($rowElem) {
                 var data = rowData;
                 return data;    //mục đích của return là truyền tham số cho onClick bên dưới

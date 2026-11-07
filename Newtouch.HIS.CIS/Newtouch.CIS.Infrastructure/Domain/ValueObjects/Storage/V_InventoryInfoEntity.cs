@@ -12,7 +12,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
     public class VInventoryInfoEntity
     {
         /// <summary>
-        /// vật tưTên
+        /// vật tư Tên
         /// </summary>
         public string wzmc { get; set; }
 
@@ -22,7 +22,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string gg { get; set; }
 
         /// <summary>
-        /// lýluậnsố(mangĐơn vị)
+        /// lýluậnsố(mang Đơn vị)
         /// </summary>
         public string llsl { get; set; }
         
@@ -32,17 +32,17 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string productId { get; set; }
 
         /// <summary>
-        /// Khoa phòngĐơn vịSố lượng
+        /// Khoa phòng Đơn vị Số lượng
         /// </summary>
         public int deptSjsl { get; set; }
 
         /// <summary>
-        /// Khoa phòngĐơn vị
+        /// Khoa phòng Đơn vị
         /// </summary>
         public string deptdw { get; set; }
 
         /// <summary>
-        /// Đơn vị nhỏ nhấtSố lượng
+        /// Đơn vị nhỏ nhất Số lượng
         /// </summary>
         public int minSjsl { get; set; }
 
@@ -72,7 +72,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// khôngbánĐơn giá
+        /// khôngbán Đơn giá
         /// </summary>
         public decimal lsj { get; set; }
 
@@ -97,7 +97,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public long pdmxId { get; set; }
         
         /// <summary>
-        /// Kiểm kêThời gian tạo
+        /// Kiểm kê Thời gian tạo
         /// </summary>
         public DateTime? CreateTime { get; set; }
     }

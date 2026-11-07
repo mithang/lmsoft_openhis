@@ -20,7 +20,7 @@ namespace Newtouch.PDS.Requset
         public int patid { get; set; }
 
         /// <summary>
-        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
+        /// Tổ chức Id(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 

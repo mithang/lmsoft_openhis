@@ -32,7 +32,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             this._inpatientBedBaseChargeItemRepo = inpatientBedBaseChargeItemRepo;
         }
         /// <summary>
-        /// đợicấpChi phídanh sách
+        /// đợicấp Chi phídanh sách
         /// </summary>
         /// <param name="aa"></param>
         /// <returns></returns>

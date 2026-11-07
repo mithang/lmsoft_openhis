@@ -9,7 +9,7 @@ using Newtouch.Domain.IDomainServices;
 namespace Newtouch.DomainServices
 {
     /// <summary>
-    /// đẩyThuốc Đông ythông tin
+    /// đẩy Thuốc Đông ythông tin
     /// </summary>
     public class CmmHis02RecordDmnService : DmnServiceBase, ICmmHis02RecordDmnService
     {
@@ -18,7 +18,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// LấychưaĐồng bộ của thuốc
+        /// Lấychưa Đồng bộ của thuốc
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="dlType"></param>
@@ -48,7 +48,7 @@ AND yp.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// LấychưaĐồng bộ của thuốc
+        /// Lấychưa Đồng bộ của thuốc
         /// </summary>
         /// <param name="topSize">Một lầnyêu cầutổngdòngsố</param>
         /// <param name="organizeId"></param>
@@ -78,7 +78,7 @@ AND yp.OrganizeId=@OrganizeId ", topSize);
         }
 
         /// <summary>
-        /// LấyĐồng bộthất bại của thuốc
+        /// Lấy Đồng bộthất bại của thuốc
         /// </summary>
         /// <param name="organizeId"></param>
         /// <returns></returns>

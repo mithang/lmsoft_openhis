@@ -18,13 +18,13 @@ namespace NewtouchHIS.Base.Domain.Organize
         /// <returns></returns>
         Task<PageResponseRow<List<SysUserVO>>> GetPagintionUserList(OLPagination<QueryParamsBase> request, string orgId);
         /// <summary>
-        /// TheoOrganizeIdLấy Nhân viên hệ thống VO(và có tương ứngSysUser)
+        /// Theo OrganizeId Lấy Nhân viên hệ thống VO(và có tương ứng SysUser)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         Task<List<SysUserStaffVO>> GetSatffVOListByOrg(string orgId, string? toporgId);
         /// <summary>
-        /// Tổ chứcCây người dùng(Nhóm theo khoa)
+        /// Tổ chức Cây người dùng(Nhóm theo khoa)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>

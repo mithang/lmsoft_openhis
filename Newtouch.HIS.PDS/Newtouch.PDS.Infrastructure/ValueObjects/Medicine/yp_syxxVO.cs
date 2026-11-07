@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public DateTime? Yxq { get; set; }
 
         /// <summary>
-        /// Giá trị mặc địnhGetdate()
+        /// Giá trị mặc định Getdate()
         /// </summary>
         public DateTime Bgsj { get; set; }
 

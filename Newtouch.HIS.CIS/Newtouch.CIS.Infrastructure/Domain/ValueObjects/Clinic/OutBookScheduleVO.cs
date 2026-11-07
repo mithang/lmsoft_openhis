@@ -17,7 +17,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public Decimal ScheduId { get; set; }
         /// <summary>
-        /// Xếp lịchSố hiệu
+        /// Xếp lịch Số hiệu
         /// </summary>
         public string ghpbId { get; set; }
         /// <summary>
@@ -25,11 +25,11 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public DateTime? OutDate { get; set; }
         /// <summary>
-        /// Bác sĩMã nhân viên
+        /// Bác sĩ Mã nhân viên
         /// </summary>
         public string ysgh { get; set; }
         /// <summary>
-        /// Bác sĩHọ tên
+        /// Bác sĩ Họ tên
         /// </summary>
         public string ysxm { get; set; }
         /// <summary>
@@ -73,7 +73,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public Decimal RegFee { get; set; }
         /// <summary>
-        /// làKhôngcó thểđặt hẹn
+        /// là Khôngcó thểđặt hẹn
         /// </summary>
         public string IsBook { get; set; }
         /// <summary>
@@ -89,7 +89,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public int weekdd { get; set; }
         /// <summary>
-        /// làKhôngHủy
+        /// là Không Hủy
         /// </summary>
         public string IsCancel { get; set; }
         /// <summary>
@@ -97,7 +97,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public string CancelReason { get; set; }
         /// <summary>
-        /// HủyThời gian
+        /// Hủy Thời gian
         /// </summary>
         public string CancelTime { get; set; }
         /// <summary>
@@ -117,15 +117,15 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public string CreatorCode { get; set; }
         /// <summary>
-        /// trên lầnThời gian sửa
+        /// trên lần Thời gian sửa
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
         /// <summary>
-        /// trên lầnSửa người
+        /// trên lần Sửa người
         /// </summary>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// làKhôngDừngkhám 0Bình thườngrakhám  1DừngkhámTrạng thái
+        /// là Không Dừngkhám 0Bình thườngrakhám  1Dừngkhám Trạng thái
         /// </summary>
         public string istz { get; set; }
         /// <summary>
@@ -133,7 +133,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public string tzyy { get; set; }
         /// <summary>
-        /// DừngkhámThời gian
+        /// Dừngkhám Thời gian
         /// </summary>
         public string tzsj { get; set; }
     }

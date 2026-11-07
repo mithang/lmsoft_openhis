@@ -30,7 +30,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
     {
         private readonly IOutPatientDmnService _outPatientDmnService;
         private readonly IOutPatChargeApp _outPatChargeApp;
-        private readonly IOutPatChargeDmnService _outPatChargeDmSer; // thu phí đăng ký khámService 
+        private readonly IOutPatChargeDmnService _outPatChargeDmSer; // thu phí đăng ký khám Service 
         private readonly IRefundDmnService _refundService;
         private readonly ISysConfigRepo _sysConfigRepo;
         private readonly ISysUserDmnService _sysUserDmnService;

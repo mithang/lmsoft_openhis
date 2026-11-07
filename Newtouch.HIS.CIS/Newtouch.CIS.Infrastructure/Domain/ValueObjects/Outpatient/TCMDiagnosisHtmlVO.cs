@@ -15,17 +15,17 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public int zdlx { get; set; }
         /// <summary>
-        /// Nghi ngờCờ
+        /// Nghi ngờ Cờ
         /// </summary>
         public bool ysbz { get; set; }
 
         /// <summary>
-        /// hội chứngMã
+        /// hội chứng Mã
         /// </summary>
         public string zhCode { get; set; }
 
         /// <summary>
-        /// hội chứngTên
+        /// hội chứng Tên
         /// </summary>
         public string zhmc { get; set; }
         /// <summary>

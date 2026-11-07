@@ -30,7 +30,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
         /// <summary>
         /// cây quyền hệ thống (menu+nút)
         /// </summary>
-        /// <param name="roleId">vai trò hiện tạiId</param>
+        /// <param name="roleId">vai trò hiện tại Id</param>
         /// <returns></returns>
         public async Task<ActionResult> GetPermissionTree(string roleId)
         {

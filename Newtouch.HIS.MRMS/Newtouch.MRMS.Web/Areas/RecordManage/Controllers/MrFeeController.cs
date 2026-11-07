@@ -65,12 +65,12 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
             return Content(entity.ToJson());
         }
 
-        //LấyNhóm thu phí cấp 1
+        //Lấy Nhóm thu phí cấp 1
         public IActionResult GetFeeOne(string orgId) {
             var result = _MrFeeDmnService.GetFeeOne(OrganizeId);
             return Content(result.ToJson());
         }
-        //LấyNhóm thu phí cấp 2
+        //Lấy Nhóm thu phí cấp 2
         public IActionResult GetFeeTwo(string orgId, string parentCode) {
             var result = _MrFeeDmnService.GetFeeTwo(OrganizeId, parentCode);
             return Content(result.ToJson());

@@ -870,7 +870,7 @@
     })
 })(jQuery);
 /*****************************************************************
-                  jQuery ValidatePhương thức kiểm tra mở rộng 
+                  jQuery Validate Phương thức kiểm tra mở rộng 
 *****************************************************************/
 $(function () {
     // Kiểm tra số nguyên value có bằng 0 

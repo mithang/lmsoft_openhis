@@ -3,7 +3,7 @@ using Newtouch.HIS.Domain.BusinessObjects;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// Một số không biết đặt ở đâusqlTìm kiếm,Đặt tại đây
+    /// Một số không biết đặt ở đâusql Tìm kiếm,Đặt tại đây
     /// </summary>
     public interface ICommonDmnService
     {

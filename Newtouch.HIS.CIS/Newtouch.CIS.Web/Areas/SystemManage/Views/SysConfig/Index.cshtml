@@ -16,7 +16,7 @@
             {
                 <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
                 <ul class="dropdown-menu pull-right">
-                    <li><a onclick="btn_template()" href="javascript:void(0)">Cấu hìnhMẫuQuản lý</a></li>
+                    <li><a onclick="btn_template()" href="javascript:void(0)">Cấu hình MẫuQuản lý</a></li>
                 </ul>
             }
         </div>
@@ -35,7 +35,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="Cấu hìnhTên/Cấu hìnhMã" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Cấu hình Tên/Cấu hình Mã" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -76,8 +76,8 @@
                     { label: 'Sắp xếp', name: 'px', width: 40, align: 'left' },
                 { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
                 { label: 'Thời gian tạo', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: 'Cuối cùngSửa', name: 'LastModifierCode', width: 100, align: 'left' },
-                { label: 'Cuối cùngSửaThời gian', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Cuối cùng Sửa', name: 'LastModifierCode', width: 100, align: 'left' },
+                { label: 'Cuối cùng Sửa Thời gian', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
             ],
         });
         $("#btn_search").click(function () {
@@ -90,7 +90,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "Thêm mớiCấu hình",
+            title: "Thêm mới Cấu hình",
             url: "/SystemManage/SysConfig/Form",
             width: "550px",
             height: "350px",
@@ -111,7 +111,7 @@
         }
         $.modalOpen({
             id: "Form",
-            title: "SửaCấu hình",
+            title: "Sửa Cấu hình",
             url: "/SystemManage/SysConfig/Form?keyValue=" + keyValue,
             width: "550px",
             height: "350px",
@@ -191,7 +191,7 @@
     {
         $.modalOpen({
             id: "Template",
-            title: "Cấu hìnhMẫu",
+            title: "Cấu hình Mẫu",
             url: "/SystemManage/SysConfig/TemplateIndex",
             width: "900px",
             height: "500px",

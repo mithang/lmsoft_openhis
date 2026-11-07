@@ -5,7 +5,7 @@ using System.Text;
 namespace Newtouch.Core.Common.Security
 {
     /// <summary>
-    /// RijndaelLớp thể hiện mã hóa giải mã
+    /// Rijndael Lớp thể hiện mã hóa giải mã
     /// </summary>
     public class RijndaelEnhanced
     {

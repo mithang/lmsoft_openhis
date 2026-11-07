@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// LấyUserIdLiên kếtRoleId
+        /// Lấy UserId Liên kết RoleId
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>

@@ -17,7 +17,7 @@ namespace HIS.BaseAPI.Models.System
         /// </summary>
         public bool ValidLimit { get; set; } = true;
         /// <summary>
-        /// ứng dụngId
+        /// ứng dụng Id
         /// </summary>
         public string? MenuAppId { get; set; }
     }

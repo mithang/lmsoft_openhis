@@ -56,7 +56,7 @@ WHERE zt='1'
          return this.FindList<SysAuxiliaryDictionaryEntity>(sql);
         }
         /// <summary>
-        /// LấyThuốc Đông ysắc hộphí
+        /// Lấy Thuốc Đông ysắc hộphí
         /// </summary>
         /// <returns></returns>
         public decimal? GetDjFee(string orgId)
@@ -99,7 +99,7 @@ WHERE zt='1'
         }
 
         /// <summary>
-        /// LấyHệ thốngVị trí
+        /// Lấy Hệ thống Vị trí
         /// </summary>
         /// <returns></returns>
         public IList<GetSysBodyPartsVO> GetSysBodyParts(string orgId)
@@ -115,7 +115,7 @@ select  isnull(bwCode,'') bwCode,isnull(bwmc,'') bwmc,isnull(bwflCode,'') bwflCo
         }
 
 		/// <summary>
-		/// LấyHình ảnhVị trí
+		/// Lấy Hình ảnh Vị trí
 		/// </summary>
 		/// <returns></returns>
 		public IList<GetYxBodyPartsVO> GetYxBodyParts(string orgId)
@@ -126,7 +126,7 @@ select DISTINCT jcbw,isnull(bwflCode,'') bwflCode,isnull(bwflmc,'') bwflmc from 
 		}
 
 		/// <summary>
-		/// LấyHình ảnhPhương pháp
+		/// Lấy Hình ảnh Phương pháp
 		/// </summary>
 		/// <returns></returns>
 		public IList<string> GetYxBodyMethod(string orgId, string jcbw)
@@ -149,7 +149,7 @@ select DISTINCT jcbw,isnull(bwflCode,'') bwflCode,isnull(bwflmc,'') bwflmc from 
         }
 
         /// <summary>
-        /// LấyHệ thốngDặn dò
+        /// Lấy Hệ thống Dặn dò
         /// </summary>
         /// <returns></returns>
         public IList<SysDoctorRemarkVO2> GetSysDoctorRemark(string orgId, string ksCode)
@@ -170,7 +170,7 @@ select ztCode,ztmc from xt_zt where OrganizeId=@orgId and ksCode=@ksCode and zt 
 		}
 
 		/// <summary>
-		/// thông quatừ điểnMãLấycon mụcDữ liệu
+		/// thông quatừ điển Mã Lấycon mục Dữ liệu
 		/// </summary>
 		/// <param name="code"></param>
 		/// <param name="orgId"></param>
@@ -220,7 +220,7 @@ select ztCode,ztmc from xt_zt where OrganizeId=@orgId and ksCode=@ksCode and zt 
 		}
 
 		/// <summary>
-		/// Lấybệnh nhânThông tin cơ bản
+		/// Lấybệnh nhân Thông tin cơ bản
 		/// </summary>
 		/// <param name="blh">Số bệnh án</param>
 		/// <param name="mzh">Số khám ngoại trú</param>
@@ -292,7 +292,7 @@ where a.OrganizeId=@orgId and a.zt='1'";
 		}
 
 		/// <summary>
-		/// LấyBác sĩmởthuốcQuyền
+		/// Lấy Bác sĩmởthuốc Quyền
 		/// </summary>
 		/// <param name="orgid"></param>
 		/// <param name="gh">Mã nhân viên</param>
@@ -302,9 +302,9 @@ where a.OrganizeId=@orgId and a.zt='1'";
 		public int GetPermissions(string orgid, string gh, string tsypzl, string dlcode, string kssqxjb)
 		{
 			var code = 1;
-			string sqls = @"select count(*) from [Newtouch_CIS]..[Sys_Config] where OrganizeId=@orgId and code = 'DocPresAuthCtrl' and Value = '1'";//XemlàKhôngcụ thểcómởthuốccủaQuyền,nàybảngcủavalue 0làchưabậtnàyQuyền,1làbật
+			string sqls = @"select count(*) from [Newtouch_CIS]..[Sys_Config] where OrganizeId=@orgId and code = 'DocPresAuthCtrl' and Value = '1'";//Xemlà Khôngcụ thểcómởthuốccủa Quyền,nàybảngcủavalue 0làchưabậtnày Quyền,1làbật
 			var tt = this.FirstOrDefault<int>(sqls, new SqlParameter[] { new SqlParameter("@orgId", orgid) });
-			if (tt == 0) //nếuchưaởBác sĩtrạmbậtmởthuốcQuyền,thìtất cảThuốcđềucó thểmởlập
+			if (tt == 0) //nếuchưaở Bác sĩtrạmbậtmởthuốc Quyền,thìtất cả Thuốcđềucó thểmởlập
 			{
 				return code;
 			}
@@ -319,7 +319,7 @@ where a.OrganizeId=@orgid and b.gh=@gh and a.rel_value=@ypzl and a.rel_lxcode=1 
 				new SqlParameter("@gh",gh),
 				new SqlParameter("@ypzl",tsypzl),
 			};
-				var tsbz = this.FirstOrDefault<int>(sql, parm);//LấylàKhôngcụ thểcóLoại nàythuốcvậtcủaCờ thuốc đặc biệtcủamởlậpQuyền,nếuLớn hơn0thìcóQuyền,đợitại0 thìkhôngQuyền
+				var tsbz = this.FirstOrDefault<int>(sql, parm);//Lấylà Khôngcụ thểcó Loại nàythuốcvậtcủa Cờ thuốc đặc biệtcủamởlập Quyền,nếu Lớn hơn0thìcó Quyền,đợitại0 thìkhông Quyền
 				if (tsbz == 0)
 				{
 					code = -1;
@@ -336,8 +336,8 @@ where a.OrganizeId=@orgid and b.gh=@gh and a.rel_value=2 and a.rel_lxcode=3 and 
 				new SqlParameter("@gh",gh),
 				new SqlParameter("@ksscode",kssqxjb),
 			};
-				var qxjb = this.FirstOrDefault<int>(sqlqxjb, parm1);//LấylàKhôngcụ thểcóLoại nàythuốcvậtcủaKháng sinhmởlậpQuyền,nếuLớn hơn0thìcóQuyền,đợitại0 thìkhôngQuyền
-				if (qxjb == 0)//Bác sĩkhôngcụ thểchuẩn bịKháng sinhThuốc dùng không hạn chếQuyền,thìvàodòngBước tiếp theokiểm tra
+				var qxjb = this.FirstOrDefault<int>(sqlqxjb, parm1);//Lấylà Khôngcụ thểcó Loại nàythuốcvậtcủa Kháng sinhmởlập Quyền,nếu Lớn hơn0thìcó Quyền,đợitại0 thìkhông Quyền
+				if (qxjb == 0)//Bác sĩkhôngcụ thểchuẩn bị Kháng sinh Thuốc dùng không hạn chế Quyền,thìvàodòng Bước tiếp theokiểm tra
 				{
 					string sql = @"select COUNT(a.qxId) from  NewtouchHIS_Base.dbo.xt_qxkz a 
 left join  NewtouchHIS_Base.dbo.xt_qxkz_rel b on a.OrganizeId=b.OrganizeId and a.qxId=b.qxId
@@ -348,7 +348,7 @@ where a.OrganizeId=@orgid and b.gh=@gh and a.rel_value=@ksscode and a.rel_lxcode
 				new SqlParameter("@gh",gh),
 				new SqlParameter("@ksscode",kssqxjb),
 			};
-					var kss = this.FirstOrDefault<int>(sql, parm2);//LấylàKhôngcụ thểcóLoại nàythuốcvậtcủaKháng sinhmởlậpQuyền,nếuLớn hơn0thìcóQuyền,đợitại0 thìkhôngQuyền
+					var kss = this.FirstOrDefault<int>(sql, parm2);//Lấylà Khôngcụ thểcó Loại nàythuốcvậtcủa Kháng sinhmởlập Quyền,nếu Lớn hơn0thìcó Quyền,đợitại0 thìkhông Quyền
 					if (kss == 0)
 					{
 						code = -2;
@@ -366,7 +366,7 @@ where a.OrganizeId=@orgid and b.gh=@gh and a.rel_value=@dlcode and a.rel_lxcode=
 				new SqlParameter("@gh",gh),
 				new SqlParameter("@dlcode",dlcode),
 			};
-				var ypdl= this.FirstOrDefault<int>(sql, parm);//LấylàKhôngcụ thểcóLoại nàythuốcvậtcủaTên nhóm lớnmởlậpQuyền,nếuLớn hơn0thìcóQuyền,đợitại0 thìkhôngQuyền
+				var ypdl= this.FirstOrDefault<int>(sql, parm);//Lấylà Khôngcụ thểcó Loại nàythuốcvậtcủa Tên nhóm lớnmởlập Quyền,nếu Lớn hơn0thìcó Quyền,đợitại0 thìkhông Quyền
 				if (ypdl == 0)
 				{
 					code = -3;

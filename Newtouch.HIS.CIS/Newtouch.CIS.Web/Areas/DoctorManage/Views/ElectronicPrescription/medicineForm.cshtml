@@ -8,11 +8,11 @@
 
 <table class="form">
     <tr>
-        <th class="formTitle">Bảo hiểm y tếĐơn thuốcSố hiệu:</th>
+        <th class="formTitle">Bảo hiểm y tế Đơn thuốc Số hiệu:</th>
         <td class="formValue">
             <input id="hiRxno" name="hiRxno" type="text" disabled="disabled" class="form-control" placeholder="" />
         </td>
-        <th class="formTitle">Bảo hiểm y tếQuyết toánThời gian:</th>
+        <th class="formTitle">Bảo hiểm y tếQuyết toán Thời gian:</th>
         <td class="formValue">
             <input id="setlTime" name="setlTime" type="text" disabled="disabled" class="form-control" placeholder="" />
         </td>
@@ -58,7 +58,7 @@
                         $("#gridList").newtouchLocalDataGrid({
                             autowidth: false,
                             unwritten: false,
-                            caption: "Đơn thuốcThông tin",
+                            caption: "Đơn thuốc Thông tin",
                         }, data2.seltdelts);
                     } else {
                         $.modalAlert("Tra cứu kết quả lấy thuốc đơn điện tử thất bại:" + data1.message, 'error');
@@ -78,7 +78,7 @@
     }
     function gridListData() {
         var $gridList = $("#gridList");
-        var captionCon = "Đơn thuốcLấy thuốcThông tin";
+        var captionCon = "Đơn thuốc Lấy thuốc Thông tin";
         $gridList.dataGrid({
             height: $(window).height() - 200,
             caption: captionCon,
@@ -89,11 +89,11 @@
                 { label: 'Tên chung', name: 'drugGenname', width: 120, align: 'left' },
                 { label: 'Tên thương mại thuốc', name: 'drugProdname', width: 120, align: 'left' },
                 { label: 'Dạng bào chế thuốc', name: 'drugDosform', width: 80, align: 'left' },
-                { label: 'ThuốcQuy cách', name: 'drugSpec', width: 80, align: 'left' },
+                { label: 'Thuốc Quy cách', name: 'drugSpec', width: 80, align: 'left' },
                 { label: 'Số lượng', name: 'ent', width: 80, align: 'left' },
                 { label: 'Số phê duyệt', name: 'aprvno', width: 100, align: 'left' },
                 { label: 'Số lô', name: 'bchno', width: 80, align: 'left' },
-                { label: 'Sản xuấtSố lô', name: 'manuLotnum', width: 80, align: 'left' },
+                { label: 'Sản xuất Số lô', name: 'manuLotnum', width: 80, align: 'left' },
                 { label: 'Nhà sản xuất', name: 'prdrName', width: 120, align: 'left' }
             ],
             viewrecords: true

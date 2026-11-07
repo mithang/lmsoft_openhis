@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.DTO.InputDto
 {
     /// <summary>
-    /// lãi lỗĐiều kiện tìm kiếm
+    /// lãi lỗ Điều kiện tìm kiếm
     /// </summary>
     public class LossAndProditSearchDTO
     {
@@ -28,7 +28,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public string inputCode { get; set; }
 
         /// <summary>
-        /// lãi lỗCờ  0:hỏng  1:lợi  -1:Tất cả
+        /// lãi lỗ Cờ  0:hỏng  1:lợi  -1:Tất cả
         /// </summary>
         public string sybz { get; set; }
     }

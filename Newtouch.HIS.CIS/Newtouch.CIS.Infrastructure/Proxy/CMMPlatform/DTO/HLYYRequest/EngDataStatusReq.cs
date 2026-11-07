@@ -8,7 +8,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
     }
     public class RequestInfo
     {
-        public string PresNo { get; set; } // Đơn thuốcSố hiệu
+        public string PresNo { get; set; } // Đơn thuốc Số hiệu
     }
 
     

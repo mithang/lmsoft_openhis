@@ -9,14 +9,14 @@ namespace Newtouch.Domain.IDomainServices
     public interface IExceReportPrintDmnService
     {
         /// <summary>
-        /// LấyKhu bệnhphát thuốcBệnh nhâncây
+        /// Lấy Khu bệnhphát thuốc Bệnh nhâncây
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
         IList<InpWardPatTreeVO> GetPatTree(string orgId, string zyzt, string keyword);
 
         /// <summary>
-        /// Tra cứuY lệnhChi tiết
+        /// Tra cứuY lệnh Chi tiết
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>

@@ -160,7 +160,7 @@
 
         //nút cha đã chọn hiện tại
         var len = 0;
-        var single = 0; //CóKhôngphiếucáicontiếtđiểm
+        var single = 0; //Có Khôngphiếucáicontiếtđiểm
 
         if (item != null && item.Ex1 == "p") {
             patlistFath = item.ChildNodes;
@@ -276,7 +276,7 @@
                 { label: 'Số nhóm', name: 'zh', align: 'center', width: 70, formatter: function (val) { if (val != null) return val; else return ""; } },
                 { label: 'Tính chất y lệnh', name: 'yzxzsm', align: 'center', width: 50 },
                 { label: 'Thời gian bắt đầu', name: 'kssj', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
-                //{ label: 'kếtnếuGiá trị', name: 'lrjg', align: 'center', width: 100, },
+                //{ label: 'kếtnếu Giá trị', name: 'lrjg', align: 'center', width: 100, },
                 {
                     label: 'Nội dung y lệnh', name: 'yznr', align: 'center', width: 230, formatter: function (val) {
                         if (val != null) {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Newtouch.CIS.APIRequest.Inpatient
 {
     /// <summary>
-    /// KhoaPhiếu
+    /// Khoa Phiếu
     /// </summary>
     public class DeptApplyNoRequest : RequestBase
     {

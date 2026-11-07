@@ -2,17 +2,17 @@
 namespace NewtouchHIS.WebAPI.Manage.Models
 {
     /// <summary>
-    /// Đăng kýKhám chữa bệnh từ xa
+    /// Đăng ký Khám chữa bệnh từ xa
     /// </summary>
     public class TreatedApplyInfoRequest
     {
         /// <summary>
-        /// Đăng kýSố giao dịch 
+        /// Đăng ký Số giao dịch 
         /// Do bên thứ ba tạo Số duy nhất
         /// </summary>
         public string? sqlsh { get; set; }
         /// <summary>
-        /// HIS Đăng ký khám chữa bệnhId
+        /// HIS Đăng ký khám chữa bệnh Id
         /// </summary>
         public string? ApplyId { get; set; }
         
@@ -22,25 +22,25 @@ namespace NewtouchHIS.WebAPI.Manage.Models
     {
 
         /// <summary>
-        /// HIS Đăng ký khám chữa bệnhId
+        /// HIS Đăng ký khám chữa bệnh Id
         /// </summary>
         public string? ApplyId { get; set; }
         public string? sqr { get; set; }
         /// <summary>
-        /// Đăng kýSố giao dịch 
+        /// Đăng ký Số giao dịch 
         /// Do bên thứ ba tạo Số duy nhất
         /// </summary>
         public string? sqlsh { get; set; }
         /// <summary>
-        /// Đăng kýTổ chức
+        /// Đăng ký Tổ chức
         /// </summary>
         public string? ApplyOrg { get; set; }
         /// <summary>
-        /// Tổ chứcTên
+        /// Tổ chức Tên
         /// </summary>
         public string? ApplyOrgName { get; set; }
         /// <summary>
-        /// Đăng kýMã số nhân viên
+        /// Đăng ký Mã số nhân viên
         /// </summary>
         public string? sqrgh { get; set; }
 

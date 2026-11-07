@@ -26,7 +26,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
 
         /// <summary>
         /// Truy vấn thông tin trang đầu bệnh án
-        /// Truy vấnBệnh nhânThông tin trọng điểm trang đầu bệnh án(with:Chẩn đoán,Phẫu thuật)
+        /// Truy vấn Bệnh nhân Thông tin trọng điểm trang đầu bệnh án(with:Chẩn đoán,Phẫu thuật)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -50,7 +50,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
             return new BusResult<MedicalHomeVO> { code = ResponseResultCode.SUCCESS, Data = data };
         }
         /// <summary>
-        /// Bệnh nhânThông tin bệnh án(DRG Định dạng phân nhóm)
+        /// Bệnh nhân Thông tin bệnh án(DRG Định dạng phân nhóm)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

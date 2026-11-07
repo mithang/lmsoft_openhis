@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Domain.Entity.SystemManage
         /// </summary>
         public string ys { get; set; }
         /// <summary>
-        /// Tổ chứcId
+        /// Tổ chức Id
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>

@@ -128,7 +128,7 @@ and a.zt = '1' and b.zt = '1'";
 
             using (var db = new DbTrans())
             {
-                //Vai trò tổ chứcIdDanh sách
+                //Vai trò tổ chức Id Danh sách
                 var orgRoleIdList = db.IQueryable<SysRoleEntity>(p => p.OrganizeId == orgId).Select(p => p.Id).ToList();
                 //
                 var oldRoleList = db.IQueryable<SysUserRoleEntity>().Where(p => p.UserId == userId

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// Tổ chứcDmnService
+    /// Tổ chức DmnService
     /// </summary>
     public interface ISysOrganizeDmnService
     {
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         bool IsMedicalOrganize(string orgId);
 
         /// <summary>
-        /// LấyOrgTên
+        /// Lấy Org Tên
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// Cập nhật khu bệnh liên kết khoa
         /// </summary>
         /// <param name="deptId"></param>
-        /// <param name="wardList">Khu bệnhCode List</param>
+        /// <param name="wardList">Khu bệnh Code List</param>
         /// <param name="OrganizeId"></param>
         void UpdateDepartmentWard(string deptId, string[] wardList, string OrganizeId);
 

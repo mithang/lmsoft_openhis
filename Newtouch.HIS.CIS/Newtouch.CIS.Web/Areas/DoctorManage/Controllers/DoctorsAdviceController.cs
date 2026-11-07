@@ -55,31 +55,31 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         [HandlerAuthorizeIgnore]
         public override IActionResult Index()
         {
-            //kiểm trađănglụcngườithânphầnCóKhôngCóĐiều dưỡng
+            //kiểm trađănglụcngườithânphần Có Không Có Điều dưỡng
             var isDoctor = _sysUserDmnService.CheckStaffIsBelongDuty(UserIdentity.StaffId, "Doctor");
             if (!isDoctor)
             {
-                ViewBag.bhbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId, true);//Nhập việnY lệnhgóiCóKhônggóichứaKhu bệnh
-                //VD nếu Có Điều dưỡng,vàovàoNhập việnY lệnhXemtrangmặt
+                ViewBag.bhbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId, true);//Nhập việnY lệnhgói Có Khônggóichứa Khu bệnh
+                //VD nếu Có Điều dưỡng,vàovào Nhập việnY lệnh Xemtrangmặt
                 return View("ZyyzQuery");
             }
-            ViewBag.ysgh = UserIdentity.rygh;//Bác sĩMã nhân viên
-            ViewBag.pcStr = _sysConfigRepo.GetValueByCode("FrequencyStr", OrganizeId) == "" ? "" : _sysConfigRepo.GetValueByCode("FrequencyStr", OrganizeId);//Tạm thờiTần suất
-            ViewBag.bhbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId, true);//Nhập việnY lệnhgóiCóKhônggóichứaKhu bệnh
-            ViewBag.zzlconfig = _sysConfigRepo.GetValueByCode("zllconfig", OrganizeId) == "" ? "Liều mỗi lần điều trị" : _sysConfigRepo.GetValueByCode("zllconfig", OrganizeId);//Nhập việnMụcnhậpĐiều trịlượngvăn bảncấu hình
-            ViewBag.bwhide = _sysConfigRepo.GetBoolValueByCode("bwhide", OrganizeId, false);//Nhập việnMụcnhậpVị tríHiển thịẨncấu hình                                           
-            ViewBag.IsOpenJyJcSwitch = _sysConfigRepo.GetBoolValueByCode("OpenZYJyJcSwitch", this.OrganizeId, false);//Có mở khôngXét nghiệmKiểm tra
-            ViewBag.IsOpenRehabSwitch = _sysConfigRepo.GetBoolValueByCode("OpenZYRehabSwitch", this.OrganizeId, false);//Có mở khôngPhục hồi chức năngY lệnh
+            ViewBag.ysgh = UserIdentity.rygh;//Bác sĩ Mã nhân viên
+            ViewBag.pcStr = _sysConfigRepo.GetValueByCode("FrequencyStr", OrganizeId) == "" ? "" : _sysConfigRepo.GetValueByCode("FrequencyStr", OrganizeId);//Tạm thời Tần suất
+            ViewBag.bhbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId, true);//Nhập việnY lệnhgói Có Khônggóichứa Khu bệnh
+            ViewBag.zzlconfig = _sysConfigRepo.GetValueByCode("zllconfig", OrganizeId) == "" ? "Liều mỗi lần điều trị" : _sysConfigRepo.GetValueByCode("zllconfig", OrganizeId);//Nhập viện Mụcnhập Điều trịlượngvăn bảncấu hình
+            ViewBag.bwhide = _sysConfigRepo.GetBoolValueByCode("bwhide", OrganizeId, false);//Nhập viện Mụcnhập Vị trí Hiển thị Ẩncấu hình                                           
+            ViewBag.IsOpenJyJcSwitch = _sysConfigRepo.GetBoolValueByCode("OpenZYJyJcSwitch", this.OrganizeId, false);//Có mở không Xét nghiệm Kiểm tra
+            ViewBag.IsOpenRehabSwitch = _sysConfigRepo.GetBoolValueByCode("OpenZYRehabSwitch", this.OrganizeId, false);//Có mở không Phục hồi chức năngY lệnh
             
-            ViewBag.ISOpenWzhc = _sysConfigRepo.GetBoolValueByCode("openWzhccf", this.OrganizeId);//Công tắc:Có mở khôngydùngVật tư tiêu hao
-            ViewBag.sfxmService = _sysConfigRepo.GetValueByCode("sfxmService", this.OrganizeId) == "" ? "cg" : _sysConfigRepo.GetValueByCode("sfxmService", this.OrganizeId);//CóKhôngmởHạng mục thông thường
+            ViewBag.ISOpenWzhc = _sysConfigRepo.GetBoolValueByCode("openWzhccf", this.OrganizeId);//Công tắc:Có mở khôngydùng Vật tư tiêu hao
+            ViewBag.sfxmService = _sysConfigRepo.GetValueByCode("sfxmService", this.OrganizeId) == "" ? "cg" : _sysConfigRepo.GetValueByCode("sfxmService", this.OrganizeId);//Có Khôngmở Hạng mục thông thường
             ViewBag.ISOpenSsyz = _sysConfigRepo.GetBoolValueByCode("ISOpenSsyzSwitch", this.OrganizeId, false);//Có mở khôngăn uốngY lệnh																					  
-            ViewBag.ISWithRehabSuggestion = _sysConfigRepo.GetBoolValueByCode("IS_WithRehabSuggestion", this.OrganizeId, false);//Phục hồi chức năngĐơn thuốcCóKhôngTrích dẫnĐiều trịxâynghị
+            ViewBag.ISWithRehabSuggestion = _sysConfigRepo.GetBoolValueByCode("IS_WithRehabSuggestion", this.OrganizeId, false);//Phục hồi chức năng Đơn thuốc Có Không Trích dẫn Điều trịxâynghị
                                                                                                                                 
-            var frequencyStr = _sysConfigRepo.GetValueByCode("FrequencyStr", OrganizeId) ?? "";//Tạm thờiTần suấtchuỗi phútcắtcủaTần suấtMãchữkýchuỗiVDVD:00,01
+            var frequencyStr = _sysConfigRepo.GetValueByCode("FrequencyStr", OrganizeId) ?? "";//Tạm thời Tần suấtchuỗi phútcắtcủa Tần suấtMãchữkýchuỗiVDVD:00,01
             ViewBag.isqfswith = _sysConfigRepo.GetValueByCode("accountqfexecute_switch", OrganizeId);//Công tắc mở lập, thực hiện y lệnh khi nợ phí
-            ViewBag.isopenPriorReview = _sysConfigRepo.GetValueByCode("OpenPriorReview", OrganizeId);//CóKhôngbậtviệctrướcPhê duyệtgiao diện
-            ViewBag.openYjzxSwitch = _sysConfigRepo.GetValueByCode("openYjzxSwitch", OrganizeId); //Công tắc:kỹ thuật y họcQuản lýCóKhôngKích hoạt 
+            ViewBag.isopenPriorReview = _sysConfigRepo.GetValueByCode("OpenPriorReview", OrganizeId);//Có Khôngbậtviệctrước Phê duyệtgiao diện
+            ViewBag.openYjzxSwitch = _sysConfigRepo.GetValueByCode("openYjzxSwitch", OrganizeId); //Công tắc:kỹ thuật y học Quản lý Có Không Kích hoạt 
             if (!string.IsNullOrWhiteSpace(frequencyStr))
             {
                 var FequencyList = frequencyStr.Split(',');
@@ -98,8 +98,8 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
                 
             }
             #region Kháng sinhliên quan
-            ViewBag.IsQyKssKz = _sysConfigRepo.GetBoolValueByCode("openKssQxSwitch", OrganizeId);//CóKhôngKích hoạtKháng sinh
-            ViewBag.qxjb = "0";//Kháng sinhCấp quyền(Mặc định 0 khôngthuốc hạn chế)
+            ViewBag.IsQyKssKz = _sysConfigRepo.GetBoolValueByCode("openKssQxSwitch", OrganizeId);//Có Không Kích hoạt Kháng sinh
+            ViewBag.qxjb = "0";//Kháng sinh Cấp quyền(Mặc định 0 khôngthuốc hạn chế)
             SysStaffVEntity staff = _sysStaffRepo.GetValidStaffByGh(UserIdentity.rygh, OrganizeId);
             if (staff != null)
             {
@@ -112,7 +112,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
                         ViewBag.qxjb = "1";//Bác sĩ điều trị tương ứng thuốc hạn chế 1
                         break;
                     case "zrys":
-                        ViewBag.qxjb = "2";//chínhnhiệmBác sĩ tương ứng đặcđặcdùngthuốc 2
+                        ViewBag.qxjb = "2";//chínhnhiệm Bác sĩ tương ứng đặcđặcdùngthuốc 2
                         break;
                     default:
                         ViewBag.qxjb = "0";//Bác sĩ tương ứng khôngthuốc hạn chế 0
@@ -122,7 +122,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             #endregion Kháng sinhliên quan
             //Hình ảnhcấu hình
             ViewBag.PACSCode = _sysConfigRepo.GetValueByCode("PACSCode", OrganizeId);
-            ViewBag.isOpenRationalUse = _sysConfigRepo.GetValueByCode("OpenRationalUse", OrganizeId);//CóKhôngbậthợplýdùngthuốc
+            ViewBag.isOpenRationalUse = _sysConfigRepo.GetValueByCode("OpenRationalUse", OrganizeId);//Có Khôngbậthợplýdùngthuốc
 
             #region Tốc độ truyền
             var frds = _sysConfigRepo.GetValueByCode("frequencyRelDroppingSpeed", OrganizeId);
@@ -130,7 +130,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             ViewBag.frequencyRelDroppingSpeed = frds;
             #endregion
 
-            //CóKhôngbậttrongthảo dượcY lệnh
+            //Có Khôngbậttrongthảo dượcY lệnh
             ViewBag.ISOpenzcyyzSwitch = _sysConfigRepo.GetBoolValueByCode("ISOpenzcyyzSwitch", OrganizeId, false);
             return View();
         }
@@ -138,8 +138,8 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         #region Chế độ xemreturn
         public IActionResult AdviceList()
         {
-            ViewBag.isopenPriorReview = _sysConfigRepo.GetValueByCode("OpenPriorReview", OrganizeId);//CóKhôngbậtviệctrướcPhê duyệtgiao diện
-            ViewBag.isOpenRationalUse = _sysConfigRepo.GetValueByCode("OpenRationalUse", OrganizeId);//CóKhôngbậthợplýdùngthuốc
+            ViewBag.isopenPriorReview = _sysConfigRepo.GetValueByCode("OpenPriorReview", OrganizeId);//Có Khôngbậtviệctrước Phê duyệtgiao diện
+            ViewBag.isOpenRationalUse = _sysConfigRepo.GetValueByCode("OpenRationalUse", OrganizeId);//Có Khôngbậthợplýdùngthuốc
             return View();
         }
 
@@ -296,9 +296,9 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
 
         #endregion
 
-        #region  Y lệnhQuản lý
+        #region  Y lệnh Quản lý
         /// <summary>
-        /// Y lệnhTra cứu
+        /// Y lệnh Tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -330,7 +330,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
 
 
         /// <summary>
-        /// XóachưaPhê duyệtcủaY lệnh
+        /// Xóachưa Phê duyệtcủaY lệnh
         /// </summary>
         /// <param name="yzId"></param>
         /// <returns></returns>
@@ -353,7 +353,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
 
         /// <summary>
-        /// Xuất việntoànDừng
+        /// Xuất việntoàn Dừng
         /// </summary>
         /// <returns></returns>
         public IActionResult AdviceLeaveHospitalStopSubmit(string zyh, DateTime tzsj)
@@ -363,7 +363,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
 
         /// <summary>
-        /// chuyển khutoànDừng
+        /// chuyển khutoàn Dừng
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -371,15 +371,15 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         {
             if (string.IsNullOrWhiteSpace(zyh))
             {
-                throw new FailedException("ThiếuSố nhập viện");
+                throw new FailedException("Thiếu Số nhập viện");
             }
             if (string.IsNullOrWhiteSpace(bq) || bq == "==Vui lòng chọn==")
             {
-                throw new FailedException("ThiếuKhu bệnh");
+                throw new FailedException("Thiếu Khu bệnh");
             }
             if (kssj == DateTime.MaxValue || kssj == DateTime.MinValue || kssj == null)
             {
-                throw new FailedException("ThiếuThời gian bắt đầu");
+                throw new FailedException("Thiếu Thời gian bắt đầu");
             }
             var req = new TransferWardRequestVO
             {
@@ -393,7 +393,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             return Success();
         }
         /// <summary>
-        /// đãDừngY lệnhsao chépTạo mới
+        /// đã DừngY lệnhsao chép Tạo mới
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="yzId"></param>
@@ -410,7 +410,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         #region Y lệnhGói
 
         /// <summary>
-        /// kiểm trahiện tạibệnh ngườiCóKhôngtồn tạiởchưaPhê duyệtcủaY lệnh dài hạn
+        /// kiểm trahiện tạibệnh người Có Khôngtồn tạiởchưa Phê duyệtcủaY lệnh dài hạn
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -467,7 +467,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
 
         /// <summary>
-        /// Y lệnhTra cứutạoKiểu y lệnhhộp thả xuốngkhi,cấu hìnhcủaXét nghiệmKiểm traHiển thị
+        /// Y lệnh Tra cứutạo Kiểu y lệnhhộp thả xuốngkhi,cấu hìnhcủa Xét nghiệm Kiểm tra Hiển thị
         /// </summary>
         /// <returns></returns>
         public IActionResult GetyzlxContain()
@@ -513,7 +513,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
 
         #region  lis pacs Báo cáo
         /// <summary>
-        /// //TheoSố nhập viện Lấy LIS/PACS báo cáoHoàn thànhSố lượng
+        /// //Theo Số nhập viện Lấy LIS/PACS báo cáo Hoàn thành Số lượng
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>

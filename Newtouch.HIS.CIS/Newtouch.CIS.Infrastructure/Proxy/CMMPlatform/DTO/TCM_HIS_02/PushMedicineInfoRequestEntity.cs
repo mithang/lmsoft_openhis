@@ -21,7 +21,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_02
     public class Medicine
     {
         /// <summary>
-        /// ThuốcSố hiệu
+        /// Thuốc Số hiệu
         /// bắt buộc
         /// </summary>
         public string id { get; set; }
@@ -49,12 +49,12 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_02
         public string manufacturer { get; set; }
 
         /// <summary>
-        /// làKhôngKích hoạt:Y: là N: Không
+        /// là Không Kích hoạt:Y: là N: Không
         /// </summary>
         public string activeFlg { get; set; }
 
         /// <summary>
-        /// Cơ sởMã
+        /// Cơ sở Mã
         /// bắt buộc
         /// </summary>
         public string orgCode { get; set; }

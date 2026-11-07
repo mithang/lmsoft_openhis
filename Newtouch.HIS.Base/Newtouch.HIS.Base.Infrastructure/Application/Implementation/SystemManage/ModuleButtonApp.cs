@@ -6,7 +6,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Application.Implementation.SystemManage
 {
     /// <summary>
-    /// NútApp
+    /// Nút App
     /// </summary>
     public class ModuleButtonApp : IModuleButtonApp
     {

@@ -40,7 +40,7 @@
 			provinceField: 'province', //Tên trường tỉnh
 			cityField: 'city',         //Tên trường thành phố
 			areaField: 'area',         //Tên trường khu vực
-			valueType: 'code',         //Loại giá trị hộp thả xuống,codeMã hành chính,nameTên địa danh
+			valueType: 'code',         //Loại giá trị hộp thả xuống,code Mã hành chính,name Tên địa danh
 			code: 0,                   //Mã vùng
 			province: 0,               //Tỉnh,Có thể là mã hoặc tên vùng
 			city: 0,                   //Thành phố,Có thể là mã hoặc tên vùng

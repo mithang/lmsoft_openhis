@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         bool YibaoUpload(int ypId, out string error);
 
         /// <summary>
-        /// Gắn thuốclistTập hợp
+        /// Gắn thuốclist Tập hợp
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="pagination"></param>

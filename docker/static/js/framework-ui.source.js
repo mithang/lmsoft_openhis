@@ -880,7 +880,7 @@ $.fn.keyupEnterEvent = function (func) {
 $.zeroPrefixInteger = function (num, length) {
     return (Array(length).join('0') + num).slice(-length);
 }
-//jsPhép tính số thập phân xuất hiện nhiều chữ số thập phân
+//js Phép tính số thập phân xuất hiện nhiều chữ số thập phân
 $.addNum = function (num1, num2) {
     var sq1, sq2, m;
     try {
@@ -958,7 +958,7 @@ $.undefinedwith1 = function (value) {
     }
     return value;
 }
-/* Không có giá trị thì trả vềString.Empty */
+/* Không có giá trị thì trả về String.Empty */
 $.undefinedwithEmptyString = function (value) {
     if (value === undefined || value === null || value === '') {
         return '';

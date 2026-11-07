@@ -358,7 +358,7 @@ namespace Newtouch.HIS.DomainServices
         #region Nội trú
 
         /// <summary>
-        /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
+        /// Nội trú Book Đóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
@@ -453,7 +453,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         }
 
         /// <summary>
-        /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
+        /// Nội trú Book Đóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="zxId">Thực hiện ID</param>
@@ -493,7 +493,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         }
 
         /// <summary>
-        /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
+        /// Nội trú Book Đóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
         /// <param name="zxId"></param>
         /// <param name="yzDetails"></param>

@@ -4,14 +4,14 @@ using System.Text;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// phiếusố phiếuQuản lý
+    /// phiếusố phiếu Quản lý
     /// </summary>
     public static class ReceiptNoManage
     {
         public static Random random = new Random();
 
         /// <summary>
-        /// tạoNgẫu nhiênsố Thời gianđiểm(Ngày tháng nămkhiphútgiây)+ba ký tựNgẫu nhiênsố
+        /// tạo Ngẫu nhiênsố Thời gianđiểm(Ngày tháng nămkhiphútgiây)+ba ký tự Ngẫu nhiênsố
         /// </summary>
         /// <returns></returns>
         public static string GetNewOrderNoV1()
@@ -20,7 +20,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Lấyvật tưNhập khophiếusố phiếu
+        /// Lấyvật tư Nhập khophiếusố phiếu
         /// </summary>
         /// <param name="djmc"></param>
         /// <param name="userId"></param>
@@ -31,10 +31,10 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// ởchỉđịnhcủachữkýchuỗidanh sáchCnStrtrongTìm kiếmkýhợpPinyintìmdẫnchữkýchuỗi
+        /// ởchỉđịnhcủachữkýchuỗidanh sách CnStrtrong Tìm kiếmkýhợp Pinyintìmdẫnchữkýchuỗi
         /// </summary>
         /// <param name="cnStr">Hánchữchữkýchuỗi</param>
-        /// <returns>nhautương ứngcủaHánngữPinyinđầuchữcáichuỗi</returns>
+        /// <returns>nhautương ứngcủa Hánngữ Pinyinđầuchữcáichuỗi</returns>
                 /// <summary>
         /// Receipt prefix from a Vietnamese description: first letter of each word,
         /// diacritics stripped, upper-case. Descriptions used to be Chinese, so this

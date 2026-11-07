@@ -108,7 +108,7 @@
         }
         @*var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
         if (!!!thisOrgId && '@(!string.IsNullOrEmpty(OperatorProvider.GetCurrent().OrganizeId) && OperatorProvider.GetCurrent().OrganizeId != OperatorProvider.GetCurrent().TopOrganizeId)' === 'True') {
-            $.modalAlert("Không có quyềnSửa", 'warning');
+            $.modalAlert("Không có quyền Sửa", 'warning');
             return;
         }*@
         $.modalOpen({
@@ -137,7 +137,7 @@
         }
         @*var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
         if (!!!thisOrgId && '@(!string.IsNullOrEmpty(OperatorProvider.GetCurrent().OrganizeId) && OperatorProvider.GetCurrent().OrganizeId != OperatorProvider.GetCurrent().TopOrganizeId)' === 'True') {
-            $.modalAlert("Không có quyềnSửa", 'warning');
+            $.modalAlert("Không có quyền Sửa", 'warning');
             return;
         }*@
         $.deleteForm({

@@ -57,13 +57,13 @@ namespace Newtouch.HIS.Repository
         {
             if (!string.IsNullOrEmpty(sfflId))
             {
-                //CodeKiểm tra trùng lặp
+                //Code Kiểm tra trùng lặp
                 if (this.IQueryable().Any(a => a.Code == entity.Code && a.sfflId != sfflId))
                 {
                     throw new FailedException("Mã không được trùng lặp");
                 }
 
-                RehabChargeClassificationEntity oldEntity = null;   //Trước khi thay đổiEntity
+                RehabChargeClassificationEntity oldEntity = null;   //Trước khi thay đổi Entity
                 oldEntity = this.FindEntity(sfflId);
                 this.DetacheEntity(oldEntity);
 
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Repository
             else
             {
                 entity.Create(true, System.Guid.NewGuid());
-                //CodeKiểm tra trùng lặp
+                //Code Kiểm tra trùng lặp
                 if (this.IQueryable().Any(a => a.Code == entity.Code))
                 {
                     throw new FailedException("Mã không được trùng lặp");

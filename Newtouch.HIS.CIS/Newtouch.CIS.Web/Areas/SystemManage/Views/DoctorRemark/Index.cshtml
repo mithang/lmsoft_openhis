@@ -57,8 +57,8 @@
                 { label: "Hiệu lực", name: "zt", width: 100, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
                 { label: 'Người tạo', name: 'CreatorCode', width: 120, align: 'left' },
                 { label: 'Thời gian tạo', name: 'CreateTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: 'Cuối cùngSửa', name: 'LastModifierCode', width: 120, align: 'left' },
-                { label: 'Cuối cùngSửaThời gian', name: 'LastModifyTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Cuối cùng Sửa', name: 'LastModifierCode', width: 120, align: 'left' },
+                { label: 'Cuối cùng Sửa Thời gian', name: 'LastModifyTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
                 { label: 'Sắp xếp', name: 'px', width: 40, align: 'left' }
             ]
         });
@@ -78,7 +78,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "Thêm mớiDặn dò",
+            title: "Thêm mới Dặn dò",
             url: "/SystemManage/DoctorRemark/Form",
             width: "550px",
             height: "470px",
@@ -97,7 +97,7 @@
         var keyValue = $("#gridList").jqGridRowValue().Id;
         $.modalOpen({
             id: "Form",
-            title: "SửaDặn dò",
+            title: "Sửa Dặn dò",
             url: "/SystemManage/DoctorRemark/Form?keyValue=" + keyValue,
             width: "550px",
             height: "470px",

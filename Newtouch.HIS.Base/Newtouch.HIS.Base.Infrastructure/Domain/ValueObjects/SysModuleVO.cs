@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class SysModuleVO : SysModuleEntity
     {
         /// <summary>
-        /// Có đối vớiOrgMở
+        /// Có đối với Org Mở
         /// </summary>
         public bool IsOpenToOrg { get; set; }
 

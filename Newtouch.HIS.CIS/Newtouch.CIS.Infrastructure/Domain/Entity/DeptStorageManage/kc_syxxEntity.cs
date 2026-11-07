@@ -25,7 +25,7 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// KhoMã
+        /// Kho Mã
         /// </summary>
         public string ks { get; set; }
 
@@ -50,7 +50,7 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public DateTime? Yxq { get; set; }
 
         /// <summary>
-        /// Mặc địnhGiá trịGetdate()
+        /// Mặc định Giá trị Getdate()
         /// </summary>
         public DateTime Bgsj { get; set; }
 
@@ -60,7 +60,7 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public int Sysl { get; set; }
 
         /// <summary>
-        /// Đơn vị ID  vàgiáôphốihợpSử dụng,vàzhyzthànhbộ
+        /// Đơn vị ID  vàgiáôphốihợp Sử dụng,vàzhyzthànhbộ
         /// </summary>
         public string UnitId { get; set; }
 
@@ -76,7 +76,7 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public int Zhyz { get; set; }
 
         /// <summary>
-        /// nguyên nhân lãi lỗ  kc_syyybảngKhóa chính
+        /// nguyên nhân lãi lỗ  kc_syyybảng Khóa chính
         /// </summary>
         public string Syyy { get; set; }
 
@@ -91,7 +91,7 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public string Djh { get; set; }
 
         /// <summary>
-        /// còn lạiTồn kho hiệncóTồn kho Đơn vị nhỏ nhất kcsl
+        /// còn lại Tồn kho hiệncó Tồn kho Đơn vị nhỏ nhất kcsl
         /// </summary>
         public int Sykc { get; set; }
 

@@ -23,7 +23,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
     {
         protected readonly IHttpClientHelper _httpClient;
         /// <summary>
-        /// xác thựcTokenđổi lấy
+        /// xác thực Tokenđổi lấy
         /// </summary>
         protected readonly IAuthCenterAppService _authCenterApp;
 
@@ -36,15 +36,15 @@ namespace NewtouchHIS.Framework.Web.Implementation
         protected OperatorModel? currentUser => OperatorProvider.GetCurrent();
         protected string TopOrganizeId = ConfigInitHelper.SysConfig.Top_OrganizeId ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "Top_OrganizeId");
         /// <summary>
-        /// ứng dụng cung cấp dịch vụId
+        /// ứng dụng cung cấp dịch vụ Id
         /// </summary>
         protected string? AppId;
         /// <summary>
-        /// yêu cầu dịch vụAppId
+        /// yêu cầu dịch vụ AppId
         /// </summary>
         protected string ClientAppId = ConfigInitHelper.SysConfig.AppId ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "AppId");
         /// <summary>
-        /// ứng dụngHostđịa chỉ
+        /// ứng dụng Hostđịa chỉ
         /// </summary>
         protected string? Host;
         /// <summary>

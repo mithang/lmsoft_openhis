@@ -35,7 +35,7 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         /// </summary>
         public string AKE001 { get; set; }
         /// <summary>
-        /// Bảo hiểm y tếThuốc/Tên mục
+        /// Bảo hiểm y tế Thuốc/Tên mục
         /// </summary>
         public string AKE002 { get; set; }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         /// </summary>
         public string BZE868 { get; set; }
         /// <summary>
-        /// vi phạmMô tả
+        /// vi phạm Mô tả
         /// </summary>
         public string AAE013 { get; set; }
         /// <summary>

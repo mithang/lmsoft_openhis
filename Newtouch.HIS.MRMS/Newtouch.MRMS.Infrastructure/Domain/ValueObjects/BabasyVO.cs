@@ -209,7 +209,7 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
         /// <returns></returns>
         public string ryzd { get; set; }
         /// <summary>
-        /// Nằm việnBác sĩ
+        /// Nằm viện Bác sĩ
         /// </summary>
         /// <returns></returns>
         public string ryys { get; set; }

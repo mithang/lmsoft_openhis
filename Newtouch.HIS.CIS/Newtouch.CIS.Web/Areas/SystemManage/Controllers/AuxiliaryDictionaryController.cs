@@ -112,7 +112,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             entity.zt = entity.zt == "true" ? "1" : "0";
             if (!string.IsNullOrWhiteSpace(keyValue) && keyValue == entity.ParentId)
             {
-                throw new FailedException("Cấp trênTừ điểnChọnLỗi");
+                throw new FailedException("Cấp trên Từ điển Chọn Lỗi");
             }
             entity.OrganizeId = this.OrganizeId;
             _auxiliaryDictionaryRepo.SubmitForm(entity, keyValue);

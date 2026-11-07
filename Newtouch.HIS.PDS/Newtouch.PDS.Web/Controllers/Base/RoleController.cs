@@ -96,13 +96,13 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// LưuSys_UserRole
+        /// Lưu Sys_UserRole
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         public IActionResult submitRoleUser(string roleId, string userIds)
         {
-            var organizeId = base.GetAuthOrganizeId();  //Mặc định QuyềnOrganizeId
+            var organizeId = base.GetAuthOrganizeId();  //Mặc định Quyền OrganizeId
 
             _userRoleAuthDmnService.submitRoleUser(roleId, userIds, organizeId);
             return Success("Thao tác thành công");

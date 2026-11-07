@@ -1,7 +1,7 @@
 namespace Newtouch.Domain.ValueObjects.Storage
 {
     /// <summary>
-    /// Kiểm kêThời gian
+    /// Kiểm kê Thời gian
     /// </summary>
     public class VInventoryDateDropDownEntity
     {
@@ -11,7 +11,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public long pdId { get; set; }
 
         /// <summary>
-        /// Kiểm kêThời gian
+        /// Kiểm kê Thời gian
         /// </summary>
         public string pdsj { get; set; }
     }

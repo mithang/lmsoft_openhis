@@ -10,7 +10,7 @@ namespace Newtouch.Infrastructure
         /// </summary>
         public static string SysFailedCodeMessageMapListListSetKey = "set:SysFailedCodeMessageMapListList_{0}";
         /// <summary>
-        /// Từ điển liên kết người dùng thông báo tin nhắn {0} Mã tổ chức {1} Hệ thống hiện tạiAppId {2} Người dùng
+        /// Từ điển liên kết người dùng thông báo tin nhắn {0} Mã tổ chức {1} Hệ thống hiện tại AppId {2} Người dùng
         /// </summary>
         public static string NoticeConnectionKey = "MsgNotice:{0}:{1}_{2}";
     }

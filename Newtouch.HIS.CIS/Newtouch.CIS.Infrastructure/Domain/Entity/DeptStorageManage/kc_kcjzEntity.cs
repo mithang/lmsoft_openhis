@@ -19,12 +19,12 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chứcId(cócụ thểthểnghiệp vụcủayviện)
+        /// Tổ chức Id(cócụ thểthểnghiệp vụcủayviện)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// KhoMã
+        /// Kho Mã
         /// </summary>
         public string warehouseId { get; set; }
 
@@ -44,23 +44,23 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public string pc { get; set; }
 
         /// <summary>
-        /// Hiệu lựcThời gian
+        /// Hiệu lực Thời gian
         /// </summary>
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// Tồn khoSố lượng,Đơn vị nhỏ nhấtSố lượng
+        /// Tồn kho Số lượng,Đơn vị nhỏ nhất Số lượng
         /// </summary>
         public int kcsl { get; set; }
 
         /// <summary>
-        /// Khoa phòngGiá bán lẻ,chuyểnhóavìcontương ứngĐơn vị
+        /// Khoa phòng Giá bán lẻ,chuyểnhóavìcontương ứng Đơn vị
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal bmlsj { get; set; }
 
         /// <summary>
-        /// vàogiá,chuyểnhóavìcontương ứngĐơn vị
+        /// vàogiá,chuyểnhóavìcontương ứng Đơn vị
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal jj { get; set; }
@@ -71,7 +71,7 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public int zhyz { get; set; }
 
         /// <summary>
-        /// kết chuyểnThời gian
+        /// kết chuyển Thời gian
         /// </summary>
         public DateTime jzsj { get; set; }
 

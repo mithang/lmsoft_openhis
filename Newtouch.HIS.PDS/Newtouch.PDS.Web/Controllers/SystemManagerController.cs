@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.HIS.Web.Controllers
 {
     /// <summary>
-    /// Quản lý hệ thốngController
+    /// Quản lý hệ thống Controller
     /// </summary>
     public class SystemManagerController : Controller
     {

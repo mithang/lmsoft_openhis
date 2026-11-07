@@ -35,7 +35,7 @@ namespace Newtouch.HIS.DomainServices
                 }
                 if (dbRoleEntity.Code == "Administrator")
                 {
-                    throw new FailedException("MãAdministratorđược hệ thống giữ lại, không thể xóa");
+                    throw new FailedException("Mã Administratorđược hệ thống giữ lại, không thể xóa");
                 }
 
                 db.Delete<SysRoleEntity>(t => t.Id == keyValue);
@@ -58,7 +58,7 @@ namespace Newtouch.HIS.DomainServices
                 if (string.IsNullOrWhiteSpace(keyValue)
                     || (!string.IsNullOrEmpty(keyValue) && roleEntity.OrganizeId != "*"))
                 {
-                    throw new FailedException("MãAdministratorđược hệ thống giữ lại");
+                    throw new FailedException("Mã Administratorđược hệ thống giữ lại");
                 }
             }
 

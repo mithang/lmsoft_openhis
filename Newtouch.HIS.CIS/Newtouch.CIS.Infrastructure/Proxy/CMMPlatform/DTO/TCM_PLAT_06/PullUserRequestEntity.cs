@@ -2,12 +2,12 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_PLAT_06
 {
     /// <summary>
-    /// đẩyThông tin bệnh nhânyêu cầuthể
+    /// đẩy Thông tin bệnh nhânyêu cầuthể
     /// </summary>
     public class PullUserRequestEntity : RequestBase
     {
         /// <summary>
-        /// chỗlýLoạiyêu cầuthể
+        /// chỗlý Loạiyêu cầuthể
         /// </summary>
         public HandleType HandleType { get; set; }
 
@@ -18,12 +18,12 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_PLAT_06
     }
 
     /// <summary>
-    /// chỗlýLoạiyêu cầuthể
+    /// chỗlý Loạiyêu cầuthể
     /// </summary>
     public class HandleType
     {
         /// <summary>
-        /// chỗlýLoại:A-Thêm mới,U-Sửa
+        /// chỗlý Loại:A-Thêm mới,U-Sửa
         /// bắt buộc
         /// </summary>
         public string handleType { get; set; }
@@ -35,14 +35,14 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_PLAT_06
     public class User
     {
         /// <summary>
-        /// ngườiviênSố hiệu(Người dùngtên)
+        /// ngườiviên Số hiệu(Người dùngtên)
         /// bắt buộc
         /// </summary>
         /// <returns></returns>
         public string id { get; set; }
 
         /// <summary>
-        ///Mặc địnhGiá trị:1
+        ///Mặc định Giá trị:1
         /// bắt buộc
         /// </summary>
         /// <returns></returns>
@@ -62,7 +62,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_PLAT_06
         public string name { get; set; }
 
         /// <summary>
-        ///Giới tínhMã
+        ///Giới tính Mã
         /// bắt buộc
         /// </summary>
         /// <returns></returns>
@@ -76,14 +76,14 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_PLAT_06
         public string gender { get; set; }
 
         /// <summary>
-        ///chứngmụcMã loại
+        ///chứngmục Mã loại
         /// bắt buộc
         /// </summary>
         /// <returns></returns>
         public string cardTypeCode { get; set; }
 
         /// <summary>
-        ///chứngmụcLoại
+        ///chứngmục Loại
         /// bắt buộc
         /// </summary>
         /// <returns></returns>
@@ -121,7 +121,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_PLAT_06
         public string introduce { get; set; }
 
         /// <summary>
-        ///Chức danhMã-Bác sĩChức danhMã
+        ///Chức danh Mã-Bác sĩ Chức danh Mã
         /// </summary>
         /// <returns></returns>
         public string proTitleCode { get; set; }
@@ -133,28 +133,28 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_PLAT_06
         public string proTitle { get; set; }
 
         /// <summary>
-        ///sởthuộcCơ sởMã
+        ///sởthuộc Cơ sở Mã
         /// bắt buộc
         /// </summary>
         /// <returns></returns>
         public string orgCode { get; set; }
 
         /// <summary>
-        ///sởthuộcMã khoa
+        ///sởthuộc Mã khoa
         /// bắt buộc
         /// </summary>
         /// <returns></returns>
         public string deptCode { get; set; }
 
         /// <summary>
-        ///Vai tròMã 0: tỉnhQuản lýviên,1: trongyquánQuản lýviên,2: Bác sĩ
+        ///Vai trò Mã 0: tỉnh Quản lýviên,1: trongyquán Quản lýviên,2: Bác sĩ
         /// bắt buộc
         /// </summary>
         /// <returns></returns>
         public string roleCode { get; set; }
 
         /// <summary>
-        ///Cơ sởSố hiệu(duy nhấtmộtnhận dạng)
+        ///Cơ sở Số hiệu(duy nhấtmộtnhận dạng)
         /// bắt buộc
         /// </summary>
         /// <returns></returns>
