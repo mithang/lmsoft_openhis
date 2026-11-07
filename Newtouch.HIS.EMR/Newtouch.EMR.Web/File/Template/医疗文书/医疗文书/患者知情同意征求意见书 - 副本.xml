@@ -61,7 +61,7 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="5" />
             <Element xsi:type="XString" StyleIndex="2">
                <XElements xsi:nil="true" />
-               <Text>患者知情同意征求意见书</Text>
+               <Text>Phiếu xin ý kiến về việc bệnh nhân được biết và đồng ý</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
          </XElements>
@@ -72,12 +72,12 @@
          <XElements>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>姓名：</Text>
+               <Text>Họ tên：</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="6">
                <Attributes />
                <ID>field1</ID>
-               <ToolTip>姓名</ToolTip>
+               <ToolTip>Họ tên</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -91,18 +91,18 @@
                <BorderElementColor />
                <EventExpressions />
                <InnerValue />
-               <BackgroundText>姓名</BackgroundText>
+               <BackgroundText>Họ tên</BackgroundText>
                <LastSelectedListItems />
                <FieldSettings />
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text> 性别：</Text>
+               <Text> Giới tính：</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="6">
                <Attributes />
                <ID>field2</ID>
-               <ToolTip>性别</ToolTip>
+               <ToolTip>Giới tính</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -117,7 +117,7 @@
                <EventExpressions />
                <UserEditable>false</UserEditable>
                <InnerValue />
-               <BackgroundText>性别</BackgroundText>
+               <BackgroundText>Giới tính</BackgroundText>
                <LastSelectedListItems />
                <FieldSettings>
                   <EditStyle>DropdownList</EditStyle>
@@ -125,15 +125,15 @@
                      <SourceName>性别</SourceName>
                      <Items>
                         <Item>
-                           <Text>男</Text>
+                           <Text>Nam</Text>
                            <Value>男</Value>
                         </Item>
                         <Item>
-                           <Text>女</Text>
+                           <Text>Nữ</Text>
                            <Value>女</Value>
                         </Item>
                         <Item>
-                           <Text>其他</Text>
+                           <Text>Khác</Text>
                            <Value>其他</Value>
                         </Item>
                      </Items>
@@ -142,12 +142,12 @@
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text> 年龄：</Text>
+               <Text> Tuổi：</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="6">
                <Attributes />
                <ID>field3</ID>
-               <ToolTip>年龄</ToolTip>
+               <ToolTip>Tuổi</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -161,18 +161,18 @@
                <BorderElementColor />
                <EventExpressions />
                <InnerValue />
-               <BackgroundText>年龄</BackgroundText>
+               <BackgroundText>Tuổi</BackgroundText>
                <LastSelectedListItems />
                <FieldSettings />
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text> 科室：</Text>
+               <Text> Khoa：</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="7">
                <Attributes />
                <ID>field4</ID>
-               <ToolTip>科室名称</ToolTip>
+               <ToolTip>Tên khoa</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -185,18 +185,18 @@
                <BorderElementColor />
                <EventExpressions />
                <InnerValue />
-               <BackgroundText>科室名称</BackgroundText>
+               <BackgroundText>Tên khoa</BackgroundText>
                <LastSelectedListItems />
                <FieldSettings />
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>床号：</Text>
+               <Text>Số giường：</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="8">
                <Attributes />
                <ID>field5</ID>
-               <ToolTip>床位名称</ToolTip>
+               <ToolTip>Tên giường bệnh</ToolTip>
                <EnableValueValidate>true</EnableValueValidate>
                <ValueBinding>
                   <DataSource>zy_brjbxx</DataSource>
@@ -209,68 +209,68 @@
                <AcceptChildElementTypes2>Text</AcceptChildElementTypes2>
                <BorderElementColor />
                <InnerValue />
-               <BackgroundText>床位名称</BackgroundText>
+               <BackgroundText>Tên giường bệnh</BackgroundText>
                <FieldSettings />
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>     您在我院住院期间享有知情同意的权利，我们应该将您住院期间的病情、医疗措施、治疗情况、医疗风险等如实的告知您，对您的特殊检查、治疗及手术也应征得您的签字同意。为了维护您的合法权益，避免对您产生不利的影响，遇到下列情况时，请您明确我们应如何向您履行告知义务。</Text>
+               <Text>     Trong thời gian nằm viện, quý vị có quyền được biết và đồng ý，Chúng tôi sẽ thông báo cho quý vị về tình trạng bệnh、Biện pháp điều trị、Tình hình điều trị、Nguy cơ y tế, v.v. một cách trung thực，Đối với các xét nghiệm, kiểm tra đặc biệt、Điều trị và phẫu thuật cũng cần có chữ ký đồng ý của quý vị。Để bảo vệ quyền lợi hợp pháp của quý vị，Tránh gây ảnh hưởng bất lợi cho quý vị，Khi gặp các trường hợp sau，Xin quý vị cho biết chúng tôi nên thực hiện nghĩa vụ thông báo như thế nào。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>  一、当您在诊治中病情有变化遇到危险，或是特殊检查、治疗、手术有较大风险，或是治疗有困难遇到不治之症时，是否将真实情况告知您本人?</Text>
+               <Text>  一、Khi tình trạng bệnh của quý vị thay đổi và gặp nguy hiểm trong quá trình chẩn đoán, điều trị，Hoặc khi xét nghiệm, kiểm tra đặc biệt、Điều trị、Phẫu thuật có nguy cơ lớn，Hoặc khi điều trị gặp khó khăn, mắc bệnh nan y，Có thông báo tình hình thật cho chính quý vị không?</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>     1.否2.是</Text>
+               <Text>     1.Không2.Có</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>  二、当特殊检查、治疗、手术需签署同意书时，是否由您本人签字同意?</Text>
+               <Text>  二、Khi xét nghiệm, kiểm tra đặc biệt、Điều trị、Phẫu thuật cần ký giấy đồng ý，Có phải chính quý vị ký đồng ý không?</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>     1.否2.是</Text>
+               <Text>     1.Không2.Có</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>三、如果不将真实情况告知您本人，不由您本人签署同意书，您决定委托_________</Text>
+               <Text>三、Nếu không thông báo tình hình thật cho chính quý vị，Không phải chính quý vị ký giấy đồng ý，Quý vị quyết định ủy quyền cho_________</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>__________________________________作您的知情同意事项代理人。</Text>
+               <Text>__________________________________Làm người đại diện thực hiện quyền được biết và đồng ý của quý vị。</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>病员签字：__________________</Text>
+               <Text>Bệnh nhân ký tên：__________________</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>病员代理人签字：______________________与病员关系：_____________________</Text>
+               <Text>Người đại diện bệnh nhân ký tên：______________________Quan hệ với bệnh nhân：_____________________</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>代理人住址：___________________________联系电话：_______________________</Text>
+               <Text>Địa chỉ người đại diện：___________________________Số điện thoại liên hệ：_______________________</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>医生签字：____________________</Text>
+               <Text>Bác sĩ ký tên：____________________</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>______________年_________月_________日_________时________分</Text>
+               <Text>______________năm_________tháng_________ngày_________giờ________phút</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
          </XElements>
@@ -293,19 +293,19 @@
       <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
       <NumOfPage>1</NumOfPage>
    </Info>
-   <BodyText>姓名： 性别： 年龄： 科室：床号：
-     您在我院住院期间享有知情同意的权利，我们应该将您住院期间的病情、医疗措施、治疗情况、医疗风险等如实的告知您，对您的特殊检查、治疗及手术也应征得您的签字同意。为了维护您的合法权益，避免对您产生不利的影响，遇到下列情况时，请您明确我们应如何向您履行告知义务。
-  一、当您在诊治中病情有变化遇到危险，或是特殊检查、治疗、手术有较大风险，或是治疗有困难遇到不治之症时，是否将真实情况告知您本人?
-     1.否2.是
-  二、当特殊检查、治疗、手术需签署同意书时，是否由您本人签字同意?
-     1.否2.是
-三、如果不将真实情况告知您本人，不由您本人签署同意书，您决定委托_________
-__________________________________作您的知情同意事项代理人。
-病员签字：__________________
-病员代理人签字：______________________与病员关系：_____________________
-代理人住址：___________________________联系电话：_______________________
-医生签字：____________________
-______________年_________月_________日_________时________分</BodyText>
+   <BodyText>Họ tên： Giới tính： Tuổi： Khoa：Số giường：
+     Trong thời gian nằm viện, quý vị có quyền được biết và đồng ý，Chúng tôi sẽ thông báo cho quý vị về tình trạng bệnh、Biện pháp điều trị、Tình hình điều trị、Nguy cơ y tế, v.v. một cách trung thực，Đối với các xét nghiệm, kiểm tra đặc biệt、Điều trị và phẫu thuật cũng cần có chữ ký đồng ý của quý vị。Để bảo vệ quyền lợi hợp pháp của quý vị，Tránh gây ảnh hưởng bất lợi cho quý vị，Khi gặp các trường hợp sau，Xin quý vị cho biết chúng tôi nên thực hiện nghĩa vụ thông báo như thế nào。
+  一、Khi tình trạng bệnh của quý vị thay đổi và gặp nguy hiểm trong quá trình chẩn đoán, điều trị，Hoặc khi xét nghiệm, kiểm tra đặc biệt、Điều trị、Phẫu thuật có nguy cơ lớn，Hoặc khi điều trị gặp khó khăn, mắc bệnh nan y，Có thông báo tình hình thật cho chính quý vị không?
+     1.Không2.Có
+  二、Khi xét nghiệm, kiểm tra đặc biệt、Điều trị、Phẫu thuật cần ký giấy đồng ý，Có phải chính quý vị ký đồng ý không?
+     1.Không2.Có
+三、Nếu không thông báo tình hình thật cho chính quý vị，Không phải chính quý vị ký giấy đồng ý，Quý vị quyết định ủy quyền cho_________
+__________________________________Làm người đại diện thực hiện quyền được biết và đồng ý của quý vị。
+Bệnh nhân ký tên：__________________
+Người đại diện bệnh nhân ký tên：______________________Quan hệ với bệnh nhân：_____________________
+Địa chỉ người đại diện：___________________________Số điện thoại liên hệ：_______________________
+Bác sĩ ký tên：____________________
+______________năm_________tháng_________ngày_________giờ________phút</BodyText>
    <Comments />
    <LocalConfig />
    <PageSettings />
