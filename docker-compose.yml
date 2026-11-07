@@ -39,6 +39,7 @@ x-app-env: &app-env
   BusinessConfig__AppAPIHost__SiteApiManageHost: "http://apimanage:8016/"
   BusinessConfig__AppAPIHost__SiteSettAPIHost: "http://settapi:7002/"
   BusinessConfig__AppAPIHost__SitePdsAPIHost: "http://pdsapi:5337/"
+  BusinessConfig__AppAPIHost__SiteYfykAPIHost: "http://pdsapi:5337/"
   BusinessConfig__AppAPIHost__SiteCisAPIHost: "http://cisapi:5334/"
   BusinessConfig__AppAPIHost__SiteStaticHost: "http://127.0.0.1:41142/"
   # Fallback prefix: some code reads _config["AppAPIHost:..."] directly
@@ -49,6 +50,7 @@ x-app-env: &app-env
   AppAPIHost__SiteApiManageHost: "http://apimanage:8016/"
   AppAPIHost__SiteSettAPIHost: "http://settapi:7002/"
   AppAPIHost__SitePdsAPIHost: "http://pdsapi:5337/"
+  AppAPIHost__SiteYfykAPIHost: "http://pdsapi:5337/"
   AppAPIHost__SiteCisAPIHost: "http://cisapi:5334/"
   AccessConfig__Document_Domain: "127.0.0.1"
 

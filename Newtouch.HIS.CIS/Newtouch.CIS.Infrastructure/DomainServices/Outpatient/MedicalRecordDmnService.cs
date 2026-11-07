@@ -296,7 +296,7 @@ cfmx.xzsybz,
 cfmx.cfmxId,
 cfmx.ts,
 cf.tbz,
-cfmx.zzfbz,cfmx.ztmbId
+cfmx.zzfbz, NULL AS ztmbId
 FROM xt_cfmx cfmx
 INNER JOIN xt_cf(nolock) cf
     ON cf.cfId=cfmx.cfId
@@ -748,7 +748,8 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                                                             zdCode = item.zdCode,
                                                             zdmc = item.zdmc,
                                                             ysbz = item.ysbz,
-                                                            zdbz = item.zdbz
+                                                            zdbz = item.zdbz,
+                                                            zt = "1"
                                                         })
                         {
                             diagnosisEntity.Create();
@@ -776,7 +777,8 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                                 ysbz = item.ysbz,
                                 zhCode = item.zhCode,
                                 zhmc = item.zhmc,
-                                zdbz = item.zdbz
+                                zdbz = item.zdbz,
+                                zt = "1"
                             };
                             diagnosisEntity.Create();
                             db.Insert(diagnosisEntity);

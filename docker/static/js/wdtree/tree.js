@@ -18,7 +18,7 @@
                 url: false,
                 param: null,
                 //cbiconpath: "/Content/js/wdtree/images/icons/",
-                cbiconpath: "http://59.80.30.157:20103/js/wdtree/images/icons/",
+                cbiconpath: "http://127.0.0.1:41142/js/wdtree/images/icons/",
                 icons: ["checkbox_0.png", "checkbox_1.png", "checkbox_2.png"],
                 showcheck: false,
                 oncheckboxclick: false,
@@ -30,7 +30,7 @@
                 theme: "bbit-tree-arrows",
                 isTool: false,
                 nodeTools: [],
-                //µã»÷ÎÄ×ÖÄ£Äâ´¥·¢checkbox
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½â´¥ï¿½ï¿½checkbox
                 nodeTextTriggerCb: true,
                 dataCallback: null
             };
@@ -369,7 +369,7 @@
                 }
             }
             else {
-                //´¥·¢checkbox click
+                //ï¿½ï¿½ï¿½ï¿½checkbox click
                 if (dfop.nodeTextTriggerCb == true && dfop.showcheck === true && $(this).attr('id')) {
                     var $cbs = $('img#' + $(this).attr('id') + '_cb');
                     if ($cbs.length == 1) { 
@@ -459,7 +459,7 @@
                 }
             }
             else {
-                //´¥·¢checkbox click
+                //ï¿½ï¿½ï¿½ï¿½checkbox click
                 if (dfop.nodeTextTriggerCb == true && dfop.showcheck === true && $(this).attr('id')) {
                     var $cbs = $('img#' + $(this).attr('id') + '_cb');
                     if ($cbs.length == 1) {
@@ -522,7 +522,7 @@
                     success: callback,
                     cache: false,
                     error: function (e) {
-                        //dialogMsg("·þÎñ¶ËÎ´ÏìÓ¦¡£", -1);
+                        //dialogMsg("ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½Ó¦ï¿½ï¿½", -1);
                     }
                 });
             }
@@ -675,7 +675,7 @@
             var _src = $(this).attr('src');
             _src = _src.substr(_src.lastIndexOf("/") + 1);
             if (_src == 'checkbox_1.png' || _src == 'checkbox_2.png') {
-                //´¦ÓÚÑ¡Ôñ×´Ì¬
+                //ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½×´Ì¬
                 var $dObj = $(this).siblings('a.bbit-tree-node-anchor').find('.bbit-tree-node-text');
                 var _value = $dObj.attr('data-Code');
                 value.push(_value);
@@ -683,14 +683,14 @@
         });
         return value;
     };
-    //»ñÈ¡¶ÔÏóÊý×é
+    //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     $.fn.getCheckedNodeObjArray = function () {
         var value = []
         $(this).find('.bbit-tree-node-cb').each(function () {
             var _src = $(this).attr('src');
             _src = _src.substr(_src.lastIndexOf("/") + 1);
             if (_src == 'checkbox_1.png' || _src == 'checkbox_2.png') {
-                //´¦ÓÚÑ¡Ôñ×´Ì¬
+                //ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½×´Ì¬
                 var $dObj = $(this).siblings('a.bbit-tree-node-anchor').find('.bbit-tree-node-text');
                 var temmmmmmmmmp = {
                     id: $dObj.attr('data-id'), value: $dObj.attr('data-value'), text: $.trim($dObj.html())

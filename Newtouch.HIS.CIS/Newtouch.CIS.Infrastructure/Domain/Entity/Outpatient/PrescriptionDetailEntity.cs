@@ -172,6 +172,7 @@ namespace Newtouch.Domain.Entity
         /// <summary>
         /// Bộ mẫusởthuộcmẫu
         /// </summary>
+        [SugarColumn(IsIgnore = true)]
         public string ztmbId { get; set; }
         /// <summary>
         /// Bộ mẫuid

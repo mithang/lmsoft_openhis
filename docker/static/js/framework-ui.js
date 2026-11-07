@@ -86,26 +86,40 @@ $.encodeRequestParameters = function (params) {
     return resultParams;
 }
 $.currentWindow = function (iframeId) {
-    if (!!!iframeId) {
-        iframeId = top.$(".Newtouch_iframe:visible").attr("id");
-    }
-    if (!!!iframeId) {
-        return null;    //not found
-    }
-    for (var frameIndex = 0; frameIndex < top.frames.length; frameIndex++) {
+    if (!iframeId) {
         try {
-            var thisIdxWindow = null;
-            thisIdxWindow = top.top.window[frameIndex];
-            if (thisIdxWindow && thisIdxWindow.frameElement.id && thisIdxWindow.frameElement.id == iframeId) {
-                return thisIdxWindow;
+            iframeId = top.$(".Newtouch_iframe:visible").attr("id");
+        } catch (e) {}
+    }
+    if (!iframeId) {
+        return window;
+    }
+    var el = document.getElementById(iframeId);
+    if (el && el.contentWindow) {
+        return el.contentWindow;
+    }
+    if (window.frames && window.frames[iframeId]) {
+        return window.frames[iframeId];
+    }
+    try {
+        if (window.top && window.top.document) {
+            var topEl = window.top.document.getElementById(iframeId);
+            if (topEl && topEl.contentWindow) return topEl.contentWindow;
+        }
+    } catch (e) {}
+    try {
+        if (window.top && window.top.frames) {
+            for (var frameIndex = 0; frameIndex < window.top.frames.length; frameIndex++) {
+                try {
+                    var thisIdxWindow = window.top.frames[frameIndex];
+                    if (thisIdxWindow && (thisIdxWindow.name === iframeId || (thisIdxWindow.frameElement && thisIdxWindow.frameElement.id === iframeId))) {
+                        return thisIdxWindow;
+                    }
+                } catch (err) {}
             }
         }
-        catch (err) {
-            //跨域 等
-            //保证continue
-        }
-    }
-    return null;
+    } catch (e) {}
+    return window;
 }
 $.browser = function () {
     var userAgent = navigator.userAgent; var isOpera = userAgent.indexOf("Opera") > -1; if (isOpera) { return "Opera" }; if (userAgent.indexOf("Firefox") > -1) { return "FF"; }
@@ -547,13 +561,21 @@ $.cloneObject = function (obj) {
 }
 $.enum = {
     getItems: function (type) {
-        var enumsTemp;
+        var enumsTemp = null;
         try {
             enumsTemp = top.top.$.clients.get($.getCurrentAppId(), "enums");
         }
         catch (eeeeeeeee) {
-            //为了兼容以前的版本
-            enumsTemp = top.top.clients.enums;
+            try {
+                enumsTemp = top.top.clients.enums;
+            } catch (e2) {
+                try {
+                    enumsTemp = (window.clients && window.clients.enums) || (window.$ && window.$.clients && window.$.clients.get && window.$.clients.get($.getCurrentAppId(), "enums"));
+                } catch (e3) {}
+            }
+        }
+        if (!enumsTemp && window.clients && window.clients.enums) {
+            enumsTemp = window.clients.enums;
         }
         if (enumsTemp) {
             var matched = $.jsonWhere(enumsTemp, function (v) {
@@ -590,13 +612,21 @@ $.enum = {
 $(function () { $('select[data-EnumType]').each(function () { $(this).enumBindSelect({ enumtype: $(this).attr('data-EnumType'), someValues: $(this).attr('data-SomeValues'), someNames: $(this).attr('data-SomeNames'), selectedValue: $(this).attr('data-SelectedValue') }); }); });
 $.itemDetails = {
     getItems: function (type, isContantsInvalid) {
-        var itemDetailsTemp;
+        var itemDetailsTemp = null;
         try {
             itemDetailsTemp = top.top.$.clients.get($.getCurrentAppId(), "itemDetails");
         }
         catch (eeeeeeeee) {
-            //为了兼容以前的版本
-            itemDetailsTemp = top.top.clients.itemDetails;
+            try {
+                itemDetailsTemp = top.top.clients.itemDetails;
+            } catch (e2) {
+                try {
+                    itemDetailsTemp = (window.clients && window.clients.itemDetails) || (window.$ && window.$.clients && window.$.clients.get && window.$.clients.get($.getCurrentAppId(), "itemDetails"));
+                } catch (e3) {}
+            }
+        }
+        if (!itemDetailsTemp && window.clients && window.clients.itemDetails) {
+            itemDetailsTemp = window.clients.itemDetails;
         }
         if (itemDetailsTemp) {
             var matched = $.jsonWhere(itemDetailsTemp, function (v) {

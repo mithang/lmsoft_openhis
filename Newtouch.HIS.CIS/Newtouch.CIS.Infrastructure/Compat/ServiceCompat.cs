@@ -248,6 +248,11 @@ namespace Newtouch.CIS.Compat
             if (isCreate)
             {
                 SetString(type, entity, new[] { "CreatorCode", "CreatorUserId", "F_CreatorUserId" }, userCode);
+                var ztProp = type.GetProperty("zt", BindingFlags.Public | BindingFlags.Instance);
+                if (ztProp != null && ztProp.CanWrite && string.IsNullOrWhiteSpace(ztProp.GetValue(entity) as string))
+                {
+                    ztProp.SetValue(entity, "1");
+                }
             }
             else
             {

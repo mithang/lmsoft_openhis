@@ -258,6 +258,12 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseStaticFiles();
 
+app.Use(async (context, next) =>
+{
+    context.Response.Headers["Origin-Agent-Cluster"] = "?0";
+    await next();
+});
+
 app.UseRouting();
 app.UseMiddleware<ExceptionHandleMiddleware>();
 app.UseAuthorization();

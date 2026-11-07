@@ -30,7 +30,7 @@
                 function () { callBack(true); if (!(close === false)) { window.top.layer.closeAll('dialog'); } },
                 function () { callBack(false); });
         } else {
-            callBack(confirm(content));
+            callBack(window.confirm ? window.confirm(content) : true);
         }
     }
     $.modalAlert = viAlert;
