@@ -783,7 +783,7 @@ order by SSOrder ";
                             relety.Create(true);
                             _MrbasyrelcodeRepo.Insert(relety);
                             
-                            //Ghi đèEMR
+                            //Ghi đè EMR
                             try
                             {
                                 // 7-fix: tham số hóa BABAH (trước đây nối trực tiếp).
