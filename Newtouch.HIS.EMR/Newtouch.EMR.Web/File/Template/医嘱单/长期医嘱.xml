@@ -31,7 +31,7 @@
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
             <Element xsi:type="XString" StyleIndex="2">
-               <Text>Phiếu y lệnh dài hạn1</Text>
+               <Text>Phiếu y lệnh dài hạn 1</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
             <Element xsi:type="XString" StyleIndex="3">

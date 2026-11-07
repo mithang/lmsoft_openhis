@@ -42,21 +42,21 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>1668</InnerID>
-               <Text>       Để bảo vệ tốt hơn trật tự y tế và quyền lợi của bệnh nhân，Tạo môi trường khám chữa bệnh thoải mái，Khi quý vị vào phòng bệnh，Xin quý vị biết và tự giác tuân thủ nội quy, quy định quản lý của khu bệnh，Phối hợp tốt công tác quản lý khu bệnh:</Text>
+               <Text>       Để bảo vệ tốt hơn trật tự y tế và quyền lợi của bệnh nhân, Tạo môi trường khám chữa bệnh thoải mái, Khi quý vị vào phòng bệnh, Xin quý vị biết và tự giác tuân thủ nội quy, quy định quản lý của khu bệnh, Phối hợp tốt công tác quản lý khu bệnh:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>129</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1669</InnerID>
-               <Text>       1、Mọi bệnh nhân nằm viện phải mang theo chứng minh nhân dân、Thẻ bảo hiểm y tế(Hoặc thẻ bảo hiểm xã hội, v.v.)、门诊病</Text>
+               <Text>       1, Mọi bệnh nhân nằm viện phải mang theo chứng minh nhân dân, Thẻ bảo hiểm y tế (Hoặc thẻ bảo hiểm xã hội, v.v.),门诊病</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>171</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1670</InnerID>
-               <Text>历、Giấy nhập viện và các giấy tờ khác，Và tiền tạm ứng，Làm xong thủ tục nhập viện mới được xếp giường。</Text>
+               <Text>历, Giấy nhập viện và các giấy tờ khác, Và tiền tạm ứng, Làm xong thủ tục nhập viện mới được xếp giường.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>204</InnerID>
@@ -67,18 +67,18 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="4">
                <InnerID>1672</InnerID>
-               <Text>Địa điểm làm thủ tục nhập/xuất viện:Quầy thu phí tầng 1</Text>
+               <Text>Địa điểm làm thủ tục nhập/xuất viện: Quầy thu phí tầng 1</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1673</InnerID>
-               <Text>Quầy đăng ký khám;Thời gian làm thủ tục8;00一下午16:00。</Text>
+               <Text>Quầy đăng ký khám; Thời gian làm thủ tục 8;00一下午16:00.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>248</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1674</InnerID>
-               <Text>       2、Quý vị nằm tại</Text>
+               <Text>       2, Quý vị nằm tại</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="5">
                <InnerID>264</InnerID>
@@ -98,7 +98,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>1675</InnerID>
-               <Text>Phòng bệnh khoa， Số giường</Text>
+               <Text>Phòng bệnh khoa, Số giường</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="5">
                <InnerID>272</InnerID>
@@ -118,7 +118,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>1676</InnerID>
-               <Text>， Bác sĩ phụ trách giường là, điều dưỡng phụ trách là</Text>
+               <Text>, Bác sĩ phụ trách giường là, điều dưỡng phụ trách là</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="5">
                <InnerID>1677</InnerID>
@@ -129,14 +129,14 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>1678</InnerID>
-               <Text>       3、Lúc nhập viện，Bệnh nhân phải ký《Giấy ủy quyền thông báo cho bệnh nhân nằm viện》，Nhân viên y tế cần thông báo tầm quan trọng và nội dung của việc ký các văn bản trên。Khi bệnh nhân không thể ký tên do tình trạng bệnh，Người được bệnh nhân chỉ định sẽ ký thay;Nếu trong thời gian nằm viện thay đổi người được ủy quyền，Cần báo ngay cho bác sĩ tên người thay thế và ký tên。</Text>
+               <Text>       3, Lúc nhập viện, Bệnh nhân phải ký《Giấy ủy quyền thông báo cho bệnh nhân nằm viện》, Nhân viên y tế cần thông báo tầm quan trọng và nội dung của việc ký các văn bản trên. Khi bệnh nhân không thể ký tên do tình trạng bệnh, Người được bệnh nhân chỉ định sẽ ký thay; Nếu trong thời gian nằm viện thay đổi người được ủy quyền, Cần báo ngay cho bác sĩ tên người thay thế và ký tên.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>401</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1679</InnerID>
-               <Text>       4、Trong thời gian nằm viện, bệnh nhân và gia đình cần biết các quy định sau:</Text>
+               <Text>       4, Trong thời gian nằm viện, bệnh nhân và gia đình cần biết các quy định sau:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>429</InnerID>
@@ -151,7 +151,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>1682</InnerID>
-               <Text>:là bữa sáng:7:00;Bữa trưa 11:00;Bữa tối 17:00;Nhân viên phục vụ mang đến phòng bệnh。</Text>
+               <Text>: là bữa sáng: 7:00; Bữa trưa 11:00; Bữa tối 17:00; Nhân viên phục vụ mang đến phòng bệnh.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>479</InnerID>
@@ -166,7 +166,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>1685</InnerID>
-               <Text>:Mùa hè:Mỗi buổi chiều1:30~4:00;Mùa đông:Mỗi tuần hai lần(Thứ ba、Thứ sáu)Giờ mở cửa như nhau。Các quy định trên chỉ áp dụng cho bệnh nhân có tình trạng ổn định，Và cần có người thân hoặc hộ lý đi cùng。</Text>
+               <Text>: Mùa hè: Mỗi buổi chiều 1:30~4:00; Mùa đông: Mỗi tuần hai lần (Thứ ba, Thứ sáu)Giờ mở cửa như nhau. Các quy định trên chỉ áp dụng cho bệnh nhân có tình trạng ổn định, Và cần có người thân hoặc hộ lý đi cùng.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>557</InnerID>
@@ -181,49 +181,49 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>1688</InnerID>
-               <Text>:Mỗi buổi chiều:1:30~8:00。Bệnh nhân và gia đình cần giữ yên lặng，Không được nói to trong phòng bệnh và hành lang，Không được ngủ trên giường bệnh，Tuân theo sự quản lý của điều dưỡng trưởng khoa。</Text>
+               <Text>: Mỗi buổi chiều: 1:30~8:00. Bệnh nhân và gia đình cần giữ yên lặng, Không được nói to trong phòng bệnh và hành lang, Không được ngủ trên giường bệnh, Tuân theo sự quản lý của điều dưỡng trưởng khoa.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>630</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1689</InnerID>
-               <Text>       4、Để bảo đảm an toàn cho bệnh nhân trong thời gian nằm viện，Bệnh nhân không được tự ý ra ngoài hay ngủ ngoài bệnh viện。Nếu thật sự có trường hợp đặc biệt hoặc việc quan trọng cần ra ngoài，Phải được bác sĩ điều trị chính phụ trách giường đồng ý，Và làm thủ tục xin phép。Phải tự bố trí người thân hoặc người khác đi cùng，Nếu tự ý một mình rời viện，Mọi hậu quả tự chịu trách nhiệm。</Text>
+               <Text>       4, Để bảo đảm an toàn cho bệnh nhân trong thời gian nằm viện, Bệnh nhân không được tự ý ra ngoài hay ngủ ngoài bệnh viện. Nếu thật sự có trường hợp đặc biệt hoặc việc quan trọng cần ra ngoài, Phải được bác sĩ điều trị chính phụ trách giường đồng ý, Và làm thủ tục xin phép. Phải tự bố trí người thân hoặc người khác đi cùng, Nếu tự ý một mình rời viện, Mọi hậu quả tự chịu trách nhiệm.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>737</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1690</InnerID>
-               <Text>       5、Bệnh nhân cần tích cực phối hợp chẩn đoán và điều trị、Chăm sóc、Kiểm tra、Hướng dẫn sức khỏe và các công việc khác，Khi làm các kiểm tra liên quan cần có nhân viên y tế hoặc hộ lý đi cùng。Khi chưa được nhân viên y tế cho phép，Không được tự ý xem、Giành giật、Tẩy xóa、Làm hỏng bệnh án và các văn bản y tế khác。Nếu có vấn đề，Xin hỏi và trao đổi với bác sĩ hoặc điều dưỡng，Chúng tôi sẽ đáp ứng yêu cầu của quý vị。</Text>
+               <Text>       5, Bệnh nhân cần tích cực phối hợp chẩn đoán và điều trị, Chăm sóc, Kiểm tra, Hướng dẫn sức khỏe và các công việc khác, Khi làm các kiểm tra liên quan cần có nhân viên y tế hoặc hộ lý đi cùng. Khi chưa được nhân viên y tế cho phép, Không được tự ý xem, Giành giật, Tẩy xóa, Làm hỏng bệnh án và các văn bản y tế khác. Nếu có vấn đề, Xin hỏi và trao đổi với bác sĩ hoặc điều dưỡng, Chúng tôi sẽ đáp ứng yêu cầu của quý vị.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>851</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1691</InnerID>
-               <Text>       6、Trong thời gian nằm viện, xin phối hợp giữ khu bệnh sạch sẽ，Không vứt bừa đồ dùng sinh hoạt。Không mang đồ quý giá vào，Điện thoại、Ví tiền, v.v. xin giữ gìn cẩn thận，Nếu bị mất，Bệnh viện không chịu trách nhiệm。Nghiêm cấm mang đồ dễ cháy, dễ nổ vào khu bệnh;Dao、Đồ sắc nhọn, v.v. có thể giao cho khoa điều dưỡng giữ chung，Nhận lại sau khi xuất viện。</Text>
+               <Text>       6, Trong thời gian nằm viện, xin phối hợp giữ khu bệnh sạch sẽ, Không vứt bừa đồ dùng sinh hoạt. Không mang đồ quý giá vào, Điện thoại, Ví tiền, v.v. xin giữ gìn cẩn thận, Nếu bị mất, Bệnh viện không chịu trách nhiệm. Nghiêm cấm mang đồ dễ cháy, dễ nổ vào khu bệnh; Dao, Đồ sắc nhọn, v.v. có thể giao cho khoa điều dưỡng giữ chung, Nhận lại sau khi xuất viện.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>960</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1692</InnerID>
-               <Text>       7、Nếu bệnh nhân cần nộp hoặc tra cứu viện phí，Xin đến quầy nhập/xuất viện，Nhân viên sẽ làm thủ tục cho quý vị(Cũng có thể đến văn phòng điều dưỡng để tra cứu)。</Text>
+               <Text>       7, Nếu bệnh nhân cần nộp hoặc tra cứu viện phí, Xin đến quầy nhập/xuất viện, Nhân viên sẽ làm thủ tục cho quý vị (Cũng có thể đến văn phòng điều dưỡng để tra cứu).</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1013</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1693</InnerID>
-               <Text>       8、Để tăng cường xây dựng y đức, tác phong ngành và tự quản của ngành，Hai bên bác sĩ và bệnh nhân cần cùng tuân thủ quy định xây dựng tác phong ngành của hệ thống y tế thành phố Thượng Hải。Bệnh viện chúng tôi là“Không phong bì”Bệnh viện，Nghiêm cấm nhân viên y tế nhận hoặc đòi hỏi của bệnh nhân trong hoạt động khám chữa bệnh“phong bì”Và các đồ quý giá khác，Một khi xác minh được，Sẽ xử lý nghiêm theo quy định của cấp trên về xây dựng tác phong ngành và nội quy bệnh viện。</Text>
+               <Text>       8, Để tăng cường xây dựng y đức, tác phong ngành và tự quản của ngành, Hai bên bác sĩ và bệnh nhân cần cùng tuân thủ quy định xây dựng tác phong ngành của hệ thống y tế thành phố Thượng Hải. Bệnh viện chúng tôi là“Không phong bì”Bệnh viện, Nghiêm cấm nhân viên y tế nhận hoặc đòi hỏi của bệnh nhân trong hoạt động khám chữa bệnh“phong bì”Và các đồ quý giá khác, Một khi xác minh được, Sẽ xử lý nghiêm theo quy định của cấp trên về xây dựng tác phong ngành và nội quy bệnh viện.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1132</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1694</InnerID>
-               <Text>       9、Để bảo vệ quyền lợi của bệnh nhân，Nếu bệnh nhân không hài lòng về dịch vụ y tế、Chất lượng y tế、Xây dựng tác phong ngành、Thái độ làm việc của nhân viên y tế, v.v.，Hoặc xảy ra tranh chấp y tế，Có thể khiếu nại để bảo vệ quyền lợi của mình。</Text>
+               <Text>       9, Để bảo vệ quyền lợi của bệnh nhân, Nếu bệnh nhân không hài lòng về dịch vụ y tế, Chất lượng y tế, Xây dựng tác phong ngành, Thái độ làm việc của nhân viên y tế, v.v., Hoặc xảy ra tranh chấp y tế, Có thể khiếu nại để bảo vệ quyền lợi của mình.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1205</InnerID>
@@ -238,7 +238,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>1697</InnerID>
-               <Text>:Văn phòng bệnh viện tầng 7</Text>
+               <Text>: Văn phòng bệnh viện tầng 7</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1223</InnerID>
@@ -253,7 +253,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>1700</InnerID>
-               <Text>:Có thể tự đến，Hoặc qua điện thoại、Thư、Khiếu nại qua email và các cách khác:</Text>
+               <Text>: Có thể tự đến, Hoặc qua điện thoại, Thư, Khiếu nại qua email và các cách khác:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1261</InnerID>
@@ -268,7 +268,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>1703</InnerID>
-               <Text>:58205511-8168</Text>
+               <Text>: 58205511-8168</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1288</InnerID>
@@ -283,14 +283,14 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>1706</InnerID>
-               <Text>;mdeent@126.com</Text>
+               <Text>; mdeent@126. com</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1316</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1707</InnerID>
-               <Text>       Chúng tôi sẽ tận tâm phục vụ quý vị，Chúc quý vị sớm bình phục。</Text>
+               <Text>       Chúng tôi sẽ tận tâm phục vụ quý vị, Chúc quý vị sớm bình phục.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1342</InnerID>
@@ -338,7 +338,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>1713</InnerID>
-               <Text>      Điện thoại:58205511、58205522</Text>
+               <Text>      Điện thoại: 58205511,58205522</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1611</InnerID>
@@ -409,26 +409,26 @@
    </Info>
    <BodyText>
 Thân gửi bệnh nhân và gia đình:
-       Để bảo vệ tốt hơn trật tự y tế và quyền lợi của bệnh nhân，Tạo môi trường khám chữa bệnh thoải mái，Khi quý vị vào phòng bệnh，Xin quý vị biết và tự giác tuân thủ nội quy, quy định quản lý của khu bệnh，Phối hợp tốt công tác quản lý khu bệnh:
-       1、Mọi bệnh nhân nằm viện phải mang theo chứng minh nhân dân、Thẻ bảo hiểm y tế(Hoặc thẻ bảo hiểm xã hội, v.v.)、Bệnh án ngoại trú、Giấy nhập viện và các giấy tờ khác，Và tiền tạm ứng，Làm xong thủ tục nhập viện mới được xếp giường。
-       Địa điểm làm thủ tục nhập/xuất viện:Quầy thu phí tầng 1, quầy đăng ký khám;Thời gian làm thủ tục8;00一下午16:00。
-       2、Quý vị nằm tại[]Phòng bệnh khoa， Số giường[]， Bác sĩ phụ trách giường là, điều dưỡng phụ trách là        ;
-       3、Lúc nhập viện，Bệnh nhân phải ký《Giấy ủy quyền thông báo cho bệnh nhân nằm viện》，Nhân viên y tế cần thông báo tầm quan trọng và nội dung của việc ký các văn bản trên。Khi bệnh nhân không thể ký tên do tình trạng bệnh，Người được bệnh nhân chỉ định sẽ ký thay;Nếu trong thời gian nằm viện thay đổi người được ủy quyền，Cần báo ngay cho bác sĩ tên người thay thế và ký tên。
-       4、Trong thời gian nằm viện, bệnh nhân và gia đình cần biết các quy định sau:
-       Giờ ăn:là bữa sáng:7:00;Bữa trưa 11:00;Bữa tối 17:00;Nhân viên phục vụ mang đến phòng bệnh。
-       Giờ tắm:Mùa hè:Mỗi buổi chiều1:30~4:00;Mùa đông:Mỗi tuần hai lần(Thứ ba、Thứ sáu)Giờ mở cửa như nhau。Các quy định trên chỉ áp dụng cho bệnh nhân có tình trạng ổn định，Và cần có người thân hoặc hộ lý đi cùng。
-       Giờ thăm bệnh:Mỗi buổi chiều:1:30~8:00。Bệnh nhân và gia đình cần giữ yên lặng，Không được nói to trong phòng bệnh và hành lang，Không được ngủ trên giường bệnh，Tuân theo sự quản lý của điều dưỡng trưởng khoa。
-       4、Để bảo đảm an toàn cho bệnh nhân trong thời gian nằm viện，Bệnh nhân không được tự ý ra ngoài hay ngủ ngoài bệnh viện。Nếu thật sự có trường hợp đặc biệt hoặc việc quan trọng cần ra ngoài，Phải được bác sĩ điều trị chính phụ trách giường đồng ý，Và làm thủ tục xin phép。Phải tự bố trí người thân hoặc người khác đi cùng，Nếu tự ý một mình rời viện，Mọi hậu quả tự chịu trách nhiệm。
-       5、Bệnh nhân cần tích cực phối hợp chẩn đoán và điều trị、Chăm sóc、Kiểm tra、Hướng dẫn sức khỏe và các công việc khác，Khi làm các kiểm tra liên quan cần có nhân viên y tế hoặc hộ lý đi cùng。Khi chưa được nhân viên y tế cho phép，Không được tự ý xem、Giành giật、Tẩy xóa、Làm hỏng bệnh án và các văn bản y tế khác。Nếu có vấn đề，Xin hỏi và trao đổi với bác sĩ hoặc điều dưỡng，Chúng tôi sẽ đáp ứng yêu cầu của quý vị。
-       6、Trong thời gian nằm viện, xin phối hợp giữ khu bệnh sạch sẽ，Không vứt bừa đồ dùng sinh hoạt。Không mang đồ quý giá vào，Điện thoại、Ví tiền, v.v. xin giữ gìn cẩn thận，Nếu bị mất，Bệnh viện không chịu trách nhiệm。Nghiêm cấm mang đồ dễ cháy, dễ nổ vào khu bệnh;Dao、Đồ sắc nhọn, v.v. có thể giao cho khoa điều dưỡng giữ chung，Nhận lại sau khi xuất viện。
-       7、Nếu bệnh nhân cần nộp hoặc tra cứu viện phí，Xin đến quầy nhập/xuất viện，Nhân viên sẽ làm thủ tục cho quý vị(Cũng có thể đến văn phòng điều dưỡng để tra cứu)。
-       8、Để tăng cường xây dựng y đức, tác phong ngành và tự quản của ngành，Hai bên bác sĩ và bệnh nhân cần cùng tuân thủ quy định xây dựng tác phong ngành của hệ thống y tế thành phố Thượng Hải。Bệnh viện chúng tôi là“Không phong bì”Bệnh viện，Nghiêm cấm nhân viên y tế nhận hoặc đòi hỏi của bệnh nhân trong hoạt động khám chữa bệnh“phong bì”Và các đồ quý giá khác，Một khi xác minh được，Sẽ xử lý nghiêm theo quy định của cấp trên về xây dựng tác phong ngành và nội quy bệnh viện。
-       9、Để bảo vệ quyền lợi của bệnh nhân，Nếu bệnh nhân không hài lòng về dịch vụ y tế、Chất lượng y tế、Xây dựng tác phong ngành、Thái độ làm việc của nhân viên y tế, v.v.，Hoặc xảy ra tranh chấp y tế，Có thể khiếu nại để bảo vệ quyền lợi của mình。
-       Địa điểm khiếu nại:Văn phòng bệnh viện tầng 7
-       Cách thức khiếu nại:Có thể tự đến，Hoặc qua điện thoại、Thư、Khiếu nại qua email và các cách khác:
-       Số điện thoại khiếu nại:58205511-8168
-       Email khiếu nại;mdeent@126.com
-       Chúng tôi sẽ tận tâm phục vụ quý vị，Chúc quý vị sớm bình phục。
+       Để bảo vệ tốt hơn trật tự y tế và quyền lợi của bệnh nhân, Tạo môi trường khám chữa bệnh thoải mái, Khi quý vị vào phòng bệnh, Xin quý vị biết và tự giác tuân thủ nội quy, quy định quản lý của khu bệnh, Phối hợp tốt công tác quản lý khu bệnh:
+       1, Mọi bệnh nhân nằm viện phải mang theo chứng minh nhân dân, Thẻ bảo hiểm y tế (Hoặc thẻ bảo hiểm xã hội, v.v.), Bệnh án ngoại trú, Giấy nhập viện và các giấy tờ khác, Và tiền tạm ứng, Làm xong thủ tục nhập viện mới được xếp giường.
+       Địa điểm làm thủ tục nhập/xuất viện: Quầy thu phí tầng 1, quầy đăng ký khám; Thời gian làm thủ tục 8;00一下午16:00.
+       2, Quý vị nằm tại[]Phòng bệnh khoa, Số giường[], Bác sĩ phụ trách giường là, điều dưỡng phụ trách là        ;
+       3, Lúc nhập viện, Bệnh nhân phải ký《Giấy ủy quyền thông báo cho bệnh nhân nằm viện》, Nhân viên y tế cần thông báo tầm quan trọng và nội dung của việc ký các văn bản trên. Khi bệnh nhân không thể ký tên do tình trạng bệnh, Người được bệnh nhân chỉ định sẽ ký thay; Nếu trong thời gian nằm viện thay đổi người được ủy quyền, Cần báo ngay cho bác sĩ tên người thay thế và ký tên.
+       4, Trong thời gian nằm viện, bệnh nhân và gia đình cần biết các quy định sau:
+       Giờ ăn: là bữa sáng: 7:00; Bữa trưa 11:00; Bữa tối 17:00; Nhân viên phục vụ mang đến phòng bệnh.
+       Giờ tắm: Mùa hè: Mỗi buổi chiều 1:30~4:00; Mùa đông: Mỗi tuần hai lần (Thứ ba, Thứ sáu)Giờ mở cửa như nhau. Các quy định trên chỉ áp dụng cho bệnh nhân có tình trạng ổn định, Và cần có người thân hoặc hộ lý đi cùng.
+       Giờ thăm bệnh: Mỗi buổi chiều: 1:30~8:00. Bệnh nhân và gia đình cần giữ yên lặng, Không được nói to trong phòng bệnh và hành lang, Không được ngủ trên giường bệnh, Tuân theo sự quản lý của điều dưỡng trưởng khoa.
+       4, Để bảo đảm an toàn cho bệnh nhân trong thời gian nằm viện, Bệnh nhân không được tự ý ra ngoài hay ngủ ngoài bệnh viện. Nếu thật sự có trường hợp đặc biệt hoặc việc quan trọng cần ra ngoài, Phải được bác sĩ điều trị chính phụ trách giường đồng ý, Và làm thủ tục xin phép. Phải tự bố trí người thân hoặc người khác đi cùng, Nếu tự ý một mình rời viện, Mọi hậu quả tự chịu trách nhiệm.
+       5, Bệnh nhân cần tích cực phối hợp chẩn đoán và điều trị, Chăm sóc, Kiểm tra, Hướng dẫn sức khỏe và các công việc khác, Khi làm các kiểm tra liên quan cần có nhân viên y tế hoặc hộ lý đi cùng. Khi chưa được nhân viên y tế cho phép, Không được tự ý xem, Giành giật, Tẩy xóa, Làm hỏng bệnh án và các văn bản y tế khác. Nếu có vấn đề, Xin hỏi và trao đổi với bác sĩ hoặc điều dưỡng, Chúng tôi sẽ đáp ứng yêu cầu của quý vị.
+       6, Trong thời gian nằm viện, xin phối hợp giữ khu bệnh sạch sẽ, Không vứt bừa đồ dùng sinh hoạt. Không mang đồ quý giá vào, Điện thoại, Ví tiền, v.v. xin giữ gìn cẩn thận, Nếu bị mất, Bệnh viện không chịu trách nhiệm. Nghiêm cấm mang đồ dễ cháy, dễ nổ vào khu bệnh; Dao, Đồ sắc nhọn, v.v. có thể giao cho khoa điều dưỡng giữ chung, Nhận lại sau khi xuất viện.
+       7, Nếu bệnh nhân cần nộp hoặc tra cứu viện phí, Xin đến quầy nhập/xuất viện, Nhân viên sẽ làm thủ tục cho quý vị (Cũng có thể đến văn phòng điều dưỡng để tra cứu).
+       8, Để tăng cường xây dựng y đức, tác phong ngành và tự quản của ngành, Hai bên bác sĩ và bệnh nhân cần cùng tuân thủ quy định xây dựng tác phong ngành của hệ thống y tế thành phố Thượng Hải. Bệnh viện chúng tôi là“Không phong bì”Bệnh viện, Nghiêm cấm nhân viên y tế nhận hoặc đòi hỏi của bệnh nhân trong hoạt động khám chữa bệnh“phong bì”Và các đồ quý giá khác, Một khi xác minh được, Sẽ xử lý nghiêm theo quy định của cấp trên về xây dựng tác phong ngành và nội quy bệnh viện.
+       9, Để bảo vệ quyền lợi của bệnh nhân, Nếu bệnh nhân không hài lòng về dịch vụ y tế, Chất lượng y tế, Xây dựng tác phong ngành, Thái độ làm việc của nhân viên y tế, v.v., Hoặc xảy ra tranh chấp y tế, Có thể khiếu nại để bảo vệ quyền lợi của mình.
+       Địa điểm khiếu nại: Văn phòng bệnh viện tầng 7
+       Cách thức khiếu nại: Có thể tự đến, Hoặc qua điện thoại, Thư, Khiếu nại qua email và các cách khác:
+       Số điện thoại khiếu nại: 58205511-8168
+       Email khiếu nại; mdeent@126. com
+       Chúng tôi sẽ tận tâm phục vụ quý vị, Chúc quý vị sớm bình phục.
                                              Bệnh nhân hoặc gia đình ký tên:             
                                                       năm      tháng      ngày
 
@@ -436,7 +436,7 @@ Thân gửi bệnh nhân và gia đình:
 
 
       Địa chỉ bệnh viện:浦东新区乳山路 235 弄 25 号
-      Điện thoại:58205511、58205522</BodyText>
+      Điện thoại: 58205511,58205522</BodyText>
    <LocalConfig />
    <PageSettings>
       <LeftMargin>71</LeftMargin>

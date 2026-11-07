@@ -71,7 +71,7 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="7" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text> Số giường：</Text>
+               <Text> Số giường:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="1">
                <Attributes />
@@ -96,7 +96,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>  Họ tên：</Text>
+               <Text>  Họ tên:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="1">
                <Attributes />
@@ -215,7 +215,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text> Khoa：</Text>
+               <Text> Khoa:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="1">
                <Attributes />
@@ -239,7 +239,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text> Số nhập viện： </Text>
+               <Text> Số nhập viện: </Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="1">
                <Attributes />
@@ -1720,17 +1720,17 @@
          <XElements>
             <Element xsi:type="XString" StyleIndex="9">
                <XElements xsi:nil="true" />
-               <Text>注:①Phân cấp chăm sóc cơ bản:Ađộ:Hoàn toàn không tự chăm sóc được Bđộ:Tự chăm sóc một phần Cđộ:Hoàn toàn tự chăm sóc</Text>
+               <Text>注:①Phân cấp chăm sóc cơ bản: Ađộ: Hoàn toàn không tự chăm sóc được Bđộ: Tự chăm sóc một phần Cđộ: Hoàn toàn tự chăm sóc</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="9" />
             <Element xsi:type="XString" StyleIndex="9">
                <XElements xsi:nil="true" />
-               <Text>   ②Chăm sóc cơ bản、Chăm sóc chuyên khoa、Chăm sóc ống thông、Đánh dấu vào ô tương ứng đối với các hạng mục hướng dẫn chăm sóc, v.v."√"</Text>
+               <Text>   ②Chăm sóc cơ bản, Chăm sóc chuyên khoa, Chăm sóc ống thông, Đánh dấu vào ô tương ứng đối với các hạng mục hướng dẫn chăm sóc, v.v."√"</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" />
             <Element xsi:type="XString" StyleIndex="9">
                <XElements xsi:nil="true" />
-               <Text>     Hoặc ghi số hiệu để xác nhận đã thực hiện, các ống đã cố định tốt và thông thoáng。Nội dung đặc biệt xin ghi bằng lời ngắn gọn                                               </Text>
+               <Text>     Hoặc ghi số hiệu để xác nhận đã thực hiện, các ống đã cố định tốt và thông thoáng. Nội dung đặc biệt xin ghi bằng lời ngắn gọn                                               </Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
                <XElements xsi:nil="true" />

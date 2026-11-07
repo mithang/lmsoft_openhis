@@ -51,7 +51,7 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="4" />
             <Element xsi:type="XString" StyleIndex="5">
                <XElements xsi:nil="true" />
-               <Text> Khoa：</Text>
+               <Text> Khoa:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="5">
                <Attributes />
@@ -70,7 +70,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="5">
                <XElements xsi:nil="true" />
-               <Text>  Họ tên：</Text>
+               <Text>  Họ tên:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="5">
                <Attributes />
@@ -129,7 +129,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="5">
                <XElements xsi:nil="true" />
-               <Text>  Số giường：</Text>
+               <Text>  Số giường:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="5">
                <Attributes />
@@ -149,7 +149,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="5">
                <XElements xsi:nil="true" />
-               <Text>  Số nhập viện： </Text>
+               <Text>  Số nhập viện: </Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="5">
                <Attributes />

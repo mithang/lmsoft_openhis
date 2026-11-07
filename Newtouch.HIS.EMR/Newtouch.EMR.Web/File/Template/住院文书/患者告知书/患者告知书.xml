@@ -43,14 +43,14 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>3443</InnerID>
-               <Text>        Để bảo đảm quý vị được hưởng đầy đủ quyền được biết và đồng ý trong thời gian nằm viện điều trị，Nhân viên y tế sẽ thông báo cho quý vị về tình trạng bệnh、Biện pháp điều trị chính、Nguy cơ y tế và các tình huống khác，Giải đáp thắc mắc của quý vị về bệnh tật。Nếu chưa được chính quý vị biết đầy đủ và ký đồng ý，Nhân viên y tế không được thực hiện phẫu thuật và các can thiệp y tế lớn khác。Tuy nhiên, do khả năng chịu đựng tâm lý của mỗi người khác nhau，Và diễn biến bệnh tật khó lường trước，Để có lợi cho điều trị，Xin quý vị ủy quyền cho một người đại diện mà quý vị hoàn toàn tin tưởng，Thay quý vị thực hiện quyền được biết và đồng ý。Bệnh viện chúng tôi sẽ căn cứ vào giấy ủy quyền có chữ ký của quý vị，Coi hành vi của người đại diện là ý chí thật sự của chính quý vị。Nếu quý vị chưa đủ 18tuổi hoặc không có năng lực hành vi dân sự hay bị hạn chế năng lực hành vi dân sự，Người giám hộ theo pháp luật của quý vị là người đại diện theo pháp luật của quý vị,Thay quý vị thực hiện quyền được biết và đồng ý。</Text>
+               <Text>        Để bảo đảm quý vị được hưởng đầy đủ quyền được biết và đồng ý trong thời gian nằm viện điều trị, Nhân viên y tế sẽ thông báo cho quý vị về tình trạng bệnh, Biện pháp điều trị chính, Nguy cơ y tế và các tình huống khác, Giải đáp thắc mắc của quý vị về bệnh tật. Nếu chưa được chính quý vị biết đầy đủ và ký đồng ý, Nhân viên y tế không được thực hiện phẫu thuật và các can thiệp y tế lớn khác. Tuy nhiên, do khả năng chịu đựng tâm lý của mỗi người khác nhau, Và diễn biến bệnh tật khó lường trước, Để có lợi cho điều trị, Xin quý vị ủy quyền cho một người đại diện mà quý vị hoàn toàn tin tưởng, Thay quý vị thực hiện quyền được biết và đồng ý. Bệnh viện chúng tôi sẽ căn cứ vào giấy ủy quyền có chữ ký của quý vị, Coi hành vi của người đại diện là ý chí thật sự của chính quý vị. Nếu quý vị chưa đủ 18 tuổi hoặc không có năng lực hành vi dân sự hay bị hạn chế năng lực hành vi dân sự, Người giám hộ theo pháp luật của quý vị là người đại diện theo pháp luật của quý vị, Thay quý vị thực hiện quyền được biết và đồng ý.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>2914</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>3444</InnerID>
-               <Text>       Để bác sĩ xây dựng phác đồ điều trị tốt nhất cho quý vị，Xin quý vị cung cấp thông tin một cách khách quan、Và trung thực về bệnh tình và các thông tin liên quan cho bác sĩ。</Text>
+               <Text>       Để bác sĩ xây dựng phác đồ điều trị tốt nhất cho quý vị, Xin quý vị cung cấp thông tin một cách khách quan, Và trung thực về bệnh tình và các thông tin liên quan cho bác sĩ.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>2967</InnerID>
@@ -95,7 +95,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>3450</InnerID>
-               <Text>Tôi đã hiểu rõ nội dung giấy thông báo trên，Tôi quyết định chọn một trong các cách sau (gạch bỏ cách không chọn)):</Text>
+               <Text>Tôi đã hiểu rõ nội dung giấy thông báo trên, Tôi quyết định chọn một trong các cách sau (gạch bỏ cách không chọn)):</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>3209</InnerID>
@@ -105,21 +105,21 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>3451</InnerID>
-               <Text>1.Xuất trình giấy ủy quyền cho bệnh viện, chỉ định người đại diện。</Text>
+               <Text>1. Xuất trình giấy ủy quyền cho bệnh viện, chỉ định người đại diện.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>3231</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>3452</InnerID>
-               <Text>2.Xuất trình hộ khẩu và giấy tờ liên quan cho bệnh viện，Xác định người đại diện theo pháp luật</Text>
+               <Text>2. Xuất trình hộ khẩu và giấy tờ liên quan cho bệnh viện, Xác định người đại diện theo pháp luật</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>3255</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>3453</InnerID>
-               <Text>3，Tôi quyết định không ủy quyền cho người đại diện，Nếu bệnh của tôi xuất hiện tình huống nguy kịch hoặc không thể lường trước，Ủy quyền cho bác sĩ điều trị quyết định phác đồ điều trị，Nếu có nguy cơ y tế và hậu quả xấu，Tôi tự chịu trách nhiệm。</Text>
+               <Text>3, Tôi quyết định không ủy quyền cho người đại diện, Nếu bệnh của tôi xuất hiện tình huống nguy kịch hoặc không thể lường trước, Ủy quyền cho bác sĩ điều trị quyết định phác đồ điều trị, Nếu có nguy cơ y tế và hậu quả xấu, Tôi tự chịu trách nhiệm.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>3322</InnerID>
@@ -215,19 +215,19 @@
    </Info>
    <BodyText>
                 
-        Để bảo đảm quý vị được hưởng đầy đủ quyền được biết và đồng ý trong thời gian nằm viện điều trị，Nhân viên y tế sẽ thông báo cho quý vị về tình trạng bệnh、Biện pháp điều trị chính、Nguy cơ y tế và các tình huống khác，Giải đáp thắc mắc của quý vị về bệnh tật。Nếu chưa được chính quý vị biết đầy đủ và ký đồng ý，Nhân viên y tế không được thực hiện phẫu thuật và các can thiệp y tế lớn khác。Tuy nhiên, do khả năng chịu đựng tâm lý của mỗi người khác nhau，Và diễn biến bệnh tật khó lường trước，Để có lợi cho điều trị，Xin quý vị ủy quyền cho một người đại diện mà quý vị hoàn toàn tin tưởng，Thay quý vị thực hiện quyền được biết và đồng ý。Bệnh viện chúng tôi sẽ căn cứ vào giấy ủy quyền có chữ ký của quý vị，Coi hành vi của người đại diện là ý chí thật sự của chính quý vị。Nếu quý vị chưa đủ 18tuổi hoặc không có năng lực hành vi dân sự hay bị hạn chế năng lực hành vi dân sự，Người giám hộ theo pháp luật của quý vị là người đại diện theo pháp luật của quý vị,Thay quý vị thực hiện quyền được biết và đồng ý。
-       Để bác sĩ xây dựng phác đồ điều trị tốt nhất cho quý vị，Xin quý vị cung cấp thông tin một cách khách quan、Và trung thực về bệnh tình và các thông tin liên quan cho bác sĩ。
+        Để bảo đảm quý vị được hưởng đầy đủ quyền được biết và đồng ý trong thời gian nằm viện điều trị, Nhân viên y tế sẽ thông báo cho quý vị về tình trạng bệnh, Biện pháp điều trị chính, Nguy cơ y tế và các tình huống khác, Giải đáp thắc mắc của quý vị về bệnh tật. Nếu chưa được chính quý vị biết đầy đủ và ký đồng ý, Nhân viên y tế không được thực hiện phẫu thuật và các can thiệp y tế lớn khác. Tuy nhiên, do khả năng chịu đựng tâm lý của mỗi người khác nhau, Và diễn biến bệnh tật khó lường trước, Để có lợi cho điều trị, Xin quý vị ủy quyền cho một người đại diện mà quý vị hoàn toàn tin tưởng, Thay quý vị thực hiện quyền được biết và đồng ý. Bệnh viện chúng tôi sẽ căn cứ vào giấy ủy quyền có chữ ký của quý vị, Coi hành vi của người đại diện là ý chí thật sự của chính quý vị. Nếu quý vị chưa đủ 18 tuổi hoặc không có năng lực hành vi dân sự hay bị hạn chế năng lực hành vi dân sự, Người giám hộ theo pháp luật của quý vị là người đại diện theo pháp luật của quý vị, Thay quý vị thực hiện quyền được biết và đồng ý.
+       Để bác sĩ xây dựng phác đồ điều trị tốt nhất cho quý vị, Xin quý vị cung cấp thông tin một cách khách quan, Và trung thực về bệnh tình và các thông tin liên quan cho bác sĩ.
        Thông báo như trên
 Kèm theo một bản giấy ủy quyền còn trống                              上海明德医院
                                                         Người trao đổi:         
                                                     năm       tháng       ngày
 
 
-Tôi đã hiểu rõ nội dung giấy thông báo trên，Tôi quyết định chọn một trong các cách sau (gạch bỏ cách không chọn)):
+Tôi đã hiểu rõ nội dung giấy thông báo trên, Tôi quyết định chọn một trong các cách sau (gạch bỏ cách không chọn)):
 
-1.Xuất trình giấy ủy quyền cho bệnh viện, chỉ định người đại diện。
-2.Xuất trình hộ khẩu và giấy tờ liên quan cho bệnh viện，Xác định người đại diện theo pháp luật
-3，Tôi quyết định không ủy quyền cho người đại diện，Nếu bệnh của tôi xuất hiện tình huống nguy kịch hoặc không thể lường trước，Ủy quyền cho bác sĩ điều trị quyết định phác đồ điều trị，Nếu có nguy cơ y tế và hậu quả xấu，Tôi tự chịu trách nhiệm。
+1. Xuất trình giấy ủy quyền cho bệnh viện, chỉ định người đại diện.
+2. Xuất trình hộ khẩu và giấy tờ liên quan cho bệnh viện, Xác định người đại diện theo pháp luật
+3, Tôi quyết định không ủy quyền cho người đại diện, Nếu bệnh của tôi xuất hiện tình huống nguy kịch hoặc không thể lường trước, Ủy quyền cho bác sĩ điều trị quyết định phác đồ điều trị, Nếu có nguy cơ y tế và hậu quả xấu, Tôi tự chịu trách nhiệm.
 
 Số nhập viện:
 Bệnh nhân ký tên:

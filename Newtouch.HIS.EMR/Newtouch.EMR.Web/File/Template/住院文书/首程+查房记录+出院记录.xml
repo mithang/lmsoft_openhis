@@ -21,7 +21,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13007</InnerID>
-               <Text>Họ tên：</Text>
+               <Text>Họ tên:</Text>
             </Element>
             <Element xsi:type="XInputField">
                <InnerID>6650</InnerID>
@@ -41,7 +41,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13008</InnerID>
-               <Text>             Số giường：</Text>
+               <Text>             Số giường:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="3">
                <InnerID>6667</InnerID>
@@ -59,7 +59,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13009</InnerID>
-               <Text>	          Số nhập viện：</Text>
+               <Text>	          Số nhập viện:</Text>
             </Element>
             <Element xsi:type="XInputField">
                <InnerID>6683</InnerID>
@@ -143,7 +143,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13013</InnerID>
-               <Text>，</Text>
+               <Text>,</Text>
             </Element>
             <Element xsi:type="XInputField">
                <InnerID>6723</InnerID>
@@ -163,7 +163,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13014</InnerID>
-               <Text>，</Text>
+               <Text>,</Text>
             </Element>
             <Element xsi:type="XInputField">
                <InnerID>6725</InnerID>
@@ -183,7 +183,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13015</InnerID>
-               <Text>。Do“Ho、Ho có đờm，Kèm đau họng4ngày。”</Text>
+               <Text>.Do“Ho, Ho có đờm, Kèm đau họng 4 ngày.”</Text>
             </Element>
             <Element xsi:type="XInputField">
                <InnerID>6742</InnerID>
@@ -203,7 +203,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13016</InnerID>
-               <Text>Vào viện bằng cách đi bộ từ phòng khám ngoại trú。</Text>
+               <Text>Vào viện bằng cách đi bộ từ phòng khám ngoại trú.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="7">
                <InnerID>6751</InnerID>
@@ -214,7 +214,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13018</InnerID>
-               <Text>:1.Bệnh nhân tự kể khoảng4ngày trước bắt đầu ho mà không có nguyên nhân rõ ràng，Ho nhiều hơn vào buổi tối，Ho từng cơn liên tục，Thỉnh thoảng ho khạc ít đờm dính màu trắng，Không có tiếng đờm trong họng、Thở khò khè，Không khó thở，Kèm nghẹt mũi、Chảy nước mũi、Ngứa họng、Đau họng，Đau họng rõ khi nuốt và khi ho，Lúc bắt đầu bệnh có kèm sốt，Thân nhiệt cao nhất38.5℃ ，Không ớn lạnh、Rét run，Không co giật、Co giật、Hôn mê；Không khàn tiếng，Không tím tái、Khó thở，Không đổ mồ hôi trộm，Không ho ra máu，Không hồi hộp、Tức ngực、Đau ngực，Không buồn nôn、Nôn，Không nôn ra máu，Không đau bụng、Tiêu chảy，Không vàng da，Không tiểu nhiều lần、Tiểu gấp、Triệu chứng tiểu buốt，Không liệt nửa người、Tê chi，Không co giật、Triệu chứng hôn mê。Sau khi mắc bệnh từng đến phòng khám tư truyền dịch và uống thuốc điều trị，Không rõ cụ thể，Không sốt，Ho、Đau họng không đỡ，Để chẩn đoán và điều trị thêm, hôm nay bệnh nhân đến khám tại bệnh viện chúng tôi，Khám ngoại trú và làm xét nghiệm máu thường quy、Sau khi chụp X-quang ngực, chẩn đoán dự kiến là“Viêm phế quản cấp、Viêm họng cấp”Nhập viện điều trị，Từ khi phát bệnh，Tinh thần bệnh nhân、Ăn uống、Giấc ngủ kém，Đại tiểu tiện không thấy bất thường，Cân nặng không thay đổi rõ。2.Trước đây có“Sỏi thận”Tiền sử phẫu thuật，Không rõ cụ thể；Có“Bệnh tăng huyết áp”Bệnh sử，Uống thuốc hạ huyết áp không đều，Không rõ cụ thể；Không có tiền sử dị ứng thuốc。3.Khám thực thể：T37.2℃，P104lần/phút，R20lần/phút，BP131/98mmHg，Cân nặng54kg，Chiều cao140cm；Ý thức tỉnh táo，Tinh thần bình thường，Vẻ mặt bệnh cấp tính；Cánh mũi không phập phồng，Môi không tím tái，Họng đỏ、Sung huyết，Hai bên amidan không sưng to，Không có điểm mủ và rêu mủ bám，Lưỡi gà ở giữa。Nghe thấy âm thở hai phổi thô，Không có dấu hiệu ba lõm，Dẫn truyền giọng nói bình thường，Hai bên đối xứng，Hai phổi không nghe thấy ran khô, ran ẩm，Không nghe thấy tiếng rít，Không nghe thấy tiếng cọ màng phổi。Vùng trước tim không nhô lên，Mỏm tim đập tại đường giữa đòn trái, khoang liên sườn thứ5Mặt trong khoang liên sườn0.5cm，Không rung，Bờ tim không mở rộng，Nhịp tim104lần/phút,Nhịp tim đều，Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý，Không có tiếng cọ màng ngoài tim。Thành bụng phẳng，Đối xứng，Không giãn tĩnh mạch và không thấy hình dạ dày-ruột、Sóng nhu động。Bụng mềm，Toàn bụng không đau khi ấn và không đau dội ngược，Không sờ thấy khối và đập bất thường，Không sờ thấy gan lách dưới bờ sườn，Không sờ thấy cả hai thận，Giới hạn trên tiếng đục gan tại đường giữa đòn phải, khoang liên sườn thứ5Khoang liên sườn，Vùng gan lách không đau khi gõ，Dấu hiệu Murphy âm tính，Không có tiếng đục di động，Âm ruột bình thường。Hai chi dưới không phù。Sức cơ tứ chi、Trương lực cơ bình thường；Phản xạ sinh lý còn，Không gợi được phản xạ bệnh lý。Dấu hiệu kích thích màng não âm tính。4.Cận lâm sàng:Phim X-quang ngực：Vân phổi hai bên tăng đậm、nhiều，Đề nghị kết hợp lâm sàng。 </Text>
+               <Text>: 1. Bệnh nhân tự kể khoảng 4 ngày trước bắt đầu ho mà không có nguyên nhân rõ ràng, Ho nhiều hơn vào buổi tối, Ho từng cơn liên tục, Thỉnh thoảng ho khạc ít đờm dính màu trắng, Không có tiếng đờm trong họng, Thở khò khè, Không khó thở, Kèm nghẹt mũi, Chảy nước mũi, Ngứa họng, Đau họng, Đau họng rõ khi nuốt và khi ho, Lúc bắt đầu bệnh có kèm sốt, Thân nhiệt cao nhất 38.5℃ , Không ớn lạnh, Rét run, Không co giật, Co giật, Hôn mê; Không khàn tiếng, Không tím tái, Khó thở, Không đổ mồ hôi trộm, Không ho ra máu, Không hồi hộp, Tức ngực, Đau ngực, Không buồn nôn, Nôn, Không nôn ra máu, Không đau bụng, Tiêu chảy, Không vàng da, Không tiểu nhiều lần, Tiểu gấp, Triệu chứng tiểu buốt, Không liệt nửa người, Tê chi, Không co giật, Triệu chứng hôn mê. Sau khi mắc bệnh từng đến phòng khám tư truyền dịch và uống thuốc điều trị, Không rõ cụ thể, Không sốt, Ho, Đau họng không đỡ, Để chẩn đoán và điều trị thêm, hôm nay bệnh nhân đến khám tại bệnh viện chúng tôi, Khám ngoại trú và làm xét nghiệm máu thường quy, Sau khi chụp X-quang ngực, chẩn đoán dự kiến là“Viêm phế quản cấp, Viêm họng cấp”Nhập viện điều trị, Từ khi phát bệnh, Tinh thần bệnh nhân, Ăn uống, Giấc ngủ kém, Đại tiểu tiện không thấy bất thường, Cân nặng không thay đổi rõ.2. Trước đây có“Sỏi thận”Tiền sử phẫu thuật, Không rõ cụ thể; Có“Bệnh tăng huyết áp”Bệnh sử, Uống thuốc hạ huyết áp không đều, Không rõ cụ thể; Không có tiền sử dị ứng thuốc.3. Khám thực thể: T37.2℃, P104 lần/phút, R20 lần/phút, BP131/98 mmHg, Cân nặng 54 kg, Chiều cao 140 cm; Ý thức tỉnh táo, Tinh thần bình thường, Vẻ mặt bệnh cấp tính; Cánh mũi không phập phồng, Môi không tím tái, Họng đỏ, Sung huyết, Hai bên amidan không sưng to, Không có điểm mủ và rêu mủ bám, Lưỡi gà ở giữa. Nghe thấy âm thở hai phổi thô, Không có dấu hiệu ba lõm, Dẫn truyền giọng nói bình thường, Hai bên đối xứng, Hai phổi không nghe thấy ran khô, ran ẩm, Không nghe thấy tiếng rít, Không nghe thấy tiếng cọ màng phổi. Vùng trước tim không nhô lên, Mỏm tim đập tại đường giữa đòn trái, khoang liên sườn thứ 5 Mặt trong khoang liên sườn 0.5 cm, Không rung, Bờ tim không mở rộng, Nhịp tim 104 lần/phút, Nhịp tim đều, Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý, Không có tiếng cọ màng ngoài tim. Thành bụng phẳng, Đối xứng, Không giãn tĩnh mạch và không thấy hình dạ dày-ruột, Sóng nhu động. Bụng mềm, Toàn bụng không đau khi ấn và không đau dội ngược, Không sờ thấy khối và đập bất thường, Không sờ thấy gan lách dưới bờ sườn, Không sờ thấy cả hai thận, Giới hạn trên tiếng đục gan tại đường giữa đòn phải, khoang liên sườn thứ 5 Khoang liên sườn, Vùng gan lách không đau khi gõ, Dấu hiệu Murphy âm tính, Không có tiếng đục di động, Âm ruột bình thường. Hai chi dưới không phù. Sức cơ tứ chi, Trương lực cơ bình thường; Phản xạ sinh lý còn, Không gợi được phản xạ bệnh lý. Dấu hiệu kích thích màng não âm tính.4. Cận lâm sàng: Phim X-quang ngực: Vân phổi hai bên tăng đậm, nhiều, Đề nghị kết hợp lâm sàng. </Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="7">
                <InnerID>7564</InnerID>
@@ -225,7 +225,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13020</InnerID>
-               <Text>：1、Viêm phế quản cấp 2、Viêm họng cấp 3、Tăng huyết áp nguyên phát</Text>
+               <Text>: 1, Viêm phế quản cấp 2, Viêm họng cấp 3, Tăng huyết áp nguyên phát</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="7">
                <InnerID>7595</InnerID>
@@ -256,7 +256,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13023</InnerID>
-               <Text>，</Text>
+               <Text>,</Text>
             </Element>
             <Element xsi:type="XInputField">
                <InnerID>7610</InnerID>
@@ -276,7 +276,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13024</InnerID>
-               <Text>，</Text>
+               <Text>,</Text>
             </Element>
             <Element xsi:type="XInputField">
                <InnerID>7612</InnerID>
@@ -296,21 +296,21 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13025</InnerID>
-               <Text>。Do“Ho、Ho có đờm，Kèm đau họng4ngày。”2024-04-27 09:29Vào viện bằng cách đi bộ từ phòng khám ngoại trú。2.Trước đây có“Sỏi thận”Tiền sử phẫu thuật，Không rõ cụ thể；Có“Bệnh tăng huyết áp”Bệnh sử，Uống thuốc hạ huyết áp không đều，Không rõ cụ thể；Không có tiền sử dị ứng thuốc。3.Khám thực thể：T37.2℃，P104lần/phút，R20lần/phút，BP131/98mmHg，Cân nặng54kg，Chiều cao140cm；Ý thức tỉnh táo，Tinh thần bình thường，Vẻ mặt bệnh cấp tính；Cánh mũi không phập phồng，Môi không tím tái，Họng đỏ、Sung huyết，Hai bên amidan không sưng to，Không có điểm mủ và rêu mủ bám，Lưỡi gà ở giữa。Nghe thấy âm thở hai phổi thô，Không có dấu hiệu ba lõm，Dẫn truyền giọng nói bình thường，Hai bên đối xứng，Hai phổi không nghe thấy ran khô, ran ẩm，Không nghe thấy tiếng rít，Không nghe thấy tiếng cọ màng phổi。Vùng trước tim không nhô lên，Mỏm tim đập tại đường giữa đòn trái, khoang liên sườn thứ5Mặt trong khoang liên sườn0.5cm，Không rung，Bờ tim không mở rộng，Nhịp tim104lần/phút,Nhịp tim đều，Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý，Không có tiếng cọ màng ngoài tim。Thành bụng phẳng，Đối xứng，Không giãn tĩnh mạch và không thấy hình dạ dày-ruột、Sóng nhu động。Bụng mềm，Toàn bụng không đau khi ấn và không đau dội ngược，Không sờ thấy khối và đập bất thường，Không sờ thấy gan lách dưới bờ sườn，Không sờ thấy cả hai thận，Giới hạn trên tiếng đục gan tại đường giữa đòn phải, khoang liên sườn thứ5Khoang liên sườn，Vùng gan lách không đau khi gõ，Dấu hiệu Murphy âm tính，Không có tiếng đục di động，Âm ruột bình thường。Hai chi dưới không phù。Sức cơ tứ chi、Trương lực cơ bình thường；Phản xạ sinh lý còn，Không gợi được phản xạ bệnh lý。Dấu hiệu kích thích màng não âm tính。4.Cận lâm sàng:Phim X-quang ngực：Vân phổi hai bên tăng đậm、nhiều，Đề nghị kết hợp lâm sàng。        </Text>
+               <Text>.Do“Ho, Ho có đờm, Kèm đau họng 4 ngày.”2024-04-27 09:29 Vào viện bằng cách đi bộ từ phòng khám ngoại trú.2. Trước đây có“Sỏi thận”Tiền sử phẫu thuật, Không rõ cụ thể; Có“Bệnh tăng huyết áp”Bệnh sử, Uống thuốc hạ huyết áp không đều, Không rõ cụ thể; Không có tiền sử dị ứng thuốc.3. Khám thực thể: T37.2℃, P104 lần/phút, R20 lần/phút, BP131/98 mmHg, Cân nặng 54 kg, Chiều cao 140 cm; Ý thức tỉnh táo, Tinh thần bình thường, Vẻ mặt bệnh cấp tính; Cánh mũi không phập phồng, Môi không tím tái, Họng đỏ, Sung huyết, Hai bên amidan không sưng to, Không có điểm mủ và rêu mủ bám, Lưỡi gà ở giữa. Nghe thấy âm thở hai phổi thô, Không có dấu hiệu ba lõm, Dẫn truyền giọng nói bình thường, Hai bên đối xứng, Hai phổi không nghe thấy ran khô, ran ẩm, Không nghe thấy tiếng rít, Không nghe thấy tiếng cọ màng phổi. Vùng trước tim không nhô lên, Mỏm tim đập tại đường giữa đòn trái, khoang liên sườn thứ 5 Mặt trong khoang liên sườn 0.5 cm, Không rung, Bờ tim không mở rộng, Nhịp tim 104 lần/phút, Nhịp tim đều, Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý, Không có tiếng cọ màng ngoài tim. Thành bụng phẳng, Đối xứng, Không giãn tĩnh mạch và không thấy hình dạ dày-ruột, Sóng nhu động. Bụng mềm, Toàn bụng không đau khi ấn và không đau dội ngược, Không sờ thấy khối và đập bất thường, Không sờ thấy gan lách dưới bờ sườn, Không sờ thấy cả hai thận, Giới hạn trên tiếng đục gan tại đường giữa đòn phải, khoang liên sườn thứ 5 Khoang liên sườn, Vùng gan lách không đau khi gõ, Dấu hiệu Murphy âm tính, Không có tiếng đục di động, Âm ruột bình thường. Hai chi dưới không phù. Sức cơ tứ chi, Trương lực cơ bình thường; Phản xạ sinh lý còn, Không gợi được phản xạ bệnh lý. Dấu hiệu kích thích màng não âm tính.4. Cận lâm sàng: Phim X-quang ngực: Vân phổi hai bên tăng đậm, nhiều, Đề nghị kết hợp lâm sàng.        </Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="7">
                <InnerID>8134</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>13026</InnerID>
-               <Text>Chẩn đoán phân biệt:1、Hen phế quản：Thường khởi phát từ nhỏ，Thường không có tiền sử ho mạn tính, ho có đờm，Khi phát cơn, hai phổi nghe thấy tiếng rít，Khi đỡ thì cơ bản bình thường。2、Lao phổi：Có triệu chứng nhiễm độc lao,Như sốt nhẹ buổi chiều、Đổ mồ hôi trộm、Gầy sút, v.v.,XX-quang thấy tổn thương lao trong phổi,Tốc độ lắng máu tăng,Xét nghiệm đờm có thể tìm thấy trực khuẩn kháng cồn toan。Bệnh nhân không sốt nhẹ buổi chiều、Đổ mồ hôi trộm、Cân nặng không thay đổi rõ，Có thể dựa theoXChụp X-quang để loại trừ。3、Bạch hầu họng：Đau họng nhẹ，Màng giả màu trắng xám thường lan ra ngoài phạm vi amidan，Màng giả dai, khó lau sạch，Bóc mạnh dễ chảy máu;Hạch cổ đôi khi sưng to“Cổ bò”dạng;Toàn thân biểu hiện tinh thần mệt mỏi, uể oải、Sốt nhẹ、Sắc mặt nhợt nhạt。Xét nghiệm phết dịch họng phát hiện trực khuẩn bạch hầu;Xét nghiệm máu thường quy: bạch cầu thường không thay đổi。</Text>
+               <Text>Chẩn đoán phân biệt: 1, Hen phế quản: Thường khởi phát từ nhỏ, Thường không có tiền sử ho mạn tính, ho có đờm, Khi phát cơn, hai phổi nghe thấy tiếng rít, Khi đỡ thì cơ bản bình thường.2, Lao phổi: Có triệu chứng nhiễm độc lao, Như sốt nhẹ buổi chiều, Đổ mồ hôi trộm, Gầy sút, v.v., XX-quang thấy tổn thương lao trong phổi, Tốc độ lắng máu tăng, Xét nghiệm đờm có thể tìm thấy trực khuẩn kháng cồn toan. Bệnh nhân không sốt nhẹ buổi chiều, Đổ mồ hôi trộm, Cân nặng không thay đổi rõ, Có thể dựa theoXChụp X-quang để loại trừ.3, Bạch hầu họng: Đau họng nhẹ, Màng giả màu trắng xám thường lan ra ngoài phạm vi amidan, Màng giả dai, khó lau sạch, Bóc mạnh dễ chảy máu; Hạch cổ đôi khi sưng to“Cổ bò”dạng; Toàn thân biểu hiện tinh thần mệt mỏi, uể oải, Sốt nhẹ, Sắc mặt nhợt nhạt. Xét nghiệm phết dịch họng phát hiện trực khuẩn bạch hầu; Xét nghiệm máu thường quy: bạch cầu thường không thay đổi.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="9">
                <InnerID>8385</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>13027</InnerID>
-               <Text>Phân loại ca bệnh:Aloại</Text>
+               <Text>Phân loại ca bệnh: Aloại</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="9">
                <InnerID>8394</InnerID>
@@ -321,35 +321,35 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13029</InnerID>
-               <Text>:1、Hoàn thiện các xét nghiệm liên quan：Như chức năng gan、Chức năng thận、Điện giải、Điện tâm đồ、Xét nghiệm máu thường quy và các xét nghiệm khác；Để bước đầu nắm tình trạng tim phổi của bệnh nhân、Chức năng tạng ổ bụng và bệnh lây qua đường máu，Cho làm đầy đủ các cận lâm sàng liên quan，Cho xét nghiệm máu thường quy、Xét nghiệm nước tiểu thường quy、Xét nghiệm phân thường quy、Chức năng tim、Chức năng gan、Chức năng thận、Điện giải、CProtein phản ứng、Bốn chỉ số mỡ máu、Đường huyết và các xét nghiệm khác để loại trừ có kèm nhiễm khuẩn không、Chức năng tim、Gan、Thận、Mỡ máu、Đường huyết、Điện giải và các chức năng khác bất thường。Bệnh nhân bị nhiễm khuẩn đường hô hấp，Cho xét nghiệm kháng thể virus đường hô hấp（Mycoplasma và Chlamydia gây viêm phổi、Kháng thể Adenovirus）Loại trừ có kèm nhiễm virus không、Mycoplasma、Nhiễm Chlamydia。Bệnh nhân họng đỏ, cho làmASOXét nghiệm để xem có nhiễm liên cầu khuẩn không，Để hỗ trợ dùng thuốc；Cho làm xét nghiệm hai cặp rưỡi viêm gan B，Xác định có kèm bệnh truyền nhiễm không，Phòng lây nhiễm chéo；Cho làm điện tâm đồ để loại trừ có kèm bệnh tim không，Cho siêu âm bụngSiêu âm BLoại trừ bệnh tạng ổ bụng；Cho làm xét nghiệmDRXét nghiệm để chẩn đoán và điều trị rõ ràng。</Text>
+               <Text>: 1, Hoàn thiện các xét nghiệm liên quan: Như chức năng gan, Chức năng thận, Điện giải, Điện tâm đồ, Xét nghiệm máu thường quy và các xét nghiệm khác; Để bước đầu nắm tình trạng tim phổi của bệnh nhân, Chức năng tạng ổ bụng và bệnh lây qua đường máu, Cho làm đầy đủ các cận lâm sàng liên quan, Cho xét nghiệm máu thường quy, Xét nghiệm nước tiểu thường quy, Xét nghiệm phân thường quy, Chức năng tim, Chức năng gan, Chức năng thận, Điện giải, CProtein phản ứng, Bốn chỉ số mỡ máu, Đường huyết và các xét nghiệm khác để loại trừ có kèm nhiễm khuẩn không, Chức năng tim, Gan, Thận, Mỡ máu, Đường huyết, Điện giải và các chức năng khác bất thường. Bệnh nhân bị nhiễm khuẩn đường hô hấp, Cho xét nghiệm kháng thể virus đường hô hấp（Mycoplasma và Chlamydia gây viêm phổi, Kháng thể Adenovirus）Loại trừ có kèm nhiễm virus không, Mycoplasma, Nhiễm Chlamydia. Bệnh nhân họng đỏ, cho làmASOXét nghiệm để xem có nhiễm liên cầu khuẩn không, Để hỗ trợ dùng thuốc; Cho làm xét nghiệm hai cặp rưỡi viêm gan B, Xác định có kèm bệnh truyền nhiễm không, Phòng lây nhiễm chéo; Cho làm điện tâm đồ để loại trừ có kèm bệnh tim không, Cho siêu âm bụngSiêu âm BLoại trừ bệnh tạng ổ bụng; Cho làm xét nghiệmDRXét nghiệm để chẩn đoán và điều trị rõ ràng.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="9">
                <InnerID>8705</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>13030</InnerID>
-               <Text>  2、Cho Ceftriaxone natri để kháng nhiễm khuẩn、Giảm ho, tiêu đờm、Thanh nhiệt, giải độc、Lợi họng、Hạ huyết áp、Đắp huyệt、Bù dịch, điều trị hỗ trợ theo triệu chứng；Vì chưa làm được xét nghiệm tìm tác nhân gây bệnh，Tạm thời theo kinh nghiệm chọn Ceftriaxone natri để kháng nhiễm khuẩn，Sau khi xin ý kiến bác sĩ cấp trên và được đồng ý sử dụng，Ceftriaxone natri là cephalosporin thế hệ ba bán tổng hợp，Có hoạt tính kháng khuẩn mạnh với đa số vi khuẩn Gram dương và Gram âm。Điều trị hỗ trợ：Cho khí dung hormone để thúc đẩy hấp thu viêm và tiêu đờm，Cho đắp huyệt để tăng cường tiêu đờm、Nâng cao sức đề kháng của cơ thể、Thúc đẩy hấp thu viêm và điều trị tổng hợp；</Text>
+               <Text>  2, Cho Ceftriaxone natri để kháng nhiễm khuẩn, Giảm ho, tiêu đờm, Thanh nhiệt, giải độc, Lợi họng, Hạ huyết áp, Đắp huyệt, Bù dịch, điều trị hỗ trợ theo triệu chứng; Vì chưa làm được xét nghiệm tìm tác nhân gây bệnh, Tạm thời theo kinh nghiệm chọn Ceftriaxone natri để kháng nhiễm khuẩn, Sau khi xin ý kiến bác sĩ cấp trên và được đồng ý sử dụng, Ceftriaxone natri là cephalosporin thế hệ ba bán tổng hợp, Có hoạt tính kháng khuẩn mạnh với đa số vi khuẩn Gram dương và Gram âm. Điều trị hỗ trợ: Cho khí dung hormone để thúc đẩy hấp thu viêm và tiêu đờm, Cho đắp huyệt để tăng cường tiêu đờm, Nâng cao sức đề kháng của cơ thể, Thúc đẩy hấp thu viêm và điều trị tổng hợp;</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="9">
                <InnerID>8883</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>13031</InnerID>
-               <Text>  3、Mời bác sĩ cấp trên đi buồng hướng dẫn điều trị；Điều chỉnh thuốc theo diễn biến bệnh；Để thúc đẩy hồi phục，Đồng thời mời bác sĩ y học cổ truyền hội chẩn，Theo nguyên tắc biện chứng luận trị，Hỗ trợ điều trị bằng y học cổ truyền；Trong thời gian nằm viện có thể xảy ra dị ứng thuốc、Tác dụng độc hại、Phản ứng truyền dịch và các tình huống khác。Hoặc có diễn biến bệnh，Có thể gây khởi phát bệnh đã có hoặc bệnh tiềm ẩn, hoặc làm bệnh nặng thêm。  </Text>
+               <Text>  3, Mời bác sĩ cấp trên đi buồng hướng dẫn điều trị; Điều chỉnh thuốc theo diễn biến bệnh; Để thúc đẩy hồi phục, Đồng thời mời bác sĩ y học cổ truyền hội chẩn, Theo nguyên tắc biện chứng luận trị, Hỗ trợ điều trị bằng y học cổ truyền; Trong thời gian nằm viện có thể xảy ra dị ứng thuốc, Tác dụng độc hại, Phản ứng truyền dịch và các tình huống khác. Hoặc có diễn biến bệnh, Có thể gây khởi phát bệnh đã có hoặc bệnh tiềm ẩn, hoặc làm bệnh nặng thêm.  </Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="9">
                <InnerID>8999</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>13032</InnerID>
-               <Text>     4、Dặn bệnh nhân tiêm vắc-xin COVID-19 đúng lịch，Dặn dò theo dõi sức khỏe cá nhân và phòng hộ；</Text>
+               <Text>     4, Dặn bệnh nhân tiêm vắc-xin COVID-19 đúng lịch, Dặn dò theo dõi sức khỏe cá nhân và phòng hộ;</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>9037</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>13033</InnerID>
-               <Text>  5、Chăm sóc điều dưỡng：Cẩn thận trong sinh hoạt，Phòng cảm mạo，Kết hợp lao động và nghỉ ngơi，Ăn nhạt, ít mỡ，Theo dõi huyết áp，Ăn nhiều rau tươi và trái cây，Uống nhiều nước。</Text>
+               <Text>  5, Chăm sóc điều dưỡng: Cẩn thận trong sinh hoạt, Phòng cảm mạo, Kết hợp lao động và nghỉ ngơi, Ăn nhạt, ít mỡ, Theo dõi huyết áp, Ăn nhiều rau tươi và trái cây, Uống nhiều nước.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="9">
                <InnerID>9086</InnerID>
@@ -372,7 +372,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13035</InnerID>
-               <Text>Bác sĩ điều trị ký tên：</Text>
+               <Text>Bác sĩ điều trị ký tên:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="10">
                <InnerID>9125</InnerID>
@@ -438,7 +438,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13038</InnerID>
-               <Text>Hôm nay đi buồng cùng bác sĩ điều trị chính 庞金芳，Bệnh nhân ho、Đau họng giảm，Thỉnh thoảng ho khạc ít đờm dính，Không có tiếng thở rít trong họng、Thở khò khè，Không ớn lạnh、Sốt，Không rét run、Co giật，Không khàn tiếng，Không co giật、Hôn mê，Không khó thở，Không đổ mồ hôi trộm，Không hồi hộp、Đau ngực，Không nôn、Đau bụng、Tiêu chảy，Không đau lưng、Đau khớp gối，Tinh thần、Giấc ngủ、Ăn uống tốt hơn trước，Đại tiểu tiện bình thường。Khám thực thể：T37.0℃，BP140/88mmHg，Tỉnh táo，tay、chân、Mông không có mụn nước，Họng đỏ、Sung huyết，Hai bên amidan không sưng to，Không có điểm mủ。Âm thở hai phổi thô，Không nghe thấy ran khô, ran ẩm rõ，Không nghe thấy ran ẩm và tiếng rít；Gõ bờ tim không lớn，HR92lần/phút，Nhịp đều，Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý；Bụng phẳng, mềm，Không đau khi ấn、Đau dội ngược，Đau khi gõ vùng gan thận âm tính，Tiếng đục di động âm tính，Âm ruột bình thường；Hai chi dưới không phù；Kết quả cận lâm sàng：Phim X-quang ngực：Vân phổi hai bên tăng đậm、nhiều，Đề nghị kết hợp lâm sàng。Sau khi đi buồng, bác sĩ điều trị chính 庞金芳指出：Theo bệnh sử của bệnh nhân、Biểu hiện lâm sàng và kết quả cận lâm sàng，Đồng ý với chẩn đoán và phác đồ điều trị hiện tại，Cần chẩn đoán phân biệt với lao phổi、chẩn đoán phân biệt với hen phế quản；Bệnh nhân ho được điều trị y học cổ truyền bằng đắp huyệt，Sơ phong, giải biểu、Chủ yếu tuyên phế, giảm ho。Chọn huyệt：Thiên đột、Đản trung、Đại chùy、Phế du、Hợp cốc、Liệt khuyết và các huyệt khác。Đắp huyệt điều trị viêm họng，Thanh nhiệt, lợi họng，Chủ yếu tiêu sưng, giảm đau,Chọn huyệt：Liêm tuyền、Xích trạch、Thiếu thương、Quan xung、Nội đình, Phong trì、Nội quan và các huyệt khác。Bệnh nhân được điều trị kháng nhiễm khuẩn、Giảm ho, tiêu đờm、Thanh nhiệt, giải độc、Đắp huyệt、Sau khi bù dịch và điều trị hỗ trợ theo triệu chứng，Hiện triệu chứng của bệnh nhân đã đỡ hơn，Không sốt，Điều trị có hiệu quả，Theo dõi huyết áp cơ bản bình thường；Tiếp tục điều trị theo phác đồ ban đầu đủ liệu trình，Chú ý theo dõi diễn biến bệnh，Thực hiện theo y lệnh。</Text>
+               <Text>Hôm nay đi buồng cùng bác sĩ điều trị chính 庞金芳, Bệnh nhân ho, Đau họng giảm, Thỉnh thoảng ho khạc ít đờm dính, Không có tiếng thở rít trong họng, Thở khò khè, Không ớn lạnh, Sốt, Không rét run, Co giật, Không khàn tiếng, Không co giật, Hôn mê, Không khó thở, Không đổ mồ hôi trộm, Không hồi hộp, Đau ngực, Không nôn, Đau bụng, Tiêu chảy, Không đau lưng, Đau khớp gối, Tinh thần, Giấc ngủ, Ăn uống tốt hơn trước, Đại tiểu tiện bình thường. Khám thực thể: T37.0℃, BP140/88 mmHg, Tỉnh táo, tay, chân, Mông không có mụn nước, Họng đỏ, Sung huyết, Hai bên amidan không sưng to, Không có điểm mủ. Âm thở hai phổi thô, Không nghe thấy ran khô, ran ẩm rõ, Không nghe thấy ran ẩm và tiếng rít; Gõ bờ tim không lớn, HR92 lần/phút, Nhịp đều, Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý; Bụng phẳng, mềm, Không đau khi ấn, Đau dội ngược, Đau khi gõ vùng gan thận âm tính, Tiếng đục di động âm tính, Âm ruột bình thường; Hai chi dưới không phù; Kết quả cận lâm sàng: Phim X-quang ngực: Vân phổi hai bên tăng đậm, nhiều, Đề nghị kết hợp lâm sàng. Sau khi đi buồng, bác sĩ điều trị chính 庞金芳指出: Theo bệnh sử của bệnh nhân, Biểu hiện lâm sàng và kết quả cận lâm sàng, Đồng ý với chẩn đoán và phác đồ điều trị hiện tại, Cần chẩn đoán phân biệt với lao phổi, chẩn đoán phân biệt với hen phế quản; Bệnh nhân ho được điều trị y học cổ truyền bằng đắp huyệt, Sơ phong, giải biểu, Chủ yếu tuyên phế, giảm ho. Chọn huyệt: Thiên đột, Đản trung, Đại chùy, Phế du, Hợp cốc, Liệt khuyết và các huyệt khác. Đắp huyệt điều trị viêm họng, Thanh nhiệt, lợi họng, Chủ yếu tiêu sưng, giảm đau, Chọn huyệt: Liêm tuyền, Xích trạch, Thiếu thương, Quan xung, Nội đình, Phong trì, Nội quan và các huyệt khác. Bệnh nhân được điều trị kháng nhiễm khuẩn, Giảm ho, tiêu đờm, Thanh nhiệt, giải độc, Đắp huyệt, Sau khi bù dịch và điều trị hỗ trợ theo triệu chứng, Hiện triệu chứng của bệnh nhân đã đỡ hơn, Không sốt, Điều trị có hiệu quả, Theo dõi huyết áp cơ bản bình thường; Tiếp tục điều trị theo phác đồ ban đầu đủ liệu trình, Chú ý theo dõi diễn biến bệnh, Thực hiện theo y lệnh.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="14">
                <InnerID>9770</InnerID>
@@ -452,14 +452,14 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13040</InnerID>
-               <Text>Bác sĩ điều trị chính ký tên：</Text>
+               <Text>Bác sĩ điều trị chính ký tên:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="10">
                <InnerID>9834</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>13041</InnerID>
-               <Text>Bác sĩ điều trị ký tên：</Text>
+               <Text>Bác sĩ điều trị ký tên:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="10">
                <InnerID>9843</InnerID>
@@ -513,7 +513,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13044</InnerID>
-               <Text>Hôm nay đi buồng cùng bác sĩ chủ nhiệm khoa 黄纯民，Bệnh nhân ho、Đau họng đỡ hơn trước，Thỉnh thoảng ho khạc ít đờm dính，Không thở khò khè，Không ớn lạnh、Sốt，Không khàn tiếng，Không co giật、Hôn mê，Không tím tái、Khó thở，Không ho ra máu、Sốt nhẹ、Đổ mồ hôi trộm，Không hồi hộp、Đau ngực，Không buồn nôn、Nôn，Không đau bụng、Tiêu chảy，Không đau lưng、Đau khớp gối，Tinh thần、Ăn uống、Giấc ngủ tạm ổn，Đại tiểu tiện không thấy bất thường。Khám thực thể：T36.5℃，P90lần/phút，BP140/91mmHg，R20lần/phút。Tỉnh táo，Họng đỏ，Hai bên amidan không sưng to，Không có điểm mủ。Âm thở hai phổi thô，Không nghe thấy ran khô, ran ẩm；Bờ tim không lớn，HR90lần/phút，Nhịp đều，Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý。Bụng phẳng, mềm，Không đau khi ấn、Đau dội ngược，Đau khi gõ vùng gan thận âm tính，Tiếng di động âm tính，Âm ruột bình thường；Hai chi dưới không phù。Kết quả cận lâm sàng：Xét nghiệm nước tiểu thường quy：Máu ẩn+1，MA&lt;=10mg/L,Ca2.5mmol/L，CR8.8mmol/L ；Xét nghiệm máu thường quy：WBC7.58×109/L，Neu5.21×109/L，N68.8％，L25.9％，RBC4.65×1012/L，HGB146g/L，PlT276×109/L。hs-CRP&gt;5.0mg/L↑；CRP25.4mg/L↑。Đường huyết ngẫu nhiên：9.10mmol/L；Điện giải、Men tim：Không thấy bất thường；Chức năng gan：ALT 46.2U/L↑,AST31.6U/L↑,ALT/AST 1.5↑,r-GT 56.1U/L↑,Các hạng mục còn lại bình thường；Chức năng thận：CREA86.6umol/L↑,UA 394.0umol/L↑,Các hạng mục còn lại bình thường；Mỡ máu：TC5.75mmol/L↑,Các hạng mục còn lại bình thường；Mycoplasma và Chlamydia gây viêm phổiIgM、IgG：Đều âm tính；AdenovirusIgM、IgG：Đều âm tính；ASO：Âm tính；Điện tâm đồ：1、Nhịp xoang2、ST-TThay đổi；BụngSiêu âm B：Gan、mật、tụy、lách、Hai thận không thấy bất thường rõ；Sau khi đi buồng, bác sĩ chủ nhiệm khoa 黄纯民指出：Theo bệnh sử của bệnh nhân、Biểu hiện lâm sàng và kết quả cận lâm sàng，Chẩn đoán nhập viện là 1、Viêm phế quản cấp 2、Viêm họng cấp 3、Tăng huyết áp nguyên phát Đã rõ，Cần chẩn đoán phân biệt với lao phổi、Hen phế quản、chẩn đoán phân biệt với bạch hầu họng；Triệu chứng bệnh nhân đỡ hơn，Không sốt，Tình trạng bệnh tiếp tục tốt lên；Theo dõi huyết áp cơ bản bình thường；Tiếp tục điều trị theo phác đồ ban đầu đủ liệu trình；Chú ý theo dõi diễn biến bệnh，Thực hiện theo y lệnh。</Text>
+               <Text>Hôm nay đi buồng cùng bác sĩ chủ nhiệm khoa 黄纯民, Bệnh nhân ho, Đau họng đỡ hơn trước, Thỉnh thoảng ho khạc ít đờm dính, Không thở khò khè, Không ớn lạnh, Sốt, Không khàn tiếng, Không co giật, Hôn mê, Không tím tái, Khó thở, Không ho ra máu, Sốt nhẹ, Đổ mồ hôi trộm, Không hồi hộp, Đau ngực, Không buồn nôn, Nôn, Không đau bụng, Tiêu chảy, Không đau lưng, Đau khớp gối, Tinh thần, Ăn uống, Giấc ngủ tạm ổn, Đại tiểu tiện không thấy bất thường. Khám thực thể: T36.5℃, P90 lần/phút, BP140/91 mmHg, R20 lần/phút. Tỉnh táo, Họng đỏ, Hai bên amidan không sưng to, Không có điểm mủ. Âm thở hai phổi thô, Không nghe thấy ran khô, ran ẩm; Bờ tim không lớn, HR90 lần/phút, Nhịp đều, Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý. Bụng phẳng, mềm, Không đau khi ấn, Đau dội ngược, Đau khi gõ vùng gan thận âm tính, Tiếng di động âm tính, Âm ruột bình thường; Hai chi dưới không phù. Kết quả cận lâm sàng: Xét nghiệm nước tiểu thường quy: Máu ẩn+1, MA&lt;=10 mg/L, Ca 2.5 mmol/L, CR8.8 mmol/L ; Xét nghiệm máu thường quy: WBC7.58×109/L, Neu 5.21×109/L, N68.8％, L25.9％, RBC4.65×1012/L, HGB146 g/L, PlT 276×109/L.hs-CRP&gt;5.0 mg/L↑; CRP25.4 mg/L↑.Đường huyết ngẫu nhiên: 9.10 mmol/L; Điện giải, Men tim: Không thấy bất thường; Chức năng gan: ALT 46.2 U/L↑, AST31.6 U/L↑, ALT/AST 1.5↑, r-GT 56.1 U/L↑, Các hạng mục còn lại bình thường; Chức năng thận: CREA86.6 umol/L↑, UA 394.0 umol/L↑, Các hạng mục còn lại bình thường; Mỡ máu: TC5.75 mmol/L↑, Các hạng mục còn lại bình thường; Mycoplasma và Chlamydia gây viêm phổiIgM, IgG: Đều âm tính; AdenovirusIgM, IgG: Đều âm tính; ASO: Âm tính; Điện tâm đồ: 1, Nhịp xoang 2, ST-TThay đổi; BụngSiêu âm B: Gan, mật, tụy, lách, Hai thận không thấy bất thường rõ; Sau khi đi buồng, bác sĩ chủ nhiệm khoa 黄纯民指出: Theo bệnh sử của bệnh nhân, Biểu hiện lâm sàng và kết quả cận lâm sàng, Chẩn đoán nhập viện là 1, Viêm phế quản cấp 2, Viêm họng cấp 3, Tăng huyết áp nguyên phát Đã rõ, Cần chẩn đoán phân biệt với lao phổi, Hen phế quản, chẩn đoán phân biệt với bạch hầu họng; Triệu chứng bệnh nhân đỡ hơn, Không sốt, Tình trạng bệnh tiếp tục tốt lên; Theo dõi huyết áp cơ bản bình thường; Tiếp tục điều trị theo phác đồ ban đầu đủ liệu trình; Chú ý theo dõi diễn biến bệnh, Thực hiện theo y lệnh.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="14">
                <InnerID>10750</InnerID>
@@ -529,14 +529,14 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13045</InnerID>
-               <Text>Phó bác sĩ chủ nhiệm ký tên：</Text>
+               <Text>Phó bác sĩ chủ nhiệm ký tên:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="10">
                <InnerID>10766</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>13046</InnerID>
-               <Text>Bác sĩ điều trị ký tên：</Text>
+               <Text>Bác sĩ điều trị ký tên:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="10">
                <InnerID>10775</InnerID>
@@ -590,7 +590,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13049</InnerID>
-               <Text>Hôm nay đi buồng cùng bác sĩ chủ nhiệm khoa 黄纯民，Bệnh nhân không ớn lạnh、Sốt，Không nghẹt mũi、Chảy nước mũi，Không đau họng、Khàn tiếng，Không ho、Ho có đờm，Không có tiếng thở rít trong họng，Không thở khò khè、Khó thở，Không buồn nôn、Nôn，Không đau bụng、Tiêu chảy，Tinh thần、Ăn uống、Giấc ngủ tốt，Đại tiểu tiện không thấy bất thường。Khám thực thể：T36.7℃，P88lần/phút，BP135/91mmHg，R20lần/phút。Tỉnh táo，Họng không đỏ，Hai bên amidan không sưng to，Không có điểm mủ và rêu mủ bám；Âm thở hai phổi trong，Không nghe thấy ran khô, ran ẩm，Không nghe thấy tiếng thở rít；Bờ tim không lớn，HR88lần/phút，Nhịp đều，Các vùng nghe van tim không nghe thấy tiếng thổi tim。Bụng phẳng, mềm，Toàn bụng không đau khi ấn，Không đau dội ngược，Âm ruột bình thường；Hai chi dưới không phù；Sau khi đi buồng, bác sĩ chủ nhiệm khoa 黄纯民指出：Chẩn đoán nhập viện của bệnh nhân 1、Viêm phế quản cấp 2、Viêm họng cấp 3、Tăng huyết áp nguyên phát Đã rõ，Sau điều trị, bệnh nhân không ớn lạnh、Sốt，Không nghẹt mũi、Chảy nước mũi，Không đau họng、Khàn tiếng,Không ho、Ho có đờm，Không thở khò khè、Khó thở，Không buồn nôn、Nôn，Không đau bụng、Tiêu chảy，Không co giật、Hôn mê，Không có khó chịu khác。Tinh thần、Giấc ngủ、Ăn uống tốt，Đại tiểu tiện bình thường。Khám thực thể：Sinh hiệu bình thường，Tỉnh táo，Họng không đỏ，Hai bên amidan không sưng to，Không có điểm mủ。Hai phổi không nghe thấy ran khô, ran ẩm；Nhịp tim đều，Không có tiếng thổi；Khám bụng không thấy bất thường，Hai chi dưới không phù；Theo dõi huyết áp cơ bản bình thường；Triệu chứng cơ bản đã hết，Yêu cầu xuất viện，Cho làm thủ tục xuất viện。Cẩn thận trong sinh hoạt，Phòng cảm mạo，Ăn nhạt, ít mỡ, ít purin，Uống nhiều nước；Theo dõi huyết áp định kỳ và uống thuốc hạ huyết áp tùy theo huyết áp；Tái khám mỡ máu định kỳ、Chức năng thận、Điện tâm đồ；Kết hợp lao động và nghỉ ngơi，Nếu có khó chịu, xin đi khám ngay。Thực hiện theo y lệnh。</Text>
+               <Text>Hôm nay đi buồng cùng bác sĩ chủ nhiệm khoa 黄纯民, Bệnh nhân không ớn lạnh, Sốt, Không nghẹt mũi, Chảy nước mũi, Không đau họng, Khàn tiếng, Không ho, Ho có đờm, Không có tiếng thở rít trong họng, Không thở khò khè, Khó thở, Không buồn nôn, Nôn, Không đau bụng, Tiêu chảy, Tinh thần, Ăn uống, Giấc ngủ tốt, Đại tiểu tiện không thấy bất thường. Khám thực thể: T36.7℃, P88 lần/phút, BP135/91 mmHg, R20 lần/phút. Tỉnh táo, Họng không đỏ, Hai bên amidan không sưng to, Không có điểm mủ và rêu mủ bám; Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm, Không nghe thấy tiếng thở rít; Bờ tim không lớn, HR88 lần/phút, Nhịp đều, Các vùng nghe van tim không nghe thấy tiếng thổi tim. Bụng phẳng, mềm, Toàn bụng không đau khi ấn, Không đau dội ngược, Âm ruột bình thường; Hai chi dưới không phù; Sau khi đi buồng, bác sĩ chủ nhiệm khoa 黄纯民指出: Chẩn đoán nhập viện của bệnh nhân 1, Viêm phế quản cấp 2, Viêm họng cấp 3, Tăng huyết áp nguyên phát Đã rõ, Sau điều trị, bệnh nhân không ớn lạnh, Sốt, Không nghẹt mũi, Chảy nước mũi, Không đau họng, Khàn tiếng, Không ho, Ho có đờm, Không thở khò khè, Khó thở, Không buồn nôn, Nôn, Không đau bụng, Tiêu chảy, Không co giật, Hôn mê, Không có khó chịu khác. Tinh thần, Giấc ngủ, Ăn uống tốt, Đại tiểu tiện bình thường. Khám thực thể: Sinh hiệu bình thường, Tỉnh táo, Họng không đỏ, Hai bên amidan không sưng to, Không có điểm mủ. Hai phổi không nghe thấy ran khô, ran ẩm; Nhịp tim đều, Không có tiếng thổi; Khám bụng không thấy bất thường, Hai chi dưới không phù; Theo dõi huyết áp cơ bản bình thường; Triệu chứng cơ bản đã hết, Yêu cầu xuất viện, Cho làm thủ tục xuất viện. Cẩn thận trong sinh hoạt, Phòng cảm mạo, Ăn nhạt, ít mỡ, ít purin, Uống nhiều nước; Theo dõi huyết áp định kỳ và uống thuốc hạ huyết áp tùy theo huyết áp; Tái khám mỡ máu định kỳ, Chức năng thận, Điện tâm đồ; Kết hợp lao động và nghỉ ngơi, Nếu có khó chịu, xin đi khám ngay. Thực hiện theo y lệnh.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="14">
                <InnerID>11400</InnerID>
@@ -607,14 +607,14 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>13051</InnerID>
-               <Text>Bác sĩ điều trị chính ký tên：</Text>
+               <Text>Bác sĩ điều trị chính ký tên:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="10">
                <InnerID>11468</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>13052</InnerID>
-               <Text>Bác sĩ điều trị ký tên：</Text>
+               <Text>Bác sĩ điều trị ký tên:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="10">
                <InnerID>11477</InnerID>
@@ -664,7 +664,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="21">
                                  <InnerID>13058</InnerID>
-                                 <Text>Họ tên：</Text>
+                                 <Text>Họ tên:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>11518</InnerID>
@@ -710,7 +710,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="21">
                                  <InnerID>13059</InnerID>
-                                 <Text>Giới tính： </Text>
+                                 <Text>Giới tính: </Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>11532</InnerID>
@@ -771,7 +771,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="21">
                                  <InnerID>13060</InnerID>
-                                 <Text>Tuổi：</Text>
+                                 <Text>Tuổi:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>11546</InnerID>
@@ -817,7 +817,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="21">
                                  <InnerID>13061</InnerID>
-                                 <Text>Số nhập viện：</Text>
+                                 <Text>Số nhập viện:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>11559</InnerID>
@@ -858,7 +858,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="21">
                                  <InnerID>13062</InnerID>
-                                 <Text>Khoa nhập viện：</Text>
+                                 <Text>Khoa nhập viện:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>11572</InnerID>
@@ -904,7 +904,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="21">
                                  <InnerID>13063</InnerID>
-                                 <Text>Khoa xuất viện：</Text>
+                                 <Text>Khoa xuất viện:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>11584</InnerID>
@@ -945,7 +945,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="21">
                                  <InnerID>13064</InnerID>
-                                 <Text>Ngày nhập viện：</Text>
+                                 <Text>Ngày nhập viện:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>11597</InnerID>
@@ -991,7 +991,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="21">
                                  <InnerID>13065</InnerID>
-                                 <Text>Ngày xuất viện：</Text>
+                                 <Text>Ngày xuất viện:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>11609</InnerID>
@@ -1032,7 +1032,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <InnerID>13066</InnerID>
-                                 <Text>Số ngày nằm viện：</Text>
+                                 <Text>Số ngày nằm viện:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <InnerID>11622</InnerID>
@@ -1106,7 +1106,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="8">
                                  <InnerID>13068</InnerID>
-                                 <Text>Tóm tắt tình trạng bệnh lúc nhập viện：</Text>
+                                 <Text>Tóm tắt tình trạng bệnh lúc nhập viện:</Text>
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>13069</InnerID>
@@ -1130,7 +1130,7 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>13070</InnerID>
-                                 <Text>，</Text>
+                                 <Text>,</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <InnerID>11642</InnerID>
@@ -1150,7 +1150,7 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>13071</InnerID>
-                                 <Text>，</Text>
+                                 <Text>,</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <InnerID>11644</InnerID>
@@ -1170,14 +1170,14 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>13072</InnerID>
-                                 <Text>，Do“Đau thắt lưng2Hơn một tháng。”Nhập viện。Khám thực thể：T 36.5℃，P 66lần/phút，R 20lần/phút，BP 124/80mmHg。Tỉnh táo，Tinh thần khá，Vẻ mặt bệnh cấp tính，Nói rõ ràng，Hợp tác khi khám，Tư thế tự chủ。Hai mí mắt không phù，Họng sung huyết（-），Hai bên amidan không sưng to。Cổ mềm，Không kháng cự，Khí quản ở giữa。Âm thở hai phổi trong，Không nghe thấy ran khô, ran ẩm。Nhịp tim66lần/phút，Nhịp đều，Không nghe thấy tiếng thổi bệnh lý。Bụng mềm，Dưới mũi ức không đau khi ấn và không đau dội ngược，Không sờ thấy gan lách dưới bờ sườn，Vùng gan、Vùng hai thận không đau khi gõ，Âm ruột bình thường。Hai chi dưới không phù。Vận động thắt lưng hạn chế，Thân đốt sống thắt lưng、Đau khi ấn khe liên đốt sống（-），Đau khi ấn cơ cạnh cột sống bên trái，Đau khi ấn mông trái，Cơn đau lan xuống mặt sau cẳng chân，Nghiệm pháp nâng thẳng hai chân（Bên trái70°、Bên phải70°）và nghiệm pháp tăng cường（-），“4”字征（-），Phản xạ gân gối, gân gót bình thường。Cận lâm sàng：Tạm thời chưa có。</Text>
+                                 <Text>, Do“Đau thắt lưng 2 Hơn một tháng.”Nhập viện. Khám thực thể: T 36.5℃, P 66 lần/phút, R 20 lần/phút, BP 124/80 mmHg. Tỉnh táo, Tinh thần khá, Vẻ mặt bệnh cấp tính, Nói rõ ràng, Hợp tác khi khám, Tư thế tự chủ. Hai mí mắt không phù, Họng sung huyết（-）, Hai bên amidan không sưng to. Cổ mềm, Không kháng cự, Khí quản ở giữa. Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm. Nhịp tim 66 lần/phút, Nhịp đều, Không nghe thấy tiếng thổi bệnh lý. Bụng mềm, Dưới mũi ức không đau khi ấn và không đau dội ngược, Không sờ thấy gan lách dưới bờ sườn, Vùng gan, Vùng hai thận không đau khi gõ, Âm ruột bình thường. Hai chi dưới không phù. Vận động thắt lưng hạn chế, Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái, Đau khi ấn mông trái, Cơn đau lan xuống mặt sau cẳng chân, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường. Cận lâm sàng: Tạm thời chưa có.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>11948</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="8">
                                  <InnerID>13073</InnerID>
-                                 <Text>Chẩn đoán nhập viện：</Text>
+                                 <Text>Chẩn đoán nhập viện:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <InnerID>11955</InnerID>
@@ -1197,18 +1197,18 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>13074</InnerID>
-                                 <Text>。</Text>
+                                 <Text>.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>11957</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="8">
                                  <InnerID>13075</InnerID>
-                                 <Text>Quá trình chẩn đoán và điều trị trong thời gian nằm viện：</Text>
+                                 <Text>Quá trình chẩn đoán và điều trị trong thời gian nằm viện:</Text>
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>13076</InnerID>
-                                 <Text>Sau khi nhập viện, cho làm các xét nghiệm liên quan，Xét nghiệm máu thường quy：WBC 6.84×10</Text>
+                                 <Text>Sau khi nhập viện, cho làm các xét nghiệm liên quan, Xét nghiệm máu thường quy: WBC 6.84×10</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="28">
                                  <InnerID>13077</InnerID>
@@ -1216,7 +1216,7 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>13078</InnerID>
-                                 <Text>/L，L 27.5％，N 60.6％，RBC 4.42×10</Text>
+                                 <Text>/L, L 27.5％, N 60.6％, RBC 4.42×10</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="28">
                                  <InnerID>13079</InnerID>
@@ -1224,7 +1224,7 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>13080</InnerID>
-                                 <Text>/L，HGB 140g/L，PLT 252×10</Text>
+                                 <Text>/L, HGB 140 g/L, PLT 252×10</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="28">
                                  <InnerID>13081</InnerID>
@@ -1232,18 +1232,18 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>13082</InnerID>
-                                 <Text>/L。Chức năng thận：Urê 4.53mmol/L、Creatinin 86.6µmol/L、Acid uric 277.5µmol/L。RF（Dương tính）、ASO（Dương tính）、Tốc độ lắng máu 16.0mm/H。Xét nghiệm định lượng hai cặp rưỡi viêm gan B：HBsAg 0.01IU/ml、HBsAb 451.45mIU/ml、HBeAg 0.01PEI U/ml、HBeAb 0.06PEI U/ml、HBcAb 0.05PEI U/ml。Điện giải、Các chỉ số chức năng gan không thấy bất thường rõ。Sàng lọc bệnh lây qua máu3các hạng mục đều âm tính。Cột sống thắt lưngDRPhim cho thấy：L5、S1Khe liên đốt sống hẹp nhẹ，Gai xương cột sống thắt lưng。Điện tâm đồ cho thấy：Điện tâm đồ trong giới hạn bình thường。Siêu âm Bcho thấy：1、Hình ảnh siêu âm mặt cắt tử cung thu nhỏ；2、Gan、Tụy、Lách、Hai thận、Bàng quang、Vùng phần phụ hai bên không thấy bất thường trên siêu âm；3、Hai niệu quản không thấy giãn。Chủ yếu điều trị bằng y học cổ truyền，Như giác hơi、Châm cứu、Chườm nóng, v.v.，Để hành khí, hoạt huyết、Khử phong, trừ thấp，Theo tình trạng bệnh mà biện chứng luận trị。Triệu chứng lâm sàng của bệnh nhân、Thể trạng cải thiện rõ rệt，Hôm nay cho làm thủ tục xuất viện。</Text>
+                                 <Text>/L. Chức năng thận: Urê 4.53 mmol/L, Creatinin 86.6µmol/L, Acid uric 277.5µmol/L. RF（Dương tính）, ASO（Dương tính）, Tốc độ lắng máu 16.0 mm/H. Xét nghiệm định lượng hai cặp rưỡi viêm gan B: HBsAg 0.01 IU/ml, HBsAb 451.45 mIU/ml, HBeAg 0.01 PEI U/ml, HBeAb 0.06 PEI U/ml, HBcAb 0.05 PEI U/ml. Điện giải, Các chỉ số chức năng gan không thấy bất thường rõ. Sàng lọc bệnh lây qua máu 3 các hạng mục đều âm tính. Cột sống thắt lưngDRPhim cho thấy: L5, S1 Khe liên đốt sống hẹp nhẹ, Gai xương cột sống thắt lưng. Điện tâm đồ cho thấy: Điện tâm đồ trong giới hạn bình thường. Siêu âm Bcho thấy: 1, Hình ảnh siêu âm mặt cắt tử cung thu nhỏ;2, Gan, Tụy, Lách, Hai thận, Bàng quang, Vùng phần phụ hai bên không thấy bất thường trên siêu âm;3, Hai niệu quản không thấy giãn. Chủ yếu điều trị bằng y học cổ truyền, Như giác hơi, Châm cứu, Chườm nóng, v.v., Để hành khí, hoạt huyết, Khử phong, trừ thấp, Theo tình trạng bệnh mà biện chứng luận trị. Triệu chứng lâm sàng của bệnh nhân, Thể trạng cải thiện rõ rệt, Hôm nay cho làm thủ tục xuất viện.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>12414</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="8">
                                  <InnerID>13083</InnerID>
-                                 <Text>Tình trạng lúc xuất viện：</Text>
+                                 <Text>Tình trạng lúc xuất viện:</Text>
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>13084</InnerID>
-                                 <Text>Bệnh nhân không đau thắt lưng rõ，Không đau lan，Nhưng vẫn còn cảm giác tê lan từ mông trái đến khớp gối，Không có hiện tượng co giật，Không tiểu nhiều lần、Tiểu gấp、Hiện tượng tiểu buốt và tiểu máu đại thể，Không sốt、Ớn lạnh，Không ho、Ho có đờm，Cũng không tức ngực、Hồi hộp、Đau ngực，Ăn uống、Giấc ngủ bình thường，Không són đại tiểu tiện。Khám thực thể：Họng sung huyết（-），Hai bên amidan không sưng to。Cổ mềm，Không kháng cự，Khí quản ở giữa。Âm thở hai phổi trong，Không nghe thấy ran khô, ran ẩm。Nhịp tim70lần/phút，Nhịp đều，Không nghe thấy tiếng thổi bệnh lý。Bụng mềm，Dưới mũi ức không đau khi ấn và không đau dội ngược，Không sờ thấy gan lách dưới bờ sườn，Vùng gan、Vùng hai thận không đau khi gõ，Âm ruột bình thường。Hai chi dưới không phù。Thân đốt sống thắt lưng、Đau khi ấn khe liên đốt sống（-），Đau khi ấn cơ cạnh cột sống bên trái（-），Đau khi ấn mông trái（+/-），Nghiệm pháp nâng thẳng hai chân（Bên trái70°、Bên phải70°）và nghiệm pháp tăng cường（-），“4”字征（-），Phản xạ gân gối, gân gót bình thường。</Text>
+                                 <Text>Bệnh nhân không đau thắt lưng rõ, Không đau lan, Nhưng vẫn còn cảm giác tê lan từ mông trái đến khớp gối, Không có hiện tượng co giật, Không tiểu nhiều lần, Tiểu gấp, Hiện tượng tiểu buốt và tiểu máu đại thể, Không sốt, Ớn lạnh, Không ho, Ho có đờm, Cũng không tức ngực, Hồi hộp, Đau ngực, Ăn uống, Giấc ngủ bình thường, Không són đại tiểu tiện. Khám thực thể: Họng sung huyết（-）, Hai bên amidan không sưng to. Cổ mềm, Không kháng cự, Khí quản ở giữa. Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm. Nhịp tim 70 lần/phút, Nhịp đều, Không nghe thấy tiếng thổi bệnh lý. Bụng mềm, Dưới mũi ức không đau khi ấn và không đau dội ngược, Không sờ thấy gan lách dưới bờ sườn, Vùng gan, Vùng hai thận không đau khi gõ, Âm ruột bình thường. Hai chi dưới không phù. Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái（-）, Đau khi ấn mông trái（+/-）, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="22">
                                  <InnerID>12715</InnerID>
@@ -1254,7 +1254,7 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>13086</InnerID>
-                                 <Text>：</Text>
+                                 <Text>:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <InnerID>12722</InnerID>
@@ -1277,39 +1277,39 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="8">
                                  <InnerID>13087</InnerID>
-                                 <Text>Y lệnh xuất viện：</Text>
+                                 <Text>Y lệnh xuất viện:</Text>
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>13088</InnerID>
-                                 <Text>1、Chú ý nghỉ ngơi，Kết hợp lao động và nghỉ ngơi；</Text>
+                                 <Text>1, Chú ý nghỉ ngơi, Kết hợp lao động và nghỉ ngơi;</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="23">
                                  <InnerID>12742</InnerID>
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>13089</InnerID>
-                                 <Text>2、Tránh mang vác nặng，Tránh vận động mạnh vùng thắt lưng，Đeo đai lưng khi vận động，Vận động vừa phải；</Text>
+                                 <Text>2, Tránh mang vác nặng, Tránh vận động mạnh vùng thắt lưng, Đeo đai lưng khi vận động, Vận động vừa phải;</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="24">
                                  <InnerID>12772</InnerID>
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>13090</InnerID>
-                                 <Text>3、Tiêm Benzathine penicillin tại phòng khám ngoại trú，Liên tục2tháng，Sau đó tái khám định kỳASO、RF，Hoặc đến bệnh viện cấp trên khám thêm；</Text>
+                                 <Text>3, Tiêm Benzathine penicillin tại phòng khám ngoại trú, Liên tục 2 tháng, Sau đó tái khám định kỳASO, RF, Hoặc đến bệnh viện cấp trên khám thêm;</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="24">
                                  <InnerID>12816</InnerID>
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>13091</InnerID>
-                                 <Text>4、Nếu có khó chịu，Xin đi khám。</Text>
+                                 <Text>4, Nếu có khó chịu, Xin đi khám.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="25">
                                  <InnerID>12829</InnerID>
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>13092</InnerID>
-                                 <Text>Chức danh bác sĩ：Bác sĩ hành nghề Bác sĩ ký tên：</Text>
+                                 <Text>Chức danh bác sĩ: Bác sĩ hành nghề Bác sĩ ký tên:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="26">
                                  <InnerID>12846</InnerID>
@@ -1607,22 +1607,22 @@
    <BodyText>
 Hồ sơ bệnh trình lần đầu
 2015-01-09 09:39 
-Bệnh nhân，[]，[]。Do“Ho、Ho có đờm，Kèm đau họng4ngày。”[]Vào viện bằng cách đi bộ từ phòng khám ngoại trú。
-Đặc điểm ca bệnh:1.Bệnh nhân tự kể khoảng4ngày trước bắt đầu ho mà không có nguyên nhân rõ ràng，Ho nhiều hơn vào buổi tối，Ho từng cơn liên tục，Thỉnh thoảng ho khạc ít đờm dính màu trắng，Không có tiếng đờm trong họng、Thở khò khè，Không khó thở，Kèm nghẹt mũi、Chảy nước mũi、Ngứa họng、Đau họng，Đau họng rõ khi nuốt và khi ho，Lúc bắt đầu bệnh có kèm sốt，Thân nhiệt cao nhất38.5℃ ，Không ớn lạnh、Rét run，Không co giật、Co giật、Hôn mê；Không khàn tiếng，Không tím tái、Khó thở，Không đổ mồ hôi trộm，Không ho ra máu，Không hồi hộp、Tức ngực、Đau ngực，Không buồn nôn、Nôn，Không nôn ra máu，Không đau bụng、Tiêu chảy，Không vàng da，Không tiểu nhiều lần、Tiểu gấp、Triệu chứng tiểu buốt，Không liệt nửa người、Tê chi，Không co giật、Triệu chứng hôn mê。Sau khi mắc bệnh từng đến phòng khám tư truyền dịch và uống thuốc điều trị，Không rõ cụ thể，Không sốt，Ho、Đau họng không đỡ，Để chẩn đoán và điều trị thêm, hôm nay bệnh nhân đến khám tại bệnh viện chúng tôi，Khám ngoại trú và làm xét nghiệm máu thường quy、Sau khi chụp X-quang ngực, chẩn đoán dự kiến là“Viêm phế quản cấp、Viêm họng cấp”Nhập viện điều trị，Từ khi phát bệnh，Tinh thần bệnh nhân、Ăn uống、Giấc ngủ kém，Đại tiểu tiện không thấy bất thường，Cân nặng không thay đổi rõ。2.Trước đây có“Sỏi thận”Tiền sử phẫu thuật，Không rõ cụ thể；Có“Bệnh tăng huyết áp”Bệnh sử，Uống thuốc hạ huyết áp không đều，Không rõ cụ thể；Không có tiền sử dị ứng thuốc。3.Khám thực thể：T37.2℃，P104lần/phút，R20lần/phút，BP131/98mmHg，Cân nặng54kg，Chiều cao140cm；Ý thức tỉnh táo，Tinh thần bình thường，Vẻ mặt bệnh cấp tính；Cánh mũi không phập phồng，Môi không tím tái，Họng đỏ、Sung huyết，Hai bên amidan không sưng to，Không có điểm mủ và rêu mủ bám，Lưỡi gà ở giữa。Nghe thấy âm thở hai phổi thô，Không có dấu hiệu ba lõm，Dẫn truyền giọng nói bình thường，Hai bên đối xứng，Hai phổi không nghe thấy ran khô, ran ẩm，Không nghe thấy tiếng rít，Không nghe thấy tiếng cọ màng phổi。Vùng trước tim không nhô lên，Mỏm tim đập tại đường giữa đòn trái, khoang liên sườn thứ5Mặt trong khoang liên sườn0.5cm，Không rung，Bờ tim không mở rộng，Nhịp tim104lần/phút,Nhịp tim đều，Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý，Không có tiếng cọ màng ngoài tim。Thành bụng phẳng，Đối xứng，Không giãn tĩnh mạch và không thấy hình dạ dày-ruột、Sóng nhu động。Bụng mềm，Toàn bụng không đau khi ấn và không đau dội ngược，Không sờ thấy khối và đập bất thường，Không sờ thấy gan lách dưới bờ sườn，Không sờ thấy cả hai thận，Giới hạn trên tiếng đục gan tại đường giữa đòn phải, khoang liên sườn thứ5Khoang liên sườn，Vùng gan lách không đau khi gõ，Dấu hiệu Murphy âm tính，Không có tiếng đục di động，Âm ruột bình thường。Hai chi dưới không phù。Sức cơ tứ chi、Trương lực cơ bình thường；Phản xạ sinh lý còn，Không gợi được phản xạ bệnh lý。Dấu hiệu kích thích màng não âm tính。4.Cận lâm sàng:Phim X-quang ngực：Vân phổi hai bên tăng đậm、nhiều，Đề nghị kết hợp lâm sàng。 
-Chẩn đoán sơ bộ：1、Viêm phế quản cấp 2、Viêm họng cấp 3、Tăng huyết áp nguyên phát
-Căn cứ chẩn đoán: 1. Bệnh nhân[]，[]，[]。Do“Ho、Ho có đờm，Kèm đau họng4ngày。”2024-04-27 09:29Vào viện bằng cách đi bộ từ phòng khám ngoại trú。2.Trước đây có“Sỏi thận”Tiền sử phẫu thuật，Không rõ cụ thể；Có“Bệnh tăng huyết áp”Bệnh sử，Uống thuốc hạ huyết áp không đều，Không rõ cụ thể；Không có tiền sử dị ứng thuốc。3.Khám thực thể：T37.2℃，P104lần/phút，R20lần/phút，BP131/98mmHg，Cân nặng54kg，Chiều cao140cm；Ý thức tỉnh táo，Tinh thần bình thường，Vẻ mặt bệnh cấp tính；Cánh mũi không phập phồng，Môi không tím tái，Họng đỏ、Sung huyết，Hai bên amidan không sưng to，Không có điểm mủ và rêu mủ bám，Lưỡi gà ở giữa。Nghe thấy âm thở hai phổi thô，Không có dấu hiệu ba lõm，Dẫn truyền giọng nói bình thường，Hai bên đối xứng，Hai phổi không nghe thấy ran khô, ran ẩm，Không nghe thấy tiếng rít，Không nghe thấy tiếng cọ màng phổi。Vùng trước tim không nhô lên，Mỏm tim đập tại đường giữa đòn trái, khoang liên sườn thứ5Mặt trong khoang liên sườn0.5cm，Không rung，Bờ tim không mở rộng，Nhịp tim104lần/phút,Nhịp tim đều，Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý，Không có tiếng cọ màng ngoài tim。Thành bụng phẳng，Đối xứng，Không giãn tĩnh mạch và không thấy hình dạ dày-ruột、Sóng nhu động。Bụng mềm，Toàn bụng không đau khi ấn và không đau dội ngược，Không sờ thấy khối và đập bất thường，Không sờ thấy gan lách dưới bờ sườn，Không sờ thấy cả hai thận，Giới hạn trên tiếng đục gan tại đường giữa đòn phải, khoang liên sườn thứ5Khoang liên sườn，Vùng gan lách không đau khi gõ，Dấu hiệu Murphy âm tính，Không có tiếng đục di động，Âm ruột bình thường。Hai chi dưới không phù。Sức cơ tứ chi、Trương lực cơ bình thường；Phản xạ sinh lý còn，Không gợi được phản xạ bệnh lý。Dấu hiệu kích thích màng não âm tính。4.Cận lâm sàng:Phim X-quang ngực：Vân phổi hai bên tăng đậm、nhiều，Đề nghị kết hợp lâm sàng。        
-Chẩn đoán phân biệt:1、Hen phế quản：Thường khởi phát từ nhỏ，Thường không có tiền sử ho mạn tính, ho có đờm，Khi phát cơn, hai phổi nghe thấy tiếng rít，Khi đỡ thì cơ bản bình thường。2、Lao phổi：Có triệu chứng nhiễm độc lao,Như sốt nhẹ buổi chiều、Đổ mồ hôi trộm、Gầy sút, v.v.,XX-quang thấy tổn thương lao trong phổi,Tốc độ lắng máu tăng,Xét nghiệm đờm có thể tìm thấy trực khuẩn kháng cồn toan。Bệnh nhân không sốt nhẹ buổi chiều、Đổ mồ hôi trộm、Cân nặng không thay đổi rõ，Có thể dựa theoXChụp X-quang để loại trừ。3、Bạch hầu họng：Đau họng nhẹ，Màng giả màu trắng xám thường lan ra ngoài phạm vi amidan，Màng giả dai, khó lau sạch，Bóc mạnh dễ chảy máu;Hạch cổ đôi khi sưng to“Cổ bò”dạng;Toàn thân biểu hiện tinh thần mệt mỏi, uể oải、Sốt nhẹ、Sắc mặt nhợt nhạt。Xét nghiệm phết dịch họng phát hiện trực khuẩn bạch hầu;Xét nghiệm máu thường quy: bạch cầu thường không thay đổi。
-Phân loại ca bệnh:Aloại
-Kế hoạch chẩn đoán và điều trị:1、Hoàn thiện các xét nghiệm liên quan：Như chức năng gan、Chức năng thận、Điện giải、Điện tâm đồ、Xét nghiệm máu thường quy và các xét nghiệm khác；Để bước đầu nắm tình trạng tim phổi của bệnh nhân、Chức năng tạng ổ bụng và bệnh lây qua đường máu，Cho làm đầy đủ các cận lâm sàng liên quan，Cho xét nghiệm máu thường quy、Xét nghiệm nước tiểu thường quy、Xét nghiệm phân thường quy、Chức năng tim、Chức năng gan、Chức năng thận、Điện giải、CProtein phản ứng、Bốn chỉ số mỡ máu、Đường huyết và các xét nghiệm khác để loại trừ có kèm nhiễm khuẩn không、Chức năng tim、Gan、Thận、Mỡ máu、Đường huyết、Điện giải và các chức năng khác bất thường。Bệnh nhân bị nhiễm khuẩn đường hô hấp，Cho xét nghiệm kháng thể virus đường hô hấp（Mycoplasma và Chlamydia gây viêm phổi、Kháng thể Adenovirus）Loại trừ có kèm nhiễm virus không、Mycoplasma、Nhiễm Chlamydia。Bệnh nhân họng đỏ, cho làmASOXét nghiệm để xem có nhiễm liên cầu khuẩn không，Để hỗ trợ dùng thuốc；Cho làm xét nghiệm hai cặp rưỡi viêm gan B，Xác định có kèm bệnh truyền nhiễm không，Phòng lây nhiễm chéo；Cho làm điện tâm đồ để loại trừ có kèm bệnh tim không，Cho siêu âm bụngSiêu âm BLoại trừ bệnh tạng ổ bụng；Cho làm xét nghiệmDRXét nghiệm để chẩn đoán và điều trị rõ ràng。
-  2、Cho Ceftriaxone natri để kháng nhiễm khuẩn、Giảm ho, tiêu đờm、Thanh nhiệt, giải độc、Lợi họng、Hạ huyết áp、Đắp huyệt、Bù dịch, điều trị hỗ trợ theo triệu chứng；Vì chưa làm được xét nghiệm tìm tác nhân gây bệnh，Tạm thời theo kinh nghiệm chọn Ceftriaxone natri để kháng nhiễm khuẩn，Sau khi xin ý kiến bác sĩ cấp trên và được đồng ý sử dụng，Ceftriaxone natri là cephalosporin thế hệ ba bán tổng hợp，Có hoạt tính kháng khuẩn mạnh với đa số vi khuẩn Gram dương và Gram âm。Điều trị hỗ trợ：Cho khí dung hormone để thúc đẩy hấp thu viêm và tiêu đờm，Cho đắp huyệt để tăng cường tiêu đờm、Nâng cao sức đề kháng của cơ thể、Thúc đẩy hấp thu viêm và điều trị tổng hợp；
-  3、Mời bác sĩ cấp trên đi buồng hướng dẫn điều trị；Điều chỉnh thuốc theo diễn biến bệnh；Để thúc đẩy hồi phục，Đồng thời mời bác sĩ y học cổ truyền hội chẩn，Theo nguyên tắc biện chứng luận trị，Hỗ trợ điều trị bằng y học cổ truyền；Trong thời gian nằm viện có thể xảy ra dị ứng thuốc、Tác dụng độc hại、Phản ứng truyền dịch và các tình huống khác。Hoặc có diễn biến bệnh，Có thể gây khởi phát bệnh đã có hoặc bệnh tiềm ẩn, hoặc làm bệnh nặng thêm。  
-     4、Dặn bệnh nhân tiêm vắc-xin COVID-19 đúng lịch，Dặn dò theo dõi sức khỏe cá nhân và phòng hộ；
-  5、Chăm sóc điều dưỡng：Cẩn thận trong sinh hoạt，Phòng cảm mạo，Kết hợp lao động và nghỉ ngơi，Ăn nhạt, ít mỡ，Theo dõi huyết áp，Ăn nhiều rau tươi và trái cây，Uống nhiều nước。
+Bệnh nhân,[],[].Do“Ho, Ho có đờm, Kèm đau họng 4 ngày.”[]Vào viện bằng cách đi bộ từ phòng khám ngoại trú.
+Đặc điểm ca bệnh: 1. Bệnh nhân tự kể khoảng 4 ngày trước bắt đầu ho mà không có nguyên nhân rõ ràng, Ho nhiều hơn vào buổi tối, Ho từng cơn liên tục, Thỉnh thoảng ho khạc ít đờm dính màu trắng, Không có tiếng đờm trong họng, Thở khò khè, Không khó thở, Kèm nghẹt mũi, Chảy nước mũi, Ngứa họng, Đau họng, Đau họng rõ khi nuốt và khi ho, Lúc bắt đầu bệnh có kèm sốt, Thân nhiệt cao nhất 38.5℃ , Không ớn lạnh, Rét run, Không co giật, Co giật, Hôn mê; Không khàn tiếng, Không tím tái, Khó thở, Không đổ mồ hôi trộm, Không ho ra máu, Không hồi hộp, Tức ngực, Đau ngực, Không buồn nôn, Nôn, Không nôn ra máu, Không đau bụng, Tiêu chảy, Không vàng da, Không tiểu nhiều lần, Tiểu gấp, Triệu chứng tiểu buốt, Không liệt nửa người, Tê chi, Không co giật, Triệu chứng hôn mê. Sau khi mắc bệnh từng đến phòng khám tư truyền dịch và uống thuốc điều trị, Không rõ cụ thể, Không sốt, Ho, Đau họng không đỡ, Để chẩn đoán và điều trị thêm, hôm nay bệnh nhân đến khám tại bệnh viện chúng tôi, Khám ngoại trú và làm xét nghiệm máu thường quy, Sau khi chụp X-quang ngực, chẩn đoán dự kiến là“Viêm phế quản cấp, Viêm họng cấp”Nhập viện điều trị, Từ khi phát bệnh, Tinh thần bệnh nhân, Ăn uống, Giấc ngủ kém, Đại tiểu tiện không thấy bất thường, Cân nặng không thay đổi rõ.2. Trước đây có“Sỏi thận”Tiền sử phẫu thuật, Không rõ cụ thể; Có“Bệnh tăng huyết áp”Bệnh sử, Uống thuốc hạ huyết áp không đều, Không rõ cụ thể; Không có tiền sử dị ứng thuốc.3. Khám thực thể: T37.2℃, P104 lần/phút, R20 lần/phút, BP131/98 mmHg, Cân nặng 54 kg, Chiều cao 140 cm; Ý thức tỉnh táo, Tinh thần bình thường, Vẻ mặt bệnh cấp tính; Cánh mũi không phập phồng, Môi không tím tái, Họng đỏ, Sung huyết, Hai bên amidan không sưng to, Không có điểm mủ và rêu mủ bám, Lưỡi gà ở giữa. Nghe thấy âm thở hai phổi thô, Không có dấu hiệu ba lõm, Dẫn truyền giọng nói bình thường, Hai bên đối xứng, Hai phổi không nghe thấy ran khô, ran ẩm, Không nghe thấy tiếng rít, Không nghe thấy tiếng cọ màng phổi. Vùng trước tim không nhô lên, Mỏm tim đập tại đường giữa đòn trái, khoang liên sườn thứ 5 Mặt trong khoang liên sườn 0.5 cm, Không rung, Bờ tim không mở rộng, Nhịp tim 104 lần/phút, Nhịp tim đều, Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý, Không có tiếng cọ màng ngoài tim. Thành bụng phẳng, Đối xứng, Không giãn tĩnh mạch và không thấy hình dạ dày-ruột, Sóng nhu động. Bụng mềm, Toàn bụng không đau khi ấn và không đau dội ngược, Không sờ thấy khối và đập bất thường, Không sờ thấy gan lách dưới bờ sườn, Không sờ thấy cả hai thận, Giới hạn trên tiếng đục gan tại đường giữa đòn phải, khoang liên sườn thứ 5 Khoang liên sườn, Vùng gan lách không đau khi gõ, Dấu hiệu Murphy âm tính, Không có tiếng đục di động, Âm ruột bình thường. Hai chi dưới không phù. Sức cơ tứ chi, Trương lực cơ bình thường; Phản xạ sinh lý còn, Không gợi được phản xạ bệnh lý. Dấu hiệu kích thích màng não âm tính.4. Cận lâm sàng: Phim X-quang ngực: Vân phổi hai bên tăng đậm, nhiều, Đề nghị kết hợp lâm sàng. 
+Chẩn đoán sơ bộ: 1, Viêm phế quản cấp 2, Viêm họng cấp 3, Tăng huyết áp nguyên phát
+Căn cứ chẩn đoán: 1. Bệnh nhân[],[],[].Do“Ho, Ho có đờm, Kèm đau họng 4 ngày.”2024-04-27 09:29 Vào viện bằng cách đi bộ từ phòng khám ngoại trú.2. Trước đây có“Sỏi thận”Tiền sử phẫu thuật, Không rõ cụ thể; Có“Bệnh tăng huyết áp”Bệnh sử, Uống thuốc hạ huyết áp không đều, Không rõ cụ thể; Không có tiền sử dị ứng thuốc.3. Khám thực thể: T37.2℃, P104 lần/phút, R20 lần/phút, BP131/98 mmHg, Cân nặng 54 kg, Chiều cao 140 cm; Ý thức tỉnh táo, Tinh thần bình thường, Vẻ mặt bệnh cấp tính; Cánh mũi không phập phồng, Môi không tím tái, Họng đỏ, Sung huyết, Hai bên amidan không sưng to, Không có điểm mủ và rêu mủ bám, Lưỡi gà ở giữa. Nghe thấy âm thở hai phổi thô, Không có dấu hiệu ba lõm, Dẫn truyền giọng nói bình thường, Hai bên đối xứng, Hai phổi không nghe thấy ran khô, ran ẩm, Không nghe thấy tiếng rít, Không nghe thấy tiếng cọ màng phổi. Vùng trước tim không nhô lên, Mỏm tim đập tại đường giữa đòn trái, khoang liên sườn thứ 5 Mặt trong khoang liên sườn 0.5 cm, Không rung, Bờ tim không mở rộng, Nhịp tim 104 lần/phút, Nhịp tim đều, Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý, Không có tiếng cọ màng ngoài tim. Thành bụng phẳng, Đối xứng, Không giãn tĩnh mạch và không thấy hình dạ dày-ruột, Sóng nhu động. Bụng mềm, Toàn bụng không đau khi ấn và không đau dội ngược, Không sờ thấy khối và đập bất thường, Không sờ thấy gan lách dưới bờ sườn, Không sờ thấy cả hai thận, Giới hạn trên tiếng đục gan tại đường giữa đòn phải, khoang liên sườn thứ 5 Khoang liên sườn, Vùng gan lách không đau khi gõ, Dấu hiệu Murphy âm tính, Không có tiếng đục di động, Âm ruột bình thường. Hai chi dưới không phù. Sức cơ tứ chi, Trương lực cơ bình thường; Phản xạ sinh lý còn, Không gợi được phản xạ bệnh lý. Dấu hiệu kích thích màng não âm tính.4. Cận lâm sàng: Phim X-quang ngực: Vân phổi hai bên tăng đậm, nhiều, Đề nghị kết hợp lâm sàng.        
+Chẩn đoán phân biệt: 1, Hen phế quản: Thường khởi phát từ nhỏ, Thường không có tiền sử ho mạn tính, ho có đờm, Khi phát cơn, hai phổi nghe thấy tiếng rít, Khi đỡ thì cơ bản bình thường.2, Lao phổi: Có triệu chứng nhiễm độc lao, Như sốt nhẹ buổi chiều, Đổ mồ hôi trộm, Gầy sút, v.v., XX-quang thấy tổn thương lao trong phổi, Tốc độ lắng máu tăng, Xét nghiệm đờm có thể tìm thấy trực khuẩn kháng cồn toan. Bệnh nhân không sốt nhẹ buổi chiều, Đổ mồ hôi trộm, Cân nặng không thay đổi rõ, Có thể dựa theoXChụp X-quang để loại trừ.3, Bạch hầu họng: Đau họng nhẹ, Màng giả màu trắng xám thường lan ra ngoài phạm vi amidan, Màng giả dai, khó lau sạch, Bóc mạnh dễ chảy máu; Hạch cổ đôi khi sưng to“Cổ bò”dạng; Toàn thân biểu hiện tinh thần mệt mỏi, uể oải, Sốt nhẹ, Sắc mặt nhợt nhạt. Xét nghiệm phết dịch họng phát hiện trực khuẩn bạch hầu; Xét nghiệm máu thường quy: bạch cầu thường không thay đổi.
+Phân loại ca bệnh: Aloại
+Kế hoạch chẩn đoán và điều trị: 1, Hoàn thiện các xét nghiệm liên quan: Như chức năng gan, Chức năng thận, Điện giải, Điện tâm đồ, Xét nghiệm máu thường quy và các xét nghiệm khác; Để bước đầu nắm tình trạng tim phổi của bệnh nhân, Chức năng tạng ổ bụng và bệnh lây qua đường máu, Cho làm đầy đủ các cận lâm sàng liên quan, Cho xét nghiệm máu thường quy, Xét nghiệm nước tiểu thường quy, Xét nghiệm phân thường quy, Chức năng tim, Chức năng gan, Chức năng thận, Điện giải, CProtein phản ứng, Bốn chỉ số mỡ máu, Đường huyết và các xét nghiệm khác để loại trừ có kèm nhiễm khuẩn không, Chức năng tim, Gan, Thận, Mỡ máu, Đường huyết, Điện giải và các chức năng khác bất thường. Bệnh nhân bị nhiễm khuẩn đường hô hấp, Cho xét nghiệm kháng thể virus đường hô hấp（Mycoplasma và Chlamydia gây viêm phổi, Kháng thể Adenovirus）Loại trừ có kèm nhiễm virus không, Mycoplasma, Nhiễm Chlamydia. Bệnh nhân họng đỏ, cho làmASOXét nghiệm để xem có nhiễm liên cầu khuẩn không, Để hỗ trợ dùng thuốc; Cho làm xét nghiệm hai cặp rưỡi viêm gan B, Xác định có kèm bệnh truyền nhiễm không, Phòng lây nhiễm chéo; Cho làm điện tâm đồ để loại trừ có kèm bệnh tim không, Cho siêu âm bụngSiêu âm BLoại trừ bệnh tạng ổ bụng; Cho làm xét nghiệmDRXét nghiệm để chẩn đoán và điều trị rõ ràng.
+  2, Cho Ceftriaxone natri để kháng nhiễm khuẩn, Giảm ho, tiêu đờm, Thanh nhiệt, giải độc, Lợi họng, Hạ huyết áp, Đắp huyệt, Bù dịch, điều trị hỗ trợ theo triệu chứng; Vì chưa làm được xét nghiệm tìm tác nhân gây bệnh, Tạm thời theo kinh nghiệm chọn Ceftriaxone natri để kháng nhiễm khuẩn, Sau khi xin ý kiến bác sĩ cấp trên và được đồng ý sử dụng, Ceftriaxone natri là cephalosporin thế hệ ba bán tổng hợp, Có hoạt tính kháng khuẩn mạnh với đa số vi khuẩn Gram dương và Gram âm. Điều trị hỗ trợ: Cho khí dung hormone để thúc đẩy hấp thu viêm và tiêu đờm, Cho đắp huyệt để tăng cường tiêu đờm, Nâng cao sức đề kháng của cơ thể, Thúc đẩy hấp thu viêm và điều trị tổng hợp;
+  3, Mời bác sĩ cấp trên đi buồng hướng dẫn điều trị; Điều chỉnh thuốc theo diễn biến bệnh; Để thúc đẩy hồi phục, Đồng thời mời bác sĩ y học cổ truyền hội chẩn, Theo nguyên tắc biện chứng luận trị, Hỗ trợ điều trị bằng y học cổ truyền; Trong thời gian nằm viện có thể xảy ra dị ứng thuốc, Tác dụng độc hại, Phản ứng truyền dịch và các tình huống khác. Hoặc có diễn biến bệnh, Có thể gây khởi phát bệnh đã có hoặc bệnh tiềm ẩn, hoặc làm bệnh nặng thêm.  
+     4, Dặn bệnh nhân tiêm vắc-xin COVID-19 đúng lịch, Dặn dò theo dõi sức khỏe cá nhân và phòng hộ;
+  5, Chăm sóc điều dưỡng: Cẩn thận trong sinh hoạt, Phòng cảm mạo, Kết hợp lao động và nghỉ ngơi, Ăn nhạt, ít mỡ, Theo dõi huyết áp, Ăn nhiều rau tươi và trái cây, Uống nhiều nước.
 
 
                       
 
-Bác sĩ điều trị ký tên：
+Bác sĩ điều trị ký tên:
 
 
                                                  
@@ -1633,33 +1633,33 @@ Bác sĩ điều trị ký tên：
 
 2015-01-09 09:39
 Hồ sơ đi buồng của bác sĩ điều trị chính
-Hôm nay đi buồng cùng bác sĩ điều trị chính 庞金芳，Bệnh nhân ho、Đau họng giảm，Thỉnh thoảng ho khạc ít đờm dính，Không có tiếng thở rít trong họng、Thở khò khè，Không ớn lạnh、Sốt，Không rét run、Co giật，Không khàn tiếng，Không co giật、Hôn mê，Không khó thở，Không đổ mồ hôi trộm，Không hồi hộp、Đau ngực，Không nôn、Đau bụng、Tiêu chảy，Không đau lưng、Đau khớp gối，Tinh thần、Giấc ngủ、Ăn uống tốt hơn trước，Đại tiểu tiện bình thường。Khám thực thể：T37.0℃，BP140/88mmHg，Tỉnh táo，tay、chân、Mông không có mụn nước，Họng đỏ、Sung huyết，Hai bên amidan không sưng to，Không có điểm mủ。Âm thở hai phổi thô，Không nghe thấy ran khô, ran ẩm rõ，Không nghe thấy ran ẩm và tiếng rít；Gõ bờ tim không lớn，HR92lần/phút，Nhịp đều，Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý；Bụng phẳng, mềm，Không đau khi ấn、Đau dội ngược，Đau khi gõ vùng gan thận âm tính，Tiếng đục di động âm tính，Âm ruột bình thường；Hai chi dưới không phù；Kết quả cận lâm sàng：Phim X-quang ngực：Vân phổi hai bên tăng đậm、nhiều，Đề nghị kết hợp lâm sàng。Sau khi đi buồng, bác sĩ điều trị chính 庞金芳指出：Theo bệnh sử của bệnh nhân、Biểu hiện lâm sàng và kết quả cận lâm sàng，Đồng ý với chẩn đoán và phác đồ điều trị hiện tại，Cần chẩn đoán phân biệt với lao phổi、chẩn đoán phân biệt với hen phế quản；Bệnh nhân ho được điều trị y học cổ truyền bằng đắp huyệt，Sơ phong, giải biểu、Chủ yếu tuyên phế, giảm ho。Chọn huyệt：Thiên đột、Đản trung、Đại chùy、Phế du、Hợp cốc、Liệt khuyết và các huyệt khác。Đắp huyệt điều trị viêm họng，Thanh nhiệt, lợi họng，Chủ yếu tiêu sưng, giảm đau,Chọn huyệt：Liêm tuyền、Xích trạch、Thiếu thương、Quan xung、Nội đình, Phong trì、Nội quan và các huyệt khác。Bệnh nhân được điều trị kháng nhiễm khuẩn、Giảm ho, tiêu đờm、Thanh nhiệt, giải độc、Đắp huyệt、Sau khi bù dịch và điều trị hỗ trợ theo triệu chứng，Hiện triệu chứng của bệnh nhân đã đỡ hơn，Không sốt，Điều trị có hiệu quả，Theo dõi huyết áp cơ bản bình thường；Tiếp tục điều trị theo phác đồ ban đầu đủ liệu trình，Chú ý theo dõi diễn biến bệnh，Thực hiện theo y lệnh。
+Hôm nay đi buồng cùng bác sĩ điều trị chính 庞金芳, Bệnh nhân ho, Đau họng giảm, Thỉnh thoảng ho khạc ít đờm dính, Không có tiếng thở rít trong họng, Thở khò khè, Không ớn lạnh, Sốt, Không rét run, Co giật, Không khàn tiếng, Không co giật, Hôn mê, Không khó thở, Không đổ mồ hôi trộm, Không hồi hộp, Đau ngực, Không nôn, Đau bụng, Tiêu chảy, Không đau lưng, Đau khớp gối, Tinh thần, Giấc ngủ, Ăn uống tốt hơn trước, Đại tiểu tiện bình thường. Khám thực thể: T37.0℃, BP140/88 mmHg, Tỉnh táo, tay, chân, Mông không có mụn nước, Họng đỏ, Sung huyết, Hai bên amidan không sưng to, Không có điểm mủ. Âm thở hai phổi thô, Không nghe thấy ran khô, ran ẩm rõ, Không nghe thấy ran ẩm và tiếng rít; Gõ bờ tim không lớn, HR92 lần/phút, Nhịp đều, Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý; Bụng phẳng, mềm, Không đau khi ấn, Đau dội ngược, Đau khi gõ vùng gan thận âm tính, Tiếng đục di động âm tính, Âm ruột bình thường; Hai chi dưới không phù; Kết quả cận lâm sàng: Phim X-quang ngực: Vân phổi hai bên tăng đậm, nhiều, Đề nghị kết hợp lâm sàng. Sau khi đi buồng, bác sĩ điều trị chính 庞金芳指出: Theo bệnh sử của bệnh nhân, Biểu hiện lâm sàng và kết quả cận lâm sàng, Đồng ý với chẩn đoán và phác đồ điều trị hiện tại, Cần chẩn đoán phân biệt với lao phổi, chẩn đoán phân biệt với hen phế quản; Bệnh nhân ho được điều trị y học cổ truyền bằng đắp huyệt, Sơ phong, giải biểu, Chủ yếu tuyên phế, giảm ho. Chọn huyệt: Thiên đột, Đản trung, Đại chùy, Phế du, Hợp cốc, Liệt khuyết và các huyệt khác. Đắp huyệt điều trị viêm họng, Thanh nhiệt, lợi họng, Chủ yếu tiêu sưng, giảm đau, Chọn huyệt: Liêm tuyền, Xích trạch, Thiếu thương, Quan xung, Nội đình, Phong trì, Nội quan và các huyệt khác. Bệnh nhân được điều trị kháng nhiễm khuẩn, Giảm ho, tiêu đờm, Thanh nhiệt, giải độc, Đắp huyệt, Sau khi bù dịch và điều trị hỗ trợ theo triệu chứng, Hiện triệu chứng của bệnh nhân đã đỡ hơn, Không sốt, Điều trị có hiệu quả, Theo dõi huyết áp cơ bản bình thường; Tiếp tục điều trị theo phác đồ ban đầu đủ liệu trình, Chú ý theo dõi diễn biến bệnh, Thực hiện theo y lệnh.
                                                      
-Bác sĩ điều trị chính ký tên：
-Bác sĩ điều trị ký tên：
+Bác sĩ điều trị chính ký tên:
+Bác sĩ điều trị ký tên:
 
 
 
 
 2015-01-09 09:39:31                                                      
 Hồ sơ đi buồng của phó bác sĩ chủ nhiệm
-Hôm nay đi buồng cùng bác sĩ chủ nhiệm khoa 黄纯民，Bệnh nhân ho、Đau họng đỡ hơn trước，Thỉnh thoảng ho khạc ít đờm dính，Không thở khò khè，Không ớn lạnh、Sốt，Không khàn tiếng，Không co giật、Hôn mê，Không tím tái、Khó thở，Không ho ra máu、Sốt nhẹ、Đổ mồ hôi trộm，Không hồi hộp、Đau ngực，Không buồn nôn、Nôn，Không đau bụng、Tiêu chảy，Không đau lưng、Đau khớp gối，Tinh thần、Ăn uống、Giấc ngủ tạm ổn，Đại tiểu tiện không thấy bất thường。Khám thực thể：T36.5℃，P90lần/phút，BP140/91mmHg，R20lần/phút。Tỉnh táo，Họng đỏ，Hai bên amidan không sưng to，Không có điểm mủ。Âm thở hai phổi thô，Không nghe thấy ran khô, ran ẩm；Bờ tim không lớn，HR90lần/phút，Nhịp đều，Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý。Bụng phẳng, mềm，Không đau khi ấn、Đau dội ngược，Đau khi gõ vùng gan thận âm tính，Tiếng di động âm tính，Âm ruột bình thường；Hai chi dưới không phù。Kết quả cận lâm sàng：Xét nghiệm nước tiểu thường quy：Máu ẩn+1，MA&lt;=10mg/L,Ca2.5mmol/L，CR8.8mmol/L ；Xét nghiệm máu thường quy：WBC7.58×109/L，Neu5.21×109/L，N68.8％，L25.9％，RBC4.65×1012/L，HGB146g/L，PlT276×109/L。hs-CRP&gt;5.0mg/L↑；CRP25.4mg/L↑。Đường huyết ngẫu nhiên：9.10mmol/L；Điện giải、Men tim：Không thấy bất thường；Chức năng gan：ALT 46.2U/L↑,AST31.6U/L↑,ALT/AST 1.5↑,r-GT 56.1U/L↑,Các hạng mục còn lại bình thường；Chức năng thận：CREA86.6umol/L↑,UA 394.0umol/L↑,Các hạng mục còn lại bình thường；Mỡ máu：TC5.75mmol/L↑,Các hạng mục còn lại bình thường；Mycoplasma và Chlamydia gây viêm phổiIgM、IgG：Đều âm tính；AdenovirusIgM、IgG：Đều âm tính；ASO：Âm tính；Điện tâm đồ：1、Nhịp xoang2、ST-TThay đổi；BụngSiêu âm B：Gan、mật、tụy、lách、Hai thận không thấy bất thường rõ；Sau khi đi buồng, bác sĩ chủ nhiệm khoa 黄纯民指出：Theo bệnh sử của bệnh nhân、Biểu hiện lâm sàng và kết quả cận lâm sàng，Chẩn đoán nhập viện là 1、Viêm phế quản cấp 2、Viêm họng cấp 3、Tăng huyết áp nguyên phát Đã rõ，Cần chẩn đoán phân biệt với lao phổi、Hen phế quản、chẩn đoán phân biệt với bạch hầu họng；Triệu chứng bệnh nhân đỡ hơn，Không sốt，Tình trạng bệnh tiếp tục tốt lên；Theo dõi huyết áp cơ bản bình thường；Tiếp tục điều trị theo phác đồ ban đầu đủ liệu trình；Chú ý theo dõi diễn biến bệnh，Thực hiện theo y lệnh。
+Hôm nay đi buồng cùng bác sĩ chủ nhiệm khoa 黄纯民, Bệnh nhân ho, Đau họng đỡ hơn trước, Thỉnh thoảng ho khạc ít đờm dính, Không thở khò khè, Không ớn lạnh, Sốt, Không khàn tiếng, Không co giật, Hôn mê, Không tím tái, Khó thở, Không ho ra máu, Sốt nhẹ, Đổ mồ hôi trộm, Không hồi hộp, Đau ngực, Không buồn nôn, Nôn, Không đau bụng, Tiêu chảy, Không đau lưng, Đau khớp gối, Tinh thần, Ăn uống, Giấc ngủ tạm ổn, Đại tiểu tiện không thấy bất thường. Khám thực thể: T36.5℃, P90 lần/phút, BP140/91 mmHg, R20 lần/phút. Tỉnh táo, Họng đỏ, Hai bên amidan không sưng to, Không có điểm mủ. Âm thở hai phổi thô, Không nghe thấy ran khô, ran ẩm; Bờ tim không lớn, HR90 lần/phút, Nhịp đều, Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý. Bụng phẳng, mềm, Không đau khi ấn, Đau dội ngược, Đau khi gõ vùng gan thận âm tính, Tiếng di động âm tính, Âm ruột bình thường; Hai chi dưới không phù. Kết quả cận lâm sàng: Xét nghiệm nước tiểu thường quy: Máu ẩn+1, MA&lt;=10 mg/L, Ca 2.5 mmol/L, CR8.8 mmol/L ; Xét nghiệm máu thường quy: WBC7.58×109/L, Neu 5.21×109/L, N68.8％, L25.9％, RBC4.65×1012/L, HGB146 g/L, PlT 276×109/L.hs-CRP&gt;5.0 mg/L↑; CRP25.4 mg/L↑.Đường huyết ngẫu nhiên: 9.10 mmol/L; Điện giải, Men tim: Không thấy bất thường; Chức năng gan: ALT 46.2 U/L↑, AST31.6 U/L↑, ALT/AST 1.5↑, r-GT 56.1 U/L↑, Các hạng mục còn lại bình thường; Chức năng thận: CREA86.6 umol/L↑, UA 394.0 umol/L↑, Các hạng mục còn lại bình thường; Mỡ máu: TC5.75 mmol/L↑, Các hạng mục còn lại bình thường; Mycoplasma và Chlamydia gây viêm phổiIgM, IgG: Đều âm tính; AdenovirusIgM, IgG: Đều âm tính; ASO: Âm tính; Điện tâm đồ: 1, Nhịp xoang 2, ST-TThay đổi; BụngSiêu âm B: Gan, mật, tụy, lách, Hai thận không thấy bất thường rõ; Sau khi đi buồng, bác sĩ chủ nhiệm khoa 黄纯民指出: Theo bệnh sử của bệnh nhân, Biểu hiện lâm sàng và kết quả cận lâm sàng, Chẩn đoán nhập viện là 1, Viêm phế quản cấp 2, Viêm họng cấp 3, Tăng huyết áp nguyên phát Đã rõ, Cần chẩn đoán phân biệt với lao phổi, Hen phế quản, chẩn đoán phân biệt với bạch hầu họng; Triệu chứng bệnh nhân đỡ hơn, Không sốt, Tình trạng bệnh tiếp tục tốt lên; Theo dõi huyết áp cơ bản bình thường; Tiếp tục điều trị theo phác đồ ban đầu đủ liệu trình; Chú ý theo dõi diễn biến bệnh, Thực hiện theo y lệnh.
 
 
 
-Phó bác sĩ chủ nhiệm ký tên：
-Bác sĩ điều trị ký tên：
+Phó bác sĩ chủ nhiệm ký tên:
+Bác sĩ điều trị ký tên:
 
 
 
 
 2015-01-09 09:39:31                                            
 Hồ sơ đi buồng hằng ngày
-Hôm nay đi buồng cùng bác sĩ chủ nhiệm khoa 黄纯民，Bệnh nhân không ớn lạnh、Sốt，Không nghẹt mũi、Chảy nước mũi，Không đau họng、Khàn tiếng，Không ho、Ho có đờm，Không có tiếng thở rít trong họng，Không thở khò khè、Khó thở，Không buồn nôn、Nôn，Không đau bụng、Tiêu chảy，Tinh thần、Ăn uống、Giấc ngủ tốt，Đại tiểu tiện không thấy bất thường。Khám thực thể：T36.7℃，P88lần/phút，BP135/91mmHg，R20lần/phút。Tỉnh táo，Họng không đỏ，Hai bên amidan không sưng to，Không có điểm mủ và rêu mủ bám；Âm thở hai phổi trong，Không nghe thấy ran khô, ran ẩm，Không nghe thấy tiếng thở rít；Bờ tim không lớn，HR88lần/phút，Nhịp đều，Các vùng nghe van tim không nghe thấy tiếng thổi tim。Bụng phẳng, mềm，Toàn bụng không đau khi ấn，Không đau dội ngược，Âm ruột bình thường；Hai chi dưới không phù；Sau khi đi buồng, bác sĩ chủ nhiệm khoa 黄纯民指出：Chẩn đoán nhập viện của bệnh nhân 1、Viêm phế quản cấp 2、Viêm họng cấp 3、Tăng huyết áp nguyên phát Đã rõ，Sau điều trị, bệnh nhân không ớn lạnh、Sốt，Không nghẹt mũi、Chảy nước mũi，Không đau họng、Khàn tiếng,Không ho、Ho có đờm，Không thở khò khè、Khó thở，Không buồn nôn、Nôn，Không đau bụng、Tiêu chảy，Không co giật、Hôn mê，Không có khó chịu khác。Tinh thần、Giấc ngủ、Ăn uống tốt，Đại tiểu tiện bình thường。Khám thực thể：Sinh hiệu bình thường，Tỉnh táo，Họng không đỏ，Hai bên amidan không sưng to，Không có điểm mủ。Hai phổi không nghe thấy ran khô, ran ẩm；Nhịp tim đều，Không có tiếng thổi；Khám bụng không thấy bất thường，Hai chi dưới không phù；Theo dõi huyết áp cơ bản bình thường；Triệu chứng cơ bản đã hết，Yêu cầu xuất viện，Cho làm thủ tục xuất viện。Cẩn thận trong sinh hoạt，Phòng cảm mạo，Ăn nhạt, ít mỡ, ít purin，Uống nhiều nước；Theo dõi huyết áp định kỳ và uống thuốc hạ huyết áp tùy theo huyết áp；Tái khám mỡ máu định kỳ、Chức năng thận、Điện tâm đồ；Kết hợp lao động và nghỉ ngơi，Nếu có khó chịu, xin đi khám ngay。Thực hiện theo y lệnh。
+Hôm nay đi buồng cùng bác sĩ chủ nhiệm khoa 黄纯民, Bệnh nhân không ớn lạnh, Sốt, Không nghẹt mũi, Chảy nước mũi, Không đau họng, Khàn tiếng, Không ho, Ho có đờm, Không có tiếng thở rít trong họng, Không thở khò khè, Khó thở, Không buồn nôn, Nôn, Không đau bụng, Tiêu chảy, Tinh thần, Ăn uống, Giấc ngủ tốt, Đại tiểu tiện không thấy bất thường. Khám thực thể: T36.7℃, P88 lần/phút, BP135/91 mmHg, R20 lần/phút. Tỉnh táo, Họng không đỏ, Hai bên amidan không sưng to, Không có điểm mủ và rêu mủ bám; Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm, Không nghe thấy tiếng thở rít; Bờ tim không lớn, HR88 lần/phút, Nhịp đều, Các vùng nghe van tim không nghe thấy tiếng thổi tim. Bụng phẳng, mềm, Toàn bụng không đau khi ấn, Không đau dội ngược, Âm ruột bình thường; Hai chi dưới không phù; Sau khi đi buồng, bác sĩ chủ nhiệm khoa 黄纯民指出: Chẩn đoán nhập viện của bệnh nhân 1, Viêm phế quản cấp 2, Viêm họng cấp 3, Tăng huyết áp nguyên phát Đã rõ, Sau điều trị, bệnh nhân không ớn lạnh, Sốt, Không nghẹt mũi, Chảy nước mũi, Không đau họng, Khàn tiếng, Không ho, Ho có đờm, Không thở khò khè, Khó thở, Không buồn nôn, Nôn, Không đau bụng, Tiêu chảy, Không co giật, Hôn mê, Không có khó chịu khác. Tinh thần, Giấc ngủ, Ăn uống tốt, Đại tiểu tiện bình thường. Khám thực thể: Sinh hiệu bình thường, Tỉnh táo, Họng không đỏ, Hai bên amidan không sưng to, Không có điểm mủ. Hai phổi không nghe thấy ran khô, ran ẩm; Nhịp tim đều, Không có tiếng thổi; Khám bụng không thấy bất thường, Hai chi dưới không phù; Theo dõi huyết áp cơ bản bình thường; Triệu chứng cơ bản đã hết, Yêu cầu xuất viện, Cho làm thủ tục xuất viện. Cẩn thận trong sinh hoạt, Phòng cảm mạo, Ăn nhạt, ít mỡ, ít purin, Uống nhiều nước; Theo dõi huyết áp định kỳ và uống thuốc hạ huyết áp tùy theo huyết áp; Tái khám mỡ máu định kỳ, Chức năng thận, Điện tâm đồ; Kết hợp lao động và nghỉ ngơi, Nếu có khó chịu, xin đi khám ngay. Thực hiện theo y lệnh.
                                                        
 
-Bác sĩ điều trị chính ký tên：
-Bác sĩ điều trị ký tên：
+Bác sĩ điều trị chính ký tên:
+Bác sĩ điều trị ký tên:
 
 
 
@@ -1671,21 +1671,21 @@ Bác sĩ điều trị ký tên：
 
 Hồ sơ xuất viện
 
-Họ tên： [] Giới tính：  [] 
-Tuổi： [] Số nhập viện： [] 
-Khoa nhập viện： [] Khoa xuất viện： [] 
-Ngày nhập viện： [] Ngày xuất viện： [] 
-Số ngày nằm viện：[]ngày   
-Tóm tắt tình trạng bệnh lúc nhập viện：Bệnh nhân[]，[]，[]，Do“Đau thắt lưng2Hơn một tháng。”Nhập viện。Khám thực thể：T 36.5℃，P 66lần/phút，R 20lần/phút，BP 124/80mmHg。Tỉnh táo，Tinh thần khá，Vẻ mặt bệnh cấp tính，Nói rõ ràng，Hợp tác khi khám，Tư thế tự chủ。Hai mí mắt không phù，Họng sung huyết（-），Hai bên amidan không sưng to。Cổ mềm，Không kháng cự，Khí quản ở giữa。Âm thở hai phổi trong，Không nghe thấy ran khô, ran ẩm。Nhịp tim66lần/phút，Nhịp đều，Không nghe thấy tiếng thổi bệnh lý。Bụng mềm，Dưới mũi ức không đau khi ấn và không đau dội ngược，Không sờ thấy gan lách dưới bờ sườn，Vùng gan、Vùng hai thận không đau khi gõ，Âm ruột bình thường。Hai chi dưới không phù。Vận động thắt lưng hạn chế，Thân đốt sống thắt lưng、Đau khi ấn khe liên đốt sống（-），Đau khi ấn cơ cạnh cột sống bên trái，Đau khi ấn mông trái，Cơn đau lan xuống mặt sau cẳng chân，Nghiệm pháp nâng thẳng hai chân（Bên trái70°、Bên phải70°）và nghiệm pháp tăng cường（-），“4”字征（-），Phản xạ gân gối, gân gót bình thường。Cận lâm sàng：Tạm thời chưa có。
-Chẩn đoán nhập viện：[]。
-Quá trình chẩn đoán và điều trị trong thời gian nằm viện：Sau khi nhập viện, cho làm các xét nghiệm liên quan，Xét nghiệm máu thường quy：WBC 6.84×109/L，L 27.5％，N 60.6％，RBC 4.42×1012/L，HGB 140g/L，PLT 252×109/L。Chức năng thận：Urê 4.53mmol/L、Creatinin 86.6µmol/L、Acid uric 277.5µmol/L。RF（Dương tính）、ASO（Dương tính）、Tốc độ lắng máu 16.0mm/H。Xét nghiệm định lượng hai cặp rưỡi viêm gan B：HBsAg 0.01IU/ml、HBsAb 451.45mIU/ml、HBeAg 0.01PEI U/ml、HBeAb 0.06PEI U/ml、HBcAb 0.05PEI U/ml。Điện giải、Các chỉ số chức năng gan không thấy bất thường rõ。Sàng lọc bệnh lây qua máu3các hạng mục đều âm tính。Cột sống thắt lưngDRPhim cho thấy：L5、S1Khe liên đốt sống hẹp nhẹ，Gai xương cột sống thắt lưng。Điện tâm đồ cho thấy：Điện tâm đồ trong giới hạn bình thường。Siêu âm Bcho thấy：1、Hình ảnh siêu âm mặt cắt tử cung thu nhỏ；2、Gan、Tụy、Lách、Hai thận、Bàng quang、Vùng phần phụ hai bên không thấy bất thường trên siêu âm；3、Hai niệu quản không thấy giãn。Chủ yếu điều trị bằng y học cổ truyền，Như giác hơi、Châm cứu、Chườm nóng, v.v.，Để hành khí, hoạt huyết、Khử phong, trừ thấp，Theo tình trạng bệnh mà biện chứng luận trị。Triệu chứng lâm sàng của bệnh nhân、Thể trạng cải thiện rõ rệt，Hôm nay cho làm thủ tục xuất viện。
-Tình trạng lúc xuất viện：Bệnh nhân không đau thắt lưng rõ，Không đau lan，Nhưng vẫn còn cảm giác tê lan từ mông trái đến khớp gối，Không có hiện tượng co giật，Không tiểu nhiều lần、Tiểu gấp、Hiện tượng tiểu buốt và tiểu máu đại thể，Không sốt、Ớn lạnh，Không ho、Ho có đờm，Cũng không tức ngực、Hồi hộp、Đau ngực，Ăn uống、Giấc ngủ bình thường，Không són đại tiểu tiện。Khám thực thể：Họng sung huyết（-），Hai bên amidan không sưng to。Cổ mềm，Không kháng cự，Khí quản ở giữa。Âm thở hai phổi trong，Không nghe thấy ran khô, ran ẩm。Nhịp tim70lần/phút，Nhịp đều，Không nghe thấy tiếng thổi bệnh lý。Bụng mềm，Dưới mũi ức không đau khi ấn và không đau dội ngược，Không sờ thấy gan lách dưới bờ sườn，Vùng gan、Vùng hai thận không đau khi gõ，Âm ruột bình thường。Hai chi dưới không phù。Thân đốt sống thắt lưng、Đau khi ấn khe liên đốt sống（-），Đau khi ấn cơ cạnh cột sống bên trái（-），Đau khi ấn mông trái（+/-），Nghiệm pháp nâng thẳng hai chân（Bên trái70°、Bên phải70°）và nghiệm pháp tăng cường（-），“4”字征（-），Phản xạ gân gối, gân gót bình thường。
-Chẩn đoán xuất viện：[]
-Y lệnh xuất viện：1、Chú ý nghỉ ngơi，Kết hợp lao động và nghỉ ngơi；
-2、Tránh mang vác nặng，Tránh vận động mạnh vùng thắt lưng，Đeo đai lưng khi vận động，Vận động vừa phải；
-3、Tiêm Benzathine penicillin tại phòng khám ngoại trú，Liên tục2tháng，Sau đó tái khám định kỳASO、RF，Hoặc đến bệnh viện cấp trên khám thêm；
-4、Nếu có khó chịu，Xin đi khám。
-Chức danh bác sĩ：Bác sĩ hành nghề Bác sĩ ký tên：
+Họ tên: [] Giới tính:  [] 
+Tuổi: [] Số nhập viện: [] 
+Khoa nhập viện: [] Khoa xuất viện: [] 
+Ngày nhập viện: [] Ngày xuất viện: [] 
+Số ngày nằm viện:[]ngày   
+Tóm tắt tình trạng bệnh lúc nhập viện: Bệnh nhân[],[],[], Do“Đau thắt lưng 2 Hơn một tháng.”Nhập viện. Khám thực thể: T 36.5℃, P 66 lần/phút, R 20 lần/phút, BP 124/80 mmHg. Tỉnh táo, Tinh thần khá, Vẻ mặt bệnh cấp tính, Nói rõ ràng, Hợp tác khi khám, Tư thế tự chủ. Hai mí mắt không phù, Họng sung huyết（-）, Hai bên amidan không sưng to. Cổ mềm, Không kháng cự, Khí quản ở giữa. Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm. Nhịp tim 66 lần/phút, Nhịp đều, Không nghe thấy tiếng thổi bệnh lý. Bụng mềm, Dưới mũi ức không đau khi ấn và không đau dội ngược, Không sờ thấy gan lách dưới bờ sườn, Vùng gan, Vùng hai thận không đau khi gõ, Âm ruột bình thường. Hai chi dưới không phù. Vận động thắt lưng hạn chế, Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái, Đau khi ấn mông trái, Cơn đau lan xuống mặt sau cẳng chân, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường. Cận lâm sàng: Tạm thời chưa có.
+Chẩn đoán nhập viện:[].
+Quá trình chẩn đoán và điều trị trong thời gian nằm viện: Sau khi nhập viện, cho làm các xét nghiệm liên quan, Xét nghiệm máu thường quy: WBC 6.84×109/L, L 27.5％, N 60.6％, RBC 4.42×1012/L, HGB 140 g/L, PLT 252×109/L. Chức năng thận: Urê 4.53 mmol/L, Creatinin 86.6µmol/L, Acid uric 277.5µmol/L. RF（Dương tính）, ASO（Dương tính）, Tốc độ lắng máu 16.0 mm/H. Xét nghiệm định lượng hai cặp rưỡi viêm gan B: HBsAg 0.01 IU/ml, HBsAb 451.45 mIU/ml, HBeAg 0.01 PEI U/ml, HBeAb 0.06 PEI U/ml, HBcAb 0.05 PEI U/ml. Điện giải, Các chỉ số chức năng gan không thấy bất thường rõ. Sàng lọc bệnh lây qua máu 3 các hạng mục đều âm tính. Cột sống thắt lưngDRPhim cho thấy: L5, S1 Khe liên đốt sống hẹp nhẹ, Gai xương cột sống thắt lưng. Điện tâm đồ cho thấy: Điện tâm đồ trong giới hạn bình thường. Siêu âm Bcho thấy: 1, Hình ảnh siêu âm mặt cắt tử cung thu nhỏ;2, Gan, Tụy, Lách, Hai thận, Bàng quang, Vùng phần phụ hai bên không thấy bất thường trên siêu âm;3, Hai niệu quản không thấy giãn. Chủ yếu điều trị bằng y học cổ truyền, Như giác hơi, Châm cứu, Chườm nóng, v.v., Để hành khí, hoạt huyết, Khử phong, trừ thấp, Theo tình trạng bệnh mà biện chứng luận trị. Triệu chứng lâm sàng của bệnh nhân, Thể trạng cải thiện rõ rệt, Hôm nay cho làm thủ tục xuất viện.
+Tình trạng lúc xuất viện: Bệnh nhân không đau thắt lưng rõ, Không đau lan, Nhưng vẫn còn cảm giác tê lan từ mông trái đến khớp gối, Không có hiện tượng co giật, Không tiểu nhiều lần, Tiểu gấp, Hiện tượng tiểu buốt và tiểu máu đại thể, Không sốt, Ớn lạnh, Không ho, Ho có đờm, Cũng không tức ngực, Hồi hộp, Đau ngực, Ăn uống, Giấc ngủ bình thường, Không són đại tiểu tiện. Khám thực thể: Họng sung huyết（-）, Hai bên amidan không sưng to. Cổ mềm, Không kháng cự, Khí quản ở giữa. Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm. Nhịp tim 70 lần/phút, Nhịp đều, Không nghe thấy tiếng thổi bệnh lý. Bụng mềm, Dưới mũi ức không đau khi ấn và không đau dội ngược, Không sờ thấy gan lách dưới bờ sườn, Vùng gan, Vùng hai thận không đau khi gõ, Âm ruột bình thường. Hai chi dưới không phù. Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái（-）, Đau khi ấn mông trái（+/-）, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường.
+Chẩn đoán xuất viện:[]
+Y lệnh xuất viện: 1, Chú ý nghỉ ngơi, Kết hợp lao động và nghỉ ngơi;
+2, Tránh mang vác nặng, Tránh vận động mạnh vùng thắt lưng, Đeo đai lưng khi vận động, Vận động vừa phải;
+3, Tiêm Benzathine penicillin tại phòng khám ngoại trú, Liên tục 2 tháng, Sau đó tái khám định kỳASO, RF, Hoặc đến bệnh viện cấp trên khám thêm;
+4, Nếu có khó chịu, Xin đi khám.
+Chức danh bác sĩ: Bác sĩ hành nghề Bác sĩ ký tên:
 2015-01-09 09:39 </BodyText>
    <LocalConfig />
    <PageSettings>

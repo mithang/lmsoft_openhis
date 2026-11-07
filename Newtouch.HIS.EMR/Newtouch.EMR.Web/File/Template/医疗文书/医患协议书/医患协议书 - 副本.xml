@@ -122,7 +122,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>706</InnerID>
-                                 <Text>Kính thưa bệnh nhân và gia đình：</Text>
+                                 <Text>Kính thưa bệnh nhân và gia đình:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>112</InnerID>
@@ -133,7 +133,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>708</InnerID>
-                                 <Text>Chân thành cảm ơn sự tin tưởng của quý vị，Đã chọn đến với chúng tôi</Text>
+                                 <Text>Chân thành cảm ơn sự tin tưởng của quý vị, Đã chọn đến với chúng tôi</Text>
                               </Element>
                               <Element xsi:type="XInputField" StyleIndex="6">
                                  <InnerID>133</InnerID>
@@ -151,7 +151,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>709</InnerID>
-                                 <Text>Khám chữa bệnh。Trong thời gian tới，Chúng ta sẽ cùng đối mặt với thử thách của bệnh tật。Tại đây，Chúng tôi trịnh trọng cam kết：</Text>
+                                 <Text>Khám chữa bệnh. Trong thời gian tới, Chúng ta sẽ cùng đối mặt với thử thách của bệnh tật. Tại đây, Chúng tôi trịnh trọng cam kết:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>171</InnerID>
@@ -162,7 +162,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>711</InnerID>
-                                 <Text>一、 Giữ vững sự bình đẳng、Nhân ái、Tinh thần nghề nghiệp trung thực，Lấy bệnh nhân làm trung tâm，Tận tâm, tận trách điều trị bệnh cho bệnh nhân。</Text>
+                                 <Text>一, Giữ vững sự bình đẳng, Nhân ái, Tinh thần nghề nghiệp trung thực, Lấy bệnh nhân làm trung tâm, Tận tâm, tận trách điều trị bệnh cho bệnh nhân.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>215</InnerID>
@@ -173,7 +173,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>713</InnerID>
-                                 <Text>二、 Thực hiện đầy đủ nghĩa vụ thông báo，Tôn trọng quyền được biết và đồng ý của bệnh nhân、Quyền riêng tư và các quyền khác</Text>
+                                 <Text>二, Thực hiện đầy đủ nghĩa vụ thông báo, Tôn trọng quyền được biết và đồng ý của bệnh nhân, Quyền riêng tư và các quyền khác</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>252</InnerID>
@@ -184,14 +184,14 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>715</InnerID>
-                                 <Text>三、 Hành nghề liêm khiết，Không nhận của bệnh nhân và gia đình“phong bì”、Quà tặng quý giá。</Text>
+                                 <Text>三, Hành nghề liêm khiết, Không nhận của bệnh nhân và gia đình“phong bì”, Quà tặng quý giá.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>286</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>716</InnerID>
-                                 <Text>Chân thành chúc quý vị sớm bình phục！</Text>
+                                 <Text>Chân thành chúc quý vị sớm bình phục!</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>297</InnerID>
@@ -205,7 +205,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="7">
                                  <InnerID>718</InnerID>
-                                 <Text>   Bác sĩ phụ trách：</Text>
+                                 <Text>   Bác sĩ phụ trách:</Text>
                               </Element>
                               <Element xsi:type="XInputField" StyleIndex="3">
                                  <InnerID>311</InnerID>
@@ -330,7 +330,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>726</InnerID>
-                                 <Text>：</Text>
+                                 <Text>:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>371</InnerID>
@@ -341,22 +341,22 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>728</InnerID>
-                                 <Text>Chúng tôi đã nhận được bản cam kết của quý đơn vị，Đã đọc kỹ và hiểu rõ nội dung liên quan。Tại đây，Chúng tôi cũng trịnh trọng cam</Text>
+                                 <Text>Chúng tôi đã nhận được bản cam kết của quý đơn vị, Đã đọc kỹ và hiểu rõ nội dung liên quan. Tại đây, Chúng tôi cũng trịnh trọng cam</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="10">
                                  <InnerID>729</InnerID>
-                                 <Text>kết：</Text>
+                                 <Text>kết:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>415</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="10">
                                  <InnerID>730</InnerID>
-                                 <Text>一、 Tích cực phối hợp hoạt động chẩn đoán và điều trị，Cung cấp trung thực bệnh</Text>
+                                 <Text>一, Tích cực phối hợp hoạt động chẩn đoán và điều trị, Cung cấp trung thực bệnh</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>731</InnerID>
-                                 <Text>sử và các thông tin khác，Tôn trọng khoa học，Đối với nguy cơ khách quan tồn tại trong chẩn đoán và điều trị bệnh</Text>
+                                 <Text>sử và các thông tin khác, Tôn trọng khoa học, Đối với nguy cơ khách quan tồn tại trong chẩn đoán và điều trị bệnh</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="10">
                                  <InnerID>732</InnerID>
@@ -364,36 +364,36 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>733</InnerID>
-                                 <Text>và lý trí。</Text>
+                                 <Text>và lý trí.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>469</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="7">
                                  <InnerID>734</InnerID>
-                                 <Text>二、 Tôn trọng nhân viên y tế，Giữ gìn cơ sở vật chất công</Text>
+                                 <Text>二, Tôn trọng nhân viên y tế, Giữ gìn cơ sở vật chất công</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>735</InnerID>
-                                 <Text>cộng，Tuân theo quản lý và sắp xếp。Bệnh nhân hoặc người đại diện cần giao tiếp, phối hợp tốt với người của phía mình，Cùng thực hiện tốt bản cam kết này。</Text>
+                                 <Text>cộng, Tuân theo quản lý và sắp xếp. Bệnh nhân hoặc người đại diện cần giao tiếp, phối hợp tốt với người của phía mình, Cùng thực hiện tốt bản cam kết này.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>528</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="7">
                                  <InnerID>736</InnerID>
-                                 <Text>三、 Không đưa cho nhân viên y tế“phong bì”、</Text>
+                                 <Text>三, Không đưa cho nhân viên y tế“phong bì”,</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>737</InnerID>
-                                 <Text>Quà tặng quý giá，Cùng tạo môi trường y tế liêm khiết, hài hòa。</Text>
+                                 <Text>Quà tặng quý giá, Cùng tạo môi trường y tế liêm khiết, hài hòa.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>562</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>738</InnerID>
-                                 <Text>Bệnh nhân hoặc người đại diện：</Text>
+                                 <Text>Bệnh nhân hoặc người đại diện:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>572</InnerID>
@@ -403,7 +403,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="10">
                                  <InnerID>739</InnerID>
-                                 <Text>    Bệnh nhân hoặc người đại diện：</Text>
+                                 <Text>    Bệnh nhân hoặc người đại diện:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>589</InnerID>
@@ -558,26 +558,26 @@
       <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
       <NumOfPage>1</NumOfPage>
    </Info>
-   <BodyText>Kính thưa bệnh nhân và gia đình：
-    Chân thành cảm ơn sự tin tưởng của quý vị，Đã chọn đến với chúng tôi để khám chữa bệnh。Trong thời gian tới，Chúng ta sẽ cùng đối mặt với thử thách của bệnh tật。Tại đây，Chúng tôi trịnh trọng cam kết：
-    一、 Giữ vững sự bình đẳng、Nhân ái、Tinh thần nghề nghiệp trung thực，Lấy bệnh nhân làm trung tâm，Tận tâm, tận trách điều trị bệnh cho bệnh nhân。
-    二、 Thực hiện đầy đủ nghĩa vụ thông báo，Tôn trọng quyền được biết và đồng ý của bệnh nhân、Quyền riêng tư và các quyền khác
-    三、 Hành nghề liêm khiết，Không nhận của bệnh nhân và gia đình“phong bì”、Quà tặng quý giá。
-Chân thành chúc quý vị sớm bình phục！
+   <BodyText>Kính thưa bệnh nhân và gia đình:
+    Chân thành cảm ơn sự tin tưởng của quý vị, Đã chọn đến với chúng tôi để khám chữa bệnh. Trong thời gian tới, Chúng ta sẽ cùng đối mặt với thử thách của bệnh tật. Tại đây, Chúng tôi trịnh trọng cam kết:
+    一, Giữ vững sự bình đẳng, Nhân ái, Tinh thần nghề nghiệp trung thực, Lấy bệnh nhân làm trung tâm, Tận tâm, tận trách điều trị bệnh cho bệnh nhân.
+    二, Thực hiện đầy đủ nghĩa vụ thông báo, Tôn trọng quyền được biết và đồng ý của bệnh nhân, Quyền riêng tư và các quyền khác
+    三, Hành nghề liêm khiết, Không nhận của bệnh nhân và gia đình“phong bì”, Quà tặng quý giá.
+Chân thành chúc quý vị sớm bình phục!
 
-    Bác sĩ phụ trách：     
+    Bác sĩ phụ trách:     
 
                       năm    tháng   ngày
 
 
- ：
-     Chúng tôi đã nhận được bản cam kết của quý đơn vị，Đã đọc kỹ và hiểu rõ nội dung liên quan。Tại đây，Chúng tôi cũng trịnh trọng cam kết：
-一、 Tích cực phối hợp hoạt động chẩn đoán và điều trị，Cung cấp trung thực bệnh sử và các thông tin khác，Tôn trọng khoa học，Đưa ra quyết định thận trọng và lý trí đối với nguy cơ khách quan tồn tại trong chẩn đoán và điều trị bệnh。
-二、 Tôn trọng nhân viên y tế，Giữ gìn cơ sở vật chất công cộng，Tuân theo quản lý và sắp xếp。Bệnh nhân hoặc người đại diện cần giao tiếp, phối hợp tốt với người của phía mình，Cùng thực hiện tốt bản cam kết này。
-三、 Không đưa cho nhân viên y tế“phong bì”、Quà tặng quý giá，Cùng tạo môi trường y tế liêm khiết, hài hòa。
-Bệnh nhân hoặc người đại diện：
+ :
+     Chúng tôi đã nhận được bản cam kết của quý đơn vị, Đã đọc kỹ và hiểu rõ nội dung liên quan. Tại đây, Chúng tôi cũng trịnh trọng cam kết:
+一, Tích cực phối hợp hoạt động chẩn đoán và điều trị, Cung cấp trung thực bệnh sử và các thông tin khác, Tôn trọng khoa học, Đưa ra quyết định thận trọng và lý trí đối với nguy cơ khách quan tồn tại trong chẩn đoán và điều trị bệnh.
+二, Tôn trọng nhân viên y tế, Giữ gìn cơ sở vật chất công cộng, Tuân theo quản lý và sắp xếp. Bệnh nhân hoặc người đại diện cần giao tiếp, phối hợp tốt với người của phía mình, Cùng thực hiện tốt bản cam kết này.
+三, Không đưa cho nhân viên y tế“phong bì”, Quà tặng quý giá, Cùng tạo môi trường y tế liêm khiết, hài hòa.
+Bệnh nhân hoặc người đại diện:
 
-    Bệnh nhân hoặc người đại diện：
+    Bệnh nhân hoặc người đại diện:
 
                        
                    năm    tháng   ngày </BodyText>

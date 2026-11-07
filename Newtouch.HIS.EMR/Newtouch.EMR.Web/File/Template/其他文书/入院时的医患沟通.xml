@@ -125,7 +125,7 @@
          <XElements>
             <Element xsi:type="XString">
                <InnerID>635</InnerID>
-               <Text>Tình trạng bệnh và chẩn đoán：Nguyên nhân chính của bệnh nhân“Chóng mặt kèm đau mỏi cổ vai2Hơn một tháng，Nặng thêm1tuần"Nhập viện。Khám thực thể lúc nhập viện：T；36.2 °C, P： 61lần/phút，R： 18lần/phút，BP： 144/88 mmHg。Tỉnh táo, nói lưu loát，Đi bộ vào phòng bệnh，Hợp tác khi khám,Da và củng mạc không vàng，Nghe tim phổi không thấy bất thường，Bụng không đau khi ấn và không đau dội ngược，Không có khối，Âm ruột bình thường，Cột sống cổ5.6Đau khi ấn cạnh gai đốt sống(+),Nghiệm pháp kéo đám rối thần kinh cánh tay(+)。Chẩn đoán sơ bộ：1.Thoát vị đĩa đệm cột sống cổ kèm bệnh lý rễ thần kinh2.Đau thắt ngực ổn định3.Chức năng timIIđộ4.Bệnh tim do xơ vữa động mạch vành5. 2Đái tháo đường tuýp</Text>
+               <Text>Tình trạng bệnh và chẩn đoán: Nguyên nhân chính của bệnh nhân“Chóng mặt kèm đau mỏi cổ vai 2 Hơn một tháng, Nặng thêm 1 tuần"Nhập viện. Khám thực thể lúc nhập viện: T;36.2 °C, P: 61 lần/phút, R: 18 lần/phút, BP: 144/88 mmHg. Tỉnh táo, nói lưu loát, Đi bộ vào phòng bệnh, Hợp tác khi khám, Da và củng mạc không vàng, Nghe tim phổi không thấy bất thường, Bụng không đau khi ấn và không đau dội ngược, Không có khối, Âm ruột bình thường, Cột sống cổ 5.6 Đau khi ấn cạnh gai đốt sống (+), Nghiệm pháp kéo đám rối thần kinh cánh tay (+).Chẩn đoán sơ bộ: 1. Thoát vị đĩa đệm cột sống cổ kèm bệnh lý rễ thần kinh 2. Đau thắt ngực ổn định 3. Chức năng timIIđộ 4. Bệnh tim do xơ vữa động mạch vành 5. 2 Đái tháo đường tuýp</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>299</InnerID>
@@ -138,35 +138,35 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>636</InnerID>
-               <Text>Phác đồ điều trị có thể lựa chọn / phác đồ điều trị ban đầu：</Text>
+               <Text>Phác đồ điều trị có thể lựa chọn / phác đồ điều trị ban đầu:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>323</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>637</InnerID>
-               <Text>  1.Chế độ ăn cho người đái tháo đường，Nên ăn thức ăn dễ tiêu，Giữ đại tiện thông thoáng。</Text>
+               <Text>  1. Chế độ ăn cho người đái tháo đường, Nên ăn thức ăn dễ tiêu, Giữ đại tiện thông thoáng.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>353</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>638</InnerID>
-               <Text>  2.Nếu có triệu chứng khó chịu, báo ngay cho bác sĩ trực。</Text>
+               <Text>  2. Nếu có triệu chứng khó chịu, báo ngay cho bác sĩ trực.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>375</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>639</InnerID>
-               <Text>  3.Phối hợp điều trị，Uống thuốc đúng giờ theo y lệnh，Tăng cường chăm sóc，Tránh ngã gây thương tích，Ngã khỏi giường và các tai nạn khác。</Text>
+               <Text>  3. Phối hợp điều trị, Uống thuốc đúng giờ theo y lệnh, Tăng cường chăm sóc, Tránh ngã gây thương tích, Ngã khỏi giường và các tai nạn khác.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>414</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>640</InnerID>
-               <Text>  4.Phải tuân thủ quy định quản lý của bệnh viện, không được tự ý rời viện，Tự ý rời viện gây hậu quả xấu thì bệnh nhân và gia đình tự chịu trách nhiệm。</Text>
+               <Text>  4. Phải tuân thủ quy định quản lý của bệnh viện, không được tự ý rời viện, Tự ý rời viện gây hậu quả xấu thì bệnh nhân và gia đình tự chịu trách nhiệm.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>458</InnerID>
@@ -176,7 +176,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>641</InnerID>
-               <Text>Những việc cần bệnh nhân và gia đình phối hợp và các lưu ý：</Text>
+               <Text>Những việc cần bệnh nhân và gia đình phối hợp và các lưu ý:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>481</InnerID>
@@ -189,7 +189,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>642</InnerID>
-               <Text>Khác（Tác dụng không mong muốn của thuốc, v.v.）: Tất cả các thuốc đều có thể gây tác dụng không mong muốn ở các mức độ khác nhau，Và có thể có những tác dụng không mong muốn chưa được phát hiện，Bệnh nhân và gia đình cần nhận thức đúng về điều này。</Text>
+               <Text>Khác（Tác dụng không mong muốn của thuốc, v.v.）: Tất cả các thuốc đều có thể gây tác dụng không mong muốn ở các mức độ khác nhau, Và có thể có những tác dụng không mong muốn chưa được phát hiện, Bệnh nhân và gia đình cần nhận thức đúng về điều này.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>549</InnerID>
@@ -199,7 +199,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>643</InnerID>
-               <Text>Bệnh nhân(Hoặc người đại diện của họ)Ký tên:                              Bác sĩ trao đổi ký tên:</Text>
+               <Text>Bệnh nhân (Hoặc người đại diện của họ)Ký tên:                              Bác sĩ trao đổi ký tên:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>603</InnerID>
@@ -269,21 +269,21 @@
       <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
       <NumOfPage>1</NumOfPage>
    </Info>
-   <BodyText>Tình trạng bệnh và chẩn đoán：Nguyên nhân chính của bệnh nhân“Chóng mặt kèm đau mỏi cổ vai2Hơn một tháng，Nặng thêm1tuần"Nhập viện。Khám thực thể lúc nhập viện：T；36.2 °C, P： 61lần/phút，R： 18lần/phút，BP： 144/88 mmHg。Tỉnh táo, nói lưu loát，Đi bộ vào phòng bệnh，Hợp tác khi khám,Da và củng mạc không vàng，Nghe tim phổi không thấy bất thường，Bụng không đau khi ấn và không đau dội ngược，Không có khối，Âm ruột bình thường，Cột sống cổ5.6Đau khi ấn cạnh gai đốt sống(+),Nghiệm pháp kéo đám rối thần kinh cánh tay(+)。Chẩn đoán sơ bộ：1.Thoát vị đĩa đệm cột sống cổ kèm bệnh lý rễ thần kinh2.Đau thắt ngực ổn định3.Chức năng timIIđộ4.Bệnh tim do xơ vữa động mạch vành5. 2Đái tháo đường tuýp
+   <BodyText>Tình trạng bệnh và chẩn đoán: Nguyên nhân chính của bệnh nhân“Chóng mặt kèm đau mỏi cổ vai 2 Hơn một tháng, Nặng thêm 1 tuần"Nhập viện. Khám thực thể lúc nhập viện: T;36.2 °C, P: 61 lần/phút, R: 18 lần/phút, BP: 144/88 mmHg. Tỉnh táo, nói lưu loát, Đi bộ vào phòng bệnh, Hợp tác khi khám, Da và củng mạc không vàng, Nghe tim phổi không thấy bất thường, Bụng không đau khi ấn và không đau dội ngược, Không có khối, Âm ruột bình thường, Cột sống cổ 5.6 Đau khi ấn cạnh gai đốt sống (+), Nghiệm pháp kéo đám rối thần kinh cánh tay (+).Chẩn đoán sơ bộ: 1. Thoát vị đĩa đệm cột sống cổ kèm bệnh lý rễ thần kinh 2. Đau thắt ngực ổn định 3. Chức năng timIIđộ 4. Bệnh tim do xơ vữa động mạch vành 5. 2 Đái tháo đường tuýp
 
 
-Phác đồ điều trị có thể lựa chọn / phác đồ điều trị ban đầu：
-  1.Chế độ ăn cho người đái tháo đường，Nên ăn thức ăn dễ tiêu，Giữ đại tiện thông thoáng。
-  2.Nếu có triệu chứng khó chịu, báo ngay cho bác sĩ trực。
-  3.Phối hợp điều trị，Uống thuốc đúng giờ theo y lệnh，Tăng cường chăm sóc，Tránh ngã gây thương tích，Ngã khỏi giường và các tai nạn khác。
-  4.Phải tuân thủ quy định quản lý của bệnh viện, không được tự ý rời viện，Tự ý rời viện gây hậu quả xấu thì bệnh nhân và gia đình tự chịu trách nhiệm。
+Phác đồ điều trị có thể lựa chọn / phác đồ điều trị ban đầu:
+  1. Chế độ ăn cho người đái tháo đường, Nên ăn thức ăn dễ tiêu, Giữ đại tiện thông thoáng.
+  2. Nếu có triệu chứng khó chịu, báo ngay cho bác sĩ trực.
+  3. Phối hợp điều trị, Uống thuốc đúng giờ theo y lệnh, Tăng cường chăm sóc, Tránh ngã gây thương tích, Ngã khỏi giường và các tai nạn khác.
+  4. Phải tuân thủ quy định quản lý của bệnh viện, không được tự ý rời viện, Tự ý rời viện gây hậu quả xấu thì bệnh nhân và gia đình tự chịu trách nhiệm.
 
-Những việc cần bệnh nhân và gia đình phối hợp và các lưu ý：
+Những việc cần bệnh nhân và gia đình phối hợp và các lưu ý:
 
 
-Khác（Tác dụng không mong muốn của thuốc, v.v.）: Tất cả các thuốc đều có thể gây tác dụng không mong muốn ở các mức độ khác nhau，Và có thể có những tác dụng không mong muốn chưa được phát hiện，Bệnh nhân và gia đình cần nhận thức đúng về điều này。
+Khác（Tác dụng không mong muốn của thuốc, v.v.）: Tất cả các thuốc đều có thể gây tác dụng không mong muốn ở các mức độ khác nhau, Và có thể có những tác dụng không mong muốn chưa được phát hiện, Bệnh nhân và gia đình cần nhận thức đúng về điều này.
 
-Bệnh nhân(Hoặc người đại diện của họ)Ký tên:                              Bác sĩ trao đổi ký tên:
+Bệnh nhân (Hoặc người đại diện của họ)Ký tên:                              Bác sĩ trao đổi ký tên:
 
 </BodyText>
    <LocalConfig />

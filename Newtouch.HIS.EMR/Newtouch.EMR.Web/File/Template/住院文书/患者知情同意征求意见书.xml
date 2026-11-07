@@ -72,67 +72,67 @@
          <XElements>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>Tên bệnh nhân：_______________Giới tính：_______Tuổi：________Khoa：________________</Text>
+               <Text>Tên bệnh nhân:_______________Giới tính:_______Tuổi:________Khoa:________________</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>Số giường：____________Số nhập viện：____________Bệnh nhân:_______________________________</Text>
+               <Text>Số giường:____________Số nhập viện:____________Bệnh nhân:_______________________________</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>     Trong thời gian nằm viện, quý vị có quyền được biết và đồng ý，Chúng tôi sẽ thông báo cho quý vị về tình trạng bệnh、Biện pháp điều trị、Tình hình điều trị、Nguy cơ y tế, v.v. một cách trung thực，Đối với các xét nghiệm, kiểm tra đặc biệt、Điều trị và phẫu thuật cũng cần có chữ ký đồng ý của quý vị。Để bảo vệ quyền lợi hợp pháp của quý vị，Tránh gây ảnh hưởng bất lợi cho quý vị，Khi gặp các trường hợp sau，Xin quý vị cho biết chúng tôi nên thực hiện nghĩa vụ thông báo như thế nào。</Text>
+               <Text>     Trong thời gian nằm viện, quý vị có quyền được biết và đồng ý, Chúng tôi sẽ thông báo cho quý vị về tình trạng bệnh, Biện pháp điều trị, Tình hình điều trị, Nguy cơ y tế, v.v. một cách trung thực, Đối với các xét nghiệm, kiểm tra đặc biệt, Điều trị và phẫu thuật cũng cần có chữ ký đồng ý của quý vị. Để bảo vệ quyền lợi hợp pháp của quý vị, Tránh gây ảnh hưởng bất lợi cho quý vị, Khi gặp các trường hợp sau, Xin quý vị cho biết chúng tôi nên thực hiện nghĩa vụ thông báo như thế nào.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>  一、Khi tình trạng bệnh của quý vị thay đổi và gặp nguy hiểm trong quá trình chẩn đoán, điều trị，Hoặc khi xét nghiệm, kiểm tra đặc biệt、Điều trị、Phẫu thuật có nguy cơ lớn，Hoặc khi điều trị gặp khó khăn, mắc bệnh nan y，Có thông báo tình hình thật cho chính quý vị không?</Text>
+               <Text>  一, Khi tình trạng bệnh của quý vị thay đổi và gặp nguy hiểm trong quá trình chẩn đoán, điều trị, Hoặc khi xét nghiệm, kiểm tra đặc biệt, Điều trị, Phẫu thuật có nguy cơ lớn, Hoặc khi điều trị gặp khó khăn, mắc bệnh nan y, Có thông báo tình hình thật cho chính quý vị không?</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>     1.Không2.Có</Text>
+               <Text>     1. Không 2. Có</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>  二、Khi xét nghiệm, kiểm tra đặc biệt、Điều trị、Phẫu thuật cần ký giấy đồng ý，Có phải chính quý vị ký đồng ý không?</Text>
+               <Text>  二, Khi xét nghiệm, kiểm tra đặc biệt, Điều trị, Phẫu thuật cần ký giấy đồng ý, Có phải chính quý vị ký đồng ý không?</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>     1.Không2.Có</Text>
+               <Text>     1. Không 2. Có</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>三、Nếu không thông báo tình hình thật cho chính quý vị，Không phải chính quý vị ký giấy đồng ý，Quý vị quyết định ủy quyền cho_________</Text>
+               <Text>三, Nếu không thông báo tình hình thật cho chính quý vị, Không phải chính quý vị ký giấy đồng ý, Quý vị quyết định ủy quyền cho_________</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>__________________________________Làm người đại diện thực hiện quyền được biết và đồng ý của quý vị。</Text>
+               <Text>__________________________________Làm người đại diện thực hiện quyền được biết và đồng ý của quý vị.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>Bệnh nhân ký tên：__________________</Text>
+               <Text>Bệnh nhân ký tên:__________________</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>Người đại diện bệnh nhân ký tên：______________________Quan hệ với bệnh nhân：_____________________</Text>
+               <Text>Người đại diện bệnh nhân ký tên:______________________Quan hệ với bệnh nhân:_____________________</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>Địa chỉ người đại diện：___________________________Số điện thoại liên hệ：_______________________</Text>
+               <Text>Địa chỉ người đại diện:___________________________Số điện thoại liên hệ:_______________________</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>Bác sĩ ký tên：____________________</Text>
+               <Text>Bác sĩ ký tên:____________________</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString">
@@ -160,19 +160,19 @@
       <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
       <NumOfPage>1</NumOfPage>
    </Info>
-   <BodyText>Tên bệnh nhân：_______________Giới tính：_______Tuổi：________Khoa：________________
-Số giường：____________Số nhập viện：____________Bệnh nhân:_______________________________
-     Trong thời gian nằm viện, quý vị có quyền được biết và đồng ý，Chúng tôi sẽ thông báo cho quý vị về tình trạng bệnh、Biện pháp điều trị、Tình hình điều trị、Nguy cơ y tế, v.v. một cách trung thực，Đối với các xét nghiệm, kiểm tra đặc biệt、Điều trị và phẫu thuật cũng cần có chữ ký đồng ý của quý vị。Để bảo vệ quyền lợi hợp pháp của quý vị，Tránh gây ảnh hưởng bất lợi cho quý vị，Khi gặp các trường hợp sau，Xin quý vị cho biết chúng tôi nên thực hiện nghĩa vụ thông báo như thế nào。
-  一、Khi tình trạng bệnh của quý vị thay đổi và gặp nguy hiểm trong quá trình chẩn đoán, điều trị，Hoặc khi xét nghiệm, kiểm tra đặc biệt、Điều trị、Phẫu thuật có nguy cơ lớn，Hoặc khi điều trị gặp khó khăn, mắc bệnh nan y，Có thông báo tình hình thật cho chính quý vị không?
-     1.Không2.Có
-  二、Khi xét nghiệm, kiểm tra đặc biệt、Điều trị、Phẫu thuật cần ký giấy đồng ý，Có phải chính quý vị ký đồng ý không?
-     1.Không2.Có
-三、Nếu không thông báo tình hình thật cho chính quý vị，Không phải chính quý vị ký giấy đồng ý，Quý vị quyết định ủy quyền cho_________
-__________________________________Làm người đại diện thực hiện quyền được biết và đồng ý của quý vị。
-Bệnh nhân ký tên：__________________
-Người đại diện bệnh nhân ký tên：______________________Quan hệ với bệnh nhân：_____________________
-Địa chỉ người đại diện：___________________________Số điện thoại liên hệ：_______________________
-Bác sĩ ký tên：____________________
+   <BodyText>Tên bệnh nhân:_______________Giới tính:_______Tuổi:________Khoa:________________
+Số giường:____________Số nhập viện:____________Bệnh nhân:_______________________________
+     Trong thời gian nằm viện, quý vị có quyền được biết và đồng ý, Chúng tôi sẽ thông báo cho quý vị về tình trạng bệnh, Biện pháp điều trị, Tình hình điều trị, Nguy cơ y tế, v.v. một cách trung thực, Đối với các xét nghiệm, kiểm tra đặc biệt, Điều trị và phẫu thuật cũng cần có chữ ký đồng ý của quý vị. Để bảo vệ quyền lợi hợp pháp của quý vị, Tránh gây ảnh hưởng bất lợi cho quý vị, Khi gặp các trường hợp sau, Xin quý vị cho biết chúng tôi nên thực hiện nghĩa vụ thông báo như thế nào.
+  一, Khi tình trạng bệnh của quý vị thay đổi và gặp nguy hiểm trong quá trình chẩn đoán, điều trị, Hoặc khi xét nghiệm, kiểm tra đặc biệt, Điều trị, Phẫu thuật có nguy cơ lớn, Hoặc khi điều trị gặp khó khăn, mắc bệnh nan y, Có thông báo tình hình thật cho chính quý vị không?
+     1. Không 2. Có
+  二, Khi xét nghiệm, kiểm tra đặc biệt, Điều trị, Phẫu thuật cần ký giấy đồng ý, Có phải chính quý vị ký đồng ý không?
+     1. Không 2. Có
+三, Nếu không thông báo tình hình thật cho chính quý vị, Không phải chính quý vị ký giấy đồng ý, Quý vị quyết định ủy quyền cho_________
+__________________________________Làm người đại diện thực hiện quyền được biết và đồng ý của quý vị.
+Bệnh nhân ký tên:__________________
+Người đại diện bệnh nhân ký tên:______________________Quan hệ với bệnh nhân:_____________________
+Địa chỉ người đại diện:___________________________Số điện thoại liên hệ:_______________________
+Bác sĩ ký tên:____________________
 ______________năm_________tháng_________ngày_________giờ________phút</BodyText>
    <Comments />
    <LocalConfig />

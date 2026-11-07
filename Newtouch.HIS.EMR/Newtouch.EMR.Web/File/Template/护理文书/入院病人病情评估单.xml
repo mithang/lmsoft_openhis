@@ -376,11 +376,11 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>1481</InnerID>
-                                 <Text>Thu thập bệnh sử、Khám sức khỏe</Text>
+                                 <Text>Thu thập bệnh sử, Khám sức khỏe</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="12">
                                  <InnerID>1482</InnerID>
-                                 <Text>：</Text>
+                                 <Text>:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="11">
                                  <InnerID>186</InnerID>
@@ -432,7 +432,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>1486</InnerID>
-                                 <Text>Người liên lạc： </Text>
+                                 <Text>Người liên lạc: </Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="13">
                                  <InnerID>1487</InnerID>
@@ -440,7 +440,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>1488</InnerID>
-                                 <Text>  Điện thoại：</Text>
+                                 <Text>  Điện thoại:</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="13">
                                  <InnerID>1489</InnerID>
@@ -448,7 +448,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>1490</InnerID>
-                                 <Text>Quan hệ với bệnh nhân：</Text>
+                                 <Text>Quan hệ với bệnh nhân:</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="13">
                                  <InnerID>1491</InnerID>
@@ -456,7 +456,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>1492</InnerID>
-                                 <Text>  Thái độ：</Text>
+                                 <Text>  Thái độ:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="11">
                                  <InnerID>260</InnerID>
@@ -549,7 +549,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="12">
                                  <InnerID>1499</InnerID>
-                                 <Text>Tóm tắt tình trạng bệnh：</Text>
+                                 <Text>Tóm tắt tình trạng bệnh:</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="13">
                                  <InnerID>1500</InnerID>
@@ -560,7 +560,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="12">
                                  <InnerID>1501</InnerID>
-                                 <Text>Thuốc hoặc thức ăn gây dị ứng：</Text>
+                                 <Text>Thuốc hoặc thức ăn gây dị ứng:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="6">
                                  <InnerID>359</InnerID>
@@ -597,7 +597,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="12">
                                  <InnerID>1504</InnerID>
-                                 <Text>Tiền sử phẫu thuật：</Text>
+                                 <Text>Tiền sử phẫu thuật:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="6">
                                  <InnerID>386</InnerID>
@@ -634,7 +634,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="12">
                                  <InnerID>1507</InnerID>
-                                 <Text>Sở thích đặc biệt cá nhân：</Text>
+                                 <Text>Sở thích đặc biệt cá nhân:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="6">
                                  <InnerID>415</InnerID>
@@ -671,7 +671,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="12">
                                  <InnerID>1510</InnerID>
-                                 <Text>Tiền sử di truyền và truyền nhiễm trong gia đình：</Text>
+                                 <Text>Tiền sử di truyền và truyền nhiễm trong gia đình:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="11">
                                  <InnerID>447</InnerID>
@@ -708,7 +708,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="12">
                                  <InnerID>1513</InnerID>
-                                 <Text>Đại tiểu tiện：</Text>
+                                 <Text>Đại tiểu tiện:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="11">
                                  <InnerID>473</InnerID>
@@ -745,7 +745,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="12">
                                  <InnerID>1516</InnerID>
-                                 <Text>Trạng thái ý thức：</Text>
+                                 <Text>Trạng thái ý thức:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="11">
                                  <InnerID>500</InnerID>
@@ -840,7 +840,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="12">
                                  <InnerID>1525</InnerID>
-                                 <Text>Khả năng tự chủ：</Text>
+                                 <Text>Khả năng tự chủ:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="11">
                                  <InnerID>535</InnerID>
@@ -919,7 +919,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="12">
                                  <InnerID>1533</InnerID>
-                                 <Text>Khám thực thể：</Text>
+                                 <Text>Khám thực thể:</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>1534</InnerID>
@@ -978,7 +978,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="12">
                                  <InnerID>1547</InnerID>
-                                 <Text>Đặc điểm dương tính：</Text>
+                                 <Text>Đặc điểm dương tính:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="11">
                                  <InnerID>628</InnerID>
@@ -1015,7 +1015,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="12">
                                  <InnerID>1550</InnerID>
-                                 <Text>Cận lâm sàng quan trọng：</Text>
+                                 <Text>Cận lâm sàng quan trọng:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="11">
                                  <InnerID>677</InnerID>
@@ -1052,7 +1052,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="12">
                                  <InnerID>1553</InnerID>
-                                 <Text>Dấu hiệu âm tính đặc biệt：</Text>
+                                 <Text>Dấu hiệu âm tính đặc biệt:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="11">
                                  <InnerID>726</InnerID>
@@ -1115,7 +1115,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="12">
                                  <InnerID>1558</InnerID>
-                                 <Text>Tim mạch và mạch máu não：</Text>
+                                 <Text>Tim mạch và mạch máu não:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="11">
                                  <InnerID>787</InnerID>
@@ -1152,7 +1152,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="12">
                                  <InnerID>1561</InnerID>
-                                 <Text>Hệ hô hấp：</Text>
+                                 <Text>Hệ hô hấp:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="11">
                                  <InnerID>816</InnerID>
@@ -1189,7 +1189,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="12">
                                  <InnerID>1564</InnerID>
-                                 <Text>Hệ tiêu hóa：</Text>
+                                 <Text>Hệ tiêu hóa:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="11">
                                  <InnerID>845</InnerID>
@@ -1226,7 +1226,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="12">
                                  <InnerID>1567</InnerID>
-                                 <Text>Hệ thần kinh：</Text>
+                                 <Text>Hệ thần kinh:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="11">
                                  <InnerID>874</InnerID>
@@ -1263,7 +1263,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="12">
                                  <InnerID>1570</InnerID>
-                                 <Text>Khác：</Text>
+                                 <Text>Khác:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="11">
                                  <InnerID>905</InnerID>
@@ -1326,33 +1326,33 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>1575</InnerID>
-                                 <Text>Hậu quả xấu và tiên lượng：</Text>
+                                 <Text>Hậu quả xấu và tiên lượng:</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="15">
                                  <InnerID>1576</InnerID>
-                                 <Text>Tiên lượng tạm ổn，Có thể tái phát。</Text>
+                                 <Text>Tiên lượng tạm ổn, Có thể tái phát.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>969</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>1577</InnerID>
-                                 <Text>Những điều bệnh nhân và gia đình cần lưu ý：</Text>
+                                 <Text>Những điều bệnh nhân và gia đình cần lưu ý:</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="15">
                                  <InnerID>1578</InnerID>
-                                 <Text>1.Nên ăn thức ăn dễ tiêu，Giữ đại tiện thông thoáng。2.Nếu có triệu chứng khó chịu, báo ngay cho bác sĩ trực3.Phối hợp điều trị，Uống thuốc đúng giờ theo y lệnh，Tăng cường chăm sóc，Tránh ngã gây thương tích，Ngã khỏi giường và các tai nạn khác。4.Phải tuân thủ quy định quản lý của bệnh viện, không được tự ý rời viện，Tự ý rời viện gây hậu quả xấu thì bệnh nhân và gia đình tự chịu trách nhiệm。</Text>
+                                 <Text>1. Nên ăn thức ăn dễ tiêu, Giữ đại tiện thông thoáng.2. Nếu có triệu chứng khó chịu, báo ngay cho bác sĩ trực 3. Phối hợp điều trị, Uống thuốc đúng giờ theo y lệnh, Tăng cường chăm sóc, Tránh ngã gây thương tích, Ngã khỏi giường và các tai nạn khác.4. Phải tuân thủ quy định quản lý của bệnh viện, không được tự ý rời viện, Tự ý rời viện gây hậu quả xấu thì bệnh nhân và gia đình tự chịu trách nhiệm.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1091</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>1579</InnerID>
-                                 <Text>Kế hoạch chẩn đoán và điều trị：</Text>
+                                 <Text>Kế hoạch chẩn đoán và điều trị:</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="15">
                                  <InnerID>1580</InnerID>
-                                 <Text>Hoàn thiện các kiểm tra liên quan，Theo tình trạng bệnh, cho thuốc cải thiện tuần hoàn、Nuôi dưỡng thần kinh、Giảm đau、Hạ đường huyết và điều trị theo triệu chứng。</Text>
+                                 <Text>Hoàn thiện các kiểm tra liên quan, Theo tình trạng bệnh, cho thuốc cải thiện tuần hoàn, Nuôi dưỡng thần kinh, Giảm đau, Hạ đường huyết và điều trị theo triệu chứng.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1132</InnerID>
@@ -1369,7 +1369,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>1581</InnerID>
-                                 <Text>Cấp độ đánh giá：</Text>
+                                 <Text>Cấp độ đánh giá:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="11">
                                  <InnerID>1141</InnerID>
@@ -1422,7 +1422,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>1586</InnerID>
-                                 <Text>     Kết quả xử lý：</Text>
+                                 <Text>     Kết quả xử lý:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="11">
                                  <InnerID>1162</InnerID>
@@ -1463,7 +1463,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>1590</InnerID>
-                                 <Text>Cấp độ chăm sóc：</Text>
+                                 <Text>Cấp độ chăm sóc:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="11">
                                  <InnerID>1177</InnerID>
@@ -1566,7 +1566,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>1599</InnerID>
-                                 <Text>Thời gian thu thập thông tin： 2024-05-23                   Người cung cấp thông tin ký tên：</Text>
+                                 <Text>Thời gian thu thập thông tin: 2024-05-23                   Người cung cấp thông tin ký tên:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1253</InnerID>
@@ -1593,7 +1593,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <InnerID>1600</InnerID>
-                                 <Text>Bác sĩ đánh giá ký tên：                              Bác sĩ cấp trên ký tên：</Text>
+                                 <Text>Bác sĩ đánh giá ký tên:                              Bác sĩ cấp trên ký tên:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1301</InnerID>
@@ -1765,36 +1765,36 @@
       <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
       <NumOfPage>1</NumOfPage>
    </Info>
-   <BodyText>                   Thông tin chung Họ tên:Giới tính:[] Tuổi:[] Nghề nghiệp:[]   Dân tộc:[]
+   <BodyText>                   Thông tin chung Họ tên: Giới tính:[] Tuổi:[] Nghề nghiệp:[]   Dân tộc:[]
 Chẩn đoán sơ bộ:[]
 Thời gian nhập viện:[]
 Cách thức nhập viện: □Đi bộ □Xe lăn □Xe cáng      第 [] Nhập viện
-Thu thập bệnh sử、Khám sức khỏe：□Bác sĩ phụ trách □Bác sĩ trực □Bác sĩ học nâng cao 
-Người liên lạc：                 Điện thoại：              Quan hệ với bệnh nhân：                   Thái độ：□Quan tâm   □Không quan tâm   □Quan tâm quá mức   □Không có người chăm sóc  
-                   Đánh giá tình trạng cơ bản Tóm tắt tình trạng bệnh：                                      
-Thuốc hoặc thức ăn gây dị ứng：□Không  □Có                
-Tiền sử phẫu thuật：□Không  □Có                
-Sở thích đặc biệt cá nhân：□Không  □Có                
-Tiền sử di truyền và truyền nhiễm trong gia đình：□Không  □Có                
-Đại tiểu tiện：□Bình thường  □Bất thường                
-Trạng thái ý thức：□Rõ ràng  □Buồn ngủ nhiều   □Bồn chồn   ■Hôn mê     □Khác          
-Khả năng tự chủ：□Bình thường  □Liệt toàn thân   □Liệt hai chi dưới   □Khác          
-Khám thực thể：T      ℃  P     lần/phút  R      lần/phút BP        mmHg Cân nặng      Kg
-Đặc điểm dương tính：□Không  □Có                                   
-Cận lâm sàng quan trọng：□Không  □Có                                   
-Dấu hiệu âm tính đặc biệt：□Không  □Có                                    
-    Đánh giá yếu tố nguy cơ Tim mạch và mạch máu não：□Không  □Có                  
-Hệ hô hấp：□Không  □Có                  
-Hệ tiêu hóa：□Không  □Có                  
-Hệ thần kinh：□Không  □Có                  
-Khác：□Không  □Có                   
-              Khác Hậu quả xấu và tiên lượng：Tiên lượng tạm ổn，Có thể tái phát。
-Những điều bệnh nhân và gia đình cần lưu ý：1.Nên ăn thức ăn dễ tiêu，Giữ đại tiện thông thoáng。2.Nếu có triệu chứng khó chịu, báo ngay cho bác sĩ trực3.Phối hợp điều trị，Uống thuốc đúng giờ theo y lệnh，Tăng cường chăm sóc，Tránh ngã gây thương tích，Ngã khỏi giường và các tai nạn khác。4.Phải tuân thủ quy định quản lý của bệnh viện, không được tự ý rời viện，Tự ý rời viện gây hậu quả xấu thì bệnh nhân và gia đình tự chịu trách nhiệm。
-Kế hoạch chẩn đoán và điều trị：Hoàn thiện các kiểm tra liên quan，Theo tình trạng bệnh, cho thuốc cải thiện tuần hoàn、Nuôi dưỡng thần kinh、Giảm đau、Hạ đường huyết và điều trị theo triệu chứng。 
-Cấp độ đánh giá：□Bình thường     □Bệnh nặng   □Bệnh nguy kịch     Kết quả xử lý：□Tiếp nhận điều trị     □Chuyển viện 
-Cấp độ chăm sóc：□Chăm sóc đặc biệt   □Chăm sóc cấp I     □Chăm sóc cấp II     □Chăm sóc cấp III           
-Thời gian thu thập thông tin： 2024-05-23                   Người cung cấp thông tin ký tên： 
-Bác sĩ đánh giá ký tên：                              Bác sĩ cấp trên ký tên： </BodyText>
+Thu thập bệnh sử, Khám sức khỏe:□Bác sĩ phụ trách □Bác sĩ trực □Bác sĩ học nâng cao 
+Người liên lạc:                 Điện thoại:              Quan hệ với bệnh nhân:                   Thái độ:□Quan tâm   □Không quan tâm   □Quan tâm quá mức   □Không có người chăm sóc  
+                   Đánh giá tình trạng cơ bản Tóm tắt tình trạng bệnh:                                      
+Thuốc hoặc thức ăn gây dị ứng:□Không  □Có                
+Tiền sử phẫu thuật:□Không  □Có                
+Sở thích đặc biệt cá nhân:□Không  □Có                
+Tiền sử di truyền và truyền nhiễm trong gia đình:□Không  □Có                
+Đại tiểu tiện:□Bình thường  □Bất thường                
+Trạng thái ý thức:□Rõ ràng  □Buồn ngủ nhiều   □Bồn chồn   ■Hôn mê     □Khác          
+Khả năng tự chủ:□Bình thường  □Liệt toàn thân   □Liệt hai chi dưới   □Khác          
+Khám thực thể: T      ℃  P     lần/phút  R      lần/phút BP        mmHg Cân nặng      Kg
+Đặc điểm dương tính:□Không  □Có                                   
+Cận lâm sàng quan trọng:□Không  □Có                                   
+Dấu hiệu âm tính đặc biệt:□Không  □Có                                    
+    Đánh giá yếu tố nguy cơ Tim mạch và mạch máu não:□Không  □Có                  
+Hệ hô hấp:□Không  □Có                  
+Hệ tiêu hóa:□Không  □Có                  
+Hệ thần kinh:□Không  □Có                  
+Khác:□Không  □Có                   
+              Khác Hậu quả xấu và tiên lượng: Tiên lượng tạm ổn, Có thể tái phát.
+Những điều bệnh nhân và gia đình cần lưu ý: 1. Nên ăn thức ăn dễ tiêu, Giữ đại tiện thông thoáng.2. Nếu có triệu chứng khó chịu, báo ngay cho bác sĩ trực 3. Phối hợp điều trị, Uống thuốc đúng giờ theo y lệnh, Tăng cường chăm sóc, Tránh ngã gây thương tích, Ngã khỏi giường và các tai nạn khác.4. Phải tuân thủ quy định quản lý của bệnh viện, không được tự ý rời viện, Tự ý rời viện gây hậu quả xấu thì bệnh nhân và gia đình tự chịu trách nhiệm.
+Kế hoạch chẩn đoán và điều trị: Hoàn thiện các kiểm tra liên quan, Theo tình trạng bệnh, cho thuốc cải thiện tuần hoàn, Nuôi dưỡng thần kinh, Giảm đau, Hạ đường huyết và điều trị theo triệu chứng. 
+Cấp độ đánh giá:□Bình thường     □Bệnh nặng   □Bệnh nguy kịch     Kết quả xử lý:□Tiếp nhận điều trị     □Chuyển viện 
+Cấp độ chăm sóc:□Chăm sóc đặc biệt   □Chăm sóc cấp I     □Chăm sóc cấp II     □Chăm sóc cấp III           
+Thời gian thu thập thông tin: 2024-05-23                   Người cung cấp thông tin ký tên: 
+Bác sĩ đánh giá ký tên:                              Bác sĩ cấp trên ký tên: </BodyText>
    <LocalConfig />
    <PageSettings>
       <StrictUsePageSize>false</StrictUsePageSize>

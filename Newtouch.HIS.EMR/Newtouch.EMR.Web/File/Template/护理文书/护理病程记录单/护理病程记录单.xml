@@ -534,7 +534,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="11">
                                  <XElements xsi:nil="true" />
-                                 <Text>Theo dõi điều dưỡng、Biện pháp chăm sóc và hiệu quả</Text>
+                                 <Text>Theo dõi điều dưỡng, Biện pháp chăm sóc và hiệu quả</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="12" />
                            </XElements>
@@ -1344,8 +1344,8 @@
       <Operator>DCSoft.Writer Version:1.2015.12.23</Operator>
       <NumOfPage>1</NumOfPage>
    </Info>
-   <BodyText>Khoa:[]Họ tên:[] Tuổi:[]Giới tính:Số giường:[]Số nhập viện:[] Ngày nhập viện:[] Chẩn đoán:[]
-Ngày Thời gian Tình trạng bệnh Thân nhiệt Mạch Hô hấp Độ bão hòa oxy máu Nhịp tim Đường huyết Thở oxy Ý thức Đồng tử Lượng vào Lượng ra Tình trạng da Nằm và trở mình Tình trạng ống thông Theo dõi điều dưỡng、Biện pháp chăm sóc và hiệu quả Điều dưỡng ký tên Đối chiếu
+   <BodyText>Khoa:[]Họ tên:[] Tuổi:[]Giới tính: Số giường:[]Số nhập viện:[] Ngày nhập viện:[] Chẩn đoán:[]
+Ngày Thời gian Tình trạng bệnh Thân nhiệt Mạch Hô hấp Độ bão hòa oxy máu Nhịp tim Đường huyết Thở oxy Ý thức Đồng tử Lượng vào Lượng ra Tình trạng da Nằm và trở mình Tình trạng ống thông Theo dõi điều dưỡng, Biện pháp chăm sóc và hiệu quả Điều dưỡng ký tên Đối chiếu
 Ký tên 
 °C lần/phút lần/phút % bpm mmol/L L/
 min Tên mL Tiểu tiện

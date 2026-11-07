@@ -52,7 +52,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <InnerID>658</InnerID>
-                                 <Text>Họ tên：</Text>
+                                 <Text>Họ tên:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <InnerID>431</InnerID>
@@ -80,7 +80,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <InnerID>659</InnerID>
-                                 <Text>Giới tính：</Text>
+                                 <Text>Giới tính:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <InnerID>438</InnerID>
@@ -113,7 +113,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <InnerID>660</InnerID>
-                                 <Text>Tuổi：</Text>
+                                 <Text>Tuổi:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <InnerID>446</InnerID>
@@ -141,7 +141,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <InnerID>661</InnerID>
-                                 <Text>Khoa：</Text>
+                                 <Text>Khoa:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <InnerID>453</InnerID>
@@ -174,7 +174,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <InnerID>662</InnerID>
-                                 <Text>Nghề nghiệp：</Text>
+                                 <Text>Nghề nghiệp:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>461</InnerID>
@@ -186,7 +186,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <InnerID>663</InnerID>
-                                 <Text>Địa chỉ gia đình：</Text>
+                                 <Text>Địa chỉ gia đình:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <InnerID>469</InnerID>
@@ -217,7 +217,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <InnerID>664</InnerID>
-                                 <Text>Đơn vị：</Text>
+                                 <Text>Đơn vị:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <InnerID>477</InnerID>
@@ -245,7 +245,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <InnerID>665</InnerID>
-                                 <Text>Chứng minh nhân dân：</Text>
+                                 <Text>Chứng minh nhân dân:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <InnerID>485</InnerID>
@@ -278,7 +278,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <InnerID>666</InnerID>
-                                 <Text>Chẩn đoán lâm sàng：</Text>
+                                 <Text>Chẩn đoán lâm sàng:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <InnerID>495</InnerID>
@@ -321,7 +321,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <InnerID>667</InnerID>
-                                 <Text>Ý kiến xử lý：</Text>
+                                 <Text>Ý kiến xử lý:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>505</InnerID>
@@ -348,7 +348,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <InnerID>668</InnerID>
-                                 <Text>Những điều cần lưu ý sau khi xuất viện：</Text>
+                                 <Text>Những điều cần lưu ý sau khi xuất viện:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>517</InnerID>
@@ -375,7 +375,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <InnerID>669</InnerID>
-                                 <Text>Bác sĩ ký tên：</Text>
+                                 <Text>Bác sĩ ký tên:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <InnerID>526</InnerID>
@@ -403,7 +403,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <InnerID>670</InnerID>
-                                 <Text>Ngày ký tên：</Text>
+                                 <Text>Ngày ký tên:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <InnerID>535</InnerID>
@@ -440,14 +440,14 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <InnerID>672</InnerID>
-                                 <Text>1、Giấy này không có hiệu lực nếu chưa được bệnh viện đóng dấu。2、Tẩy xóa mà không được bệnh viện đóng dấu xác nhận thì không có hiệu lực。</Text>
+                                 <Text>1, Giấy này không có hiệu lực nếu chưa được bệnh viện đóng dấu.2, Tẩy xóa mà không được bệnh viện đóng dấu xác nhận thì không có hiệu lực.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>588</InnerID>
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>673</InnerID>
-                                 <Text>3、Giấy này chỉ chứng nhận tình trạng bệnh của bệnh nhân lúc xuất viện。4、Xin giữ gìn cẩn thận，Mất không cấp lại。</Text>
+                                 <Text>3, Giấy này chỉ chứng nhận tình trạng bệnh của bệnh nhân lúc xuất viện.4, Xin giữ gìn cẩn thận, Mất không cấp lại.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>619</InnerID>
@@ -543,16 +543,16 @@
    </Info>
    <BodyText>Giấy chứng nhận bệnh tật
 
-Họ tên：[] Giới tính：[] 
-Tuổi：[] Khoa：[] 
-Nghề nghiệp： Địa chỉ gia đình： 
-Đơn vị：[] Chứng minh nhân dân：[] 
-Chẩn đoán lâm sàng：[] 
-Ý kiến xử lý： 
-Những điều cần lưu ý sau khi xuất viện： 
-Bác sĩ ký tên：[] Ngày ký tên：2015-01-09 09:39 
-1、Giấy này không có hiệu lực nếu chưa được bệnh viện đóng dấu。2、Tẩy xóa mà không được bệnh viện đóng dấu xác nhận thì không có hiệu lực。
-3、Giấy này chỉ chứng nhận tình trạng bệnh của bệnh nhân lúc xuất viện。4、Xin giữ gìn cẩn thận，Mất không cấp lại。 </BodyText>
+Họ tên:[] Giới tính:[] 
+Tuổi:[] Khoa:[] 
+Nghề nghiệp: Địa chỉ gia đình: 
+Đơn vị:[] Chứng minh nhân dân:[] 
+Chẩn đoán lâm sàng:[] 
+Ý kiến xử lý: 
+Những điều cần lưu ý sau khi xuất viện: 
+Bác sĩ ký tên:[] Ngày ký tên: 2015-01-09 09:39 
+1, Giấy này không có hiệu lực nếu chưa được bệnh viện đóng dấu.2, Tẩy xóa mà không được bệnh viện đóng dấu xác nhận thì không có hiệu lực.
+3, Giấy này chỉ chứng nhận tình trạng bệnh của bệnh nhân lúc xuất viện.4, Xin giữ gìn cẩn thận, Mất không cấp lại. </BodyText>
    <LocalConfig />
    <PageSettings>
       <PaperKind>Custom</PaperKind>

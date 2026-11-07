@@ -97,7 +97,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>Giới tính：</Text>
+                                 <Text>Giới tính:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                            </XElements>
@@ -180,7 +180,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>Số nhập viện：</Text>
+                                 <Text>Số nhập viện:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                            </XElements>
@@ -391,7 +391,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>Số ngày nằm viện：</Text>
+                                 <Text>Số ngày nằm viện:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <Attributes />
@@ -451,7 +451,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="4">
                                  <XElements xsi:nil="true" />
-                                 <Text>Tóm tắt tình trạng bệnh lúc nhập viện：</Text>
+                                 <Text>Tóm tắt tình trạng bệnh lúc nhập viện:</Text>
                               </Element>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
@@ -476,7 +476,7 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>，</Text>
+                                 <Text>,</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <Attributes />
@@ -497,7 +497,7 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>，</Text>
+                                 <Text>,</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <Attributes />
@@ -518,12 +518,12 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>，Do“Đau thắt lưng2Hơn một tháng。”Nhập viện。Khám thực thể：T 36.5℃，P 66lần/phút，R 20lần/phút，BP 124/80mmHg。Tỉnh táo，Tinh thần khá，Vẻ mặt bệnh cấp tính，Nói rõ ràng，Hợp tác khi khám，Tư thế tự chủ。Hai mí mắt không phù，Họng sung huyết（-），Hai bên amidan không sưng to。Cổ mềm，Không kháng cự，Khí quản ở giữa。Âm thở hai phổi trong，Không nghe thấy ran khô, ran ẩm。Nhịp tim66lần/phút，Nhịp đều，Không nghe thấy tiếng thổi bệnh lý。Bụng mềm，Dưới mũi ức không đau khi ấn và không đau dội ngược，Không sờ thấy gan lách dưới bờ sườn，Vùng gan、Vùng hai thận không đau khi gõ，Âm ruột bình thường。Hai chi dưới không phù。Vận động thắt lưng hạn chế，Thân đốt sống thắt lưng、Đau khi ấn khe liên đốt sống（-），Đau khi ấn cơ cạnh cột sống bên trái，Đau khi ấn mông trái，Cơn đau lan xuống mặt sau cẳng chân，Nghiệm pháp nâng thẳng hai chân（Bên trái70°、Bên phải70°）và nghiệm pháp tăng cường（-），“4”字征（-），Phản xạ gân gối, gân gót bình thường。Cận lâm sàng：Tạm thời chưa có。</Text>
+                                 <Text>, Do“Đau thắt lưng 2 Hơn một tháng.”Nhập viện. Khám thực thể: T 36.5℃, P 66 lần/phút, R 20 lần/phút, BP 124/80 mmHg. Tỉnh táo, Tinh thần khá, Vẻ mặt bệnh cấp tính, Nói rõ ràng, Hợp tác khi khám, Tư thế tự chủ. Hai mí mắt không phù, Họng sung huyết（-）, Hai bên amidan không sưng to. Cổ mềm, Không kháng cự, Khí quản ở giữa. Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm. Nhịp tim 66 lần/phút, Nhịp đều, Không nghe thấy tiếng thổi bệnh lý. Bụng mềm, Dưới mũi ức không đau khi ấn và không đau dội ngược, Không sờ thấy gan lách dưới bờ sườn, Vùng gan, Vùng hai thận không đau khi gõ, Âm ruột bình thường. Hai chi dưới không phù. Vận động thắt lưng hạn chế, Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái, Đau khi ấn mông trái, Cơn đau lan xuống mặt sau cẳng chân, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường. Cận lâm sàng: Tạm thời chưa có.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                               <Element xsi:type="XString" StyleIndex="4">
                                  <XElements xsi:nil="true" />
-                                 <Text>Chẩn đoán nhập viện：</Text>
+                                 <Text>Chẩn đoán nhập viện:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <Attributes />
@@ -546,16 +546,16 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>。</Text>
+                                 <Text>.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                               <Element xsi:type="XString" StyleIndex="4">
                                  <XElements xsi:nil="true" />
-                                 <Text>Quá trình chẩn đoán và điều trị trong thời gian nằm viện：</Text>
+                                 <Text>Quá trình chẩn đoán và điều trị trong thời gian nằm viện:</Text>
                               </Element>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>Sau khi nhập viện, cho làm các xét nghiệm liên quan，Xét nghiệm máu thường quy：WBC 6.84×10</Text>
+                                 <Text>Sau khi nhập viện, cho làm các xét nghiệm liên quan, Xét nghiệm máu thường quy: WBC 6.84×10</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="10">
                                  <XElements xsi:nil="true" />
@@ -563,7 +563,7 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>/L，L 27.5％，N 60.6％，RBC 4.42×10</Text>
+                                 <Text>/L, L 27.5％, N 60.6％, RBC 4.42×10</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="10">
                                  <XElements xsi:nil="true" />
@@ -571,7 +571,7 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>/L，HGB 140g/L，PLT 252×10</Text>
+                                 <Text>/L, HGB 140 g/L, PLT 252×10</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="10">
                                  <XElements xsi:nil="true" />
@@ -579,16 +579,16 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>/L。Chức năng thận：Urê 4.53mmol/L、Creatinin 86.6µmol/L、Acid uric 277.5µmol/L。RF（Dương tính）、ASO（Dương tính）、Tốc độ lắng máu 16.0mm/H。Xét nghiệm định lượng hai cặp rưỡi viêm gan B：HBsAg 0.01IU/ml、HBsAb 451.45mIU/ml、HBeAg 0.01PEI U/ml、HBeAb 0.06PEI U/ml、HBcAb 0.05PEI U/ml。Điện giải、Các chỉ số chức năng gan không thấy bất thường rõ。Sàng lọc bệnh lây qua máu3các hạng mục đều âm tính。Cột sống thắt lưngDRPhim cho thấy：L5、S1Khe liên đốt sống hẹp nhẹ，Gai xương cột sống thắt lưng。Điện tâm đồ cho thấy：Điện tâm đồ trong giới hạn bình thường。Siêu âm Bcho thấy：1、Hình ảnh siêu âm mặt cắt tử cung thu nhỏ；2、Gan、Tụy、Lách、Hai thận、Bàng quang、Vùng phần phụ hai bên không thấy bất thường trên siêu âm；3、Hai niệu quản không thấy giãn。Chủ yếu điều trị bằng y học cổ truyền，Như giác hơi、Châm cứu、Chườm nóng, v.v.，Để hành khí, hoạt huyết、Khử phong, trừ thấp，Theo tình trạng bệnh mà biện chứng luận trị。Triệu chứng lâm sàng của bệnh nhân、Thể trạng cải thiện rõ rệt，Hôm nay cho làm thủ tục xuất viện。</Text>
+                                 <Text>/L. Chức năng thận: Urê 4.53 mmol/L, Creatinin 86.6µmol/L, Acid uric 277.5µmol/L. RF（Dương tính）, ASO（Dương tính）, Tốc độ lắng máu 16.0 mm/H. Xét nghiệm định lượng hai cặp rưỡi viêm gan B: HBsAg 0.01 IU/ml, HBsAb 451.45 mIU/ml, HBeAg 0.01 PEI U/ml, HBeAb 0.06 PEI U/ml, HBcAb 0.05 PEI U/ml. Điện giải, Các chỉ số chức năng gan không thấy bất thường rõ. Sàng lọc bệnh lây qua máu 3 các hạng mục đều âm tính. Cột sống thắt lưngDRPhim cho thấy: L5, S1 Khe liên đốt sống hẹp nhẹ, Gai xương cột sống thắt lưng. Điện tâm đồ cho thấy: Điện tâm đồ trong giới hạn bình thường. Siêu âm Bcho thấy: 1, Hình ảnh siêu âm mặt cắt tử cung thu nhỏ;2, Gan, Tụy, Lách, Hai thận, Bàng quang, Vùng phần phụ hai bên không thấy bất thường trên siêu âm;3, Hai niệu quản không thấy giãn. Chủ yếu điều trị bằng y học cổ truyền, Như giác hơi, Châm cứu, Chườm nóng, v.v., Để hành khí, hoạt huyết, Khử phong, trừ thấp, Theo tình trạng bệnh mà biện chứng luận trị. Triệu chứng lâm sàng của bệnh nhân, Thể trạng cải thiện rõ rệt, Hôm nay cho làm thủ tục xuất viện.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                               <Element xsi:type="XString" StyleIndex="4">
                                  <XElements xsi:nil="true" />
-                                 <Text>Tình trạng lúc xuất viện：</Text>
+                                 <Text>Tình trạng lúc xuất viện:</Text>
                               </Element>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>Bệnh nhân không đau thắt lưng rõ，Không đau lan，Nhưng vẫn còn cảm giác tê lan từ mông trái đến khớp gối，Không có hiện tượng co giật，Không tiểu nhiều lần、Tiểu gấp、Hiện tượng tiểu buốt và tiểu máu đại thể，Không sốt、Ớn lạnh，Không ho、Ho có đờm，Cũng không tức ngực、Hồi hộp、Đau ngực，Ăn uống、Giấc ngủ bình thường，Không són đại tiểu tiện。Khám thực thể：Họng sung huyết（-），Hai bên amidan không sưng to。Cổ mềm，Không kháng cự，Khí quản ở giữa。Âm thở hai phổi trong，Không nghe thấy ran khô, ran ẩm。Nhịp tim70lần/phút，Nhịp đều，Không nghe thấy tiếng thổi bệnh lý。Bụng mềm，Dưới mũi ức không đau khi ấn và không đau dội ngược，Không sờ thấy gan lách dưới bờ sườn，Vùng gan、Vùng hai thận không đau khi gõ，Âm ruột bình thường。Hai chi dưới không phù。Thân đốt sống thắt lưng、Đau khi ấn khe liên đốt sống（-），Đau khi ấn cơ cạnh cột sống bên trái（-），Đau khi ấn mông trái（+/-），Nghiệm pháp nâng thẳng hai chân（Bên trái70°、Bên phải70°）và nghiệm pháp tăng cường（-），“4”字征（-），Phản xạ gân gối, gân gót bình thường。</Text>
+                                 <Text>Bệnh nhân không đau thắt lưng rõ, Không đau lan, Nhưng vẫn còn cảm giác tê lan từ mông trái đến khớp gối, Không có hiện tượng co giật, Không tiểu nhiều lần, Tiểu gấp, Hiện tượng tiểu buốt và tiểu máu đại thể, Không sốt, Ớn lạnh, Không ho, Ho có đờm, Cũng không tức ngực, Hồi hộp, Đau ngực, Ăn uống, Giấc ngủ bình thường, Không són đại tiểu tiện. Khám thực thể: Họng sung huyết（-）, Hai bên amidan không sưng to. Cổ mềm, Không kháng cự, Khí quản ở giữa. Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm. Nhịp tim 70 lần/phút, Nhịp đều, Không nghe thấy tiếng thổi bệnh lý. Bụng mềm, Dưới mũi ức không đau khi ấn và không đau dội ngược, Không sờ thấy gan lách dưới bờ sườn, Vùng gan, Vùng hai thận không đau khi gõ, Âm ruột bình thường. Hai chi dưới không phù. Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái（-）, Đau khi ấn mông trái（+/-）, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="5" />
                               <Element xsi:type="XString" StyleIndex="4">
@@ -597,36 +597,36 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>：Thoát vị đĩa đệm thắt lưng</Text>
+                                 <Text>: Thoát vị đĩa đệm thắt lưng</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6" />
                               <Element xsi:type="XString" StyleIndex="4">
                                  <XElements xsi:nil="true" />
-                                 <Text>Y lệnh xuất viện：</Text>
+                                 <Text>Y lệnh xuất viện:</Text>
                               </Element>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>1、Chú ý nghỉ ngơi，Kết hợp lao động và nghỉ ngơi；</Text>
+                                 <Text>1, Chú ý nghỉ ngơi, Kết hợp lao động và nghỉ ngơi;</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6" />
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>2、Tránh mang vác nặng，Tránh vận động mạnh vùng thắt lưng，Đeo đai lưng khi vận động，Vận động vừa phải；</Text>
+                                 <Text>2, Tránh mang vác nặng, Tránh vận động mạnh vùng thắt lưng, Đeo đai lưng khi vận động, Vận động vừa phải;</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="7" />
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>3、Tiêm Benzathine penicillin tại phòng khám ngoại trú，Liên tục2tháng，Sau đó tái khám định kỳASO、RF，Hoặc đến bệnh viện cấp trên khám thêm；</Text>
+                                 <Text>3, Tiêm Benzathine penicillin tại phòng khám ngoại trú, Liên tục 2 tháng, Sau đó tái khám định kỳASO, RF, Hoặc đến bệnh viện cấp trên khám thêm;</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="7" />
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>4、Nếu có khó chịu，Xin đi khám。</Text>
+                                 <Text>4, Nếu có khó chịu, Xin đi khám.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="8" />
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>Chức danh bác sĩ：Bác sĩ hành nghề Bác sĩ ký tên：</Text>
+                                 <Text>Chức danh bác sĩ: Bác sĩ hành nghề Bác sĩ ký tên:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="9" />
                               <Element xsi:type="XInputField">
@@ -727,21 +727,21 @@
       <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
       <NumOfPage>2</NumOfPage>
    </Info>
-   <BodyText>Họ tên: [] Giới tính： [] 
-Tuổi: [] Số nhập viện： [] 
+   <BodyText>Họ tên: [] Giới tính: [] 
+Tuổi: [] Số nhập viện: [] 
 Khoa nhập viện: [] Khoa xuất viện: [] 
 Ngày nhập viện:   [] Ngày xuất viện: []    
-Số ngày nằm viện：[] 
-Tóm tắt tình trạng bệnh lúc nhập viện：Bệnh nhân，，，Do“Đau thắt lưng2Hơn một tháng。”Nhập viện。Khám thực thể：T 36.5℃，P 66lần/phút，R 20lần/phút，BP 124/80mmHg。Tỉnh táo，Tinh thần khá，Vẻ mặt bệnh cấp tính，Nói rõ ràng，Hợp tác khi khám，Tư thế tự chủ。Hai mí mắt không phù，Họng sung huyết（-），Hai bên amidan không sưng to。Cổ mềm，Không kháng cự，Khí quản ở giữa。Âm thở hai phổi trong，Không nghe thấy ran khô, ran ẩm。Nhịp tim66lần/phút，Nhịp đều，Không nghe thấy tiếng thổi bệnh lý。Bụng mềm，Dưới mũi ức không đau khi ấn và không đau dội ngược，Không sờ thấy gan lách dưới bờ sườn，Vùng gan、Vùng hai thận không đau khi gõ，Âm ruột bình thường。Hai chi dưới không phù。Vận động thắt lưng hạn chế，Thân đốt sống thắt lưng、Đau khi ấn khe liên đốt sống（-），Đau khi ấn cơ cạnh cột sống bên trái，Đau khi ấn mông trái，Cơn đau lan xuống mặt sau cẳng chân，Nghiệm pháp nâng thẳng hai chân（Bên trái70°、Bên phải70°）và nghiệm pháp tăng cường（-），“4”字征（-），Phản xạ gân gối, gân gót bình thường。Cận lâm sàng：Tạm thời chưa có。
-Chẩn đoán nhập viện：[]。
-Quá trình chẩn đoán và điều trị trong thời gian nằm viện：Sau khi nhập viện, cho làm các xét nghiệm liên quan，Xét nghiệm máu thường quy：WBC 6.84×109/L，L 27.5％，N 60.6％，RBC 4.42×1012/L，HGB 140g/L，PLT 252×109/L。Chức năng thận：Urê 4.53mmol/L、Creatinin 86.6µmol/L、Acid uric 277.5µmol/L。RF（Dương tính）、ASO（Dương tính）、Tốc độ lắng máu 16.0mm/H。Xét nghiệm định lượng hai cặp rưỡi viêm gan B：HBsAg 0.01IU/ml、HBsAb 451.45mIU/ml、HBeAg 0.01PEI U/ml、HBeAb 0.06PEI U/ml、HBcAb 0.05PEI U/ml。Điện giải、Các chỉ số chức năng gan không thấy bất thường rõ。Sàng lọc bệnh lây qua máu3các hạng mục đều âm tính。Cột sống thắt lưngDRPhim cho thấy：L5、S1Khe liên đốt sống hẹp nhẹ，Gai xương cột sống thắt lưng。Điện tâm đồ cho thấy：Điện tâm đồ trong giới hạn bình thường。Siêu âm Bcho thấy：1、Hình ảnh siêu âm mặt cắt tử cung thu nhỏ；2、Gan、Tụy、Lách、Hai thận、Bàng quang、Vùng phần phụ hai bên không thấy bất thường trên siêu âm；3、Hai niệu quản không thấy giãn。Chủ yếu điều trị bằng y học cổ truyền，Như giác hơi、Châm cứu、Chườm nóng, v.v.，Để hành khí, hoạt huyết、Khử phong, trừ thấp，Theo tình trạng bệnh mà biện chứng luận trị。Triệu chứng lâm sàng của bệnh nhân、Thể trạng cải thiện rõ rệt，Hôm nay cho làm thủ tục xuất viện。
-Tình trạng lúc xuất viện：Bệnh nhân không đau thắt lưng rõ，Không đau lan，Nhưng vẫn còn cảm giác tê lan từ mông trái đến khớp gối，Không có hiện tượng co giật，Không tiểu nhiều lần、Tiểu gấp、Hiện tượng tiểu buốt và tiểu máu đại thể，Không sốt、Ớn lạnh，Không ho、Ho có đờm，Cũng không tức ngực、Hồi hộp、Đau ngực，Ăn uống、Giấc ngủ bình thường，Không són đại tiểu tiện。Khám thực thể：Họng sung huyết（-），Hai bên amidan không sưng to。Cổ mềm，Không kháng cự，Khí quản ở giữa。Âm thở hai phổi trong，Không nghe thấy ran khô, ran ẩm。Nhịp tim70lần/phút，Nhịp đều，Không nghe thấy tiếng thổi bệnh lý。Bụng mềm，Dưới mũi ức không đau khi ấn và không đau dội ngược，Không sờ thấy gan lách dưới bờ sườn，Vùng gan、Vùng hai thận không đau khi gõ，Âm ruột bình thường。Hai chi dưới không phù。Thân đốt sống thắt lưng、Đau khi ấn khe liên đốt sống（-），Đau khi ấn cơ cạnh cột sống bên trái（-），Đau khi ấn mông trái（+/-），Nghiệm pháp nâng thẳng hai chân（Bên trái70°、Bên phải70°）và nghiệm pháp tăng cường（-），“4”字征（-），Phản xạ gân gối, gân gót bình thường。
-Chẩn đoán xuất viện：Thoát vị đĩa đệm thắt lưng
-Y lệnh xuất viện：1、Chú ý nghỉ ngơi，Kết hợp lao động và nghỉ ngơi；
-2、Tránh mang vác nặng，Tránh vận động mạnh vùng thắt lưng，Đeo đai lưng khi vận động，Vận động vừa phải；
-3、Tiêm Benzathine penicillin tại phòng khám ngoại trú，Liên tục2tháng，Sau đó tái khám định kỳASO、RF，Hoặc đến bệnh viện cấp trên khám thêm；
-4、Nếu có khó chịu，Xin đi khám。
-Chức danh bác sĩ：Bác sĩ hành nghề Bác sĩ ký tên：
+Số ngày nằm viện:[] 
+Tóm tắt tình trạng bệnh lúc nhập viện: Bệnh nhân,,, Do“Đau thắt lưng 2 Hơn một tháng.”Nhập viện. Khám thực thể: T 36.5℃, P 66 lần/phút, R 20 lần/phút, BP 124/80 mmHg. Tỉnh táo, Tinh thần khá, Vẻ mặt bệnh cấp tính, Nói rõ ràng, Hợp tác khi khám, Tư thế tự chủ. Hai mí mắt không phù, Họng sung huyết（-）, Hai bên amidan không sưng to. Cổ mềm, Không kháng cự, Khí quản ở giữa. Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm. Nhịp tim 66 lần/phút, Nhịp đều, Không nghe thấy tiếng thổi bệnh lý. Bụng mềm, Dưới mũi ức không đau khi ấn và không đau dội ngược, Không sờ thấy gan lách dưới bờ sườn, Vùng gan, Vùng hai thận không đau khi gõ, Âm ruột bình thường. Hai chi dưới không phù. Vận động thắt lưng hạn chế, Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái, Đau khi ấn mông trái, Cơn đau lan xuống mặt sau cẳng chân, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường. Cận lâm sàng: Tạm thời chưa có.
+Chẩn đoán nhập viện:[].
+Quá trình chẩn đoán và điều trị trong thời gian nằm viện: Sau khi nhập viện, cho làm các xét nghiệm liên quan, Xét nghiệm máu thường quy: WBC 6.84×109/L, L 27.5％, N 60.6％, RBC 4.42×1012/L, HGB 140 g/L, PLT 252×109/L. Chức năng thận: Urê 4.53 mmol/L, Creatinin 86.6µmol/L, Acid uric 277.5µmol/L. RF（Dương tính）, ASO（Dương tính）, Tốc độ lắng máu 16.0 mm/H. Xét nghiệm định lượng hai cặp rưỡi viêm gan B: HBsAg 0.01 IU/ml, HBsAb 451.45 mIU/ml, HBeAg 0.01 PEI U/ml, HBeAb 0.06 PEI U/ml, HBcAb 0.05 PEI U/ml. Điện giải, Các chỉ số chức năng gan không thấy bất thường rõ. Sàng lọc bệnh lây qua máu 3 các hạng mục đều âm tính. Cột sống thắt lưngDRPhim cho thấy: L5, S1 Khe liên đốt sống hẹp nhẹ, Gai xương cột sống thắt lưng. Điện tâm đồ cho thấy: Điện tâm đồ trong giới hạn bình thường. Siêu âm Bcho thấy: 1, Hình ảnh siêu âm mặt cắt tử cung thu nhỏ;2, Gan, Tụy, Lách, Hai thận, Bàng quang, Vùng phần phụ hai bên không thấy bất thường trên siêu âm;3, Hai niệu quản không thấy giãn. Chủ yếu điều trị bằng y học cổ truyền, Như giác hơi, Châm cứu, Chườm nóng, v.v., Để hành khí, hoạt huyết, Khử phong, trừ thấp, Theo tình trạng bệnh mà biện chứng luận trị. Triệu chứng lâm sàng của bệnh nhân, Thể trạng cải thiện rõ rệt, Hôm nay cho làm thủ tục xuất viện.
+Tình trạng lúc xuất viện: Bệnh nhân không đau thắt lưng rõ, Không đau lan, Nhưng vẫn còn cảm giác tê lan từ mông trái đến khớp gối, Không có hiện tượng co giật, Không tiểu nhiều lần, Tiểu gấp, Hiện tượng tiểu buốt và tiểu máu đại thể, Không sốt, Ớn lạnh, Không ho, Ho có đờm, Cũng không tức ngực, Hồi hộp, Đau ngực, Ăn uống, Giấc ngủ bình thường, Không són đại tiểu tiện. Khám thực thể: Họng sung huyết（-）, Hai bên amidan không sưng to. Cổ mềm, Không kháng cự, Khí quản ở giữa. Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm. Nhịp tim 70 lần/phút, Nhịp đều, Không nghe thấy tiếng thổi bệnh lý. Bụng mềm, Dưới mũi ức không đau khi ấn và không đau dội ngược, Không sờ thấy gan lách dưới bờ sườn, Vùng gan, Vùng hai thận không đau khi gõ, Âm ruột bình thường. Hai chi dưới không phù. Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái（-）, Đau khi ấn mông trái（+/-）, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường.
+Chẩn đoán xuất viện: Thoát vị đĩa đệm thắt lưng
+Y lệnh xuất viện: 1, Chú ý nghỉ ngơi, Kết hợp lao động và nghỉ ngơi;
+2, Tránh mang vác nặng, Tránh vận động mạnh vùng thắt lưng, Đeo đai lưng khi vận động, Vận động vừa phải;
+3, Tiêm Benzathine penicillin tại phòng khám ngoại trú, Liên tục 2 tháng, Sau đó tái khám định kỳASO, RF, Hoặc đến bệnh viện cấp trên khám thêm;
+4, Nếu có khó chịu, Xin đi khám.
+Chức danh bác sĩ: Bác sĩ hành nghề Bác sĩ ký tên:
 2015-01-09 09:39 </BodyText>
    <Comments />
    <LocalConfig />

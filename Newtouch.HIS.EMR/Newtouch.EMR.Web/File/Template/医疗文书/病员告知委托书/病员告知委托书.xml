@@ -45,7 +45,7 @@
          <XElements>
             <Element xsi:type="XString">
                <InnerID>3792</InnerID>
-               <Text>       Để có lợi cho việc điều trị bệnh của tôi，Tôi ủy quyền cho</Text>
+               <Text>       Để có lợi cho việc điều trị bệnh của tôi, Tôi ủy quyền cho</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <InnerID>3793</InnerID>
@@ -61,7 +61,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>3796</InnerID>
-               <Text>Làm người đại diện của tôi，Nghe cơ sở y tế thông báo về tình trạng bệnh của tôi、Biện pháp điều trị、Nguy cơ y tế và các tình huống khác，Toàn quyền xử lý mọi việc của tôi trong quá trình chẩn đoán, điều trị và ký vào giấy đồng ý phẫu thuật cùng các văn bản y tế khác cần chữ ký đồng ý của bệnh nhân，Thay tôi thực hiện quyền được biết, đồng ý và quyền lựa chọn。Nếu việc chẩn đoán, điều trị được thực hiện sau khi người đại diện ký đồng ý gây hậu quả xấu, tôi sẽ chịu trách nhiệm。</Text>
+               <Text>Làm người đại diện của tôi, Nghe cơ sở y tế thông báo về tình trạng bệnh của tôi, Biện pháp điều trị, Nguy cơ y tế và các tình huống khác, Toàn quyền xử lý mọi việc của tôi trong quá trình chẩn đoán, điều trị và ký vào giấy đồng ý phẫu thuật cùng các văn bản y tế khác cần chữ ký đồng ý của bệnh nhân, Thay tôi thực hiện quyền được biết, đồng ý và quyền lựa chọn. Nếu việc chẩn đoán, điều trị được thực hiện sau khi người đại diện ký đồng ý gây hậu quả xấu, tôi sẽ chịu trách nhiệm.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>3362</InnerID>
@@ -89,7 +89,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>3800</InnerID>
-               <Text>Người ủy quyền(Bệnh nhân)Họ tên:</Text>
+               <Text>Người ủy quyền (Bệnh nhân)Họ tên:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <InnerID>3801</InnerID>
@@ -428,11 +428,11 @@
       <Operator>DCSoft.Writer Version:1.2015.12.23</Operator>
       <NumOfPage>2</NumOfPage>
    </Info>
-   <BodyText>       Để có lợi cho việc điều trị bệnh của tôi，Tôi ủy quyền cho          (Quan hệ với bệnh nhân:         Làm người đại diện của tôi，Nghe cơ sở y tế thông báo về tình trạng bệnh của tôi、Biện pháp điều trị、Nguy cơ y tế và các tình huống khác，Toàn quyền xử lý mọi việc của tôi trong quá trình chẩn đoán, điều trị và ký vào giấy đồng ý phẫu thuật cùng các văn bản y tế khác cần chữ ký đồng ý của bệnh nhân，Thay tôi thực hiện quyền được biết, đồng ý và quyền lựa chọn。Nếu việc chẩn đoán, điều trị được thực hiện sau khi người đại diện ký đồng ý gây hậu quả xấu, tôi sẽ chịu trách nhiệm。
+   <BodyText>       Để có lợi cho việc điều trị bệnh của tôi, Tôi ủy quyền cho          (Quan hệ với bệnh nhân:         Làm người đại diện của tôi, Nghe cơ sở y tế thông báo về tình trạng bệnh của tôi, Biện pháp điều trị, Nguy cơ y tế và các tình huống khác, Toàn quyền xử lý mọi việc của tôi trong quá trình chẩn đoán, điều trị và ký vào giấy đồng ý phẫu thuật cùng các văn bản y tế khác cần chữ ký đồng ý của bệnh nhân, Thay tôi thực hiện quyền được biết, đồng ý và quyền lựa chọn. Nếu việc chẩn đoán, điều trị được thực hiện sau khi người đại diện ký đồng ý gây hậu quả xấu, tôi sẽ chịu trách nhiệm.
        Kính gửi
 
 
-Tên người được ủy quyền:             Người ủy quyền(Bệnh nhân)Họ tên:                
+Tên người được ủy quyền:             Người ủy quyền (Bệnh nhân)Họ tên:                
 Giới tính:[]  Tuổi:[]   Giới tính:            Tuổi:           
 Địa chỉ:                     Số khám ngoại trú:                 
 Số điện thoại liên hệ:               Số giường bệnh:                  

@@ -294,7 +294,7 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>Thời gian nhập viện、Thời gian:</Text>
+               <Text>Thời gian nhập viện, Thời gian:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="2">
                <Attributes />
@@ -997,7 +997,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>；</Text>
+               <Text>;</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
@@ -1014,7 +1014,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>；</Text>
+               <Text>;</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-3</ID>
@@ -1031,7 +1031,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>；</Text>
+               <Text>;</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
@@ -1048,7 +1048,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>；</Text>
+               <Text>;</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-2</ID>
@@ -2029,7 +2029,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>、</Text>
+               <Text>,</Text>
             </Element>
             <Element xsi:type="XTextCheckBox" StyleIndex="1">
                <ID>name001-3</ID>
@@ -2491,7 +2491,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
                <XElements xsi:nil="true" />
-               <Text>ngày/lần、Thời gian đại tiện lần cuối</Text>
+               <Text>ngày/lần, Thời gian đại tiện lần cuối</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="2">
                <XElements xsi:nil="true" />
@@ -3052,9 +3052,9 @@
       <Operator>DCSoft.Writer Version:1.2015.12.23</Operator>
       <NumOfPage>2</NumOfPage>
    </Info>
-   <BodyText>Họ tên:Giới tính:[] Tuổi:[] Khoa:[] Số giường:[]Số bệnh án:[] Dân tộc:[]
+   <BodyText>Họ tên: Giới tính:[] Tuổi:[] Khoa:[] Số giường:[]Số bệnh án:[] Dân tộc:[]
 Nghề nghiệp:[] Trình độ văn hóa:       Chẩn đoán nhập viện:[]
-Thời gian nhập viện、Thời gian:[] Cách thức nhập viện của bệnh nhân: □Đi bộ □Dìu đi □Xe lăn □Xe cáng □Xe cứu thương 
+Thời gian nhập viện, Thời gian:[] Cách thức nhập viện của bệnh nhân: □Đi bộ □Dìu đi □Xe lăn □Xe cáng □Xe cứu thương 
 Lý do nhập viện chính:[]
 Thân nhiệt    ℃ Mạch (lần)/phút Hô hấp (lần)/phút Huyết áp     ㎜Kg Cân nặng    ㎏ Chiều cao    m
 Ý thức: □Tỉnh táo □Buồn ngủ nhiều □Ý thức mơ hồ □Ngủ lịm □Hôn mê  
@@ -3062,7 +3062,7 @@ Biểu cảm khuôn mặt: □Bình thường □Thờ ơ □Vẻ mặt đ
 Trạng thái tinh thần: □Tốt □Trầm cảm □Lo âu □Ảo giác □Hoang tưởng □Kích động 
 Giao tiếp ngôn ngữ: □Bình thường □Nói không rõ □Khó khăn ngôn ngữ □Mất ngôn ngữ □Tiếng phổ thông □Phương ngữ 
 Tiền sử:□Không □Có /       Tiền sử dị ứng thuốc: □Không □Có /       
-Chất gây dị ứng:□Không □Có/□碘前；□Cồn；□Hải sản；□Cao su；□Khác       
+Chất gây dị ứng:□Không □Có/□碘前;□Cồn;□Hải sản;□Cao su;□Khác       
 Tiền sử uống rượu:□Không □Thỉnh thoảng □Thường xuyên/       2 lần/ngày  Liên tục       năm
 Tiền sử hút thuốc:□Không □Thỉnh thoảng □Thường xuyên/       支/ngày  Liên tục       năm    Có sống trong môi trường khói thuốc không:□Có □Không
 Ăn uống:□Bình thường □Bất thường/□Thức ăn lỏng□Thức ăn nửa lỏng □Nhịn ăn□Nuôi ăn qua ống thông mũi  Sở thích:□Không □Đồ ngọt □Đồ mặn □Khác 
@@ -3070,12 +3070,12 @@ Dinh dưỡng: □Bình thường □Trung bình □Suy kiệt    
 Ăn uống:□Bình thường □Tăng □Giảm □Chán ăn □Buồn nôn □Khó nuốt □Khác 
 Giấc ngủ:□Bình thường □Khó ngủ □Hay mơ, dễ tỉnh giấc □Khác  Hỗ trợ giấc ngủ: □Không □Có Thuốc       
 Mức độ tự chăm sóc:□Tự chăm sóc □Cần hỗ trợ/□Ăn uống □Vệ sinh cá nhân □Bài tiết □Hoàn toàn phụ thuộc/□Liệt □Dị dạng □Khác       
-Vận động:□Tự nhiên □Hạn chế/        Tư thế: □Tư thế tự chủ □Tư thế bắt buộc/□Tư thế ngồi、□Tư thế nửa nằm
+Vận động:□Tự nhiên □Hạn chế/        Tư thế: □Tư thế tự chủ □Tư thế bắt buộc/□Tư thế ngồi,□Tư thế nửa nằm
 Da và niêm mạc: Màu sắc: □Bình thường □Nhợt nhạt □Đỏ bừng □Vàng da □Tím tái
           Độ đàn hồi: □Bình thường □Vỡ □Ban đỏ □Mỏng như giấy □Phù Vị trí:       Mức độ:       
           Tính nguyên vẹn: □Nguyên vẹn □Ban da □Điểm xuất huyết □Hư hỏng Vị trí:       _Kích thước       
 Tiểu tiện:□Bình thường □Ứ đọng □Không tự chủ □Tiểu nhiều lần□Tiểu gấp □Tiểu ít□Đặt ống thông tiểu lưu □Ngày thay ống thông tiểu       
-Đại tiện: □Bình thường □Táo bón       ngày/lần、Thời gian đại tiện lần cuối        □Tiêu chảy       lần/ngày□Không tự chủ
+Đại tiện: □Bình thường □Táo bón       ngày/lần, Thời gian đại tiện lần cuối        □Tiêu chảy       lần/ngày□Không tự chủ
 Vị trí lỗ thông             
 Nhận thức về bệnh:□Nhận thức □Không hiểu □Không thể đối diện □Che giấu
 Nhận thức của người chăm sóc về bệnh:□Hiểu rõ □Hiểu lơ mơ □Không hiểu □Hiểu cơ bản

@@ -43,77 +43,77 @@
          <XElements>
             <Element xsi:type="XString">
                <InnerID>1912</InnerID>
-               <Text>     Để quý vị được hưởng một môi trường yên tĩnh、Sạch sẽ、Thoải mái、An toàn、Điều trị trong môi trường đẹp và yên bình、Môi trường nghỉ dưỡng，Nâng cao hiệu quả công tác khám chữa bệnh và chăm sóc，Chúng tôi cần sự thông cảm và hợp tác của quý vị，Sau đây là những nội dung quý vị cần biết và phối hợp trong thời gian nằm viện，Xin quý vị đọc kỹ, hiểu rõ rồi ký tên，Nếu quý vị không thể ký tên，Gia đình có thể ký thay。</Text>
+               <Text>     Để quý vị được hưởng một môi trường yên tĩnh, Sạch sẽ, Thoải mái, An toàn, Điều trị trong môi trường đẹp và yên bình, Môi trường nghỉ dưỡng, Nâng cao hiệu quả công tác khám chữa bệnh và chăm sóc, Chúng tôi cần sự thông cảm và hợp tác của quý vị, Sau đây là những nội dung quý vị cần biết và phối hợp trong thời gian nằm viện, Xin quý vị đọc kỹ, hiểu rõ rồi ký tên, Nếu quý vị không thể ký tên, Gia đình có thể ký thay.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>913</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1913</InnerID>
-               <Text>     1、Đồ dùng cá nhân quý vị cần mang theo gồm:Quần áo để thay、Dép lê、Cốc súc miệng、Kem đánh răng、Bàn chải đánh răng、Khăn mặt, v.v.</Text>
+               <Text>     1, Đồ dùng cá nhân quý vị cần mang theo gồm: Quần áo để thay, Dép lê, Cốc súc miệng, Kem đánh răng, Bàn chải đánh răng, Khăn mặt, v.v.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>956</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1914</InnerID>
-               <Text>     2、Xin giữ gìn tài sản của quý vị。Để tránh mất mát tài sản，Xin hạn chế mang đồ quý giá và nhiều tiền mặt khi nhập viện，Quý vị nên gửi tiền vào ngân hàng hoặc nộp tại quầy thu phí ngoại trú làm tiền tạm ứng nằm viện;Điện thoại của quý vị、Đồng hồ、Tiền mặt và đồ trang sức xin mang theo người hoặc cất giữ cẩn thận，Để tránh bị mất。</Text>
+               <Text>     2, Xin giữ gìn tài sản của quý vị. Để tránh mất mát tài sản, Xin hạn chế mang đồ quý giá và nhiều tiền mặt khi nhập viện, Quý vị nên gửi tiền vào ngân hàng hoặc nộp tại quầy thu phí ngoại trú làm tiền tạm ứng nằm viện; Điện thoại của quý vị, Đồng hồ, Tiền mặt và đồ trang sức xin mang theo người hoặc cất giữ cẩn thận, Để tránh bị mất.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1059</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1915</InnerID>
-               <Text>     3、Thời gian sinh hoạt chúng tôi sắp xếp cho quý vị:Mỗi buổi sáng8:00~11:30;Buổi chiều2:30~4:00là thời gian đi buồng và điều trị;Buổi trưa12:00~Buổi chiều2:30、Buổi tối9:30Sau đó là thời gian nghỉ ngơi。Nếu quý vị ra ngoài，Sẽ ảnh hưởng đến quá trình hồi phục và tính liên tục của dịch vụ y tế chuẩn mà quý vị được hưởng，Nếu thật sự có việc gấp cần ra ngoài, xin phép khoa，Được đồng ý mới được ra ngoài。Đồng thời xin đừng tự ý vào phòng điều trị、Đi lại trong văn phòng y tế hoặc xem hồ sơ bệnh án，Để không ảnh hưởng đến việc nhân viên y tế phục vụ quý vị。</Text>
+               <Text>     3, Thời gian sinh hoạt chúng tôi sắp xếp cho quý vị: Mỗi buổi sáng 8:00~11:30; Buổi chiều 2:30~4:00 là thời gian đi buồng và điều trị; Buổi trưa 12:00~Buổi chiều 2:30, Buổi tối 9:30 Sau đó là thời gian nghỉ ngơi. Nếu quý vị ra ngoài, Sẽ ảnh hưởng đến quá trình hồi phục và tính liên tục của dịch vụ y tế chuẩn mà quý vị được hưởng, Nếu thật sự có việc gấp cần ra ngoài, xin phép khoa, Được đồng ý mới được ra ngoài. Đồng thời xin đừng tự ý vào phòng điều trị, Đi lại trong văn phòng y tế hoặc xem hồ sơ bệnh án, Để không ảnh hưởng đến việc nhân viên y tế phục vụ quý vị.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1237</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1916</InnerID>
-               <Text>     4、Trong thời gian nằm viện, nếu quý vị có việc rời khỏi bệnh viện，Sẽ ảnh hưởng đến tính liên tục của dịch vụ y tế mà quý vị được hưởng。Để phòng sự cố ngoài ý muốn，Xin quý vị đừng rời viện khi chưa được trưởng khoa、Và nhân viên y tế đồng ý bằng văn bản，Kính mong quý vị lưu ý，Nếu có việc gấp cần ra ngoài, phải xin phép khoa。</Text>
+               <Text>     4, Trong thời gian nằm viện, nếu quý vị có việc rời khỏi bệnh viện, Sẽ ảnh hưởng đến tính liên tục của dịch vụ y tế mà quý vị được hưởng. Để phòng sự cố ngoài ý muốn, Xin quý vị đừng rời viện khi chưa được trưởng khoa, Và nhân viên y tế đồng ý bằng văn bản, Kính mong quý vị lưu ý, Nếu có việc gấp cần ra ngoài, phải xin phép khoa.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1332</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1917</InnerID>
-               <Text>     5、Giờ thăm bệnh:Người thân và bạn bè của quý vị có quyền thăm bệnh，Nhưng cần thăm khi tình trạng bệnh nhân cho phép và không làm phiền bệnh nhân khác nghỉ ngơi，Mới có lợi cho quá trình hồi phục。</Text>
+               <Text>     5, Giờ thăm bệnh: Người thân và bạn bè của quý vị có quyền thăm bệnh, Nhưng cần thăm khi tình trạng bệnh nhân cho phép và không làm phiền bệnh nhân khác nghỉ ngơi, Mới có lợi cho quá trình hồi phục.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1400</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1918</InnerID>
-               <Text>     6、Người chăm sóc:Nhân viên y tế sẽ căn cứ vào tình trạng bệnh của quý vị để quyết định có cần gia đình ở lại chăm sóc không，Nếu tình trạng bệnh cần，Gia đình nên ở lại chăm sóc，Đồng thời gia đình quý vị cần thực hiện nghĩa vụ chăm sóc，Kính mong gia đình quý vị lưu ý。Vì sự an toàn của quý vị，Xin người chăm sóc đừng ngủ trên giường bệnh。</Text>
+               <Text>     6, Người chăm sóc: Nhân viên y tế sẽ căn cứ vào tình trạng bệnh của quý vị để quyết định có cần gia đình ở lại chăm sóc không, Nếu tình trạng bệnh cần, Gia đình nên ở lại chăm sóc, Đồng thời gia đình quý vị cần thực hiện nghĩa vụ chăm sóc, Kính mong gia đình quý vị lưu ý. Vì sự an toàn của quý vị, Xin người chăm sóc đừng ngủ trên giường bệnh.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1494</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1919</InnerID>
-               <Text>     7、Để quý vị được điều trị tốt、Môi trường nghỉ ngơi，Kính mong quý vị cùng chúng tôi giữ phòng bệnh yên tĩnh và sạch sẽ，Và chú ý tiết kiệm nước，Giữ gìn tài sản chung。</Text>
+               <Text>     7, Để quý vị được điều trị tốt, Môi trường nghỉ ngơi, Kính mong quý vị cùng chúng tôi giữ phòng bệnh yên tĩnh và sạch sẽ, Và chú ý tiết kiệm nước, Giữ gìn tài sản chung.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1553</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1920</InnerID>
-               <Text>     8、Trong tòa nhà nội trú có lối thoát hiểm an toàn，Và có biển chỉ dẫn rõ ràng，Xin quý vị lưu ý。</Text>
+               <Text>     8, Trong tòa nhà nội trú có lối thoát hiểm an toàn, Và có biển chỉ dẫn rõ ràng, Xin quý vị lưu ý.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1587</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1921</InnerID>
-               <Text>     9、Quý vị có nghĩa vụ tuân thủ thông báo liên tịch của Bộ Công an《Về việc giữ gìn trật tự bệnh viện》theo quy định，Nếu quý vị có thắc mắc về chăm sóc y tế，Xin phản ánh với trưởng khoa hoặc điều dưỡng trưởng。</Text>
+               <Text>     9, Quý vị có nghĩa vụ tuân thủ thông báo liên tịch của Bộ Công an《Về việc giữ gìn trật tự bệnh viện》theo quy định, Nếu quý vị có thắc mắc về chăm sóc y tế, Xin phản ánh với trưởng khoa hoặc điều dưỡng trưởng.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1647</InnerID>
             </Element>
             <Element xsi:type="XString">
                <InnerID>1922</InnerID>
-               <Text>                                        Bệnh nhân ký tên：_____________</Text>
+               <Text>                                        Bệnh nhân ký tên:_____________</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1707</InnerID>
@@ -127,7 +127,7 @@
             </Element>
             <Element xsi:type="XString">
                <InnerID>1924</InnerID>
-               <Text>                           Gia đình ký tên:_______________Quan hệ với bệnh nhân：_____________</Text>
+               <Text>                           Gia đình ký tên:_______________Quan hệ với bệnh nhân:_____________</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>1818</InnerID>
@@ -193,19 +193,19 @@
       <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
       <NumOfPage>2</NumOfPage>
    </Info>
-   <BodyText>     Để quý vị được hưởng một môi trường yên tĩnh、Sạch sẽ、Thoải mái、An toàn、Điều trị trong môi trường đẹp và yên bình、Môi trường nghỉ dưỡng，Nâng cao hiệu quả công tác khám chữa bệnh và chăm sóc，Chúng tôi cần sự thông cảm và hợp tác của quý vị，Sau đây là những nội dung quý vị cần biết và phối hợp trong thời gian nằm viện，Xin quý vị đọc kỹ, hiểu rõ rồi ký tên，Nếu quý vị không thể ký tên，Gia đình có thể ký thay。
-     1、Đồ dùng cá nhân quý vị cần mang theo gồm:Quần áo để thay、Dép lê、Cốc súc miệng、Kem đánh răng、Bàn chải đánh răng、Khăn mặt, v.v.
-     2、Xin giữ gìn tài sản của quý vị。Để tránh mất mát tài sản，Xin hạn chế mang đồ quý giá và nhiều tiền mặt khi nhập viện，Quý vị nên gửi tiền vào ngân hàng hoặc nộp tại quầy thu phí ngoại trú làm tiền tạm ứng nằm viện;Điện thoại của quý vị、Đồng hồ、Tiền mặt và đồ trang sức xin mang theo người hoặc cất giữ cẩn thận，Để tránh bị mất。
-     3、Thời gian sinh hoạt chúng tôi sắp xếp cho quý vị:Mỗi buổi sáng8:00~11:30;Buổi chiều2:30~4:00là thời gian đi buồng và điều trị;Buổi trưa12:00~Buổi chiều2:30、Buổi tối9:30Sau đó là thời gian nghỉ ngơi。Nếu quý vị ra ngoài，Sẽ ảnh hưởng đến quá trình hồi phục và tính liên tục của dịch vụ y tế chuẩn mà quý vị được hưởng，Nếu thật sự có việc gấp cần ra ngoài, xin phép khoa，Được đồng ý mới được ra ngoài。Đồng thời xin đừng tự ý vào phòng điều trị、Đi lại trong văn phòng y tế hoặc xem hồ sơ bệnh án，Để không ảnh hưởng đến việc nhân viên y tế phục vụ quý vị。
-     4、Trong thời gian nằm viện, nếu quý vị có việc rời khỏi bệnh viện，Sẽ ảnh hưởng đến tính liên tục của dịch vụ y tế mà quý vị được hưởng。Để phòng sự cố ngoài ý muốn，Xin quý vị đừng rời viện khi chưa được trưởng khoa、Và nhân viên y tế đồng ý bằng văn bản，Kính mong quý vị lưu ý，Nếu có việc gấp cần ra ngoài, phải xin phép khoa。
-     5、Giờ thăm bệnh:Người thân và bạn bè của quý vị có quyền thăm bệnh，Nhưng cần thăm khi tình trạng bệnh nhân cho phép và không làm phiền bệnh nhân khác nghỉ ngơi，Mới có lợi cho quá trình hồi phục。
-     6、Người chăm sóc:Nhân viên y tế sẽ căn cứ vào tình trạng bệnh của quý vị để quyết định có cần gia đình ở lại chăm sóc không，Nếu tình trạng bệnh cần，Gia đình nên ở lại chăm sóc，Đồng thời gia đình quý vị cần thực hiện nghĩa vụ chăm sóc，Kính mong gia đình quý vị lưu ý。Vì sự an toàn của quý vị，Xin người chăm sóc đừng ngủ trên giường bệnh。
-     7、Để quý vị được điều trị tốt、Môi trường nghỉ ngơi，Kính mong quý vị cùng chúng tôi giữ phòng bệnh yên tĩnh và sạch sẽ，Và chú ý tiết kiệm nước，Giữ gìn tài sản chung。
-     8、Trong tòa nhà nội trú có lối thoát hiểm an toàn，Và có biển chỉ dẫn rõ ràng，Xin quý vị lưu ý。
-     9、Quý vị có nghĩa vụ tuân thủ thông báo liên tịch của Bộ Công an《Về việc giữ gìn trật tự bệnh viện》theo quy định，Nếu quý vị có thắc mắc về chăm sóc y tế，Xin phản ánh với trưởng khoa hoặc điều dưỡng trưởng。
-                                        Bệnh nhân ký tên：_____________
+   <BodyText>     Để quý vị được hưởng một môi trường yên tĩnh, Sạch sẽ, Thoải mái, An toàn, Điều trị trong môi trường đẹp và yên bình, Môi trường nghỉ dưỡng, Nâng cao hiệu quả công tác khám chữa bệnh và chăm sóc, Chúng tôi cần sự thông cảm và hợp tác của quý vị, Sau đây là những nội dung quý vị cần biết và phối hợp trong thời gian nằm viện, Xin quý vị đọc kỹ, hiểu rõ rồi ký tên, Nếu quý vị không thể ký tên, Gia đình có thể ký thay.
+     1, Đồ dùng cá nhân quý vị cần mang theo gồm: Quần áo để thay, Dép lê, Cốc súc miệng, Kem đánh răng, Bàn chải đánh răng, Khăn mặt, v.v.
+     2, Xin giữ gìn tài sản của quý vị. Để tránh mất mát tài sản, Xin hạn chế mang đồ quý giá và nhiều tiền mặt khi nhập viện, Quý vị nên gửi tiền vào ngân hàng hoặc nộp tại quầy thu phí ngoại trú làm tiền tạm ứng nằm viện; Điện thoại của quý vị, Đồng hồ, Tiền mặt và đồ trang sức xin mang theo người hoặc cất giữ cẩn thận, Để tránh bị mất.
+     3, Thời gian sinh hoạt chúng tôi sắp xếp cho quý vị: Mỗi buổi sáng 8:00~11:30; Buổi chiều 2:30~4:00 là thời gian đi buồng và điều trị; Buổi trưa 12:00~Buổi chiều 2:30, Buổi tối 9:30 Sau đó là thời gian nghỉ ngơi. Nếu quý vị ra ngoài, Sẽ ảnh hưởng đến quá trình hồi phục và tính liên tục của dịch vụ y tế chuẩn mà quý vị được hưởng, Nếu thật sự có việc gấp cần ra ngoài, xin phép khoa, Được đồng ý mới được ra ngoài. Đồng thời xin đừng tự ý vào phòng điều trị, Đi lại trong văn phòng y tế hoặc xem hồ sơ bệnh án, Để không ảnh hưởng đến việc nhân viên y tế phục vụ quý vị.
+     4, Trong thời gian nằm viện, nếu quý vị có việc rời khỏi bệnh viện, Sẽ ảnh hưởng đến tính liên tục của dịch vụ y tế mà quý vị được hưởng. Để phòng sự cố ngoài ý muốn, Xin quý vị đừng rời viện khi chưa được trưởng khoa, Và nhân viên y tế đồng ý bằng văn bản, Kính mong quý vị lưu ý, Nếu có việc gấp cần ra ngoài, phải xin phép khoa.
+     5, Giờ thăm bệnh: Người thân và bạn bè của quý vị có quyền thăm bệnh, Nhưng cần thăm khi tình trạng bệnh nhân cho phép và không làm phiền bệnh nhân khác nghỉ ngơi, Mới có lợi cho quá trình hồi phục.
+     6, Người chăm sóc: Nhân viên y tế sẽ căn cứ vào tình trạng bệnh của quý vị để quyết định có cần gia đình ở lại chăm sóc không, Nếu tình trạng bệnh cần, Gia đình nên ở lại chăm sóc, Đồng thời gia đình quý vị cần thực hiện nghĩa vụ chăm sóc, Kính mong gia đình quý vị lưu ý. Vì sự an toàn của quý vị, Xin người chăm sóc đừng ngủ trên giường bệnh.
+     7, Để quý vị được điều trị tốt, Môi trường nghỉ ngơi, Kính mong quý vị cùng chúng tôi giữ phòng bệnh yên tĩnh và sạch sẽ, Và chú ý tiết kiệm nước, Giữ gìn tài sản chung.
+     8, Trong tòa nhà nội trú có lối thoát hiểm an toàn, Và có biển chỉ dẫn rõ ràng, Xin quý vị lưu ý.
+     9, Quý vị có nghĩa vụ tuân thủ thông báo liên tịch của Bộ Công an《Về việc giữ gìn trật tự bệnh viện》theo quy định, Nếu quý vị có thắc mắc về chăm sóc y tế, Xin phản ánh với trưởng khoa hoặc điều dưỡng trưởng.
+                                        Bệnh nhân ký tên:_____________
                                         hoặc
-                           Gia đình ký tên:_______________Quan hệ với bệnh nhân：_____________
+                           Gia đình ký tên:_______________Quan hệ với bệnh nhân:_____________
                                                 năm        tháng        ngày
 </BodyText>
    <LocalConfig />

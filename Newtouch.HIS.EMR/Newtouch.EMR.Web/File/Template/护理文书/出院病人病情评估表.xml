@@ -158,12 +158,12 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>Lúc xuất việndTình trạng bệnh nhân：</Text>
+                                 <Text>Lúc xuất việndTình trạng bệnh nhân:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                               <Element xsi:type="XString" StyleIndex="4">
                                  <XElements xsi:nil="true" />
-                                 <Text>Trạng thái ý thức：</Text>
+                                 <Text>Trạng thái ý thức:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="5">
                                  <ID>name001-1</ID>
@@ -266,7 +266,7 @@
                               <Element xsi:type="XParagraphFlag" />
                               <Element xsi:type="XString" StyleIndex="4">
                                  <XElements xsi:nil="true" />
-                                 <Text>Khả năng tự chủ：</Text>
+                                 <Text>Khả năng tự chủ:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="5">
                                  <ID>name001-2</ID>
@@ -351,7 +351,7 @@
                               <Element xsi:type="XParagraphFlag" />
                               <Element xsi:type="XString" StyleIndex="4">
                                  <XElements xsi:nil="true" />
-                                 <Text>Đặc điểm dương tính：</Text>
+                                 <Text>Đặc điểm dương tính:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="5">
                                  <ID>name001-1</ID>
@@ -390,7 +390,7 @@
                               <Element xsi:type="XParagraphFlag" />
                               <Element xsi:type="XString" StyleIndex="4">
                                  <XElements xsi:nil="true" />
-                                 <Text>Dấu hiệu âm tính đặc biệt：</Text>
+                                 <Text>Dấu hiệu âm tính đặc biệt:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="5">
                                  <ID>name001-1</ID>
@@ -429,7 +429,7 @@
                               <Element xsi:type="XParagraphFlag" />
                               <Element xsi:type="XString" StyleIndex="4">
                                  <XElements xsi:nil="true" />
-                                 <Text>Cận lâm sàng quan trọng：</Text>
+                                 <Text>Cận lâm sàng quan trọng:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="5">
                                  <ID>name001-1</ID>
@@ -468,7 +468,7 @@
                               <Element xsi:type="XParagraphFlag" />
                               <Element xsi:type="XString" StyleIndex="4">
                                  <XElements xsi:nil="true" />
-                                 <Text>Chẩn đoán xuất viện：</Text>
+                                 <Text>Chẩn đoán xuất viện:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="5">
                                  <ID>name001-1</ID>
@@ -507,7 +507,7 @@
                               <Element xsi:type="XParagraphFlag" />
                               <Element xsi:type="XString" StyleIndex="4">
                                  <XElements xsi:nil="true" />
-                                 <Text>Tiêu chuẩn xuất viện：</Text>
+                                 <Text>Tiêu chuẩn xuất viện:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="5">
                                  <ID>name001-1</ID>
@@ -542,7 +542,7 @@
                               <Element xsi:type="XParagraphFlag" />
                               <Element xsi:type="XString" StyleIndex="4">
                                  <XElements xsi:nil="true" />
-                                 <Text>Đánh giá hiệu quả điều trị lúc xuất viện：</Text>
+                                 <Text>Đánh giá hiệu quả điều trị lúc xuất viện:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox" StyleIndex="5">
                                  <ID>name001-1</ID>
@@ -671,7 +671,7 @@
                               <Element xsi:type="XParagraphFlag" />
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>Việc tái khám theo dõi sau xuất viện đã được dặn dò đầy đủ và rõ ràng cho bệnh nhân hoặc gia đình：</Text>
+                                 <Text>Việc tái khám theo dõi sau xuất viện đã được dặn dò đầy đủ và rõ ràng cho bệnh nhân hoặc gia đình:</Text>
                               </Element>
                               <Element xsi:type="XTextCheckBox">
                                  <ID>name001-1</ID>
@@ -701,7 +701,7 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>，Nguyên nhân:</Text>
+                                 <Text>, Nguyên nhân:</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="9">
                                  <XElements xsi:nil="true" />
@@ -721,7 +721,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text>Bác sĩ đánh giá ký tên：     </Text>
+                                 <Text>Bác sĩ đánh giá ký tên:     </Text>
                               </Element>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
@@ -729,7 +729,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <XElements xsi:nil="true" />
-                                 <Text> Bác sĩ cấp trên ký tên：</Text>
+                                 <Text> Bác sĩ cấp trên ký tên:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                            </XElements>
@@ -752,7 +752,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>                           C                   Thời gian đánh giá：2024-06-04 14:30</Text>
+                                 <Text>                           C                   Thời gian đánh giá: 2024-06-04 14:30</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                            </XElements>
@@ -807,20 +807,20 @@
       <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
       <NumOfPage>1</NumOfPage>
    </Info>
-   <BodyText>     Đánh giá trước xuất viện Lúc xuất việndTình trạng bệnh nhân：
-Trạng thái ý thức：□Rõ ràng  □Buồn ngủ nhiều   □Bồn chồn   ■Hôn mê     □Khác          
-Khả năng tự chủ：□Bình thường 公 □Liệt toàn thân   □Liệt hai chi dưới   □Khác          
-Đặc điểm dương tính：□Không  □Có               s                    
-Dấu hiệu âm tính đặc biệt：□Không  □Có         Có                          
-Cận lâm sàng quan trọng：□Không  □Có   I                                
-Chẩn đoán xuất viện：□Phù hợp  科  □Không phù hợp
-Tiêu chuẩn xuất viện：□Phù hợp      □Không phù hợp
-Đánh giá hiệu quả điều trị lúc xuất viện：□Khỏi hẳn           □Đỡ hơn       t   □Chuyển viện
+   <BodyText>     Đánh giá trước xuất viện Lúc xuất việndTình trạng bệnh nhân:
+Trạng thái ý thức:□Rõ ràng  □Buồn ngủ nhiều   □Bồn chồn   ■Hôn mê     □Khác          
+Khả năng tự chủ:□Bình thường 公 □Liệt toàn thân   □Liệt hai chi dưới   □Khác          
+Đặc điểm dương tính:□Không  □Có               s                    
+Dấu hiệu âm tính đặc biệt:□Không  □Có         Có                          
+Cận lâm sàng quan trọng:□Không  □Có   I                                
+Chẩn đoán xuất viện:□Phù hợp  科  □Không phù hợp
+Tiêu chuẩn xuất viện:□Phù hợp      □Không phù hợp
+Đánh giá hiệu quả điều trị lúc xuất viện:□Khỏi hẳn           □Đỡ hơn       t   □Chuyển viện
 
                 □Tự xuất viện      □Tử vong         □Khác     信        
-Việc tái khám theo dõi sau xuất viện đã được dặn dò đầy đủ và rõ ràng cho bệnh nhân hoặc gia đình：□Có□Không，Nguyên nhân:          
-Bác sĩ đánh giá ký tên：                            都     Bác sĩ cấp trên ký tên： 
-                           C                   Thời gian đánh giá：2024-06-04 14:30 </BodyText>
+Việc tái khám theo dõi sau xuất viện đã được dặn dò đầy đủ và rõ ràng cho bệnh nhân hoặc gia đình:□Có□Không, Nguyên nhân:          
+Bác sĩ đánh giá ký tên:                            都     Bác sĩ cấp trên ký tên: 
+                           C                   Thời gian đánh giá: 2024-06-04 14:30 </BodyText>
    <Comments />
    <LocalConfig />
    <PageSettings />

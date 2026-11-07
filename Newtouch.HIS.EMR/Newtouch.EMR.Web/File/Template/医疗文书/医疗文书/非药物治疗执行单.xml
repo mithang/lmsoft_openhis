@@ -3757,7 +3757,7 @@
          <XElements>
             <Element xsi:type="XString">
                <InnerID>1896</InnerID>
-               <Text>Bác sĩ ký tên：</Text>
+               <Text>Bác sĩ ký tên:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3">
                <InnerID>126</InnerID>

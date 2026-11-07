@@ -132,28 +132,28 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>830</InnerID>
-               <Text>Chẩn đoán xuất viện：1.Thoát vị đĩa đệm cột sống cổ kèm bệnh lý rễ thần kinh2.Đau thắt ngực ổn định3.Chức năng timIIđộ4•Bệnh tim do xơ vữa động mạch vành5. 2Đái tháo đường tuýp6.Tăng cholesterol máu</Text>
+               <Text>Chẩn đoán xuất viện: 1. Thoát vị đĩa đệm cột sống cổ kèm bệnh lý rễ thần kinh 2. Đau thắt ngực ổn định 3. Chức năng timIIđộ 4•Bệnh tim do xơ vữa động mạch vành 5. 2 Đái tháo đường tuýp 6. Tăng cholesterol máu</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>167</InnerID>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>831</InnerID>
-               <Text>Quá trình điều trị：Sau khi nhập viện, bệnh nhân được làm đầy đủ các xét nghiệm liên quan，Đĩa đệm cột sống cổCTcho thấy：C3/4C4/5C5/6Thoát vị đĩa đệm2•Gai xương cột sống cổ3.Gai xương cột sống ngực。NgựcDRcho thấy:Vân phổi hai bên tăng đậm，Kết hợp lâm sàng。Siêu âm tim cho thấy：Chức năng tâm trương thất trái giảm。Điện tâm đồ cho thấy:Nhịp tim chậm xoang，Điện tâm đồ gần như bình thường。Xét nghiệm nước tiểu thường quy：Glucose2+mmol/L,Sinh hóa:Glucose10.47mmol/L,Cholesterol LDL4.94mmol/L,Tỉ lệ albumin/globulin2.8,Cholesterol toàn phần7.92mmol/L0Theo tình trạng bệnh, cho thuốc cải thiện tuần hoàn,Chống ngưng tập tiểu cầu、Ổn định mảng xơ vữa、Hạ đường huyết、Hạ mỡ máu và điều trị triệu chứng chóng mặt、Đau mỏi cổ vai，Buồn nôn、Khô miệng、Đắng miệng、Tê ngón tay、Hồi hộp và các triệu chứng khác đỡ hơn，Hôm nay xuất viện。</Text>
+               <Text>Quá trình điều trị: Sau khi nhập viện, bệnh nhân được làm đầy đủ các xét nghiệm liên quan, Đĩa đệm cột sống cổCTcho thấy: C3/4 C4/5 C5/6 Thoát vị đĩa đệm 2•Gai xương cột sống cổ 3. Gai xương cột sống ngực. NgựcDRcho thấy: Vân phổi hai bên tăng đậm, Kết hợp lâm sàng. Siêu âm tim cho thấy: Chức năng tâm trương thất trái giảm. Điện tâm đồ cho thấy: Nhịp tim chậm xoang, Điện tâm đồ gần như bình thường. Xét nghiệm nước tiểu thường quy: Glucose 2+mmol/L, Sinh hóa: Glucose 10.47 mmol/L, Cholesterol LDL4.94 mmol/L, Tỉ lệ albumin/globulin 2.8, Cholesterol toàn phần 7.92 mmol/L0 Theo tình trạng bệnh, cho thuốc cải thiện tuần hoàn, Chống ngưng tập tiểu cầu, Ổn định mảng xơ vữa, Hạ đường huyết, Hạ mỡ máu và điều trị triệu chứng chóng mặt, Đau mỏi cổ vai, Buồn nôn, Khô miệng, Đắng miệng, Tê ngón tay, Hồi hộp và các triệu chứng khác đỡ hơn, Hôm nay xuất viện.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>426</InnerID>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>832</InnerID>
-               <Text>Thuốc dùng sau xuất viện và cách dùng、Những điều cần lưu ý：</Text>
+               <Text>Thuốc dùng sau xuất viện và cách dùng, Những điều cần lưu ý:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>441</InnerID>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>833</InnerID>
-               <Text>1.Tiếp tục điều trị bằng thuốc。</Text>
+               <Text>1. Tiếp tục điều trị bằng thuốc.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>452</InnerID>
@@ -168,7 +168,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="4">
                <InnerID>836</InnerID>
-               <Text>100mg  qd</Text>
+               <Text>100 mg  qd</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>837</InnerID>
@@ -183,7 +183,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>839</InnerID>
-               <Text>Buổi sáng：通拉嘎-7</Text>
+               <Text>Buổi sáng:通拉嘎-7</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>840</InnerID>
@@ -191,7 +191,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>841</InnerID>
-               <Text>15viên</Text>
+               <Text>15 viên</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>842</InnerID>
@@ -206,7 +206,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>844</InnerID>
-               <Text>Buổi trưa：吉如很T9</Text>
+               <Text>Buổi trưa:吉如很T9</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>845</InnerID>
@@ -214,7 +214,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>846</InnerID>
-               <Text>15viên</Text>
+               <Text>15 viên</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>847</InnerID>
@@ -229,7 +229,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>849</InnerID>
-               <Text>Buổi tối：额日敦-乌日勒</Text>
+               <Text>Buổi tối:额日敦-乌日勒</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>850</InnerID>
@@ -237,7 +237,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>851</InnerID>
-               <Text>15viên</Text>
+               <Text>15 viên</Text>
             </Element>
             <Element xsi:type="XString">
                <InnerID>852</InnerID>
@@ -252,28 +252,28 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>854</InnerID>
-               <Text>2.Tái khám định kỳ, kiểm tra đường huyết định kỳ、Mỡ máu、Chức năng gan thận, v.v.。</Text>
+               <Text>2. Tái khám định kỳ, kiểm tra đường huyết định kỳ, Mỡ máu, Chức năng gan thận, v.v..</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>607</InnerID>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>855</InnerID>
-               <Text>3. Ăn nhạt, ít mỡ, ít đường，Vận động vừa phải、Tránh mệt mỏi và nhiễm lạnh, giữ tinh thần thoải mái。</Text>
+               <Text>3. Ăn nhạt, ít mỡ, ít đường, Vận động vừa phải, Tránh mệt mỏi và nhiễm lạnh, giữ tinh thần thoải mái.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>640</InnerID>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>856</InnerID>
-               <Text>4. Khó chịu thì đến khám。</Text>
+               <Text>4. Khó chịu thì đến khám.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>650</InnerID>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>857</InnerID>
-               <Text>Khác（Tác dụng không mong muốn của thuốc, v.v.）：Tất cả các thuốc đều có thể gây tác dụng không mong muốn ở các mức độ khác nhau，Và có thể có những tác dụng không mong muốn chưa được phát hiện，Bệnh nhân và gia đình cần nhận thức đúng về điều này。</Text>
+               <Text>Khác（Tác dụng không mong muốn của thuốc, v.v.）: Tất cả các thuốc đều có thể gây tác dụng không mong muốn ở các mức độ khác nhau, Và có thể có những tác dụng không mong muốn chưa được phát hiện, Bệnh nhân và gia đình cần nhận thức đúng về điều này.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>711</InnerID>
@@ -283,7 +283,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <InnerID>858</InnerID>
-               <Text>Tái khám theo dõi：Tái khám theo dõi định kỳ。</Text>
+               <Text>Tái khám theo dõi: Tái khám theo dõi định kỳ.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>724</InnerID>
@@ -304,7 +304,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="4">
                <InnerID>861</InnerID>
-               <Text> Bác sĩ trao đổi ký tên：</Text>
+               <Text> Bác sĩ trao đổi ký tên:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag">
                <InnerID>776</InnerID>
@@ -372,23 +372,23 @@
       <NumOfPage>1</NumOfPage>
    </Info>
    <BodyText>Chẩn đoán xuất viện và quá trình điều trị tóm tắt:
-Chẩn đoán xuất viện：1.Thoát vị đĩa đệm cột sống cổ kèm bệnh lý rễ thần kinh2.Đau thắt ngực ổn định3.Chức năng timIIđộ4•Bệnh tim do xơ vữa động mạch vành5. 2Đái tháo đường tuýp6.Tăng cholesterol máu
-Quá trình điều trị：Sau khi nhập viện, bệnh nhân được làm đầy đủ các xét nghiệm liên quan，Đĩa đệm cột sống cổCTcho thấy：C3/4C4/5C5/6Thoát vị đĩa đệm2•Gai xương cột sống cổ3.Gai xương cột sống ngực。NgựcDRcho thấy:Vân phổi hai bên tăng đậm，Kết hợp lâm sàng。Siêu âm tim cho thấy：Chức năng tâm trương thất trái giảm。Điện tâm đồ cho thấy:Nhịp tim chậm xoang，Điện tâm đồ gần như bình thường。Xét nghiệm nước tiểu thường quy：Glucose2+mmol/L,Sinh hóa:Glucose10.47mmol/L,Cholesterol LDL4.94mmol/L,Tỉ lệ albumin/globulin2.8,Cholesterol toàn phần7.92mmol/L0Theo tình trạng bệnh, cho thuốc cải thiện tuần hoàn,Chống ngưng tập tiểu cầu、Ổn định mảng xơ vữa、Hạ đường huyết、Hạ mỡ máu và điều trị triệu chứng chóng mặt、Đau mỏi cổ vai，Buồn nôn、Khô miệng、Đắng miệng、Tê ngón tay、Hồi hộp và các triệu chứng khác đỡ hơn，Hôm nay xuất viện。
-Thuốc dùng sau xuất viện và cách dùng、Những điều cần lưu ý：
-1.Tiếp tục điều trị bằng thuốc。
-Viên Aspirin bao tan ở ruột (chia liều)    100mg  qd   Uống
-Buổi sáng：通拉嘎-7           15viên       Uống với nước ấm
-Buổi trưa：吉如很T9           15viên       Uống với nước ấm
-Buổi tối：额日敦-乌日勒       15viên       Uống với nước ấm
-2.Tái khám định kỳ, kiểm tra đường huyết định kỳ、Mỡ máu、Chức năng gan thận, v.v.。
-3. Ăn nhạt, ít mỡ, ít đường，Vận động vừa phải、Tránh mệt mỏi và nhiễm lạnh, giữ tinh thần thoải mái。
-4. Khó chịu thì đến khám。
-Khác（Tác dụng không mong muốn của thuốc, v.v.）：Tất cả các thuốc đều có thể gây tác dụng không mong muốn ở các mức độ khác nhau，Và có thể có những tác dụng không mong muốn chưa được phát hiện，Bệnh nhân và gia đình cần nhận thức đúng về điều này。
+Chẩn đoán xuất viện: 1. Thoát vị đĩa đệm cột sống cổ kèm bệnh lý rễ thần kinh 2. Đau thắt ngực ổn định 3. Chức năng timIIđộ 4•Bệnh tim do xơ vữa động mạch vành 5. 2 Đái tháo đường tuýp 6. Tăng cholesterol máu
+Quá trình điều trị: Sau khi nhập viện, bệnh nhân được làm đầy đủ các xét nghiệm liên quan, Đĩa đệm cột sống cổCTcho thấy: C3/4 C4/5 C5/6 Thoát vị đĩa đệm 2•Gai xương cột sống cổ 3. Gai xương cột sống ngực. NgựcDRcho thấy: Vân phổi hai bên tăng đậm, Kết hợp lâm sàng. Siêu âm tim cho thấy: Chức năng tâm trương thất trái giảm. Điện tâm đồ cho thấy: Nhịp tim chậm xoang, Điện tâm đồ gần như bình thường. Xét nghiệm nước tiểu thường quy: Glucose 2+mmol/L, Sinh hóa: Glucose 10.47 mmol/L, Cholesterol LDL4.94 mmol/L, Tỉ lệ albumin/globulin 2.8, Cholesterol toàn phần 7.92 mmol/L0 Theo tình trạng bệnh, cho thuốc cải thiện tuần hoàn, Chống ngưng tập tiểu cầu, Ổn định mảng xơ vữa, Hạ đường huyết, Hạ mỡ máu và điều trị triệu chứng chóng mặt, Đau mỏi cổ vai, Buồn nôn, Khô miệng, Đắng miệng, Tê ngón tay, Hồi hộp và các triệu chứng khác đỡ hơn, Hôm nay xuất viện.
+Thuốc dùng sau xuất viện và cách dùng, Những điều cần lưu ý:
+1. Tiếp tục điều trị bằng thuốc.
+Viên Aspirin bao tan ở ruột (chia liều)    100 mg  qd   Uống
+Buổi sáng:通拉嘎-7           15 viên       Uống với nước ấm
+Buổi trưa:吉如很T9           15 viên       Uống với nước ấm
+Buổi tối:额日敦-乌日勒       15 viên       Uống với nước ấm
+2. Tái khám định kỳ, kiểm tra đường huyết định kỳ, Mỡ máu, Chức năng gan thận, v.v..
+3. Ăn nhạt, ít mỡ, ít đường, Vận động vừa phải, Tránh mệt mỏi và nhiễm lạnh, giữ tinh thần thoải mái.
+4. Khó chịu thì đến khám.
+Khác（Tác dụng không mong muốn của thuốc, v.v.）: Tất cả các thuốc đều có thể gây tác dụng không mong muốn ở các mức độ khác nhau, Và có thể có những tác dụng không mong muốn chưa được phát hiện, Bệnh nhân và gia đình cần nhận thức đúng về điều này.
 
-Tái khám theo dõi：Tái khám theo dõi định kỳ。
+Tái khám theo dõi: Tái khám theo dõi định kỳ.
 
 
-Bệnh nhân（Hoặc người đại diện của họ）Ký tên:                         Bác sĩ trao đổi ký tên：
+Bệnh nhân（Hoặc người đại diện của họ）Ký tên:                         Bác sĩ trao đổi ký tên:
 </BodyText>
    <LocalConfig />
    <PageSettings>

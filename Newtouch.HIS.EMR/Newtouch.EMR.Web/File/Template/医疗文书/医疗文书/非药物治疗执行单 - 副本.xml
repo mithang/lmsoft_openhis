@@ -2961,7 +2961,7 @@
          <XElements>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>Bác sĩ ký tên：</Text>
+               <Text>Bác sĩ ký tên:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="2" />
             <Element xsi:type="XString">

@@ -119,7 +119,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="3">
                                  <XElements xsi:nil="true" />
-                                 <Text>Giới tính：</Text>
+                                 <Text>Giới tính:</Text>
                               </Element>
                               <Element xsi:type="XInputField" StyleIndex="3">
                                  <Attributes />
@@ -210,7 +210,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="3">
                                  <XElements xsi:nil="true" />
-                                 <Text>Khoa：</Text>
+                                 <Text>Khoa:</Text>
                               </Element>
                               <Element xsi:type="XInputField" StyleIndex="3">
                                  <Attributes />
@@ -261,7 +261,7 @@
                                  <XElements>
                                     <Element xsi:type="XString" StyleIndex="3">
                                        <XElements xsi:nil="true" />
-                                       <Text>zh01</Text>
+                                       <Text>zh 01</Text>
                                     </Element>
                                  </XElements>
                                  <AcceptChildElementTypes2>Text</AcceptChildElementTypes2>
@@ -279,7 +279,7 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="3">
                                  <XElements xsi:nil="true" />
-                                 <Text>Số nhập viện：</Text>
+                                 <Text>Số nhập viện:</Text>
                               </Element>
                               <Element xsi:type="XInputField" StyleIndex="3">
                                  <Attributes />
@@ -366,7 +366,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>Họ tên：</Text>
+                                 <Text>Họ tên:</Text>
                               </Element>
                               <Element xsi:type="XInputField" StyleIndex="3">
                                  <Attributes />
@@ -463,7 +463,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>Tuổi：</Text>
+                                 <Text>Tuổi:</Text>
                               </Element>
                               <Element xsi:type="XInputField" StyleIndex="3">
                                  <Attributes />
@@ -497,7 +497,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>Nơi làm việc：</Text>
+                                 <Text>Nơi làm việc:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                            </XElements>
@@ -515,7 +515,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>Số điện thoại liên hệ：</Text>
+                                 <Text>Số điện thoại liên hệ:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <Attributes />
@@ -549,7 +549,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>Hộ khẩu/Địa chỉ cư trú：</Text>
+                                 <Text>Hộ khẩu/Địa chỉ cư trú:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                            </XElements>
@@ -567,7 +567,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>Hôn nhân：</Text>
+                                 <Text>Hôn nhân:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <Attributes />
@@ -624,7 +624,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>Người cung cấp bệnh sử(Mức độ tin cậy)：</Text>
+                                 <Text>Người cung cấp bệnh sử (Mức độ tin cậy):</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                            </XElements>
@@ -642,7 +642,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>Nơi sinh：</Text>
+                                 <Text>Nơi sinh:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                            </XElements>
@@ -652,7 +652,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>Thời gian nhập viện：</Text>
+                                 <Text>Thời gian nhập viện:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <Attributes />
@@ -701,7 +701,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>Dân tộc：</Text>
+                                 <Text>Dân tộc:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <Attributes />
@@ -759,7 +759,7 @@
                            <XElements>
                               <Element xsi:type="XString">
                                  <XElements xsi:nil="true" />
-                                 <Text>Thời gian ghi chép：</Text>
+                                 <Text>Thời gian ghi chép:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <Attributes />
@@ -814,11 +814,11 @@
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>：</Text>
+               <Text>:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="9">
                <XElements xsi:nil="true" />
-               <Text>fdf2019-05-31dsgdsgds2019-05-312019-05-312019-05-312019-05-3117:00:3217:00:3217:00:32</Text>
+               <Text>fdf 2019-05-31 dsgdsgds 2019-05-312019-05-312019-05-312019-05-3117:00:3217:00:3217:00:32</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" />
             <Element xsi:type="XString">
@@ -832,7 +832,7 @@
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>：</Text>
+               <Text>:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" />
             <Element xsi:type="XString">
@@ -846,7 +846,7 @@
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>：</Text>
+               <Text>:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" />
             <Element xsi:type="XString">
@@ -860,7 +860,7 @@
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>：</Text>
+               <Text>:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" />
             <Element xsi:type="XString" StyleIndex="8">
@@ -869,7 +869,7 @@
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>：</Text>
+               <Text>:</Text>
             </Element>
             <Element xsi:type="XMedicalExpressionField">
                <Attributes />
@@ -878,7 +878,7 @@
                <XElements>
                   <Element xsi:type="XString">
                      <XElements xsi:nil="true" />
-                     <Text>Value1,Value2,Value3,Value4</Text>
+                     <Text>Value1, Value2, Value3, Value4</Text>
                   </Element>
                </XElements>
                <BorderElementColor />
@@ -914,7 +914,7 @@
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>：</Text>
+               <Text>:</Text>
             </Element>
             <Element xsi:type="XInputField">
                <Attributes />
@@ -942,7 +942,7 @@
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>：</Text>
+               <Text>:</Text>
             </Element>
             <Element xsi:type="XInputField">
                <Attributes />
@@ -971,7 +971,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>：Nội dung trên đã được người trình bày bệnh sử xác nhận。 Người trình bày ký tên： </Text>
+               <Text>: Nội dung trên đã được người trình bày bệnh sử xác nhận. Người trình bày ký tên: </Text>
             </Element>
             <Element xsi:type="XParagraphFlag" />
             <Element xsi:type="XString" StyleIndex="10">
@@ -981,54 +981,54 @@
             <Element xsi:type="XParagraphFlag" StyleIndex="12" />
             <Element xsi:type="XString" StyleIndex="8">
                <XElements xsi:nil="true" />
-               <Text>Tình trạng chung：</Text>
+               <Text>Tình trạng chung:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>Phát triển bình thường，Dinh dưỡng tốt，Vẻ mặt bệnh cấp tính，自主体委，Ý thức tỉnh táo，Vẻ mặt đau đớn，Hợp tác khi khám。</Text>
+               <Text>Phát triển bình thường, Dinh dưỡng tốt, Vẻ mặt bệnh cấp tính,自主体委, Ý thức tỉnh táo, Vẻ mặt đau đớn, Hợp tác khi khám.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="8" />
             <Element xsi:type="XString" StyleIndex="8">
                <XElements xsi:nil="true" />
-               <Text>Hạch bạch huyết：</Text>
+               <Text>Hạch bạch huyết:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>Hạch bạch huyết nông không thấy sưng to。</Text>
+               <Text>Hạch bạch huyết nông không thấy sưng to.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="8" />
             <Element xsi:type="XString" StyleIndex="8">
                <XElements xsi:nil="true" />
-               <Text>Ngực：</Text>
+               <Text>Ngực:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>Lồng ngực bình thường，Khoang liên sườn không thấy bất thường rõ，Hai bên vú đối xứng，Không thấy bất thường rõ。Vận động hô hấp bình thường，Khe liên sườn bình thường，</Text>
-            </Element>
-            <Element xsi:type="XParagraphFlag" StyleIndex="3" />
-            <Element xsi:type="XString" StyleIndex="3">
-               <XElements xsi:nil="true" />
-               <Text>Nhịp thở bình thường。Rung thanh bình thường，Không sờ thấy cảm giác cọ màng phổi，Không sờ thấy cảm giác lạo xạo dưới da。Gõ hai phổi trong，肺下界未愈</Text>
+               <Text>Lồng ngực bình thường, Khoang liên sườn không thấy bất thường rõ, Hai bên vú đối xứng, Không thấy bất thường rõ. Vận động hô hấp bình thường, Khe liên sườn bình thường,</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>Đường giữa đòn, khoang liên sườn thứ6Khoang liên sườn，Đường nách giữa, khoang liên sườn thứ8Khoang liên sườn，Đường vai, khoang liên sườn thứ10Khoang liên sườn。Độ di động bờ dưới phổi6-8cm。Âm thở hai phổi rõ，Hai phổi</Text>
+               <Text>Nhịp thở bình thường. Rung thanh bình thường, Không sờ thấy cảm giác cọ màng phổi, Không sờ thấy cảm giác lạo xạo dưới da. Gõ hai phổi trong,肺下界未愈</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>Không nghe thấy ran khô, ran ẩm，Dẫn truyền giọng nói bình thường，Hai phổi không nghe thấy tiếng cọ màng phổi。Vùng trước tim không nhô lên，Vị trí mỏm tim cách đường giữa đòn trái</Text>
+               <Text>Đường giữa đòn, khoang liên sườn thứ 6 Khoang liên sườn, Đường nách giữa, khoang liên sườn thứ 8 Khoang liên sườn, Đường vai, khoang liên sườn thứ 10 Khoang liên sườn. Độ di động bờ dưới phổi 6-8 cm. Âm thở hai phổi rõ, Hai phổi</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>trong đường giữa0.5cm。Dấu hiệu đập mao mạch ngoại vi：Mỏm tim đập bình thường，Không có cảm giác cọ màng ngoài tim，Không sờ thấy rung。Bờ tim bình thường。</Text>
+               <Text>Không nghe thấy ran khô, ran ẩm, Dẫn truyền giọng nói bình thường, Hai phổi không nghe thấy tiếng cọ màng phổi. Vùng trước tim không nhô lên, Vị trí mỏm tim cách đường giữa đòn trái</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>Nhịp tim78lần/phút，Nhịp tim đều，S</Text>
+               <Text>trong đường giữa 0.5 cm. Dấu hiệu đập mao mạch ngoại vi: Mỏm tim đập bình thường, Không có cảm giác cọ màng ngoài tim, Không sờ thấy rung. Bờ tim bình thường.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="3" />
+            <Element xsi:type="XString" StyleIndex="3">
+               <XElements xsi:nil="true" />
+               <Text>Nhịp tim 78 lần/phút, Nhịp tim đều, S</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="11">
                <XElements xsi:nil="true" />
@@ -1036,7 +1036,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>Bình thường，S</Text>
+               <Text>Bình thường, S</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="11">
                <XElements xsi:nil="true" />
@@ -1044,7 +1044,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>Bình thường，Không nghe thấyS</Text>
+               <Text>Bình thường, Không nghe thấyS</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="11">
                <XElements xsi:nil="true" />
@@ -1052,7 +1052,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>,Không nghe thấyS</Text>
+               <Text>, Không nghe thấyS</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="11">
                <XElements xsi:nil="true" />
@@ -1060,7 +1060,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>，A</Text>
+               <Text>, A</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="11">
                <XElements xsi:nil="true" />
@@ -1076,63 +1076,63 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>,Các vùng nghe van tim không nghe thấy tiếng thổi。毛细</Text>
+               <Text>, Các vùng nghe van tim không nghe thấy tiếng thổi.毛细</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>Dấu hiệu mạch máu âm tính，Không thấy mạch nước dội，Không nghe thấy tiếng súng bắn。</Text>
+               <Text>Dấu hiệu mạch máu âm tính, Không thấy mạch nước dội, Không nghe thấy tiếng súng bắn.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="8">
                <XElements xsi:nil="true" />
-               <Text>Tim：</Text>
+               <Text>Tim:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="8">
                <XElements xsi:nil="true" />
-               <Text>Bụng：</Text>
+               <Text>Bụng:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>Bụng phẳng，Còn thở bụng，Không thấy giãn tĩnh mạch thành bụng。Bụng mềm，Không đau khi ấn、Đau dội ngược，腋波震颤无，脾肝</Text>
+               <Text>Bụng phẳng, Còn thở bụng, Không thấy giãn tĩnh mạch thành bụng. Bụng mềm, Không đau khi ấn, Đau dội ngược,腋波震颤无，脾肝</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" />
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>Không sờ thấy，Murphy s征阴性，Không sờ thấy khối ở bụng，Giới hạn tiếng đục gan không mở rộng hay thu hẹp，Không có tiếng đục di động。Không đau rõ khi gõ vùng thận</Text>
+               <Text>Không sờ thấy, Murphy s征阴性, Không sờ thấy khối ở bụng, Giới hạn tiếng đục gan không mở rộng hay thu hẹp, Không có tiếng đục di động. Không đau rõ khi gõ vùng thận</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" />
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>痛，Âm ruột bình thường，3lần/phút。</Text>
-            </Element>
-            <Element xsi:type="XParagraphFlag" />
-            <Element xsi:type="XString" StyleIndex="8">
-               <XElements xsi:nil="true" />
-               <Text>Hậu môn và cơ quan sinh dục：</Text>
-            </Element>
-            <Element xsi:type="XString" StyleIndex="3">
-               <XElements xsi:nil="true" />
-               <Text>Cơ quan sinh dục ngoài，Hậu môn, trực tràng chưa khám</Text>
+               <Text>痛, Âm ruột bình thường,3 lần/phút.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" />
             <Element xsi:type="XString" StyleIndex="8">
                <XElements xsi:nil="true" />
-               <Text>Tứ chi và cột sống：</Text>
+               <Text>Hậu môn và cơ quan sinh dục:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>Cột sống bình thường，Tứ chi bình thường, không dị dạng，Vận động tự nhiên，Khớp không đỏ, sưng，Không có ngón tay, ngón chân dùi trống，Cơ không đau khi ấn，Hai chi dưới không phù。</Text>
+               <Text>Cơ quan sinh dục ngoài, Hậu môn, trực tràng chưa khám</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" />
+            <Element xsi:type="XString" StyleIndex="8">
+               <XElements xsi:nil="true" />
+               <Text>Tứ chi và cột sống:</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="3">
+               <XElements xsi:nil="true" />
+               <Text>Cột sống bình thường, Tứ chi bình thường, không dị dạng, Vận động tự nhiên, Khớp không đỏ, sưng, Không có ngón tay, ngón chân dùi trống, Cơ không đau khi ấn, Hai chi dưới không phù.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="3" />
             <Element xsi:type="XString" StyleIndex="8">
                <XElements xsi:nil="true" />
-               <Text>Hệ thần kinh：</Text>
+               <Text>Hệ thần kinh:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>Phản xạ thành bụng bình thường，Trương lực cơ tứ chi bình thường，Sức cơ tứ chi5độ，Không liệt chi，Phản xạ cơ nhị đầu hai bên bình thường，Phản xạ gân gối hai bên bình thường，Hai bênMoffmann征阴性，Babinski征阴性，Oppenheim征阴性，Kering征阴性，Brudzinskz征阴性。</Text>
+               <Text>Phản xạ thành bụng bình thường, Trương lực cơ tứ chi bình thường, Sức cơ tứ chi 5 độ, Không liệt chi, Phản xạ cơ nhị đầu hai bên bình thường, Phản xạ gân gối hai bên bình thường, Hai bênMoffmann征阴性, Babinski征阴性, Oppenheim征阴性, Kering征阴性, Brudzinskz征阴性.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" />
             <Element xsi:type="XString" StyleIndex="10">
@@ -1146,7 +1146,7 @@
             </Element>
             <Element xsi:type="XString" StyleIndex="3">
                <XElements xsi:nil="true" />
-               <Text>：</Text>
+               <Text>:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" />
             <Element xsi:type="XString" StyleIndex="8">
@@ -1155,7 +1155,7 @@
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>：</Text>
+               <Text>:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" />
             <Element xsi:type="XString" WhiteSpaceLength="1">
@@ -1168,7 +1168,7 @@
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>： </Text>
+               <Text>: </Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
             <Element xsi:type="XString" WhiteSpaceLength="1">
@@ -1181,7 +1181,7 @@
             </Element>
             <Element xsi:type="XString">
                <XElements xsi:nil="true" />
-               <Text>： </Text>
+               <Text>: </Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="0" />
             <Element xsi:type="XString" WhiteSpaceLength="1">
@@ -1270,43 +1270,43 @@
       <NumOfPage>2</NumOfPage>
    </Info>
    <BodyText> 
-Họ tên：古国兰 Giới tính:Nữ 
-Tuổi：61 Nơi làm việc： 
-Số điện thoại liên hệ：18285391785 Hộ khẩu/Địa chỉ cư trú： 
-Hôn nhân： Người cung cấp bệnh sử(Mức độ tin cậy)： 
-Nơi sinh： Thời gian nhập viện：2019-05-28 
-Dân tộc： Thời gian ghi chép： Triệu chứng chính：fdf2019-05-31dsgdsgds2019-05-312019-05-312019-05-312019-05-3117:00:3217:00:3217:00:32
+Họ tên:古国兰 Giới tính: Nữ 
+Tuổi: 61 Nơi làm việc: 
+Số điện thoại liên hệ: 18285391785 Hộ khẩu/Địa chỉ cư trú: 
+Hôn nhân: Người cung cấp bệnh sử (Mức độ tin cậy): 
+Nơi sinh: Thời gian nhập viện: 2019-05-28 
+Dân tộc: Thời gian ghi chép: Triệu chứng chính: fdf 2019-05-31 dsgdsgds 2019-05-312019-05-312019-05-312019-05-3117:00:3217:00:3217:00:32
  17:00:317:00:407
-Bệnh sử hiện tại：
+Bệnh sử hiện tại:
  
-Tiền sử：
+Tiền sử:
  
-Tiền sử cá nhân：
-Tiền sử kinh nguyệt：Value1,Value2,Value3,Value4
-Tiền sử hôn nhân và sinh đẻ：
-Tiền sử gia đình：
-Mức độ tin cậy：Nội dung trên đã được người trình bày bệnh sử xác nhận。 Người trình bày ký tên： 
+Tiền sử cá nhân:
+Tiền sử kinh nguyệt: Value1, Value2, Value3, Value4
+Tiền sử hôn nhân và sinh đẻ:
+Tiền sử gia đình:
+Mức độ tin cậy: Nội dung trên đã được người trình bày bệnh sử xác nhận. Người trình bày ký tên: 
 Khám thực thể
-Tình trạng chung：Phát triển bình thường，Dinh dưỡng tốt，Vẻ mặt bệnh cấp tính，自主体委，Ý thức tỉnh táo，Vẻ mặt đau đớn，Hợp tác khi khám。
-Hạch bạch huyết：Hạch bạch huyết nông không thấy sưng to。
-Ngực：Lồng ngực bình thường，Khoang liên sườn không thấy bất thường rõ，Hai bên vú đối xứng，Không thấy bất thường rõ。Vận động hô hấp bình thường，Khe liên sườn bình thường，
-Nhịp thở bình thường。Rung thanh bình thường，Không sờ thấy cảm giác cọ màng phổi，Không sờ thấy cảm giác lạo xạo dưới da。Gõ hai phổi trong，肺下界未愈
-Đường giữa đòn, khoang liên sườn thứ6Khoang liên sườn，Đường nách giữa, khoang liên sườn thứ8Khoang liên sườn，Đường vai, khoang liên sườn thứ10Khoang liên sườn。Độ di động bờ dưới phổi6-8cm。Âm thở hai phổi rõ，Hai phổi
-Không nghe thấy ran khô, ran ẩm，Dẫn truyền giọng nói bình thường，Hai phổi không nghe thấy tiếng cọ màng phổi。Vùng trước tim không nhô lên，Vị trí mỏm tim cách đường giữa đòn trái
-trong đường giữa0.5cm。Dấu hiệu đập mao mạch ngoại vi：Mỏm tim đập bình thường，Không có cảm giác cọ màng ngoài tim，Không sờ thấy rung。Bờ tim bình thường。
-Nhịp tim78lần/phút，Nhịp tim đều，S1Bình thường，S2Bình thường，Không nghe thấyS3,Không nghe thấyS4，A2=P2,Các vùng nghe van tim không nghe thấy tiếng thổi。Dấu hiệu mao mạch âm tính，Không thấy mạch nước dội，Không nghe thấy tiếng súng bắn。
-Tim：
-Bụng：Bụng phẳng，Còn thở bụng，Không thấy giãn tĩnh mạch thành bụng。Bụng mềm，Không đau khi ấn、Đau dội ngược，腋波震颤无，脾肝
-Không sờ thấy，Murphy s征阴性，Không sờ thấy khối ở bụng，Giới hạn tiếng đục gan không mở rộng hay thu hẹp，Không có tiếng đục di động。Không đau rõ khi gõ vùng thận
-痛，Âm ruột bình thường，3lần/phút。
-Hậu môn và cơ quan sinh dục：Cơ quan sinh dục ngoài，Hậu môn, trực tràng chưa khám
-Tứ chi và cột sống：Cột sống bình thường，Tứ chi bình thường, không dị dạng，Vận động tự nhiên，Khớp không đỏ, sưng，Không có ngón tay, ngón chân dùi trống，Cơ không đau khi ấn，Hai chi dưới không phù。
-Hệ thần kinh：Phản xạ thành bụng bình thường，Trương lực cơ tứ chi bình thường，Sức cơ tứ chi5độ，Không liệt chi，Phản xạ cơ nhị đầu hai bên bình thường，Phản xạ gân gối hai bên bình thường，Hai bênMoffmann征阴性，Babinski征阴性，Oppenheim征阴性，Kering征阴性，Brudzinskz征阴性。
+Tình trạng chung: Phát triển bình thường, Dinh dưỡng tốt, Vẻ mặt bệnh cấp tính,自主体委, Ý thức tỉnh táo, Vẻ mặt đau đớn, Hợp tác khi khám.
+Hạch bạch huyết: Hạch bạch huyết nông không thấy sưng to.
+Ngực: Lồng ngực bình thường, Khoang liên sườn không thấy bất thường rõ, Hai bên vú đối xứng, Không thấy bất thường rõ. Vận động hô hấp bình thường, Khe liên sườn bình thường,
+Nhịp thở bình thường. Rung thanh bình thường, Không sờ thấy cảm giác cọ màng phổi, Không sờ thấy cảm giác lạo xạo dưới da. Gõ hai phổi trong,肺下界未愈
+Đường giữa đòn, khoang liên sườn thứ 6 Khoang liên sườn, Đường nách giữa, khoang liên sườn thứ 8 Khoang liên sườn, Đường vai, khoang liên sườn thứ 10 Khoang liên sườn. Độ di động bờ dưới phổi 6-8 cm. Âm thở hai phổi rõ, Hai phổi
+Không nghe thấy ran khô, ran ẩm, Dẫn truyền giọng nói bình thường, Hai phổi không nghe thấy tiếng cọ màng phổi. Vùng trước tim không nhô lên, Vị trí mỏm tim cách đường giữa đòn trái
+trong đường giữa 0.5 cm. Dấu hiệu đập mao mạch ngoại vi: Mỏm tim đập bình thường, Không có cảm giác cọ màng ngoài tim, Không sờ thấy rung. Bờ tim bình thường.
+Nhịp tim 78 lần/phút, Nhịp tim đều, S1 Bình thường, S2 Bình thường, Không nghe thấyS 3, Không nghe thấyS 4, A2=P2, Các vùng nghe van tim không nghe thấy tiếng thổi. Dấu hiệu mao mạch âm tính, Không thấy mạch nước dội, Không nghe thấy tiếng súng bắn.
+Tim:
+Bụng: Bụng phẳng, Còn thở bụng, Không thấy giãn tĩnh mạch thành bụng. Bụng mềm, Không đau khi ấn, Đau dội ngược,腋波震颤无，脾肝
+Không sờ thấy, Murphy s征阴性, Không sờ thấy khối ở bụng, Giới hạn tiếng đục gan không mở rộng hay thu hẹp, Không có tiếng đục di động. Không đau rõ khi gõ vùng thận
+痛, Âm ruột bình thường,3 lần/phút.
+Hậu môn và cơ quan sinh dục: Cơ quan sinh dục ngoài, Hậu môn, trực tràng chưa khám
+Tứ chi và cột sống: Cột sống bình thường, Tứ chi bình thường, không dị dạng, Vận động tự nhiên, Khớp không đỏ, sưng, Không có ngón tay, ngón chân dùi trống, Cơ không đau khi ấn, Hai chi dưới không phù.
+Hệ thần kinh: Phản xạ thành bụng bình thường, Trương lực cơ tứ chi bình thường, Sức cơ tứ chi 5 độ, Không liệt chi, Phản xạ cơ nhị đầu hai bên bình thường, Phản xạ gân gối hai bên bình thường, Hai bênMoffmann征阴性, Babinski征阴性, Oppenheim征阴性, Kering征阴性, Brudzinskz征阴性.
 Khám chuyên khoa
-Cận lâm sàng：
-Chẩn đoán nhập viện：
- Bác sĩ ký tên： 
- Ngày ký tên： 
+Cận lâm sàng:
+Chẩn đoán nhập viện:
+ Bác sĩ ký tên: 
+ Ngày ký tên: 
  </BodyText>
    <Comments />
    <LocalConfig />

@@ -45,7 +45,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="56">
                               <Element xsi:type="XString">
-                                 <Text>Họ tên：</Text>
+                                 <Text>Họ tên:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <ID>555B0059-D165-46B3-9F88-9720672296AF</ID>
@@ -66,7 +66,7 @@
                                  <Text>       </Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
-                                 <Text>Giới tính：</Text>
+                                 <Text>Giới tính:</Text>
                               </Element>
                               <Element xsi:type="XInputField" StyleIndex="4">
                                  <ID>B4DF9EC6-B5D1-4DDA-B7A0-CF1C28E822F2</ID>
@@ -108,7 +108,7 @@
                                  <Text>  </Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
-                                 <Text>     Tuổi：</Text>
+                                 <Text>     Tuổi:</Text>
                               </Element>
                               <Element xsi:type="XInputField" StyleIndex="4">
                                  <ID>294E8883-886E-4F41-B60C-AA5FCA5DC21E</ID>
@@ -126,7 +126,7 @@
                                  <BackgroundText>Tuổi</BackgroundText>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
-                                 <Text>            Ngày xuất viện：   năm   tháng   ngày</Text>
+                                 <Text>            Ngày xuất viện:   năm   tháng   ngày</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                            </XElements>
@@ -141,7 +141,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="5">
                               <Element xsi:type="XString">
-                                 <Text>Địa chỉ：</Text>
+                                 <Text>Địa chỉ:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <ID>6DD143BF-A26A-4487-A264-2F4D1370789C</ID>
@@ -169,7 +169,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="6">
                               <Element xsi:type="XString">
-                                 <Text>Chẩn đoán lâm sàng：</Text>
+                                 <Text>Chẩn đoán lâm sàng:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                            </XElements>
@@ -184,7 +184,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="7">
                               <Element xsi:type="XString">
-                                 <Text>Số chứng minh nhân dân：</Text>
+                                 <Text>Số chứng minh nhân dân:</Text>
                               </Element>
                               <Element xsi:type="XInputField">
                                  <ID>136BF164-1893-4DB6-8F4A-3AF2A965681E</ID>
@@ -212,7 +212,7 @@
                            <EnableValueValidate>true</EnableValueValidate>
                            <XElements Count="44">
                               <Element xsi:type="XString">
-                                 <Text>Ngày nhập viện：     năm    tháng    ngày    -     năm    tháng     ngày</Text>
+                                 <Text>Ngày nhập viện:     năm    tháng    ngày    -     năm    tháng     ngày</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                            </XElements>
@@ -228,7 +228,7 @@
                            <XElements Count="110">
                               <Element xsi:type="XParagraphFlag" />
                               <Element xsi:type="XString">
-                                 <Text>Đề xuất：            </Text>
+                                 <Text>Đề xuất:            </Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                               <Element xsi:type="XString">
@@ -255,13 +255,13 @@
                                  <Text>       </Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
-                                 <Text>Bác sĩ： </Text>
+                                 <Text>Bác sĩ: </Text>
                               </Element>
                               <Element xsi:type="XString">
                                  <Text>                                     </Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
-                                 <Text> Con dấu bệnh viện：</Text>
+                                 <Text> Con dấu bệnh viện:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" />
                               <Element xsi:type="XParagraphFlag" />
@@ -369,13 +369,13 @@
       <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
       <NumOfPage>1</NumOfPage>
    </Info>
-   <BodyText>Họ tên：[Họ tên]       Giới tính：Giới tính       Tuổi：[Tuổi]            Ngày xuất viện：   năm   tháng   ngày 
-Địa chỉ：Địa chỉ hiện tại 
-Chẩn đoán lâm sàng： 
-Số chứng minh nhân dân：Số chứng minh nhân dân 
-Ngày nhập viện：     năm    tháng    ngày    -     năm    tháng     ngày 
+   <BodyText>Họ tên:[Họ tên]       Giới tính: Giới tính       Tuổi:[Tuổi]            Ngày xuất viện:   năm   tháng   ngày 
+Địa chỉ: Địa chỉ hiện tại 
+Chẩn đoán lâm sàng: 
+Số chứng minh nhân dân: Số chứng minh nhân dân 
+Ngày nhập viện:     năm    tháng    ngày    -     năm    tháng     ngày 
 
-Đề xuất：            
+Đề xuất:            
       1.
       2.
       3.
@@ -387,7 +387,7 @@ Ngày nhập viện：     năm    tháng    ngày    -     năm    tháng     n
 
 
 
-       Bác sĩ：                                       Con dấu bệnh viện：
+       Bác sĩ:                                       Con dấu bệnh viện:
 
 
 

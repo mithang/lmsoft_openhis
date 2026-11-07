@@ -486,18 +486,18 @@
                            <XElements>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>1901</InnerID>
-                                 <Text>Triệu chứng chính：</Text>
+                                 <Text>Triệu chứng chính:</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
                                  <InnerID>1902</InnerID>
-                                 <Text>Đau thắt lưng2Hơn một tháng。</Text>
+                                 <Text>Đau thắt lưng 2 Hơn một tháng.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6">
                                  <InnerID>644</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>1903</InnerID>
-                                 <Text>Bệnh sử hiện tại：</Text>
+                                 <Text>Bệnh sử hiện tại:</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
                                  <InnerID>1904</InnerID>
@@ -505,22 +505,22 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>1905</InnerID>
-                                 <Text>2Hơn một tháng trước, không có nguyên nhân rõ ràng, bắt đầu xuất hiện</Text>
+                                 <Text>2 Hơn một tháng trước, không có nguyên nhân rõ ràng, bắt đầu xuất hiện</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
                                  <InnerID>1906</InnerID>
-                                 <Text>Không có nước tiểu“Thoát vị đĩa đệm thắt lưng”Nhập viện để chẩn đoán và điều trị thêm，Sau khi mắc bệnh，Ăn uống、Giấc ngủ bình thường，Không són đại tiểu tiện，Không có hiện tượng bốc nóng buổi chiều。</Text>
+                                 <Text>Không có nước tiểu“Thoát vị đĩa đệm thắt lưng”Nhập viện để chẩn đoán và điều trị thêm, Sau khi mắc bệnh, Ăn uống, Giấc ngủ bình thường, Không són đại tiểu tiện, Không có hiện tượng bốc nóng buổi chiều.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="7">
                                  <InnerID>710</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>1907</InnerID>
-                                 <Text>Tiền sử：</Text>
+                                 <Text>Tiền sử:</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
                                  <InnerID>1908</InnerID>
-                                 <Text>Trước đây có bệnh cột sống cổ、Tiền sử bệnh cột sống thắt lưng，Thỉnh thoảng đau，Có tiền sử viêm dạ dày，Hiện vẫn đang uống thuốc điều trị。Phủ nhận có tăng huyết áp、Bệnh mạch vành、Tiền sử bệnh tim，Phủ nhận có viêm gan、Tiền sử lao và các bệnh truyền nhiễm khác。Không có thuốc、Tiền sử dị ứng thức ăn。Tiền sử tiêm chủng chưa rõ。</Text>
+                                 <Text>Trước đây có bệnh cột sống cổ, Tiền sử bệnh cột sống thắt lưng, Thỉnh thoảng đau, Có tiền sử viêm dạ dày, Hiện vẫn đang uống thuốc điều trị. Phủ nhận có tăng huyết áp, Bệnh mạch vành, Tiền sử bệnh tim, Phủ nhận có viêm gan, Tiền sử lao và các bệnh truyền nhiễm khác. Không có thuốc, Tiền sử dị ứng thức ăn. Tiền sử tiêm chủng chưa rõ.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="7">
                                  <InnerID>796</InnerID>
@@ -531,7 +531,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
                                  <InnerID>1910</InnerID>
-                                 <Text>：Sinh ra và lớn lên tại quê quán，Không có tiền sử cư trú dài hạn ở nơi khác。Luôn làm nông ở nhà，Phủ nhận từng đến vùng dịch，Không có thói quen hút thuốc, uống rượu。Phủ nhận có tiền sử quan hệ tình dục không an toàn。Đã tiêm tại điểm tiêm chủng lớn ở thị trấn Thành Sương3liều vắc-xin COVID-19。</Text>
+                                 <Text>: Sinh ra và lớn lên tại quê quán, Không có tiền sử cư trú dài hạn ở nơi khác. Luôn làm nông ở nhà, Phủ nhận từng đến vùng dịch, Không có thói quen hút thuốc, uống rượu. Phủ nhận có tiền sử quan hệ tình dục không an toàn. Đã tiêm tại điểm tiêm chủng lớn ở thị trấn Thành Sương 3 liều vắc-xin COVID-19.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="7">
                                  <InnerID>868</InnerID>
@@ -542,18 +542,18 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
                                  <InnerID>1912</InnerID>
-                                 <Text>14ngày，Đã mãn kinh，Không có tiền sử đau bụng kinh。Đã kết hôn，Vợ/chồng、Con cái đều khỏe mạnh。</Text>
+                                 <Text>14 ngày, Đã mãn kinh, Không có tiền sử đau bụng kinh. Đã kết hôn, Vợ/chồng, Con cái đều khỏe mạnh.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="7">
                                  <InnerID>902</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="5">
                                  <InnerID>1913</InnerID>
-                                 <Text>Tiền sử gia đình：</Text>
+                                 <Text>Tiền sử gia đình:</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
                                  <InnerID>1914</InnerID>
-                                 <Text>Cha mẹ còn sống，Không phải kết hôn cận huyết，Trong gia đình không có tiền sử bệnh di truyền。</Text>
+                                 <Text>Cha mẹ còn sống, Không phải kết hôn cận huyết, Trong gia đình không có tiền sử bệnh di truyền.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="7">
                                  <InnerID>928</InnerID>
@@ -575,7 +575,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
                                  <InnerID>1918</InnerID>
-                                 <Text>     T 36.5℃，P 66lần/phút，R 20lần/phút，BP 124/80mmHg。Cân nặng 37kg，Chiều cao 152cm。</Text>
+                                 <Text>     T 36.5℃, P 66 lần/phút, R 20 lần/phút, BP 124/80 mmHg. Cân nặng 37 kg, Chiều cao 152 cm.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="7">
                                  <InnerID>1028</InnerID>
@@ -586,11 +586,11 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="2">
                                  <InnerID>1920</InnerID>
-                                 <Text>Tình trạng chung：</Text>
+                                 <Text>Tình trạng chung:</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
                                  <InnerID>1921</InnerID>
-                                 <Text>Phát triển bình thường，Dinh dưỡng trung bình。Tỉnh táo，Tinh thần khá，Vẻ mặt bệnh cấp tính，Nói rõ ràng，Tư thế tự chủ，Hợp tác khi khám。</Text>
+                                 <Text>Phát triển bình thường, Dinh dưỡng trung bình. Tỉnh táo, Tinh thần khá, Vẻ mặt bệnh cấp tính, Nói rõ ràng, Tư thế tự chủ, Hợp tác khi khám.</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="2">
                                  <InnerID>1922</InnerID>
@@ -598,29 +598,29 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
                                  <InnerID>1923</InnerID>
-                                 <Text>：Da đàn hồi tốt，Khô。Da và niêm mạc toàn thân không vàng，Không có nốt dưới da và ban da，Không có điểm xuất huyết dưới da，Không có nốt ruồi nhện、</Text>
+                                 <Text>: Da đàn hồi tốt, Khô. Da và niêm mạc toàn thân không vàng, Không có nốt dưới da và ban da, Không có điểm xuất huyết dưới da, Không có nốt ruồi nhện,</Text>
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>1924</InnerID>
-                                 <Text>Sẹo、Loét。</Text>
+                                 <Text>Sẹo, Loét.</Text>
                               </Element>
                               <Element xsi:type="XLineBreak">
                                  <InnerID>1123</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="2">
                                  <InnerID>1925</InnerID>
-                                 <Text>Hạch bạch huyết：</Text>
+                                 <Text>Hạch bạch huyết:</Text>
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>1926</InnerID>
-                                 <Text>Không sờ thấy hạch bạch huyết nông toàn thân sưng to。</Text>
+                                 <Text>Không sờ thấy hạch bạch huyết nông toàn thân sưng to.</Text>
                               </Element>
                               <Element xsi:type="XLineBreak">
                                  <InnerID>1141</InnerID>
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>1927</InnerID>
-                                 <Text>Đầu và các cơ quan vùng đầu：3.0mm，Với ánh sáng</Text>
+                                 <Text>Đầu và các cơ quan vùng đầu: 3.0 mm, Với ánh sáng</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
                                  <InnerID>1928</InnerID>
@@ -628,7 +628,7 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>1929</InnerID>
-                                 <Text>-），Thành sau họng không sung huyết, không có nang，Hai bên amidan không sưng to。</Text>
+                                 <Text>-）, Thành sau họng không sung huyết, không có nang, Hai bên amidan không sưng to.</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="2">
                                  <InnerID>1930</InnerID>
@@ -636,7 +636,7 @@
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
                                  <InnerID>1931</InnerID>
-                                 <Text>：Hai bên đối xứng，Mềm，Không kháng cự。Khí quản ở giữa，Tuyến giáp không to。Không nghe thấy tiếng thổi mạch máu。Không có tĩnh mạch cổ nổi căng。</Text>
+                                 <Text>: Hai bên đối xứng, Mềm, Không kháng cự. Khí quản ở giữa, Tuyến giáp không to. Không nghe thấy tiếng thổi mạch máu. Không có tĩnh mạch cổ nổi căng.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1224</InnerID>
@@ -647,44 +647,44 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>1933</InnerID>
-                                 <Text>：Lồng ngực：Hai bên đối xứng, không dị dạng，Không có ngực hình thùng。Không</Text>
+                                 <Text>: Lồng ngực: Hai bên đối xứng, không dị dạng, Không có ngực hình thùng. Không</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
                                  <InnerID>1934</InnerID>
-                                 <Text>               Phổi：Tần số hô hấp20lần/phút，Âm thở hai phổi trong，Không nghe thấy ran khô, ran ẩm。</Text>
+                                 <Text>               Phổi: Tần số hô hấp 20 lần/phút, Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1290</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="2">
                                  <InnerID>1935</InnerID>
-                                 <Text>Tim：</Text>
+                                 <Text>Tim:</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
                                  <InnerID>1936</InnerID>
-                                 <Text>Vùng trước tim không nhô lên, nhịp tim66lần/phút，Nhịp đều，Không nghe thấy tiếng thổi bệnh lý。</Text>
+                                 <Text>Vùng trước tim không nhô lên, nhịp tim 66 lần/phút, Nhịp đều, Không nghe thấy tiếng thổi bệnh lý.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1321</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="2">
                                  <InnerID>1937</InnerID>
-                                 <Text>Mạch máu ngoại vi：</Text>
+                                 <Text>Mạch máu ngoại vi:</Text>
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>1938</InnerID>
-                                 <Text>Không phát hiện đập bất thường của mao mạch，Không có tiếng thổi mạch máu。</Text>
+                                 <Text>Không phát hiện đập bất thường của mao mạch, Không có tiếng thổi mạch máu.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1346</InnerID>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="2">
                                  <InnerID>1939</InnerID>
-                                 <Text>Bụng：</Text>
+                                 <Text>Bụng:</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
                                  <InnerID>1940</InnerID>
-                                 <Text>Bụng mềm，Không đau khi ấn và không đau dội ngược，Không sờ thấy gan lách dưới bờ sườn，Vùng gan、Vùng hai thận không đau khi gõ，Âm ruột bình thường。Cơ quan sinh dục ngoài、Hậu môn、Tầng sinh môn：Chưa khám。</Text>
+                                 <Text>Bụng mềm, Không đau khi ấn và không đau dội ngược, Không sờ thấy gan lách dưới bờ sườn, Vùng gan, Vùng hai thận không đau khi gõ, Âm ruột bình thường. Cơ quan sinh dục ngoài, Hậu môn, Tầng sinh môn: Chưa khám.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1400</InnerID>
@@ -695,11 +695,11 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>1942</InnerID>
-                                 <Text>：</Text>
+                                 <Text>:</Text>
                               </Element>
                               <Element xsi:type="XString" StyleIndex="4">
                                  <InnerID>1943</InnerID>
-                                 <Text>Cột sống và tứ chi không dị dạng，Hai chi dưới không phù。Vận động thắt lưng hạn chế，Thân đốt sống thắt lưng、Đau khi ấn khe liên đốt sống（-），Đau khi ấn cơ cạnh cột sống bên trái，Đau khi ấn mông trái，Cơn đau lan xuống mặt sau cẳng chân，Nghiệm pháp nâng thẳng hai chân（Bên trái70°、Bên phải70°）và nghiệm pháp tăng cường（-），“4”字征（-），Phản xạ gân gối, gân gót bình thường。Hệ thần kinh：Phản xạ sinh lý còn，Không gợi được phản xạ bệnh lý。Sức cơ và trương lực cơ tứ chi bình thường。Tình trạng chuyên khoa：Vận động thắt lưng hạn chế，Thân đốt sống thắt lưng、Đau khi ấn khe liên đốt sống（-），Đau khi ấn cơ cạnh cột sống bên trái，Đau khi ấn mông trái，Cơn đau lan xuống mặt sau cẳng chân，Nghiệm pháp nâng thẳng hai chân（Bên trái70°、Bên phải70°）và nghiệm pháp tăng cường（-），“4”字征（-），Phản xạ gân gối, gân gót bình thường。</Text>
+                                 <Text>Cột sống và tứ chi không dị dạng, Hai chi dưới không phù. Vận động thắt lưng hạn chế, Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái, Đau khi ấn mông trái, Cơn đau lan xuống mặt sau cẳng chân, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường. Hệ thần kinh: Phản xạ sinh lý còn, Không gợi được phản xạ bệnh lý. Sức cơ và trương lực cơ tứ chi bình thường. Tình trạng chuyên khoa: Vận động thắt lưng hạn chế, Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái, Đau khi ấn mông trái, Cơn đau lan xuống mặt sau cẳng chân, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag">
                                  <InnerID>1647</InnerID>
@@ -717,35 +717,35 @@
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>1946</InnerID>
-                                 <Text>Tạm thời chưa có。</Text>
+                                 <Text>Tạm thời chưa có.</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="7">
                                  <InnerID>1687</InnerID>
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>1947</InnerID>
-                                 <Text>Chẩn đoán sơ bộ：Thoát vị đĩa đệm thắt lưng</Text>
+                                 <Text>Chẩn đoán sơ bộ: Thoát vị đĩa đệm thắt lưng</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="9">
                                  <InnerID>1700</InnerID>
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>1948</InnerID>
-                                 <Text>Phân loại ca bệnh lúc nhập viện：              </Text>
+                                 <Text>Phân loại ca bệnh lúc nhập viện:              </Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6">
                                  <InnerID>1724</InnerID>
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>1949</InnerID>
-                                 <Text>                        Bác sĩ điều trị chính：</Text>
+                                 <Text>                        Bác sĩ điều trị chính:</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="6">
                                  <InnerID>1755</InnerID>
                               </Element>
                               <Element xsi:type="XString">
                                  <InnerID>1950</InnerID>
-                                 <Text>                  2024năm03tháng19ngày  8PM</Text>
+                                 <Text>                  2024 năm 03 tháng 19 ngày  8 PM</Text>
                               </Element>
                               <Element xsi:type="XParagraphFlag" StyleIndex="10">
                                  <InnerID>1791</InnerID>
@@ -882,28 +882,28 @@ Nghề nghiệp:[]                    �
 Điện thoại:[]                    Số chứng minh nhân dân:[] 
 Địa chỉ chi tiết:[] 
 Ngày nhập viện:[]                Người trình bày bệnh sử:[] 
-Triệu chứng chính：Đau thắt lưng2Hơn một tháng。
-Bệnh sử hiện tại：Bệnh nhân kể2个多月前无明显诱因下开无尿“Thoát vị đĩa đệm thắt lưng”Nhập viện để chẩn đoán và điều trị thêm，Sau khi mắc bệnh，Ăn uống、Giấc ngủ bình thường，Không són đại tiểu tiện，Không có hiện tượng bốc nóng buổi chiều。
-Tiền sử：Trước đây có bệnh cột sống cổ、Tiền sử bệnh cột sống thắt lưng，Thỉnh thoảng đau，Có tiền sử viêm dạ dày，Hiện vẫn đang uống thuốc điều trị。Phủ nhận có tăng huyết áp、Bệnh mạch vành、Tiền sử bệnh tim，Phủ nhận có viêm gan、Tiền sử lao và các bệnh truyền nhiễm khác。Không có thuốc、Tiền sử dị ứng thức ăn。Tiền sử tiêm chủng chưa rõ。
-Tiền sử cá nhân：Sinh ra và lớn lên tại quê quán，Không có tiền sử cư trú dài hạn ở nơi khác。Luôn làm nông ở nhà，Phủ nhận từng đến vùng dịch，Không có thói quen hút thuốc, uống rượu。Phủ nhận có tiền sử quan hệ tình dục không an toàn。Đã tiêm tại điểm tiêm chủng lớn ở thị trấn Thành Sương3liều vắc-xin COVID-19。
-Tiền sử kinh nguyệt và sinh đẻ:14ngày，Đã mãn kinh，Không có tiền sử đau bụng kinh。Đã kết hôn，Vợ/chồng、Con cái đều khỏe mạnh。
-Tiền sử gia đình：Cha mẹ còn sống，Không phải kết hôn cận huyết，Trong gia đình không có tiền sử bệnh di truyền。
+Triệu chứng chính: Đau thắt lưng 2 Hơn một tháng.
+Bệnh sử hiện tại: Bệnh nhân kể 2个多月前无明显诱因下开无尿“Thoát vị đĩa đệm thắt lưng”Nhập viện để chẩn đoán và điều trị thêm, Sau khi mắc bệnh, Ăn uống, Giấc ngủ bình thường, Không són đại tiểu tiện, Không có hiện tượng bốc nóng buổi chiều.
+Tiền sử: Trước đây có bệnh cột sống cổ, Tiền sử bệnh cột sống thắt lưng, Thỉnh thoảng đau, Có tiền sử viêm dạ dày, Hiện vẫn đang uống thuốc điều trị. Phủ nhận có tăng huyết áp, Bệnh mạch vành, Tiền sử bệnh tim, Phủ nhận có viêm gan, Tiền sử lao và các bệnh truyền nhiễm khác. Không có thuốc, Tiền sử dị ứng thức ăn. Tiền sử tiêm chủng chưa rõ.
+Tiền sử cá nhân: Sinh ra và lớn lên tại quê quán, Không có tiền sử cư trú dài hạn ở nơi khác. Luôn làm nông ở nhà, Phủ nhận từng đến vùng dịch, Không có thói quen hút thuốc, uống rượu. Phủ nhận có tiền sử quan hệ tình dục không an toàn. Đã tiêm tại điểm tiêm chủng lớn ở thị trấn Thành Sương 3 liều vắc-xin COVID-19.
+Tiền sử kinh nguyệt và sinh đẻ: 14 ngày, Đã mãn kinh, Không có tiền sử đau bụng kinh. Đã kết hôn, Vợ/chồng, Con cái đều khỏe mạnh.
+Tiền sử gia đình: Cha mẹ còn sống, Không phải kết hôn cận huyết, Trong gia đình không có tiền sử bệnh di truyền.
                                 Khám thực thể
-     T 36.5℃，P 66lần/phút，R 20lần/phút，BP 124/80mmHg。Cân nặng 37kg，Chiều cao 152cm。
-Tình trạng chung：Phát triển bình thường，Dinh dưỡng trung bình。Tỉnh táo，Tinh thần khá，Vẻ mặt bệnh cấp tính，Nói rõ ràng，Tư thế tự chủ，Hợp tác khi khám。Da và niêm mạc：Da đàn hồi tốt，Khô。Da và niêm mạc toàn thân không vàng，Không có nốt dưới da và ban da，Không có điểm xuất huyết dưới da，Không có nốt ruồi nhện、Sẹo、Loét。
-Hạch bạch huyết：Không sờ thấy hạch bạch huyết nông toàn thân sưng to。
-Đầu và các cơ quan vùng đầu：3.0mm，对光咽充血（-），Thành sau họng không sung huyết, không có nang，Hai bên amidan không sưng to。Cổ：Hai bên đối xứng，Mềm，Không kháng cự。Khí quản ở giữa，Tuyến giáp không to。Không nghe thấy tiếng thổi mạch máu。Không có tĩnh mạch cổ nổi căng。
-Ngực：Lồng ngực：Hai bên đối xứng, không dị dạng，Không có ngực hình thùng。Không               Phổi：Tần số hô hấp20lần/phút，Âm thở hai phổi trong，Không nghe thấy ran khô, ran ẩm。
-Tim：Vùng trước tim không nhô lên, nhịp tim66lần/phút，Nhịp đều，Không nghe thấy tiếng thổi bệnh lý。
-Mạch máu ngoại vi：Không phát hiện đập bất thường của mao mạch，Không có tiếng thổi mạch máu。
-Bụng：Bụng mềm，Không đau khi ấn và không đau dội ngược，Không sờ thấy gan lách dưới bờ sườn，Vùng gan、Vùng hai thận không đau khi gõ，Âm ruột bình thường。Cơ quan sinh dục ngoài、Hậu môn、Tầng sinh môn：Chưa khám。
-Cột sống và tứ chi：Cột sống và tứ chi không dị dạng，Hai chi dưới không phù。Vận động thắt lưng hạn chế，Thân đốt sống thắt lưng、Đau khi ấn khe liên đốt sống（-），Đau khi ấn cơ cạnh cột sống bên trái，Đau khi ấn mông trái，Cơn đau lan xuống mặt sau cẳng chân，Nghiệm pháp nâng thẳng hai chân（Bên trái70°、Bên phải70°）và nghiệm pháp tăng cường（-），“4”字征（-），Phản xạ gân gối, gân gót bình thường。Hệ thần kinh：Phản xạ sinh lý còn，Không gợi được phản xạ bệnh lý。Sức cơ và trương lực cơ tứ chi bình thường。Tình trạng chuyên khoa：Vận động thắt lưng hạn chế，Thân đốt sống thắt lưng、Đau khi ấn khe liên đốt sống（-），Đau khi ấn cơ cạnh cột sống bên trái，Đau khi ấn mông trái，Cơn đau lan xuống mặt sau cẳng chân，Nghiệm pháp nâng thẳng hai chân（Bên trái70°、Bên phải70°）và nghiệm pháp tăng cường（-），“4”字征（-），Phản xạ gân gối, gân gót bình thường。
+     T 36.5℃, P 66 lần/phút, R 20 lần/phút, BP 124/80 mmHg. Cân nặng 37 kg, Chiều cao 152 cm.
+Tình trạng chung: Phát triển bình thường, Dinh dưỡng trung bình. Tỉnh táo, Tinh thần khá, Vẻ mặt bệnh cấp tính, Nói rõ ràng, Tư thế tự chủ, Hợp tác khi khám. Da và niêm mạc: Da đàn hồi tốt, Khô. Da và niêm mạc toàn thân không vàng, Không có nốt dưới da và ban da, Không có điểm xuất huyết dưới da, Không có nốt ruồi nhện, Sẹo, Loét.
+Hạch bạch huyết: Không sờ thấy hạch bạch huyết nông toàn thân sưng to.
+Đầu và các cơ quan vùng đầu: 3.0 mm,对光咽充血（-）, Thành sau họng không sung huyết, không có nang, Hai bên amidan không sưng to. Cổ: Hai bên đối xứng, Mềm, Không kháng cự. Khí quản ở giữa, Tuyến giáp không to. Không nghe thấy tiếng thổi mạch máu. Không có tĩnh mạch cổ nổi căng.
+Ngực: Lồng ngực: Hai bên đối xứng, không dị dạng, Không có ngực hình thùng. Không               Phổi: Tần số hô hấp 20 lần/phút, Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm.
+Tim: Vùng trước tim không nhô lên, nhịp tim 66 lần/phút, Nhịp đều, Không nghe thấy tiếng thổi bệnh lý.
+Mạch máu ngoại vi: Không phát hiện đập bất thường của mao mạch, Không có tiếng thổi mạch máu.
+Bụng: Bụng mềm, Không đau khi ấn và không đau dội ngược, Không sờ thấy gan lách dưới bờ sườn, Vùng gan, Vùng hai thận không đau khi gõ, Âm ruột bình thường. Cơ quan sinh dục ngoài, Hậu môn, Tầng sinh môn: Chưa khám.
+Cột sống và tứ chi: Cột sống và tứ chi không dị dạng, Hai chi dưới không phù. Vận động thắt lưng hạn chế, Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái, Đau khi ấn mông trái, Cơn đau lan xuống mặt sau cẳng chân, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường. Hệ thần kinh: Phản xạ sinh lý còn, Không gợi được phản xạ bệnh lý. Sức cơ và trương lực cơ tứ chi bình thường. Tình trạng chuyên khoa: Vận động thắt lưng hạn chế, Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái, Đau khi ấn mông trái, Cơn đau lan xuống mặt sau cẳng chân, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường.
                              Cận lâm sàng
-Tạm thời chưa có。
-Chẩn đoán sơ bộ：Thoát vị đĩa đệm thắt lưng
-Phân loại ca bệnh lúc nhập viện：              
-                        Bác sĩ điều trị chính：
-                  2024năm03tháng19ngày  8PM </BodyText>
+Tạm thời chưa có.
+Chẩn đoán sơ bộ: Thoát vị đĩa đệm thắt lưng
+Phân loại ca bệnh lúc nhập viện:              
+                        Bác sĩ điều trị chính:
+                  2024 năm 03 tháng 19 ngày  8 PM </BodyText>
    <LocalConfig />
    <PageSettings>
       <StrictUsePageSize>false</StrictUsePageSize>

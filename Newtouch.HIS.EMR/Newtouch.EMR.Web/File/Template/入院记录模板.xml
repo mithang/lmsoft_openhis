@@ -19,7 +19,7 @@
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="4" />
             <Element xsi:type="XString" StyleIndex="1">
-               <Text>  Họ tên：</Text>
+               <Text>  Họ tên:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="1">
                <ID>field3</ID>
@@ -43,7 +43,7 @@
                <FieldSettings />
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
-               <Text>      Khu bệnh：</Text>
+               <Text>      Khu bệnh:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="1">
                <ID>field16</ID>
@@ -68,7 +68,7 @@
                <FieldSettings />
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
-               <Text>        Số giường：</Text>
+               <Text>        Số giường:</Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="1">
                <ID>field15</ID>
@@ -83,7 +83,7 @@
                </ValueBinding>
                <XElements>
                   <Element xsi:type="XString" StyleIndex="1">
-                     <Text>Nội khoa2Giường</Text>
+                     <Text>Nội khoa 2 Giường</Text>
                   </Element>
                </XElements>
                <AcceptChildElementTypes2>Text</AcceptChildElementTypes2>
@@ -93,7 +93,7 @@
                <FieldSettings />
             </Element>
             <Element xsi:type="XString" StyleIndex="1">
-               <Text>        Số nhập viện： </Text>
+               <Text>        Số nhập viện: </Text>
             </Element>
             <Element xsi:type="XInputField" StyleIndex="1">
                <ID>field5</ID>
@@ -429,7 +429,7 @@
                                     <Format />
                                  </DisplayFormat>
                                  <InnerValue>2021-05-20 00:00:00</InnerValue>
-                                 <BackgroundText>yyyy-MM-dd HH:mm:ss</BackgroundText>
+                                 <BackgroundText>yyyy-MM-dd HH: mm: ss</BackgroundText>
                                  <FieldSettings>
                                     <EditStyle>DateTime</EditStyle>
                                  </FieldSettings>
@@ -548,54 +548,54 @@
                <Text>Triệu chứng chính</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>:Mí mắt bình thường，Không phù、Sa xuống và khép không kín，Kết mạc mi bình thường，Kết mạc nhãn cầu không sung huyết, phù，Củng mạc không vàng，Nhãn cầu ở giữa, vận động bình thường，Hai đồng tử đều nhau, hình tròn，Đường kính khoảng0.3cm，Phản xạ với ánh sáng nhanh nhạy。Tai：Ống tai ngoài không dị dạng、Không có dịch tiết bất thường，Vùng chũm hai bên không đau khi ấn。</Text>
+               <Text>: Mí mắt bình thường, Không phù, Sa xuống và khép không kín, Kết mạc mi bình thường, Kết mạc nhãn cầu không sung huyết, phù, Củng mạc không vàng, Nhãn cầu ở giữa, vận động bình thường, Hai đồng tử đều nhau, hình tròn, Đường kính khoảng 0.3 cm, Phản xạ với ánh sáng nhanh nhạy. Tai: Ống tai ngoài không dị dạng, Không có dịch tiết bất thường, Vùng chũm hai bên không đau khi ấn.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
                <Text>Bệnh sử hiện tại</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>:Mí mắt bình thường，Không phù、Sa xuống và khép không kín，Kết mạc mi bình thường，Kết mạc nhãn cầu không sung huyết, phù，Củng mạc không vàng，Nhãn cầu ở giữa, vận động bình thường，Hai đồng tử đều nhau, hình tròn，Đường kính khoảng0.3cm，Phản xạ với ánh sáng nhanh nhạy。Tai：Ống tai ngoài không dị dạng、Không có dịch tiết bất thường，Vùng chũm hai bên không đau khi ấn。</Text>
+               <Text>: Mí mắt bình thường, Không phù, Sa xuống và khép không kín, Kết mạc mi bình thường, Kết mạc nhãn cầu không sung huyết, phù, Củng mạc không vàng, Nhãn cầu ở giữa, vận động bình thường, Hai đồng tử đều nhau, hình tròn, Đường kính khoảng 0.3 cm, Phản xạ với ánh sáng nhanh nhạy. Tai: Ống tai ngoài không dị dạng, Không có dịch tiết bất thường, Vùng chũm hai bên không đau khi ấn.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
                <Text>Tiền sử</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>:Mí mắt bình thường，Không phù、Sa xuống và khép không kín，Kết mạc mi bình thường，Kết mạc nhãn cầu không sung huyết, phù，Củng mạc không vàng，Nhãn cầu ở giữa, vận động bình thường，Hai đồng tử đều nhau, hình tròn，Đường kính khoảng0.3cm，Phản xạ với ánh sáng nhanh nhạy。Tai：Ống tai ngoài không dị dạng、Không có dịch tiết bất thường，Vùng chũm hai bên không đau khi ấn。</Text>
+               <Text>: Mí mắt bình thường, Không phù, Sa xuống và khép không kín, Kết mạc mi bình thường, Kết mạc nhãn cầu không sung huyết, phù, Củng mạc không vàng, Nhãn cầu ở giữa, vận động bình thường, Hai đồng tử đều nhau, hình tròn, Đường kính khoảng 0.3 cm, Phản xạ với ánh sáng nhanh nhạy. Tai: Ống tai ngoài không dị dạng, Không có dịch tiết bất thường, Vùng chũm hai bên không đau khi ấn.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
                <Text>Tiền sử cá nhân</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>:Mí mắt bình thường，Không phù、Sa xuống và khép không kín，Kết mạc mi bình thường，Kết mạc nhãn cầu không sung huyết, phù，Củng mạc không vàng，Nhãn cầu ở giữa, vận động bình thường，Hai đồng tử đều nhau, hình tròn，Đường kính khoảng0.3cm，Phản xạ với ánh sáng nhanh nhạy。Tai：Ống tai ngoài không dị dạng、Không có dịch tiết bất thường，Vùng chũm hai bên không đau khi ấn。</Text>
+               <Text>: Mí mắt bình thường, Không phù, Sa xuống và khép không kín, Kết mạc mi bình thường, Kết mạc nhãn cầu không sung huyết, phù, Củng mạc không vàng, Nhãn cầu ở giữa, vận động bình thường, Hai đồng tử đều nhau, hình tròn, Đường kính khoảng 0.3 cm, Phản xạ với ánh sáng nhanh nhạy. Tai: Ống tai ngoài không dị dạng, Không có dịch tiết bất thường, Vùng chũm hai bên không đau khi ấn.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
                <Text>Tiền sử hôn nhân và sinh đẻ</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>:Mí mắt bình thường，Không phù、Sa xuống và khép không kín，Kết mạc mi bình thường，Kết mạc nhãn cầu không sung huyết, phù，Củng mạc không vàng，Nhãn cầu ở giữa, vận động bình thường，Hai đồng tử đều nhau, hình tròn，Đường kính khoảng0.3cm，Phản xạ với ánh sáng nhanh nhạy。Tai：Ống tai ngoài không dị dạng、Không có dịch tiết bất thường，Vùng chũm hai bên không đau khi ấn。</Text>
+               <Text>: Mí mắt bình thường, Không phù, Sa xuống và khép không kín, Kết mạc mi bình thường, Kết mạc nhãn cầu không sung huyết, phù, Củng mạc không vàng, Nhãn cầu ở giữa, vận động bình thường, Hai đồng tử đều nhau, hình tròn, Đường kính khoảng 0.3 cm, Phản xạ với ánh sáng nhanh nhạy. Tai: Ống tai ngoài không dị dạng, Không có dịch tiết bất thường, Vùng chũm hai bên không đau khi ấn.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
                <Text>Tiền sử kinh nguyệt</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>:Mí mắt bình thường，Không phù、Sa xuống và khép không kín，Kết mạc mi bình thường，Kết mạc nhãn cầu không sung huyết, phù，Củng mạc không vàng，Nhãn cầu ở giữa, vận động bình thường，Hai đồng tử đều nhau, hình tròn，Đường kính khoảng0.3cm，Phản xạ với ánh sáng nhanh nhạy。Tai：Ống tai ngoài không dị dạng、Không có dịch tiết bất thường，Vùng chũm hai bên không đau khi ấn。</Text>
+               <Text>: Mí mắt bình thường, Không phù, Sa xuống và khép không kín, Kết mạc mi bình thường, Kết mạc nhãn cầu không sung huyết, phù, Củng mạc không vàng, Nhãn cầu ở giữa, vận động bình thường, Hai đồng tử đều nhau, hình tròn, Đường kính khoảng 0.3 cm, Phản xạ với ánh sáng nhanh nhạy. Tai: Ống tai ngoài không dị dạng, Không có dịch tiết bất thường, Vùng chũm hai bên không đau khi ấn.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
                <Text>Tiền sử gia đình</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>:Mí mắt bình thường，Không phù、Sa xuống và khép không kín，Kết mạc mi bình thường，Kết mạc nhãn cầu không sung huyết, phù，Củng mạc không vàng，Nhãn cầu ở giữa, vận động bình thường，Hai đồng tử đều nhau, hình tròn，Đường kính khoảng0.3cm，Phản xạ với ánh sáng nhanh nhạy。Tai：Ống tai ngoài không dị dạng、Không có dịch tiết bất thường，Vùng chũm hai bên không đau khi ấn。</Text>
+               <Text>: Mí mắt bình thường, Không phù, Sa xuống và khép không kín, Kết mạc mi bình thường, Kết mạc nhãn cầu không sung huyết, phù, Củng mạc không vàng, Nhãn cầu ở giữa, vận động bình thường, Hai đồng tử đều nhau, hình tròn, Đường kính khoảng 0.3 cm, Phản xạ với ánh sáng nhanh nhạy. Tai: Ống tai ngoài không dị dạng, Không có dịch tiết bất thường, Vùng chũm hai bên không đau khi ấn.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
-               <Text>Bệnh sử đúng sự thật，Bệnh nhân(Người được ủy quyền)Ký xác nhận</Text>
+               <Text>Bệnh sử đúng sự thật, Bệnh nhân (Người được ủy quyền)Ký xác nhận</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
                <Text>: Tôi       </Text>
@@ -604,7 +604,7 @@
                <Text>Thời gian</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>:2021-05-20</Text>
+               <Text>: 2021-05-20</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
@@ -612,102 +612,102 @@
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="14" />
             <Element xsi:type="XString" StyleIndex="10">
-               <Text>Tình trạng cơ bản：</Text>
+               <Text>Tình trạng cơ bản:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>T  36  ℃    P 63 lần/phút    R 20 lần/phút      BP 118/80mmHg</Text>
+               <Text>T  36  ℃    P 63 lần/phút    R 20 lần/phút      BP 118/80 mmHg</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
-               <Text>Tình trạng chung：</Text>
+               <Text>Tình trạng chung:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>Ý thức tỉnh táo，Phát triển bình thường，Dinh dưỡng tốt，Đi bộ vào phòng bệnh，Tư thế tự chủ，Hợp tác khi khám，Nói thành câu，Trả lời đúng trọng tâm。</Text>
+               <Text>Ý thức tỉnh táo, Phát triển bình thường, Dinh dưỡng tốt, Đi bộ vào phòng bệnh, Tư thế tự chủ, Hợp tác khi khám, Nói thành câu, Trả lời đúng trọng tâm.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
-               <Text>Da và niêm mạc：</Text>
+               <Text>Da và niêm mạc:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>Không vàng da，Không có ban da，Không có điểm bầm, mảng bầm，Không có điểm xuất huyết，Da không nhợt nhạt。</Text>
+               <Text>Không vàng da, Không có ban da, Không có điểm bầm, mảng bầm, Không có điểm xuất huyết, Da không nhợt nhạt.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
-               <Text>Hạch bạch huyết nông：</Text>
+               <Text>Hạch bạch huyết nông:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>Không sờ thấy sưng to。</Text>
+               <Text>Không sờ thấy sưng to.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
-               <Text>Đầu：</Text>
+               <Text>Đầu:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>Đầu：Không dị dạng、Không đau khi ấn。</Text>
+               <Text>Đầu: Không dị dạng, Không đau khi ấn.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>      Mắt：Mí mắt bình thường，Không phù、Sa xuống và khép không kín，Kết mạc mi bình thường，Kết mạc nhãn cầu không sung huyết, phù，Củng mạc không vàng，Nhãn cầu ở giữa, vận động bình thường，Hai đồng tử đều nhau, hình tròn，Đường kính khoảng0.3cm，Phản xạ với ánh sáng nhanh nhạy。</Text>
+               <Text>      Mắt: Mí mắt bình thường, Không phù, Sa xuống và khép không kín, Kết mạc mi bình thường, Kết mạc nhãn cầu không sung huyết, phù, Củng mạc không vàng, Nhãn cầu ở giữa, vận động bình thường, Hai đồng tử đều nhau, hình tròn, Đường kính khoảng 0.3 cm, Phản xạ với ánh sáng nhanh nhạy.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>Tai：Ống tai ngoài không dị dạng、Không có dịch tiết bất thường，Vùng chũm hai bên không đau khi ấn。</Text>
+               <Text>Tai: Ống tai ngoài không dị dạng, Không có dịch tiết bất thường, Vùng chũm hai bên không đau khi ấn.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>Mũi：Hình dạng bình thường，Vách ngăn mũi không lệch，Hốc mũi thông thoáng，Không có dịch tiết mũi，Các vùng xoang không đau khi ấn。</Text>
+               <Text>Mũi: Hình dạng bình thường, Vách ngăn mũi không lệch, Hốc mũi thông thoáng, Không có dịch tiết mũi, Các vùng xoang không đau khi ấn.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>Miệng：Môi hồng hào，Niêm mạc miệng không loét，Há miệng bình thường，Răng sắp xếp đều đặn，Lợi không sưng、Chảy máu，Thè lưỡi ở giữa，Họng không sung huyết，Hai bên amidan không sưng to、Không có dịch rỉ。</Text>
-            </Element>
-            <Element xsi:type="XParagraphFlag" StyleIndex="13" />
-            <Element xsi:type="XString" StyleIndex="10">
-               <Text>Cổ：</Text>
-            </Element>
-            <Element xsi:type="XString" StyleIndex="8">
-               <Text>Hai bên cổ đối xứng，Không thấy tĩnh mạch cổ nổi căng，Động mạch cổ đập bình thường。Cổ mềm，Không có cảm giác kháng cự，Cổ không sờ thấy khối，Khí quản ở giữa，Tuyến giáp không to，Không có nốt，Không có tiếng thổi mạch máu cổ。</Text>
+               <Text>Miệng: Môi hồng hào, Niêm mạc miệng không loét, Há miệng bình thường, Răng sắp xếp đều đặn, Lợi không sưng, Chảy máu, Thè lưỡi ở giữa, Họng không sung huyết, Hai bên amidan không sưng to, Không có dịch rỉ.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
-               <Text>Ngực：</Text>
+               <Text>Cổ:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>Lồng ngực đối xứng, không dị dạng，Khe liên sườn bình thường，Nghiệm pháp ép lồng ngực âm tính，Xương ức không đau khi ấn，Không có khí dưới da、Cảm giác lạo xạo。Hai vú đối xứng，Phát triển theo kiểu nam giới，Không sờ thấy khối。</Text>
+               <Text>Hai bên cổ đối xứng, Không thấy tĩnh mạch cổ nổi căng, Động mạch cổ đập bình thường. Cổ mềm, Không có cảm giác kháng cự, Cổ không sờ thấy khối, Khí quản ở giữa, Tuyến giáp không to, Không có nốt, Không có tiếng thổi mạch máu cổ.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
-               <Text>Phổi：</Text>
+               <Text>Ngực:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>Nhìn：Hô hấp ổn định，Vận động hô hấp hai bên đối xứng，Không có khe liên sườn giãn rộng、Hẹp lại，Không“Dấu hiệu ba lõm”，Không có vận động nghịch thường ngực-bụng。</Text>
-            </Element>
-            <Element xsi:type="XParagraphFlag" StyleIndex="13" />
-            <Element xsi:type="XString" StyleIndex="8">
-               <Text>      Sờ：Rung thanh xúc giác đối xứng，Không có cảm giác cọ màng phổi、Cảm giác lạo xạo dưới da。</Text>
-            </Element>
-            <Element xsi:type="XParagraphFlag" StyleIndex="13" />
-            <Element xsi:type="XString" StyleIndex="8">
-               <Text>      Gõ：Tiếng trong，Bờ dưới phổi và độ di động bờ dưới phổi bình thường。</Text>
-            </Element>
-            <Element xsi:type="XParagraphFlag" StyleIndex="13" />
-            <Element xsi:type="XString" StyleIndex="8">
-               <Text>      Nghe：Âm thở hai phổi rõ，Không nghe thấy ran khô, ran ẩm。Không có tiếng cọ màng phổi，Dẫn truyền giọng nói bình thường。</Text>
+               <Text>Lồng ngực đối xứng, không dị dạng, Khe liên sườn bình thường, Nghiệm pháp ép lồng ngực âm tính, Xương ức không đau khi ấn, Không có khí dưới da, Cảm giác lạo xạo. Hai vú đối xứng, Phát triển theo kiểu nam giới, Không sờ thấy khối.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
-               <Text>Tim：</Text>
+               <Text>Phổi:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>Nhìn：Vùng trước tim không nhô lên bất thường。</Text>
-            </Element>
-            <Element xsi:type="XParagraphFlag" StyleIndex="13" />
-            <Element xsi:type="XString" StyleIndex="8">
-               <Text>      Sờ：Vùng trước tim không rung，Không có cảm giác nâng lên，Mỏm tim đập tại khoang liên sườn thứ năm, trong đường giữa đòn trái0.5cm.。</Text>
+               <Text>Nhìn: Hô hấp ổn định, Vận động hô hấp hai bên đối xứng, Không có khe liên sườn giãn rộng, Hẹp lại, Không“Dấu hiệu ba lõm”, Không có vận động nghịch thường ngực-bụng.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>      Gõ：Giới hạn tiếng đục tim bình thường。</Text>
+               <Text>      Sờ: Rung thanh xúc giác đối xứng, Không có cảm giác cọ màng phổi, Cảm giác lạo xạo dưới da.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="13" />
+            <Element xsi:type="XString" StyleIndex="8">
+               <Text>      Gõ: Tiếng trong, Bờ dưới phổi và độ di động bờ dưới phổi bình thường.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="13" />
+            <Element xsi:type="XString" StyleIndex="8">
+               <Text>      Nghe: Âm thở hai phổi rõ, Không nghe thấy ran khô, ran ẩm. Không có tiếng cọ màng phổi, Dẫn truyền giọng nói bình thường.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="13" />
+            <Element xsi:type="XString" StyleIndex="10">
+               <Text>Tim:</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="8">
+               <Text>Nhìn: Vùng trước tim không nhô lên bất thường.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="13" />
+            <Element xsi:type="XString" StyleIndex="8">
+               <Text>      Sờ: Vùng trước tim không rung, Không có cảm giác nâng lên, Mỏm tim đập tại khoang liên sườn thứ năm, trong đường giữa đòn trái 0.5 cm..</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="13" />
+            <Element xsi:type="XString" StyleIndex="8">
+               <Text>      Gõ: Giới hạn tiếng đục tim bình thường.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XTextTable" NumOfRows="5" NumOfColumns="3">
@@ -864,65 +864,65 @@
                </Columns>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>Đường giữa đòn trái cách đường giữa trước8.5cm</Text>
+               <Text>Đường giữa đòn trái cách đường giữa trước 8.5 cm</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="14" />
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>       Nghe：Nhịp tim63lần/phút，Nhịp tim đều，Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý，Không có tiếng cọ màng ngoài tim。</Text>
+               <Text>       Nghe: Nhịp tim 63 lần/phút, Nhịp tim đều, Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý, Không có tiếng cọ màng ngoài tim.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="15" />
             <Element xsi:type="XString" StyleIndex="10">
-               <Text>Dấu hiệu mạch máu ngoại vi：</Text>
+               <Text>Dấu hiệu mạch máu ngoại vi:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>Không có dấu hiệu đập mao mạch，Không có tiếng súng bắn ở động mạch đùi，Không có mạch nước dội，Động mạch mu chân hai bên đập bình thường。</Text>
+               <Text>Không có dấu hiệu đập mao mạch, Không có tiếng súng bắn ở động mạch đùi, Không có mạch nước dội, Động mạch mu chân hai bên đập bình thường.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
-               <Text>Bụng：</Text>
+               <Text>Bụng:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>Nhìn：Bụng phẳng，Không giãn tĩnh mạch thành bụng，Không thở bụng，Không có sóng nhu động dạ dày-ruột，Không thấy hình ruột。</Text>
+               <Text>Nhìn: Bụng phẳng, Không giãn tĩnh mạch thành bụng, Không thở bụng, Không có sóng nhu động dạ dày-ruột, Không thấy hình ruột.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>      Sờ：Thành bụng mềm，Không sờ thấy khối，Bụng không đau khi ấn và không đau dội ngược，Không sờ thấy gan lách dưới bờ sườn。</Text>
+               <Text>      Sờ: Thành bụng mềm, Không sờ thấy khối, Bụng không đau khi ấn và không đau dội ngược, Không sờ thấy gan lách dưới bờ sườn.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>Gõ：Không có tiếng đục di động，Vùng gan không đau khi gõ，Vùng thận không đau khi gõ。</Text>
+               <Text>Gõ: Không có tiếng đục di động, Vùng gan không đau khi gõ, Vùng thận không đau khi gõ.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>Nghe：Âm ruột4lần/phút。</Text>
-            </Element>
-            <Element xsi:type="XParagraphFlag" StyleIndex="13" />
-            <Element xsi:type="XString" StyleIndex="10">
-               <Text>Hậu môn, trực tràng và cơ quan sinh dục ngoài：</Text>
-            </Element>
-            <Element xsi:type="XString" StyleIndex="8">
-               <Text>Chưa khám。</Text>
+               <Text>Nghe: Âm ruột 4 lần/phút.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
-               <Text>Cột sống và tứ chi：</Text>
+               <Text>Hậu môn, trực tràng và cơ quan sinh dục ngoài:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>Hai tay không run，Cột sống hơi cong vẹo，Khớp không đỏ, sưng，Khớp không đau khi ấn，Hai chi dưới không phù。</Text>
+               <Text>Chưa khám.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
-               <Text>Hệ thần kinh：</Text>
+               <Text>Cột sống và tứ chi:</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>Phản xạ sinh lý：Phản xạ cơ nhị đầu、Phản xạ cơ tam đầu、Phản xạ màng xương quay còn、Đối xứng，Phản xạ thành bụng、Phản xạ gân gối、Phản xạ gân gót còn。</Text>
+               <Text>Hai tay không run, Cột sống hơi cong vẹo, Khớp không đỏ, sưng, Khớp không đau khi ấn, Hai chi dưới không phù.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="13" />
+            <Element xsi:type="XString" StyleIndex="10">
+               <Text>Hệ thần kinh:</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="8">
+               <Text>Phản xạ sinh lý: Phản xạ cơ nhị đầu, Phản xạ cơ tam đầu, Phản xạ màng xương quay còn, Đối xứng, Phản xạ thành bụng, Phản xạ gân gối, Phản xạ gân gót còn.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="10">
                <Text>Phản xạ bệnh lý</Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="8">
-               <Text>：Dấu hiệu Babinski hai bên âm tính；Dấu hiệu Kernig hai bên không gợi được。</Text>
+               <Text>: Dấu hiệu Babinski hai bên âm tính; Dấu hiệu Kernig hai bên không gợi được.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XString" StyleIndex="11">
@@ -933,7 +933,7 @@
                <Text>    </Text>
             </Element>
             <Element xsi:type="XString" StyleIndex="12">
-               <Text>Ý thức tỉnh táo，Hô hấp ổn định，Trả lời đúng trọng tâm，Nói rõ ràng，Hợp tác khi khám，Da và niêm mạc toàn thân không vàng，Hạch bạch huyết toàn thân không thấy sưng to，Âm thở hai phổi rõ，Không nghe thấy ran khô, ran ẩm，Nhịp tim72lần/phút，Nhịp đều，Không nghe thấy tiếng thổi tim，Bụng không đau khi ấn、Đau dội ngược và căng cơ，Cơ thắt lưng căng，L4/5，L5/S1Mô mềm cạnh cột sống đau nhẹ khi ấn，Điểm thần kinh tọa đau nhẹ khi ấn，Tê chi dưới trái, rõ nhất ở mu bàn chân。Nghiệm pháp nâng thẳng chân(+)，“4”字试验(-)。Hai chi dưới không phù。</Text>
+               <Text>Ý thức tỉnh táo, Hô hấp ổn định, Trả lời đúng trọng tâm, Nói rõ ràng, Hợp tác khi khám, Da và niêm mạc toàn thân không vàng, Hạch bạch huyết toàn thân không thấy sưng to, Âm thở hai phổi rõ, Không nghe thấy ran khô, ran ẩm, Nhịp tim 72 lần/phút, Nhịp đều, Không nghe thấy tiếng thổi tim, Bụng không đau khi ấn, Đau dội ngược và căng cơ, Cơ thắt lưng căng, L4/5, L5/S1 Mô mềm cạnh cột sống đau nhẹ khi ấn, Điểm thần kinh tọa đau nhẹ khi ấn, Tê chi dưới trái, rõ nhất ở mu bàn chân. Nghiệm pháp nâng thẳng chân (+),“4”字试验(-).Hai chi dưới không phù.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="15" />
             <Element xsi:type="XString" StyleIndex="11">
@@ -941,11 +941,11 @@
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="14" />
             <Element xsi:type="XString" StyleIndex="12">
-               <Text>Tạm thời chưa có。</Text>
+               <Text>Tạm thời chưa có.</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="15" />
             <Element xsi:type="XString" StyleIndex="10">
-               <Text>Chẩn đoán sơ bộ：</Text>
+               <Text>Chẩn đoán sơ bộ:</Text>
             </Element>
             <Element xsi:type="XParagraphFlag" StyleIndex="13" />
             <Element xsi:type="XParagraphFlag" StyleIndex="15" />
@@ -1091,55 +1091,55 @@ Giới tính: Nữ Nghề nghiệp: Lao động tự do
 Tuổi: 23 Thời gian nhập viện: 2021-05-17 
 Đã kết hôn chưa: Chưa kết hôn Thời gian ghi chép: 2021-05-20 00:00:00 
 Dân tộc: Dân tộc Hán Mức độ tin cậy: Đáng tin cậy 
-Người trình bày: Tôi Địa chỉ: 重庆市 Triệu chứng chính:Mí mắt bình thường，Không phù、Sa xuống và khép không kín，Kết mạc mi bình thường，Kết mạc nhãn cầu không sung huyết, phù，Củng mạc không vàng，Nhãn cầu ở giữa, vận động bình thường，Hai đồng tử đều nhau, hình tròn，Đường kính khoảng0.3cm，Phản xạ với ánh sáng nhanh nhạy。Tai：Ống tai ngoài không dị dạng、Không có dịch tiết bất thường，Vùng chũm hai bên không đau khi ấn。
-Bệnh sử hiện tại:Mí mắt bình thường，Không phù、Sa xuống và khép không kín，Kết mạc mi bình thường，Kết mạc nhãn cầu không sung huyết, phù，Củng mạc không vàng，Nhãn cầu ở giữa, vận động bình thường，Hai đồng tử đều nhau, hình tròn，Đường kính khoảng0.3cm，Phản xạ với ánh sáng nhanh nhạy。Tai：Ống tai ngoài không dị dạng、Không có dịch tiết bất thường，Vùng chũm hai bên không đau khi ấn。
-Tiền sử:Mí mắt bình thường，Không phù、Sa xuống và khép không kín，Kết mạc mi bình thường，Kết mạc nhãn cầu không sung huyết, phù，Củng mạc không vàng，Nhãn cầu ở giữa, vận động bình thường，Hai đồng tử đều nhau, hình tròn，Đường kính khoảng0.3cm，Phản xạ với ánh sáng nhanh nhạy。Tai：Ống tai ngoài không dị dạng、Không có dịch tiết bất thường，Vùng chũm hai bên không đau khi ấn。
-Tiền sử cá nhân:Mí mắt bình thường，Không phù、Sa xuống và khép không kín，Kết mạc mi bình thường，Kết mạc nhãn cầu không sung huyết, phù，Củng mạc không vàng，Nhãn cầu ở giữa, vận động bình thường，Hai đồng tử đều nhau, hình tròn，Đường kính khoảng0.3cm，Phản xạ với ánh sáng nhanh nhạy。Tai：Ống tai ngoài không dị dạng、Không có dịch tiết bất thường，Vùng chũm hai bên không đau khi ấn。
-Tiền sử hôn nhân và sinh đẻ:Mí mắt bình thường，Không phù、Sa xuống và khép không kín，Kết mạc mi bình thường，Kết mạc nhãn cầu không sung huyết, phù，Củng mạc không vàng，Nhãn cầu ở giữa, vận động bình thường，Hai đồng tử đều nhau, hình tròn，Đường kính khoảng0.3cm，Phản xạ với ánh sáng nhanh nhạy。Tai：Ống tai ngoài không dị dạng、Không có dịch tiết bất thường，Vùng chũm hai bên không đau khi ấn。
-Tiền sử kinh nguyệt:Mí mắt bình thường，Không phù、Sa xuống và khép không kín，Kết mạc mi bình thường，Kết mạc nhãn cầu không sung huyết, phù，Củng mạc không vàng，Nhãn cầu ở giữa, vận động bình thường，Hai đồng tử đều nhau, hình tròn，Đường kính khoảng0.3cm，Phản xạ với ánh sáng nhanh nhạy。Tai：Ống tai ngoài không dị dạng、Không có dịch tiết bất thường，Vùng chũm hai bên không đau khi ấn。
-Tiền sử gia đình:Mí mắt bình thường，Không phù、Sa xuống và khép không kín，Kết mạc mi bình thường，Kết mạc nhãn cầu không sung huyết, phù，Củng mạc không vàng，Nhãn cầu ở giữa, vận động bình thường，Hai đồng tử đều nhau, hình tròn，Đường kính khoảng0.3cm，Phản xạ với ánh sáng nhanh nhạy。Tai：Ống tai ngoài không dị dạng、Không có dịch tiết bất thường，Vùng chũm hai bên không đau khi ấn。
+Người trình bày: Tôi Địa chỉ: 重庆市 Triệu chứng chính: Mí mắt bình thường, Không phù, Sa xuống và khép không kín, Kết mạc mi bình thường, Kết mạc nhãn cầu không sung huyết, phù, Củng mạc không vàng, Nhãn cầu ở giữa, vận động bình thường, Hai đồng tử đều nhau, hình tròn, Đường kính khoảng 0.3 cm, Phản xạ với ánh sáng nhanh nhạy. Tai: Ống tai ngoài không dị dạng, Không có dịch tiết bất thường, Vùng chũm hai bên không đau khi ấn.
+Bệnh sử hiện tại: Mí mắt bình thường, Không phù, Sa xuống và khép không kín, Kết mạc mi bình thường, Kết mạc nhãn cầu không sung huyết, phù, Củng mạc không vàng, Nhãn cầu ở giữa, vận động bình thường, Hai đồng tử đều nhau, hình tròn, Đường kính khoảng 0.3 cm, Phản xạ với ánh sáng nhanh nhạy. Tai: Ống tai ngoài không dị dạng, Không có dịch tiết bất thường, Vùng chũm hai bên không đau khi ấn.
+Tiền sử: Mí mắt bình thường, Không phù, Sa xuống và khép không kín, Kết mạc mi bình thường, Kết mạc nhãn cầu không sung huyết, phù, Củng mạc không vàng, Nhãn cầu ở giữa, vận động bình thường, Hai đồng tử đều nhau, hình tròn, Đường kính khoảng 0.3 cm, Phản xạ với ánh sáng nhanh nhạy. Tai: Ống tai ngoài không dị dạng, Không có dịch tiết bất thường, Vùng chũm hai bên không đau khi ấn.
+Tiền sử cá nhân: Mí mắt bình thường, Không phù, Sa xuống và khép không kín, Kết mạc mi bình thường, Kết mạc nhãn cầu không sung huyết, phù, Củng mạc không vàng, Nhãn cầu ở giữa, vận động bình thường, Hai đồng tử đều nhau, hình tròn, Đường kính khoảng 0.3 cm, Phản xạ với ánh sáng nhanh nhạy. Tai: Ống tai ngoài không dị dạng, Không có dịch tiết bất thường, Vùng chũm hai bên không đau khi ấn.
+Tiền sử hôn nhân và sinh đẻ: Mí mắt bình thường, Không phù, Sa xuống và khép không kín, Kết mạc mi bình thường, Kết mạc nhãn cầu không sung huyết, phù, Củng mạc không vàng, Nhãn cầu ở giữa, vận động bình thường, Hai đồng tử đều nhau, hình tròn, Đường kính khoảng 0.3 cm, Phản xạ với ánh sáng nhanh nhạy. Tai: Ống tai ngoài không dị dạng, Không có dịch tiết bất thường, Vùng chũm hai bên không đau khi ấn.
+Tiền sử kinh nguyệt: Mí mắt bình thường, Không phù, Sa xuống và khép không kín, Kết mạc mi bình thường, Kết mạc nhãn cầu không sung huyết, phù, Củng mạc không vàng, Nhãn cầu ở giữa, vận động bình thường, Hai đồng tử đều nhau, hình tròn, Đường kính khoảng 0.3 cm, Phản xạ với ánh sáng nhanh nhạy. Tai: Ống tai ngoài không dị dạng, Không có dịch tiết bất thường, Vùng chũm hai bên không đau khi ấn.
+Tiền sử gia đình: Mí mắt bình thường, Không phù, Sa xuống và khép không kín, Kết mạc mi bình thường, Kết mạc nhãn cầu không sung huyết, phù, Củng mạc không vàng, Nhãn cầu ở giữa, vận động bình thường, Hai đồng tử đều nhau, hình tròn, Đường kính khoảng 0.3 cm, Phản xạ với ánh sáng nhanh nhạy. Tai: Ống tai ngoài không dị dạng, Không có dịch tiết bất thường, Vùng chũm hai bên không đau khi ấn.
 
-Bệnh sử đúng sự thật，Bệnh nhân(Người được ủy quyền)Ký xác nhận: Tôi       Thời gian:2021-05-20
+Bệnh sử đúng sự thật, Bệnh nhân (Người được ủy quyền)Ký xác nhận: Tôi       Thời gian: 2021-05-20
 Khám thực thể
-Tình trạng cơ bản：T  36  ℃    P 63 lần/phút    R 20 lần/phút      BP 118/80mmHg
-Tình trạng chung：Ý thức tỉnh táo，Phát triển bình thường，Dinh dưỡng tốt，Đi bộ vào phòng bệnh，Tư thế tự chủ，Hợp tác khi khám，Nói thành câu，Trả lời đúng trọng tâm。
-Da và niêm mạc：Không vàng da，Không có ban da，Không có điểm bầm, mảng bầm，Không có điểm xuất huyết，Da không nhợt nhạt。
-Hạch bạch huyết nông：Không sờ thấy sưng to。
-Đầu：Đầu：Không dị dạng、Không đau khi ấn。
-      Mắt：Mí mắt bình thường，Không phù、Sa xuống và khép không kín，Kết mạc mi bình thường，Kết mạc nhãn cầu không sung huyết, phù，Củng mạc không vàng，Nhãn cầu ở giữa, vận động bình thường，Hai đồng tử đều nhau, hình tròn，Đường kính khoảng0.3cm，Phản xạ với ánh sáng nhanh nhạy。
-Tai：Ống tai ngoài không dị dạng、Không có dịch tiết bất thường，Vùng chũm hai bên không đau khi ấn。
-Mũi：Hình dạng bình thường，Vách ngăn mũi không lệch，Hốc mũi thông thoáng，Không có dịch tiết mũi，Các vùng xoang không đau khi ấn。
-Miệng：Môi hồng hào，Niêm mạc miệng không loét，Há miệng bình thường，Răng sắp xếp đều đặn，Lợi không sưng、Chảy máu，Thè lưỡi ở giữa，Họng không sung huyết，Hai bên amidan không sưng to、Không có dịch rỉ。
-Cổ：Hai bên cổ đối xứng，Không thấy tĩnh mạch cổ nổi căng，Động mạch cổ đập bình thường。Cổ mềm，Không có cảm giác kháng cự，Cổ không sờ thấy khối，Khí quản ở giữa，Tuyến giáp không to，Không có nốt，Không có tiếng thổi mạch máu cổ。
-Ngực：Lồng ngực đối xứng, không dị dạng，Khe liên sườn bình thường，Nghiệm pháp ép lồng ngực âm tính，Xương ức không đau khi ấn，Không có khí dưới da、Cảm giác lạo xạo。Hai vú đối xứng，Phát triển theo kiểu nam giới，Không sờ thấy khối。
-Phổi：Nhìn：Hô hấp ổn định，Vận động hô hấp hai bên đối xứng，Không có khe liên sườn giãn rộng、Hẹp lại，Không“Dấu hiệu ba lõm”，Không có vận động nghịch thường ngực-bụng。
-      Sờ：Rung thanh xúc giác đối xứng，Không có cảm giác cọ màng phổi、Cảm giác lạo xạo dưới da。
-      Gõ：Tiếng trong，Bờ dưới phổi và độ di động bờ dưới phổi bình thường。
-      Nghe：Âm thở hai phổi rõ，Không nghe thấy ran khô, ran ẩm。Không có tiếng cọ màng phổi，Dẫn truyền giọng nói bình thường。
-Tim：Nhìn：Vùng trước tim không nhô lên bất thường。
-      Sờ：Vùng trước tim không rung，Không có cảm giác nâng lên，Mỏm tim đập tại khoang liên sườn thứ năm, trong đường giữa đòn trái0.5cm.。
-      Gõ：Giới hạn tiếng đục tim bình thường。
+Tình trạng cơ bản: T  36  ℃    P 63 lần/phút    R 20 lần/phút      BP 118/80 mmHg
+Tình trạng chung: Ý thức tỉnh táo, Phát triển bình thường, Dinh dưỡng tốt, Đi bộ vào phòng bệnh, Tư thế tự chủ, Hợp tác khi khám, Nói thành câu, Trả lời đúng trọng tâm.
+Da và niêm mạc: Không vàng da, Không có ban da, Không có điểm bầm, mảng bầm, Không có điểm xuất huyết, Da không nhợt nhạt.
+Hạch bạch huyết nông: Không sờ thấy sưng to.
+Đầu: Đầu: Không dị dạng, Không đau khi ấn.
+      Mắt: Mí mắt bình thường, Không phù, Sa xuống và khép không kín, Kết mạc mi bình thường, Kết mạc nhãn cầu không sung huyết, phù, Củng mạc không vàng, Nhãn cầu ở giữa, vận động bình thường, Hai đồng tử đều nhau, hình tròn, Đường kính khoảng 0.3 cm, Phản xạ với ánh sáng nhanh nhạy.
+Tai: Ống tai ngoài không dị dạng, Không có dịch tiết bất thường, Vùng chũm hai bên không đau khi ấn.
+Mũi: Hình dạng bình thường, Vách ngăn mũi không lệch, Hốc mũi thông thoáng, Không có dịch tiết mũi, Các vùng xoang không đau khi ấn.
+Miệng: Môi hồng hào, Niêm mạc miệng không loét, Há miệng bình thường, Răng sắp xếp đều đặn, Lợi không sưng, Chảy máu, Thè lưỡi ở giữa, Họng không sung huyết, Hai bên amidan không sưng to, Không có dịch rỉ.
+Cổ: Hai bên cổ đối xứng, Không thấy tĩnh mạch cổ nổi căng, Động mạch cổ đập bình thường. Cổ mềm, Không có cảm giác kháng cự, Cổ không sờ thấy khối, Khí quản ở giữa, Tuyến giáp không to, Không có nốt, Không có tiếng thổi mạch máu cổ.
+Ngực: Lồng ngực đối xứng, không dị dạng, Khe liên sườn bình thường, Nghiệm pháp ép lồng ngực âm tính, Xương ức không đau khi ấn, Không có khí dưới da, Cảm giác lạo xạo. Hai vú đối xứng, Phát triển theo kiểu nam giới, Không sờ thấy khối.
+Phổi: Nhìn: Hô hấp ổn định, Vận động hô hấp hai bên đối xứng, Không có khe liên sườn giãn rộng, Hẹp lại, Không“Dấu hiệu ba lõm”, Không có vận động nghịch thường ngực-bụng.
+      Sờ: Rung thanh xúc giác đối xứng, Không có cảm giác cọ màng phổi, Cảm giác lạo xạo dưới da.
+      Gõ: Tiếng trong, Bờ dưới phổi và độ di động bờ dưới phổi bình thường.
+      Nghe: Âm thở hai phổi rõ, Không nghe thấy ran khô, ran ẩm. Không có tiếng cọ màng phổi, Dẫn truyền giọng nói bình thường.
+Tim: Nhìn: Vùng trước tim không nhô lên bất thường.
+      Sờ: Vùng trước tim không rung, Không có cảm giác nâng lên, Mỏm tim đập tại khoang liên sườn thứ năm, trong đường giữa đòn trái 0.5 cm..
+      Gõ: Giới hạn tiếng đục tim bình thường.
 
 Bờ phải（cm） Khoang liên sườn Bờ trái（cm） 
 2 Ⅱ 2 
 2 Ⅲ 4 
 3 Ⅳ 6 
-  Ⅴ 8 Đường giữa đòn trái cách đường giữa trước8.5cm
-       Nghe：Nhịp tim63lần/phút，Nhịp tim đều，Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý，Không có tiếng cọ màng ngoài tim。
-Dấu hiệu mạch máu ngoại vi：Không có dấu hiệu đập mao mạch，Không có tiếng súng bắn ở động mạch đùi，Không có mạch nước dội，Động mạch mu chân hai bên đập bình thường。
-Bụng：Nhìn：Bụng phẳng，Không giãn tĩnh mạch thành bụng，Không thở bụng，Không có sóng nhu động dạ dày-ruột，Không thấy hình ruột。
-      Sờ：Thành bụng mềm，Không sờ thấy khối，Bụng không đau khi ấn và không đau dội ngược，Không sờ thấy gan lách dưới bờ sườn。
-Gõ：Không có tiếng đục di động，Vùng gan không đau khi gõ，Vùng thận không đau khi gõ。
-Nghe：Âm ruột4lần/phút。
-Hậu môn, trực tràng và cơ quan sinh dục ngoài：Chưa khám。
-Cột sống và tứ chi：Hai tay không run，Cột sống hơi cong vẹo，Khớp không đỏ, sưng，Khớp không đau khi ấn，Hai chi dưới không phù。
-Hệ thần kinh：Phản xạ sinh lý：Phản xạ cơ nhị đầu、Phản xạ cơ tam đầu、Phản xạ màng xương quay còn、Đối xứng，Phản xạ thành bụng、Phản xạ gân gối、Phản xạ gân gót còn。
-Phản xạ bệnh lý：Dấu hiệu Babinski hai bên âm tính；Dấu hiệu Kernig hai bên không gợi được。
+  Ⅴ 8 Đường giữa đòn trái cách đường giữa trước 8.5 cm
+       Nghe: Nhịp tim 63 lần/phút, Nhịp tim đều, Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý, Không có tiếng cọ màng ngoài tim.
+Dấu hiệu mạch máu ngoại vi: Không có dấu hiệu đập mao mạch, Không có tiếng súng bắn ở động mạch đùi, Không có mạch nước dội, Động mạch mu chân hai bên đập bình thường.
+Bụng: Nhìn: Bụng phẳng, Không giãn tĩnh mạch thành bụng, Không thở bụng, Không có sóng nhu động dạ dày-ruột, Không thấy hình ruột.
+      Sờ: Thành bụng mềm, Không sờ thấy khối, Bụng không đau khi ấn và không đau dội ngược, Không sờ thấy gan lách dưới bờ sườn.
+Gõ: Không có tiếng đục di động, Vùng gan không đau khi gõ, Vùng thận không đau khi gõ.
+Nghe: Âm ruột 4 lần/phút.
+Hậu môn, trực tràng và cơ quan sinh dục ngoài: Chưa khám.
+Cột sống và tứ chi: Hai tay không run, Cột sống hơi cong vẹo, Khớp không đỏ, sưng, Khớp không đau khi ấn, Hai chi dưới không phù.
+Hệ thần kinh: Phản xạ sinh lý: Phản xạ cơ nhị đầu, Phản xạ cơ tam đầu, Phản xạ màng xương quay còn, Đối xứng, Phản xạ thành bụng, Phản xạ gân gối, Phản xạ gân gót còn.
+Phản xạ bệnh lý: Dấu hiệu Babinski hai bên âm tính; Dấu hiệu Kernig hai bên không gợi được.
 Tình trạng chuyên khoa
-    Ý thức tỉnh táo，Hô hấp ổn định，Trả lời đúng trọng tâm，Nói rõ ràng，Hợp tác khi khám，Da và niêm mạc toàn thân không vàng，Hạch bạch huyết toàn thân không thấy sưng to，Âm thở hai phổi rõ，Không nghe thấy ran khô, ran ẩm，Nhịp tim72lần/phút，Nhịp đều，Không nghe thấy tiếng thổi tim，Bụng không đau khi ấn、Đau dội ngược và căng cơ，Cơ thắt lưng căng，L4/5，L5/S1Mô mềm cạnh cột sống đau nhẹ khi ấn，Điểm thần kinh tọa đau nhẹ khi ấn，Tê chi dưới trái, rõ nhất ở mu bàn chân。Nghiệm pháp nâng thẳng chân(+)，“4”字试验(-)。Hai chi dưới không phù。
+    Ý thức tỉnh táo, Hô hấp ổn định, Trả lời đúng trọng tâm, Nói rõ ràng, Hợp tác khi khám, Da và niêm mạc toàn thân không vàng, Hạch bạch huyết toàn thân không thấy sưng to, Âm thở hai phổi rõ, Không nghe thấy ran khô, ran ẩm, Nhịp tim 72 lần/phút, Nhịp đều, Không nghe thấy tiếng thổi tim, Bụng không đau khi ấn, Đau dội ngược và căng cơ, Cơ thắt lưng căng, L4/5, L5/S1 Mô mềm cạnh cột sống đau nhẹ khi ấn, Điểm thần kinh tọa đau nhẹ khi ấn, Tê chi dưới trái, rõ nhất ở mu bàn chân. Nghiệm pháp nâng thẳng chân (+),“4”字试验(-).Hai chi dưới không phù.
 Cận lâm sàng
-Tạm thời chưa có。
-Chẩn đoán sơ bộ：
+Tạm thời chưa có.
+Chẩn đoán sơ bộ:
 
 
                                                                     Bác sĩ ký tên:</BodyText>
