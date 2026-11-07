@@ -332,11 +332,11 @@ stubs = add_methods_to_class(stubs, 'OutPatChargeApp', [
 stubs = add_methods_to_class(stubs, 'OutPatientDmnService', [
     '        public object SelectAccountingPlanList(NewtouchHIS.Lib.Base.Model.Pagination pagination, string keyword, System.DateTime? kssj, System.DateTime? jssj, int? zxzt, string orgId, int? zsftx, int? sycstx, string sfzt)',
     '        {',
-    '            throw new NotSupportedException("Chức năng truy vấn kế hoạch ghi账 ngoại trú chưa được triển khai trong bản .NET Core.");',
+    '            throw new NotSupportedException("Chức năng truy vấn kế hoạch ghi sổ ngoại trú chưa được triển khai trong bản .NET Core.");',
     '        }',
     '        public void overAccountingPlan(string mxId, string orgId, string rygh)',
     '        {',
-    '            throw new NotSupportedException("Chức năng kết thúc kế hoạch ghi账 ngoại trú chưa được triển khai trong bản .NET Core.");',
+    '            throw new NotSupportedException("Chức năng kết thúc kế hoạch ghi sổ ngoại trú chưa được triển khai trong bản .NET Core.");',
     '        }'])
 stubs = add_methods_to_class(stubs, 'RefundDmnService', [
     '        public object GetBasicInfoSearchListInRegister(string keyword, string orgId)',
@@ -345,7 +345,7 @@ stubs = add_methods_to_class(stubs, 'RefundDmnService', [
     '        }',
     '        public object GetBasicInfoSearchList(string keyword, string orgId, string userCode, string p4, string from, string brzybzType)',
     '        {',
-    '            throw new NotSupportedException("Chức năng tìm kiếm bệnh nhân ghi账 chưa được triển khai trong bản .NET Core.");',
+    '            throw new NotSupportedException("Chức năng tìm kiếm bệnh nhân ghi sổ chưa được triển khai trong bản .NET Core.");',
     '        }'])
 stubs = add_methods_to_class(stubs, 'SyncTreatmentServiceRecordDmnService', [
     '        public object GetList(string organizeId, int? clzt = null, string mzh = null, string zyh = null, string zlsgh = null)',

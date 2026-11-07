@@ -119,8 +119,8 @@ font-weight:bolder;
 }  
 #input1{width: 100px;}   
 
-/* FIX-2 (C-B4, login mobile): nhu EMR — head 1160px / form float right bi cat
-   2 bien o viewport hep. Chi thu hep o <=640px, khong doi layout desktop. */
+/* FIX-2 (C-B4, login mobile): như EMR — head 1160px / form float right bị cắt
+   2 biên ở viewport hẹp. Chỉ thu hẹp ở <=640px, không đổi layout desktop. */
 @media (max-width: 640px) {
     .login .login-head { width: 100%; }
     .login .login-con { height: auto; }

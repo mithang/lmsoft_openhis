@@ -949,11 +949,11 @@ and b.Id = @roleId";
     
         public object SelectAccountingPlanList(NewtouchHIS.Lib.Base.Model.Pagination pagination, string keyword, System.DateTime? kssj, System.DateTime? jssj, int? zxzt, string orgId, int? zsftx, int? sycstx, string sfzt)
         {
-            throw new NotSupportedException("Chức năng truy vấn kế hoạch ghisổ ngoại trú chưa được triển khai trong bản .NET Core.");
+            throw new NotSupportedException("Chức năng truy vấn kế hoạch ghi sổ ngoại trú chưa được triển khai trong bản .NET Core.");
         }
         public void overAccountingPlan(string mxId, string orgId, string rygh)
         {
-            throw new NotSupportedException("Chức năng kết thúc kế hoạch ghisổ ngoại trú chưa được triển khai trong bản .NET Core.");
+            throw new NotSupportedException("Chức năng kết thúc kế hoạch ghi sổ ngoại trú chưa được triển khai trong bản .NET Core.");
         }
     }
 
@@ -1413,7 +1413,7 @@ where gh.OrganizeId = @orgId and gh.zt = '1'";
         }
         public object GetBasicInfoSearchList(string keyword, string orgId, string userCode, string p4, string from, string brzybzType)
         {
-            throw new NotSupportedException("Chức năng tìm kiếm bệnh nhân ghisổ chưa được triển khai trong bản .NET Core.");
+            throw new NotSupportedException("Chức năng tìm kiếm bệnh nhân ghi sổ chưa được triển khai trong bản .NET Core.");
         }
             public object GetZyMzYjjPatientSearch(object p0, object p1, object p2)
         {

@@ -106,9 +106,9 @@ border-top-right-radius: 5px;
 .login .login-foot{ font-size: 14px;color: #cccccc; position: absolute; left: 10%; 
 bottom: 10px;}
 
-/* R-24: man hinh hep (mobile/tablet doc) — bo co dan theo ti le cua resize() (dat width/transform
-   inline tren body), dung bo cuc co dinh vua khung hinh thay vi phong to 1920px roi thu nho.
-   Chi anh huong <=991px; desktop giu nguyen. */
+/* R-24: màn hình hẹp (mobile/tablet dọc) — bỏ co dãn theo tỉ lệ của resize() (đặt width/transform
+   inline trên body), dùng bố cục cố định vừa khung hình thay vì phóng to 1920px rồi thu nhỏ.
+   Chỉ ảnh hưởng <=991px; desktop giữ nguyên. */
 @media (max-width: 991px) {
     body {
         width: auto !important;
