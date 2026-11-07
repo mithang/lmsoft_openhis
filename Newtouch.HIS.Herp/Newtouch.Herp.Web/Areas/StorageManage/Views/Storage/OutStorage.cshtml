@@ -440,7 +440,7 @@
         $.najax({
             url: "/StorageManage/Storage/SaveOutStorageInfo",
             dataType: "json",
-            data: { crkdj: crkdj, crkdjmx: djmx },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  crkdj: crkdj, crkdjmx: djmx },
             type: "POST",
             success: function (res) {
                 if (res.state === "success") {

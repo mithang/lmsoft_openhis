@@ -638,7 +638,7 @@
             url: "/StorageManage/Storage/SaveOutStorageInfo",
             type: "POST",
             alerterror: false,
-            data: { crkdj: crkdj, crkdjmx: list },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  crkdj: crkdj, crkdjmx: list },
             dataType: "json",
             success: function (res) {
                 if (res.state === "success") {
