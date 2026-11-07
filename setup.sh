@@ -99,8 +99,18 @@ port_holder() { # $1 = port -> best-effort "pid/command" or "unknown"
 }
 
 log "Checking required ports are free..."
+# Ports published by this compose project's own containers are not conflicts:
+# re-running setup.sh while the stack is up must keep working.
+PROJECT_NAME="$(basename "$PWD" | tr '[:upper:]' '[:lower:]' | tr -cd 'a-z0-9_-')"
+own_ports() {
+  docker ps --filter "label=com.docker.compose.project=${PROJECT_NAME}" \
+    --format '{{.Ports}}' 2>/dev/null \
+    | grep -oE ':[0-9]+->' | tr -d ':->' | sort -u || true
+}
+OWN_PORTS=" $(own_ports | tr '\n' ' ') "
 BUSY=""
 for p in $PORTS; do
+  case "$OWN_PORTS" in *" $p "*) continue ;; esac
   if port_busy "$p"; then
     BUSY="$BUSY $p($(port_holder "$p"))"
   fi
@@ -164,10 +174,14 @@ if ! have_bak; then
       || fail "download failed — check OPENHIS_BACKUP_URL and your network."
     case "$OPENHIS_BACKUP_URL" in
       *.zip)     command -v unzip >/dev/null 2>&1 || fail "unzip is needed to extract a .zip backup."
-                unzip -q -o "$tmpdl/archive" -d sqlbackup \
+                unzip -j -q -o "$tmpdl/archive" '*.bak' -d sqlbackup \
                   || fail "could not extract the .zip backup." ;;
-      *.tar.gz|*.tgz) tar -xzf "$tmpdl/archive" -C sqlbackup \
-                  || fail "could not extract the .tar.gz backup." ;;
+      *.tar.gz|*.tgz)
+                tmpx="$(mktemp -d)"
+                tar -xzf "$tmpdl/archive" -C "$tmpx" \
+                  || { rm -rf "$tmpx"; fail "could not extract the .tar.gz backup."; }
+                find "$tmpx" -name '*.bak' -exec mv {} sqlbackup/ \;
+                rm -rf "$tmpx" ;;
       *) fail "OPENHIS_BACKUP_URL must end in .zip or .tar.gz (got: $OPENHIS_BACKUP_URL)" ;;
     esac
     rm -rf "$tmpdl"
@@ -231,18 +245,20 @@ if [ "$ALL" -eq 1 ]; then
   log "Starting all 23 apps..."
   $COMPOSE --profile all up -d
 else
-  log "Starting core apps (BaseAPI, Sett-API, SSO)..."
-  $COMPOSE up -d baseapi settapi sso
+  log "Starting core apps (BaseAPI, Sett-API, SSO, static)..."
+  $COMPOSE up -d baseapi settapi sso static
 fi
 
 wait_http() { # $1 = url, $2 = seconds, $3 = label
   local url="$1" secs="$2" label="$3" i code
   for i in $(seq 1 "$((secs / 5))"); do
-    code="$(curl_loopback -o /dev/null -w '%{http_code}' "$url" 2>/dev/null || echo 000)"
-    if [ "$code" != "000" ]; then
-      log "$label is up (HTTP $code)."
-      return 0
-    fi
+    code="$(curl_loopback --connect-timeout 3 --max-time 5 -o /dev/null -w '%{http_code}' "$url" 2>/dev/null)" || code=000
+    case "$code" in
+      2??|3??)
+        log "$label is up (HTTP $code)."
+        return 0
+        ;;
+    esac
     sleep 5
   done
   return 1

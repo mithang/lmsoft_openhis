@@ -1,0 +1,14 @@
+Hệ thống có 11 portal web, hiện chỉ SSO đang chạy, 10 cái còn lại đang tắt để giảm RAM (lúc chụp demo thì mở từng cái một):
+SSO 5208 — đăng nhập tập trung, đang chạy
+Sett 5221 — quyết toán viện phí, đang tắt
+CIS 5234 — lâm sàng (khám, kê đơn), đang tắt
+EMR 5235 — bệnh án điện tử, đang tắt
+Herp 5236 — kho vật tư, đang tắt
+PDS 5237 — dược (phát thuốc), đang tắt
+MRQC 5220 — kiểm soát chất lượng, đang tắt
+OR 5231 — phòng mổ, đang tắt
+MRMS 5232 — quản lý hồ sơ bệnh án, đang tắt
+Base Web 5238 — quản trị hệ thống, đang tắt
+Base HOSP 5233 — quản trị bệnh viện, đang tắt
+Ngoài ra có 12 API/dịch vụ đi kèm: BaseAPI 7001 (đang chạy), Sett.API 7002 (đang chạy), CIS.API 5334, EMR.API 5335, Herp.API 5336, MRMS.API 5332, OR.API 5331, PDS.API 5337, MRQC.API 5320, HOSP.API 5333, AuthCenter 8015, WebAPI.Manage 8016 — trừ 2 cái đầu, còn lại đang tắt. 
+Hạ tầng: SQL Server 1433, Redis 6379, static 41142 đều đang chạy.

@@ -36,11 +36,19 @@ RUN set -e; \
       -exec sed -i 's#http://127\.0\.0\.1:#http://*:#g' {} + ; \
     dotnet publish "${PROJECT}" -c "${CONFIG}" -o /out --nologo -v q
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-jammy AS runtime
 ARG DLL
 ARG PORT
 WORKDIR /app
 COPY --from=build /out .
+# API projects load their shared Web appsettings from
+# /<WebProject>/appsettings.json (four levels up from /app). Provide those
+# files so the API hosts can read BusinessConfig/AppId at startup.
+COPY Newtouch.HIS.CIS/Newtouch.CIS.Web/appsettings.json /Newtouch.CIS.Web/appsettings.json
+COPY Newtouch.HIS.OR/Newtouch.OR.Web/appsettings.json /Newtouch.OR.Web/appsettings.json
+COPY Newtouch.MRQC.Web/appsettings.json /Newtouch.MRQC.Web/appsettings.json
+COPY Newtouch.HIS.MRMS/Newtouch.MRMS.Web/appsettings.json /Newtouch.MRMS.Web/appsettings.json
+COPY Newtouch.HIS.PDS/Newtouch.PDS.Web/appsettings.json /Newtouch.PDS.Web/appsettings.json
 # curl is only for the compose healthcheck (any HTTP response = up).
 RUN apt-get update \
     && apt-get install -y --no-install-recommends curl \
