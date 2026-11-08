@@ -109,7 +109,7 @@ namespace Newtouch.Sett.Domain
         public decimal? zfbl { get; set; }
         public string zfxz { get; set; }
         public string lyyf { get; set; }
-        public short? pyry { get; set; }
+        public string pyry { get; set; }
         public DateTime? pyrq { get; set; }
         public string fyry { get; set; }
         public DateTime? fyrq { get; set; }
