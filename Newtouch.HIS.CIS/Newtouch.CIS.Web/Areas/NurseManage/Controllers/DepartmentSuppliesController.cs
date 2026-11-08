@@ -54,7 +54,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         [HttpGet]
         public IActionResult GetNewCkzksdh()
         {
-            var result = "SLD" + string.Format("{0:yyyyMMddHHmmss}", DateTime.Now);
+            // "XKDK": Scope A prefix for "Xuất kho đến khoa" — same Pdh as
+            // Herp StorageController.GetNewCkzksdh (ReceiptNoHelper,
+            // chukuzhikeshi). The old "SLD" (pinyin of 申领单) issued a
+            // different prefix for the same bill type.
+            var result = "XKDK" + string.Format("{0:yyyyMMddHHmmss}", DateTime.Now);
             return Content(result);
         }
 

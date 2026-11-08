@@ -408,23 +408,26 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
     /// <summary>
     /// Receipt-number helper replacing Infrastructure.Common.ReceiptNoManage
     /// (not present in the Core copy). The original built the prefix from the
-    /// pinyin initials of the bill-type Description (which are PROTECTED and
-    /// must not be translated); the initials for the seven types used by this
-    /// area are mapped explicitly because GBK pinyin conversion is not
-    /// available on this Linux runtime.
+    /// pinyin initials of the bill-type Description; the prefixes below are
+    /// the Vietnamese initials from Scope A (GetSpellCode of the Vietnamese
+    /// Description), so new bills use the same prefix as the
+    /// ReceiptNoManage.GetNewReceiptNo(Desc) flows. Numbers already issued
+    /// keep their old prefixes (stored strings).
+    /// WBRK->NKN, WBCK->XKN, ZJCK->XKTT, NBTH->TLNB, BSBY->BHBT,
+    /// CKZKS->XKDK, KSSL->KL.
     /// </summary>
     public static class ReceiptNoHelper
     {
         private static readonly Dictionary<EnumOutOrInStorageBillType, string> PrefixByType =
             new Dictionary<EnumOutOrInStorageBillType, string>
             {
-                { EnumOutOrInStorageBillType.Wbrk, "WBRK" },
-                { EnumOutOrInStorageBillType.Wbck, "WBCK" },
-                { EnumOutOrInStorageBillType.Zjck, "ZJCK" },
-                { EnumOutOrInStorageBillType.Nbth, "NBTH" },
-                { EnumOutOrInStorageBillType.Bsby, "BSBY" },
-                { EnumOutOrInStorageBillType.chukuzhikeshi, "CKZKS" },
-                { EnumOutOrInStorageBillType.kssl, "KSSL" },
+                { EnumOutOrInStorageBillType.Wbrk, "NKN" },
+                { EnumOutOrInStorageBillType.Wbck, "XKN" },
+                { EnumOutOrInStorageBillType.Zjck, "XKTT" },
+                { EnumOutOrInStorageBillType.Nbth, "TLNB" },
+                { EnumOutOrInStorageBillType.Bsby, "BHBT" },
+                { EnumOutOrInStorageBillType.chukuzhikeshi, "XKDK" },
+                { EnumOutOrInStorageBillType.kssl, "KL" },
             };
 
         public static string GetNewReceiptNo(EnumOutOrInStorageBillType type, string userId = "")

@@ -92,7 +92,7 @@ left join gys_supplier gys on cgmx.qybm=gys.py and cgmx.OrganizeId=gys.OrganizeI
                             cgId = cgId,
                             OrganizeId = orgId,
                             ddsj = DateTime.Now.ToString("yyyy-MM-dd HH:ss:mm"),
-                            ddbh = "CG" + DateTime.Now.ToString("yyyyMMddHHmmssfff"),
+                            ddbh = "DHMS" + DateTime.Now.ToString("yyyyMMddHHmmssfff"),
                             ddzt = 1,
                             zt = "1",
                             CreatorCode = user.rygh,

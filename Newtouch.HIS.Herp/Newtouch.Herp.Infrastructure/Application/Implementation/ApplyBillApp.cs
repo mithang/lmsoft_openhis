@@ -21,7 +21,8 @@ namespace Newtouch.Herp.Application.Implementation
     /// Receipt number: the original built it from the PROTECTED
     /// chukuzhikeshi Description via GBK pinyin initials; GBK pinyin is not
     /// available on this Linux runtime, so the prefix is the explicit
-    /// "CKZKS" used by the Web-side ReceiptNoHelper for the same type.
+    /// "XKDK" (Scope A: CKZKS->XKDK, initials of "Xuất kho đến khoa")
+    /// used by the Web-side ReceiptNoHelper for the same type.
     /// </summary>
     public class ApplyBillApp : AppBase, IApplyBillApp
     {
@@ -108,7 +109,7 @@ namespace Newtouch.Herp.Application.Implementation
                         crkdj = new KfCrkdjEntity
                         {
                             auditState = ((int)EnumAuditState.Adopt).ToString(), // Không cần duyệt thủ công
-                            Pdh = "CKZKS" + DateTime.Now.ToString("yyyyMMddHHmmss"),
+                            Pdh = "XKDK" + DateTime.Now.ToString("yyyyMMddHHmmss"),
                             deliveryNo = "",
                             crkfs = crkfs == null ? "" : crkfs.Id,
                             rkbm = rkbm,

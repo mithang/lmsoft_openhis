@@ -97,8 +97,8 @@ and createtime BETWEEN @kssj  AND  @jssj+' 23:59:59' ";
             {
                 entity.cgId = Guid.NewGuid().ToString();
                 entity.ddsj = DateTime.Now.ToString("yyyy-MM-dd HH:ss:mm");
-                //entity.ddbh = "CG" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
-                entity.yyjhdh = "CG" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                //entity.ddbh = "DHMS" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                entity.yyjhdh = "KHMS" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
                 entity.ddzt = 1; //1 Đã lưu
                 //entity.zt = "1";
                 //entity.CreatorCode = user.rygh;

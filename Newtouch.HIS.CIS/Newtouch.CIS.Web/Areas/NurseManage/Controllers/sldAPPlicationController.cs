@@ -53,7 +53,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         //[HttpGet]
         //public IActionResult GetNewCkzksdh()
         //{
-        //    var result = "SLD"+string.Format("{0:yyyyMMddHHmmss}", DateTime.Now);
+        //    var result = "XKDK"+string.Format("{0:yyyyMMddHHmmss}", DateTime.Now);
         //    return Content(result);
         //}
 
