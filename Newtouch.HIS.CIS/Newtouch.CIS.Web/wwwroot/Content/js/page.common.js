@@ -448,7 +448,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 					$.modalAlert("Không thể kê thuốc không có tồn kho", 'warning');
 					return false;
 				}
-				if ($iiithis.attr('data-kzbz') == '控制') {
+				if ($iiithis.attr('data-kzbz') == 'Kiểm soát') {
 					$.modalAlert("Không thể kê thuốc bị kiểm soát", 'warning');
 					return false;
 				}
