@@ -51,6 +51,11 @@ namespace Newtouch.Herp.Repository.Purchase
                 entity.Id = Guid.NewGuid().ToString();
                 entity.OrganizeId = orgId;
                 entity.psdzt = 1;//Đã lưu
+                // F20-FIX: nhanh tao moi thieu zt -> INSERT loi zt NULL (cot NOT NULL).
+                // Create(true) (EntityExtensions.cs:38-55) chi stamp Id/CreatorCode/
+                // CreateTime/OrganizeId, khong set zt; form LocationForm cung khong post
+                // zt; nhanh sua (:39) da gan entity.zt = "1". Gan giong nhanh sua.
+                entity.zt = "1";
                 entity.Create(true);
                 this.Insert(entity);
                 return entity.Id;

@@ -22,7 +22,7 @@
                     <tr>
                         <th class="formTitle"><span class="required">*</span>Tên:</th>
                         <td class="formValue">
-                            <input id="gysmc" name="gymsc" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
+                            <input id="gysmc" name="gysmc" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                         </td>
                     </tr>
                     <tr>
@@ -101,7 +101,10 @@
         });
 
         //Mã đầu chữ
-        $('#gymsc').keyup(function () {
+        // F20-FIX: selector cu '#gymsc' sai chinh ta (id that cua input ten la 'gysmc',
+        // giong loi name="gymsc" o :25) nen handler khong bao gio bind; sua ve '#gysmc'
+        // de go ten -> tu sinh ma dau chu py nhu y do vendor.
+        $('#gysmc').keyup(function () {
             $('#py').val($(this).toShouPin());
         })
     }
