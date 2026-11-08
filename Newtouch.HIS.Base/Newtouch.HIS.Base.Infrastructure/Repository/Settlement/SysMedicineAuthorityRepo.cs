@@ -68,8 +68,24 @@ order by CreateTime desc";
 
             if (!string.IsNullOrWhiteSpace(keyValue))
             {
+                // F16-FIX D1: repo nay chua nap oldEntity; nap dong dang luu truoc
+                // khi update de khoi phuc CreatorCode/CreateTime (xem comment duoi).
+                SysMedicineAuthorityEntity oldEntity = this.FindEntity(keyValue);
+                this.DetacheEntity(oldEntity);
+
                 entity.Modify();
                 entity.qxId = keyValue;
+                // F16-FIX D1: form khong post CreatorCode/CreateTime nen entity mang
+                // null/default; this.Update(entity) 1 tham so bind vao overload generic
+                // RepositoryBase.Update<T> (khong ignore) thay vi overload virtual co
+                // ignore CreatorCode/CreateTime (RepositoryBase.cs:123 vs :331) -> UPDATE
+                // gan NULL vao cot CreatorCode NOT NULL. Khoi phuc 2 cot tu dong dang
+                // luu (oldEntity) truoc khi update.
+                if (oldEntity != null)
+                {
+                    entity.CreatorCode = oldEntity.CreatorCode;
+                    entity.CreateTime = oldEntity.CreateTime;
+                }
                 this.Update(entity);
             }
             else
