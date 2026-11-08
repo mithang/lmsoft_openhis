@@ -222,16 +222,25 @@ namespace NewtouchHIS.Lib.Base.Utilities
         }
         public long AppendList<T>(string key, IList<T> list)
         {
+            // F6FIX: ghi từng item JSON bằng overload string PushKeyOfListLast(key, string),
+            // cùng mẫu sửa như SetList ở vòng F5. Trước đây code gom JSON vào RedisValue[]
+            // rồi gọi PushKeyOfListLast(key, lists); RedisCoreEx KHÔNG có overload
+            // (string, RedisValue[]) nên call bind sang generic PushKeyOfListLast<T>
+            // (T=RedisValue[]) → Serialize() nhị phân → throw vì
+            // runtimeconfig đã tắt serialize nhị phân. GetList đọc lại từng item bằng
+            // JsonConvert.DeserializeObject<T> nên định dạng lưu trữ (JSON) không đổi.
+            // Đây là APPEND (nối vào cuối list hiện có) nên KHÔNG DeleteKey như SetList.
+            // KHÔNG bật lại serialize nhị phân bằng runtimeconfig.
             try
             {
-                RedisValue[] lists = new RedisValue[list.Count];
                 if (list != null && list.Count > 0)
                 {
+                    long result = 0;
                     for (int i = 0; i < list.Count; i++)
                     {
-                        lists[i] = JsonConvert.SerializeObject(list[i]);
+                        result = PushKeyOfListLast(key, JsonConvert.SerializeObject(list[i]));
                     }
-                    return PushKeyOfListLast(key, lists);
+                    return result;
                 }
                 return 0;
             }
