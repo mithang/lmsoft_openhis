@@ -331,7 +331,7 @@ where a.zt='1' and a.OrganizeId=@orgid";
 
 		public int UpdataZSinsert(string mzh, string rygh, string orgid)
 		{
-			string sqlstr = "exec mz_待就诊无指定医生叫号自动分诊 @mzh,@orgid,@rygh";
+			string sqlstr = "exec mz_TuDongPhanChanKhongChiDinhBacSi @mzh,@orgid,@rygh";
 			return this.ExecuteSqlCommand(sqlstr, new[] { new SqlParameter("@rygh", rygh)
 				,new SqlParameter("@orgid", orgid),new SqlParameter("@mzh",mzh) });
 		}

@@ -444,7 +444,7 @@ INSERT INTO " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".[dbo].[xt_sfxm]
 
 		public int InsertTOSfxm(string orgid, string wzcode)
 		{
-			var sql = "exec herp_物资同步到收费项目 @orgId,@wzcode";
+			var sql = "exec herp_DongBoVatTuSangHangMucThuPhi @orgId,@wzcode";
 			var param = new SugarParameter[] {
 				new SugarParameter("@orgId", orgid),
 				new SugarParameter("@wzcode", wzcode),
