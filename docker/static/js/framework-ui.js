@@ -132,12 +132,12 @@ $.modalOpen = function (options) {
     options.url = $.getUrlWithHost(options.url);
     var defaults = {
         id: null,
-        title: '系统窗口',
+        title: 'Cửa sổ hệ thống',
         width: "100px",
         height: "100px",
         url: '',
         shade: 0.3,
-        btn: ['确认', '关闭'],
+        btn: ['Xác nhận', 'Đóng'],
         btnclass: ['btn btn-primary', 'btn btn-danger'],
         callBack: null,
         showleftlalbel: false,
@@ -164,7 +164,7 @@ $.modalOpen = function (options) {
         btnclass: options.btnclass,
         showleftlalbel: options.showleftlalbel,
         leftlabel: {
-            text: options.leftlabeltext || "确认并关闭"
+            text: options.leftlabeltext || "Xác nhận và đóng"
             , checked: options.leftlalbelchecked
         },
         yes: function () {
@@ -194,12 +194,12 @@ $.modalOpen = function (options) {
     }
     top.layer.open(configss);
 }
-$.modalConfirm = function (content, callBack, close, confirmOptions) { var defaults = { icon: "fa-exclamation-circle", title: "系统提示", btn: ['确认', '取消'], btnclass: ['btn btn-primary', 'btn btn-danger'], }; var confirmOptions = $.extend(defaults, confirmOptions); top.layer.confirm(content, confirmOptions, function () { callBack(true); if (!(close === false)) { top.layer.closeAll('dialog'); } }, function () { callBack(false); }); }
+$.modalConfirm = function (content, callBack, close, confirmOptions) { var defaults = { icon: "fa-exclamation-circle", title: "Thông báo hệ thống", btn: ['Xác nhận', 'Hủy'], btnclass: ['btn btn-primary', 'btn btn-danger'], }; var confirmOptions = $.extend(defaults, confirmOptions); top.layer.confirm(content, confirmOptions, function () { callBack(true); if (!(close === false)) { top.layer.closeAll('dialog'); } }, function () { callBack(false); }); }
 $.modalAlert = function (content, type) {
     var icon = ""; if (type == 'success') { icon = "fa-check-circle"; }
     if (type == 'error') { icon = "fa-times-circle"; }
     if (type == 'warning') { icon = "fa-exclamation-circle"; }
-    top.layer.alert(content, { icon: icon, title: "系统提示", btn: ['确认'], btnclass: ['btn btn-primary'], }); if (top.top.$('.layui-layer-dialog').length == 1) { top.top.$('.layui-layer-dialog').trigger('focus'); }
+    top.layer.alert(content, { icon: icon, title: "Thông báo hệ thống", btn: ['Xác nhận'], btnclass: ['btn btn-primary'], }); if (top.top.$('.layui-layer-dialog').length == 1) { top.top.$('.layui-layer-dialog').trigger('focus'); }
 }
 $.modalMsg = function (content, type, msgtime) {
     if (!msgtime) { msgtime = 2000; }
@@ -250,17 +250,17 @@ $.getFailedAlertMessage = function (data) {
     }
     if (!msg) { msg = data.msg; }
     if (!msg) { msg = data.message; }
-    if (!msg) { msg = "错误代码：" + data.code; }
+    if (!msg) { msg = "Mã lỗi: " + data.code; }
     return msg;
 }; $.xhrSuccessDataExCheckHandle = function (data, alertbierror) {
     if (data && data.state == 'error') {
         if (data.code === 'SESSION_TIMEOUT') { top.top.location.href = '/Login/Index'; return false; }
         else if (data.code === 'SESSION_SIDELINED') { top.top.location.href = '/Login/Index'; return false; }
         else if (data.code === 'SYSTEM_ERROR') {
-            $.modalConfirm('程序发生内部错误<br/>点击“异常详情”按钮查看详情', function (flag) {
+            $.modalConfirm('Chương trình đã xảy ra lỗi nội bộ<br/>Nhấn nút “Chi tiết lỗi” để xem chi tiết', function (flag) {
                 if (flag) { ; }
-                else { var exStackTrace = $.htmlEncode(data.exStackTrace); top.layer.open({ type: 1, title: '异常详情', area: ['700px', '500px'], closeBtn: 1, shadeClose: true, skin: 'divSysExceptionDetail', content: '<h3>' + data.message + '</h3><div>' + exStackTrace + '</div>' }); }
-            }, null, { btn: ['确认', '异常详情'] });
+                else { var exStackTrace = $.htmlEncode(data.exStackTrace); top.layer.open({ type: 1, title: 'Chi tiết lỗi', area: ['700px', '500px'], closeBtn: 1, shadeClose: true, skin: 'divSysExceptionDetail', content: '<h3>' + data.message + '</h3><div>' + exStackTrace + '</div>' }); }
+            }, null, { btn: ['Xác nhận', 'Chi tiết lỗi'] });
         }
         else { if (alertbierror === undefined || alertbierror === true) { $.modalAlert($.getFailedAlertMessage(data), data.state); } }
         return false;
@@ -268,7 +268,7 @@ $.getFailedAlertMessage = function (data) {
     return true;
 }
 $.submitForm = function (options) {
-    var defaults = { url: "", param: [], loading: "正在提交数据...", success: null, close: true, successwithtipmsg: true }; var options = $.extend(defaults, options); $.loading(true, options.loading); window.setTimeout(function () {
+    var defaults = { url: "", param: [], loading: "Đang gửi dữ liệu...", success: null, close: true, successwithtipmsg: true }; var options = $.extend(defaults, options); $.loading(true, options.loading); window.setTimeout(function () {
         if ($('[name=__RequestVerificationToken]').length > 0) { options.param["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val(); }
         $.najax({
             url: options.url, data: options.param, type: "post", loadingtext: options.loading, success: function (data) {
@@ -282,7 +282,7 @@ $.submitForm = function (options) {
     }, 10);
 }
 $.deleteForm = function (options) {
-    var defaults = { prompt: "注：您确定要删除该项数据吗？", url: "", param: [], loading: "正在删除数据...", success: null, close: true }; var options = $.extend(defaults, options); if ($('[name=__RequestVerificationToken]').length > 0) { options.param["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val(); }
+    var defaults = { prompt: "Lưu ý: Bạn có chắc chắn muốn xóa mục dữ liệu này không?", url: "", param: [], loading: "Đang xóa dữ liệu...", success: null, close: true }; var options = $.extend(defaults, options); if ($('[name=__RequestVerificationToken]').length > 0) { options.param["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val(); }
     $.modalConfirm(options.prompt, function (r) {
         if (r) {
             $.loading(true, options.loading); window.setTimeout(function () {
