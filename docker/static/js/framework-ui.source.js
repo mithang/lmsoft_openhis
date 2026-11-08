@@ -102,6 +102,30 @@ $.najax = function (options) {
     }
     $.ajax(opts);
 }
+// NX31-A5 (3): Global session-timeout handler — MỘT chỗ tập trung cho mọi $.ajax.
+// Server (FrameworkAuthorizationFilter) trả hết hạn session bằng HTTP 200 + JSON
+// {state:'error', code:'SESSION_TIMEOUT'|'SESSION_SIDELINED'} nên statusCode/401
+// không bao giờ kích hoạt — phải soi response body. $.najax/$.submitForm đã kiểm
+// tra qua $.xhrSuccessDataExCheckHandle, nhưng ~1,5k chỗ $.ajax() thô thì không;
+// handler này bắt tất cả (kể cả $.najax — redirect trùng đích nên vô hại).
+// Giới hạn: request nào đặt global:false thì jQuery không kích hoạt sự kiện
+// global (đã quét: code app hiện không có chỗ nào đặt global:false).
+$(document).ajaxSuccess(function (event, xhr, settings) {
+    var data = xhr && xhr.responseJSON;
+    if (!data && xhr && xhr.responseText) {
+        try { data = JSON.parse(xhr.responseText); } catch (e) { data = null; }
+    }
+    if (data && data.state === 'error' && (data.code === 'SESSION_TIMEOUT' || data.code === 'SESSION_SIDELINED')) {
+        try {
+            if (window.__hisSessionRedirected) { return; }
+            window.__hisSessionRedirected = true;
+            var topWin = top.top || top;
+            if (topWin.location && topWin.location.pathname && topWin.location.pathname.indexOf('/Login/Index') === -1) {
+                topWin.location.href = '/Login/Index';
+            }
+        } catch (e) { /* truy cập cross-frame lỗi: best-effort, không chặn callback success */ }
+    }
+});
 $.loading = function (bool, text) {
     var $loadingpage = top.$("#loadingPage");
     var $loadingtext = $loadingpage.find('.loading-content');

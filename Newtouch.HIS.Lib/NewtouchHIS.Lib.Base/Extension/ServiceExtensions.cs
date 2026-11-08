@@ -485,11 +485,14 @@ namespace NewtouchHIS.Lib.Base.Extension
         public static IServiceCollection AddCorsService(this IServiceCollection services)
         {
             //Cấu hình dịch vụ liên miền
+            // NX31-A5 (2): như WebAPI.Manage — bỏ .AllowAnyOrigin() đi kèm WithOrigins
+            // (mâu thuẫn: allowlist trong CorsWithOrigins thành code chết). Chỉ
+            // allowlist trong config có hiệu lực; dùng bởi HIS.BaseAPI (7001).
             services.AddCors(options =>
             {
                 options.AddPolicy("Cors", p =>
                 {
-                    p.WithOrigins(ConfigInitHelper.SysConfig.CorsWithOrigins!.Split(',')).AllowAnyOrigin()
+                    p.WithOrigins(ConfigInitHelper.SysConfig.CorsWithOrigins!.Split(','))
                     .AllowAnyMethod()
                     .AllowAnyHeader();
 

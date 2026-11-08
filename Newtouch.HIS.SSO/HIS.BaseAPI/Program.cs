@@ -58,6 +58,8 @@ app.UseAuthentication();        //Them xac thuc jwt
 #endregion
 app.UseAuthorization();
 app.UseNewtouchExceptionHandler();
-app.MapControllers();
+// NX31-A5 (2): UseCors PHẢI đứng trước MapControllers (như WebAPI.Manage) —
+// đặt sau endpoint middleware thì policy không có hiệu lực với controller.
 app.UseCors("Cors");
+app.MapControllers();
 app.Run();

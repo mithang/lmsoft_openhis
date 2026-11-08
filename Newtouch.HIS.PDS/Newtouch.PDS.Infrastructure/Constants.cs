@@ -1,4 +1,5 @@
 using Newtouch.Core.Common.Utils;
+using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Lib.Framework.Operator;
 using Newtouch.Infrastructure.Model;
 using System;
@@ -101,6 +102,18 @@ namespace Newtouch.Infrastructure
         }
 
         #region Thông tin bộ phận nhà thuốc hiện tại của người dùng đăng nhập Không bao giờ hết hạn Chia sẻ giữa các hệ thống khác nhau
+        // NX31-A5 (6): Redis THẬT (NewtouchHIS.Lib.Base.Utilities.RedisHelper, mẫu
+        // OperatorProvider.GetCurrent) — trước đây RedisHelper ở đây resolve về
+        // Newtouch.Tools.RedisHelper trong Shims/MissingShims2.cs, chỉ là
+        // ConcurrentDictionary in-memory theo process: PDS Web và PDS API mỗi
+        // process một bản, mất khi restart, không chia sẻ được. Giờ Web + API
+        // (cùng khởi tạo singleton Redis thật qua AddWebServiceBase, chung
+        // RedisConfig 127.0.0.1:6379 Db 0) đọc chung một key. Key giữ nguyên
+        // "string:CurrentYfbmInfo_{userId+AddressIp}", chỉ thêm prefix OHIS:
+        // GetString/SetString/Remove đều thêm prefix giống nhau nên nhất quán.
+        // Không đặt expiry (giữ ngữ nghĩa "không bao giờ hết hạn" cũ).
+        // LƯU Ý: Redis down thì Get trả rỗng như key chưa có (fail-soft như cũ);
+        // nhưng Redis down vốn đã làm login hỏng nên PDS cũng không dùng được.
 
         /// <summary>
         /// Lấy bộ phận dược hiện tại(Nhà thuốc hoặc kho thuốc)
@@ -121,7 +134,16 @@ namespace Newtouch.Infrastructure
         public static LoginUserCurrentYfbmModel GetCurrentYfbm(string userId)
         {
             userId = userId + AddressIp;
-            return RedisHelper.Get<LoginUserCurrentYfbmModel>(string.Format(CacheKey.CurrentYfbmInfoEntityKey, userId)) ?? new LoginUserCurrentYfbmModel();
+            try
+            {
+                var json = NewtouchHIS.Lib.Base.Utilities.RedisHelper.GetString(string.Format(CacheKey.CurrentYfbmInfoEntityKey, userId));
+                if (string.IsNullOrWhiteSpace(json)) return new LoginUserCurrentYfbmModel();
+                return json.ToObject<LoginUserCurrentYfbmModel>() ?? new LoginUserCurrentYfbmModel();
+            }
+            catch
+            {
+                return new LoginUserCurrentYfbmModel();
+            }
         }
 
         /// <summary>
@@ -133,13 +155,14 @@ namespace Newtouch.Infrastructure
         {
             //Tránh máy tính khác đăng nhập làm thay đổi vai trò nhà thuốc của thiết bị hiện tại
             userId = userId + AddressIp;
+            var key = string.Format(CacheKey.CurrentYfbmInfoEntityKey, userId);
             if (value == null)
             {
-                RedisHelper.Remove(string.Format(CacheKey.CurrentYfbmInfoEntityKey, userId));
+                NewtouchHIS.Lib.Base.Utilities.RedisHelper.Remove(key);
             }
             else
             {
-                RedisHelper.Set(string.Format(CacheKey.CurrentYfbmInfoEntityKey, userId), value);
+                NewtouchHIS.Lib.Base.Utilities.RedisHelper.SetString(key, value.ToJson());
             }
         }
 

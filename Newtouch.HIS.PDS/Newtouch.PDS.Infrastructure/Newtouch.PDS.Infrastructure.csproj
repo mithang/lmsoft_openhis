@@ -35,6 +35,10 @@
     <Reference Include="NewtouchHIS.Lib.DataBaseSvr">
       <HintPath>..\..\his-dll-common\Net6\NewtouchHIS.Lib.DataBaseSvr.dll</HintPath>
     </Reference>
+    <!-- NX31-A5 (6) FIX coordinator: Lib.Redis run-copy Oct 26 (06ac8d62) -> his-dll-common/Net6 (06ac8d62, byte-identical run-copy; API-identical build tuoi HEAD, 97 dong apidump) — can vi Utilities.RedisHelper : RedisCoreEx nen project goi GetString/SetString/Remove can truc tiep reference Lib.Redis (CS0012 neu thieu). -->
+    <Reference Include="NewtouchHIS.Lib.Redis">
+      <HintPath>..\..\his-dll-common\Net6\NewtouchHIS.Lib.Redis.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

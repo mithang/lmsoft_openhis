@@ -15,7 +15,10 @@ using Newtouch.Infrastructure;
 
 namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 {
-    [HandlerLogin]
+    // NX31-A5 (4): gỡ [HandlerLogin] (skip-auth) — khớp 7/10 ClientsDataController
+    // khác; filter toàn cục giờ chặn anon (non-AJAX → 302 /Login/Index, AJAX →
+    // SESSION_TIMEOUT JSON) đúng D-SHELL-008. Guard opr==null phía dưới giữ lại
+    // làm defense-in-depth.
     public class ClientsDataController : Controller
     {
         private readonly ISysItemsRepository _sysItemsRepository;
@@ -40,9 +43,10 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         [HandlerAjaxOnly]
         public IActionResult GetClientsDataJson()
         {
-            // Controller mang [HandlerLogin] nên request ẩn danh vẫn vào đây:
-            // không có session thì trả dữ liệu rỗng hợp lệ thay vì NRE kèm
-            // stack trace ở GetCurrent().IsRoot như trước.
+            // NX31-A5 (4): guard defense-in-depth — từ khi gỡ [HandlerLogin] thì
+            // filter toàn cục đã chặn anon trước khi vào đây; guard chỉ còn phòng
+            // trường hợp filter bị bypass trong tương lai (trước đây nó tránh NRE
+            // ở GetCurrent().IsRoot khi anon vào được).
             if (OperatorProvider.GetCurrent() == null)
             {
                 return Content(new

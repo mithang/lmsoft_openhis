@@ -8,7 +8,11 @@ using NewtouchHIS.Lib.Framework.Filter;
 
 namespace HIS.SSO.Controllers
 {
-    [HandlerLogin]
+    // NX31-A5 (4): gỡ [HandlerLogin] (skip-auth) — 7/10 ClientsDataController khác
+    // không có nó và anon đã 302 đúng D-SHELL-008. Filter toàn cục giờ chặn anon:
+    // non-AJAX → 302 /Login/Index, AJAX → SESSION_TIMEOUT JSON. Trước đây anon vào
+    // tới GetMenuList() rồi NRE ở UserIdentity.IsRoot (không null-safe) và lộ
+    // message "Object reference not set..." ra JSON 200.
     public class ClientsDataController : ClientsDataBaseController
     {
         private readonly ISystemAppService _systemApp;

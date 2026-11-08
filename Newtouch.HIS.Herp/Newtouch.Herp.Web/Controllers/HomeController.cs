@@ -116,6 +116,12 @@ namespace Newtouch.Herp.Web.Controllers
         }
 
         /// <summary>Chuyển kho hiện tại</summary>
+        /// NX31-A5 (5): POST + [ValidateAntiForgeryToken] theo đúng mẫu NX30 của
+        /// SwithOrg cùng file — trước đây là GET không verb (đổi state qua link),
+        /// trang web lạ có thể kích hoạt đổi kho bằng <img>/link. Không còn caller
+        /// GET nào khác (chỉ KfChange.cshtml, đã đổi sang $.najax POST kèm token).
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SwithKf(string kfId, string kfName, int kfLeve)
         {
             var opr = Constants.CurrentKf;

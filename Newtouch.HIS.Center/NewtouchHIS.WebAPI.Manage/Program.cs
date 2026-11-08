@@ -91,11 +91,15 @@ builder.Services.AddTransient<IChsDrg11Policy, ChsDrg11Policy>();
 builder.Services.AddTransient<IDrgWuhan2022Policy, DrgWuhan2022Policy>();
 
 //Cấu hình dịch vụ cross-domain
+// NX31-A5 (2): CHỈ allowlist CorsWithOrigins trong config mới có hiệu lực —
+// .AllowAnyOrigin() trước đây đi kèm WithOrigins nên allowlist thành code chết
+// (AllowAnyOrigin thắng, mọi origin đều được chấp nhận). Bỏ AllowAnyOrigin để
+// config làm chủ; không đổi giá trị CorsWithOrigins (xem báo cáo r7-a5).
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Cors", p =>
     {
-        p.WithOrigins(ConfigInitHelper.SysConfig.CorsWithOrigins!.Split(',')).AllowAnyOrigin()
+        p.WithOrigins(ConfigInitHelper.SysConfig.CorsWithOrigins!.Split(','))
         .AllowAnyMethod()
         .AllowAnyHeader();
 
@@ -122,8 +126,11 @@ app.UseAuthentication();        //ThêmjwtXác thực
 app.UseAuthorization();   //Ủy quyền
 #endregion
 app.UseNewtouchExceptionHandler();
-app.MapControllers();
+// NX31-A5 (2): UseCors PHẢI đứng trước MapControllers — middleware CORS đặt sau
+// endpoint middleware thì không bao giờ chạy cho controller (trước đây policy
+// AllowAnyOrigin cũng không có hiệu lực live với API, chỉ hub phía dưới được hưởng).
 app.UseCors("Cors");
+app.MapControllers();
 //hubs/msgcenter
 app.MapHub<HisNoticeHub>(config.GetSection("MessageCenter:Hub").Get<string>()).RequireCors("Cors"); ;
 

@@ -1,14 +1,21 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head><meta charset="utf-8" /><title>Chuyển kho — Herp</title></head>
-<body style="padding: 30px; font-family: sans-serif;">
+@{
+    // NX31-A5 (5): dùng chung Layout _Index như UserOrgChoose.cshtml — có jQuery,
+    // framework-ui.js ($.najax) và @Html.AntiForgeryToken() để POST đổi kho kèm
+    // token CSRF theo mẫu NX30 của SwithOrg. Trước đây trang này đứng riêng,
+    // không script, đổi kho bằng link GET /Home/SwithKf?... (đổi state qua GET).
+    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "Chuyển kho";
+}
+<div style="padding: 30px; font-family: sans-serif;">
     <h2>Chuyển kho hiện tại</h2>
     @if (ViewBag.KfList != null)
     {
-        <ul>
+        <ul class="list-group">
             @foreach (var kf in ViewBag.KfList)
             {
-                <li><a href="/Home/SwithKf?kfId=@kf.kfId&kfName=@kf.kfName&kfLeve=@kf.kfLeve">@kf.kfName</a></li>
+                <li class="list-group-item" style="text-align: center;">
+                    <a data-kfid="@kf.kfId" data-kfname="@kf.kfName" data-kfleve="@kf.kfLeve" style="width: 100%; display: block; cursor: pointer;">@kf.kfName</a>
+                </li>
             }
         </ul>
     }
@@ -17,5 +24,22 @@
         <p>Chưa có kho nào được cấu hình cho tài khoản này.</p>
     }
     <p><a href="/Home/Index">Về trang chủ</a></p>
-</body>
-</html>
+</div>
+<script type="text/javascript">
+    $('li.list-group-item a').click(function () {
+        var $a = $(this);
+        SwithKf($a.attr('data-kfid'), $a.attr('data-kfname'), $a.attr('data-kfleve'));
+    });
+
+    function SwithKf(kfId, kfName, kfLeve) {
+        $.najax({
+            url: "/Home/SwithKf",
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), kfId: kfId, kfName: kfName, kfLeve: kfLeve },
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                top.top.location.href = top.top.location.href;
+            }
+        });
+    }
+</script>
