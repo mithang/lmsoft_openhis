@@ -524,10 +524,10 @@
 
                 //Loại y lệnh: dài hạn, tạm thời
                 if ($("#" + rowid + "_yzlb").val() == undefined || $("#" + rowid + "_yzlb").val() === "") {
-                    var yzlb = $("#chklsyz").is(":checked") ? "临" : "长";
+                    var yzlb = $("#chklsyz").is(":checked") ? "Tạm thời" : "Dài hạn";
                     $("#" + rowid + "_yzlb").val(yzlb);
                 }
-                if ($("#" + rowid + "_yzlb").val() === "临") {
+                if ($("#" + rowid + "_yzlb").val() === "Tạm thời") {
                     $("#" + rowid + "_ts").css('background-color', '#f6f7fb').attr('readonly', 'true'); //Y lệnh tạm thời Vô hiệu hóaSố ngày
                 } else {
                     //$("#" + rowid + "_sl").css('background-color', '#f6f7fb').attr('readonly', 'true'); //Y lệnh dài hạn Vô hiệu hóaTổng lượng
@@ -852,7 +852,7 @@
                         $.modalAlert($this.attr('data-sfxmmc') + "Không có tồn kho, vui lòng chọn lại","warning");
                         return;
                     }
-                    if ($this.attr('data-kzbz') === "控制") {
+                    if ($this.attr('data-kzbz') === "Kiểm soát") {
                         $.modalAlert($this.attr('data-sfxmmc') + "Kiểm soátTrạng thái,Vui lòng chọn lại", "warning");
                         return;
                     }
@@ -962,7 +962,7 @@
                 $("#" + rowid + "_zxzqdw").val($this.attr('data-zxzqdw'));
                 if($("#" + rowid + "_pcmc").val()=="ST")
                 {
-                    $("#" + rowid + "_yzlb").val("临");
+                    $("#" + rowid + "_yzlb").val("Tạm thời");
                 }
                 @*//Y lệnh tạm thờiSố ngàyVô hiệu hóa
                 var pcCode = $("#" + rowid + "_pcCode").val();
@@ -989,7 +989,7 @@
         });
 
         $("#" + rowid + "_yzlb").change(function() {
-            if ($("#" + rowid + "_yzlb").val() === "临") {
+            if ($("#" + rowid + "_yzlb").val() === "Tạm thời") {
                 $("#" + rowid + "_sl").show();
                 $("#" + rowid + "_ts").css('background-color', '#f6f7fb').attr('readonly', 'true'); //Y lệnh tạm thời Vô hiệu hóaSố ngày
                 $("#" + rowid + "_sl").css('background-color', '#fff').removeAttr('readonly'); //Y lệnh tạm thời Kích hoạtTổng lượng
@@ -1099,7 +1099,7 @@
             }
             var sl = 0;
             var yzlb = $("#" + rowid + "_yzlb").val();     //Loại y lệnh: dài hạn, tạm thời
-            if (yzlb === "临") { //Y lệnh tạm thời
+            if (yzlb === "Tạm thời") { //Y lệnh tạm thời
                 if (tsStr != undefined && tsStr !== "") ts = Number(Math.ceil(tsStr));
             }
             sl = getypsl(jlzhxs, zyzhxs, ypjl, dwlb, zxcs, zxzq, zxzqdw, ts, qzfs);
@@ -1144,7 +1144,7 @@
                 yzlx: @Html.Raw(((int)EnumYzlx.Yp).ToString()),//ThuốcY lệnh
                 yzzt: @Html.Raw(((int)EnumYzzt.Ds).ToString()),//Mặc địnhchưa duyệt
                 zyh: currentobj.zyh,
-                yzlb: $("#chklsyz").is(":checked") ? "临" : "长",
+                yzlb: $("#chklsyz").is(":checked") ? "Tạm thời" : "Dài hạn",
                 zh: zh 
             };
             if (flag || currentObj==null) {
@@ -1185,7 +1185,7 @@
             zxzqdw: $("#" + selRowId + "_zxzqdw").val(),
             kssj: $("#" + selRowId + "_kssj").val(),
             ts: $("#" + selRowId + "_ts").val(),
-            yzlb: $("#chklsyz").is(":checked") ? "临" :"长"
+            yzlb: $("#chklsyz").is(":checked") ? "Tạm thời" :"Dài hạn"
         };
         $("#gridmedicine").jqGrid("addRowData", undefined, dataRow, "after", selRowId);
     }
@@ -1196,7 +1196,7 @@
         //mớithêmmộtdòng
        @*var dataRow = {
             Id: Math.random().toString() + new Date().getMilliseconds(),
-            yzlb: "临" ,
+            yzlb: "Tạm thời" ,
             zh: zh,
 
             xmdm: "00000163",
@@ -1247,7 +1247,7 @@
             "kcsl": $("#" + selRowId + "_kcsl").val(),
             //"kzbz": "0",
             //"dwjls": null,
-            "yzlb": "临",
+            "yzlb": "Tạm thời",
             //"dj": null,
             //"zfxz": null,
             "ispscs": $("#" + selRowId + "_ispscsfffff").parent().next().children('select').find("option:selected").text(),

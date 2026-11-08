@@ -73,7 +73,7 @@ namespace Newtouch.Application.Implementation.Inpatient
                 ,
                 DoctorServiceUIRequestDto = new List<DoctorServiceUIRequestDto>()
             };
-            if (yzlx == "长")
+            if (yzlx == "Dài hạn")
             {
                 var cqList = new List<InpatientLongTermOrderEntity>();
                 var entity = _inpatientLongTermOrderRepo.FindEntity(p =>
@@ -204,7 +204,7 @@ namespace Newtouch.Application.Implementation.Inpatient
                     }
                 }
             }
-            else if (yzlx == "临")
+            else if (yzlx == "Tạm thời")
             {
                 var lsList = new List<InpatientSTATOrderEntity>();
                 var entity =

@@ -26,7 +26,7 @@ namespace Newtouch.DomainServices.Inpatient
         public InpatientOrderPackageDmnService() : base()
         { }
 
-        #region Y lệnhmẫu
+        #region Y lệnh mẫu
         /// <summary>
         /// Lưu thành mẫu
         /// </summary>
@@ -102,7 +102,7 @@ namespace Newtouch.DomainServices.Inpatient
                             + " " + (item.bw ?? "");
                         if (item.yzlx == (int)EnumYzlx.ssyz)
                         {
-                            if (item.xmmc == "禁食")
+                            if (item.xmmc == "Nhịn ăn")
                             {
                                 item.yznr = item.xmmc;
                             }
@@ -467,7 +467,7 @@ and cyzd.zdlb='2' and cyzd.zdlx='0'
         }
         #endregion
 
-        #region  Y lệnhdẫndùng
+        #region  Y lệnh dẫn dùng
         /// <summary>
         /// lịch sử Y lệnh dẫn dùng
         /// </summary>
@@ -536,7 +536,7 @@ cqyz.[Id]
       ,[ztsl]
       ,[dcztbs]
       ,[yfztbs]
-	  ,'长' yzlb
+	  ,'Dài hạn' yzlb
 	  ,yf.yfmc yfmcval
 	  ,pc.yzpcmc pcmc
 	  ,ypkc.sl kcsl
@@ -620,7 +620,7 @@ select lsyz.[Id]
       ,[ztsl]
       ,[dcztbs]
       ,[yfztbs]
-	  ,'临' yzlb
+	  ,'Tạm thời' yzlb
 	  ,yf.yfmc yfmcval
 	  ,pc.yzpcmc pcmc
 	  ,ypkc.sl kcsl
@@ -748,7 +748,7 @@ cqyz.[Id]
       ,[ztsl]
       ,[dcztbs]
       ,[yfztbs]
-	  ,'长' yzlb
+	  ,'Dài hạn' yzlb
 	  ,yf.yfmc yfmcval
 	  ,pc.yzpcmc pcmc
 	  ,ypkc.sl kcsl
@@ -832,7 +832,7 @@ select lsyz.[Id]
       ,[ztsl]
       ,[dcztbs]
       ,[yfztbs]
-	  ,'临' yzlb
+	  ,'Tạm thời' yzlb
 	  ,yf.yfmc yfmcval
 	  ,pc.yzpcmc pcmc
 	  ,ypkc.sl kcsl

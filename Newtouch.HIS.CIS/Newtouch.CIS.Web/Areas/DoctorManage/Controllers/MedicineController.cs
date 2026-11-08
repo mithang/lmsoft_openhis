@@ -347,13 +347,13 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                 var yzlx = doctorServiceRequestDto.yzlb;
 
                 // Theo kiểu y lệnh lấy yzId
-                if (yzlx.Equals("长"))
+                if (yzlx.Equals("Dài hạn"))
                 {
                     var entity = _inpatientLongTermOrderRepo.FindEntity(p =>
                         p.yzh == yzh && p.zt == "1" && p.OrganizeId == OrganizeId);
                     yzId = entity.Id;
                 }
-                else if (yzlx.Equals("临"))
+                else if (yzlx.Equals("Tạm thời"))
                 {
                     var entity = _inpatientSTATOrderRepo.FindEntity(p =>
                         p.yzh == yzh && p.zt == "1" && p.OrganizeId == OrganizeId);

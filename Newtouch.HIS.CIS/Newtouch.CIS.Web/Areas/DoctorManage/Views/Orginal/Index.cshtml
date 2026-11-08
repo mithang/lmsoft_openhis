@@ -247,7 +247,7 @@
 
             //Loại y lệnh: dài hạn, tạm thời
             if ($("#" + rowid + "_yzlb").val() == undefined || $("#" + rowid + "_yzlb").val() === "") {
-                var yzlb = $("#chkItemlsyz").is(":checked") ? "临" : "长";
+                var yzlb = $("#chkItemlsyz").is(":checked") ? "Tạm thời" : "Dài hạn";
                 $("#" + rowid + "_yzlb").val(yzlb);
             }
             $("#" + rowid + "_yzlb").attr('readonly', 'true');
@@ -338,7 +338,7 @@
             });
 
             $("#" + rowid + "_yzlb").change(function() {
-                if ($("#" + rowid + "_yzlb").val() === "临") {
+                if ($("#" + rowid + "_yzlb").val() === "Tạm thời") {
                     $("#" + rowid + "_sl").show();
                     $("#" + rowid + "_ts").css('background-color', '#f6f7fb').attr('readonly', 'true'); //Y lệnh tạm thời Vô hiệu hóaSố ngày
                     $("#" + rowid + "_sl").css('background-color', '#fff').removeAttr('readonly'); //Y lệnh tạm thời Kích hoạtTổng lượng
@@ -405,7 +405,7 @@
                 $("#" + rowid + "_zxzqdw").val($this.attr('data-zxzqdw'));
                 if($("#" + rowid + "_pcmc").val()=="ST")
                 {
-                    $("#" + rowid + "_yzlb").val("临");
+                    $("#" + rowid + "_yzlb").val("Tạm thời");
                 }
                 //Y lệnh tạm thờiSố ngàyVô hiệu hóa
                 var pcCode = $("#" + rowid + "_pcCode").val();
@@ -566,7 +566,7 @@
                 yzlx: @Html.Raw(((int)EnumYzlx.sfxm).ToString()),//Mụcnhập
                 yzzt: @Html.Raw(((int)EnumYzzt.Ds).ToString()),//Mặc địnhchưa duyệt
                 zyh: currentobj.zyh,
-                yzlb: $("#chkItemlsyz").is(":checked") ? "临" : "长"
+                yzlb: $("#chkItemlsyz").is(":checked") ? "Tạm thời" : "Dài hạn"
             };
             var rowIds = $("#gridsfxm").jqGrid('getDataIDs');
             if (rowIds == null || rowIds.length === 0 || currentObj == null) {

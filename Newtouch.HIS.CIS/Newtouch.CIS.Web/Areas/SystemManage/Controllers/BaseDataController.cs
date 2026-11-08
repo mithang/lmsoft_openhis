@@ -145,8 +145,8 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		public IActionResult GetYzlb()
 		{
 			var result = new object[] {
-					new { yzlb = "长",Name="Dài hạn" },
-					new { yzlb = "临",Name="Tạm thời" }
+					new { yzlb = "Dài hạn",Name="Dài hạn" },
+					new { yzlb = "Tạm thời",Name="Tạm thời" }
 				};
 			return Content(result.ToJson());
 		}

@@ -140,7 +140,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="drugInfoModalLabel">Hợp lýDùng thuốcDuyệtThông tin</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -301,7 +301,7 @@
                             return "Duyệt";
                         }
                     } else if (rowObject["yzzt"] ==@Html.Raw(((int)EnumYzzt.TZ).ToString())) {
-                        if (rowObject["yzlb"] == "长") {
+                        if (rowObject["yzlb"] == "Dài hạn") {
                             return "Dừng";
                         } else {
                             return "Hủy bỏ";
@@ -314,9 +314,9 @@
         label: 'Thao tác', name: 'cz', sortable: false, align: 'center', width: 70, title: false,
         formatter: function (val, options, rowObject) {
 			if (rowObject["yzzt"] ==@Html.Raw(((int)EnumYzzt.Zx).ToString())|| rowObject["yzzt"] ==@Html.Raw(((int)EnumYzzt.Sh).ToString())) {//Đã thực hiệnhoặcPhê duyệtcủaY lệnh
-                if (rowObject["yzlb"] == "长") {
+                if (rowObject["yzlb"] == "Dài hạn") {
                 return "<span style='color:red' onclick='advicestop(\"" + options.rowId + "\")'' title='Dừng' >Dừng</span>"
-            } else if (rowObject["yzlb"] == "临") {
+            } else if (rowObject["yzlb"] == "Tạm thời") {
                 return "<span style='color:red' onclick='adviceinvalid(\"" + rowObject["Id"] + "\",\"" + rowObject["yzzt"] + "\",\"" + rowObject["yzlx"] + "\",\"" + rowObject["iszt"] + "\")'' title='Hủy bỏ' >Hủy bỏ</span>"
             }
         }
@@ -417,9 +417,9 @@
             } else if (($('#btn_cqyz').hasClass("active") && $('#btn_lsyz').hasClass("active"))) {
                 var yzlb = "Dài hạn/Tạm thời";
             } else if ($('#btn_cqyz').hasClass("active") && !$('#btn_lsyz').hasClass("active")) {
-                var yzlb = "长";
+                var yzlb = "Dài hạn";
             } else if (!$('#btn_cqyz').hasClass("active") && $('#btn_lsyz').hasClass("active")) {
-                var yzlb = "临";
+                var yzlb = "Tạm thời";
             }
         var kssj = $('#kssj').val();
         var jssj = $('#jssj').val();

@@ -289,7 +289,7 @@
         }
         if (dfl == "PTSS") {//thông thườngăn uống Tần suấtQD,Liều lượng,mật độ năng lượngVô hiệu hóa
             var ssxh = $("#" + rowid + "_ssxhval").val();
-            if (ssxh == "禁食") {
+            if (ssxh == "Nhịn ăn") {
                 $("#" + rowid + "_yszs").attr('disabled', 'true').css('background-color', '#f6f7fb');//Vô hiệu hóaăn uốngchỉhiển thị
                 $("#" + rowid + "_yszs").val('');
                 $("#" + rowid + "_yszsval").val('');
@@ -382,7 +382,7 @@
             
             //Loại y lệnh: dài hạn, tạm thời
             if ($("#" + rowid + "_yzlb").val() == undefined || $("#" + rowid + "_yzlb").val() === "") {
-                var yzlb = $("#chksslsyz").is(":checked") ? "临" : "长";
+                var yzlb = $("#chksslsyz").is(":checked") ? "Tạm thời" : "Dài hạn";
                 $("#" + rowid + "_yzlb").val(yzlb);
             }
             $("#" + rowid + "_yzlb").attr('readonly', 'true');
@@ -431,7 +431,7 @@
         });
 
         $("#" + rowid + "_yzlb").change(function () {
-            if ($("#" + rowid + "_yzlb").val() === "临") {
+            if ($("#" + rowid + "_yzlb").val() === "Tạm thời") {
                 $("#" + rowid + "_ts").css('background-color', '#f6f7fb').attr('readonly', 'true'); //Y lệnh tạm thời Vô hiệu hóaSố ngày
             } else {
                 $("#" + rowid + "_ts").css('background-color', '#fff').removeAttr('readonly'); //Y lệnh dài hạn Kích hoạtSố ngày
@@ -478,7 +478,7 @@
             kssj:$.getTime(),
             yzlx: @Html.Raw(((int)EnumYzlx.ssyz).ToString()),
             yzzt: @Html.Raw(((int)EnumYzzt.Ds).ToString()),
-            yzlb: $("#chksslsyz").is(":checked") ? "临" :"长"
+            yzlb: $("#chksslsyz").is(":checked") ? "Tạm thời" :"Dài hạn"
         };
         var rowIds = $("#gridssyz").jqGrid('getDataIDs');
         if (rowIds == null || rowIds.length === 0 || currentObj==null) {
@@ -605,7 +605,7 @@
                 $.modalAlert("Thiếu mẫu suất ăn", "warning");
                 return false;
             }
-            if (dbt == 'PTSS' && ssxh != '禁食' && yslb == '') {
+            if (dbt == 'PTSS' && ssxh != 'Nhịn ăn' && yslb == '') {
                 $.modalAlert("Thiếu suất ănLoại", "warning");
                 return false;
             }

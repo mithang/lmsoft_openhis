@@ -61,11 +61,11 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public decimal? act_pay_dedc { get; set; }
         /// <summary>
-        /// cơ sở bản y tếbảonguy hiểm thống chuẩn bị cơ sở kim chi ra
+        /// cơ sở bản y tế bảo hiểm thống chuẩn bị cơ sở kim chi ra
         /// </summary>
         public decimal? hifp_pay { get; set; }
         /// <summary>
-        /// cơ sở bản y tếbảonguy hiểm thống chuẩn bị cơ sở kim chi trả soVD
+        /// cơ sở bản y tế bảo hiểm thống chuẩn bị cơ sở kim chi trả soVD
         /// </summary>
         public decimal? pool_prop_selfpay { get; set; }
         /// <summary>
@@ -77,7 +77,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public decimal? hifes_pay { get; set; }
         /// <summary>
-        /// cư dânlớnbệnhbảonguy hiểm tài kim chi ra
+        /// cư dân lớn bệnh bảo hiểm tài kim chi ra
         /// </summary>
         public decimal? hifmi_pay { get; set; }
         /// <summary>

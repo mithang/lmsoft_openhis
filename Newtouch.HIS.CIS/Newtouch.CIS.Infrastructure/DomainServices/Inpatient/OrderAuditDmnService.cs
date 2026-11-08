@@ -278,7 +278,7 @@ and a.OrganizeId=@orgId and a.yzlx =@kfyz and zxksdm=@zxks  AND Convert(datetime
             }, false);
         }
         /// <summary>
-        /// Lấy phút trang Y lệnh danh sáchby Y lệnh Tính chất/Dài hạn hoặc Tạm thời
+        /// Lấy phút trang Y lệnh danh sách by Y lệnh Tính chất/Dài hạn hoặc Tạm thời
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
@@ -530,7 +530,7 @@ and a.OrganizeId=@orgId and a.yzlx =@kfyz and zxksdm=@zxks  AND Convert(datetime
                 }
             }
             if (string.IsNullOrWhiteSpace(listcq) && string.IsNullOrWhiteSpace(listls)) { return ""; }
-            #region Hủydathửxếptrừ
+            #region Hủy da thử xếp trừ
             //            if (!string.IsNullOrWhiteSpace(listcq))
             //            {
             //                pssql = @"select Id yzid
@@ -683,7 +683,7 @@ Id in('" + listls + @"')  ;";
 
         }
 
-        #region duyệt Dài hạnvàTất cả
+        #region duyệt Dài hạn vàTất cả
 
         public string OrderAuditSubmitbyPat(OperatorModel user, string patList, int Yzxz, IList<OrderAuditVO> orderList, string IsRehabAuthtoNurse = null, bool Iskf = false, string zxks = null)
         {
@@ -714,7 +714,7 @@ Id in('" + listls + @"')  ;";
                 };
                 if (Yzxz == Convert.ToInt32(EnumYzxz.Cq) || Yzxz == 0) //Phê duyệt Dài hạn
                 {
-                    //dathử
+                    //da thử
                     //                    pssql = @"select Id yzid
                     //from zy_cqyz c with(nolock)
                     //where c.OrganizeId=@orgId and c.yzzt=0 and c.yzlx=@yzlx and c.zt='1'
@@ -925,7 +925,7 @@ where a.OrganizeId=@OrganizeId and a.zt=1 and yzzt in(0,3) and zyh in(select col
             {
                 throw new FailedException("Vui lòng chọn Tra cứu Loại");
             }
-            else if (selectkey == "0")  //chưanhập
+            else if (selectkey == "0")  //chưa nhập
             {
                 sqlwhere += " and not exists(select 1 from xt_gmxx x with(nolock) where a.id=x.yzid and x.zt='1')";
 
@@ -1006,7 +1006,7 @@ and a.zyh in(select col from dbo.f_split(@zyh,',') where col>'')
 (case when d.Remark>'' then d.Remark  else  '' end) lrjg,
 a.hzxm,
 a.yztag,case a.yztag when 'JI' then 'Hướng thần I' when 'JII' then 'Hướng thần II' when 'MZ' then 'Gây mê' else a.yztag end yztagName,
-isnull(a.isjf,1) isjf,ispscs,'长' yzlb
+isnull(a.isjf,1) isjf,ispscs,'Dài hạn' yzlb
 from [dbo].[zy_cqyz] a with(nolock) 
 left join [NewtouchHIS_Base].[dbo].[V_C_Sys_UserStaff] b with(nolock) on a.CreatorCode=b.Account and a.OrganizeId=b.OrganizeId
 left join xt_gmxx d with(nolock) on a.Id=d.yzid and a.OrganizeId=d.OrganizeId
@@ -1020,7 +1020,7 @@ select a.zyh, a.id yzid,1 yzxz,'Tạm thời' yzxzsm,a.kssj,a.xmmc,a.xmdm,a.ypjl
 (case when d.Remark>'' then d.Remark  else  '' end) lrjg,
 a.hzxm,
 a.yztag,case a.yztag when 'JI' then 'Hướng thần I' when 'JII' then 'Hướng thần II' when 'MZ' then 'Gây mê' else a.yztag end yztagName,
-isnull(a.isjf,1) isjf,ispscs,'长' yzlb
+isnull(a.isjf,1) isjf,ispscs,'Tạm thời' yzlb
 from [dbo].[zy_lsyz] a with(nolock) 
 left join [NewtouchHIS_Base].[dbo].[V_C_Sys_UserStaff] b with(nolock) on a.CreatorCode=b.Account and a.OrganizeId=b.OrganizeId
 left join xt_gmxx d with(nolock) on a.Id=d.yzid and a.OrganizeId=d.OrganizeId

@@ -207,7 +207,7 @@
         let res = confirm('Có hủy bỏ/dừng y lệnh này không?');
         if (res == true) {
             var yzxz = "2";
-            if (yzlb=="临") {
+            if (yzlb=="Tạm thời") {
                 yzxz = "1";
             }
             $.ajax({
@@ -356,7 +356,7 @@
                                 return "Duyệt";
                             }
                         } else if (rowObject["yzzt"] ==@Html.Raw(((int)EnumYzzt.TZ).ToString())) {
-                            if (rowObject["yzlb"] == "长") {
+                            if (rowObject["yzlb"] == "Dài hạn") {
                                 return "Dừng";
                             } else {
                                 return "Hủy bỏ";
@@ -441,9 +441,9 @@
             } else if (($('#btn_cqyz').hasClass("active") && $('#btn_lsyz').hasClass("active"))) {
                 var yzlb = "Dài hạn/Tạm thời";
             } else if ($('#btn_cqyz').hasClass("active") && !$('#btn_lsyz').hasClass("active")) {
-                var yzlb = "长";
+                var yzlb = "Dài hạn";
             } else if (!$('#btn_cqyz').hasClass("active") && $('#btn_lsyz').hasClass("active")) {
-                var yzlb = "临";
+                var yzlb = "Tạm thời";
             }
         var yx = $('input[name="optionsRadios"]:checked').val();//var yx = $('#panelposition').val();
         var kssj = $('#kssj').val();

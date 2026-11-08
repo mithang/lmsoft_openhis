@@ -89,11 +89,11 @@ from(select distinct zyh from zy_cqyz with(nolock)  where yzzt='2' and OrganizeI
             )
             aaa  join 
             (
-            select '长' clbz,isjf,'2' yzxz,Id yzId,yzh,zh,case when ztid is not null then ztmc else yznr end yznr,zxsj,shr,yzlx,ypyfdm,xmdm,isnull(ztmc,'') ztmc ,yfztbs ,zyh
+            select 'Dài hạn' clbz,isjf,'2' yzxz,Id yzId,yzh,zh,case when ztid is not null then ztmc else yznr end yznr,zxsj,shr,yzlx,ypyfdm,xmdm,isnull(ztmc,'') ztmc ,yfztbs ,zyh
             from zy_cqyz with(nolock)
             where zt=1 and OrganizeId=@orgId and zyh in(select col from dbo.f_split(@zyh,',') where col>'') and (yfztbs is null or yzlx<>@yzlxs)
             union all
-            select '临' clbz,isjf,'1' yzxz,Id yzId,yzh,zh,case when ztid is not null then ztmc else yznr end yznr,zxsj,shr,yzlx,ypyfdm,xmdm ,isnull(ztmc,'') ztmc,yfztbs,zyh
+            select 'Tạm thời' clbz,isjf,'1' yzxz,Id yzId,yzh,zh,case when ztid is not null then ztmc else yznr end yznr,zxsj,shr,yzlx,ypyfdm,xmdm ,isnull(ztmc,'') ztmc,yfztbs,zyh
             from zy_lsyz with(nolock)
             where  zt=1 and OrganizeId=@orgId and zyh in(select col from dbo.f_split(@zyh,',') where col>'') and (yfztbs is null or yzlx<>@yzlxs)
             ) a on aaa.yzxh=a.yzId
@@ -201,11 +201,11 @@ where num1=1 ";
             select yzxh,dj,sl,1.00 mcsl,CONVERT(decimal(18,2),dj*sl) je,null lyxh,CreatorCode,zxrq from zy_fymxk with(nolock) where OrganizeId=@orgId and zxrq>=@zxsj and zxrq<=@zxsjend and zyh in(select col from dbo.f_split(@zyh,',') where col>'') and isjf=0
             )
             aaa  join 
-            (select zyh,isjf,px,'长' clbz,'2' yzxz,hzxm,Id yzId,yzh,zh,case when ztid is not null then ztmc else yznr end yznr,shr,yzlx,ypyfdm,xmdm,isnull(ztmc,'') ztmc,yfztbs 
+            (select zyh,isjf,px,'Dài hạn' clbz,'2' yzxz,hzxm,Id yzId,yzh,zh,case when ztid is not null then ztmc else yznr end yznr,shr,yzlx,ypyfdm,xmdm,isnull(ztmc,'') ztmc,yfztbs 
             from zy_cqyz with(nolock) 
             where  zt=1 and OrganizeId=@orgId and zyh in(select col from dbo.f_split(@zyh,',') where col>'') and (yfztbs is null or yzlx<>@yzlxs)
             union all
-            select zyh,isjf,case when ztId is not null then '1' else px end px,'临' clbz,'1' yzxz,hzxm,Id yzId,yzh,zh,case when ztid is not null then ztmc else yznr end yznr,shr,yzlx,ypyfdm,xmdm,isnull(ztmc,'') ztmc,yfztbs 
+            select zyh,isjf,case when ztId is not null then '1' else px end px,'Tạm thời' clbz,'1' yzxz,hzxm,Id yzId,yzh,zh,case when ztid is not null then ztmc else yznr end yznr,shr,yzlx,ypyfdm,xmdm,isnull(ztmc,'') ztmc,yfztbs 
             from zy_lsyz with(nolock) 
             where zt=1 and OrganizeId=@orgId and zyh in(select col from dbo.f_split(@zyh,',') where col>'')  and (yfztbs is null or yzlx<>@yzlxs)
             ) a on aaa.yzxh=a.yzId

@@ -52,7 +52,7 @@ namespace Newtouch.Domain.Entity
         public string zlff { get; set; }
 
         /// <summary>
-        /// Thời giananxếp
+        /// Thời gian sắp xếp
         /// </summary>
         public string sjap { get; set; }
 

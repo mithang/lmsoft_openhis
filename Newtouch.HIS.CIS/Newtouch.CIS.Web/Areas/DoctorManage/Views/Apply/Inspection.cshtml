@@ -170,7 +170,7 @@
         aRowData.pcCode = "00";
         aRowData.pcmc = "ST";
         aRowData.kssj = $.getTime();
-        aRowData.yzlb = "临";
+        aRowData.yzlb = "Tạm thời";
         $('#alreadyJYAppliedList').newtouchLocalDataGrid(null, aRowData);
     }
 
@@ -302,7 +302,7 @@
             this.zxzqdw = '@ViewBag.zxzqdw';
             this.ypjl = '1';
             this.sqdh = GetjySqdhMethod();
-            this.yzlb = "临";
+            this.yzlb = "Tạm thời";
             this.lcyx = $('#txt_jy_lcyx').val();
             this.sqbz = $('#txt_jy_sqbz').val();
         });
@@ -393,7 +393,7 @@
                     this.pcCode = "00";
                     this.pcmc = "ST";
                     this.kssj = $.getTime();
-                    this.yzlb = "临";
+                    this.yzlb = "Tạm thời";
                     this.yzlx =@Html.Raw(((int)EnumYzlx.jy).ToString());
                     this.zyh = currentobj.zyh;
                     this.ysgh = '@ViewBag.ysgh';

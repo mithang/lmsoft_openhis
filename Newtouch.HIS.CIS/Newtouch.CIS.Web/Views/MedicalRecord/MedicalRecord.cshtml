@@ -1022,7 +1022,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="drugInfoModalLabel">Hợp lýDùng thuốcDuyệtThông tin</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -6540,8 +6540,8 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 data: { "zdmc": zdmc, "zdbm": zdbm, "type": zdtype, "icd": icd, "py": py },
                 type: "POST",
                 success: function (req) {
-                    if (req.message == "Thêmthành công") {
-                        $.modalAlert("Thêmthành công", 'success');
+                    if (req.message == "Thêm thành công") {
+                        $.modalAlert("Thêm thành công", 'success');
                     }
                     else {
                         $.modalAlert("Thêm thất bại hoặc đã trùng lặp", 'warning');

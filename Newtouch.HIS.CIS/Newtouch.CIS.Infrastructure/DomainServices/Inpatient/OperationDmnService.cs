@@ -35,7 +35,7 @@ namespace Newtouch.DomainServices.Inpatient
         {
             if (req == null) throw new FailedException("thiếu Điều kiện tìm kiếm");
             var sqlstr = new StringBuilder(@"
-         SELECT    '临' yzlb ,
+         SELECT    'Tạm thời' yzlb ,
                     yz.Id ,
                     yzlx ,
 				    yz.zyh,

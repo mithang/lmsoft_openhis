@@ -482,7 +482,7 @@
             $.modalAlert("Thiếu mẫu suất ăn", "warning");
             return false;
         }
-        if (dbt == 'PTSS' && ssxh != '禁食' && yslb == '') {
+        if (dbt == 'PTSS' && ssxh != 'Nhịn ăn' && yslb == '') {
             $.modalAlert("Thiếu suất ănLoại", "warning");
             return false;
         }
@@ -570,7 +570,7 @@
         }
         if (dfl == "PTSS") {//thông thườngăn uống Tần suấtQD,Liều lượng,mật độ năng lượngVô hiệu hóa
             var ssxh = $("#" + rowid + "_ssxhval").val();
-            if (ssxh == "禁食") {
+            if (ssxh == "Nhịn ăn") {
                 $("#" + rowid + "_yszs").attr('disabled', 'true').css('background-color', '#f6f7fb');//Vô hiệu hóaăn uốngchỉhiển thị
                 $("#" + rowid + "_yszs").val('');
                 $("#" + rowid + "_yszsval").val('');

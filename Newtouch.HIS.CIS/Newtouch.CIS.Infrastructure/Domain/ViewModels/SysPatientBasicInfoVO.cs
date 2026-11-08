@@ -333,7 +333,7 @@ namespace Newtouch.Domain.ViewModels
         public string cbdbm { get; set; }
 
         /// <summary>
-        /// Thực hiệnxãsẽbảonguy hiểm làm phương pháp
+        /// Thực hiện xã sẽ bảo hiểm làm phương pháp
         /// </summary>
         public string zxsbbf { get; set; }
 

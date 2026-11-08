@@ -1540,7 +1540,7 @@ namespace Newtouch.Sett.Domain
         [Description("Hủy cấy que dưới da")]
         qxpxmzs = 11,
         /// <summary>
-        /// chuyểntrứngquảnkếtthắtphẫu thuật
+        /// phẫu thuật thắt ống dẫn trứng
         /// </summary>
         [Description("thắt ống dẫn trứng")]
         srgjzs = 12
