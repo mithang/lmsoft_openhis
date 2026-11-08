@@ -1,4 +1,5 @@
 using Newtouch.HIS.Domain.Entity;
+using DbConfigHelper;
 using Newtouch.HIS.Repository;
 using Newtouch.HIS.Domain.IRepository;
 using Newtouch.HIS.Domain.ValueObjects;
@@ -59,7 +60,7 @@ and (ypCode like @searchKeyword or ypmc like @searchKeyword or py like @searchKe
                 var sql = @"select top 200  cod.ypmc, cod.ypdm ybdm,  cod.gg,  cod.ycmc,cod.ypxz ybxz,case cod.ypxz when '" + ((int)EnumZFXZv2.J).ToString() +
                     "' then 'Loại A' when '" + ((int)EnumZFXZv2.Y).ToString() +
                     @"' then 'Loại B' else 'Loại C' end  ypxz, cod.py py, cod.ybdj ybdj, cod.gjybdm gjybdm,cod.ypjx jxmc,cod.pzwh pzwh
-from NewtouchHIS_Base..Cqyb_ybItemCode cod
+from " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @"..Cqyb_ybItemCode cod
 where 1=1 and cod.zt=1 and cod.OrganizeId=@orgId";
                 if (!string.IsNullOrWhiteSpace(keyword))
                 {
@@ -136,7 +137,7 @@ where 1=1 and cod.zt=1 and cod.OrganizeId=@orgId";
              WHEN isBase = '1' THEN 'Có'
              ELSE ''
         END isBase
-FROM    [NewtouchHIS_Base].[dbo].[Gaxnh_S30]
+FROM    " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".[dbo].[Gaxnh_S30]
 WHERE   (name LIKE @searchKeyword or code like @searchKeyword or pcode like @searchKeyword ) AND zt='1' ";
                     return this.FindList<GzxnhybItemCodeVO>(sql, new SqlParameter[] {
                     new SqlParameter("@searchKeyword", "%" + (keyword ?? "") + "%") });

@@ -1,4 +1,5 @@
 using NewtouchHIS.Lib.Base.Exceptions;
+using DbConfigHelper;
 using NewtouchHIS.Lib.Base.Security;
 using Newtouch.HIS.Domain.Entity;
 using Newtouch.HIS.Domain.IDomainServices;
@@ -324,7 +325,7 @@ and a.zt = '1' and b.zt = '1' and c.zt = '1'";
 
         public string GetYbdmByGh(string rygh)
         {
-            string sql = @"  select gjybdm from NewtouchHIS_Base..Sys_Staff where gh=@rygh";
+            string sql = @"  select gjybdm from " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @"..Sys_Staff where gh=@rygh";
 
             return FirstOrDefault<string>(sql, new[] { new SqlParameter("@rygh", rygh) });
         }

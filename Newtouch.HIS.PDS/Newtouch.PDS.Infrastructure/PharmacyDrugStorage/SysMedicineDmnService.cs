@@ -45,11 +45,11 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 			,x.nbdl,x.mzzybz,x.CreateTime,d.pzwh,
             d.yptssx,d.ypflCode,d.zlff,d.jzlx,d.mrbzq,d.sjap,d.zbbz,d.yl,d.yldw,d.zjtzsj
 			,d.ghdw,d.ypcd,d.ypgg,d.ybdm,d.xnhybdm, d.gjybdm,c.dlmc sfdlMc, e.jxmc jxmc, f.ypflmc ypflMc, case when d.ybdm IS NULL then '2' when d.ybdm IS NOT NULL AND d.LastYBUploadTime IS NOT NULL AND d.LastYBUploadTime >= d.LastModifyTime then '1' else '0' end isSynch,d.gjybmc
-            FROM [NewtouchHIS_Base].dbo.xt_yp as x  
-			left join [NewtouchHIS_Base].dbo.xt_ypsx as d on x.ypId=d.ypId
-			left join [NewtouchHIS_Base].dbo.xt_sfdl c	on x.dlCode = c.dlCode and c.OrganizeId = @organizeId
-			left join [NewtouchHIS_Base].dbo.xt_ypjx e	on x.jx = e.jxCode
-			left join [NewtouchHIS_Base].dbo.xt_ypfl f	on d.ypflCode = f.ypflCode
+            FROM " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_yp as x  
+			left join " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_ypsx as d on x.ypId=d.ypId
+			left join " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_sfdl c	on x.dlCode = c.dlCode and c.OrganizeId = @organizeId
+			left join " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_ypjx e	on x.jx = e.jxCode
+			left join " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_ypfl f	on d.ypflCode = f.ypflCode
 			where x.OrganizeId = @organizeId and d.OrganizeId = @organizeId ";
             SugarParameter[] par;
             if (!string.IsNullOrEmpty(zt))
@@ -636,18 +636,18 @@ from vw_gb_sfxm)a where 1=1 ";
         /// <returns></returns>
         public SysMedicineVO GetFormJson(int keyValue)
         {
-            const string sql = @"
+            var sql = @"
 SELECT TOP 1000 x.ypId, x.zxdw,x.ypCode,x.ypmc,x.spm,x.py,x.bzdw,x.mzcls,x.mzcldw,x.zycls,x.zycldw,x.cxjje,
 x.djdw,Convert(decimal(18,4),x.lsj) lsj,Convert(decimal(18,4),x.pfj) pfj,x.zfbl,x.zfxz,x.dlCode,x.ycmc,x.zt,0 bgbz,x.ypbzdm,x.nbdl,x.mzzybz,x.CreateTime,d.pzwh,
 d.yptssx,d.ypflCode,d.zlff,d.jzlx,d.mrbzq,d.sjap,d.zbbz,d.yl,d.yldw,d.zjtzsj,d.ghdw,d.ypcd,d.ypgg,d.ybdm,d.xnhybdm,
 x.jx,x.jl,x.jldw,x.OrganizeId,x.bzs,x.CreatorCode, c.dlmc sfdlMc, e.jxmc jxmc, f.ypflmc ypflMc ,d.mrjl,d.mrpc,
 x.isKss,x.kssId,x.jybz,d.ybbz,x.bz,d.gjybdm,x.tsypbz,d.gjybmc,d.dcxl,d.mbxl,d.mryf,g.yfmc mryfmc,d.ybgg ybgg
-FROM [NewtouchHIS_Base].dbo.xt_yp(NOLOCK) x  
-LEFT JOIN [NewtouchHIS_Base].dbo.xt_ypsx(NOLOCK) d on x.ypId=d.ypId 
-LEFT JOIN [NewtouchHIS_Base].dbo.xt_sfdl(NOLOCK) c ON x.dlCode = c.dlCode and c.OrganizeId = x.OrganizeId
-LEFT JOIN [NewtouchHIS_Base].dbo.xt_ypjx(NOLOCK) e ON x.jx = e.jxCode
-LEFT JOIN [NewtouchHIS_Base].dbo.xt_ypfl(NOLOCK) f ON d.ypflCode = f.ypflCode
-LEFT JOIN [NewtouchHIS_Base].dbo.xt_ypyf(NOLOCK) g ON g.yfCode=d.mryf
+FROM " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_yp(NOLOCK) x  
+LEFT JOIN " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_ypsx(NOLOCK) d on x.ypId=d.ypId 
+LEFT JOIN " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_sfdl(NOLOCK) c ON x.dlCode = c.dlCode and c.OrganizeId = x.OrganizeId
+LEFT JOIN " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_ypjx(NOLOCK) e ON x.jx = e.jxCode
+LEFT JOIN " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_ypfl(NOLOCK) f ON d.ypflCode = f.ypflCode
+LEFT JOIN " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_ypyf(NOLOCK) g ON g.yfCode=d.mryf
 WHERE x.ypId =@ypId
 ";
             SugarParameter[] par = {
@@ -1142,7 +1142,7 @@ where ypId=@ypId");
         /// <returns></returns>
         public string GetTradePricePlus(string name)
         {
-            string sql = @"select top 1 code from [NewtouchHIS_Base].[dbo].[Sys_ItemsDetail] where name=@name ";
+            string sql = @"select top 1 code from " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".[dbo].[Sys_ItemsDetail] where name=@name ";
             SugarParameter[] par = {
                 new SugarParameter("@name", name)
             };
@@ -1153,7 +1153,7 @@ where ypId=@ypId");
         //Cách dùng thuốc
         public IList<SysMedicineUsageVO> GetUsageFloat(string keyword)
         {
-            var sql = @"select * from [NewtouchHIS_Base].dbo.xt_ypyf(nolock) where zt = '1' and (yfCode like @searchKeyword or yfmc like @searchKeyword or py like @searchKeyword) order by py asc";
+            var sql = @"select * from " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_ypyf(nolock) where zt = '1' and (yfCode like @searchKeyword or yfmc like @searchKeyword or py like @searchKeyword) order by py asc";
             return this.FindList<SysMedicineUsageVO>(sql, new SugarParameter[] {
                 new SugarParameter("@searchKeyword", "%" + (keyword ?? "") + "%")
             });
@@ -1183,7 +1183,7 @@ where ypId=@ypId");
                 var sql = @"select top 200  cod.ypmc, cod.ypdm ybdm,  cod.gg,  cod.ycmc,cod.ypxz ybxz,case cod.ypxz when '" + ((int)EnumZFXZv2.J).ToString() +
                     "' then 'Loại giáp' when '" + ((int)EnumZFXZv2.Y).ToString() +
                     @"' then 'Hạng B' else 'Hạng C' end  ypxz, cod.py py, cod.ybdj ybdj, cod.gjybdm gjybdm,cod.ypjx jxmc,cod.pzwh pzwh
-from NewtouchHIS_Base..Cqyb_ybItemCode cod
+from " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @"..Cqyb_ybItemCode cod
 where 1=1 and cod.zt=1 and cod.OrganizeId=@orgId";
                 if (!string.IsNullOrWhiteSpace(keyword))
                 {
@@ -1261,7 +1261,7 @@ where 1=1 and cod.zt=1 and cod.OrganizeId=@orgId";
              WHEN isBase = '1' THEN 'Có'
              ELSE ''
         END isBase
-FROM    [NewtouchHIS_Base].[dbo].[Gaxnh_S30]
+FROM    " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".[dbo].[Gaxnh_S30]
 WHERE   (name LIKE @searchKeyword or code like @searchKeyword or pcode like @searchKeyword ) AND zt='1' ";
                 return this.FindList<GzxnhybItemCodeVO>(sql, new SugarParameter[] {
                     new SugarParameter("@searchKeyword", "%" + (keyword ?? "") + "%") });
