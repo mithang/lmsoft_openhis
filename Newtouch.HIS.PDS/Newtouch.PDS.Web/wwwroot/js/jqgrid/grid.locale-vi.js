@@ -49,7 +49,7 @@ $.extend($.jgrid,{
 			nodefined : " chưa được định nghĩa!",
 			novalue : " cần giá trị trả về!",
 			customarray : "Hàm tùy chỉnh cần trả về một mảng!",
-			customfcheck : "Custom function should be present in case of custom checking!"
+			customfcheck : "Cần có hàm tùy chỉnh trong trường hợp kiểm tra tùy chỉnh!"
 		}
 	},
 	view : {
