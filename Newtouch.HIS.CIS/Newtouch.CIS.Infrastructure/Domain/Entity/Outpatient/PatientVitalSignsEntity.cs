@@ -80,9 +80,13 @@ namespace Newtouch.Domain.Entity
         public decimal? shengao { get; set; }
         public decimal? shousuoya { get; set; }
         public decimal? shuzhangya { get; set; }
+        [SugarColumn(IsIgnore = true)]
         public decimal? huxi { get; set; }
+        [SugarColumn(IsIgnore = true)]
         public string xuetangclfs { get; set; }
+        [SugarColumn(IsIgnore = true)]
         public int? fzbz { get; set; }
+        [SugarColumn(IsIgnore = true)]
         public int? hy { get; set; }
 
     }

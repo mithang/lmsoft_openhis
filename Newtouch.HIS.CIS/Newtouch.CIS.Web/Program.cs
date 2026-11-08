@@ -202,6 +202,8 @@ builder.Services.AddControllersWithViews().AddMvcOptions(options =>
     // Cycle 24: query-string dates bind InvariantCulture in stock ASP.NET Core,
     // so dd/MM/yyyy view values bound null/MinValue on GET. Provider runs first.
     options.ModelBinderProviders.Insert(0, new DateTimeModelBinderProvider());
+    // F24: form-POST decimals bind CurrentCulture (vi-VN), where '.' is the group separator — accept dot-decimal and vi-VN comma-decimal (dot first), mirror Sett.Web cycle 56.
+    options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
     options.Filters.Add(typeof(LogTrackingAttribute));
     options.Filters.Add(typeof(FrameworkAuthorizationFilter));
 });
