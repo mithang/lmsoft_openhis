@@ -432,11 +432,11 @@ INSERT INTO " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".[dbo].[xt_sfxm]
                 {
                     throw new Exception("Đồng bộ vật tư vào kho thất bại");
                 }
-				//if (ExecuteSqlCommand(sql, param) <= 0)//Đồng bộ dữ liệu vật tư vào hạng mục thu phí
-				//{
-				//	throw new Exception("Thêm mới thất bại");
-				//}
-				db.Commit();
+                if (ExecuteSqlCommand(sql, param) <= 0)//Đồng bộ dữ liệu vật tư vào hạng mục thu phí
+                {
+                    throw new Exception("Thêm mới thất bại");
+                }
+                db.Commit();
             }
 			
 			return 1;
