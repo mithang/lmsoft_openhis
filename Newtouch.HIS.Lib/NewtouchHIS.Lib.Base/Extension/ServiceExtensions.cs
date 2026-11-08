@@ -469,7 +469,14 @@ namespace NewtouchHIS.Lib.Base.Extension
             HttpWebHelper.servicesCollection = services;
             services.AddStackExchangeRedisCache(options =>
             {
-                options.Configuration = config.GetConnectionString("RedisConfig:Connection");
+                // F7: GetConnectionString("RedisConfig:Connection") tra cứu
+                // "ConnectionStrings:RedisConfig:Connection" — section này không
+                // tồn tại ở bất kỳ appsettings.json nào nên luôn trả null, khiến
+                // RedisCache.Configuration = null và SessionMiddleware log fail
+                // "Error closing the session" mỗi request chạm session. Đọc đúng
+                // key đã có sẵn "RedisConfig:Connection" (launcher set qua env
+                // RedisConfig__Connection, cùng key RedisHelper/TokenStore dùng).
+                options.Configuration = config["RedisConfig:Connection"];
                 options.InstanceName = "OpenhisInstance";
             });
 
