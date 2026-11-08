@@ -73,6 +73,17 @@ namespace Newtouch.HIS.Repository
 
                 entity.Modify();
                 entity.ypdwId = keyValue.Value;
+                // F19-FIX D1: form khong post CreatorCode/CreateTime nen entity mang
+                // null/default; this.Update(entity) 1 tham so bind vao overload generic
+                // RepositoryBase.Update<T> (khong ignore) thay vi overload virtual co
+                // ignore CreatorCode/CreateTime (RepositoryBase.cs:123 vs :331) -> UPDATE
+                // gan NULL vao cot CreatorCode NOT NULL. Khoi phuc 2 cot tu dong dang
+                // luu (oldEntity da nap san cho log thay doi) truoc khi update.
+                if (oldEntity != null)
+                {
+                    entity.CreatorCode = oldEntity.CreatorCode;
+                    entity.CreateTime = oldEntity.CreateTime;
+                }
                 this.Update(entity);
 
                 if (oldEntity != null)

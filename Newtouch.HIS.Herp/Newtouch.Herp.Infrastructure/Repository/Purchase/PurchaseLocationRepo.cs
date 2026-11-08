@@ -23,11 +23,26 @@ namespace Newtouch.Herp.Repository.Purchase
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
+                // F19-FIX D1: form LocationForm khong post CreatorCode/CreateTime nen
+                // entity mang null/default; Herp RepositoryBase chi co DUNG 1 overload
+                // Update(T) (full-column, RepositoryBase.cs:133-136), khong co overload
+                // ignore 2 cot nhu Base -> UPDATE gan NULL vao cot CreatorCode NOT NULL
+                // (xt_wz_psd). Nap oldEntity tu DB va khoi phuc 2 cot truoc khi update.
+                // Khong can DetacheEntity: Herp khong co method do, va SqlSugar
+                // Updateable khong track entity nhu EF (FindEntity tra POCO tach roi);
+                // cung mau LocationStateUpdate trong file nay FindEntity roi Update
+                // truc tiep, khong detach.
+                PurchaseLocationEntity oldEntity = this.FindEntity(p => p.Id == keyValue);
                 entity.Id = keyValue;
                 entity.OrganizeId = orgId;
                 entity.psdzt = 1;
                 entity.zt = "1";
                 entity.Modify(keyValue);
+                if (oldEntity != null)
+                {
+                    entity.CreatorCode = oldEntity.CreatorCode;
+                    entity.CreateTime = oldEntity.CreateTime;
+                }
                 this.Update(entity);
                 return keyValue;
             }
