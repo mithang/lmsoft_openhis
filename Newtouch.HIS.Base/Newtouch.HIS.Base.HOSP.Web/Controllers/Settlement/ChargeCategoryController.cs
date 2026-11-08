@@ -212,7 +212,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                 {
                     throw new FailedException("Phân loại sở thuộc không đúng định dạng.");
                 }
-                entity.fjmc = ((Newtouch.Infrastructure.EnumSffjdlmc)fjCodeVal).ToString();
+                entity.fjmc = GetFjmcByCode(fjCodeVal, entity, keyValue);
             }
             entity.zt = entity.zt == "true" ? "1" : "0";
             if (string.IsNullOrWhiteSpace(entity.OrganizeId))
@@ -234,6 +234,49 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             }
             return Success("Thao tác thành công.");
         }
+
+        /// <summary>
+        /// V6-F1: map fjCode → fjmc theo từ vựng Scope A đã áp live trên STG (không ghi tên member enum thô).
+        /// - 1002 → 'Phi kiem tra' (GIỮ theo QĐ V6-F1(1): 'Phí khám'/PhiKham là từ của 诊察费 'Phi kham benh', không phải 检查费).
+        /// - 1001 → GIỮ 2 giá trị thuốc phân biệt ('Phi thuoc Tay y' / 'Phi thuoc thanh pham Dong y') khi sửa dòng đang mang giá trị đó (QĐ V6-F1(2)); dòng mới hoặc dòng chưa có giá trị phân biệt ghi 'PhiThuoc'.
+        /// - 1003–1007 → tên member PascalCase (trùng giá trị đã chuẩn hoá trên STG); fjCode ngoài dải này giữ hành vi cũ (enum ToString).
+        /// Lưu ý: form không có ô fjmc nên entity.fjmc post lên luôn rỗng — muốn giữ giá trị cũ phải đọc lại dòng đang lưu (GetStoredFjmc), không dựa vào entity post lên.
+        /// </summary>
+        private string GetFjmcByCode(int fjCodeVal, SysChargeCategoryEntity entity, int? keyValue)
+        {
+            switch (fjCodeVal)
+            {
+                case 1002:
+                    return "Phi kiem tra";
+                case 1001:
+                    var storedFjmc = GetStoredFjmc(entity, keyValue);
+                    if (storedFjmc == "Phi thuoc Tay y" || storedFjmc == "Phi thuoc thanh pham Dong y")
+                    {
+                        return storedFjmc;
+                    }
+                    return Newtouch.Infrastructure.EnumSffjdlmc.PhiThuoc.ToString();
+                default:
+                    return ((Newtouch.Infrastructure.EnumSffjdlmc)fjCodeVal).ToString();
+            }
+        }
+
+        /// <summary>
+        /// Đọc fjmc đang lưu của dòng sắp sửa (repo tương ứng với OrganizeId sẽ ghi).
+        /// Chỉ dùng khi fjCode = 1001 để giữ 2 giá trị thuốc phân biệt; dòng mới (keyValue rỗng/0) trả null.
+        /// </summary>
+        private string GetStoredFjmc(SysChargeCategoryEntity entity, int? keyValue)
+        {
+            if (!keyValue.HasValue || keyValue.Value <= 0)
+            {
+                return null;
+            }
+            if ("*".Equals(entity.OrganizeId))
+            {
+                return _SysChargeCategoryBaseRepo.FindEntity(val => val.dlId == keyValue.Value)?.fjmc;
+            }
+            return _SysChargeCategoryRepo.FindEntity(val => val.dlId == keyValue.Value)?.fjmc;
+        }
+
         /// <summary>
         /// Sửa trạng thái
         /// </summary>
