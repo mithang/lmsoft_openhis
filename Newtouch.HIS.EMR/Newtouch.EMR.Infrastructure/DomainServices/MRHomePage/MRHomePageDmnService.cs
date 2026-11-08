@@ -767,11 +767,12 @@ order by SSOrder ";
                             else
                             {
                                 var Lj = _ZymeddocsrelationRepo.FindEntity(p => p.OrganizeId == orgId && p.zyh == ety.ZYH && p.blId == ety.Id && p.bllx == "5" && p.zt == "1");
-                                ZymeddocsrelationEntity entity = new ZymeddocsrelationEntity();
-                                entity = Lj;
-                                entity.LastModifierCode = ety.LastModifierCode;
-                                entity.LastModifyTime = ety.LastModifyTime;
-                                _ZymeddocsrelationRepo.Update(entity);
+                                if (Lj != null)
+                                {
+                                    Lj.LastModifierCode = ety.LastModifierCode;
+                                    Lj.LastModifyTime = ety.LastModifyTime;
+                                    _ZymeddocsrelationRepo.Update(Lj);
+                                }
                             }
                         }
                         else
@@ -1097,7 +1098,10 @@ order by SSOrder ";
             if (!string.IsNullOrWhiteSpace(vo.YLFKFS))
             {
                 var ylfk = _CommonDmnService.DicCommonList(orgId, null, "YLFKFS", vo.YLFKFS).FirstOrDefault();
-                relEty.YLFKFS = ylfk.Name;
+                if (ylfk != null)
+                {
+                    relEty.YLFKFS = ylfk.Name;
+                }
             }
 
             if (!string.IsNullOrWhiteSpace(vo.CYKB) && string.IsNullOrWhiteSpace(relvo.R_CYKB) && string.IsNullOrWhiteSpace(relEty.CYKB))
