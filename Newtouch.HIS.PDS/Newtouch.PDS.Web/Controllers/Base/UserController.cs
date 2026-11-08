@@ -99,7 +99,7 @@ namespace Newtouch.HIS.Web.Controllers
                 return iitreeList;
             }, cacheTime);
 
-            IList<string> checkedUserIdList = null; //đãcheckedngười dùng của
+            IList<string> checkedUserIdList = null; //đã checked người dùng của
             if (from == "rolerelatioinuser" && !string.IsNullOrWhiteSpace(keyValue))   //Người dùng vai trò đã liên kết
             {
                 checkedUserIdList = _userRoleAuthDmnService.GetCurUserIdListByRoleId(keyValue);
@@ -127,7 +127,7 @@ namespace Newtouch.HIS.Web.Controllers
                 while (count > 0)
                 {
                     count = treeList.RemoveAll(p => !p.showcheck && !p.hasChildren);
-                    //Điều chỉnh lại cây Loại bỏ Không có cấp dưới(Cấp dưới vừa bị chuyển) lại Không hiển thịshowcheckcủa
+                    //Điều chỉnh lại cây Loại bỏ Không có cấp dưới(Cấp dưới vừa bị chuyển) lại Không hiển thị show check của
                     treeList.RemoveAll(p => !p.showcheck && !treeList.Any(sub => sub.parentId == p.id));
                 }
             }

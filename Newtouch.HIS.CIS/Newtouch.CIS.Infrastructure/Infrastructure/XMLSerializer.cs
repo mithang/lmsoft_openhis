@@ -9,7 +9,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// xmlthứ tựcộthóamở rộngtriển
+    /// xml thứ tự cột hóa mở rộng triển
     /// </summary>
     public static class XmlSerializerExt
     {
@@ -186,18 +186,18 @@ namespace Newtouch.Infrastructure
         }
         
         /// <summary>
-        /// uuidchuyểnngắnchuỗi
+        /// uuid chuyển ngắn chuỗi
         public static string GenerateShortUUIDFromString(string uuidString)
         {
-            // sẽgốcbắt đầu UUID chữkýchuỗichuyểnđổilàchữtiếtsốnhóm
+            // sẽ gốc bắt đầu UUID chữ ký chuỗi chuyển đổi là chữ tiết số nhóm
             byte[] bytes = Encoding.UTF8.GetBytes(uuidString);
 
-            // Sử dụng MD5 bămtínhphương pháp
+            // Sử dụng MD5 băm tính phương pháp
             using (MD5 md5 = MD5.Create())
             {
                 byte[] hashBytes = md5.ComputeHash(bytes);
 
-                // sẽbămkếtnếuchuyểnđổilàmườisáuvàochếchữkýchuỗi
+                // sẽ băm kết nếu chuyển đổi là mười sáu vào chế chữ ký chuỗi
                 string hashString = BitConverter.ToString(hashBytes).Replace("-", "");
 
                 // Lấy 6 ký tự đầu làm chuỗi ngắn

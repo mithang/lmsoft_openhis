@@ -27,7 +27,7 @@ namespace Newtouch.DomainServices
         /// <param name="cfId"></param>
         public IList<HistoryPresFormSelectVO> GetHistoryPresDetailByCfId(string cfId)
         {
-            //Đơn thuốcchi tiết
+            //Đơn thuốc chi tiết
             var sql = @"
 SELECT cfmxId,Createtime, zh, xmmc, cfmx.ypmc, ypgg,
  cast(isnull(mcjl,0) as varchar)+'('+mcjldw+')' AS mcjl,
@@ -139,9 +139,9 @@ WHERE 1=1";
 SELECT cf.cfId, cfmx.ypCode,cfmx.ypmc,cfmx.mcjl,cfmx.mcjldw,cfmx.mcjldw AS mcjldwwwwwww
 ,yp.jldw AS redundant_jldw
 ,cfmx.yfCode,cfmx.pcCode,cfmx.sl,cfmx.zl,cfmx.dw,
-        CONVERT(DECIMAL(9,2),(isnull(cfmx.sl,0)*(yp.lsj / yp.bzs * yp.mzcls))) AS je,  --theo mới nhấtdjtính raje
+        CONVERT(DECIMAL(9,2),(isnull(cfmx.sl,0)*(yp.lsj / yp.bzs * yp.mzcls))) AS je,  --theo mới nhất dj tính raje
         cfmx.zh,cf.tieshu,cf.cfyf,cf.djbz,
-        yp.lsj / yp.bzs * yp.mzcls AS dj,  --mới nhấtdj
+        yp.lsj / yp.bzs * yp.mzcls AS dj,  --mới nhất dj
         yp.mzcldw AS dw,
         pc.yzpcmc AS pcmc,
         yp.ypgg,

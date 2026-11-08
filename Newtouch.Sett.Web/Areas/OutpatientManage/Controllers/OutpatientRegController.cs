@@ -73,10 +73,10 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
 		#region Lịch trực đăng ký khám
 		/// <summary>
-		/// đăng ký khámlịch trực List
+		/// đăng ký khám lịch trực List
 		/// </summary>
 		/// <param name="keyword">khoa/bác sĩ</param>
-		/// <param name="mzlx">ngoại trúloại khám thườngngoại trúkhám/cấp cứuchứng/chuyên giangoại trúkhám</param>
+		/// <param name="mzlx">ngoại trú loại khám thường ngoại trú khám/cấp cứu chứng/chuyên gia ngoại trú khám</param>
 		/// <returns></returns>
 		[HttpPost]
                 public IActionResult GetRegScheduleList(string keyword, string mzlx)
@@ -86,7 +86,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// lấymớicủalịch trực
+        /// lấy mới của lịch trực
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="mzlx"></param>
@@ -103,7 +103,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// bệnh nhân làkhôngđãđăng ký khámhẹn
+        /// bệnh nhân là không đã đăng ký khám hẹn
         /// </summary>
         /// <param name="mzlx"></param>
         /// <param name="patid"></param>
@@ -132,7 +132,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// tra cứu khingàyđãđăng ký khám
+        /// tra cứu khi ngày đã đăng ký khám
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="creatorCode"></param>
@@ -149,7 +149,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             return View();
         }
         /// <summary>
-        /// sửahẹn đăng ký khámhẹntrạng thái
+        /// sửa hẹn đăng ký khám hẹn trạng thái
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="mzh"></param>
@@ -170,7 +170,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 			return Success();
 		}
         /// <summary>
-        /// hẹn đăng ký khámđiểm danh
+        /// hẹn đăng ký khám điểm danh
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -192,7 +192,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             return View();
         }
         /// <summary>
-        /// theo mã nhân viênlấy số hóa đơn
+        /// theo mã nhân viên lấy số hóa đơn
         /// </summary>
         /// <param name="employeeNo"></param>
         /// <returns></returns>
@@ -203,7 +203,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// xác thực nhậpsố hóa đơnlàkhôngcó thể dùng
+        /// xác thực nhập số hóa đơn là không có thể dùng
         /// by caishanshan
         /// </summary>
         /// <param name="inputFPH"></param>
@@ -216,10 +216,10 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         #endregion
 
         /// <summary>
-        /// lấyđăng ký khámphí phí chẩn trị phí thẻ từ phí làm thẻ
+        /// lấy đăng ký khám phí phí chẩn trị phí thẻ từ phí làm thẻ
         /// </summary>
-        /// <param name="ghlx">đăng ký khámloại</param>
-        /// <param name="zlxm">chẩn trịkhoản mục</param>
+        /// <param name="ghlx">đăng ký khám loại</param>
+        /// <param name="zlxm">chẩn trị khoản mục</param>
         /// <param name="isZzjm">giảm miễn chuyển tuyến</param>
         /// <param name="isCkf">phí thẻ từ</param>
         /// <param name="isGbf">phí làm thẻ</param>
@@ -238,7 +238,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         #region Đăng ký khám ngoại trú2018
 
         /// <summary>
-        /// đăng ký khám ngoại trútrang
+        /// đăng ký khám ngoại trú trang
         /// </summary>
         /// <returns></returns>
         public IActionResult OutpatientReg2018()
@@ -253,7 +253,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// xác định làkhôngtrùng lặpđăng ký khám
+        /// xác định là không trùng lặp đăng ký khám
         /// </summary>
         /// <param name="blh"></param>
         /// <returns></returns>
@@ -263,7 +263,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-        /// sửasố điện thoại
+        /// sửa số điện thoại
         /// </summary>
         /// <param name="blh"></param>
         /// <returns></returns>
@@ -284,7 +284,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// tạo duy nhấtsố khám ngoại trú,số thứ tự khám
+        /// tạo duy nhất số khám ngoại trú,số thứ tự khám
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="ghlx"></param>
@@ -306,7 +306,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             return Success(null, data);
         }
         /// <summary>
-        /// chongqing lịch trực mới duy nhấtsố khám ngoại trú,số thứ tự khám
+        /// chongqing lịch trực mới duy nhất số khám ngoại trú,số thứ tự khám
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="ghpbId"></param>
@@ -351,7 +351,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         #region Lưu đăng ký khám + Hủy số bản mới
 
         /// <summary>
-        /// đăng ký khám ngoại trúlưu
+        /// đăng ký khám ngoại trú lưu
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="kh"></param>
@@ -369,10 +369,10 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         /// <param name="sfrq"></param>
         /// <param name="fph"></param>
         /// <param name="feeRelated"></param>
-        /// <param name="brxz">tính chất bệnh nhândo trang truyền sang,vì là BHYT bệnh nhân có thể đăng ký số tự chi trả</param>
-        /// <param name="ybjsh">BHYT phía số quyết toán(BHYT phía đãđăng ký khám)</param>
+        /// <param name="brxz">tính chất bệnh nhân do trang truyền sang,vì là BHYT bệnh nhân có thể đăng ký số tự chi trả</param>
+        /// <param name="ybjsh">BHYT phía số quyết toán(BHYT phía đã đăng ký khám)</param>
         /// <param name="qzjzxh">số thứ tự khám tiền tố</param>
-        /// <param name="qzmzh">tiền tốsố khám ngoại trú</param>
+        /// <param name="qzmzh">tiền tố số khám ngoại trú</param>
         /// <returns></returns>
                 public IActionResult Save(int patid, string kh, string ghly, string mjzbz,
             string ks, string ys, string ksmc, string ysmc, string ghxm, string zlxm
@@ -392,8 +392,8 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                 if (string.IsNullOrWhiteSpace(kh) || string.IsNullOrWhiteSpace(mjzbz) || string.IsNullOrWhiteSpace(ks) || string.IsNullOrWhiteSpace(ksmc) || ghpbId < 0
                     || string.IsNullOrWhiteSpace(brxz) || (feeRelated != null && feeRelated.zje < 0))
                 {
-                    //181008phải truyềnbrxz
-                    //zjecó thể bằng0,nhưng không được nhỏ hơn0
+                    //181008phải truyền brxz
+                    //zje có thể bằng0,nhưng không được nhỏ hơn0
                     return Error("Dữ liệu yêu cầu chưa đầy đủ");
                 }
                 object newJszbInfo;
@@ -406,8 +406,8 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             {
                 if (!string.IsNullOrWhiteSpace(ybjsh))
                 {
-                    //BHYT phía đãđăng ký khám,HIS đăng ký khámthất bại,phải hủy BHYT phía của đăng ký khám,nhắc đăng ký lại
-                    //20181018tại Clientgọi
+                    //BHYT phía đã đăng ký khám,HIS đăng ký khám thất bại,phải hủy BHYT phía của đăng ký khám,nhắc đăng ký lại
+                    //20181018tại Client gọi
 
                 }
                 throw ex;
@@ -415,7 +415,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// chưa quyết toánđăng ký khám hủy số
+        /// chưa quyết toán đăng ký khám hủy số
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -462,7 +462,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         #region Book
 
         /// <summary>
-        /// xác địnhtính chất bệnh nhânlàkhôngáp dụng chongoại trúkhám
+        /// xác định tính chất bệnh nhân là không áp dụng cho ngoại trú khám
         /// </summary>
         /// <param name="kh"></param>
         /// <returns></returns>
@@ -498,7 +498,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
         #endregion
 
-        #region Hóa đơn thu phí ngoại trúfastreportIn
+        #region Hóa đơn thu phí ngoại trú fastreportIn
         public IActionResult printOutpatientChargeBill(string jsnm)
         {
             var data = _iprintOutpatientChargeBillDmnService.GetmjzpjJson(jsnm, this.OrganizeId);
@@ -535,7 +535,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             return Success();
 	    }
 		/// <summary>
-		/// lấyđăng ký khámchi phí
+		/// lấy đăng ký khám chi phí
 		/// </summary>
 		/// <param name="ghlx"></param>
 		/// <param name="zlxm"></param>
@@ -549,7 +549,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 		    decimal zfje = Convert.ToDecimal(0.0000);
 			if (ghdata != null) foreach (var item in ghdata)
 		    {
-				//xác địnhkhoản mục là BHYT khoản mụchay tự chi trảkhoản mục,ở đây vìlàsypcchắc chắnlànull,vì vậy khi tra cứu trước tiên dùng trường này làm là BHYT dấu hiệugán trường,có thể không thêm trường mới nữa
+				//xác định khoản mục là BHYT khoản mục hay tự chi trả khoản mục,ở đây vì là sypc chắc chắn là null,vì vậy khi tra cứu trước tiên dùng trường này làm là BHYT dấu hiệu gán trường,có thể không thêm trường mới nữa
 			    if (item.issc==1)
 			    {
 					ybje += Convert.ToDecimal(item.je);
@@ -581,7 +581,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             return View();
         }
         /// <summary>
-        /// xuấtđăng ký khámtra cứu theo điều kiện tra cứu
+        /// xuất đăng ký khám tra cứu theo điều kiện tra cứu
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="fph"></param>

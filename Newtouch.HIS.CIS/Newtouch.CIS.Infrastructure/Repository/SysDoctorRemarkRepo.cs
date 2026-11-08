@@ -17,7 +17,7 @@ namespace Newtouch.Repository
         {
         }
         /// <summary>
-        /// Lấydanh sách
+        /// Lấy danh sách
         /// </summary>
         /// <returns></returns>
         public List<SysDoctorRemarkVO> GetListByOrg(string orgId)
@@ -83,7 +83,7 @@ where zt.OrganizeId=@orgId
             this.Delete(entity);
         }
 
-        #region Bác sĩtrạm--》văn bảnnhập--》chỉhiển thịvăn bảnkhungNút
+        #region Bác sĩ trạm--》văn bản nhập--》chỉ hiển thị văn bản khungNút
 
 //        public List<SyssurgeryTextVO> surgery_record(string OrganizeId) {
 

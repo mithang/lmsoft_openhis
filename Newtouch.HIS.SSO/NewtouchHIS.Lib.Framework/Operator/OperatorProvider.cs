@@ -13,7 +13,7 @@ namespace NewtouchHIS.Lib.Framework.Operator
     public class OperatorProvider
     {
         /// <summary>
-        /// ứng dụng Id(trongconfigcấu hình AppId)
+        /// ứng dụng Id(trong config cấu hình AppId)
         /// </summary>
         public static string _appId { get; private set; }
 
@@ -21,12 +21,12 @@ namespace NewtouchHIS.Lib.Framework.Operator
         private static string _loginUserKeyPart1 = "newtouch_loginuserkey_2016";
 
         /// <summary>
-        /// liên kếtkey,keycó thể đổi nhóm Model
+        /// liên kết key,key có thể đổi nhóm Model
         /// </summary>
         private static string _loginUserKey = _loginUserKeyPart1;
 
         /// <summary>
-        /// lắp ráp cục bộ Cookiecủa
+        /// lắp ráp cục bộ Cookie của
         /// </summary>
         public static string LocalhostCookieKey
         {
@@ -261,7 +261,7 @@ namespace NewtouchHIS.Lib.Framework.Operator
                 return;     //được coi là không hợp lệ danh tính
             }
 
-            //tokentương ứng trực tiếp UserInfo Model
+            //token tương ứng trực tiếp UserInfo Model
             var token = Guid.NewGuid().ToString();
 
             if (string.IsNullOrWhiteSpace(operatorModel.token))
@@ -297,7 +297,7 @@ namespace NewtouchHIS.Lib.Framework.Operator
 
                         if (itemToken != "SIDELINED")
                         {
-                            if ((availablyOnlineCount + 1) < limitCount)    //+1là vì suất cuối cùng hiện tạitoken
+                            if ((availablyOnlineCount + 1) < limitCount)    //+1là vì suất cuối cùng hiện tại token
                             {
                                 //đây là một máy khách trực tuyến có hiệu lực
                                 availablyOnlineCount++;
@@ -316,9 +316,9 @@ namespace NewtouchHIS.Lib.Framework.Operator
                     }
                     if (existTokenList.Count > limitCount + 20)
                     {
-                        //sau khi bị đẩy ra không có GetCurrent,thao tác thoát. dẫn đếnexistTokenListkhông thể RemoveAt
-                        //existTokenList.RemoveRange(5, limitCount + 20 - 5);  //xóa những cái phía trước(lần đăng nhập mới nhất bịreverseđã lên phía trước)
-                        existTokenList.RemoveRange(limitCount, 20 - 1);  //xóa những cái phía trước(lần đăng nhập mới nhất bịreverseđã lên phía trước)
+                        //sau khi bị đẩy ra không có GetCurrent,thao tác thoát. dẫn đến existTokenList không thể RemoveAt
+                        //existTokenList.RemoveRange(5, limitCount + 20 - 5);  //xóa những cái phía trước(lần đăng nhập mới nhất bị reverse đã lên phía trước)
+                        existTokenList.RemoveRange(limitCount, 20 - 1);  //xóa những cái phía trước(lần đăng nhập mới nhất bị reverse đã lên phía trước)
                     }
                 }
                 if (existTokenList != null && existTokenList.Count > 0)
@@ -392,7 +392,7 @@ namespace NewtouchHIS.Lib.Framework.Operator
         }
 
         /// <summary>
-        /// bổ sung đăng nhậpcookie áp dụng cho việc chuyển trang giữa các hệ thống con
+        /// bổ sung đăng nhập cookie áp dụng cho việc chuyển trang giữa các hệ thống con
         /// </summary>
         public static void WriteLoginUserCookie()
         {

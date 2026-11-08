@@ -48,7 +48,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public string isfsyz { get; set; }
         /// <summary>
-        /// Y lệnhsố
+        /// Y lệnh số
         /// </summary>
         public string yzh { get; set; }
     }

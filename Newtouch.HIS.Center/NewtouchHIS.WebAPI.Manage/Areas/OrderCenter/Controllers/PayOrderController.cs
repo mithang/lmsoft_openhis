@@ -67,7 +67,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
         }
 
         /// <summary>
-        /// Thanh toán hóa đơnstep1:Tạo đơn hàng thanh toán
+        /// Thanh toán hóa đơn step1:Tạo đơn hàng thanh toán
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -129,7 +129,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
         }
 
         /// <summary>
-        /// Thanh toán hóa đơnstep2:Đăng ký Khóa đơn hàng
+        /// Thanh toán hóa đơn step2:Đăng ký Khóa đơn hàng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -148,7 +148,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// Thanh toán hóa đơnstep3:Quyết toán đơn hàng
+        /// Thanh toán hóa đơn step3:Quyết toán đơn hàng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

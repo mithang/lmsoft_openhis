@@ -16,7 +16,7 @@ namespace Newtouch.Repository.Clinic
     public class ClinicApplyRepo : RepositoryBase<ClinicApplyInfoEntity>, IClinicApplyRepo
     {
         /// <summary>
-        /// Mặc định Hàm khởi tạosố
+        /// Mặc định Hàm khởi tạo số
         /// </summary>
         /// <param name="databaseFactory">EF trên dưới văn Nhà máy</param>
         public ClinicApplyRepo()

@@ -75,7 +75,7 @@ and b.OrganizeId = @orgId
             {
                 return;
             }
-            //Quyềnlist
+            //Quyền list
             var authorityLists = new List<SysMedicineAuthorityRelationEntity>();
             foreach (var item in AuthorityList.Where(p => !string.IsNullOrWhiteSpace(p)).Distinct())
             {

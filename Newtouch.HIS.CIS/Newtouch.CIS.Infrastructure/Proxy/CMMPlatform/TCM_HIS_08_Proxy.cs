@@ -8,7 +8,7 @@ using ReceiveRequestEntity = Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_08.Recei
 namespace Newtouch.CIS.Proxy.CMMPlatform
 {
     /// <summary>
-    /// nhắclấy Đơn thuốc
+    /// nhắc lấy Đơn thuốc
     /// </summary>
     internal class TcmHis08Proxy : GuiAnTelemedicinePlatformProxy<ReceiveRequestEntity, PullPrescriptionRequestEntity>
     {

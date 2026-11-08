@@ -12,7 +12,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
     /// </summary>
     public class RedisHelper : RedisCoreEx
     {
-        //Redisđối tượng
+        //Redis đối tượng
         //private static RedisCoreEx Redis;
         public static IConfigurationSection _config;
         public static ILogger<RedisHelper> Logger { get; set; }

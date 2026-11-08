@@ -40,15 +40,15 @@ namespace Newtouch.Domain.ValueObjects
         public string zxksmc { get; set; }
 
         /// <summary>
-        /// Dư thừacủachữđoạn,trangmặttrênởchoselectđiềnoptionscủakhichờdùngđến
+        /// Dư thừa của chữ đoạn,trang mặt trên ở cho select điền options của khi chờ dùng đến
         /// </summary>
         public string redundant_jldw { get; set; }
         /// <summary>
-        /// là Không Bảo hiểm y tế add by sunny Giai đoạn 3 Tần Hoàng Đảo dẫndùnglịch sử Đơn thuốckhi,Bảo hiểm y tếbệnh nhânkhôngphương phápchọnmục tự chi trả
+        /// là Không Bảo hiểm y tế add by sunny Giai đoạn 3 Tần Hoàng Đảo dẫn dùng lịch sử Đơn thuốc khi,Bảo hiểm y tế bệnh nhân không phương pháp chọn mục tự chi trả
         /// </summary>
         public string sfyb { get; set; }
         /// <summary>
-        /// add by huangshanshan Ngoại trúmẫusao chép Cách dùngvà Dạng bào chếliên kết,Cách dùngkhôngphương pháp Bình thường Hiển thị
+        /// add by huangshanshan Ngoại trú mẫu sao chép Cách dùng và Dạng bào chế liên kết,Cách dùng không phương pháp Bình thường Hiển thị
         /// </summary>
         public string jxCode { get; set; }
         public string ztId { get; set; }

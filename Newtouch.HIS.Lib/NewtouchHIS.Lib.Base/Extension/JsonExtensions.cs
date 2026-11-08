@@ -136,7 +136,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// Thêm item vào json object, và trả về sau khi tuần tự hóastring
+        /// Thêm item vào json object, và trả về sau khi tuần tự hóa string
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="content"></param>
@@ -166,9 +166,9 @@ namespace NewtouchHIS.Lib.Base.Extension
         /// <summary>
         /// Giải tuần tự hóa chuỗi json thành kiểu từ điển
         /// </summary>
-        /// <typeparam name="TKey">từ điểnkey</typeparam>
-        /// <typeparam name="TValue">từ điểnvalue</typeparam>
-        /// <param name="jsonStr">jsonchuỗi</param>
+        /// <typeparam name="TKey">từ điển key</typeparam>
+        /// <typeparam name="TValue">từ điển value</typeparam>
+        /// <param name="jsonStr">json chuỗi</param>
         /// <returns>Dữ liệu từ điển</returns>
         public static Dictionary<TKey, TValue>? JsonStringToDictionary<TKey, TValue>(string jsonStr)
         {

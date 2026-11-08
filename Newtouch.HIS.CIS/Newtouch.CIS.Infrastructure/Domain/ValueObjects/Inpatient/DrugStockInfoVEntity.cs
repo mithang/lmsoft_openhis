@@ -64,12 +64,12 @@ namespace Newtouch.Domain.ValueObjects
         public string kcslStr { get; set; }
 
         /// <summary>
-        /// mang Đơn vị Khoa phòngđôngkết Số lượng
+        /// mang Đơn vị Khoa phòng đông kết Số lượng
         /// </summary>
         public string djslStr { get; set; }
 
         /// <summary>
-        /// góilắpsố Đơn vị
+        /// gói lắp số Đơn vị
         /// </summary>
         public int? bzdwsl { get; set; }
 
@@ -79,7 +79,7 @@ namespace Newtouch.Domain.ValueObjects
         public string dw { get; set; }
 
         /// <summary>
-        /// góilắpsố Đơn vị
+        /// gói lắp số Đơn vị
         /// </summary>
         public string bzdw { get; set; }
 
@@ -89,12 +89,12 @@ namespace Newtouch.Domain.ValueObjects
         public string zxdw { get; set; }
 
         /// <summary>
-        /// chuyểnhóavìcon
+        /// chuyển hóa vì con
         /// </summary>
         public int? zhyz { get; set; }
 
         /// <summary>
-        /// góilắpsố
+        /// gói lắp số
         /// </summary>
         public int? bzs { get; set; }
 
@@ -104,7 +104,7 @@ namespace Newtouch.Domain.ValueObjects
         public decimal? pfj { get; set; }
 
         /// <summary>
-        /// lôpháttổngmức
+        /// lô phát tổng mức
         /// </summary>
         public decimal? pjze { get; set; }
 
@@ -124,7 +124,7 @@ namespace Newtouch.Domain.ValueObjects
         public decimal? lsze { get; set; }
 
         /// <summary>
-        /// vàogiátổngmức
+        /// vào giá tổng mức
         /// </summary>
         public decimal? jjze { get; set; }
 
@@ -159,7 +159,7 @@ namespace Newtouch.Domain.ValueObjects
         public string ycmc { get; set; }
 
         /// <summary>
-        /// có thểdùng Tồn kho  Đơn vị nhỏ nhất
+        /// có thể dùng Tồn kho  Đơn vị nhỏ nhất
         /// </summary>
         public int? kykc { get; set; }
 
@@ -174,27 +174,27 @@ namespace Newtouch.Domain.ValueObjects
         public string lsjdjdw { get; set; }
 
         /// <summary>
-        /// lôphát Đơn giá Đơn vị
+        /// lô phát Đơn giá Đơn vị
         /// </summary>
         public string pfjdjdw { get; set; }
 
         /// <summary>
-        /// vàogiá Đơn giá Đơn vị
+        /// vào giá Đơn giá Đơn vị
         /// </summary>
         public string jjdjdw { get; set; }
 
         /// <summary>
-        /// Đơn vị nhỏ nhấtvàogiá
+        /// Đơn vị nhỏ nhất vào giá
         /// </summary>
         public decimal? zxdwjj { get; set; }
 
         /// <summary>
-        /// Đơn vị đóng góivàogiá
+        /// Đơn vị đóng gói vào giá
         /// </summary>
         public decimal? bzdwjj { get; set; }
 
         /// <summary>
-        /// Khoa phòng Đơn vịvàogiá
+        /// Khoa phòng Đơn vị vào giá
         /// </summary>
         public decimal? bmdwjj { get; set; }
 

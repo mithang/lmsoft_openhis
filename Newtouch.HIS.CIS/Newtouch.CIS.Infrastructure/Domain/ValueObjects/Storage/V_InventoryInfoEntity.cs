@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Storage
 {
     /// <summary>
-    /// Kiểm kêthông tin
+    /// Kiểm kê thông tin
     /// </summary>
     public class VInventoryInfoEntity
     {
@@ -22,7 +22,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string gg { get; set; }
 
         /// <summary>
-        /// lýluậnsố(mang Đơn vị)
+        /// lý luận số(mang Đơn vị)
         /// </summary>
         public string llsl { get; set; }
         
@@ -52,7 +52,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string zxdw { get; set; }
 
         /// <summary>
-        /// chuyểnhóavìcon
+        /// chuyển hóa vì con
         /// </summary>
         public int zhyz { get; set; }
 
@@ -72,17 +72,17 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// khôngbán Đơn giá
+        /// không bán Đơn giá
         /// </summary>
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// lýluậntổng bán lẻ
+        /// lý luận tổng bán lẻ
         /// </summary>
         public decimal lllsje { get; set; }
 
         /// <summary>
-        /// thực tếtổng bán lẻ
+        /// thực tế tổng bán lẻ
         /// </summary>
         public decimal sjlsje { get; set; }
 
@@ -92,7 +92,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string py { get; set; }
 
         /// <summary>
-        /// Kiểm kêchi tiết ID
+        /// Kiểm kê chi tiết ID
         /// </summary>
         public long pdmxId { get; set; }
         

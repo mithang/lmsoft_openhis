@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Domain.Entity.PharmacyDrugStorage
         public string jymc { get; set; }
         public string param { get; set; }
         /// <summary>
-        /// Tham Số vàoxml
+        /// Tham Số vào xml
         /// </summary>
         public string XmlRequest { get; set; }
         /// <summary>

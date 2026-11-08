@@ -14,55 +14,55 @@ namespace Newtouch.Domain.IDomainServices
     public interface IEntryRegistrationDmnService
     {
         /// <summary>
-        /// Lấygiường ký tựthông tin
+        /// Lấy giường ký tự thông tin
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         List<BedInfoViewResponseVO> GetCwInfoViewList(BedInfoViewRequestVO req);
         /// <summary>
-        /// Bệnh nhânvàokhu
+        /// Bệnh nhân vào khu
         /// </summary>
         /// <param name="inareaReq"></param>
         /// <returns></returns>
         string SavePatInArea(patInAreaRequestDto inareaReq);
         /// <summary>
-        /// Bệnh nhânchuyển khu Bệnh nhânvàokhuthông tin Sửa
+        /// Bệnh nhân chuyển khu Bệnh nhân vào khu thông tin Sửa
         /// </summary>
         /// <param name="patChangeAreaRequestDto"></param>
         string SaveChangeAreaPatInfo(patChangeAreaRequestDto patChangeAreaRequestDto);
         string UpdatePatInfo(string zyh,string wzjb,string orgId);
         /// <summary>
-        /// Lưuvàokhukhi Thông tin bệnh nhân
+        /// Lưu vào khu khi Thông tin bệnh nhân
         /// </summary>
         /// <param name="patInfoRes"></param>
         void SavePatInfo(InPatientDetailQueryDto patInfoRes);
         /// <summary>
-        /// vàokhukhithulấykhingàygiường ký tựgắn Chi phí
+        /// vào khu khi thu lấy khi ngày giường ký tự gắn Chi phí
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         string AddPatBedItemFee(patBedFeeRequestDto req);
         /// <summary>
-        /// Lấychuyển khu Bệnh nhân
+        /// Lấy chuyển khu Bệnh nhân
         /// </summary>
         /// <param name="bqdm"></param>
         /// <returns></returns>
         List<NewPatInfoVO> GetPatChangeArea(string bqdm);
         /// <summary>
-        /// Lấycần Chènđếngiường ký tự Sử dụngghi chépbảngcủa Dữ liệu
+        /// Lấy cần Chèn đến giường ký tự Sử dụng ghi chép bảng của Dữ liệu
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         patBedSyjlInfoVO GetPatBedSyInfo(string zyh);
         /// <summary>
-        /// Lưugiường ký tự Sử dụngghi chép
+        /// Lưu giường ký tự Sử dụng ghi chép
         /// </summary>
         /// <param name="patBedSyInfo"></param>
         void SavePatBedSYInfo(patBedSyjlInfoVO patBedSyInfo);
         /// <summary>
         /// Tra cứu
         /// </summary>
-        /// <param name="pagination">phúttrang</param>
+        /// <param name="pagination">phút trang</param>
         /// <param name="keyword">Từ khóa</param>
         /// <param name="ksrq">Ngày bắt đầu</param>
         /// <param name="jsrq">Ngày kết thúc</param>
@@ -70,13 +70,13 @@ namespace Newtouch.Domain.IDomainServices
         /// <returns></returns>
         IList<OutAreapatientInfo> GetOutAreaPatlist(Pagination pagination, string keyword, DateTime? ksrq, DateTime? jsrq, string bqdm, string orgId);
         /// <summary>
-        /// ra khỏi khutriệuvề
+        /// ra khỏi khu triệu về
         /// </summary>
         /// <param name="zyh">Số nhập viện</param>
         /// <param name="bqdm">Khu bệnh Mã</param>
         string SaveRecallOutArea(string zyh, string bqdm);
         /// <summary>
-        /// kiểm tra Bệnh nhâncó thể Không Hủyvàokhu
+        /// kiểm tra Bệnh nhân có thể Không Hủy vào khu
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -89,7 +89,7 @@ namespace Newtouch.Domain.IDomainServices
         string SaveChangeArea(patRequestDto req, string bqdm);
        
         /// <summary>
-        /// chuyểngiường
+        /// chuyển giường
         /// </summary>
         /// <param name="reqDto"></param>
         string ChangeBed(patBedRequestDto reqDto);
@@ -105,7 +105,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<InAreapatientInfo> GetINAreaPatlist(Pagination pagination, string keyword, string bqdm,string orgId);
 
         /// <summary>
-        /// mớivàokhu,chuyển khu giường ký tựlà Khôngbịchiếmdùng
+        /// mới vào khu,chuyển khu giường ký tự là Không bị chiếm dùng
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="OrganizeId"></param>

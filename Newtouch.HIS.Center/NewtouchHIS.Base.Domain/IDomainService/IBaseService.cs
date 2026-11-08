@@ -44,23 +44,23 @@ namespace NewtouchHIS.Base.Domain
 
         #region Ado
         /// <summary>
-        /// Thực thi câu lệnh không truy vấnsqlcâu lệnh,trả về thao tác có thành công hay không
+        /// Thực thi câu lệnh không truy vấn sql câu lệnh,trả về thao tác có thành công hay không
         /// </summary>
-        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="sql">sql câu lệnh</param>
         /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         Task<bool> ExecuteCommandSql(string sql, params SugarParameter[] parameters);
         /// <summary>
-        /// Thực thi truy vấnsqlcâu lệnh,Trả về tập kết quả truy vấn
+        /// Thực thi truy vấn sql câu lệnh,Trả về tập kết quả truy vấn
         /// </summary>
-        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="sql">sql câu lệnh</param>
         /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         Task<List<TEntity>> GetListBySqlQuery(string sql, params DbParameter[] parameters);
         /// <summary>
-        /// Thực thi truy vấnsqlcâu lệnh,Trả về Hàng đầu tiên, cột đầu tiên
+        /// Thực thi truy vấn sql câu lệnh,Trả về Hàng đầu tiên, cột đầu tiên
         /// </summary>
-        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="sql">sql câu lệnh</param>
         /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         //Task<object> GetScalar(string sql, params SugarParameter[] parameters);

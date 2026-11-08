@@ -57,7 +57,7 @@ namespace Newtouch.Sett.Repository
 
         public void Updatezyaddfee(string orgId, string jfbhs, string yfbm, string userCode)
         {
-            throw new NotSupportedException("Cập nhật phíghi sổ (Updatezyaddfee) chưa được chuyển đổi trong giai đoạn này.");
+            throw new NotSupportedException("Cập nhật phí ghi sổ (Updatezyaddfee) chưa được chuyển đổi trong giai đoạn này.");
         }
     }
 
@@ -65,7 +65,7 @@ namespace Newtouch.Sett.Repository
     {
         public void ExecPartialSettleFeeDetail(string zyh, string jsnm, string czlx)
         {
-            throw new NotSupportedException("Xử lý chi tiếtquyết toán giữa kỳ (ExecPartialSettleFeeDetail) chưa được chuyển đổi trong giai đoạn này.");
+            throw new NotSupportedException("Xử lý chi tiết quyết toán giữa kỳ (ExecPartialSettleFeeDetail) chưa được chuyển đổi trong giai đoạn này.");
         }
 
         public void Updatezy_brxxexpand(string orgId, string zyh)
@@ -90,7 +90,7 @@ namespace Newtouch.Sett.Repository
 
         public int getHckcWith(string orgId)
         {
-            throw new NotSupportedException("Kiểm tra cấu hình tồn khovật tư tiêu hao (getHckcWith) chưa được chuyển đổi trong giai đoạn này.");
+            throw new NotSupportedException("Kiểm tra cấu hình tồn kho vật tư tiêu hao (getHckcWith) chưa được chuyển đổi trong giai đoạn này.");
         }
     }
 
@@ -138,7 +138,7 @@ namespace Newtouch.Sett.Repository
     {
         public IList<MbmxsfxmVO> getmbmx(string sfmb, string orgId)
         {
-            throw new NotSupportedException("Tra cứu chi tiết mẫuthu phí (getmbmx) chưa được chuyển đổi trong giai đoạn này.");
+            throw new NotSupportedException("Tra cứu chi tiết mẫu thu phí (getmbmx) chưa được chuyển đổi trong giai đoạn này.");
         }
     }
 
@@ -154,7 +154,7 @@ namespace Newtouch.Sett.Repository
     {
         public new void Insert(HospSimulateSettlementGAYBFeeEntity entity)
         {
-            throw new NotSupportedException("Ghi kết quảquyết toán mô phỏng BHYT chưa được chuyển đổi trong giai đoạn này (không ghi DB).");
+            throw new NotSupportedException("Ghi kết quả quyết toán mô phỏng BHYT chưa được chuyển đổi trong giai đoạn này (không ghi DB).");
         }
     }
 }

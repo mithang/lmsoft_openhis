@@ -705,7 +705,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// Lấy bộ phận nhà thuốccode
+        /// Lấy bộ phận nhà thuốc code
         /// </summary>
         /// <returns></returns>
         public IActionResult GetTheLowerYfbmCodeList(string keyword)
@@ -940,7 +940,7 @@ namespace Newtouch.HIS.Web.Controllers
             sheet.columns.ToList().ForEach(p =>
             {
                 p.WidthTimes = (double)p.Width / colStanWidth;
-                p.Width = 0;    //Widthđều đặt thành0
+                p.Width = 0;    //Width đều đặt thành0
             });
 
             var path = DateTime.Now.ToString("\\\\yyyyMMdd\\\\HHmmssfff")+"Thống kê nhập-xuất-tồn" + ".xls";

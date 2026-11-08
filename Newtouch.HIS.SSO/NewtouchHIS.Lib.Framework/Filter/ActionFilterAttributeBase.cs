@@ -39,7 +39,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
         //}
 
         /// <summary>
-        /// lấy trong định tuyến Intgiá trị
+        /// lấy trong định tuyến Int giá trị
         /// </summary>
         /// <param name="name"></param>
         /// <param name="dftVal">giá trị mặc định0</param>
@@ -61,10 +61,10 @@ namespace NewtouchHIS.Lib.Framework.Filter
         }
 
         /// <summary>
-        /// lấy trong định tuyến Stringgiá trị
+        /// lấy trong định tuyến String giá trị
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="dftVal">giá trị mặc địnhnull</param>
+        /// <param name="dftVal">giá trị mặc định null</param>
         /// <returns></returns>
         public string GetRouteStringVal(string name, string dftVal = null)
         {

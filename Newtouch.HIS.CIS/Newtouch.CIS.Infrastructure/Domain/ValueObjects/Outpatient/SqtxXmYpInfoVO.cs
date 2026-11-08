@@ -23,7 +23,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public decimal mzcls { get; set; }
         /// <summary>
-        /// Nhóm thu phí lớncode
+        /// Nhóm thu phí lớn code
         /// </summary>
         public string sfdlCode { get; set; }
         /// <summary>

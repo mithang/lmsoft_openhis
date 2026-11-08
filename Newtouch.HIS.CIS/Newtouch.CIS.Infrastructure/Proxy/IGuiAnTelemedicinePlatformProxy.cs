@@ -2,7 +2,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy
 {
     /// <summary>
-    /// đắtanxatrìnhy tếgiao diệnthaylý
+    /// đắtanxatrìnhy tế giao diện thay lý
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="TV"></typeparam>

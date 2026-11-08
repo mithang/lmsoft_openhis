@@ -4,7 +4,7 @@ using System;
 namespace Newtouch.CIS.APIRequest.Dto
 {
     /// <summary>
-    /// đãđặt hẹn Ngoại trúđăng ký khámthông tinTra cứuyêu cầubáovăn
+    /// đã đặt hẹn Ngoại trú đăng ký khám thông tinTra cứu yêu cầu báo văn
     /// </summary>
     public class MzAlreadyBespeakRegisterCountQueryRequestDTO : RequestBase
     {

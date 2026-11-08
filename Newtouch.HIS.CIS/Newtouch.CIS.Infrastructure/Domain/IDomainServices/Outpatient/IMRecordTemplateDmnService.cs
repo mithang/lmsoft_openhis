@@ -15,7 +15,7 @@ namespace Newtouch.Domain.IDomainServices
     {
         List<MRTemplateListBO> SelectTemplateList(int mblx, string orgId,string deptCode, string userCode);
         /// <summary>
-        /// Tra cứumẫuchi tiết
+        /// Tra cứu mẫu chi tiết
         /// </summary>
         /// <param name="mbId"></param>
         MRTemplateBO SelectTemplateDetailByMbId(string mbId, string orgId);
@@ -30,7 +30,7 @@ namespace Newtouch.Domain.IDomainServices
 
 
         /// <summary>
-        /// Xóamẫu
+        /// Xóa mẫu
         /// </summary>
         /// <param name="mbId"></param>
         void DeleteTemplate(string mbId);

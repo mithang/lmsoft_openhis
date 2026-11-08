@@ -255,7 +255,7 @@ where zs.zt=1 and zs.OrganizeId = @orgId ";
 
         #endregion
 
-        #region Thông tin phòng khám（nhỏmàn hình）
+        #region Thông tin phòng khám（nhỏ màn hình）
         public OutpatientConsultInfoVO GetConsultInfo(string orgId, string zsCode,string ghrq) {
 
             var inParameters = new List<SqlParameter>();

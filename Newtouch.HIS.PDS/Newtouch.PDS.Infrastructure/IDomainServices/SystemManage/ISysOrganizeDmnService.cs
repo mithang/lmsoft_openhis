@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string GetOrganizeTypeByOrganizeId(string orgId);
 
         /// <summary>
-        /// Có chứa tổ chức cấp dưới không,Trả về nếu có tổ chức cấp dướitrue
+        /// Có chứa tổ chức cấp dưới không,Trả về nếu có tổ chức cấp dưới true
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

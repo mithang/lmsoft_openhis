@@ -9,7 +9,7 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
     public class InitController
     {
         /// <summary>
-        /// Lắp ráphis Nội bộ API Cơ sở Request
+        /// Lắp ráp his Nội bộ API Cơ sở Request
         /// </summary>
         /// <param name="request"></param>
         /// <param name="methodcode"></param>

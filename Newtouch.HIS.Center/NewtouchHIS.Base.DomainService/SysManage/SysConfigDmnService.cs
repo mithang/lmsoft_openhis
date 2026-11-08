@@ -124,7 +124,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
 
                 //Tớiorganizemở
                 var orgAuthedModuleId = query.Select(p => p.Id).ToList();
-                //Tới Rolemở                
+                //Tới Role mở                
                 List<SysModuleEntity> list = new List<SysModuleEntity>();
                 var idList = (await GetByWhere<SysRoleAuthorizeEntity>(db, t => t.zt == "1" && roleIdList.Contains(t.RoleId)))?.Select(p => p.ItemId);
                 if (idList != null && idList.Any())
@@ -202,7 +202,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
 
                 //Tớiorganizemở
                 var orgAuthedModuleId = query.Select(p => p.Id).ToList();
-                //Tới Rolemở                
+                //Tới Role mở                
                 List<SysModuleEntity> list = new List<SysModuleEntity>();
                 var idList = (await GetByWhere<SysRoleAuthorizeEntity>(t => t.zt == "1" && roleIdList.Contains(t.RoleId)))?.Select(p => p.ItemId);
                 if (idList != null && idList.Any())

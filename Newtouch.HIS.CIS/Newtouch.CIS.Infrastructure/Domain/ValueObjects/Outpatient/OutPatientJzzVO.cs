@@ -32,7 +32,7 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         public string xb { get; set; }
 
         /// <summary>
-        /// rasinhnăm Tháng
+        /// ra sinh năm Tháng
         /// </summary>
         public DateTime csny { get; set; }
 

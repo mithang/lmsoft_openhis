@@ -75,7 +75,7 @@ order by CreateTime desc";
             {
                 return;
             }
-            //Quyềnlist
+            //Quyền list
             var authorityLists = new List<SysMedicineAuthorityRelationEntity>();
             foreach (var item in AuthorityList.Where(p => !string.IsNullOrWhiteSpace(p)).Distinct())
             {

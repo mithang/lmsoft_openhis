@@ -54,7 +54,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lấygridgiá trị
+        /// Lấy grid giá trị
         /// </summary>
         /// <returns></returns>
         public IActionResult GetnrGridJson(Pagination pagination, string keyword)

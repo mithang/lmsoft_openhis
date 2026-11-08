@@ -164,7 +164,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         {
             //1.Tải lên nền tảng mua hàng Sunshine YY009
             var ddbh = _sunPurchaseDmnService.Purchase_YY009(this.OrganizeId, cgId);
-            //2.Cập nhậtddbh
+            //2.Cập nhật ddbh
             _purchaseRepo.PurchaseDdbhUpdate(cgId, ddbh, this.OrganizeId);
             //4.Xác nhận khai báo đơn hàng YY010
             _sunPurchaseDmnService.Purchase_YY010(this.OrganizeId, cgId);
@@ -179,7 +179,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         {
             //1.Tải lên nền tảng mua hàng Sunshine YY009
             var ddbh = _sunPurchaseDmnService.Purchase_YY009(this.OrganizeId, cgId);
-            //2.Cập nhậtddbh
+            //2.Cập nhật ddbh
             _purchaseRepo.PurchaseDdbhUpdate(cgId, ddbh, this.OrganizeId);
             return Success();
         }
@@ -465,7 +465,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             var ddbh = _sunPurchaseDmnService.Purchase_YY011(this.OrganizeId, thId);
             //2.Lấy YY011 số đơn hàng của  (YY011Bảng lưu)
             //var ddbh = "00001";
-            //3.Cập nhậtddbh
+            //3.Cập nhật ddbh
             //_returnedRepo.PurchaseDdbhUpdate(thId, ddbh, this.OrganizeId);
             //4.Xác nhận khai báo đơn hàng YY012
             _sunPurchaseDmnService.Purchase_YY012(this.OrganizeId, thId);

@@ -24,7 +24,7 @@ namespace NewtouchHIS.Lib.Redis
         ///// <summary>
         ///// Hàm khởi tạo
         ///// </summary>
-        ///// <param name="connStr">Rediscủa chuỗi kết nối</param>
+        ///// <param name="connStr">Redis của chuỗi kết nối</param>
         //public static RedisCoreEx(string connStr)
         //{
         //    if (!string.IsNullOrEmpty(connStr))

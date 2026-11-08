@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.DTO.OutPatientPharmacy
     public class OutPatientpyCfListDTO
     {
         /// <summary>
-        /// Mã nội bộ thanh toán thôngjsnm
+        /// Mã nội bộ thanh toán thông jsnm
         /// </summary>
         public long sfxh { get; set; }
         public string sffyxh { get; set; }

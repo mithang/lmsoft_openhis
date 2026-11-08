@@ -41,7 +41,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Lấy chữđoạn/nghiệp vụ duy nhấtmột Giá trị
+        /// Lấy chữ đoạn/nghiệp vụ duy nhất một Giá trị
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgId"></param>
@@ -63,10 +63,10 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Lấyphiếusố phiếu
+        /// Lấy phiếu số phiếu
         /// </summary>
         /// <param name="djmc"></param>
-        /// <param name="orgId">hiện tạiyviệntương ứngcủa Tổ chức Id</param>
+        /// <param name="orgId">hiện tại y viện tương ứng của Tổ chức Id</param>
         /// <param name="yfbmCode"></param>
         /// <returns></returns>
         public string GetNewMedicineReceiptNo(string djmc, string yfbmCode, string orgId)
@@ -86,7 +86,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Lấy chữđoạn/nghiệp vụ duy nhấtmột Giá trị
+        /// Lấy chữ đoạn/nghiệp vụ duy nhất một Giá trị
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgId"></param>
@@ -122,7 +122,7 @@ namespace Newtouch.Infrastructure
         #region private methods
 
         /// <summary>
-        /// Lấy chữđoạn/nghiệp vụ duy nhấtmột Giá trị Quay lại Tuple
+        /// Lấy chữ đoạn/nghiệp vụ duy nhất một Giá trị Quay lại Tuple
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgId"></param>
@@ -152,7 +152,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// trêndướivăn Loại
+    /// trên dưới văn Loại
     /// </summary>
     public enum EnumDBFactoryType
     {

@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Web.Controllers
             {
                 organizeId = base.GetAuthOrganizeId();  //Mặc định Quyền OrganizeId
             }
-            //Đệmstart
+            //Đệm start
             var treeList = _cache.Get<List<TreeViewModel>>(string.Format(CacheKey.OrganizeStaffTreeSetKey, organizeId), () =>
             {
                 var organizedata = _sysOrganizeDmnService.GetValidListByParentOrg(organizeId);
@@ -99,7 +99,7 @@ namespace Newtouch.HIS.Web.Controllers
                 }
                 return iitreeList;
             }, cacheTime);
-            //Đệmend
+            //Đệm end
             IList<string> checkedStaffIdList = new List<string>();
             //if (from == "userrelatioinstaff" && !string.IsNullOrWhiteSpace(keyValue))   //Nhân sự người dùng đã liên kết
             //{
@@ -131,7 +131,7 @@ namespace Newtouch.HIS.Web.Controllers
                 while (count > 0)
                 {
                     count = treeList.RemoveAll(p => !p.showcheck && !p.hasChildren);
-                    //Điều chỉnh lại cây Loại bỏ Không có cấp dưới(Cấp dưới vừa bị chuyển) lại Không hiển thịshowcheckcủa
+                    //Điều chỉnh lại cây Loại bỏ Không có cấp dưới(Cấp dưới vừa bị chuyển) lại Không hiển thị show check của
                     treeList.RemoveAll(p => !p.showcheck && !treeList.Any(sub => sub.parentId == p.id));
                 }
             }

@@ -47,14 +47,14 @@ namespace NewtouchHIS.Lib.Redis
             Task RemoveKeysLeftLike(string key);
 
             /// <summary>
-            /// Lấy giá trị tự tăngid
+            /// Lấy giá trị tự tăng id
             /// </summary>
             /// <param name="key"></param>
             /// <returns></returns>
             Task<long> GetIncr(string key);
 
             /// <summary>
-            /// Lấy giá trị tự tăngid
+            /// Lấy giá trị tự tăng id
             /// </summary>
             /// <param name="key"></param>
             /// <param name="expTimeSpan"></param>

@@ -41,7 +41,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string ks { get; set; }
 
         /// <summary>
-        /// dánsố
+        /// dán số
         /// </summary>
         public int? tieshu { get; set; }
 
@@ -65,12 +65,12 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string sqbz { get; set; }
 
         /// <summary>
-        /// Đơn thuốcchi tiết
+        /// Đơn thuốc chi tiết
         /// </summary>
         public List<PrescriptionDetailVO> cfmxList { get; set; }
 
         /// <summary>
-        /// Đơn thuốcnhãn JI tinhI JII tinh II MZ têsay
+        /// Đơn thuốc nhãn JI tinhI JII tinh II MZ tê say
         /// </summary>
         public string cftag { get; set; }
         public string jzId { get; set; }
@@ -80,11 +80,11 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string gjybdm { get; set; }
 
         /// <summary>
-        /// sắc hộphươngkiểu
+        /// sắc hộ phương kiểu
         /// </summary>
         public string djfs { get; set; }
         // <summary>
-        /// sắc hộtrảsố
+        /// sắc hộ trả số
         /// </summary>
         public string djts { get; set; }
         // <summary>
@@ -108,13 +108,13 @@ namespace Newtouch.Domain.DTO.OutputDto
 		public string sqdh { get; set; }
 
 		/// <summary>
-		/// xatrìnhy tế Tải lên Trạng thái
+		/// xa trình y tế Tải lên Trạng thái
 		/// </summary>
 		public string SyncStatus { get; set; }
 
 
 		/// <summary>
-		/// Đơn thuốcchỉnhliềuY lệnh Mô tả
+		/// Đơn thuốc chỉnh liềuY lệnh Mô tả
 		/// </summary>
 		public string rxDrordDscr { get; set; }
 
@@ -124,12 +124,12 @@ namespace Newtouch.Domain.DTO.OutputDto
 		public int? valiDays { get; set; }
 
 		/// <summary>
-		/// lạidùng(nhiều lần)Sử dụng Cờ
+		/// lại dùng(nhiều lần)Sử dụng Cờ
 		/// </summary>
 		public string reptFlag { get; set; }
 
 		/// <summary>
-		/// nhấtlớn Sử dụng lầnsố
+		/// nhất lớn Sử dụng lần số
 		/// </summary>
 		public int? maxReptCnt { get; set; }
 
@@ -139,7 +139,7 @@ namespace Newtouch.Domain.DTO.OutputDto
 		public int? minInrvDays { get; set; }
 
 		/// <summary>
-		/// tiếpphương Cờ
+		/// tiếp phương Cờ
 		/// </summary>
 		public string rxCotnFlag { get; set; }
 
@@ -149,7 +149,7 @@ namespace Newtouch.Domain.DTO.OutputDto
 		public string longRxFlag { get; set; }
 
 		/// <summary>
-		/// Đơn thuốctruy xuấtmã
+		/// Đơn thuốc truy xuất mã
 		/// </summary>
 		public string rxTraceCode { get; set; }
 

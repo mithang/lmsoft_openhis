@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Domain.IRepository
         void submitForm(SysPharmacyDepartmentEntity entity, int? keyValue);
 
         /// <summary>
-        /// Lấy UserIdcái đã liên kết hiện tại cầnyfbmCode (Không bao gồm tổ chức con)
+        /// Lấy UserId cái đã liên kết hiện tại cần yfbmCode (Không bao gồm tổ chức con)
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

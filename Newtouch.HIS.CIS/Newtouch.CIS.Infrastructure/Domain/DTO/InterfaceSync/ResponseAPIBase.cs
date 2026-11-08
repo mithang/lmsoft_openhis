@@ -9,22 +9,22 @@ namespace Newtouch.Domain.DTO.InterfaceSync
     public class ResponseAPIBase
     {
         /// <summary>
-        /// nghiệp vụ Quay lạimã
+        /// nghiệp vụ Quay lại mã
         /// </summary>
         public ResponseResultCodeAPI code { get; set; }
 
         /// <summary>
-        /// nghiệp vụ Quay lạimã Mô tả
+        /// nghiệp vụ Quay lại mã Mô tả
         /// </summary>
         public string msg { get; set; }
 
         /// <summary>
-        /// hưởngứng Dữ liệu(ResponseResultCode.SUCCESS khi của Quay lại Dữ liệu)
+        /// hưởng ứng Dữ liệu(ResponseResultCode.SUCCESS khi của Quay lại Dữ liệu)
         /// </summary>
         public object data { get; set; }
     }
     /// <summary>
-    /// quavượtloại chỉdùngtạigọihistrongbộ Api
+    /// qua vượt loại chỉ dùng tại gọi his trong bộ Api
     /// </summary>
     public class ResponseBaseOld : ResponseBase
     {
@@ -46,7 +46,7 @@ namespace Newtouch.Domain.DTO.InterfaceSync
         SUCCESS = 10000,
 
         /// <summary>
-        /// phụcvụdụng cụtrongbộ Lỗi(trìnhthứ tựphátsinh Ngoại lệ)
+        /// phục vụ dụng cụ trong bộ Lỗi(trình thứ tự phát sinh Ngoại lệ)
         /// </summary>
         ERROR = 20000,
 

@@ -51,7 +51,7 @@ namespace Newtouch.Domain.ValueObjects.API
         /// </summary>
         public DateTime ghsj { get; set; }
         /// <summary>
-        /// Khám bệnh Loại 1thông thường Ngoại trú 2gấpkhám 3chuyên gia Ngoại trú
+        /// Khám bệnh Loại 1thông thường Ngoại trú 2gấp khám 3chuyên gia Ngoại trú
         /// </summary>
         public string mjzbz { get; set; }
 
@@ -68,19 +68,19 @@ namespace Newtouch.Domain.ValueObjects.API
         /// </summary>
         public string ks { get; set; }
         /// <summary>
-        /// Bảo hiểm y tếquyết toánsố(Bảo hiểm y tế Quay lại)
+        /// Bảo hiểm y tế quyết toán số(Bảo hiểm y tế Quay lại)
         /// </summary>
         public string ybjsh { get; set; }
         /// <summary>
-        /// lạikhám Cờ 1lạikhám
+        /// lại khám Cờ 1lại khám
         /// </summary>
         public string fzbz { get; set; }
         /// <summary>
-        /// xãbảo Số hiệu
+        /// xã bảo Số hiệu
         /// </summary>
         public string sbbh { get; set; }
         /// <summary>
-        /// tham sốbảođịa Mã
+        /// tham số bảo địa Mã
         /// </summary>
         public string cbdbm { get; set; }
         /// <summary>
@@ -115,7 +115,7 @@ namespace Newtouch.Domain.ValueObjects.API
 
         public string nlshow { get; set; }
         /// <summary>
-        /// đăng ký khámđếnnguồn Cờ
+        /// đăng ký khám đến nguồn Cờ
         /// </summary>
         public string ghlybz { get; set; }
         /// <summary>

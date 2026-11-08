@@ -80,7 +80,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Sửaform
+        /// Sửa form
         /// </summary>
         public SysMedicineUsageEntity GetMedicineUsageEntity(int? yfId)
         {

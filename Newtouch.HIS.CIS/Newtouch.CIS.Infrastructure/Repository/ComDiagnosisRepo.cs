@@ -16,7 +16,7 @@ namespace Newtouch.Repository
     public class ComDiagnosisRepo : RepositoryBase<ComDiagnosisEntity>, IComDiagnosisRepo
     {
         /// <summary>
-        /// Mặc định Hàm khởi tạosố
+        /// Mặc định Hàm khởi tạo số
         /// </summary>
         /// <param name="databaseFactory">EF trên dưới văn Nhà máy</param>
         public ComDiagnosisRepo()
@@ -24,7 +24,7 @@ namespace Newtouch.Repository
         {
 
         }
-        //Lấythường dùng Chẩn đoánthông tin--lớp nổi
+        //Lấy thường dùng Chẩn đoánthông tin--lớp nổi
         public IList<ComDiagnosisVO> GetComDiagnosis(string ys,string ks, string orgId, string type,string keyword,string lx)
         {
             try
@@ -55,10 +55,10 @@ namespace Newtouch.Repository
             }
             catch (Exception ex)
             {
-                throw new FailedException("Lỗithông tin："+ex.Message);
+                throw new FailedException("Lỗi thông tin："+ex.Message);
             }
         }
-        //Lấythường dùng Chẩn đoánthông tin--Bảo trì
+        //Lấy thường dùng Chẩn đoánthông tin--Bảo trì
         public IList<ComDiagnosisVO> GetComDiagnosisAdmin(string ys, string ks, string orgId, string type, string keyword, string lx)
         {
             try
@@ -89,7 +89,7 @@ namespace Newtouch.Repository
             }
             catch (Exception ex)
             {
-                throw new FailedException("Lỗithông tin：" + ex.Message);
+                throw new FailedException("Lỗi thông tin：" + ex.Message);
             }
         }
         //Lấy Hồ sơ chẩn đoánthông tin
@@ -124,7 +124,7 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
             catch (Exception ex)
             {
 
-                throw new FailedException("Lỗithông tin：" + ex.Message);
+                throw new FailedException("Lỗi thông tin：" + ex.Message);
             }
             
         }
@@ -142,11 +142,11 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
             catch (Exception ex)
             {
 
-                throw new FailedException("Lỗithông tin：" + ex.Message);
+                throw new FailedException("Lỗi thông tin：" + ex.Message);
             }
 
         }
-        //Thêmthường dùng Chẩn đoán
+        //Thêm thường dùng Chẩn đoán
         public void SubmitDiag(ComDiagnosisEntity entity)
         {
             try
@@ -154,7 +154,7 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
                 ComDiagnosisEntity zdbm = this.FindEntity(p => p.cyzdbm == entity.cyzdbm && p.cyzdtype == entity.cyzdtype && p.ys == entity.ys);
                 if (zdbm != null)
                 {
-                    throw new FailedException("không thể Thêmtrùng lặpthường dùng Chẩn đoán");
+                    throw new FailedException("không thể Thêm trùng lặp thường dùng Chẩn đoán");
                 }
                 else
                 {
@@ -167,11 +167,11 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
             catch (Exception ex)
             {
 
-                throw new FailedException("Lỗithông tin：" + ex.Message);
+                throw new FailedException("Lỗi thông tin：" + ex.Message);
             }
 
         }
-        //Xóathường dùng Chẩn đoán
+        //Xóa thường dùng Chẩn đoán
         public void DelDiagnosticTemplate(string Id)
         {
             try
@@ -182,7 +182,7 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
             catch (Exception ex)
             {
 
-                throw new FailedException("Lỗithông tin：" + ex.Message);
+                throw new FailedException("Lỗi thông tin：" + ex.Message);
             }
 
         }

@@ -1,7 +1,7 @@
 namespace Newtouch.Domain.DTO
 {
     /// <summary>
-    /// Danh sách thả xuốngvật tưthông tin
+    /// Danh sách thả xuống vật tư thông tin
     /// </summary>
     public class DepartmentStockListQueryParamDTO
     {
@@ -18,7 +18,7 @@ namespace Newtouch.Domain.DTO
 
 
         /// <summary>
-        /// tổ chứckếtcấu trúc
+        /// tổ chức kết cấu trúc
         /// </summary>
         public string organizeId { get; set; }
 

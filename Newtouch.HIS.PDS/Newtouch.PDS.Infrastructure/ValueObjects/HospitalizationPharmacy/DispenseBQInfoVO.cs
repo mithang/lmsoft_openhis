@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string zyh { get; set; }//Số nội trú
         public Decimal sl { get; set; }//Số lượng
         public string lyyf { get; set; }//Loại cần nhà thuốc
-        public string ypCode { get; set; }//Thuốccode
+        public string ypCode { get; set; }//Thuốc code
         public short cls { get; set; }// Số lượng chia
         public DateTime jdrq { get; set; }//Ngày lấy hồ sơ,Ngày thao tác,Ngày lập hồ sơ
     }

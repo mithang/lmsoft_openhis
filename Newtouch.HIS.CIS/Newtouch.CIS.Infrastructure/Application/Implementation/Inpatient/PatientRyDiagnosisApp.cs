@@ -42,7 +42,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// Lấy Chẩn đoán nhập việnthông tin
+        /// Lấy Chẩn đoán nhập viện thông tin
         /// </summary>
         /// <param name="zhy"></param>
         /// <param name="organizeId"></param>
@@ -76,16 +76,16 @@ namespace Newtouch.Application.Implementation
         /// <returns></returns>
         public string SavaInPatDiagnosis(PatInAreaVO patInAreaVo, string organizeId, string userCode)
         {
-            if (patInAreaVo == null) return "Chẩn đoánnội dungkhông thểđể trống！";
-            if (string.IsNullOrWhiteSpace(patInAreaVo.zyh)) return "Số nhập việnkhông thểlàtrống！";
-            if (string.IsNullOrWhiteSpace(patInAreaVo.ryzddm1) || string.IsNullOrWhiteSpace(patInAreaVo.ryzdmc1)) return "Chẩn đoán nhập viện1không thểlàtrống！";
+            if (patInAreaVo == null) return "Chẩn đoánnội dung không thể để trống！";
+            if (string.IsNullOrWhiteSpace(patInAreaVo.zyh)) return "Số nhập viện không thể là trống！";
+            if (string.IsNullOrWhiteSpace(patInAreaVo.ryzddm1) || string.IsNullOrWhiteSpace(patInAreaVo.ryzdmc1)) return "Chẩn đoán nhập viện1không thể là trống！";
 
-            #region Đồng bộđếnSett
+            #region Đồng bộ đếnSett
             var syncSettResult = SyncInPatDiagnosisToSett(patInAreaVo, organizeId, userCode);
             if (!string.IsNullOrWhiteSpace(syncSettResult)) return syncSettResult;
             #endregion
 
-            var patOutDiaList = _inpatientPatientDiagnosisRepo.SelectData(patInAreaVo.zyh, organizeId, "1");//Lấylịch sử Xuất viện Chẩn đoán
+            var patOutDiaList = _inpatientPatientDiagnosisRepo.SelectData(patInAreaVo.zyh, organizeId, "1");//Lấy lịch sử Xuất viện Chẩn đoán
             var patInfo = _inpatientPatientInfoRepo.GetByZyh(organizeId, patInAreaVo.zyh);//Lấy Thông tin bệnh nhân
             var operateTime = DateTime.Now;
             try
@@ -93,7 +93,7 @@ namespace Newtouch.Application.Implementation
 
                 using (var db = new EFDbTransaction().BeginTrans())
                 {
-                    #region sửaThông tin bệnh nhânkho
+                    #region sửaThông tin bệnh nhân kho
                     if (patInfo != null)
                     {
                         patInfo.LastModifierCode = userCode;
@@ -104,7 +104,7 @@ namespace Newtouch.Application.Implementation
                     }
                     #endregion
 
-                    #region sửaNhập việnbệnh nhân Chẩn đoánthông tin
+                    #region sửaNhập viện bệnh nhân Chẩn đoánthông tin
                     if (patOutDiaList != null && patOutDiaList.Count > 0)
                     {
                         patOutDiaList.ForEach(p =>
@@ -139,12 +139,12 @@ namespace Newtouch.Application.Implementation
             }
             catch (Exception)
             {
-                return "sửa Chẩn đoán nhập việnthất bại";
+                return "sửa Chẩn đoán nhập viện thất bại";
             }
         }
 
         /// <summary>
-        /// Đồng bộ Chẩn đoán nhập việnđếnquyết toán Hệ thống
+        /// Đồng bộ Chẩn đoán nhập viện đến quyết toán Hệ thống
         /// </summary>
         /// <param name="patInAreaVo"></param>
         /// <param name="organizeId"></param>

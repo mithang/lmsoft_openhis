@@ -36,7 +36,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         // GET: TemplateManage/Inspection
         
         /// <summary>
-        /// Xét nghiệm Kiểm tra Nhóm lớn dướikéo
+        /// Xét nghiệm Kiểm tra Nhóm lớn dưới kéo
         /// </summary>
         /// <returns></returns>
         public IActionResult GetCategoryList()
@@ -46,7 +46,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
         
         /// <summary>
-        /// mẫudanh sách(Tra cứu)
+        /// mẫu danh sách(Tra cứu)
         /// </summary>
         /// <param name="zutaoType"></param>
         /// <returns></returns>
@@ -95,7 +95,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// Đơn thuốctrangcủa Xét nghiệm Kiểm tramẫucây
+        /// Đơn thuốc trang của Xét nghiệm Kiểm tra mẫu cây
         /// </summary>
         /// <returns></returns>
         public IActionResult GetTreeList(int jyjcmbLx,string TemplateId, string ztKeyword)
@@ -157,7 +157,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// TheoztIdTra cứu Bộ mẫudướicủa Mục thu phí
+        /// TheoztIdTra cứu Bộ mẫu dưới của Mục thu phí
         /// </summary>
         /// <returns></returns>
         public IActionResult GetGPackageDetailByZtId(string ztId,string mbId=null)

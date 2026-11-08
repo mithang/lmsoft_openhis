@@ -12,7 +12,7 @@ using System.Text;
 namespace Newtouch.DomainServices
 {
     /// <summary>
-    /// đặt hẹnđăng ký khám
+    /// đặt hẹn đăng ký khám
     /// </summary>
     public class SysBespeakRegisterDmnService : DmnServiceBase, ISysBespeakRegisterDmnService
     {
@@ -96,7 +96,7 @@ AND br.zt='1'
         }
 
         /// <summary>
-        /// Theo Khoavà Xếp lịch Ngày Lấy Hệ thốngđặt hẹn Xếp lịch
+        /// Theo Khoa và Xếp lịch Ngày Lấy Hệ thống đặt hẹn Xếp lịch
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="regDate"></param>
@@ -122,7 +122,7 @@ AND br.regDate=@regDate
         }
 
         /// <summary>
-        /// Theo Khoa Lấy Hệ thốngđặt hẹn Xếp lịch
+        /// Theo Khoa Lấy Hệ thống đặt hẹn Xếp lịch
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="organizeId"></param>

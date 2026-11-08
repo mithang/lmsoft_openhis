@@ -27,7 +27,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// Tra cứumẫuchi tiết
+        /// Tra cứu mẫu chi tiết
         /// </summary>
         /// <param name="mbId"></param>
         /// <param name="orgId"></param>
@@ -38,7 +38,7 @@ namespace Newtouch.DomainServices
             var cfEntity = _presTemplateRepo.FindEntity(mbId);
             if (cfEntity == null&& cflx!= ((int)EnumCflx.InspectionPres).ToString() && cflx!= ((int)EnumCflx.ExaminationPres).ToString())
             {
-                throw new FailedException("Dữ liệu bất thường，chưa Tra cứuđếnmẫunội dung");
+                throw new FailedException("Dữ liệu bất thường，chưa Tra cứu đến mẫu nội dung");
             }
             var sql = "";
             if (cfEntity != null)
@@ -166,15 +166,15 @@ WHERE mbmx.OrganizeId = @orgId
                     mbObj.Modify();
 
                     var dbMbObj = db.IQueryable<PresTemplateEntity>(p => p.mbId == mbObj.mbId).FirstOrDefault();
-                    mbObj.tieshu = dbMbObj.tieshu;  //bảogiữdánsố,sắc hộ Cờ,Đơn thuốc Cách dùng
+                    mbObj.tieshu = dbMbObj.tieshu;  //bảo giữ dán số,sắc hộ Cờ,Đơn thuốc Cách dùng
                     mbObj.djbz = dbMbObj.djbz;
                     mbObj.cfyf = dbMbObj.cfyf;
-                    //đâynếunếulà Thuốc Đông y Đơn thuốc,Số lượngkhông Cập nhậtcũngkhôngquan hệ,vìdẫndùngkhisẽ khôngháidùng
+                    //đây nếu nếu là Thuốc Đông y Đơn thuốc,Số lượng không Cập nhật cũng không quan hệ,vì dẫn dùng khi sẽ không hái dùng
                     db.DetacheEntity(dbMbObj);
 
                     db.Update(mbObj);
 
-                    db.Delete<PresTemplateDetailEntity>(a => a.mbId == mbObj.mbId && a.OrganizeId == mbObj.OrganizeId); //trướctoànxóa,lại Thêm mới
+                    db.Delete<PresTemplateDetailEntity>(a => a.mbId == mbObj.mbId && a.OrganizeId == mbObj.OrganizeId); //trước toàn xóa,lại Thêm mới
                 }
                 else
                 {
@@ -183,7 +183,7 @@ WHERE mbmx.OrganizeId = @orgId
 
                     db.Insert(mbObj);
                 }
-                //mẫuchi tiếtbảng
+                //mẫu chi tiết bảng
                 int sort = 0;
                 foreach (var item in mxList)
                 {
@@ -236,7 +236,7 @@ WHERE mbmx.OrganizeId = @orgId
         {
             if (string.IsNullOrWhiteSpace(mbId))
             {
-                throw new FailedException("thiếumẫu");
+                throw new FailedException("thiếu mẫu");
             }
             using (var db = new EFDbTransaction().BeginTrans())
             {

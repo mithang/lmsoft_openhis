@@ -158,7 +158,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
         /// </summary>
         public decimal? ts { get; set; }
         /// <summary>
-        /// Góiid
+        /// Gói id
         /// </summary>
         public string ztId { get; set; }
         /// <summary>

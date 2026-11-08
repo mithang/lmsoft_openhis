@@ -10,18 +10,18 @@ namespace Newtouch.Domain.Entity
     {
 
         /// <summary>
-        /// Đơn thuốcid
+        /// Đơn thuốc id
         /// </summary>
         [Key]
         public string cfId { get; set; }
 
         /// <summary>
-        /// Tổ chứcid
+        /// Tổ chức id
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Khám bệnhid
+        /// Khám bệnh id
         /// </summary>
         public string jzId { get; set; }
 
@@ -76,7 +76,7 @@ namespace Newtouch.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// dánsố
+        /// dán số
         /// </summary>
         public int? tieshu { get; set; }
 
@@ -86,7 +86,7 @@ namespace Newtouch.Domain.Entity
         public string cfyf { get; set; }
 
         /// <summary>
-        /// là Khôngsắc hộ   1là  0Không
+        /// là Không sắc hộ   1là  0Không
         /// </summary>
         public bool? djbz { get; set; }
 
@@ -121,7 +121,7 @@ namespace Newtouch.Domain.Entity
         public string sqdh { get; set; }
 
         /// <summary>
-        /// xatrìnhy tế Tải lên Trạng thái
+        /// xa trình y tế Tải lên Trạng thái
         /// </summary>
         public string SyncStatus { get; set; }
 
@@ -146,7 +146,7 @@ namespace Newtouch.Domain.Entity
         public string cfzt { get; set; }
 
         /// <summary>
-        /// Đơn thuốcchỉnhliềuY lệnh Mô tả
+        /// Đơn thuốc chỉnh liềuY lệnh Mô tả
         /// </summary>
         public string rxDrordDscr { get; set; }
 
@@ -156,12 +156,12 @@ namespace Newtouch.Domain.Entity
         public int? valiDays { get; set; }
 
         /// <summary>
-        /// lạidùng(nhiều lần)Sử dụng Cờ
+        /// lại dùng(nhiều lần)Sử dụng Cờ
         /// </summary>
         public string reptFlag { get; set; }
 
         /// <summary>
-        /// nhấtlớn Sử dụng lầnsố
+        /// nhất lớn Sử dụng lần số
         /// </summary>
         public int? maxReptCnt { get; set; }
 
@@ -171,7 +171,7 @@ namespace Newtouch.Domain.Entity
         public int? minInrvDays { get; set; }
 
         /// <summary>
-        /// tiếpphương Cờ
+        /// tiếp phương Cờ
         /// </summary>
         public string rxCotnFlag { get; set; }
 
@@ -181,7 +181,7 @@ namespace Newtouch.Domain.Entity
         public string longRxFlag { get; set; }
 
         /// <summary>
-        /// Đơn thuốctruy xuấtmã
+        /// Đơn thuốc truy xuất mã
         /// </summary>
         public string rxTraceCode { get; set; }
 

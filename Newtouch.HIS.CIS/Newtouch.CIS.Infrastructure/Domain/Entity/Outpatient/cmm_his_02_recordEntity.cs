@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// trongyquán_thảo dượcđẩy_ghi chép
+    /// trong y quán_thảo dược đẩy_ghi chép
     /// </summary>
     [SugarTable("cmm_his_02_record")]
     public class CmmHis02RecordEntity
@@ -61,12 +61,12 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Quay lạikếtnếu Trạng tháimã  1: thành công; 0:thất bại
+        /// Quay lại kết nếu Trạng thái mã  1: thành công; 0:thất bại
         /// </summary>
         public string resultCode { get; set; }
 
         /// <summary>
-        /// Quay lạikếtnếu Mô tả  thành công;thất bại(Bổ sungthất bạinguyên nhân Mô tả)
+        /// Quay lại kết nếu Mô tả  thành công;thất bại(Bổ sung thất bại nguyên nhân Mô tả)
         /// </summary>
         public string resultDesc { get; set; }
 
@@ -81,7 +81,7 @@ namespace Newtouch.Domain.Entity
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// tạongười
+        /// tạo người
         /// </summary>
         public string CreatorCode { get; set; }
 
@@ -91,7 +91,7 @@ namespace Newtouch.Domain.Entity
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Sửangười
+        /// Sửa người
         /// </summary>
         public string LastModifierCode { get; set; }
     }

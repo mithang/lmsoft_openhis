@@ -38,12 +38,12 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             this._iBaseDataDmnService = iBaseDataDmnService;
         }
         public override IActionResult Index() {
-            ViewBag.bhbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId, true);//Nhập việnY lệnhgói Có Khônggóichứa Khu bệnh
+            ViewBag.bhbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId, true);//Nhập việnY lệnh gói Có Không gói chứa Khu bệnh
             return View();
         }
         public IActionResult ItemForm()
         {
-            ViewBag.bwhide = _sysConfigRepo.GetValueByCode("bwhide", OrganizeId) ?? "false";//Nhập viện Mụcnhập Vị trí Hiển thị Ẩncấu hình    
+            ViewBag.bwhide = _sysConfigRepo.GetValueByCode("bwhide", OrganizeId) ?? "false";//Nhập viện Mục nhập Vị trí Hiển thị Ẩn cấu hình    
             return View();
         }
         public IActionResult MedicineForm()
@@ -62,7 +62,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
         public IActionResult RehabForm()
         {
-           ViewBag.bwhide = _sysConfigRepo.GetValueByCode("bwhide", OrganizeId) ?? "false";//Nhập viện Mụcnhập Vị trí Hiển thị Ẩncấu hình    
+           ViewBag.bwhide = _sysConfigRepo.GetValueByCode("bwhide", OrganizeId) ?? "false";//Nhập viện Mục nhập Vị trí Hiển thị Ẩn cấu hình    
             return View();
         }
 
@@ -76,7 +76,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// Đơn thuốcmẫucây
+        /// Đơn thuốc mẫu cây
         /// </summary>
         /// <param name="mblx"></param>
         /// <param name="cflx"></param>
@@ -126,7 +126,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
                 complete = true,
             });
 
-            //góichi tiết
+            //gói chi tiết
             var data = _inpatientOrderPackageRepo.IQueryable().Where(a => a.OrganizeId == this.OrganizeId && a.tclx == tclx && a.tcfw == tcfw && a.zt == "1").Select(a => new { a.tcmc, a.tclx, a.Id, a.CreateTime, a.LastModifyTime }).OrderByDescending(a => a.CreateTime).OrderByDescending(a => a.LastModifyTime).ToList();
             foreach (var item in data)
             {
@@ -153,20 +153,20 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             switch (mbObj.tcfw) {
                 case (int)EnumCfMbLx.personal:
                     mbObj.ysgh = UserIdentity.rygh;
-                    break; //Cá nhânkhi,Bác sĩ Gán giá trị
+                    break; //Cá nhân khi,Bác sĩ Gán giá trị
                 case (int)EnumCfMbLx.department:
                     mbObj.DeptCode = UserIdentity.DepartmentCode;
                     break; //Khoakhi
                 //case (int)EnumTcfw.Ward:
                 //    var bq = _iBaseDataDmnService.GetWardListByStaffGh(UserIdentity.rygh, OrganizeId).FirstOrDefault().bqCode;
                 //    mbObj.WardCode = bq;
-                //    break; //Khu bệnhkhi
+                //    break; //Khu bệnh khi
                 case (int)EnumCfMbLx.hospital:
                     mbObj.ysgh = "*";
                     mbObj.DeptCode = "*";
                     mbObj.ysgh = "*";
                     break;
-                    //Toàn việnkhi
+                    //Toàn viện khi
             }
           var mbId=  _inpatientOrderPackageDmnService.saveAsTemplate(mbObj, mbDetailList, OrganizeId);
             return Success(null, mbId);
@@ -182,7 +182,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             catch (System.Exception e)
             {
 
-                return Error("Xóathất bại");
+                return Error("Xóa thất bại");
             }
         }
     }

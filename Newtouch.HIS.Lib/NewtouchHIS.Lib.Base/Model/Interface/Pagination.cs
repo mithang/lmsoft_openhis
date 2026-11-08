@@ -127,7 +127,7 @@
         public string? search { get; set; }
 
         /// <summary>
-        /// Khi phân trang bạn có thể truyền tham số tùy chỉnh của mình, ví dụ bạn muốn mỗi lần gửi yêu cầu đến máy chủ kèm theoaction="getlist"tham sốfunction(params) { return params }
+        /// Khi phân trang bạn có thể truyền tham số tùy chỉnh của mình, ví dụ bạn muốn mỗi lần gửi yêu cầu đến máy chủ kèm theoaction="getlist"tham số function(params) { return params }
         /// </summary>
         public T? queryParams { get; set; }
 

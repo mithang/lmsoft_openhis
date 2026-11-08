@@ -178,10 +178,10 @@ namespace {Namespace}
         {
             public static string GetSql(KeyValuePair<string, SugarParameter[]> queryString)
             {
-                var sql = queryString.Key;//sqlcâu lệnh
+                var sql = queryString.Key;//sql câu lệnh
                 var par = queryString.Value;//tham số
 
-                //Thay thế chuỗi MethodConst1x sẽ thay thế tất cả MethodConst1, phải thay từ sau ra trước,Không thể dùngforeach,Sau này có thể tối ưu
+                //Thay thế chuỗi MethodConst1x sẽ thay thế tất cả MethodConst1, phải thay từ sau ra trước,Không thể dùng foreach,Sau này có thể tối ưu
                 for (int i = par.Length - 1; i >= 0; i--)
                 {
                     if (par[i].ParameterName.StartsWith("@") && par[i].ParameterName.Contains("UnionAll"))

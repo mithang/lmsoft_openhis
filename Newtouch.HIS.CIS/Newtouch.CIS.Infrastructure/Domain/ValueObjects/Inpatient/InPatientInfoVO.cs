@@ -26,11 +26,11 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public string zyys { get; set; }
         /// <summary>
-        /// chínhđiều trị Bác sĩ
+        /// chính điều trị Bác sĩ
         /// </summary>
         public string zzys { get; set; }
         /// <summary>
-        /// chínhnhiệm Bác sĩ
+        /// chính nhiệm Bác sĩ
         /// </summary>
         public string zrys { get; set; }
         /// <summary>
@@ -50,7 +50,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public DateTime? cyrq { get; set; }
         /// <summary>
-        /// ởviện Cờ
+        /// ở viện Cờ
         /// </summary>
         public string zybz { get; set; }
         public List<WMDiagnosisHtmlVO> ryzdList { get; set; }

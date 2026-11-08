@@ -23,12 +23,12 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Liệt kê 1 Khoathường dùng 2 Cá nhânthường dùng
+        /// Liệt kê 1 Khoa thường dùng 2 Cá nhân thường dùng
         /// </summary>
         public int mblx { get; set; }
 
         /// <summary>
-        /// liên kếtbasekhocủa Khoabảng
+        /// liên kếtbasekhocủa Khoa bảng
         /// </summary>
         public string ksCode { get; set; }
 

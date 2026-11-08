@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// Từ điển Bao gồm cả vô hiệu (Khôngroot)
+        /// Từ điển Bao gồm cả vô hiệu (Không root)
         /// </summary>
         /// <returns></returns>
         private object GetDataItemList()

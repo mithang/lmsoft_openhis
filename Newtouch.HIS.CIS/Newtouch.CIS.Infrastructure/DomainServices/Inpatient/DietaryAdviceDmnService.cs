@@ -58,7 +58,7 @@ namespace Newtouch.DomainServices.Inpatient
                     var patientobj = _inpatientDietBaseRepo.IQueryable().FirstOrDefault(p => p.Id == Id && p.OrganizeId == orgId && p.zt == "1");
                     if (patientobj == null)
                     {
-                        throw new FailedException("ăn uốngkhôngtồn tạiở");
+                        throw new FailedException("ăn uống không tồn tại ở");
                     }
 
                     foreach (var item in reqdietaryservices)
@@ -83,7 +83,7 @@ namespace Newtouch.DomainServices.Inpatient
                                 db.Insert(item);
                             }
                         }
-                        //vậtlý Xóa
+                        //vật lý Xóa
                         if (dto.DelIds != null && dto.DelIds.Count() > 0)
                         {
                             var sql = @"UPDATE  dbo.zy_Dietsfxmdy

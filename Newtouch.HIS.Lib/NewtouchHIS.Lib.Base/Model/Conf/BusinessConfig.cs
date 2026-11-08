@@ -50,7 +50,7 @@ namespace NewtouchHIS.Lib.Base.Model
         /// </summary>
         public bool? EnableLoggingMonitorAttr { get; set; } = false;
         /// <summary>
-        /// Giám sát nhật ký trọng điểm có kèm Header không, mặc địnhfalse
+        /// Giám sát nhật ký trọng điểm có kèm Header không, mặc định false
         /// </summary>
         public bool? EnableLoggingMonitorWithHeaderAttr { get; set; } = false;
         /// <summary>
@@ -90,7 +90,7 @@ namespace NewtouchHIS.Lib.Base.Model
     public class AppAPIHostConfig
     {
         /// <summary>
-        /// Webtài nguyên
+        /// Web tài nguyên
         /// </summary>
         public string? SiteStaticHost { get; set; } = null;
         /// <summary>

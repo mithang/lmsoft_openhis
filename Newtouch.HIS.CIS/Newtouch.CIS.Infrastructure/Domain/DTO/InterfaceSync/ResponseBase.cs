@@ -11,20 +11,20 @@ namespace Newtouch.Domain.DTO.InterfaceSync
     {
         public ResponseResultCode code { get; set; }
         //
-        // háicần:
+        // hái cần:
         //     Mô tả mã trả về của cổng (gateway)
         public string msg { get; set; }
         //
-        // háicần:
-        //     nghiệp vụ Quay lạimã
+        // hái cần:
+        //     nghiệp vụ Quay lại mã
         public string sub_code { get; set; }
         //
-        // háicần:
-        //     nghiệp vụ Quay lạimã Mô tả
+        // hái cần:
+        //     nghiệp vụ Quay lại mã Mô tả
         public string sub_msg { get; set; }
         //
-        // háicần:
-        //     hưởngứng Dữ liệu(ResponseResultCode.SUCCESS khi của Quay lại Dữ liệu)
+        // hái cần:
+        //     hưởng ứng Dữ liệu(ResponseResultCode.SUCCESS khi của Quay lại Dữ liệu)
         public object data { get; set; }
         public int rowcount { get; set; }
     }

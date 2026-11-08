@@ -69,7 +69,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
         }
 
         /// <summary>
-        /// Lấycấp 2 cấp 3Nhóm thu phí lớn
+        /// Lấy cấp 2 cấp 3Nhóm thu phí lớn
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

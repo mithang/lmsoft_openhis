@@ -3,7 +3,7 @@ namespace Newtouch.Infrastructure.TSql
     public class StockInventory
     {
         /// <summary>
-        /// tạo Kiểm kêthông tin
+        /// tạo Kiểm kê thông tin
         /// </summary>
         public const string generate_inventory_info = @"
 BEGIN TRANSACTION;
@@ -142,14 +142,14 @@ BEGIN TRY
 	SELECT '' AS Jgxx;
 END TRY
 BEGIN CATCH
-	SELECT 'tạo Kiểm kêthông tinthất bại！' AS Jgxx;
+	SELECT 'tạo Kiểm kê thông tin thất bại！' AS Jgxx;
 	PRINT ERROR_MESSAGE();
 	ROLLBACK TRANSACTION;
 END CATCH
 ";
 
         /// <summary>
-        /// Lưu Kiểm kêchi tiết
+        /// Lưu Kiểm kê chi tiết
         /// </summary>
         public const string save_inventory_info = @"
 BEGIN TRANSACTION
@@ -159,7 +159,7 @@ BEGIN
 END
 
 DECLARE @pdmxId BIGINT;
-DECLARE @sjsl INT;--Kiểm kêchi tiếtbảngthực tế Số lượng
+DECLARE @sjsl INT;--Kiểm kê chi tiết bảng thực tế Số lượng
 
 SELECT xm.productId, wz.name wzmc, xm.Id pdmxId, xm.pc,xm.ph,xm.sjsl
 INTO #tmpData
@@ -172,7 +172,7 @@ AND pd.OrganizeId=@OrganizeId
 AND pd.warehouseId=@warehouseId
 AND xm.zt='1'
 
-IF @sl>0 --thực tếTồn khocónhiều，thìtrực tiếpThêmđếngần nhấtNhập khocủamộtLôtrên
+IF @sl>0 --thực tếTồn kho có nhiều，thì trực tiếpThêm đến gần nhấtNhập kho của mộtLô trên
 BEGIN
 	SELECT TOP 1 @pdmxId=pdmxId,@sjsl=sjsl FROM #tmpData ORDER BY pc DESC
 	UPDATE dbo.dept_pdxxmx SET sjsl=sjsl+@sl WHERE Id=@pdmxId AND zt='1'
@@ -192,7 +192,7 @@ DECLARE @sysl INT;-- Số lượng còn lại, số lượng sau mỗi lần bù
 SET @sysl=@sl;
 WHILE EXISTS(SELECT 1 FROM #tmpData WHERE sjsl>0)
 BEGIN
-	IF @sysl>=0 --tất cả Số lượng còn lạiđềuphầnphốixong，thìThoátLặp lại，Kết thúcLưu
+	IF @sysl>=0 --tất cả Số lượng còn lại đều phần phối xong，thìThoátLặp lại，Kết thúcLưu
 	BEGIN
 		BREAK;
 	END 
@@ -266,12 +266,12 @@ BEGIN
 	DECLARE @CrkmxId BIGINT;
 	DECLARE @warehouseId VARCHAR(50); 
 	DECLARE @productId VARCHAR(50);
-	DECLARE @productName VARCHAR(100);--vật tưtên
+	DECLARE @productName VARCHAR(100);--vật tư tên
 	DECLARE @Ph VARCHAR(30);
 	DECLARE @pc VARCHAR(30);
 	DECLARE @Yxq DATETIME;
 	DECLARE @Sysl INT;
-	DECLARE @djh VARCHAR(50);--truyềnratham số
+	DECLARE @djh VARCHAR(50);--truyền ra tham số
 	DECLARE @Sykc INT;--Tồn kho còn lại
 	DECLARE @Lsj MONEY;--Giá bán lẻ
 	DECLARE @Zhyz INT;
@@ -293,13 +293,13 @@ BEGIN
 			RETURN;
 		END		
 			
-		--tạoBáo hỏng báo thừaphiếusố
+		--tạoBáo hỏng báo thừa phiếu số
 		SET @djh='BSBYD'+REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(23), GETDATE(),25), '-',''),':',''),' ',''),'.','');
 		UPDATE Dept_kcxx Set kcsl = kcsl + @Sysl, LastModifierCode=@CreatorCode, LastModifyTime=GETDATE() Where ks=@warehouseId AND productId=@productId And Isnull(ph,'') = @Ph AND Isnull(pc,'') = @pc And Isnull(yxq,'1899-01-01') = Isnull(@Yxq,'1899-01-01') AND OrganizeId=@OrganizeId
 		IF @@ERROR <>0
 		BEGIN
 			ROLLBACK TRANSACTION
-			SELECT 'sửaTồn khothất bại！';
+			SELECT 'sửaTồn kho thất bại！';
 			RETURN;
 		END
 
@@ -384,7 +384,7 @@ WHERE Id = @pdId
 IF @@ERROR <>0
 BEGIN
 	ROLLBACK TRANSACTION
-	SELECT 'sửaKiểm kêthông tinkhothất bại！' ;
+	SELECT 'sửaKiểm kê thông tin kho thất bại！' ;
 	RETURN;
 END
 	

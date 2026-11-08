@@ -11,7 +11,7 @@ namespace Newtouch.Application.Interface
     public interface IPatientRyDiagnosisApp
     {
         /// <summary>
-        /// Lấy Chẩn đoán nhập việnthông tin
+        /// Lấy Chẩn đoán nhập viện thông tin
         /// </summary>
         /// <param name="zhy"></param>
         /// <param name="organizeId"></param>

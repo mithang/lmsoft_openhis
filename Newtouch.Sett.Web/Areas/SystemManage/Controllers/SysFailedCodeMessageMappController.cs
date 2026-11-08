@@ -20,7 +20,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
     /// <summary>
     /// tạo lập:Trương Đông Lâm
     /// ngày kỳ:2017-09-30 14:54
-    /// mô tả kể:saisainêuhiển thịphốiđặt
+    /// mô tả kể:sai sai nêu hiển thị phối đặt
     /// </summary>
     [Area("SystemManage")]
 
@@ -34,7 +34,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 
 
         /// <summary>
-        /// đượclấyphântrangthựcthểcộtbảng
+        /// được lấy phân trang thực thể cột bảng
         /// </summary>
         /// <param name="pagination">phân trang</param>
         /// <param name="keyword">Từ khóa lọc</param>

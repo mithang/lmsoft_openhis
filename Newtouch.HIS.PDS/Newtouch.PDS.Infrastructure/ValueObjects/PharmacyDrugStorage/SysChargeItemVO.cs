@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string flCode { get; set; }
 
         /// <summary>
-        /// Xác định tỷ lệ tiền mặt tự trả,Không liên quan tính chất phần này(Tự trả theo loại,Tự lo)   Xem trườngzfxz      Chú ý:Khi tỷ lệ tự trả là số âm,Biểu thị tự trả định mức   (tỷ lệ:Một vật tư nào đó12300,Có thể báo10000,vậy tỷ lệ tự trả=-2300)
+        /// Xác định tỷ lệ tiền mặt tự trả,Không liên quan tính chất phần này(Tự trả theo loại,Tự lo)   Xem trường zfxz      Chú ý:Khi tỷ lệ tự trả là số âm,Biểu thị tự trả định mức   (tỷ lệ:Một vật tư nào đó12300,Có thể báo10000,vậy tỷ lệ tự trả=-2300)
         /// </summary>
         public decimal zfbl { get; set; }
 

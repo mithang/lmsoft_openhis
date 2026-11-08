@@ -44,7 +44,7 @@ namespace Newtouch.Repository.Outpatient
         }
 
         /// <summary>
-        /// Cập nhậtgọisố Trạng thái
+        /// Cập nhật gọi số Trạng thái
         /// </summary>
         /// <param name="id"></param>
         /// <param name="calledstu"></param>

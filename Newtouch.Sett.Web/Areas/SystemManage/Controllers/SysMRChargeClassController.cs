@@ -37,7 +37,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             return View();
         }
         /// <summary>
-        /// đượcđượccóhiệu quảcộtbảng
+        /// được được có hiệu quả cột bảng
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -81,7 +81,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// đượclấytrongvănghépâm
+        /// được lấy trong văn ghép âm
         /// </summary>
         /// <param name="strText"></param>
         /// <returns></returns>

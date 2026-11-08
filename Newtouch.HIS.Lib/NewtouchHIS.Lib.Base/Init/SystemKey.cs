@@ -17,7 +17,7 @@ namespace NewtouchHIS.Lib.Base
 
 
         /// <summary>
-        /// Lắp ráp bộ nhớ đệm Token người dùngkey
+        /// Lắp ráp bộ nhớ đệm Token người dùng key
         /// </summary>
         /// <param name="account"></param>
         /// <param name="orgId"></param>

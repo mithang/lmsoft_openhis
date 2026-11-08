@@ -27,15 +27,15 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string zdbz { get; set; }
         /// <summary>
-        /// răng ký tựhình Loại
+        /// răng ký tự hình Loại
         /// </summary>
         public string ywlx { get; set; }
         /// <summary>
-        /// răng ký tựhình Vị trí
+        /// răng ký tự hình Vị trí
         /// </summary>
         public string ywstr { get; set; }
         /// <summary>
-        /// răng ký tựhình Hiển thị
+        /// răng ký tự hình Hiển thị
         /// </summary>
         public string ywxs { get; set; }
     }

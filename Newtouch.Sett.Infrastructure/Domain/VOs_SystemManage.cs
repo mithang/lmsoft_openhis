@@ -232,7 +232,7 @@ namespace Newtouch.Sett.Domain
             public string reportdlcode { get; set; }
     
             /// <summary>
-            /// lớnloạiloạikhác,đốiphảicáinêu EnumSfdlDllb 1Thuốc 2Khoản mục trị liệu 3Khoản mục không điều trị
+            /// lớn loại loại khác,đối phải cái nêu EnumSfdlDllb 1Thuốc 2Khoản mục trị liệu 3Khoản mục không điều trị
             /// </summary>
             public int? dllb { get; set; }
     
@@ -245,7 +245,7 @@ namespace Newtouch.Sett.Domain
     public class FinanceReceiptEntity
         {
             /// <summary>
-            /// tài chínhvụthudữ liệu ID
+            /// tài chính vụ thu dữ liệu ID
             /// </summary>
             public string cwsjId { get; set; }
     
@@ -255,12 +255,12 @@ namespace Newtouch.Sett.Domain
             public string ry { get; set; }
     
             /// <summary>
-            /// Tổ chức Id(cócụthểnghiệpvụcủay tếviện)
+            /// Tổ chức Id(có cụ thể nghiệp vụ của y tế viện)
             /// </summary>
             public string OrganizeId { get; set; }
     
             /// <summary>
-            /// đầuchữmẹ
+            /// đầu chữ mẹ
             /// </summary>
             public string szm { get; set; }
     
@@ -270,12 +270,12 @@ namespace Newtouch.Sett.Domain
             public long qssjh { get; set; }
     
             /// <summary>
-            /// khitrướcthudữ liệusố
+            /// khi trước thu dữ liệu số
             /// </summary>
             public long dqsjh { get; set; }
     
             /// <summary>
-            /// kếtbóthudữ liệusố
+            /// kết bó thu dữ liệu số
             /// </summary>
             public long? jssjh { get; set; }
     
@@ -290,7 +290,7 @@ namespace Newtouch.Sett.Domain
             public DateTime CreateTime { get; set; }
     
             /// <summary>
-            /// nhấtsausửasửathời giangiữa
+            /// nhất sau sửa sửa thời giangiữa
             /// </summary>
             public DateTime? LastModifyTime { get; set; }
     
@@ -322,7 +322,7 @@ namespace Newtouch.Sett.Domain
         {
     
             /// <summary>
-            /// bệnhngườithuphíkèmthêmmãsố(xt_brsffj)
+            /// bệnh người thu phí kèm thêm mã số(xt_brsffj)
             /// </summary>
             public int brsffjbh { get; set; }
     
@@ -341,7 +341,7 @@ namespace Newtouch.Sett.Domain
             public string dl { get; set; }
     
             /// <summary>
-            /// kèmthêmhiển thịhiển thịlớnloạitêngọi(xt_fjsfdl)
+            /// kèm thêm hiển thị hiển thị lớn loại tên gọi(xt_fjsfdl)
             /// </summary>
             public string fjxsdlmc { get; set; }
     
@@ -355,7 +355,7 @@ namespace Newtouch.Sett.Domain
             public string sfxm { get; set; }
     
             /// <summary>
-            /// phục vụvụphísoví dụ(xt_brsffj)
+            /// phục vụ vụ phí so ví dụ(xt_brsffj)
             /// </summary>
             public decimal fwfbl { get; set; }
     

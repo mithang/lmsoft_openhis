@@ -40,7 +40,7 @@ namespace Newtouch.DomainServices.Inpatient
 		public List<BedItemsVO> GetBedItems(WardMaintenanceRequestDto req)
 		{
 			var sqlstr = new StringBuilder();
-			var sqlstr2 = new StringBuilder();//giường ký tự Thêmđợicấpgắncủa Thu phí Chi phí
+			var sqlstr2 = new StringBuilder();//giường ký tự Thêm đợi cấp gắn của Thu phí Chi phí
 			var par = new List<SqlParameter>();
 			sqlstr = sqlstr.Append(@" SELECT [Id] AS ChargeId
       ,[ChargeCode]
@@ -88,7 +88,7 @@ namespace Newtouch.DomainServices.Inpatient
 			return this.FindList<BedItemsVO>(sqlstr3.ToString(), par.ToArray());
 		}
         /// <summary>
-        /// Y lệnhphát thuốc Tra cứu
+        /// Y lệnh phát thuốc Tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -133,8 +133,8 @@ where czjl.createtime=@bysj
 		{
 			using (var db = new EFDbTransaction().BeginTrans())
 			{
-                //lấy Cấp độ chăm sóctương ứng Mã
-                string configsql = @"select value from [Newtouch_CIS]..[Sys_Config] where code = 'NursinLevelChargeItemMapp' and organizeId='"+ req.OrganizeId + "' and zt=1";//Xemlà Khôngcụ thểcómởthuốccủa Quyền,nàybảngcủavalue 0là chưa bật này Quyền,1làbật
+                //lấy Cấp độ chăm sóc tương ứng Mã
+                string configsql = @"select value from [Newtouch_CIS]..[Sys_Config] where code = 'NursinLevelChargeItemMapp' and organizeId='"+ req.OrganizeId + "' and zt=1";//Xem là Không cụ thể có mở thuốc của Quyền,này bảng của value 0là chưa bật này Quyền,1là bật
                 var value = this.FirstOrDefault<string>(configsql);
                 var hljbList = value.Split(',').ToList();
 
@@ -158,7 +158,7 @@ where czjl.createtime=@bysj
 						bedCharge.Create();
 						db.Insert(bedCharge);
 
-                        //kiểm tra Cấp độ chăm sóc,Cập nhậtzy_brxxkbảnghljbchữđoạn
+                        //kiểm tra Cấp độ chăm sóc,Cập nhật zy_brxxk bảng hljb chữ đoạn
                         for (var i = 0; i < hljbList.Count; i++) {
                             if (hljbList[i] == item.ChargeCode) {
                                 //Cập nhật
@@ -227,7 +227,7 @@ where czjl.createtime=@bysj
 
 					patDoc.Create();
 					db.Insert(patDoc);
-					//nếunếulà Nhập viện Bác sĩ,thì Đồng bộ Cập nhậtđến Thông tin bệnh nhânbảng
+					//nếu nếu là Nhập viện Bác sĩ,thì Đồng bộ Cập nhật đến Thông tin bệnh nhân bảng
 					if (patInfo != null && item.Type == Convert.ToInt32(EnumYslx.ZyDoc))
 					{
 						patInfo.ysgh = item.ysgh;
@@ -284,7 +284,7 @@ where czjl.createtime=@bysj
 			return this.FindList<PatDiagnosisVO>(sqlstr.ToString(), par.ToArray());
 		}
 		/// <summary>
-		/// kiểm tra Bệnh nhâncó thể Khôngra khỏi khu
+		/// kiểm tra Bệnh nhân có thể Không ra khỏi khu
 		/// </summary>
 		/// <param name="req"></param>
 		/// <returns></returns>
@@ -303,7 +303,7 @@ where czjl.createtime=@bysj
 			return outParameter.Value.ToString();
 		}
 		/// <summary>
-		/// Bệnh nhânra khỏi khu
+		/// Bệnh nhân ra khỏi khu
 		/// </summary>
 		/// <param name="patOutAreaVO"></param>
 		/// <param name="req"></param>
@@ -311,11 +311,11 @@ where czjl.createtime=@bysj
 		{
 			using (var db = new EFDbTransaction().BeginTrans())
 			{
-				//Lấylịch sử Xuất viện Chẩn đoán
+				//Lấy lịch sử Xuất viện Chẩn đoán
 				//var patOutDiaList = db.IQueryable<InpatientPatientDiagnosisEntity>().Where(p => p.zyh == req.zyh && p.OrganizeId == req.OrganizeId && p.zt == "1" && p.zdlb == "2").ToList();
 				//Lấy Thông tin bệnh nhân
 				InpatientPatientInfoEntity patInfo = db.IQueryable<InpatientPatientInfoEntity>().Where(a => a.zyh == req.zyh && a.zt == "1" && a.OrganizeId == req.OrganizeId).FirstOrDefault();
-				//Lấynhấtgầnmột lầnbệnhgiườngghi chép
+				//Lấy nhất gần một lần bệnh giường ghi chép
 				InpatientBedUseRecordEntity bedUsedEntity = db.IQueryable<InpatientBedUseRecordEntity>().Where(a => a.zyh == req.zyh && a.zt == "1" && a.OrganizeId == req.OrganizeId).FirstOrDefault();
 
 				if (patInfo == null || bedUsedEntity == null)
@@ -335,7 +335,7 @@ where czjl.createtime=@bysj
                     zybz = Convert.ToInt32(EnumZYBZ.Djz),
                     cyrq = patOutAreaVO.cqsj
                 };
-                //Cập nhậtgiường ký tự Trạng thái(là Khôngchiếmdùng)
+                //Cập nhật giường ký tự Trạng thái(là Không chiếm dùng)
                 var apiRespCw = _hospInterfaceSyncDmnService.UpdateOccupyByCode(bedUsedEntity.BedCode, bedUsedEntity.WardCode, false, bedUsedEntity.OrganizeId, req.user);
 
                 //Cập nhật Bệnh nhân Nhập viện Trạng thái
@@ -349,11 +349,11 @@ where czjl.createtime=@bysj
 						zyh = patOutAreaVO.zyh,
 						zybz = Convert.ToInt32(EnumZYBZ.Zq)
 					};
-                    //Cập nhậtgiường ký tự Trạng thái(là Khôngchiếmdùng)
+                    //Cập nhật giường ký tự Trạng thái(là Không chiếm dùng)
                     _hospInterfaceSyncDmnService.UpdateOccupyByCode(bedUsedEntity.BedCode, bedUsedEntity.WardCode, true, bedUsedEntity.OrganizeId, req.user); 
 					//Cập nhật Bệnh nhân Nhập viện Trạng thái
 					SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfoBackReq);
-					return "F|gọicập nhậtđổi ký tựhoặc Bệnh nhân Trạng tháithất bại";
+					return "F|gọi cập nhật đổi ký tự hoặc Bệnh nhân Trạng thái thất bại";
 				}
 				try
 				{
@@ -398,7 +398,7 @@ where czjl.createtime=@bysj
 					#endregion
 
 					#region Thêm bản ghi chẩn đoán mới
-					//chínhcần Chẩn đoán
+					//chính cần Chẩn đoán
 					//if (!string.IsNullOrEmpty(patOutAreaVO.zyzddm))
 					//{
 					//    InpatientPatientDiagnosisEntity diaEntity = new InpatientPatientDiagnosisEntity();
@@ -412,7 +412,7 @@ where czjl.createtime=@bysj
 					//    diaEntity.Create();
 					//    db.Insert(diaEntity);
 					//}
-					//hỗ trợthứmột Chẩn đoán
+					//hỗ trợ thứ một Chẩn đoán
 					//if (!string.IsNullOrEmpty(patOutAreaVO.fzzd1dm) && !string.IsNullOrEmpty(patOutAreaVO.fzzd1))
 					//{
 					//    InpatientPatientDiagnosisEntity diaEntity = new InpatientPatientDiagnosisEntity();
@@ -426,7 +426,7 @@ where czjl.createtime=@bysj
 					//    diaEntity.Create();
 					//    db.Insert(diaEntity);
 					//}
-					//hỗ trợthứhai Chẩn đoán
+					//hỗ trợ thứ hai Chẩn đoán
 					//if (!string.IsNullOrEmpty(patOutAreaVO.fzzd2dm) && !string.IsNullOrEmpty(patOutAreaVO.fzzd2))
 					//{
 					//    InpatientPatientDiagnosisEntity diaEntity = new InpatientPatientDiagnosisEntity();
@@ -440,7 +440,7 @@ where czjl.createtime=@bysj
 					//    diaEntity.Create();
 					//    db.Insert(diaEntity);
 					//}
-					//hỗ trợthứba Chẩn đoán
+					//hỗ trợ thứ ba Chẩn đoán
 					//if (!string.IsNullOrEmpty(patOutAreaVO.fzzd3dm) && !string.IsNullOrEmpty(patOutAreaVO.fzzd3))
 					//{
 					//    InpatientPatientDiagnosisEntity diaEntity = new InpatientPatientDiagnosisEntity();
@@ -454,7 +454,7 @@ where czjl.createtime=@bysj
 					//    diaEntity.Create();
 					//    db.Insert(diaEntity);
 					//}
-					//tựđịnhnghĩa Chẩn đoán
+					//tự định nghĩa Chẩn đoán
 					//if (!string.IsNullOrEmpty(patOutAreaVO.zdyzd))
 					//{
 					//    InpatientPatientDiagnosisEntity diaEntity = new InpatientPatientDiagnosisEntity();
@@ -463,7 +463,7 @@ where czjl.createtime=@bysj
 					//    diaEntity.zyh = req.zyh;
 					//    diaEntity.zdlb = "2";
 					//    diaEntity.zdlx = "9";
-					//    diaEntity.zddm = "999999999";//tựđịnhnghĩa Chẩn đoán Mã Mặc định999999999
+					//    diaEntity.zddm = "999999999";//tự định nghĩa Chẩn đoán Mã Mặc định999999999
 					//    diaEntity.zdmc = patOutAreaVO.zdyzd;
 					//    diaEntity.Create();
 					//    db.Insert(diaEntity);
@@ -485,7 +485,7 @@ where czjl.createtime=@bysj
 					}
 					#endregion
 					db.Commit();
-					return "T|ra khỏi khuthành công";
+					return "T|ra khỏi khu thành công";
 				}
 				catch (Exception ex)
 				{
@@ -494,17 +494,17 @@ where czjl.createtime=@bysj
 						zyh = patOutAreaVO.zyh,
 						zybz = Convert.ToInt32(EnumZYBZ.Zq)
 					};
-                    //Cập nhậtgiường ký tự Trạng thái(là Khôngchiếmdùng)
+                    //Cập nhật giường ký tự Trạng thái(là Không chiếm dùng)
                     _hospInterfaceSyncDmnService.UpdateOccupyByCode(bedUsedEntity.BedCode, bedUsedEntity.WardCode, true, bedUsedEntity.OrganizeId, req.user);
                     //Cập nhật Bệnh nhân Nhập viện Trạng thái
                     SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfoBackReq);
-					return "F|ra khỏi khuthất bại：" + ex.Message;
+					return "F|ra khỏi khu thất bại：" + ex.Message;
 				}
 
 			}
 		}
 		/// <summary>
-		/// Bệnh nhânra khỏi khu Chẩn đoán
+		/// Bệnh nhân ra khỏi khu Chẩn đoán
 		/// </summary>
 		/// <param name="patOutAreaVO"></param>
 		/// <param name="req"></param>
@@ -520,11 +520,11 @@ where czjl.createtime=@bysj
 			//var apiRespzd= SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfoReq);
 			//if (apiRespzd.code != APIRequestHelper.ResponseResultCode.SUCCESS)
 			//{
-			//    return "F|gọigiao diệnthất bại:Cập nhật Xuất viện Chẩn đoán";
+			//    return "F|gọi giao diện thất bại:Cập nhật Xuất viện Chẩn đoán";
 			//}
 			using (var db = new EFDbTransaction().BeginTrans())
 			{
-				//Lấylịch sử Xuất viện Chẩn đoán
+				//Lấy lịch sử Xuất viện Chẩn đoán
 				var patOutDiaList = db.IQueryable<InpatientPatientDiagnosisEntity>().Where(p => p.zyh == req.zyh && p.OrganizeId == req.OrganizeId && p.zt == "1" && p.zdlb == "2").ToList();
 				//Lấy Thông tin bệnh nhân
 				InpatientPatientInfoEntity patInfo = db.IQueryable<InpatientPatientInfoEntity>().Where(a => a.zyh == req.zyh && a.zt == "1" && a.OrganizeId == req.OrganizeId).FirstOrDefault();
@@ -540,7 +540,7 @@ where czjl.createtime=@bysj
 					#endregion
 
 					#region Thêm bản ghi chẩn đoán mới
-					//chínhcần Chẩn đoán
+					//chính cần Chẩn đoán
 					if (!string.IsNullOrEmpty(patOutAreaVO.zyzddm))
 					{
 						InpatientPatientDiagnosisEntity diaEntity = new InpatientPatientDiagnosisEntity();
@@ -555,7 +555,7 @@ where czjl.createtime=@bysj
 						diaEntity.Create();
 						db.Insert(diaEntity);
 					}
-					//hỗ trợthứmột Chẩn đoán
+					//hỗ trợ thứ một Chẩn đoán
 					if (!string.IsNullOrEmpty(patOutAreaVO.fzzd1dm) && !string.IsNullOrEmpty(patOutAreaVO.fzzd1))
 					{
 						InpatientPatientDiagnosisEntity diaEntity = new InpatientPatientDiagnosisEntity();
@@ -570,7 +570,7 @@ where czjl.createtime=@bysj
 						diaEntity.Create();
 						db.Insert(diaEntity);
 					}
-					//hỗ trợthứhai Chẩn đoán
+					//hỗ trợ thứ hai Chẩn đoán
 					if (!string.IsNullOrEmpty(patOutAreaVO.fzzd2dm) && !string.IsNullOrEmpty(patOutAreaVO.fzzd2))
 					{
 						InpatientPatientDiagnosisEntity diaEntity = new InpatientPatientDiagnosisEntity();
@@ -585,7 +585,7 @@ where czjl.createtime=@bysj
 						diaEntity.Create();
 						db.Insert(diaEntity);
 					}
-					//hỗ trợthứba Chẩn đoán
+					//hỗ trợ thứ ba Chẩn đoán
 					if (!string.IsNullOrEmpty(patOutAreaVO.fzzd3dm) && !string.IsNullOrEmpty(patOutAreaVO.fzzd3))
 					{
 						InpatientPatientDiagnosisEntity diaEntity = new InpatientPatientDiagnosisEntity();
@@ -600,7 +600,7 @@ where czjl.createtime=@bysj
 						diaEntity.Create();
 						db.Insert(diaEntity);
 					}
-					//tựđịnhnghĩa Chẩn đoán
+					//tự định nghĩa Chẩn đoán
 					if (!string.IsNullOrEmpty(patOutAreaVO.zdyzd))
 					{
 						InpatientPatientDiagnosisEntity diaEntity = new InpatientPatientDiagnosisEntity();
@@ -609,7 +609,7 @@ where czjl.createtime=@bysj
 						diaEntity.zyh = req.zyh;
 						diaEntity.zdlb = "2";
 						diaEntity.zdlx = "9";
-						diaEntity.zddm = "999999999";//tựđịnhnghĩa Chẩn đoán Mã Mặc định999999999
+						diaEntity.zddm = "999999999";//tự định nghĩa Chẩn đoán Mã Mặc định999999999
 						diaEntity.zdmc = patOutAreaVO.zdyzd;
 						diaEntity.cyqk = Convert.ToInt32(patOutAreaVO.cyqkzdy);
 						diaEntity.Create();
@@ -643,7 +643,7 @@ where czjl.createtime=@bysj
 		}
 
 		/// <summary>
-		/// Lưura khỏi khu Chẩn đoán List
+		/// Lưu ra khỏi khu Chẩn đoán List
 		/// </summary>
 		/// <param name="patOutAreaVO"></param>
 		/// <param name="req"></param>
@@ -656,7 +656,7 @@ where czjl.createtime=@bysj
 			}
 			using (var db = new EFDbTransaction().BeginTrans())
 			{
-				//Lấylịch sử Xuất viện Chẩn đoán
+				//Lấy lịch sử Xuất viện Chẩn đoán
 				var patOutDiaList = db.IQueryable<InpatientPatientDiagnosisEntity>().Where(p => p.zyh == zyh && p.OrganizeId == OrganizeId && p.zt == "1" && p.zdlb == "2").ToList();
 				//Lấy Thông tin bệnh nhân
 				InpatientPatientInfoEntity patInfo = db.IQueryable<InpatientPatientInfoEntity>().Where(a => a.zyh == zyh && a.zt == "1" && a.OrganizeId == OrganizeId).FirstOrDefault();
@@ -744,7 +744,7 @@ where czjl.createtime=@bysj
 		//}
 
 		/// <summary>
-		/// Lấy Nhập việngiườngthẻ
+		/// Lấy Nhập viện giường thẻ
 		/// </summary>
 		/// <param name="zyh"></param>
 		/// <param name="OrganizeId"></param>

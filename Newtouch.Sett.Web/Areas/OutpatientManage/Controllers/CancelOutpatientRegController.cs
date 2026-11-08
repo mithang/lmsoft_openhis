@@ -58,7 +58,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// hủyđăng ký khám
+        /// hủy đăng ký khám
         /// </summary>
         /// <param name="ghnm"></param>
         /// <returns></returns>

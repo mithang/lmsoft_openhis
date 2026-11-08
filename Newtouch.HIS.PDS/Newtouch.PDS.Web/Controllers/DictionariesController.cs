@@ -65,7 +65,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="warningDTO">Thực thể</param>
-        /// <param name="keyValue">Idgiá trị</param>
+        /// <param name="keyValue">Id giá trị</param>
         /// <returns></returns>
         public IActionResult SubmitSyyyForm(SysMedicineProfitLossReasonEntity SyyyDTO, string keyValue)
         {
@@ -130,7 +130,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="warningDTO">Thực thể</param>
-        /// <param name="keyValue">Idgiá trị</param>
+        /// <param name="keyValue">Id giá trị</param>
         /// <returns></returns>
         public IActionResult SubmitFypzForm(SysDispensingaConfigEntity FypzDTO, string keyValue)
         {
@@ -260,7 +260,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="warningDTO">Thực thể</param>
-        /// <param name="keyValue">Idgiá trị</param>
+        /// <param name="keyValue">Id giá trị</param>
         /// <returns></returns>
         public IActionResult SubmitKsFypzForm(SysYpksfypzEntity FypzDTO, string keyValue)
         {

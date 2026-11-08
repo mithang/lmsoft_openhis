@@ -47,7 +47,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string ModuDesc { get; set; }
 
         /// <summary>
-        /// Desc:Ứng dụng ủy quyền đã gắnid 
+        /// Desc:Ứng dụng ủy quyền đã gắn id 
         /// Default:
         /// Nullable:False
         /// </summary>           

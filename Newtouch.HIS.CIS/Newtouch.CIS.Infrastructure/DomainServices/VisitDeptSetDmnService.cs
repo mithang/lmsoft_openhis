@@ -10,7 +10,7 @@ using Newtouch.Domain.ViewModels;
 namespace Newtouch.DomainServices
 {
     /// <summary>
-    /// Bác sĩrakhám
+    /// Bác sĩ ra khám
     /// </summary>
     public class VisitDeptSetDmnService : DmnServiceBase, IVisitDeptSetDmnService
     {
@@ -19,7 +19,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// Lấyrakhám Bác sĩthông tin
+        /// Lấy ra khám Bác sĩ thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -47,7 +47,7 @@ AND vd.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// Lấyrakhám Bác sĩchi tiết
+        /// Lấy ra khám Bác sĩ chi tiết
         /// </summary>
         /// <param name="ysgh"></param>
         /// <param name="organizeId"></param>
@@ -74,7 +74,7 @@ AND vd.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// Lấyrakhám Bác sĩchi tiết
+        /// Lấy ra khám Bác sĩ chi tiết
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -98,7 +98,7 @@ WHERE vd.Id=@vId
         }
 
         /// <summary>
-        /// Lấyrakhám Bác sĩthông tin
+        /// Lấy ra khám Bác sĩ thông tin
         /// </summary>
         /// <param name="ysgh"></param>
         /// <param name="organizeId"></param>

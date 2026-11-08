@@ -9,7 +9,7 @@ using Newtouch.Domain.ViewModels;
 namespace Newtouch.Application.Implementation
 {
     /// <summary>
-    /// Ngoại trúrakhám Cài đặt
+    /// Ngoại trú ra khám Cài đặt
     /// </summary>
     public class VisitDeptSetApp : AppBase, IVisitDeptSetApp
     {
@@ -24,7 +24,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// Gửibảngphiếu
+        /// Gửi bảng phiếu
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="userCode"></param>
@@ -46,18 +46,18 @@ namespace Newtouch.Application.Implementation
                     CreateTime = DateTime.Now,
                     zt = vo.zt
                 };
-                return _visitDeptSetRepo.Insert(entity) > 0 ? "" : "Thêm mớingoại trú Khoathất bại";
+                return _visitDeptSetRepo.Insert(entity) > 0 ? "" : "Thêm mới ngoại trú Khoa thất bại";
             }
 
             var oldEntity = _visitDeptSetRepo.FindEntity(vo.Id);
-            if (oldEntity == null || string.IsNullOrWhiteSpace(oldEntity.ysgh)) return "Lấylịch sửngoại trú Khoathông tinthất bại";
+            if (oldEntity == null || string.IsNullOrWhiteSpace(oldEntity.ysgh)) return "Lấy lịch sử ngoại trú Khoa thông tin thất bại";
             oldEntity.SubordinateDepartments = vo.SubordinateDepartments;
             oldEntity.visitksCode = vo.visitksCode;
             oldEntity.czlx = vo.czlx;
             oldEntity.zt = vo.zt;
             oldEntity.LastModifierCode = userCode;
             oldEntity.LastModifyTime = DateTime.Now;
-            return _visitDeptSetRepo.Update(oldEntity) > 0 ? "" : "sửangoại trú Khoathất bại";
+            return _visitDeptSetRepo.Update(oldEntity) > 0 ? "" : "sửa ngoại trú Khoa thất bại";
         }
     }
 }

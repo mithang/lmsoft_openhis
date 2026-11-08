@@ -1,7 +1,7 @@
 namespace Newtouch.Domain.DTO
 {
     /// <summary>
-    /// xatrìnhy tếyêu cầutham số
+    /// xa trình y tế yêu cầu tham số
     /// </summary>
     public class IntegrateRcDto
     {
@@ -51,7 +51,7 @@ namespace Newtouch.Domain.DTO
         public string patientType { get; set; }
 
         /// <summary>
-        /// Bảo hiểm y tếthẻ Số thẻhoặc Khám bệnhthẻ Số thẻ
+        /// Bảo hiểm y tế thẻ Số thẻ hoặc Khám bệnh thẻ Số thẻ
         /// </summary>
         public string series { get; set; }
 

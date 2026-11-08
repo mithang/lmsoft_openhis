@@ -83,12 +83,12 @@ namespace Newtouch.HIS.Base.Web.Controllers
 
             if (string.IsNullOrWhiteSpace(keyValue) && string.IsNullOrWhiteSpace(entity.ParentId))
             {
-                //Đã tạo thành công một tổ chức cấp cao nhất Thử khởi tạo một quản trị viên hệ thống cho tổ chức đóadmin
+                //Đã tạo thành công một tổ chức cấp cao nhất Thử khởi tạo một quản trị viên hệ thống cho tổ chức đó admin
                 try
                 {
                     _sysUserApp.CreateDefaultAdminToOrg(entity.Id, Constants.LogonDefaultPassword);
-                    //return Success("Thao tác thành công.và đã khởi tạo thành công quản trị viên hệ thốngadmin");
-                    return Success("Thao tác thành công<br/>và đã khởi tạo thành công quản trị viên hệ thốngadmin");
+                    //return Success("Thao tác thành công.và đã khởi tạo thành công quản trị viên hệ thống admin");
+                    return Success("Thao tác thành công<br/>và đã khởi tạo thành công quản trị viên hệ thống admin");
                 }
                 catch (Exception ex)
                 {

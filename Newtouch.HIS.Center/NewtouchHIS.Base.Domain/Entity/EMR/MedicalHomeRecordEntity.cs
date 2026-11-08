@@ -566,7 +566,7 @@ namespace NewtouchHIS.Base.Domain.Entity.EMR
         public string SXYS { get; set; }
 
         /// <summary>
-        /// Mãviên
+        /// Mã viên
         /// </summary>
         /// <returns></returns>
         public string BMY { get; set; }

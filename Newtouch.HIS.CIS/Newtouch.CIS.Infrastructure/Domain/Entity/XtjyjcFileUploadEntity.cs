@@ -19,7 +19,7 @@ namespace Newtouch.Domain.Entity
         public string Id { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// vănmục Đường dẫn
+        /// văn mục Đường dẫn
         /// </summary>
         public string FileUrl { get; set; }
         /// <summary>
@@ -27,19 +27,19 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public string Sqdh { get; set; }
         /// <summary>
-        /// vănmục Tên
+        /// văn mục Tên
         /// </summary>
         public string FileName { get; set; }
         /// <summary>
-        /// vănmụcsauhậu tố
+        /// văn mục sau hậu tố
         /// </summary>
         public string FileType { get; set; }
         /// <summary>
-        /// vănmục Loại
+        /// văn mục Loại
         /// </summary>
         public string ContentType { get; set; }
         /// <summary>
-        /// vănmụclớnnhỏ
+        /// văn mục lớn nhỏ
         /// </summary>
         public int FileSize { get; set; }
         public DateTime CreateTime { get; set; }

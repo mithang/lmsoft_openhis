@@ -9,7 +9,7 @@ namespace Newtouch.OR.ManageSystem.Domain
     public class PagingData<T>
     {
         /// <summary>
-        /// Cách sắp xếpasc Cần máy chủ của bạn sắp xếp theo thứ tự,desc Sắp xếp ngược
+        /// Cách sắp xếp asc Cần máy chủ của bạn sắp xếp theo thứ tự,desc Sắp xếp ngược
         /// </summary>
         public string order { get; set; }
         /// <summary>
@@ -25,7 +25,7 @@ namespace Newtouch.OR.ManageSystem.Domain
         /// </summary>
         public string search { get; set; }
         /// <summary>
-        /// Khi phân trang bạn có thể truyền tham số tùy chỉnh,Ví dụ bạn muốn mỗi lần yêu cầu máy chủ kèmaction="getlist"tham sốfunction(params) { return params }
+        /// Khi phân trang bạn có thể truyền tham số tùy chỉnh,Ví dụ bạn muốn mỗi lần yêu cầu máy chủ kèm action="getlist"tham số function(params) { return params }
         /// </summary>
         public T queryParams { get; set; }
     }

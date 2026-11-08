@@ -6,7 +6,7 @@ using NewtouchHIS.Lib.Framework.Attributes;
 namespace NewtouchHIS.Lib.Framework.Filter
 {
     /// <summary>
-    /// bộ lọc chỉ xử lý Ajaxxác minh yêu cầu
+    /// bộ lọc chỉ xử lý Ajax xác minh yêu cầu
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
     public class HandlerAjaxOnlyAttribute : ActionMethodSelectorAttribute

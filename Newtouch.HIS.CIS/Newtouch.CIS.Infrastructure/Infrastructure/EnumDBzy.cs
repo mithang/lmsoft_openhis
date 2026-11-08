@@ -3,7 +3,7 @@ using System.ComponentModel;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// ởviện Cờ
+    /// ở viện Cờ
     /// </summary>
     public enum EnumZYBZ
     {
@@ -12,15 +12,15 @@ namespace Newtouch.Infrastructure
         /// </summary>
         Xry = 0,
         /// <summary>
-        /// Khu bệnhtrong
+        /// Khu bệnh trong
         /// </summary>
         Bqz = 1,
         /// <summary>
-        /// Khu bệnh Xuất viện(raKhu bệnh)(chờkếtsổ)
+        /// Khu bệnh Xuất viện(raKhu bệnh)(chờ kết sổ)
         /// </summary>
         Djz = 2,
         /// <summary>
-        /// đã Xuất viện(Xuất việnquyết toán)
+        /// đã Xuất viện(Xuất viện quyết toán)
         /// </summary>
         Ycy = 3,
         /// <summary>
@@ -29,7 +29,7 @@ namespace Newtouch.Infrastructure
         Zq = 7,
 
         /// <summary>
-        /// Hủy bỏghi chép/Hủy Nhập viện
+        /// Hủy bỏ ghi chép/Hủy Nhập viện
         /// </summary>
         Wry = 9,
     }
@@ -55,7 +55,7 @@ namespace Newtouch.Infrastructure
         [Description("Văn bản")]
         Wz = 3,
         /// <summary>
-        /// Xuất việnmang thuốc
+        /// Xuất viện mang thuốc
         /// </summary>
         [Description("Thuốc mang về khi ra viện")]
         Cydy = 4,
@@ -85,7 +85,7 @@ namespace Newtouch.Infrastructure
         [Description("Phẫu thuật")]
         oper = 9,
         /// <summary>
-        /// trongthảo dược
+        /// trong thảo dược
         /// </summary>
         [Description("Thuốc Đông y")]
         zcy = 10,
@@ -107,7 +107,7 @@ namespace Newtouch.Infrastructure
     public enum EnumYzzt
     {
         /// <summary>
-        /// chờduyệt 
+        /// chờ duyệt 
         /// </summary>
         [Description("Chờ duyệt")]
         Ds = 0,
@@ -127,7 +127,7 @@ namespace Newtouch.Infrastructure
         [Description("DC")]
         DC = 3,
         /// <summary>
-        /// Dừnghoặc Hủy bỏ
+        /// Dừng hoặc Hủy bỏ
         /// </summary>
         [Description("Dừng")]
         TZ = 4 
@@ -154,7 +154,7 @@ namespace Newtouch.Infrastructure
         /// </summary>
         Zydw = 4,
         /// <summary>
-        /// vàohàng Đơn vị
+        /// vào hàng Đơn vị
         /// </summary>
         Jhdw = 5,
         /// <summary>
@@ -163,7 +163,7 @@ namespace Newtouch.Infrastructure
         Zxdw = 6
     }
     /// <summary>
-    /// góiphạm vi
+    /// gói phạm vi
     /// </summary>
     public enum EnumTcfw
     {
@@ -177,7 +177,7 @@ namespace Newtouch.Infrastructure
         Hosp = 4
     }
     /// <summary>
-    /// điều dưỡngbệnh nhân Trạng thái(điều dưỡngdấu hiệu sinh tồnnhậpdùng)
+    /// điều dưỡng bệnh nhân Trạng thái(điều dưỡng dấu hiệu sinh tồn nhập dùng)
     /// </summary>
     public enum EnumHlbrzt
     {
@@ -226,12 +226,12 @@ namespace Newtouch.Infrastructure
         /// </summary>
         Minute = 3,
         /// <summary>
-        /// khôngquythìchu kỳ
+        /// không quy thì chu kỳ
         /// </summary>
         Unruly = 4
     }
     /// <summary>
-    /// phát thuốctrảthuốc Cờ
+    /// phát thuốc trả thuốc Cờ
     /// </summary>
     public enum EnumMedSTflag
     {
@@ -253,7 +253,7 @@ namespace Newtouch.Infrastructure
         Cq = 2
     }
     /// <summary>
-    /// giường ký tựghi chép Trạng thái
+    /// giường ký tự ghi chép Trạng thái
     /// </summary>
     public enum EnumCwjlzt
     {
@@ -286,7 +286,7 @@ namespace Newtouch.Infrastructure
     public enum EnumHljb
     {
         /// <summary>
-        /// Icấp
+        /// I cấp
         /// </summary>
         [Description("Cấp I")]
         I = 1,
@@ -301,7 +301,7 @@ namespace Newtouch.Infrastructure
         [Description("Cấp III")]
         III = 3,
         /// <summary>
-        /// đặccấp
+        /// đặc cấp
         /// </summary>
         [Description("Cấp đặc biệt")]
         T = 4
@@ -317,16 +317,16 @@ namespace Newtouch.Infrastructure
         Wjs = 2
     }
     /// <summary>
-    /// cố địnhđịnh Thực hiệntiêu chuẩn
+    /// cố định định Thực hiện tiêu chuẩn
     /// </summary>
     public enum EnumGdzxbz
     {
         /// <summary>
-        /// cố địnhđịnh
+        /// cố định định
         /// </summary>
         Fixed = 1,
         /// <summary>
-        /// khôngcố địnhđịnh
+        /// không cố định định
         /// </summary>
         Nonfixed = 0
     }
@@ -341,7 +341,7 @@ namespace Newtouch.Infrastructure
         [Description("Thông thường")]
         Normal =1,
         /// <summary>
-        /// bệnhtrọng
+        /// bệnh trọng
         /// </summary>
         [Description("Bệnh nặng")]
         Serious =2,
@@ -359,12 +359,12 @@ namespace Newtouch.Infrastructure
     //}
 
     /// <summary>
-    /// Nhiệt độđolượng Mô tả
+    /// Nhiệt độ đo lượng Mô tả
     /// </summary>
     public enum EnumTwclfs
     {
         /// <summary>
-        /// miệngnhiệt
+        /// miệng nhiệt
         /// </summary>
         [Description("Nhiệt độ miệng")]
         kw = 1,
@@ -390,12 +390,12 @@ namespace Newtouch.Infrastructure
         [Description("Loại")]
         lx = 1,
         /// <summary>
-        /// đặcđặccầncầu
+        /// đặc đặc cần cầu
         /// </summary>
         [Description("Yêu cầu đặc biệt")]
         tsyq = 2,
         /// <summary>
-        /// ăn uốngloạisố
+        /// ăn uống loại số
         /// </summary>
         [Description("Mẫu bữa ăn")]
         ssxh = 3,
@@ -435,19 +435,19 @@ namespace Newtouch.Infrastructure
         zybl = 1,
 
         /// <summary>
-        /// bệnhtrìnhghi chép
+        /// bệnh trình ghi chép
         /// </summary>
         [Description("Ghi chép quá trình bệnh")]
         bcjl = 2,
 
         /// <summary>
-        /// y tếvănsách
+        /// y tế văn sách
         /// </summary>
         [Description("Văn bản y tế")]
         ylws = 3,
 
         /// <summary>
-        /// điều dưỡngghi chép
+        /// điều dưỡng ghi chép
         /// </summary>
         [Description("Ghi chép điều dưỡng")]
         hljl = 4,
@@ -468,7 +468,7 @@ namespace Newtouch.Infrastructure
         [Description("Khỏi bệnh")]
         zy = 1,
         /// <summary>
-        /// tốtchuyển
+        /// tốt chuyển
         /// </summary>
         [Description("Đỡ hơn")]
         hz = 2,
@@ -488,7 +488,7 @@ namespace Newtouch.Infrastructure
         [Description("Khác")]
         qt = 5,
         /// <summary>
-        /// chuyểnviện
+        /// chuyển viện
         /// </summary>
         [Description("Chuyển viện")]
         zhuanyuan = 6
@@ -508,7 +508,7 @@ namespace Newtouch.Infrastructure
         s = 1,
     }
 
-    //dathửđothử
+    //da thử đo thử
     public enum EnumPSCS {
         /// <summary>
         /// Không
@@ -522,7 +522,7 @@ namespace Newtouch.Infrastructure
         s = 1,
     }
     /// <summary>
-    /// dathửkếtnếu
+    /// da thử kết nếu
     /// </summary>
     public enum EnumPsResult {
         [Description("Âm tính")]
@@ -532,7 +532,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Khoachuẩn bị thuốc Trạng thái
+    /// Khoa chuẩn bị thuốc Trạng thái
     /// </summary>
     public enum EnumKSBYZT
     {
@@ -551,7 +551,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Khoachuẩn bị thuốc Trả lại Trạng thái
+    /// Khoa chuẩn bị thuốc Trả lại Trạng thái
     /// </summary>
     public enum EnumKSBYTHZT
     {
@@ -571,7 +571,7 @@ namespace Newtouch.Infrastructure
         zf = 7,
     }
     /// <summary>
-    /// Thuốcđếnnguồn
+    /// Thuốc đến nguồn
     /// </summary>
     public enum EnumYply
     {
@@ -582,7 +582,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// dathử
+    /// da thử
     /// </summary>
     public enum EnumPs
     {

@@ -3,7 +3,7 @@
 namespace Newtouch.CIS.APIRequest.Dto
 {
     /// <summary>
-    /// Lấybệnh nhân Khám bệnhthông tin yêu cầubáovăn
+    /// Lấy bệnh nhân Khám bệnh thông tin yêu cầu báo văn
     /// </summary>
     public class PatientTreatmentInfoQueryRequestDTO : RequestBase
     {

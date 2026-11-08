@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// Hệ thống ngườiviên
+    /// Hệ thống người viên
     /// </summary>
     [SugarTable("Sys_Staff")]
     public class SysStaffEntity
@@ -18,12 +18,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chức Id(Khoasởtương ứngcủa OrganizeId)
+        /// Tổ chức Id(Khoa sở tương ứng của OrganizeId)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Tổ chức Id(đỉnhcấp,Hệ thốngcấu hình)
+        /// Tổ chức Id(đỉnh cấp,Hệ thống cấu hình)
         /// </summary>
         public string TopOrganizeId { get; set; }
 
@@ -86,12 +86,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string WeChat { get; set; }
 
         /// <summary>
-        /// chínhquản Khóa chính
+        /// chính quản Khóa chính
         /// </summary>
         public string ManagerCode { get; set; }
 
         /// <summary>
-        /// Thứ tựmã
+        /// Thứ tự mã
         /// </summary>
         public int? px { get; set; }
 

@@ -13,7 +13,7 @@ namespace Newtouch.Domain.IDomainServices.Inpatient
     public interface IWardMaintenanceDmnService
     {
         /// <summary>
-        /// Lấykhingày Hiệu lựcY lệnh
+        /// Lấy khi ngày Hiệu lựcY lệnh
         /// </summary>
         /// <param name="bedCode"></param>
         /// <returns></returns>
@@ -21,19 +21,19 @@ namespace Newtouch.Domain.IDomainServices.Inpatient
         IList<Dispensing> GetDispensings(Pagination pagination, DispensingMXRequestDto req);
         IList<DispensingMX> GetDispensingMXs(Pagination pagination, string bysj);
         /// <summary>
-        /// Lưugiường ký tựgắn Chi phíthông tin
+        /// Lưu giường ký tự gắn Chi phí thông tin
         /// </summary>
         /// <param name="req"></param>
         void SaveBedItems(List<BedItemsVO> mxList, WardMaintenanceRequestDto req, string zyh);
         /// <summary>
-        /// Lấygiường ký tựgắn Bác sĩthông tin
+        /// Lấy giường ký tự gắn Bác sĩ thông tin
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         List<BedDocsVO> GetBedDocs(patRequestDto req);
 
         /// <summary>
-        /// Lưugiường ký tựgắn Bác sĩthông tin
+        /// Lưu giường ký tự gắn Bác sĩ thông tin
         /// </summary>
         /// <param name="req"></param>
         void SaveBedDocs(List<BedDocsVO> mxList, patRequestDto req);
@@ -45,7 +45,7 @@ namespace Newtouch.Domain.IDomainServices.Inpatient
         /// <returns></returns>
         List<PatDiagnosisVO> GetPatDiagnosis(patRequestDto req);
         /// <summary>
-        /// kiểm tra Bệnh nhâncó thể Khôngra khỏi khu
+        /// kiểm tra Bệnh nhân có thể Không ra khỏi khu
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -64,7 +64,7 @@ namespace Newtouch.Domain.IDomainServices.Inpatient
         /// <returns></returns>
        string SavaOutPatDiagnosis(PatOutAreaVO patOutAreaVO, patRequestDto req);
 		/// <summary>
-		/// Lưura khỏi khu Chẩn đoán List
+		/// Lưu ra khỏi khu Chẩn đoán List
 		/// </summary>
 		/// <param name="PatDxList"></param>
 		/// <returns></returns>
@@ -76,7 +76,7 @@ namespace Newtouch.Domain.IDomainServices.Inpatient
 		/// <returns></returns>
 		//string SavaPatDxEntity(InpatientPatientDiagnosisEntity PatDxEntity);
 		/// <summary>
-		/// Lấy Nhập việngiườngthẻ
+		/// Lấy Nhập viện giường thẻ
 		/// </summary>
 		/// <param></param>
 		List<InpatientBedCardVo> GetBedCard(string zyh, string OrganizeId);

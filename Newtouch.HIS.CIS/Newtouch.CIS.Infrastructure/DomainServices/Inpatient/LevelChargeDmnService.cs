@@ -18,7 +18,7 @@ namespace Newtouch.DomainServices.Inpatient
     public class LevelChargeDmnService : DmnServiceBase, ILevelChargeDmnService
     {
         /// <summary>
-        /// Mặc định Hàm khởi tạosố
+        /// Mặc định Hàm khởi tạo số
         /// </summary>
         /// <param name="databaseFactory">EF trên dưới văn Nhà máy</param>
         public LevelChargeDmnService()
@@ -27,7 +27,7 @@ namespace Newtouch.DomainServices.Inpatient
 
         }
         /// <summary>
-        /// Lấyđợicấp Chi phí
+        /// Lấy đợi cấp Chi phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="bqCode"></param>

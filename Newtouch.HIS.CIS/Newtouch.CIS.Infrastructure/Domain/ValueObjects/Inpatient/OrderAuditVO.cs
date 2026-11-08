@@ -9,7 +9,7 @@ namespace Newtouch.Domain.ValueObjects
     public class OrderAuditVO
     {
         /// <summary>
-        /// Y lệnhid
+        /// Y lệnh id
         /// </summary>
         public string yzid { get; set; }
         /// <summary>
@@ -48,7 +48,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string tzysgh { get; set; }
         /// <summary>
-        /// Dừng/Hủy bỏ Thao tácviên
+        /// Dừng/Hủy bỏ Thao tác viên
         /// </summary>
         public string tzr { get; set; }
 
@@ -59,7 +59,7 @@ namespace Newtouch.Domain.ValueObjects
         public int? zh { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 0 chờduyệt 1Đã duyệt 2đã Thực hiện 3DC 4Dừng
+        /// 0 chờ duyệt 1Đã duyệt 2đã Thực hiện 3DC 4Dừng
         /// </summary>
         public int yzzt { get; set; }
         /// <summary>
@@ -80,7 +80,7 @@ namespace Newtouch.Domain.ValueObjects
         public string iszt { get; set; }
         public string yfztbs { get; set; }
         /// <summary>
-        /// Thuốcmởlập Tồn khođếnnguồn 1:Khoachuẩn bị thuốc Tồn kho 2:Nhà thuốc Tồn kho
+        /// Thuốc mở lập Tồn kho đến nguồn 1:Khoa chuẩn bị thuốc Tồn kho 2:Nhà thuốc Tồn kho
         /// </summary>
         public int? yply { get; set; }
         public decimal? dj { get; set; }

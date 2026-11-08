@@ -12,7 +12,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         }
         /// <summary>
         /// Tài nguyên tĩnh Host
-        /// configcấu hình SiteStaticHost
+        /// config cấu hình SiteStaticHost
         /// </summary>
         public static string? SiteStaticHost
         {
@@ -23,7 +23,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         }
         /// <summary>
         /// Số phiên bản tài nguyên
-        /// Dùng để tránh bộ nhớ đệm tài nguyên tĩnh, tương ứngconfig Version
+        /// Dùng để tránh bộ nhớ đệm tài nguyên tĩnh, tương ứng config Version
         /// </summary>
         public static string ver
         {

@@ -38,7 +38,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         #region bệnh nhân Thu phíThuật toán
 
         /// <summary>
-        /// đượclấybệnhngườithuphí Thuật toángrid Giá trị
+        /// được lấy bệnh người thu phí Thuật toán grid Giá trị
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -81,7 +81,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Khi sửa thông tin,mangchọntrongthực hiệnđốitượngmangđếnmớitrangmặt
+        /// Khi sửa thông tin,mang chọn trong thực hiện đối tượng mang đến mới trang mặt
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -95,9 +95,9 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 
 
         /// <summary>
-        /// bệnhngườitínhchấtdướikéokhung 
-        /// bệnhngườithuphí Thuật toánbệnhngườitínhchấtdướikéokhungđãkhônglạikhiếndùng,
-        /// nàyphươngphương pháptạithuphígiảmmiễnnơicũngkhiếndùngđến,nhưkết quảgiảmmiễnsửasửarồibệnhngườitínhchấtmở rộnghiệnphươngkiểu,khônglạikhiếndùngnàyphươngphương pháp,vui lòngghiđượcxóatrừ
+        /// bệnh người tính chất dưới kéo khung 
+        /// bệnh người thu phí Thuật toán bệnh người tính chất dưới kéo khung đã không lại khiến dùng,
+        /// này phương phương pháp tại thu phí giảm miễn nơi cũng khiến dùng đến,như kết quả giảm miễn sửa sửa rồi bệnh người tính chất mở rộng hiện phương kiểu,không lại khiến dùng này phương phương pháp,vui lòng ghi được xóa trừ
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -128,7 +128,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// căndữ liệulớnloạiđượclấyhạngmụccode
+        /// căn dữ liệu lớn loại được lấy hạng mục code
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="dlCode"></param>

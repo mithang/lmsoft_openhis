@@ -125,7 +125,7 @@ namespace Newtouch.HIS.Web.Controllers
                 }
                 if (opr.yfbmCodeList != null && opr.yfbmCodeList.Count > 0)
                 {
-                    //Bộ phận nhà thuốc hiện cần thao tác    //tại OrgId Đã liên kết nhiềuyfbm Làm thế nào
+                    //Bộ phận nhà thuốc hiện cần thao tác    //tại OrgId Đã liên kết nhiều yfbm Làm thế nào
                     var curYfbmCode = opr.yfbmCodeList.FirstOrDefault();
                     var curYfbmObj = _sysPharmacyDepartmentRepo.GetUserYfbmByCode(curYfbmCode, opr.OrganizeId);
                     if (curYfbmObj != null)
@@ -160,7 +160,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// Lấy chờ xử lýhtml
+        /// Lấy chờ xử lý html
         /// </summary>
         /// <returns></returns>
         [HttpGet]

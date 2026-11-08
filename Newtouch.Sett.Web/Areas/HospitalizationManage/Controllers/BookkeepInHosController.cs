@@ -80,7 +80,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         
-        #region HISghi sổ nhập viện Chọn mục tính phí（Thuốc），Điền số lượng v.v.，Ghi trực tiếp vàozy_xmjfb zy_ypjfbghi dữ liệu tính phí
+        #region HISghi sổ nhập viện Chọn mục tính phí（Thuốc），Điền số lượng v.v.，Ghi trực tiếp vào zy_xmjfb zy_ypjfbghi dữ liệu tính phí
 
 
         public override IActionResult Index()
@@ -110,7 +110,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
                 var data = _PatientBasicInfoDmnService.GetSysBasicByZHY(kh, zyh, this.OrganizeId);//[0];
                 if (data.Count > 0)
                 {
-                    #region Tính số tiền chưaquyết toán
+                    #region Tính số tiền chưa quyết toán
                     if (!string.IsNullOrWhiteSpace(data[0].zyh))
                     {
                         var dlentitys = _OutHospBillApp.GetHospFeeClassifyWithDLBOList(data[0].zyh);
@@ -141,9 +141,9 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Lấy thuốc và mụcthu phí
+        /// Lấy thuốc và mục thu phí
         /// </summary>
-        /// <param name="keyword">Truy vấn theo từ khóađiều kiện</param>
+        /// <param name="keyword">Truy vấn theo từ khóa điều kiện</param>
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -155,7 +155,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Lưu Dữ liệulúccủa Thao tác
+        /// Lưu Dữ liệu lúc của Thao tác
         /// </summary>
         /// <param name="xmjf"></param>
         /// <returns></returns>
@@ -181,15 +181,15 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
                 {
                     if (ItemFeeVO[i].tdrq> cqrq)
                     {
-                        return Error("Ngàyghi sổ không được muộn hơn ngày ra khoa của bệnh nhân!");
+                        return Error("Ngày ghi sổ không được muộn hơn ngày ra khoa của bệnh nhân!");
                     }
                     if (ItemFeeVO[i].ryrq > ItemFeeVO[i].tdrq && (ItemFeeVO[i].tdrq != new DateTime(0001, 01, 01)))
                     {
-                        return Error("Ngàyghi sổ không được sớm hơn ngày nhập viện của bệnh nhân!");
+                        return Error("Ngày ghi sổ không được sớm hơn ngày nhập viện của bệnh nhân!");
                     }
                     if ((ItemFeeVO[i].cyrq != new DateTime(0001, 01, 01)) && ItemFeeVO[i].cyrq < ItemFeeVO[i].tdrq)
                     {
-                        return Error("Ngàyghi sổ không được muộn hơn ngày xuất viện của bệnh nhân!");
+                        return Error("Ngày ghi sổ không được muộn hơn ngày xuất viện của bệnh nhân!");
                     }
                     if (string.IsNullOrWhiteSpace(ItemFeeVO[i].yzlx))
                     {
@@ -203,7 +203,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
                             var mbmx = _sysChargeTemplateItemMappRepo.getmbmx(ItemFeeVO[i].sfxm, this.OrganizeId);
                             if (mbmx == null|| mbmx.Count==0)
                             {
-                                throw new FailedException("Không tìm thấy chi tiết mẫuthu phí tương ứng");
+                                throw new FailedException("Không tìm thấy chi tiết mẫu thu phí tương ứng");
                             }
                             var newid= Guid.NewGuid().ToString();
                             for (int k = 0; k < mbmx.Count; k++)
@@ -322,7 +322,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
                 {
                     string jfbhs = string.Join(",", wzList.Where(m => m.sfxm.Contains("wz")).Select(p => p.jfbbh));
                     _hospItemBillingRepo.Updatezyaddfee(OrganizeId, jfbhs,ItemFeeVO[0].yfdm,this.UserIdentity.UserCode);
-                    //cập nhậtcisnhập viện Bệnh nhân Xem trướcphảibênphí Thẻphimthông tin
+                    //cập nhật cis nhập viện Bệnh nhân Xem trước phải bên phí Thẻ phim thông tin
                     _hospdrugbillingRepo.Updatezy_brxxexpand(OrganizeId, zyh);
                 }
                 else
@@ -341,7 +341,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Theo khoa Lấy mẫu mụcthu phí
+        /// Theo khoa Lấy mẫu mục thu phí
         /// </summary>
         /// <returns></returns>
         public IActionResult GetChargeItemData(string ks)
@@ -355,7 +355,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Theo số hiệu mẫuthu phí Lấy nội dung mẫu (Danh sách mục)
+        /// Theo số hiệu mẫu thu phí Lấy nội dung mẫu (Danh sách mục)
         /// </summary>
         /// <param name="sfxmbh"></param>
         /// <returns></returns>
@@ -371,18 +371,18 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         #endregion HIS ghi sổ nhập viện
 
-        #region ghi sổ nhập viện ghi sổ theo kế hoạch，viếtjzjh，Thông qua thực hiện，Vàozy_xmjfb zy_ypjfbghi dữ liệu tính phí 2018.03Logic một phần kế hoạch ngoại trú cũng ở đây
+        #region ghi sổ nhập viện ghi sổ theo kế hoạch，viết jzjh，Thông qua thực hiện，Vàozy_xmjfb zy_ypjfbghi dữ liệu tính phí 2018.03Logic một phần kế hoạch ngoại trú cũng ở đây
 
         #region
 
         /// <summary>
         /// ghi sổ nhập viện
-        /// Phương thứcghi sổ:Dài hạn or Tạm thời
+        /// Phương thức ghi sổ:Dài hạn or Tạm thời
         /// </summary>
         /// <returns></returns>
         public IActionResult Accounting()
         {
-            //Công tắc giới hạn số tiềnghi sổ của trị liệu sư
+            //Công tắc giới hạn số tiền ghi sổ của trị liệu sư
             var IsUpperLimitReminder = _sysConfigRepo.GetValueByCode("xt_UpperLimitReminder", this.OrganizeId);
             ViewBag.IsUpperLimitReminder = IsUpperLimitReminder;
             ViewBag.IsBlh = _sysConfigRepo.GetByCode("IsBlh", OrganizeId) == null ? "OFF" : _sysConfigRepo.GetByCode("IsBlh", OrganizeId).Value;
@@ -403,7 +403,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// ghi sổ thực hiện Kế hoạch thực hiệntrang
+        /// ghi sổ thực hiện Kế hoạch thực hiện trang
         /// </summary>
         /// <returns></returns>
         public IActionResult AccountingExecution()
@@ -437,7 +437,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Kế hoạchghi sổ Truy vấn
+        /// Kế hoạch ghi sổ Truy vấn
         /// </summary>
         /// <returns></returns>
         public IActionResult AccountingPlan()
@@ -446,7 +446,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Pop Lớp Dừng kế hoạchghi sổ Chọn trước(Dừng)Ngày
+        /// Pop Lớp Dừng kế hoạch ghi sổ Chọn trước(Dừng)Ngày
         /// </summary>
         /// <returns></returns>
         public IActionResult StopPlan()
@@ -468,10 +468,10 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Gửi kế hoạchghi sổ
+        /// Gửi kế hoạch ghi sổ
         /// </summary>
         /// <param name="zyh">Mã nhập viện</param>
-        /// <param name="xmList">Danh sách mụcghi sổ</param>
+        /// <param name="xmList">Danh sách mục ghi sổ</param>
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -496,7 +496,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Truy vấn Chờ thực hiện Kế hoạchghi sổ Danh sách
+        /// Truy vấn Chờ thực hiện Kế hoạch ghi sổ Danh sách
         /// </summary>
         /// <param name="zyhList"></param>
         /// <param name="zxrq"></param>
@@ -510,7 +510,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Thực hiện kế hoạchghi sổ
+        /// Thực hiện kế hoạch ghi sổ
         /// </summary>
         /// <param name="jzjhmxIdStr"></param>
         /// <returns></returns>
@@ -524,7 +524,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Chấm dứt Kế hoạchghi sổ
+        /// Chấm dứt Kế hoạch ghi sổ
         /// </summary>
         /// <param name="jzjhmxIdStr"></param>
         /// <returns></returns>
@@ -537,7 +537,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             var mxIdList = (jzjhmxIdStr ?? "").Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             if (mxIdList == null || mxIdList.Length == 0)
             {
-                throw new FailedException("Thiếu tham số kế hoạchghi sổ");
+                throw new FailedException("Thiếu tham số kế hoạch ghi sổ");
             }
             if (from == "mz")
             {
@@ -591,7 +591,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Thực hiện kế hoạchghi sổ Xuất Excel
+        /// Thực hiện kế hoạch ghi sổ Xuất Excel
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="kssj"></param>
@@ -614,7 +614,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Truy vấn kế hoạchghi sổ
+        /// Truy vấn kế hoạch ghi sổ
         /// </summary>
         /// <returns></returns>
         [HandlerAjaxOnly]
@@ -651,7 +651,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Xuất kế hoạchghi sổ Excel
+        /// Xuất kế hoạch ghi sổ Excel
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="kssj"></param>
@@ -672,7 +672,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Truy vấn Trị liệu sư Tháng này đã Số tiềnghi sổ(jfb,mzxm,mzcfmx),Số tiền giới hạnghi sổ
+        /// Truy vấn Trị liệu sư Tháng này đã Số tiền ghi sổ(jfb,mzxm,mzcfmx),Số tiền giới hạn ghi sổ
         /// </summary>
         /// <param name="gh"></param>
         /// <returns></returns>
@@ -689,7 +689,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         #region ghi sổ ngoại trú bản 4，Lượng điều trị mỗi lần
         /// <summary>
-        /// Lưughi sổ ngoại trútrongdung
+        /// Lưu ghi sổ ngoại trú trong dung
         /// </summary>
         /// <param name="bacDto"></param>
         /// <param name="xmList"></param>
@@ -718,7 +718,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
         #endregion
 
-        #region Truy vấn kế hoạchghi sổ
+        #region Truy vấn kế hoạch ghi sổ
         public IActionResult ViewPlanDetail()
         {
             return View();
@@ -736,7 +736,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Lấy chi tiết kế hoạchghi sổ
+        /// Lấy chi tiết kế hoạch ghi sổ
         /// </summary>
         /// <param name="jzjhmxId"></param>
         /// <returns></returns>
@@ -776,9 +776,9 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
         #endregion
 
-        #endregion ghi sổ nhập viện Kế hoạchghi sổ
+        #endregion ghi sổ nhập viện Kế hoạch ghi sổ
 
-        #region ghi sổ nhập viện vàOptimaĐồng bộ dữ liệu，OptimaĐẩy bản ghi điều trị cho chúng tôi，Xác nhậncủa，Vàozy_xmjfb zy_ypjfbghi dữ liệu tính phí
+        #region ghi sổ nhập viện vàOptimaĐồng bộ dữ liệu，OptimaĐẩy bản ghi điều trị cho chúng tôi，Xác nhận của，Vàozy_xmjfb zy_ypjfbghi dữ liệu tính phí
 
         /// <summary>
         /// ghi sổ nhập viện Index
@@ -838,10 +838,10 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         #endregion ghi sổ nhập viện vàOptimaĐồng bộ dữ liệu
 
-        #region quyết toán phí quyết toán xuất viện（nóthựclàphốihợpnhập việnghi sổ theo kế hoạchthêmtrêncủa，nhưngcảmcảm thấysokháthôngdùng）
+        #region quyết toán phí quyết toán xuất viện（nó thực là phối hợp nhập viện ghi sổ theo kế hoạch thêm trên của，nhưng cảm cảm thấysokháthôngdùng）
 
         /// <summary>
-        /// quyết toán phí chưaquyết toán Index
+        /// quyết toán phí chưa quyết toán Index
         /// </summary>
         /// <returns></returns>
         public IActionResult UnSettedFeeSettIndex()
@@ -850,7 +850,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Lấyquyết toán giữa kỳ gần nhất Kết thúc Ngàyquyết toán
+        /// Lấy quyết toán giữa kỳ gần nhất Kết thúc Ngày quyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -865,7 +865,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// quyết toán phí chưaquyết toán Items Query
+        /// quyết toán phí chưa quyết toán Items Query
         /// </summary>
         /// <returns></returns>
         [HandlerAjaxOnly]
@@ -933,7 +933,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             var dbDt = _BookkeepInHosDmnService.GetLastValidMidwaySettTime(zyh, this.OrganizeId);
             if (dbDt.HasValue && dbDt.Value != startTime)
             {
-                return Error("Trạng tháiquyết toán đã thay đổi trong quá trình xử lý, vui lòng thử lại!");
+                return Error("Trạng thái quyết toán đã thay đổi trong quá trình xử lý, vui lòng thử lại!");
             }
 
             _BookkeepInHosDmnService.MidwaySettlement(zyh, this.OrganizeId, startTime, endTime, expectedCount);
@@ -951,7 +951,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// lấy Đãquyết toán quyết toán giữa kỳ ListJson
+        /// lấy Đã quyết toán quyết toán giữa kỳ ListJson
         /// </summary>
         /// <returns></returns>
         [HandlerAjaxOnly]
@@ -968,8 +968,8 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Có tồn tại bản ghi chưaquyết toán hay không
-        /// Thông qua thời gianquyết toán giữa kỳ
+        /// Có tồn tại bản ghi chưa quyết toán hay không
+        /// Thông qua thời gian quyết toán giữa kỳ
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -983,7 +983,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             startTime = _BookkeepInHosDmnService.GetLastValidMidwaySettTime(zyh, this.OrganizeId);
             if (!startTime.HasValue)
             {
-                startTime = new DateTime(1970, 01, 01);  //Chưaquyết toánquacủalời từ Nhập viện Bắt đầutínhnơicó Mục
+                startTime = new DateTime(1970, 01, 01);  //Chưa quyết toán qua của lời từ Nhập viện Bắt đầu tính nơi có Mục
             }
             var jsItemList = _hospItemBillingRepo.GetItemFeeEntityListByTime(zyh, this.OrganizeId, startTime.Value, DateTime.Now);
 
@@ -1019,17 +1019,17 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             }
             if (cyrq.Date < startTime.Value.Date)
             {
-                return Error("Ngày xuất viện không đúng, không được trước ngàyquyết toán phí");
+                return Error("Ngày xuất viện không đúng, không được trước ngày quyết toán phí");
             }
             var jsItemList = _hospItemBillingRepo.GetItemFeeEntityListByTime(zyh, this.OrganizeId, startTime.Value, DateTime.Now);
             if (jsItemList.Count > 0)
             {
-                return Error("Còn phí chưaquyết toán, không thể xuất viện");
+                return Error("Còn phí chưa quyết toán, không thể xuất viện");
             }
             if (_hospAccountingPlanDetailRepo.IQueryable(p => p.zyh == zyh && p.OrganizeId == this.OrganizeId && p.zt == "1").ToList().Any(p => p.zxzt == (int)EnumJzjhZXZT.None
              || p.zxzt == (int)EnumJzjhZXZT.Part))
             {
-                return Error("Cònghi sổ chưa thực hiện xong, không thể xuất viện");
+                return Error("Còn ghi sổ chưa thực hiện xong, không thể xuất viện");
             }
 
             _BookkeepInHosDmnService.DischargeSettlement(zyh, this.OrganizeId, cyrq);
@@ -1038,7 +1038,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Hủyquyết toán giữa kỳ gần nhất
+        /// Hủy quyết toán giữa kỳ gần nhất
         /// </summary>
         /// <param name="zyh"></param>
         public IActionResult CancelTheLastMidwaySett(string zyh,string zffs1,string zffsmc1)
@@ -1076,7 +1076,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         #region private methods
 
         /// <summary>
-        /// Kiểm tra có thểquyết toán xuất viện hay không
+        /// Kiểm tra có thể quyết toán xuất viện hay không
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -1086,7 +1086,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// lấy Trả vềtrongdungtrongcủaflaggiá trị
+        /// lấy Trả về trong dung trong của flag giá trị
         /// </summary>
         /// <param name="xml"></param>
         /// <returns></returns>
@@ -1105,7 +1105,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// từxmltrong Trích xuấttableNamecủa DataTable
+        /// từ xml trong Trích xuấttableName của DataTable
         /// </summary>
         /// <param name="xml"></param>
         /// <returns></returns>

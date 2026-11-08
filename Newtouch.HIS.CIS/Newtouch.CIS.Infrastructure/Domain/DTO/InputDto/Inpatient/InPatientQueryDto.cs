@@ -78,12 +78,12 @@ namespace Newtouch.Domain.DTO.InputDto
     public class RequestOrderExecMsgDto
     {
         /// <summary>
-        /// là Khôngthành công true:Tất cảthành công/bộphútthành công  false:Tất cảthất bại/kiểm trathất bại
+        /// là Không thành công true:Tất cả thành công/bộ phút thành công  false:Tất cả thất bại/kiểm tra thất bại
         /// </summary>
         public bool IsSucceed { get; set; }
 
         /// <summary>
-        /// Trạng tháimã tham sốchiếu Liệt kê ResultCode
+        /// Trạng thái mã tham số chiếu Liệt kê ResultCode
         /// </summary>
         public int ResultCode { get; set; }
 
@@ -93,13 +93,13 @@ namespace Newtouch.Domain.DTO.InputDto
         public string ResultMsg { get; set; }
 
         /// <summary>
-        /// Quay lạithông tin
+        /// Quay lại thông tin
         /// </summary>
         public dynamic Data { get; set; }
     }
 
     /// <summary>
-    /// Y lệnhchi tiết   DataQuay lạinội dung,lấytậphợphiển thịhiện
+    /// Y lệnh chi tiết   DataQuay lại nội dung,lấy tập hợp hiển thị hiện
     /// </summary>
     //public class YzDetail
     //{
@@ -109,7 +109,7 @@ namespace Newtouch.Domain.DTO.InputDto
     //    public string yzId { get; set; }
 
     //    /// <summary>
-    //    /// lĩnhthuốcthứ tựsố
+    //    /// lĩnh thuốc thứ tự số
     //    /// </summary>
     //    public long lyxh { get; set; }
 
@@ -139,7 +139,7 @@ namespace Newtouch.Domain.DTO.InputDto
     //    public decimal sl { get; set; }
 
     //    /// <summary>
-    //    /// uống,tĩnhgiọt...
+    //    /// uống,tĩnh giọt...
     //    /// </summary>
     //    public string zlff { get; set; }
 
@@ -149,17 +149,17 @@ namespace Newtouch.Domain.DTO.InputDto
     //    public string sjap { get; set; }
 
     //    /// <summary>
-    //    /// và Thực hiện Số lượngtương ứng
+    //    /// và Thực hiện Số lượng tương ứng
     //    /// </summary>
     //    public string pcmc { get; set; }
 
     //    /// <summary>
-    //    /// dùnglượng
+    //    /// dùng lượng
     //    /// </summary>
     //    public decimal yl { get; set; }
 
     //    /// <summary>
-    //    /// dùnglượng Đơn vị
+    //    /// dùng lượng Đơn vị
     //    /// </summary>
     //    public string yldw { get; set; }
 
@@ -234,7 +234,7 @@ namespace Newtouch.Domain.DTO.InputDto
     //    public string cw { get; set; }
 
     //    /// <summary>
-    //    /// Cờ phát thuốc  0:chưaphát;1:đãxếp;2:đãphát;3:đãtrả
+    //    /// Cờ phát thuốc  0:chưa phát;1:đã xếp;2:đã phát;3:đã trả
     //    /// </summary>
     //    public char fybz { get; set; }
 

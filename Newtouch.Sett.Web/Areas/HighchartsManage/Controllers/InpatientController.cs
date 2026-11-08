@@ -34,7 +34,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region trang khởi tạo
         /// <summary>
-        /// nhập việnviệnthìkhámngườilầnngườisốphânphân tích
+        /// nhập viện viện thì khám người lần người số phân phân tích
         /// </summary>
         /// <returns></returns>
         public IActionResult NumberofInpatientVisits()
@@ -42,7 +42,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
             return View();
         }
         /// <summary>
-        /// nhập việnviệnthuvàophânphân tích
+        /// nhập viện viện thu vào phân phân tích
         /// </summary>
         /// <returns></returns>
         public IActionResult NumberofInpatientSalary()
@@ -57,16 +57,16 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
         #endregion
 
         /// <summary>
-        ///đượclấynhập việnviệnthìkhámngườisố
+        ///được lấy nhập viện viện thì khám người số
         /// </summary>
         /// <returns></returns>
         public IActionResult GetInpatientVisitNum()
         {
-            //đượclấynhập việnviệnmớithêmngườisố
+            //được lấy nhập viện viện mới thêm người số
             List<OutpatientVisitNumVO> outpatientlist = _highchartsDmnService.GetInpatientVisitNum(OrganizeId);
-            //đượclấyraviệnngườisố
+            //được lấy ra viện người số
             List<InpatientVisitNumVO> inpatientList = _highchartsDmnService.GetInpatientDischargeNum(OrganizeId);
-            //đặttạimộtcáiđốitượng,trảquayđếntrangmặt
+            //đặt tại một cái đối tượng,trả quay đến trang mặt
             var data = new VisitNumBO
             {
                 OutpatientList = outpatientlist,
@@ -76,7 +76,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
         }
 
         /// <summary>
-        /// đượclấynhập việnviệnthuvàothốngtính
+        /// được lấy nhập viện viện thu vào thống tính
         /// </summary>
         /// <returns></returns>
         public IActionResult GetInpatientSalaryNum()

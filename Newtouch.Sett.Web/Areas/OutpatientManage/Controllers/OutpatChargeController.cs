@@ -103,7 +103,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
         #region  view
         /// <summary>
-        /// thu phí ngoại trúgiao diện chính
+        /// thu phí ngoại trú giao diện chính
         /// </summary>
         /// <returns></returns>
         public IActionResult ChargeIndex()
@@ -134,7 +134,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// thanh toánquyết toánhộp bật xác nhận
+        /// thanh toán quyết toán hộp bật xác nhận
         /// </summary>
         /// <returns></returns>
         public IActionResult ChargePayDialog()
@@ -151,7 +151,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// tính chất bệnh nhâncửa sổ
+        /// tính chất bệnh nhân cửa sổ
         /// </summary>
         /// <returns></returns>
         public IActionResult ChargeBrxzDialog()
@@ -170,7 +170,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
         #region Thu phí ngoại trú
         /// <summary>
-        /// thu phí ngoại trútra cứuthông tin cá nhân
+        /// thu phí ngoại trú tra cứu thông tin cá nhân
         /// </summary>
         /// <param name="kh">số thẻ</param>
         /// <param name="brxz"></param>
@@ -200,9 +200,9 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// lấyđăng ký khámthông tin
+        /// lấy đăng ký khám thông tin
         /// </summary>
-        /// <param name="patid">bệnh nhânpatid</param>
+        /// <param name="patid">bệnh nhân patid</param>
         /// <param name="brxzbh">mã tính chất bệnh nhân</param>
         /// <returns></returns>
         [HttpPost]
@@ -226,7 +226,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// lấythông tin phí dịch vụ
+        /// lấy thông tin phí dịch vụ
         /// </summary>
         /// <param name="sfxmtype">loại khoản mục xác định là thuốc hay là khoản mục</param>
         /// <param name="lscfh">số đơn thuốc tạm thời</param>
@@ -244,7 +244,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
 
         /// <summary>
-        /// lấysố đơn thuốc
+        /// lấy số đơn thuốc
         /// </summary>
         /// <param name="sfxmtype">loại khoản mục xác định là thuốc hay là khoản mục</param> 
         /// <returns></returns>
@@ -256,7 +256,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// lấykhoản thu phímẫu
+        /// lấy khoản thu phí mẫu
         /// </summary>
         /// <param name="ks">khoa</param>
         /// <returns></returns>
@@ -277,7 +277,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         /// <param name="xjzffs">phương thức thanh toán tiền mặt</param>
         /// <param name="xjzffsbh"></param>
         /// <param name="zfje">số tiền thanh toán-tổng số tiền bệnh nhân thanh toán</param>
-        /// <param name="ysk">số tiền phải thu-phảinàysố tiền thanh toán</param>
+        /// <param name="ysk">số tiền phải thu-phải này số tiền thanh toán</param>
         /// <param name="zl">tiền thừa</param>
         /// <returns></returns>
         [HttpPost]
@@ -318,7 +318,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// lấybản ghi lịch sử ghi sổ
+        /// lấy bản ghi lịch sử ghi sổ
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -331,7 +331,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// lấybản ghi lịch sử ghi sổ
+        /// lấy bản ghi lịch sử ghi sổ
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="kh"></param>
@@ -367,13 +367,13 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             //if (!(isTF == true) && theInfo.ghzt == "0")
             if (isTF != true)  //nếu không phải hoàn phí,thì trả về thông tin khám lần cuối cùng
             {
-                //chưa quyết toántrạng thái
+                //chưa quyết toán trạng thái
                 resultDto.OutpatAccInfoDto = theInfo;
                 return Success(null, resultDto);
             }
 
             if (theInfo.ghzt != "1") return Error("Tra cứu bất thường, không thể xác định bản ghi khám chờ thu phí duy nhất");
-            //đã quyết toántrạng thái
+            //đã quyết toán trạng thái
             resultDto.OutpatAccInfoDto = theInfo;
             return Success(null, resultDto);
         }
@@ -449,7 +449,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// lấybệnh nhânđăng ký khámsố thẻ
+        /// lấy bệnh nhân đăng ký khám số thẻ
         /// </summary>
         /// <param name="xnhgrbm"></param>
         /// <returns></returns>
@@ -494,7 +494,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// tảichờ thu phí(chi tiết đơn thuốc)
+        /// tải chờ thu phí(chi tiết đơn thuốc)
         /// </summary>
         /// <param name="cfnmList"></param>
         /// <returns></returns>
@@ -516,7 +516,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// chi tiết chưa quyết toántải lên
+        /// chi tiết chưa quyết toán tải lên
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -597,7 +597,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 		public IActionResult SaveChongQingUploadPrescriptions(List<CqybUploadPresList04Entity> entityList, List<UploadPrescriptionsListInPut> cflist,string zymzh,string jytype)
 	    {
 		    _iCqybUploadPresList04Repo.SaveCqybUploadPresList(entityList, jytype, zymzh,this.OrganizeId);
-			//tải lêncủađơn thuốc cũngghi nhận,lưu số đơn thuốc,làđã hoàn đơn
+			//tải lên của đơn thuốc cũng ghi nhận,lưu số đơn thuốc,là đã hoàn đơn
 		    _outPatChargeApp.SaveCqybUploadInPres(cflist, zymzh, jytype);
             return Success();
 	    }
@@ -619,7 +619,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// hủy đơn thuốcsau,hủy04tải lênghi nhận
+        /// hủy đơn thuốc sau,hủy04tải lên ghi nhận
         /// </summary>
         /// <param name="entityList"></param>
         /// <param name="cflist"></param>
@@ -651,7 +651,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// lưu Trùng Khánhquyết toánđảo đỏ99trả vềdữ liệu
+        /// lưu Trùng Khánh quyết toán đảo đỏ99trả về dữ liệu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="jslb"></param>
@@ -958,7 +958,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// sửabản ghi quyết toán trước nợ phí của thu phíngàykỳ,phương thức thanh toán tiền mặt v.v.
+        /// sửa bản ghi quyết toán trước nợ phí của thu phí ngày kỳ,phương thức thanh toán tiền mặt v.v.
         /// </summary>
         /// <param name="updateDto"></param>
         /// <param name="feeRelated">số tiền và thông tin thanh toán</param>
@@ -1011,7 +1011,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         /// <summary>
         /// tạo số đơn thuốc mới
         /// </summary>
-        /// <param name="type">loại đơn thuốc1thuốc 2không phảithuốc</param>
+        /// <param name="type">loại đơn thuốc1thuốc 2không phải thuốc</param>
         /// <returns></returns>
         public IActionResult GeneratePresNo(int type = 0)
         {
@@ -1115,7 +1115,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// cập nhậtquyết toánsố hóa đơn
+        /// cập nhật quyết toán số hóa đơn
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="fph"></param>
@@ -1138,7 +1138,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         #region Thu phí bổ sung ngoại trú (bổ sung về trạng thái chưa thu phí)
 
         /// <summary>
-        /// ngoại trútính phí bù khám
+        /// ngoại trú tính phí bù khám
         /// </summary>
         /// <returns></returns>
         public IActionResult AdditionalIndex2018()
@@ -1153,7 +1153,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// ngoại trútính phí bù khám gửi
+        /// ngoại trú tính phí bù khám gửi
         /// </summary>
         /// <param name="bacDto"></param>
         /// <param name="xmList">trong kho chưa có</param>
@@ -1216,7 +1216,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 		#endregion
 
 		/// <summary>
-		/// lập vật tưkhoản mụctrừ tồn khosố lượng trừ đóng băngsố lượng
+		/// lập vật tư khoản mục trừ tồn kho số lượng trừ đóng băng số lượng
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult Sumwzdj(string[] cfh)
@@ -1230,7 +1230,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 		}
 
 		/// <summary>
-		/// lập vật tưkhoản mụcđóng băng tồn khosố lượng
+		/// lập vật tư khoản mục đóng băng tồn kho số lượng
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult TuiHuiwzdj(string[] cfh)

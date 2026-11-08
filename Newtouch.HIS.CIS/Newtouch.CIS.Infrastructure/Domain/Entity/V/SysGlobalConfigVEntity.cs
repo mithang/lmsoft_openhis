@@ -4,7 +4,7 @@ using SqlSugar;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// toàncụccấu hình
+    /// toàn cục cấu hình
     /// </summary>
     [SugarTable("V_S_Sys_GlobalConfig")]
     public class SysGlobalConfigVEntity

@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void submitForm(SysPharmacyDepartmentVO entity, int? keyValue);
 
         /// <summary>
-        /// Lấy UserIdđã liên kết hiện tạiyfbmCode (Không gồm tổ chức con)
+        /// Lấy UserId đã liên kết hiện tại yfbmCode (Không gồm tổ chức con)
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

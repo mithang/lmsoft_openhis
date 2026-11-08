@@ -24,7 +24,7 @@ namespace NewtouchHIS.AuthenticationCenter.Services
             _jWTOptions = jwtOptions.CurrentValue;
         }
         /// <summary>
-        /// Chỉ thông tin ứng dụngtoken (Cấu hình xác thực)
+        /// Chỉ thông tin ứng dụng token (Cấu hình xác thực)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

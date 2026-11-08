@@ -7,7 +7,7 @@ namespace Newtouch.Domain.DTO.OutputDto
 {
     public class NodeContentDto
     {
-        #region Bệnh nhân Khám bệnhthông tin
+        #region Bệnh nhân Khám bệnh thông tin
 
         public string jzysmc { get; set; }
         public string jzys { get; set; }
@@ -57,7 +57,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public decimal? xueya { get; set; }
 
         /// <summary>
-        /// đường huyếtphương thức đo
+        /// đường huyết phương thức đo
         /// </summary>
         public string xuetangclfs { get; set; }
 
@@ -76,25 +76,25 @@ namespace Newtouch.Domain.DTO.OutputDto
         public decimal? huxi { get; set; }
         public string cfzbz { get; set; }
         /// <summary>
-        /// xãbảo Số hiệu
+        /// xã bảo Số hiệu
         /// </summary>
         public string sbbh { get; set; }
         public lastzcfDto lastzcfDto { get; set; }
         #endregion
 
-        #region Hồ sơnội dung
+        #region Hồ sơ nội dung
         /// <summary>
-        /// chínhbảo
+        /// chính bảo
         /// </summary>
         public string zs { get; set; }
 
         /// <summary>
-        /// phátbệnh Thời gian
+        /// phát bệnh Thời gian
         /// </summary>
         public DateTime? fbsj { get; set; }
 
         /// <summary>
-        /// hiệnbệnhsử
+        /// hiện bệnh sử
         /// </summary>
         public string xbs { get; set; }
 
@@ -103,7 +103,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string jws { get; set; }
         /// <summary>
-        /// Thángtiền sử bệnh
+        /// Tháng tiền sử bệnh
         /// </summary>
         public string yjs { get; set; }
         /// <summary>
@@ -119,7 +119,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string hymc { get; set; }
         /// <summary>
-        /// trathể
+        /// tra thể
         /// </summary>
         public string ct { get; set; }
 
@@ -139,7 +139,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public List<TCMDiagnosisHtmlVO> zyzdList { get; set; }
         #endregion
 
-        #region Đơn thuốcnội dung
+        #region Đơn thuốc nội dung
         /// <summary>
         /// 
         /// </summary>
@@ -152,11 +152,11 @@ namespace Newtouch.Domain.DTO.OutputDto
 
     public class lastzcfDto {
         /// <summary>
-        /// cuối cùngmột lầnthulấykhámtraphí Thời gian
+        /// cuối cùng một lần thu lấy khám tra phí Thời gian
         /// </summary>
         public string zcfsj { get; set; }
         /// <summary>
-        /// cuối cùngmột lầnthulấykhámtraphí Mục thu phí Chi tiết
+        /// cuối cùng một lần thu lấy khám tra phí Mục thu phí Chi tiết
         /// </summary>
         public string zcfsfxm { get; set; }
     }

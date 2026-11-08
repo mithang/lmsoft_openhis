@@ -86,7 +86,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public bool? tbz { get; set; }
 
         /// <summary>
-        /// Đăng ký Số phiếu(Y tế từ xa Đăng kýcầnguid)
+        /// Đăng ký Số phiếu(Y tế từ xa Đăng ký cần guid)
         /// </summary>
         public string sqdh { get; set; }
         /// <summary>

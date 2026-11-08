@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// trongyquán_đẩy Bệnh nhân
+    /// trong y quán_đẩy Bệnh nhân
     /// </summary>
     [SugarTable("cmm_his_01")]
     public class CmmHis01Entity
@@ -18,7 +18,7 @@ namespace Newtouch.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Bệnh nhân Số hiệu(một Bệnh nhântương ứngmột Số hiệu,vàvà CMND/CCCD số mã một một tương ứng),tương ứnggiao diệnidchữđoạn,bảnđịa Lưublh
+        /// Bệnh nhân Số hiệu(một Bệnh nhân tương ứng một Số hiệu,và và CMND/CCCD số mã một một tương ứng),tương ứng giao diện id chữ đoạn,bản địa Lưu blh
         /// </summary>
         public string cmmId { get; set; }
 
@@ -47,13 +47,13 @@ namespace Newtouch.Domain.Entity
         public string birthday { get; set; }
 
         /// <summary>
-        /// chứngmục Mã loại
+        /// chứng mục Mã loại
         /// bắt buộc
         /// </summary>
         public string cardTypeCode { get; set; }
 
         /// <summary>
-        /// chứngmục Loại(Bình thườngchỉcư dân CMND/CCCD số)
+        /// chứng mục Loại(Bình thường chỉ cư dân CMND/CCCD số)
         /// bắt buộc
         /// </summary>
         public string cardType { get; set; }
@@ -95,12 +95,12 @@ namespace Newtouch.Domain.Entity
         public string country { get; set; }
 
         /// <summary>
-        /// dântộc Mã
+        /// dân tộc Mã
         /// </summary>
         public string nationalityCode { get; set; }
 
         /// <summary>
-        /// dântộc
+        /// dân tộc
         /// </summary>
         public string nationality { get; set; }
 
@@ -111,13 +111,13 @@ namespace Newtouch.Domain.Entity
         public string provinceCode { get; set; }
 
         /// <summary>
-        /// nhà Thành phố địa chỉ nhàcấp Mã
+        /// nhà Thành phố địa chỉ nhà cấp Mã
         /// bắt buộc
         /// </summary>
         public string cityCode { get; set; }
 
         /// <summary>
-        /// nhà Địa chỉ nhàkhuhuyện Mã(bảogiữvàmâybìnhbàncủa Phân vùng hành chính Mãnhất quán)
+        /// nhà Địa chỉ nhà khu huyện Mã(bảo giữ và mây bình bàn của Phân vùng hành chính Mã nhất quán)
         /// bắt buộc
         /// </summary>
         public string areaCode { get; set; }
@@ -128,22 +128,22 @@ namespace Newtouch.Domain.Entity
         public string province { get; set; }
 
         /// <summary>
-        /// nhà Thành phố địa chỉ nhàcấp
+        /// nhà Thành phố địa chỉ nhà cấp
         /// </summary>
         public string city { get; set; }
 
         /// <summary>
-        /// nhà Địa chỉ nhàkhuhuyện
+        /// nhà Địa chỉ nhà khu huyện
         /// </summary>
         public string area { get; set; }
 
         /// <summary>
-        /// phốđườngthông tin
+        /// phố đường thông tin
         /// </summary>
         public string streetInfo { get; set; }
 
         /// <summary>
-        /// bưubiên
+        /// bưu biên
         /// </summary>
         public string postcode { get; set; }
 
@@ -153,7 +153,7 @@ namespace Newtouch.Domain.Entity
         public string ctName { get; set; }
 
         /// <summary>
-        /// và Người liên hệquan hệ
+        /// và Người liên hệ quan hệ
         /// </summary>
         public string ctRoleId { get; set; }
 
@@ -183,7 +183,7 @@ namespace Newtouch.Domain.Entity
         public string telephone { get; set; }
 
         /// <summary>
-        /// Số khám ngoại trú, tức Khám bệnhdòngchảysố
+        /// Số khám ngoại trú, tức Khám bệnh dòng chảy số
         /// bắt buộc
         /// </summary>
         public string outpatientNo { get; set; }
@@ -195,12 +195,12 @@ namespace Newtouch.Domain.Entity
         public string orgCode { get; set; }
 
         /// <summary>
-        /// gửiứngdùngtrìnhthứ tự,chỉđịnhlà:HIS
+        /// gửi ứng dùng trình thứ tự,chỉ định là:HIS
         /// </summary>
         public string sender { get; set; }
 
         /// <summary>
-        /// nhậnthuứngdùngtrìnhthứ tự,chỉđịnhlà:EMR,HEAL,PLAT
+        /// nhận thu ứng dùng trình thứ tự,chỉ định là:EMR,HEAL,PLAT
         /// </summary>
         public string receiver { get; set; }
 
@@ -210,12 +210,12 @@ namespace Newtouch.Domain.Entity
         public string sendTime { get; set; }
 
         /// <summary>
-        /// hủytin Loại:TCM_HIS_01
+        /// hủy tin Loại:TCM_HIS_01
         /// </summary>
         public string msgType { get; set; }
 
         /// <summary>
-        /// hủytin ID(ứngdùngtrìnhthứ tự Mã+phát gửi khi giữa ) , nếu :HIS20170606020202
+        /// hủy tin ID(ứng dùng trình thứ tự Mã+phát gửi khi giữa ) , nếu :HIS20170606020202
         /// </summary>
         public string msgID { get; set; }
 
@@ -225,12 +225,12 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Quay lạikếtnếu Trạng tháimã  1: thành công; 0:thất bại
+        /// Quay lại kết nếu Trạng thái mã  1: thành công; 0:thất bại
         /// </summary>
         public string resultCode { get; set; }
 
         /// <summary>
-        /// Quay lạikếtnếu Mô tả  thành công;thất bại(Bổ sungthất bạinguyên nhân Mô tả)
+        /// Quay lại kết nếu Mô tả  thành công;thất bại(Bổ sung thất bại nguyên nhân Mô tả)
         /// </summary>
         public string resultDesc { get; set; }
 
@@ -245,7 +245,7 @@ namespace Newtouch.Domain.Entity
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// tạongười
+        /// tạo người
         /// </summary>
         public string CreatorCode { get; set; }
 
@@ -255,7 +255,7 @@ namespace Newtouch.Domain.Entity
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Sửangười
+        /// Sửa người
         /// </summary>
         public string LastModifierCode { get; set; }
     }

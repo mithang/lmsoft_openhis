@@ -3,7 +3,7 @@
 namespace NewtouchHIS.Base.Domain
 {
     /// <summary>
-    /// Tạo ủy quyềnkey
+    /// Tạo ủy quyền key
     /// </summary>
     public class AppFriendAuthKey
     {

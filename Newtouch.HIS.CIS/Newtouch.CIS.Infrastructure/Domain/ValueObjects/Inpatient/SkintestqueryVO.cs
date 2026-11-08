@@ -9,7 +9,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
     public class SkintestqueryVO
     {
         /// <summary>
-        /// Y lệnhid
+        /// Y lệnh id
         /// </summary>
         public string yzid { get; set; }
         /// <summary>
@@ -46,7 +46,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public string tzysgh { get; set; }
         /// <summary>
-        /// Dừng/Hủy bỏ Thao tácviên
+        /// Dừng/Hủy bỏ Thao tác viên
         /// </summary>
         public string tzr { get; set; }
 
@@ -57,7 +57,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public int? zh { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 0 chờduyệt 1Đã duyệt 2đã Thực hiện 3DC 4Dừng
+        /// 0 chờ duyệt 1Đã duyệt 2đã Thực hiện 3DC 4Dừng
         /// </summary>
         public int yzzt { get; set; }
         /// <summary>

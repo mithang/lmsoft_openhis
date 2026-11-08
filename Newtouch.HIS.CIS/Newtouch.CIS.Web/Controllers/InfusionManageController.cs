@@ -21,7 +21,7 @@ using NewtouchHIS.Lib.Framework.Attributes;
 namespace Newtouch.CIS.Web.Controllers
 {
     /// <summary>
-    /// truyền dịch Quản lý chuyểnđộngđầu
+    /// truyền dịch Quản lý chuyển động đầu
     /// </summary>
     public class InfusionManageController : ControllerBase
     {
@@ -35,7 +35,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// truyền dịchthông tinTra cứu
+        /// truyền dịch thông tinTra cứu
         /// </summary>
         /// <param name="tags"></param>
         /// <param name="organizeId"></param>

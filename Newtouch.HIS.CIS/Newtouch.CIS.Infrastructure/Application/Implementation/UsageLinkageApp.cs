@@ -7,26 +7,26 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.Application.Implementation
 {
     /// <summary>
-    /// Cách dùngliênđộng
+    /// Cách dùng liên động
     /// </summary>
     public class UsageLinkageApp : AppBase, IUsageLinkageApp
     {
         private readonly ISysUsageLinkageRepo sysUsageLinkageRepo;
 
         /// <summary>
-        /// Gửi Cách dùnggắn
+        /// Gửi Cách dùng gắn
         /// </summary>
         /// <param name="sysUsageLinkageEntity"></param>
         /// <returns></returns>
         public string SubmitForm(SysUsageLinkageEntity sysUsageLinkageEntity)
         {
-            if (sysUsageLinkageEntity == null) return "Lưunội dungkhông thểđể trống";
-            if (string.IsNullOrWhiteSpace(sysUsageLinkageEntity.yfCode)) return "Cách dùngkhông thểđể trống";
-            if (string.IsNullOrWhiteSpace(sysUsageLinkageEntity.sfxmCode)) return "Mục thu phíkhông thểđể trống";
+            if (sysUsageLinkageEntity == null) return "Lưu nội dung không thể để trống";
+            if (string.IsNullOrWhiteSpace(sysUsageLinkageEntity.yfCode)) return "Cách dùng không thể để trống";
+            if (string.IsNullOrWhiteSpace(sysUsageLinkageEntity.sfxmCode)) return "Mục thu phí không thể để trống";
             if (string.IsNullOrWhiteSpace(sysUsageLinkageEntity.Id))
             {
                 sysUsageLinkageEntity.Create(true);
-                return sysUsageLinkageRepo.Insert(sysUsageLinkageEntity) > 0 ? "" : "Thêm mớithất bại";
+                return sysUsageLinkageRepo.Insert(sysUsageLinkageEntity) > 0 ? "" : "Thêm mới thất bại";
             }
             sysUsageLinkageEntity.Modify();
             return sysUsageLinkageRepo.Update(sysUsageLinkageEntity) > 0 ? "" : "Sửa thất bại";

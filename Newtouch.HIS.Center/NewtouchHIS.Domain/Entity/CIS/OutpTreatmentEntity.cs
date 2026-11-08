@@ -27,7 +27,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public int mjzbz { get; set; }
 
         /// <summary>
-        /// Tương ứngbilling Số bệnh án trong giao diện
+        /// Tương ứng billing Số bệnh án trong giao diện
         /// </summary>
         public string blh { get; set; }
 

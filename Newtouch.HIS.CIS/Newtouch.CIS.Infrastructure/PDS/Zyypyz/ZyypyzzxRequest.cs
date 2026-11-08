@@ -15,18 +15,18 @@ namespace Newtouch.PDS.Requset.Zyypyz
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Y lệnhdanh sách
+        /// Y lệnh danh sách
         /// </summary>
         public List<YzDetail> yzList { get; set; }
 
         /// <summary>
-        /// giao diệngọidòngchảysố
+        /// giao diện gọi dòng chảy số
         /// </summary>
         public string ClientNo { get; set; }
     }
 
     /// <summary>
-    /// Y lệnhchi tiết
+    /// Y lệnh chi tiết
     /// </summary>
     public class YzDetail
     {
@@ -36,7 +36,7 @@ namespace Newtouch.PDS.Requset.Zyypyz
         public string yzId { get; set; }
 
         /// <summary>
-        /// lĩnhthuốcthứ tựsố
+        /// lĩnh thuốc thứ tự số
         /// </summary>
         public long lyxh { get; set; }
 
@@ -71,12 +71,12 @@ namespace Newtouch.PDS.Requset.Zyypyz
         public decimal sl { get; set; }
 
         /// <summary>
-        /// chuyểnhóavìcon  sl*zhyz=Đơn vị nhỏ nhất Số lượng
+        /// chuyển hóa vì con  sl*zhyz=Đơn vị nhỏ nhất Số lượng
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// uống,tĩnhgiọt...
+        /// uống,tĩnh giọt...
         /// </summary>
         public string zlff { get; set; }
 
@@ -86,17 +86,17 @@ namespace Newtouch.PDS.Requset.Zyypyz
         public string sjap { get; set; }
 
         /// <summary>
-        /// và Thực hiện Số lượngtương ứng
+        /// và Thực hiện Số lượng tương ứng
         /// </summary>
         public string pcmc { get; set; }
 
         /// <summary>
-        /// dùnglượng
+        /// dùng lượng
         /// </summary>
         public decimal yl { get; set; }
 
         /// <summary>
-        /// dùnglượng Đơn vị
+        /// dùng lượng Đơn vị
         /// </summary>
         public string yldw { get; set; }
 
@@ -186,7 +186,7 @@ namespace Newtouch.PDS.Requset.Zyypyz
         public int? zh { get; set; }
 
         /// <summary>
-        /// dánsố
+        /// dán số
         /// </summary>
         public decimal? ts { get; set; }
         /// <summary>

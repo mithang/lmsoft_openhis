@@ -14,14 +14,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface IMedicineDmnService
     {
         /// <summary>
-        /// Truy vấn thuốc lãi lỗlist
+        /// Truy vấn thuốc lãi lỗ list
         /// </summary>
         /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>
         List<ReportLossAndProfitMedicineInfoVO> SelectLossAndProfitMedicineList(string inputCode);
 
         /// <summary>
-        /// Truy vấn của thuốckcslvàjj
+        /// Truy vấn của thuốc kcsl và jj
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="ph"></param>

@@ -128,7 +128,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
             return new BusResult<List<MedDiagListVo>> { code = ResponseResultCode.SUCCESS, Data = data };
         }
         /// <summary>
-        /// Văn bản bệnh ántree 
+        /// Văn bản bệnh án tree 
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

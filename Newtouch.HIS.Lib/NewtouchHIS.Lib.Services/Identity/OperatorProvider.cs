@@ -287,7 +287,7 @@ namespace NewtouchHIS.Lib.Services.Identity
                         if (itemToken != "SIDELINED")
                         {
                             //availablyOnlineCount++;
-                            if ((availablyOnlineCount + 1) < limitCount)    //+1là vì suất cuối cùng hiện tạitoken
+                            if ((availablyOnlineCount + 1) < limitCount)    //+1là vì suất cuối cùng hiện tại token
                             {
                                 //Đây là một máy khách trực tuyến có hiệu lực
                                 availablyOnlineCount++;

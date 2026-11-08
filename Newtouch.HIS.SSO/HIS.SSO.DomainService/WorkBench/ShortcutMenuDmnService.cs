@@ -14,7 +14,7 @@ namespace HIS.SSO.DomainService
     public class ShortcutMenuDmnService : BaseDmnService<SysShortcutMenuEntity>, IShortcutMenuDmnService
     {
         /// <summary>
-        /// menu phím tắtquery
+        /// menu phím tắt query
         /// </summary>
         /// <param name="userCode"></param>
         /// <param name="orgId"></param>
@@ -25,7 +25,7 @@ namespace HIS.SSO.DomainService
             return result;
         }
         /// <summary>
-        /// menu phím tắt chức năngadd
+        /// menu phím tắt chức năng add
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace HIS.SSO.DomainService
         }
 
         public async Task<List<HomeDataTotalVo>> GetDutyTotalList(string dutycode, DateTime tjrq, string usercode, string orgId, bool isAdmin)
-        {//tạm dùngsqlcâu lệnh
+        {//tạm dùng sql câu lệnh
             string dbstr = "";
             string sql = "";
             switch (dutycode)

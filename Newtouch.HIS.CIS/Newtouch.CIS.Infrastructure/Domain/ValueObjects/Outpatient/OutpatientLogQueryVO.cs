@@ -30,7 +30,7 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         public string fbsj { get; set; }
         public string jzsj { get; set; }
         /// <summary>
-        /// hiệnbệnhsử
+        /// hiện bệnh sử
         /// </summary>
         public string xbs { get; set; }
 

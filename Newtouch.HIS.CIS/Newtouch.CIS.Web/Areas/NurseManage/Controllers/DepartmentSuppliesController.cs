@@ -48,7 +48,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         #region Mã đã bỏ
         /// <summary>
-        /// đăng kýlĩnhphiếusố
+        /// đăng ký lĩnh phiếu số
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -59,7 +59,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// dướikéovật tưthông tin
+        /// dưới kéo vật tư thông tin
         /// </summary>
         /// <param name="key"></param>
         /// <param name="slksbm"></param>
@@ -81,11 +81,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         /// <summary>
-        /// dướikéovật tư Số lô Lôthông tin
+        /// dưới kéo vật tư Số lô Lô thông tin
         /// </summary>
         /// <param name="proId">vật tư ID</param>
         /// <param name="gysId">Nhà cung cấp ID</param>
-        /// <param name="deliveryNo">phốigửiphiếusố</param>
+        /// <param name="deliveryNo">phối gửi phiếu số</param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         [HttpGet]
@@ -136,7 +136,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         
 
         /// <summary>
-        /// Lấyvật tư Loại
+        /// Lấy vật tư Loại
         /// </summary>
         /// <returns></returns>
         public IActionResult GetPatientTreeSelectJson()
@@ -171,7 +171,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// Theo vật tư ID Lấy mỗi Lô Tồn kho
         /// </summary>
         /// <param name="proId"></param>
-        /// <param name="zt">tạmkhi Hiệu lựccủachi tiết  true:Có  false:Không</param>
+        /// <param name="zt">tạm khi Hiệu lực của chi tiết  true:Có  false:Không</param>
         /// <returns></returns>
         public IActionResult GetWarehouseStorageDetail(string ks,string proId, string zt)
         {
@@ -190,7 +190,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return _wZsldDmnService.UpdateZt(mxId, this.OrganizeId, zt) > 0 ? Success() : Error("Sửa trạng thái tra cứu tồn kho thất bại");
         }
         /// <summary>
-        /// Đồng bộvật tư Hệ thống Vật tư tiêu hao
+        /// Đồng bộ vật tư Hệ thống Vật tư tiêu hao
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="userCode"></param>
@@ -202,7 +202,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
         
         /// <summary>
-        /// Lấyquakỳvật tư
+        /// Lấy qua kỳ vật tư
         /// </summary>
         /// <returns></returns>
         [HttpGet]

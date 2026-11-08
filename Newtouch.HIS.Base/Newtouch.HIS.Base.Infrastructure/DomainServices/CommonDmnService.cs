@@ -38,7 +38,7 @@ SET @currYearMoth=@currYear+'01';
 --select @currYearMoth
 
 ");
-            //Nếu làadmin Đăng nhập,thì thống kê số người khám của tất cả bệnh viện thuộc tổ chức đó
+            //Nếu là admin Đăng nhập,thì thống kê số người khám của tất cả bệnh viện thuộc tổ chức đó
             if (isAdministrator)
             {
                 sqlStr.Append(@"
@@ -121,7 +121,7 @@ DECLARE @currYearMoth varchar(30)
 SET @currYearMoth=@currYear+'01';
 --select @currYearMoth
 ");
-            //Nếu làadmin Đăng nhập,thì thống kê số người khám của tất cả bệnh viện thuộc tổ chức đó
+            //Nếu là admin Đăng nhập,thì thống kê số người khám của tất cả bệnh viện thuộc tổ chức đó
             if (isAdministrator)
             {
                 sqlStr2.Append(@"

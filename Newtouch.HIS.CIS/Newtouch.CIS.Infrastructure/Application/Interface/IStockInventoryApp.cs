@@ -40,7 +40,7 @@ namespace Newtouch.Application.Interface
         void EndInventory(long pdId);
 
         /// <summary>
-        /// Gửilãi lỗ
+        /// Gửi lãi lỗ
         /// </summary>
         /// <param name="plist"></param>
         /// <param name="warehouseId"></param>

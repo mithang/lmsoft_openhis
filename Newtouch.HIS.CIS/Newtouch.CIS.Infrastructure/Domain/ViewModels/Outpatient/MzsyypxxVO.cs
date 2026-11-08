@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.ViewModels.Outpatient
 {
     /// <summary>
-    /// truyền dịchthông tin
+    /// truyền dịch thông tin
     /// </summary>
     public class MzsyypxxVO
     {
@@ -25,22 +25,22 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public string kh { get; set; }
 
         /// <summary>
-        /// Hóa đơnsố
+        /// Hóa đơn số
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// Đơn thuốcchi tiết ID
+        /// Đơn thuốc chi tiết ID
         /// </summary>
         public int cfmxId { get; set; }
 
         /// <summary>
-        /// Tính toánchi tiếttrongmã
+        /// Tính toán chi tiết trong mã
         /// </summary>
         public int jsmxnm { get; set; }
 
         /// <summary>
-        /// Số giường/ghếsố
+        /// Số giường/ghế số
         /// </summary>
         public string seatNum { get; set; }
 
@@ -70,7 +70,7 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public string ypgg { get; set; }
 
         /// <summary>
-        /// dùnglượng+dùnglượng Đơn vị
+        /// dùng lượng+dùng lượng Đơn vị
         /// </summary>
         public string ylStr { get; set; }
 
@@ -101,12 +101,12 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public string dispenserName { get; set; }
 
         /// <summary>
-        /// Thực hiệnngười Mã nhân viên
+        /// Thực hiện người Mã nhân viên
         /// </summary>
         public string executor { get; set; }
 
         /// <summary>
-        /// Thực hiệnngười Tên
+        /// Thực hiện người Tên
         /// </summary>
         public string executorName { get; set; }
 
@@ -131,7 +131,7 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// tạongười
+        /// tạo người
         /// </summary>
         public string CreatorCode { get; set; }
 
@@ -141,21 +141,21 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Sửangười
+        /// Sửa người
         /// </summary>
         public string LastModifierCode { get; set; }
         public int zcs { get; set; }
         public int yzxcs { get; set; }
         /// <summary>
-        /// dathửkếtnếu
+        /// da thử kết nếu
         /// </summary>
         public string psjg { get; set; }
         /// <summary>
-        /// dathử Cờ 0:Không 1:là
+        /// da thử Cờ 0:Không 1:là
         /// </summary>
         public string ispsbz { get; set; }
         /// <summary>
-        /// giữxem Cờ
+        /// giữ xem Cờ
         /// </summary>
 
         public string islgbz { get; set; }

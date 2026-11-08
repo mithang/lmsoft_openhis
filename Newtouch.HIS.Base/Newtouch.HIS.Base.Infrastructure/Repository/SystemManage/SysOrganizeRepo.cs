@@ -141,7 +141,7 @@ where ParentId is null and
                 }
                 var isCodeRepeated = string.IsNullOrWhiteSpace(entity.ParentId)
                     ? this.IQueryable().Any(p => p.ParentId == null
-                        && p.Code == entity.Code && p.Id != keyValue)   //Trong tổ chức cấp cao nhất không được trùngcode
+                        && p.Code == entity.Code && p.Id != keyValue)   //Trong tổ chức cấp cao nhất không được trùng code
                     : this.IQueryable().Any(p => p.TopOrganizeId == entity.TopOrganizeId
                         && p.Code == entity.Code && p.Id != keyValue)   //Thuộc một tổ chức cấp cao nhất nào đó tất cả của Không được trùng
                     ;
@@ -172,7 +172,7 @@ where ParentId is null and
                 }
                 var isCodeRepeated = string.IsNullOrWhiteSpace(entity.ParentId)
                     ? this.IQueryable().Any(p => p.ParentId == null
-                        && p.Code == entity.Code)   //Trong tổ chức cấp cao nhất không được trùngcode
+                        && p.Code == entity.Code)   //Trong tổ chức cấp cao nhất không được trùng code
                     : this.IQueryable().Any(p => p.TopOrganizeId == entity.TopOrganizeId
                         && p.Code == entity.Code)   //Thuộc một tổ chức cấp cao nhất nào đó tất cả của Không được trùng
                     ;

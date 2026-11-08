@@ -121,7 +121,7 @@ namespace NewtouchHIS.Lib.Services.ApiService
         //    //Tự động gia hạn khi ủy quyền hết hạn
         //    if (result != null && result.HttpStatus == HttpStatusCode.Unauthorized)
         //    {
-        //        //Xác thực thất bại, làm mớitoken
+        //        //Xác thực thất bại, làm mới token
         //        token = GetUserTokenRefesh(user, token);
         //    }
         //    if (result == null || result.HttpStatus != HttpStatusCode.OK || result.BusData == null)

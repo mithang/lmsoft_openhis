@@ -65,7 +65,7 @@ ORDER BY a.CreateTime DESC
         }
 
         /// <summary>
-        /// Lấychưa Hoàn thànhcủa Kiểm kê Thời gian
+        /// Lấy chưa Hoàn thành của Kiểm kê Thời gian
         /// </summary>
         /// <returns></returns>
         public List<VInventoryDateDropDownEntity> GetHangUpPdDates(string warehouseId, string organizeId)
@@ -90,7 +90,7 @@ GROUP BY pdxx.Id, pdxx.Kssj, pdxx.Jssj, pdxx.CreateTime
         }
 
         /// <summary>
-        /// tạo Kiểm kêthông tin
+        /// tạo Kiểm kê thông tin
         /// </summary>
         public string GenerateInventoryInfo(string warehouseId, string organizeId)
         {
@@ -195,7 +195,7 @@ FROM (
 }
 
         /// <summary>
-        /// Lấy Kiểm kêthông tin
+        /// Lấy Kiểm kê thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -244,16 +244,16 @@ FROM (
 //             }
 //             switch (param.kcxs)
 //             {
-//                 case (int)EnumKCXS.Xslkc://Hiển thịkhông Tồn kho
+//                 case (int)EnumKCXS.Xslkc://Hiển thị không Tồn kho
 //                     sql.AppendLine("AND (mx.Llsl = 0 OR mx.Sjsl = 0) ");
 //                     break;
-//                 case (int)EnumKCXS.Bxsllslwl://không Hiển thịlýluận Số lượnglà0
+//                 case (int)EnumKCXS.Bxsllslwl://không Hiển thị lý luận Số lượng là0
 //                     sql.AppendLine("AND mx.Llsl <> 0 ");
 //                     break;
-//                 case (int)EnumKCXS.Bxssjslwl://không Hiển thịthực tế Số lượnglà0
+//                 case (int)EnumKCXS.Bxssjslwl://không Hiển thị thực tế Số lượng là0
 //                     sql.AppendLine("AND mx.Llsl Sjsl <> 0 ");
 //                     break;
-//                 case (int)EnumKCXS.Bxslzdwl://không Hiển thịhaingườiđềulà0
+//                 case (int)EnumKCXS.Bxslzdwl://không Hiển thị hai người đều là0
 //                     sql.AppendLine("AND (mx.Llsl <> 0 OR mx.Sjsl <> 0) ");
 //                     break;
 //             }
@@ -261,7 +261,7 @@ FROM (
 //         }
 
         /// <summary>
-        /// Lấy Kiểm kêthông tin
+        /// Lấy Kiểm kê thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -283,8 +283,8 @@ FROM (
        SUM(mx.llsl)                                      AS lsl,
        SUM(mx.sjsl)                                      AS sjsl,
        zxdw.name                                         AS deptdw,   -- Đơn vị nhỏ nhất
-       zxdw.name                                         AS zxdw,     -- cùngtrên
-zhyz,     -- thươngphẩmbảngtựmangnhấtnhỏđổitính
+       zxdw.name                                         AS zxdw,     -- cùng trên
+zhyz,     -- thương phẩm bảng tự mang nhất nhỏ đổi tính
        mx.lsj,
        ISNULL(wz.py,'')                                  AS py,
        pdxx.CreateTime
@@ -342,7 +342,7 @@ LEFT JOIN NewtouchHIS_Base.dbo.wz_unit zxdw
 
         /// <summary>
         /// Hủy Kiểm kê 
-        /// Xóa Kiểm kêthông tin(xt_yp_pdxx),Kiểm kêthông tinchi tiết(xt_yp_pdxxmx)
+        /// Xóa Kiểm kê thông tin(xt_yp_pdxx),Kiểm kê thông tinchi tiết(xt_yp_pdxxmx)
         /// </summary>
         public void CancelInventory(long pdId)
         {
@@ -372,7 +372,7 @@ END
             }).FirstOrDefault();
             if (result == 0)
             {
-                throw new Exception("Hủythất bại！");
+                throw new Exception("Hủy thất bại！");
             }
         }
 
@@ -392,7 +392,7 @@ END
         }
 
         /// <summary>
-        /// lôlượng Lưulãi lỗthông tin
+        /// lô lượng Lưu lãi lỗ thông tin
         /// </summary>
         /// <param name="syList"></param>
         /// <param name="warehouseId"></param>
@@ -409,7 +409,7 @@ END
                     _kcSyxxRepo.Insert(p);
                     if (_kfKcxxDmnService.UpdateKcsl(p.productId, p.pc, p.Ph, warehouseId, p.Sysl, organizeId, p.CreatorCode) <= 0)
                     {
-                        throw new Exception("Sửa Tồn kho Số lượngthất bại");
+                        throw new Exception("Sửa Tồn kho Số lượng thất bại");
                     }
                     ++ret;
                 });
@@ -419,7 +419,7 @@ END
         }
 
         /// <summary>
-        /// Lưuđổihơnsaucủa Kiểm kêchi tiết
+        /// Lưu đổi hơn sau của Kiểm kê chi tiết
         /// </summary>
         /// <param name="saveInventoryDto"></param>
         /// <param name="pdId"></param>

@@ -4,7 +4,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Domain.ValueObjects.Storage
 {
     /// <summary>
-    /// kết chuyểnchi tiết
+    /// kết chuyển chi tiết
     /// </summary>
     public class VCarryOverDetailEntity
     {
@@ -44,7 +44,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string supplierName { get; set; }
 
         /// <summary>
-        /// Giá bán lẻ tương ứngzhyz Đơn vị
+        /// Giá bán lẻ tương ứng zhyz Đơn vị
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal lsj { get; set; }

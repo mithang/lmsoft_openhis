@@ -31,7 +31,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public int sl { get; set; }
 
         /// <summary>
-        /// tổ chứckếtcấu trúc
+        /// tổ chức kết cấu trúc
         /// </summary>
         public string organizeId { get; set; }
 

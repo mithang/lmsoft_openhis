@@ -8,17 +8,17 @@ using ZXing.Common;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// giúpgiúploại
+    /// giúp giúp loại
     /// </summary>
     public class CommmHelper
     {
         /// <summary>
-        /// Mục thu phí Điều trịlượng đổitínhthành Số lượng
+        /// Mục thu phí Điều trị lượng đổi tính thành Số lượng
         /// </summary>
-        /// <param name="zll">chỉcủalà Phục hồi chức năng Đơn thuốctrangcủa Tổng lượng</param>
+        /// <param name="zll">chỉ của là Phục hồi chức năng Đơn thuốc trang của Tổng lượng</param>
         /// <param name="dwjls"></param>
         /// <param name="jjcl">Liệt kê EnumSfxmJjcl</param>
-        /// <param name="throwExWhenZero">khi Số lượngkếtnếulà0khi là Khôngném Ngoại lệ,Mặc địnhném</param>
+        /// <param name="throwExWhenZero">khi Số lượng kết nếu là0khi là Không ném Ngoại lệ,Mặc định ném</param>
         /// <returns></returns>
         public static int CalcSfxmSl(int? mczll, int? dwjls, int? jjcl,
             bool throwExWhenZero = true)
@@ -44,9 +44,9 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Lấybảnđịavănmụctương ứngcủabảnđịa Đường dẫn
+        /// Lấy bản địa văn mục tương ứng của bản địa Đường dẫn
         /// </summary>
-        /// <param name="path">nhauđối Đường dẫn</param>
+        /// <param name="path">nhau đối Đường dẫn</param>
         /// <returns>Trả về đường dẫn tuyệt đối</returns>
         public static string GetLocalFilePath(string path)
         {
@@ -71,8 +71,8 @@ namespace Newtouch.Infrastructure
         /// Tạo một mã vạch một chiều
         /// </summary>
         /// <param name="text">nội dung</param>
-        /// <param name="width">rộngđộ</param>
-        /// <param name="height">caođộ</param>
+        /// <param name="width">rộng độ</param>
+        /// <param name="height">cao độ</param>
         /// <returns></returns>
         public static string GenerateBarCode(string text, int width, int height)
         {
@@ -81,7 +81,7 @@ namespace Newtouch.Infrastructure
             // so the original Bitmap.Save path cannot run here.
             var writer = new BarcodeWriterPixelData();
             // Sử dụng định dạng ITF, không thể bị quét bởi Alipay, WeChat thường dùng hiện nay
-            //nếunếunghĩtạocó thểbiếtloạicủacó thểlấy Sử dụng CODE_128 định dạng
+            //nếu nếu nghĩ tạo có thể biết loại của có thể lấy Sử dụng CODE_128 định dạng
             //writer.Format = BarcodeFormat.ITF;
             writer.Format = BarcodeFormat.CODE_128;
             EncodingOptions options = new EncodingOptions()

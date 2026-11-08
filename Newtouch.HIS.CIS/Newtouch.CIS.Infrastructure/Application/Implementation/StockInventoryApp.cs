@@ -54,7 +54,7 @@ namespace Newtouch.Application.Implementation
             var result = _stockInventoryDmnService.GetPdSj(warehouseId, organizeId).FirstOrDefault();
             if (result == null)
             {
-                throw new FailedException("lại Lấy Kiểm kê Thời gianthất bại");
+                throw new FailedException("lại Lấy Kiểm kê Thời gian thất bại");
             }
             return result;
         }
@@ -70,11 +70,11 @@ namespace Newtouch.Application.Implementation
             var pdInfo = _kcPdxxRepo.SelectPdInfByPdId(pdId, OperatorProvider.GetCurrent().OrganizeId);
             if (pdInfo == null)
             {
-                throw new FailedException("chưatìmđếnchỉđịnh Kiểm kêthông tin");
+                throw new FailedException("chưa tìm đến chỉ định Kiểm kê thông tin");
             }
             if (pdInfo.jssj != null || pdInfo.jssj >= Constants.MinDateTime)
             {
-                throw new FailedException("Kiểm kêđã Kết thúc");
+                throw new FailedException("Kiểm kê đã Kết thúc");
             }
             SaveInventoryInfo(inventoryInfoList, pdId, noPc, UserIdentity.DepartmentCode, OrganizeId);
         }
@@ -107,11 +107,11 @@ namespace Newtouch.Application.Implementation
         /// <param name="pdId"></param>
         public void CancelInventory(long pdId)
         {
-            //kiểm tralà Khôngcóchưa Hoàn thànhcủa Kiểm kê
+            //kiểm tra là Không có chưa Hoàn thành của Kiểm kê
             var count = _kcPdxxRepo.SelectUnfinishedInventoryByPdId(pdId, OrganizeId);
             if (count != 1)
             {
-                throw new FailedException("Kiểm kêđã Kết thúc,không thể Hủy");
+                throw new FailedException("Kiểm kê đã Kết thúc,không thể Hủy");
             }
             _stockInventoryDmnService.CancelInventory(pdId);
         }
@@ -125,13 +125,13 @@ namespace Newtouch.Application.Implementation
             var pdInfo = _kcPdxxRepo.SelectPdInfByPdId(pdId, OrganizeId);
             if (pdInfo == null)
             {
-                throw new FailedException("chưatìmđếnchỉđịnh Kiểm kêthông tin");
+                throw new FailedException("chưa tìm đến chỉ định Kiểm kê thông tin");
             }
             if (pdInfo.jssj != null || pdInfo.jssj >= Constants.MinDateTime)
             {
-                throw new FailedException("Kiểm kêđã Kết thúc");
+                throw new FailedException("Kiểm kê đã Kết thúc");
             }
-            //tạo Kiểm kêthông tin
+            //tạo Kiểm kê thông tin
             var resultMessage = _stockInventoryDmnService.EndInventory(pdId, OrganizeId, OperatorProvider.GetCurrent().UserCode);
             if (!string.IsNullOrEmpty(resultMessage) && resultMessage.IndexOf("thành công", StringComparison.OrdinalIgnoreCase) < 0)
             {
@@ -140,7 +140,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// Gửilãi lỗ
+        /// Gửi lãi lỗ
         /// </summary>
         /// <param name="plist"></param>
         /// <param name="warehouseId"></param>
@@ -148,13 +148,13 @@ namespace Newtouch.Application.Implementation
         public string LossAndProfitSubmit(List<LossAndProditSubmitDTO> plist, string warehouseId)
         {
             var syxxlist = AssembleSyxxEntities(plist, UserIdentity.DepartmentCode);
-            if (syxxlist.Count <= 0) return "thiếulãi lỗthông tin";
+            if (syxxlist.Count <= 0) return "thiếu lãi lỗ thông tin";
             _stockInventoryDmnService.InsertSyxxBatch(syxxlist, UserIdentity.DepartmentCode, OrganizeId);
             return "";
         }
 
         /// <summary>
-        /// lắp ráplãi lỗthông tin
+        /// lắp ráp lãi lỗ thông tin
         /// </summary>
         /// <param name="plist"></param>
         /// <param name="warehouseId"></param>

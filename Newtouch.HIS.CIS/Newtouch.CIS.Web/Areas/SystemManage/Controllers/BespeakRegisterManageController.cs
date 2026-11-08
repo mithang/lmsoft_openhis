@@ -48,7 +48,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// đặt hẹnđăng ký khám Quản lý
+        /// đặt hẹn đăng ký khám Quản lý
         /// </summary>
         /// <returns></returns>
         public IActionResult BespeakRegister()
@@ -59,7 +59,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lấychínhdanh sách
+        /// Lấy chính danh sách
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -77,7 +77,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lấyđăng ký khám Xếp lịch
+        /// Lấy đăng ký khám Xếp lịch
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
@@ -96,7 +96,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lấyđăng ký khám Xếp lịch Ngày
+        /// Lấy đăng ký khám Xếp lịch Ngày
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="gh"></param>
@@ -132,7 +132,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Khi sửa thông tin,thông tinmangđếnmớitrangmặt
+        /// Khi sửa thông tin,thông tin mang đến mới trang mặt
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="regDate"></param>
@@ -165,13 +165,13 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             var entity = _sysBespeakRegisterRepo.FindEntity(p => p.Id == keyValue);
             if (entity != null)
             {
-                return _sysBespeakRegisterRepo.Delete(entity) > 0 ? Success("Xóa thành công.") : Error("Xóathất bại");
+                return _sysBespeakRegisterRepo.Delete(entity) > 0 ? Success("Xóa thành công.") : Error("Xóa thất bại");
             }
             return Error("Vui lòng chọn thông tin cần xóa.");
         }
 
         /// <summary>
-        /// Lấychuyên gia
+        /// Lấy chuyên gia
         /// </summary>
         /// <param name="deptCode"></param>
         /// <returns></returns>
@@ -185,7 +185,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lấynhiềucái Guid
+        /// Lấy nhiều cái Guid
         /// </summary>
         /// <param name="rowCount"></param>
         /// <returns></returns>
@@ -219,7 +219,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lấy Khoađặt hẹnđăng ký khámthông tin
+        /// Lấy Khoa đặt hẹn đăng ký khám thông tin
         /// </summary>
         /// <param name="deptCode"></param>
         /// <returns></returns>
@@ -231,7 +231,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lấy Khoa Mặc địnhđặt hẹnđăng ký khám
+        /// Lấy Khoa Mặc định đặt hẹn đăng ký khám
         /// </summary>
         /// <param name="deptCode"></param>
         /// <returns></returns>
@@ -241,7 +241,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Theo Khoavà Mã nhân viênlắp rápđặt hẹnđăng ký khámthông tin
+        /// Theo Khoa và Mã nhân viên lắp ráp đặt hẹn đăng ký khám thông tin
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="gh"></param>
@@ -254,7 +254,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lấycó thểđặt hẹntổng ngườisốvàđãđặt hẹnsố
+        /// Lấy có thể đặt hẹn tổng người số và đã đặt hẹn số
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="regDate"></param>
@@ -266,7 +266,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lưuđặt hẹn
+        /// Lưu đặt hẹn
         /// </summary>
         /// <param name="yyId"></param>
         /// <param name="brId"></param>
@@ -281,19 +281,19 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Hủyđặt hẹnđăng ký khám
+        /// Hủy đặt hẹn đăng ký khám
         /// </summary>
         /// <param name="yyId"></param>
         /// <returns></returns>
         public IActionResult CancelYy(string yyId)
         {
-            return _mzyyghRepo.DeleteById(yyId) > 0 ? Success() : Error("Xóathất bại");
+            return _mzyyghRepo.DeleteById(yyId) > 0 ? Success() : Error("Xóa thất bại");
         }
 
         /// <summary>
-        /// Lấy Khoahoặc Bác sĩđặt hẹn Xếp lịch
+        /// Lấy Khoa hoặc Bác sĩ đặt hẹn Xếp lịch
         /// </summary>
-        /// <param name="year">đặt hẹnnăm</param>
+        /// <param name="year">đặt hẹn năm</param>
         /// <param name="month">đặt hẹn Tháng</param>
         /// <param name="deptCode">đăng ký khám Khoa</param>
         /// <param name="ysgh">chuyên gia Mã nhân viên</param>
@@ -301,7 +301,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         public IActionResult GetAllBespeakRegisterByMonth(int year, int month, string deptCode, string ysgh)
         {
             if (month <= 0) throw new Exception("Tháng truyền vào không hợp lệ, vui lòng truyền số tự nhiên");
-            var mzlx = string.IsNullOrWhiteSpace(ysgh) ? "1" : "3";//Dấu hiệu ngoại trú/nội trú 1:thông thường Ngoại trú  2:gấpkhám   3:chuyên gia Ngoại trú
+            var mzlx = string.IsNullOrWhiteSpace(ysgh) ? "1" : "3";//Dấu hiệu ngoại trú/nội trú 1:thông thường Ngoại trú  2:gấp khám   3:chuyên gia Ngoại trú
             var beginTime = Convert.ToDateTime(year + "-" + month + "-01");
             var endTime = beginTime.AddMonths(1).AddDays(-1);
             var yyghDetail = _mzyyghDmnService.SelectMzyyghDetail(mzlx, deptCode, ysgh, beginTime, endTime, OrganizeId);
@@ -309,7 +309,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// tạođặt hẹn Xếp lịchngàylịch
+        /// tạo đặt hẹn Xếp lịch ngày lịch
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>

@@ -59,7 +59,7 @@ namespace NewtouchHIS.Base.Domain.Entity.PDSData
         public System.String Ckczy { get; set; }
 
         /// <summary>
-        /// Từ xt_ypcrkfsmã phương thức của bảng
+        /// Từ xt_ypcrkfs mã phương thức của bảng
         /// </summary>
         public System.String Crkfsdm { get; set; }
 

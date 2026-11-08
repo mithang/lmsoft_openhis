@@ -4,7 +4,7 @@ using Newtouch.CIS.Repository;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// Hệ thống Cách dùngliênđộng
+    /// Hệ thống Cách dùng liên động
     /// </summary>
     public interface ISysUsageLinkageRepo : IRepositoryBase<SysUsageLinkageEntity>
     {

@@ -12,7 +12,7 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
     public class KssYpLbVO
     {
         /// <summary>
-        /// Kháng sinh Loạiid
+        /// Kháng sinh Loại id
         /// </summary>
         public string Id { get; set; }
         /// <summary>

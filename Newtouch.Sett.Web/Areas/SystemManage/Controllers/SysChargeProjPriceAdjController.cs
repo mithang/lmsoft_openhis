@@ -51,7 +51,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// Thêm mới hạngmụcđiềugiákhôngcho phépcho phépsửasửa
+        /// Thêm mới hạng mục điều giá không cho phép cho phép sửa sửa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

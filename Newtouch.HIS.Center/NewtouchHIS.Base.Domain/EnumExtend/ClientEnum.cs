@@ -1901,7 +1901,7 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
         }
 
         /// <summary>
-        /// Loại gói xét nghiệm/kiểm tra  (Xét nghiệm và kiểm tra dùng chung một trang,chỉ khác tham số(tức làtype)Khác nhau)
+        /// Loại gói xét nghiệm/kiểm tra  (Xét nghiệm và kiểm tra dùng chung một trang,chỉ khác tham số(tức là type)Khác nhau)
         /// </summary>
         public enum EnumjyjczutaoLx
         {
@@ -1918,7 +1918,7 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
         }
 
         /// <summary>
-        /// Loại mẫu xét nghiệm/kiểm tra  (Xét nghiệm và kiểm tra dùng chung một trang,chỉ khác tham số(tức làtype)Khác nhau)
+        /// Loại mẫu xét nghiệm/kiểm tra  (Xét nghiệm và kiểm tra dùng chung một trang,chỉ khác tham số(tức là type)Khác nhau)
         /// </summary>
         public enum EnumjyjcmbLx
         {

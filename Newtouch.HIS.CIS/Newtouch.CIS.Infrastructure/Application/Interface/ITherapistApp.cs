@@ -5,12 +5,12 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Application.Interface
 {
     /// <summary>
-    /// Điều trịliên quan
+    /// Điều trị liên quan
     /// </summary>
     public interface ITherapistApp
     {
         /// <summary>
-        /// kéolấychờ Khám bệnh Điều trịxâynghịdanh sách
+        /// kéo lấy chờ Khám bệnh Điều trị xây nghị danh sách
         /// </summary>
         /// <param name="brlx">bệnh nhân Loại--1Ngoại trú 2Nhập viện</param>
         /// <param name="mzzyh">Ngoại trú Số nhập viện</param>
@@ -18,7 +18,7 @@ namespace Newtouch.Application.Interface
         IList<WaitCvTherapistSuggestionDTO> GetWaitCvSuggestionList(string brlx, string mzzyh, int dayNum);
 
         /// <summary>
-        /// hơn Tạo mớinghịcủachuyểnđổi Trạng thái
+        /// hơn Tạo mới nghị của chuyển đổi Trạng thái
         /// </summary>
         /// <param name="cvList"></param>
         void UpdateSuggestionCvStatus(IList<SuggestionCvStatuDTO> cvList);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Storage
 {
     /// <summary>
-    /// lãi lỗchi tiếtthông tin
+    /// lãi lỗ chi tiết thông tin
     /// </summary>
     public class VLossAndProditEntity
     {
@@ -22,7 +22,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string syyy { get; set; }
 
         /// <summary>
-        /// phiếusố phiếu
+        /// phiếu số phiếu
         /// </summary>
         public string djh { get; set; }
 
@@ -37,7 +37,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string wzmc { get; set; }
 
         /// <summary>
-        /// vàogiá
+        /// vào giá
         /// </summary>
         public decimal jj { get; set; }
 

@@ -21,7 +21,7 @@ namespace Newtouch.Repository.Inpatient
         {
             kssj = SqlDateStringHelper.NormalizeDateTime(kssj);
             jssj = SqlDateStringHelper.NormalizeDateTime(jssj);
-            //Tên thuốckhônglàtrốngkhi
+            //Tên thuốc không là trống khi
             if (!string.IsNullOrWhiteSpace(keyword))
             {
                 var sql = string.Format(@"select a.tydh,a.Id,a.hzxm,b.yzxz,b.ypmc,a.tysl,a.ypdw,CONVERT(varchar(16), b.CreateTime, 20) as zxrq,CONVERT(varchar(16), a.CreateTime, 20) as CreateTime,a.zt,cw.cwmc,s.name ysxm,a.zyh

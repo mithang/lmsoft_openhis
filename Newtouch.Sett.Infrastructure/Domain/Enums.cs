@@ -4,8 +4,8 @@ using System.ComponentModel;
 namespace Newtouch.Sett.Domain
 {
     /// <summary>
-    /// Nhật ký Bản ghi Loại cáinêuhạngmở rộngmở rộng
-    /// ValueVui lòngtừ101Bắt đầu
+    /// Nhật ký Bản ghi Loại cái nêu hạng mở rộng mở rộng
+    /// ValueVui lòng từ101Bắt đầu
     /// </summary>
     public enum DbLogType_Ex
     {
@@ -18,7 +18,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// Đang ở việncờ
+    /// Đang ở viện cờ
     /// </summary>
     public enum EnumZYBZ
     {
@@ -98,7 +98,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// Giao dịch BHYT Loại  0 Không giao dịch 1 thông thườnggiao dịch 2 Giao dịch bệnh nặng 3 Giao dịch giường gia đình 4 Giao dịch tai nạn lao động 5 nhập việngiao dịch 6 bảo hiểm nông nghiệpgiao dịch
+    /// Giao dịch BHYT Loại  0 Không giao dịch 1 thông thường giao dịch 2 Giao dịch bệnh nặng 3 Giao dịch giường gia đình 4 Giao dịch tai nạn lao động 5 nhập viện giao dịch 6 bảo hiểm nông nghiệp giao dịch
     /// xt_brxz.ybjylx
     /// </summary>
     public enum EnumYBJYLX
@@ -109,7 +109,7 @@ namespace Newtouch.Sett.Domain
         [Description("không giao dịch")]
         ybjylx0 = 0,
         /// <summary>
-        /// thông thườnggiao dịch
+        /// thông thường giao dịch
         /// </summary>
         [Description("thông thường giao dịch")]
         ybjylx1 = 1,
@@ -129,19 +129,19 @@ namespace Newtouch.Sett.Domain
         [Description("tai nạn lao động giao dịch")]
         ybjylx4 = 4,
         /// <summary>
-        /// nhập việngiao dịch
+        /// nhập viện giao dịch
         /// </summary>
         [Description("nhập viện giao dịch")]
         ybjylx5 = 5,
         /// <summary>
-        /// bảo hiểm nông nghiệpgiao dịch
+        /// bảo hiểm nông nghiệp giao dịch
         /// </summary>
         [Description("bảo hiểm nông nghiệp giao dịch")]
         ybjylx6 = 6,
     }
 
     /// <summary>
-    /// Tính chất tự trả(Thuốc,Mục Từ điểncủathuộc tính)
+    /// Tính chất tự trả(Thuốc,Mục Từ điển của thuộc tính)
     /// </summary>
     public enum EnumZiFuXingZhi
     {
@@ -183,8 +183,8 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// tínhphương pháp Tính chất tự trả
-    /// Xác nhậntheo Tỷ lệ tự trả Tínhrađếncủa Tự trảmột phầncủatính chất
+    /// tính phương pháp Tính chất tự trả
+    /// Xác nhận theo Tỷ lệ tự trả Tính ra đến của Tự trả một phần của tính chất
     /// </summary>
     public enum EnumSuanFaZFXZ
     {
@@ -201,7 +201,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// Tài khoản Thu chitính chất 
+    /// Tài khoản Thu chi tính chất 
     /// xt_brzhszjl.szxz
     /// </summary>
     public enum AccSzxz
@@ -236,7 +236,7 @@ namespace Newtouch.Sett.Domain
         [Description("Thẻ từ BHYT")]
         CTK = 0,
         /// <summary>
-        /// Thẻ ảo/việntrong Thẻ(tự động Tạolúc Thẻ ảo/Nhập tay lúc viện trong Thẻ)
+        /// Thẻ ảo/viện trong Thẻ(tự động Tạo lúc Thẻ ảo/Nhập tay lúc viện trong Thẻ)
         /// </summary>
         [Description("Thẻ ảo")]
         XNK = 1,
@@ -303,12 +303,12 @@ namespace Newtouch.Sett.Domain
         [Description("bệnh mãn tính Ngoại trú")]
         ChronicDisease = 6,
         /// <summary>
-        /// dân cưhaibệnh
+        /// dân cư hai bệnh
         /// </summary>
         [Description("dân cư hai bệnh")]
         jmlb = 7,
         /// <summary>
-        /// ýngoàitổn thươnghại Ngoại trú
+        /// ý ngoài tổn thương hại Ngoại trú
         /// </summary>
         [Description("Ngoại trú thương tích ngoài ý muốn")]
         ywshmz = 8,
@@ -328,14 +328,14 @@ namespace Newtouch.Sett.Domain
         [Description("hai bệnh trẻ em Ngoại trú")]
         etlbmz = 11,
         /// <summary>
-        /// đơn giảndễ Ngoại trú
+        /// đơn giản dễ Ngoại trú
         /// </summary>
         [Description("đơn giản Ngoại trú")]
         jymz = 12
     }
 
     /// <summary>
-    /// Ngoại trúnhập việncờ  0 Chung 1 chỉ Ngoại trú 2 chỉnhập viện 3 hệ thống(Ngoại trúnhập việnđềukhông thểdùng)ví dụnhư:Giường gia đình
+    /// Ngoại trú nhập viện cờ  0 Chung 1 chỉ Ngoại trú 2 chỉ nhập viện 3 hệ thống(Ngoại trú nhập viện đều không thể dùng)ví dụ như:Giường gia đình
     /// </summary>
     public enum Enummzzybz
     {
@@ -350,7 +350,7 @@ namespace Newtouch.Sett.Domain
         [Description("chỉ Ngoại trú")]
         mz = 1,
         /// <summary>
-        /// chỉnhập viện
+        /// chỉ nhập viện
         /// </summary>
         [Description("chỉ nhập viện")]
         zy = 2,
@@ -384,12 +384,12 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// Trạng tháiquyết toán
+    /// Trạng thái quyết toán
     /// </summary>
     public enum EnumJieSuanZT
     {
         /// <summary>
-        /// Đãquyết toán(chưahoàn)
+        /// Đã quyết toán(chưa hoàn)
         /// </summary>
         [Description("Đã quyết toán")]
         YJ = 1,
@@ -401,7 +401,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// y lệnhtính chất
+    /// y lệnh tính chất
     /// </summary>
     public enum EnumYiZhuXZ
     {
@@ -416,7 +416,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// tài chínhvụhóa đơn Ngừng dùngcờ
+    /// tài chính vụ hóa đơn Ngừng dùng cờ
     /// </summary>
     public enum EnumCWFPTY
     {
@@ -431,12 +431,12 @@ namespace Newtouch.Sett.Domain
         YTY = 1,
     }
     /// <summary>
-    /// đăng ký khámtính chất 
-    /// 0-thông thườngđăng ký khám
-    /// 1-trốngđăng ký khám
-    /// 2-Giường gia đìnhđăng ký khám
+    /// đăng ký khám tính chất 
+    /// 0-thông thường đăng ký khám
+    /// 1-trống đăng ký khám
+    /// 2-Giường gia đình đăng ký khám
     /// 3-Tự phí Chuyển BHYT đăng ký khám
-    /// 4-ghi sổ ngoại trúđăng ký khám
+    /// 4-ghi sổ ngoại trú đăng ký khám
     /// </summary>
     public enum EnumGhxz
     {
@@ -447,7 +447,7 @@ namespace Newtouch.Sett.Domain
         MZJZGH = 4
     }
     /// <summary>
-    /// Loạiquyết toán
+    /// Loại quyết toán
     /// </summary>
     public enum EnumJslx
     {
@@ -479,20 +479,20 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    ///y lệnhtính chất 1 Tạm thờiy lệnh   2 Dài hạny lệnh   3 Xuất việny lệnh
+    ///y lệnh tính chất 1 Tạm thời y lệnh   2 Dài hạn y lệnh   3 Xuất viện y lệnh
     /// </summary>
     public enum EnumYZXZ
     {
         /// <summary>
-        /// Tạm thờiy lệnh
+        /// Tạm thời y lệnh
         /// </summary>
         LSYZ = 1,
         /// <summary>
-        /// Dài hạny lệnh
+        /// Dài hạn y lệnh
         /// </summary>
         CQYZ = 2,
         /// <summary>
-        /// Xuất việny lệnh
+        /// Xuất viện y lệnh
         /// </summary>
         CYYZ = 3
     }
@@ -514,7 +514,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// ghi sổ nhập viện Mụcthu phí Loại
+    /// ghi sổ nhập viện Mục thu phí Loại
     /// </summary>
     public enum EnumxmType
     {
@@ -523,7 +523,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// ngôn ngữlời
+    /// ngôn ngữ lời
     /// </summary>
     public enum Enumlan
     {
@@ -552,7 +552,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// đăng ký khám Loại đặccần đặccầnV
+    /// đăng ký khám Loại đặc cần đặc cầnV
     /// </summary>
     [Obsolete("Mã của các cơ sở y tế khác nhau không giống nhau")]
     public enum Enumghlx
@@ -562,14 +562,14 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// Có hiệu lựccờ
+    /// Có hiệu lực cờ
     /// </summary>
     public enum EnumSXBZ
     {
         /// <summary>
-        /// tức làlúc Có hiệu lực
+        /// tức là lúc Có hiệu lực
         /// </summary>
-        [Description("tức làlúc có hiệu lực")]
+        [Description("tức là lúc có hiệu lực")]
         Jssx = 0,
         /// <summary>
         /// chỉ định Có hiệu lực
@@ -580,7 +580,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// địalĩnh vựccờ
+    /// địa lĩnh vực cờ
     /// </summary>
     public enum EnumDY
     {
@@ -598,17 +598,17 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// hôn nhânkhông
+    /// hôn nhân không
     /// </summary>
     public enum EnumHF
     {
         /// <summary>
-        /// chưahôn nhân
+        /// chưa hôn nhân
         /// </summary>
         [Description("chưa hôn nhân")]
         wh = 0,
         /// <summary>
-        /// đãhôn nhân
+        /// đã hôn nhân
         /// </summary>
         [Description("đã hôn nhân")]
         yh,
@@ -620,7 +620,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// Nhập việnđườngđường
+    /// Nhập viện đường đường
     /// </summary>
     public enum EnumRYTJ
     {
@@ -635,32 +635,32 @@ namespace Newtouch.Sett.Domain
         [Description("cấp cứu Chuyển nhập viện")]
         jz = 24,
         /// <summary>
-        /// Khác Cơ sở y tế Chuyểnvào
+        /// Khác Cơ sở y tế Chuyển vào
         /// </summary>
         [Description("Chuyển vào nhập viện")]
         qtyljg = 9925,
         /// <summary>
-        /// Chuyểnngoàikhámđiều trịnhập viện
+        /// Chuyển ngoài khám điều trị nhập viện
         /// </summary>
         [Description("Chuyển ngoài chẩn trị nhập viện")]
         zwzzzy = 23,
         /// <summary>
-        /// lớn Bệnhnhập viện
+        /// lớn Bệnh nhập viện
         /// </summary>
         [Description("lớn Bệnh nhập viện")]
         dbry = 9902,
         /// <summary>
-        /// sinh sảnnhập viện
+        /// sinh sản nhập viện
         /// </summary>
         [Description("sinh đẻ nhập viện")]
         syzy = 52,
         /// <summary>
-        /// hai bệnh trẻ emnhập viện
+        /// hai bệnh trẻ em nhập viện
         /// </summary>
         [Description("hai bệnh trẻ em nhập viện")]
         etlb = 9904,
         /// <summary>
-        /// lao đa kháng thuốcnhập viện
+        /// lao đa kháng thuốc nhập viện
         /// </summary>
         [Description("lao đa kh áng thuốc nhập viện")]
         ndyzy = 9907,
@@ -710,7 +710,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// BHYT Đặc biệt Chờchế độ
+    /// BHYT Đặc biệt Chờ chế độ
     /// </summary>
     public enum EnumYBTSDY
     {
@@ -720,7 +720,7 @@ namespace Newtouch.Sett.Domain
         [Description("thông thường")]
         pt = 1,
         /// <summary>
-        /// Nghỉ hưunghỉ hưu
+        /// Nghỉ hưu nghỉ hưu
         /// </summary>
         [Description("Nghỉ hưu nghỉ hưu")]
         lx,
@@ -733,11 +733,11 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// thích hợp dùng BHYT phương pháp 0:Bảo hiểm thành phố 1:cái BHYT cá thể 2:Thị trấn nhỏ 3:nhỏlúccông
-    // A:dânchínhy tếđiều trịgiúpkhó
-    // B:cũ Nămđể lạidặn dò C:nămbảo hiểmcũngười D:nặngkhuyết tậtnhân viên
-    // E:trongnhỏhọcsinhvàtrẻ sơ sinhtrẻ nhỏtrẻ F: Khácdân cư
-    //G:y tếđiều trịlẫn nhautrợgiúpkhó Đối tượng
+    /// thích hợp dùng BHYT phương pháp 0:Bảo hiểm thành phố 1:cái BHYT cá thể 2:Thị trấn nhỏ 3:nhỏ lúc công
+    // A:dân chính y tế điều trị giúp khó
+    // B:cũ Năm để lại dặn dò C:năm bảo hiểm cũ người D:nặng khuyết tật nhân viên
+    // E:trong nhỏ học sinh và trẻ sơ sinh trẻ nhỏ trẻ F: Khác dân cư
+    //G:y tế điều trị lẫn nhau trợ giúp khó Đối tượng
     /// </summary>
     public enum EnumSYYBBF
     {
@@ -793,7 +793,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// Thực hiện kế hoạchghi sổ Trạng thái
+    /// Thực hiện kế hoạch ghi sổ Trạng thái
     /// </summary>
     public enum EnumJzjhZXZT
     {
@@ -825,10 +825,10 @@ namespace Newtouch.Sett.Domain
     public enum EnmuReminderType
     {
         /// <summary>
-        /// Số tiềntrêngiới hạnnhắc nhở
+        /// Số tiền trên giới hạn nhắc nhở
         /// </summary>
         [Description("Nhắc nhở vượt hạn mức số tiền")]
-        TienTrenHanNhacNho = 1,    //sonhư:Trị liệu sưmột Thángtrongthu phíkhôngđượcvượtquamườivạn
+        TienTrenHanNhacNho = 1,    //so như:Trị liệu sư một Tháng trong thu phí không được vượt qua mười vạn
     }
 
     /// <summary>
@@ -854,7 +854,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// Đăng nhậpcờ
+    /// Đăng nhập cờ
     /// </summary>
     public enum EnumLoginFlag
     {
@@ -871,7 +871,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// Mụcthu phítínhgiáchính sáchlược
+    /// Mục thu phí tính giá chính sách lược
     /// </summary>
     public enum EnumSfxmJjcl
     {
@@ -893,7 +893,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// Ngoại trú Bệnh nhânkhám Trạng thái(khámcờ)
+    /// Ngoại trú Bệnh nhân khám Trạng thái(khám cờ)
     /// </summary>
     public enum EnumOutpatientJzbz
     {
@@ -908,7 +908,7 @@ namespace Newtouch.Sett.Domain
     public enum EnumPrescriptionType { [Description("Thuốc")] Medicine = 1, [Description("Khoản mục trị liệu")] Treament = 2 }
 
     /// <summary>
-    /// Thu chitính chất
+    /// Thu chi tính chất
     /// </summary>
     public enum EnumSZXZ
     {
@@ -939,7 +939,7 @@ namespace Newtouch.Sett.Domain
         [Description("thông thường")]
         Normal = 1,
         /// <summary>
-        /// bệnhnặng
+        /// bệnh nặng
         /// </summary>
         [Description("bệnh nặng")]
         Serious = 2,
@@ -963,7 +963,7 @@ namespace Newtouch.Sett.Domain
         [Description("Chưa đạt")]
         WTG = 2,
         /// <summary>
-        /// Chờxét duyệt
+        /// Chờ xét duyệt
         /// </summary>
         [Description("Chờ xét duyệt")]
         DS = 3,
@@ -993,12 +993,12 @@ namespace Newtouch.Sett.Domain
     {
 
         /// <summary>
-        /// thanh toánquýtrảkhoảnmã
+        /// thanh toán quý trả khoản mã
         /// </summary>
         [Description("Alipay")]
         Alipay_Bar_Code = 1,
         /// <summary>
-        /// nhỏthông tintrảkhoảnmã
+        /// nhỏ thông tin trả khoản mã
         /// </summary>
         [Description("WeChat")]
         Wechat_MICROPAY = 2,
@@ -1015,7 +1015,7 @@ namespace Newtouch.Sett.Domain
         Hour = 4,
     }
     /// <summary>
-    /// Ngoại trúđặt hẹn Trạng thái
+    /// Ngoại trú đặt hẹn Trạng thái
     /// </summary>
     public enum EnumMzyyzt
     {
@@ -1043,7 +1043,7 @@ namespace Newtouch.Sett.Domain
         fyy = 3
     }
     /// <summary>
-    /// mởđặtđặt hẹn
+    /// mở đặt đặt hẹn
     /// </summary>
     public enum EnumMzpbBook
     {
@@ -1060,7 +1060,7 @@ namespace Newtouch.Sett.Domain
 
         [Description("Bình thường đơn thuốc")]
         zc = 0,
-        [Description("hoàn thuốc Hoặc Khá chủy bỏ đơn thuốc")]
+        [Description("hoàn thuốc Hoặc Khá chủ y bỏ đơn thuốc")]
         ty = 1
     }
 
@@ -1075,7 +1075,7 @@ namespace Newtouch.Sett.Domain
         ty = 1
     }
     /// <summary>
-    /// Ngoại trúđăng ký khám Nguồn
+    /// Ngoại trú đăng ký khám Nguồn
     /// </summary>
     public enum EnumMzghly
     {
@@ -1135,11 +1135,11 @@ namespace Newtouch.Sett.Domain
     /// </summary>
     public enum EnumRylb
     {
-        [Description("người lao độngtại chức")]
+        [Description("người lao động tại chức")]
         zgzz = 1101,
-        [Description("công chứctại chức")]
+        [Description("công chức tại chức")]
         gwyzz = 1102,
-        [Description("nghề tự do nhân viêntại chức")]
+        [Description("nghề tự do nhân viên tại chức")]
         lhjyryzz = 1103,
         [Description("địa phương Khác mở rộng nhân viên")]
         qtdfkzry = 1160,
@@ -1189,11 +1189,11 @@ namespace Newtouch.Sett.Domain
     {
         [Description("【2001】Nhân viên chờ hưởng quyền lợi")]
         rydyxs = 1,
-        [Description("【4207】Bệnh nhân tự phíy Chi tiết phí Truy vấn")]
+        [Description("【4207】Bệnh nhân tự phí y Chi tiết phí Truy vấn")]
         zfbrjyfymx = 4207,
-        [Description("【4208】Bệnh nhân tự phíy khám thông tinTruy vấn")]
+        [Description("【4208】Bệnh nhân tự phí y khám thông tinTruy vấn")]
         zfbrjyjzxx = 4208,
-        [Description("【4209】Bệnh nhân tự phíy Chẩn đo án thông tinTruy vấn")]
+        [Description("【4209】Bệnh nhân tự phí y Chẩn đo án thông tinTruy vấn")]
         zfbrjyzdxx = 4209,
         [Description("【5201】khám thông tinTruy vấn")]
         jzxxcx = 2,
@@ -1244,7 +1244,7 @@ namespace Newtouch.Sett.Domain
         ksxxcx = 5101,
     }
     /// <summary>
-    /// Chờchế độ Kiểm tra Loại
+    /// Chờ chế độ Kiểm tra Loại
     /// </summary>
     public enum Enumdyjclx
     {
@@ -1254,7 +1254,7 @@ namespace Newtouch.Sett.Domain
         qtjc = 99
     }
     /// <summary>
-    /// quỹthanh toán Loại
+    /// quỹ thanh toán Loại
     /// </summary>
     public enum Enumjjzflx
     {
@@ -1296,7 +1296,7 @@ namespace Newtouch.Sett.Domain
         qtjj = 999997
     }
     /// <summary>
-    /// quỹ Khoản tiền Chờchế độhưởngnhậncờ
+    /// quỹ Khoản tiền Chờ chế độ hưởng nhận cờ
     /// </summary>
     public enum Enumdyxsbz
     {
@@ -1352,7 +1352,7 @@ namespace Newtouch.Sett.Domain
         sybx = 510
     }
     /// <summary>
-    /// y tếđiều trị Loại
+    /// y tế điều trị Loại
     /// </summary>
     public enum Enumyllb
     {
@@ -1419,22 +1419,22 @@ namespace Newtouch.Sett.Domain
     public enum EnumSylb
     {
         /// <summary>
-        /// Bình thườngsản
+        /// Bình thường sản
         /// </summary>
         [Description("Bình thường sinh")]
         Zcc = 1,
         /// <summary>
-        /// trợsinh nởsản
+        /// trợ sinh nở sản
         /// </summary>
         [Description("hỗ trợ sinh")]
         Zmc = 2,
         /// <summary>
-        /// mổcungsản
+        /// mổ cung sản
         /// </summary>
         [Description("mổ lấy thai")]
         Pgc = 3,
         /// <summary>
-        /// khósản
+        /// khó sản
         /// </summary>
         [Description("sinh khó")]
         nc = 4,
@@ -1444,12 +1444,12 @@ namespace Newtouch.Sett.Domain
         [Description("sảy thai")]
         lc = 5,
         /// <summary>
-        /// dẫnsản
+        /// dẫn sản
         /// </summary>
         [Description("gây chuyển dạ")]
         yc = 6,
         /// <summary>
-        /// sảntrước Kiểm tra
+        /// sản trước Kiểm tra
         /// </summary>
         [Description("sinh trước Kiểm tra")]
         cqjc = 7,
@@ -1464,43 +1464,43 @@ namespace Newtouch.Sett.Domain
         [Description("thai ngoài tử cung")]
         gwc = 10,
         /// <summary>
-        /// để lạichuyểnquỹvìkiểm trađo
+        /// để lại chuyển quỹ vì kiểm tra đo
         /// </summary>
         [Description("xét nghiệm gen di truyền")]
         ycjyjc = 11,
         /// <summary>
-        /// bốncái Thángbằngtrênchảydẫnsản
+        /// bốn cái Tháng bằng trên chảy dẫn sản
         /// </summary>
         [Description("Sảy thai trên bốn tháng")]
         sgyyslc = 12,
         /// <summary>
-        /// bốncái Thángbằngdướisảy thai
+        /// bốn cái Tháng bằng dưới sảy thai
         /// </summary>
         [Description("Sảy thai dưới bốn tháng")]
         sgyyxlc = 13
     }
     /// <summary>
-    /// tínhhoạchsinhnuôi Phẫu thuật Loại
+    /// tính hoạch sinh nuôi Phẫu thuật Loại
     /// </summary>
     public enum EnumSysslb
     {
         /// <summary>
-        /// đặtđặtcungtrong Dụng cụ tránh thai
+        /// đặt đặt cung trong Dụng cụ tránh thai
         /// </summary>
         [Description("đặt vòng tránh thai")]
         fzgnjyq = 1,
         /// <summary>
-        /// lấyracungtrong Dụng cụ tránh thai
+        /// lấy ra cung trong Dụng cụ tránh thai
         /// </summary>
         [Description("tháo vòng tránh thai")]
         qcgnjyq = 2,
         /// <summary>
-        /// sảy thaiphẫu thuật
+        /// sảy thai phẫu thuật
         /// </summary>
         [Description("thủ thuật sảy thai")]
         lcs = 3,
         /// <summary>
-        /// dẫnsảnphẫu thuật
+        /// dẫn sản phẫu thuật
         /// </summary>
         [Description("thủ thuật gây chuyển dạ")]
         ycs = 4,
@@ -1530,12 +1530,12 @@ namespace Newtouch.Sett.Domain
         [Description("Khác")]
         qt = 9,
         /// <summary>
-        /// Dadưới Phẫu thuật cấy
+        /// Da dưới Phẫu thuật cấy
         /// </summary>
         [Description("cấy que dưới da")]
         pxmzs = 10,
         /// <summary>
-        /// Hủy Dadưới Phẫu thuật cấy
+        /// Hủy Da dưới Phẫu thuật cấy
         /// </summary>
         [Description("Hủy cấy que dưới da")]
         qxpxmzs = 11,
@@ -1546,7 +1546,7 @@ namespace Newtouch.Sett.Domain
         srgjzs = 12
     }
     /// <summary>
-    /// muộnnuôicờ/sớmsảncờ
+    /// muộn nuôi cờ/sớm sản cờ
     /// </summary>
     public enum EnumWybz
     {
@@ -1574,7 +1574,7 @@ namespace Newtouch.Sett.Domain
         ZrDoc = 3
     }
     /// <summary>
-    /// khácđịatiêubiết
+    /// khác địa tiêu biết
     /// </summary>
     public enum EnumYd
     {
@@ -1610,7 +1610,7 @@ namespace Newtouch.Sett.Domain
         [Description("dân cư BHYT")]
         jm = 12,
         /// <summary>
-        /// Nghỉ hưunghỉ hưu
+        /// Nghỉ hưu nghỉ hưu
         /// </summary>
         [Description("Nghỉ hưu nghỉ hưu")]
         lx = 13,
@@ -1621,19 +1621,19 @@ namespace Newtouch.Sett.Domain
         pt = 1,
     }
     /// <summary>
-    /// đặtphiếu Trạng thái0:Chờthanh toán 1:đãthanh toán  2::Đã hoàn khoản 3:Đang thanh toán
+    /// đặt phiếu Trạng thái0:Chờ thanh toán 1:đã thanh toán  2::Đã hoàn khoản 3:Đang thanh toán
     /// </summary>
     public enum EnumOrderStatus
     {
         /// <summary>
-        /// Chờthanh toán
+        /// Chờ thanh toán
         /// </summary>
-        [Description("Chờthanh toán")]
+        [Description("Chờ thanh toán")]
         dzf = 0,
         /// <summary>
-        /// đãthanh toán
+        /// đã thanh toán
         /// </summary>
-        [Description("đãthanh toán")]
+        [Description("đã thanh toán")]
         yzf = 1,
         /// <summary>
         /// Đã hoàn khoản

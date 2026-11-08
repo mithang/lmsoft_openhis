@@ -91,7 +91,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         #endregion
 
         /// <summary>
-        /// phân trangdữ liệutải
+        /// phân trang dữ liệu tải
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
@@ -113,7 +113,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// tra cứuquyết toánthông tin
+        /// tra cứu quyết toán thông tin
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="startTime"></param>
@@ -128,7 +128,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         /// <summary>
         /// theo quyết toán tra theo mã nội bộ ngoại trú khám khoản mục
         /// </summary>
-        /// <param name="jsnm">quyết toánmã nội bộ</param>
+        /// <param name="jsnm">quyết toán mã nội bộ</param>
         /// <returns></returns>
         public IActionResult GetGridViewMxByJsnm(int jsnm)
         {
@@ -185,7 +185,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// ngoại trúhoàn phí khám bản ghi chính Query
+        /// ngoại trú hoàn phí khám bản ghi chính Query
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>
@@ -213,7 +213,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// ngoại trúhoàn phí khám Query
+        /// ngoại trú hoàn phí khám Query
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>
@@ -236,7 +236,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             }
             if (flag)
             {
-                //khoản thu phígộp bộ
+                //khoản thu phí gộp bộ
                 if (ztlist.Count() > 0)
                 {
                     ztlist = list.Where(p => p.ztId != null && p.ztId != "").ToList()
@@ -287,7 +287,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// ngoại trútrang xác nhận hoàn phí khám
+        /// ngoại trú trang xác nhận hoàn phí khám
         /// </summary>
         /// <returns></returns>
         public IActionResult DetailConfirmForm()
@@ -304,7 +304,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         /// <param name="jsnm"></param>
         /// <param name="tjsxmDict"></param>
         /// <param name="expectedTmxZje"></param>
-        /// <param name="newfph">mớiquyết toánsố hóa đơn</param>
+        /// <param name="newfph">mới quyết toán số hóa đơn</param>
         /// <returns></returns>
         public IActionResult RefundSettlement(string mzh, int jsnm
             , Dictionary<string, decimal> tjsxmDict, decimal expectedTmxZje
@@ -329,7 +329,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// khung nhìn-chọnquyết toán
+        /// khung nhìn-chọn quyết toán
         /// </summary>
         /// <returns></returns>
         public IActionResult QueJsList2018()
@@ -342,7 +342,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         #region
 
         /// <summary>
-        /// quy trình hoàn phí.mớicủachi tiết chưa quyết toántải lên
+        /// quy trình hoàn phí.mới của chi tiết chưa quyết toán tải lên
         /// </summary>
         /// <param name="oldjsnm"></param>
         /// <param name="tjsxmDict"></param>
@@ -424,7 +424,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                 if (ypCfhList.Count <= 0) return;
                 var orgId = this.OrganizeId;
                 var operatorCode = this.UserIdentity.UserCode;
-                //lấytoken
+                //lấy token
                 var token = SitePDSAPIHelper.GetToken();
                 var obj = ypCfhList.Select(p => new
                 {
@@ -505,7 +505,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                 {
                     foreach (var m in tmzxmlist)
                     {
-                        if (items.Key == m.ztId) //còn cần cộng thêmcfnm nhiều đơn thuốc có thể có cùng bộ
+                        if (items.Key == m.ztId) //còn cần cộng thêm cfnm nhiều đơn thuốc có thể có cùng bộ
                         {
                             newDict.Add(m.jsmxnm, Math.Round(items.Value * m.sl, 2, MidpointRounding.AwayFromZero));
                         }

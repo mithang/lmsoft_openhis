@@ -69,7 +69,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// Phục hồi chức năng Điều trịphiếu
+        /// Phục hồi chức năng Điều trị phiếu
         /// </summary>
         /// <returns></returns>
         public IActionResult RehabPresTreatmentReport()
@@ -78,7 +78,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// Tra cứuY lệnhphát thuốc
+        /// Tra cứuY lệnh phát thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult DispensingQuery()
@@ -107,7 +107,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// Hồ sơphiếu
+        /// Hồ sơ phiếu
         /// </summary>
         /// <returns></returns>
         public IActionResult MRReport()
@@ -134,7 +134,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// Y lệnh Thực hiệnsau,In Thuốcphiếu
+        /// Y lệnh Thực hiện sau,In Thuốc phiếu
         /// </summary>
         /// <returns></returns>
         public IActionResult PrintYzYpReport()
@@ -159,13 +159,13 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             ReportingServiceCom();
             return View();
         }
-        //Toàn viện Kháng sinhthuốcvật Sử dụng Số tiềnxếptên
+        //Toàn viện Kháng sinh thuốc vật Sử dụng Số tiền xếp tên
         public IActionResult PrintKssJePMReport()
         {
             ReportingServiceCom();
             return View();
         }
-        //Toàn viện Kháng sinhthuốcvật Sử dụnglượngxếptên
+        //Toàn viện Kháng sinh thuốc vật Sử dụng lượng xếp tên
         public IActionResult PrintKssSlPMReport()
         {
             ReportingServiceCom();
@@ -197,7 +197,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         #endregion
 
 
-        #region Báo cáocôngcụ thể
+        #region Báo cáo công cụ thể
         public IActionResult ReportConfig()
         {
             return View();

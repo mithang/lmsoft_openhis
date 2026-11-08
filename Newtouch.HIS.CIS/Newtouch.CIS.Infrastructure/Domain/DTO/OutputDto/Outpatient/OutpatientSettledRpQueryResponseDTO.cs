@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.DTO
 {
     /// <summary>
-    /// đãquyết toán Đơn thuốcchi tiết Tra cứugiao diện Quay lạibáovăn
+    /// đã quyết toán Đơn thuốc chi tiết Tra cứu giao diện Quay lại báo văn
     /// </summary>
     public class OutpatientSettledRpQueryResponseDTO
     {
@@ -22,27 +22,27 @@ namespace Newtouch.Domain.DTO
         public string mzh { get; set; }
 
         /// <summary>
-        /// Hóa đơnsố
+        /// Hóa đơn số
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// Đơn thuốctrongmã
+        /// Đơn thuốc trong mã
         /// </summary>
         public int cfnm { get; set; }
 
         /// <summary>
-        /// Đơn thuốcchi tiết ID
+        /// Đơn thuốc chi tiết ID
         /// </summary>
         public int cfmxId { get; set; }
 
         /// <summary>
-        /// quyết toántrongmã
+        /// quyết toán trong mã
         /// </summary>
         public int jsnm { get; set; }
 
         /// <summary>
-        /// quyết toánchi tiếttrongmã
+        /// quyết toán chi tiết trong mã
         /// </summary>
         public int jsmxnm { get; set; }
 
@@ -72,17 +72,17 @@ namespace Newtouch.Domain.DTO
         public string ypgg { get; set; }
 
         /// <summary>
-        /// dùnglượng
+        /// dùng lượng
         /// </summary>
         public decimal? yl { get; set; }
 
         /// <summary>
-        /// dùnglượng Đơn vị
+        /// dùng lượng Đơn vị
         /// </summary>
         public string yldw { get; set; }
 
         /// <summary>
-        /// dùnglượng+dùnglượng Đơn vị
+        /// dùng lượng+dùng lượng Đơn vị
         /// </summary>
         public string ylstr { get; set; }
 
@@ -119,7 +119,7 @@ namespace Newtouch.Domain.DTO
         public string pcCode { get; set; }
         public int? zcs { get; set; }
         /// <summary>
-        /// Tần suấttương ứng lầnsố
+        /// Tần suất tương ứng lần số
         /// </summary>
         public int? zxcs { get; set; }
     }

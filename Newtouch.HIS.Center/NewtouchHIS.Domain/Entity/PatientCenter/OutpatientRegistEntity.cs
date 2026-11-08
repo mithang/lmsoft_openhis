@@ -102,7 +102,7 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         public DateTime? jzrq { get; set; }
 
         /// <summary>
-        /// 0-Đăng ký khám thường   1-Đăng ký khám rỗng   2-Đăng ký khám giường tại nhà   3-Đăng ký khám chuyển tự trả sang BHYT         ---------------------------------------------------   0 Chờ đăng ký khám   1 Đăng ký khám   2 Trả số khám (Cũng có thể qua việc xét bản ghi nàyjsnmcó bị bản ghi khác dùng làm hay khôngcxjsnm,để biết có trả số khám hay không,nhưng làm vậy hiệu quả cao)
+        /// 0-Đăng ký khám thường   1-Đăng ký khám rỗng   2-Đăng ký khám giường tại nhà   3-Đăng ký khám chuyển tự trả sang BHYT         ---------------------------------------------------   0 Chờ đăng ký khám   1 Đăng ký khám   2 Trả số khám (Cũng có thể qua việc xét bản ghi này jsnm có bị bản ghi khác dùng làm hay không cxjsnm,để biết có trả số khám hay không,nhưng làm vậy hiệu quả cao)
         /// </summary>
         public string ghxz { get; set; }
 

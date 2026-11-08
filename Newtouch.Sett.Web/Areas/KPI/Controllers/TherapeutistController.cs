@@ -89,7 +89,7 @@ namespace Newtouch.Sett.Web.Areas.KPI.Controllers
         }
 
         /// <summary>
-        /// nêunộpđiều trịđiều trịsưnêuthànhphốiđặt
+        /// nêu nộp điều trị điều trị sư nêu thành phối đặt
         /// </summary>
         /// <param name="entity"></param>
         public IActionResult SubmitTherapeutistPSConfig(TherapeutistMonthProfitShareConfigEntity entity, string keyValue)

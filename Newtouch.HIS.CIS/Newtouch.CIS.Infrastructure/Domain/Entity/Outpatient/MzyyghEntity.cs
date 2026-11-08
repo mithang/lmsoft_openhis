@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// Ngoại trúđãđặt hẹnđăng ký khám
+    /// Ngoại trú đã đặt hẹn đăng ký khám
     /// </summary>
     [SugarTable("mz_yygh")]
     public class MzyyghEntity
@@ -18,7 +18,7 @@ namespace Newtouch.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// tổ chứckếtcấu trúc
+        /// tổ chức kết cấu trúc
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -28,7 +28,7 @@ namespace Newtouch.Domain.Entity
         public string brId { get; set; }
 
         /// <summary>
-        /// chứngmục Loại
+        /// chứng mục Loại
         /// </summary>
         public int? zjlx { get; set; }
 
@@ -48,7 +48,7 @@ namespace Newtouch.Domain.Entity
         public string kh { get; set; }
 
         /// <summary>
-        /// đặt hẹnsố
+        /// đặt hẹn số
         /// </summary>
         public int bespeakNo { get; set; }
 
@@ -58,7 +58,7 @@ namespace Newtouch.Domain.Entity
         public DateTime? arrivalDate { get; set; }
 
         /// <summary>
-        /// hiệntrườngchỗlýđăng ký khám ngườiviên
+        /// hiện trường chỗ lý đăng ký khám người viên
         /// </summary>
         public string arrivalOpereater { get; set; }
 
@@ -73,7 +73,7 @@ namespace Newtouch.Domain.Entity
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// tạongười
+        /// tạo người
         /// </summary>
         public string CreatorCode { get; set; }
 
@@ -83,7 +83,7 @@ namespace Newtouch.Domain.Entity
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Sửangười
+        /// Sửa người
         /// </summary>
         public string LastModifierCode { get; set; }
     }

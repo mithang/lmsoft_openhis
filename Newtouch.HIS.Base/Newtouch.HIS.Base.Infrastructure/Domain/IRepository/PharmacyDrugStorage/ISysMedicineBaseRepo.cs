@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<GzxnhybItemCodeVO> GetYbXNHMedicineList(string keyword = null);
 
         /// <summary>
-        /// Tra cứu dòng cuối cùng của bảng cơ sởid
+        /// Tra cứu dòng cuối cùng của bảng cơ sở id
         /// </summary>
         /// <returns></returns>
         int GetBaseLastYpId();

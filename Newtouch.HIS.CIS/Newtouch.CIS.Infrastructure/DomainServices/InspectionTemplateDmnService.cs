@@ -23,7 +23,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// Theotype Tra cứu Xét nghiệm Kiểm tramẫu
+        /// Theotype Tra cứu Xét nghiệm Kiểm tra mẫu
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="jyjcmbLx">Xét nghiệm or Kiểm tra</param>
@@ -47,7 +47,7 @@ WHERE mb.zt='1'
         }
 
         /// <summary>
-        /// TheombId Tra cứumẫudưới Bộ mẫu Mục
+        /// TheombId Tra cứu mẫu dưới Bộ mẫu Mục
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mbId"></param>
@@ -72,7 +72,7 @@ WHERE zt.ztId is not null and mb.mbId=@mbId
         }
 
         /// <summary>
-        /// TheoztIdTra cứu Bộ mẫudướicủa Mục thu phí
+        /// TheoztIdTra cứu Bộ mẫu dưới của Mục thu phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ztId"></param>
@@ -139,10 +139,10 @@ group by  ztxm.ztId,zt.ztmc,mb.zxks, Department.Name,sfxm.sqlx ";
         {
             if (string.IsNullOrWhiteSpace(mbId))
             {
-                throw new FailedException("Dữ liệu bất thường，mbIdlàtrốnghoặcnull");
+                throw new FailedException("Dữ liệu bất thường，mbId là trống hoặc null");
             }
 
-            //mẫuthông tin
+            //mẫu thông tin
             var sqlllll = @"
 SELECT mbId, mb.[Type], mb.mbmc, mb.dlCode, mb.zxks, Department.Name AS zxksmc,mb.zt
 FROM [dbo].[jyjc_mb] mb
@@ -156,7 +156,7 @@ WHERE mb.mbId=@mbId
 
             if (mbEntity == null)
             {
-                throw new FailedException("Dữ liệu bất thường，Không cótìmđến Bộ mẫuthông tin");
+                throw new FailedException("Dữ liệu bất thường，Không có tìm đến Bộ mẫu thông tin");
             }
 
             //mẫu Bộ mẫu
@@ -196,7 +196,7 @@ WHERE mb.mbId=@mbId
 
                     db.Update(mbobj);
 
-                    db.Delete<TemplateGroupPackageEntity>(a => a.mbId == mbobj.mbId); //trướctoànxóa,lại Thêm mới
+                    db.Delete<TemplateGroupPackageEntity>(a => a.mbId == mbobj.mbId); //trước toàn xóa,lại Thêm mới
                 }
                 else
                 {

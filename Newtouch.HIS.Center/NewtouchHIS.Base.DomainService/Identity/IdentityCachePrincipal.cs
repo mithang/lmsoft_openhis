@@ -18,7 +18,7 @@ namespace NewtouchHIS.Lib.Services
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         /// <summary>
-        /// Nếu IHttpContextAccessor.HttpContext?.Userkhông rỗng thì lấy HttpContextcủa ClaimsPrincipal,nếu không thì lấy của luồng CurrentPrincipal
+        /// Nếu IHttpContextAccessor.HttpContext?.User không rỗng thì lấy HttpContext của ClaimsPrincipal,nếu không thì lấy của luồng CurrentPrincipal
         /// </summary>
         protected ClaimsPrincipal Principal => _httpContextAccessor!.HttpContext!.User ?? (Thread.CurrentPrincipal as ClaimsPrincipal);
 

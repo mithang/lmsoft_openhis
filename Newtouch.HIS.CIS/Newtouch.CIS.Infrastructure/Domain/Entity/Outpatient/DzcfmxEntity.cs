@@ -9,18 +9,18 @@ namespace Newtouch.Domain.Entity
     public class DzcfmxEntity
     {
         /// <summary>
-        /// Đơn thuốcchi tiếtid
+        /// Đơn thuốc chi tiết id
         /// </summary>
         [Key]
         public string cfmxId { get; set; }
 
         /// <summary>
-        /// Tổ chứcid
+        /// Tổ chức id
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Đơn thuốcid
+        /// Đơn thuốc id
         /// </summary>
         public string cfId { get; set; }
 
@@ -100,7 +100,7 @@ namespace Newtouch.Domain.Entity
         public DateTime? CreateTime { get; set; }
 
         /// <summary>
-        /// tạo Người dùngid
+        /// tạo Người dùng id
         /// </summary>
         public string CreatorCode { get; set; }
 
@@ -110,7 +110,7 @@ namespace Newtouch.Domain.Entity
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Sửa cuối Người dùngid
+        /// Sửa cuối Người dùng id
         /// </summary>
         public string LastModifierCode { get; set; }
 
@@ -125,17 +125,17 @@ namespace Newtouch.Domain.Entity
         public string zh { get; set; }
 
         /// <summary>
-        /// dánsố
+        /// dán số
         /// </summary>
         public string bw { get; set; }
 
         /// <summary>
-        /// thêmgấp
+        /// thêm gấp
         /// </summary>
         public string urgent { get; set; }
 
         /// <summary>
-        /// mắtcủa
+        /// mắt của
         /// </summary>
         public string purpose { get; set; }
 
@@ -155,12 +155,12 @@ namespace Newtouch.Domain.Entity
         public DateTime? zxsj { get; set; }
 
         /// <summary>
-        /// Bảo hiểm y tếduy nhấtmộtmã
+        /// Bảo hiểm y tế duy nhất một mã
         /// </summary>
         public string ybwym { get; set; }
 
         /// <summary>
-        /// hạnchế Sử dụng Cờ
+        /// hạn chế Sử dụng Cờ
         /// </summary>
         public string xzsybz { get; set; }
 
@@ -170,12 +170,12 @@ namespace Newtouch.Domain.Entity
         public decimal? ts { get; set; }
 
         /// <summary>
-        /// Kháng sinh Sử dụngnguyên nhân
+        /// Kháng sinh Sử dụng nguyên nhân
         /// </summary>
         public string kssReason { get; set; }
 
         /// <summary>
-        /// Bộ mẫuid
+        /// Bộ mẫu id
         /// </summary>
         public string ztId { get; set; }
 

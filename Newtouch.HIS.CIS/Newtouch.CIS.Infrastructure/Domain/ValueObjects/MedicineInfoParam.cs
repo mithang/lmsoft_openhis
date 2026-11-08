@@ -42,7 +42,7 @@ namespace Newtouch.Domain.ValueObjects
         public string ypzt { get; set; }
 
         /// <summary>
-        /// nhậpmã
+        /// nhập mã
         /// </summary>
         public string srm { get; set; }
     }

@@ -30,7 +30,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string lb { get; set; }
 
         /// <summary>
-        /// Khoa phòngmang Đơn vị Số lượng
+        /// Khoa phòng mang Đơn vị Số lượng
         /// </summary>
         public string slStr { get; set; }
 
@@ -39,7 +39,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         /// </summary>
         public int zkc { get; set; }
         /// <summary>
-        /// Giá bán lẻmang Đơn vị
+        /// Giá bán lẻ mang Đơn vị
         /// </summary>
         public string lsjStr { get; set; }
         /// <summary>
@@ -53,17 +53,17 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public decimal lsze { get; set; }
 
         /// <summary>
-        /// vàogiá Đơn giá(vàkcxx.zhyztương ứng)
+        /// vào giá Đơn giá(và kcxx.zhyz tương ứng)
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// vàogiá Đơn giá(Đơn vị nhỏ nhất)
+        /// vào giá Đơn giá(Đơn vị nhỏ nhất)
         /// </summary>
         public decimal minjj { get; set; }
 
         /// <summary>
-        /// vàogiátổngmức
+        /// vào giá tổng mức
         /// </summary>
         public decimal jjze { get; set; }
 
@@ -103,19 +103,19 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// chuyểnhóavìcon
+        /// chuyển hóa vì con
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// có thểdùng Tồn kho
+        /// có thể dùng Tồn kho
         /// </summary>
         public int kykcsl { get; set; }
         /// <summary>
         /// Giá trị cảnh báo tồn kho
         /// </summary>
         public int? kcyjz { get; set; }
-        //vật tư Đơn vị nhỏ nhấtvàogiá
+        //vật tư Đơn vị nhỏ nhất vào giá
         public decimal? wzjj { get; set; }
         //vật tư Đơn vị nhỏ nhất Giá bán lẻ
         public decimal? wzlsj { get; set; }

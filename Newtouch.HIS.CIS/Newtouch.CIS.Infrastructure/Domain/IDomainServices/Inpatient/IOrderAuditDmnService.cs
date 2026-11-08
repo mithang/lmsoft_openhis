@@ -44,14 +44,14 @@ namespace Newtouch.Domain.IDomainServices
         IList<OrderAuditVO> GetOrderAuditYZList_KF(Pagination pagination, string patList, string orgId, string zxks);
 
         /// <summary>
-        /// dathửnhậpcây
+        /// da thử nhập cây
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
         IList<SkintestVO> SkintestVO(string orgId,string keyword,string selectkey);
 
         /// <summary>
-        /// dathử Thông tin bệnh nhântriểnhiển thị
+        /// da thử Thông tin bệnh nhân triển hiển thị
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
@@ -61,7 +61,7 @@ namespace Newtouch.Domain.IDomainServices
 
         void Inputskintestresults(OperatorModel user, IList<SkintestqueryVO> orderList);
         /// <summary>
-        /// nhiềuY lệnhnhập
+        /// nhiềuY lệnh nhập
         /// </summary>
         /// <param name="user"></param>
         /// <param name="yzids"></param>
@@ -74,7 +74,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<DisplayinformationVO> Displayinformation(string patList,string orgId);
 
 		/// <summary>
-		/// Nhập việnY lệnhphát thuốc Tra cứu
+		/// Nhập việnY lệnh phát thuốc Tra cứu
 		/// </summary>
 		/// <param name="xm"></param>
 		/// <param name="bqCode"></param>

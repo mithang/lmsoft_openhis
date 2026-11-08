@@ -6,7 +6,7 @@ using Newtouch.Domain.ViewModels;
 namespace Newtouch.Domain.IDomainServices
 {
     /// <summary>
-    /// cơ sởcơ sởthông tin
+    /// cơ sở cơ sở thông tin
     /// </summary>
     public interface IBaseDataDmnService
     {
@@ -17,12 +17,12 @@ namespace Newtouch.Domain.IDomainServices
         /// <returns></returns>
         IList<SysMedicineUsageVEntity> GetMedicineUsageList();
         /// <summary>
-        /// sắc hộphươngkiểu
+        /// sắc hộ phương kiểu
         /// </summary>
         /// <returns></returns>
         IList<SysAuxiliaryDictionaryEntity> GetDjfsUsageList(string OrganizeId);
         /// <summary>
-        /// Lấy Thuốc Đông ysắc hộphí
+        /// Lấy Thuốc Đông y sắc hộ phí
         /// </summary>
         /// <returns></returns>
         decimal? GetDjFee(string orgId);
@@ -77,7 +77,7 @@ namespace Newtouch.Domain.IDomainServices
         void UpdatebrxzInfo(string orgId, string mzh, string zyh, string brxzCode, string brxzmc);
 
         /// <summary>
-        /// Lấybệnh nhân Thông tin cơ bản
+        /// Lấy bệnh nhân Thông tin cơ bản
         /// </summary>
         /// <param name="blh">Số bệnh án</param>
         /// <param name="mzh">Số khám ngoại trú</param>
@@ -86,14 +86,14 @@ namespace Newtouch.Domain.IDomainServices
         List<SysPatientBasicInfoVO> SelectXtBrjbxx(string blh, string mzh, string organizeId);
 
         /// <summary>
-        /// Lấybệnh nhânthẻthông tin
+        /// Lấy bệnh nhân thẻ thông tin
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         List<SysPatientCardDetail> SelectCardDetail(string blh, string organizeId);
         /// <summary>
-        /// KhoaKhu bệnhquan hệdanh sách
+        /// KhoaKhu bệnh quan hệ danh sách
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -101,7 +101,7 @@ namespace Newtouch.Domain.IDomainServices
         List<SysDeptWardRelVO> GetDeptWardRel(string orgId, string ks, string bq);
 
 		/// <summary>
-		/// Lấy Bác sĩmởthuốc Quyền
+		/// Lấy Bác sĩ mở thuốc Quyền
 		/// </summary>
 		/// <param name="orgid"></param>
 		/// <param name="gh"></param>

@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.Base.Domain
 {
     /// <summary>
-    /// Lớp dùng chung(ví dụselectkhi,tra hai trường nhưng không muốn tạo thêm lớp mới)
+    /// Lớp dùng chung(ví dụ select khi,tra hai trường nhưng không muốn tạo thêm lớp mới)
     /// </summary>
     public class FirstSecond
     {

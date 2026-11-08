@@ -24,7 +24,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform
             try
             {
                 responseXml = Newtouch.CIS.Compat.CmmStub.Throw<string>("CMM SOAP endpoint is unavailable on Linux (WCF client not ported)");
-if (!responseXml.IsReturnSuccess()) throw new Exception("đẩy Thông tin bệnh nhângiao diệngọithất bại");
+if (!responseXml.IsReturnSuccess()) throw new Exception("đẩy Thông tin bệnh nhân giao diện gọi thất bại");
                 return new PushPatientResponseEntity
                 {
                     Result = new Result

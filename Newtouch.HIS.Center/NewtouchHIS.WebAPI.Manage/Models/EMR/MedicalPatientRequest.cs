@@ -11,7 +11,7 @@
         public string srz { get; set; }
     }
     /// <summary>
-    /// Văn bản bệnh ántree và danh sách chẩn đoán
+    /// Văn bản bệnh án tree và danh sách chẩn đoán
     /// </summary>
     public class MedicalHomeRequest
     { 

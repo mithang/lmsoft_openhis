@@ -119,7 +119,7 @@ namespace Newtouch.HIS.Application.Interface
         IList<CarryOverMedicineVO> SelectCarryOverMedicineList(Pagination pagination, string zq, string inputCode);
 
         /// <summary>
-        /// Trả về dạng bào chế thuốclist
+        /// Trả về dạng bào chế thuốc list
         /// </summary>
         /// <returns></returns>
         List<MedicineFormulationVO> GetMedicineFormulationList();

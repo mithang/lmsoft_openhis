@@ -23,7 +23,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
     /// <summary>
-    /// Báo hỏngbáo thừa
+    /// Báo hỏng báo thừa
     /// </summary>
     [Area("NurseManage")]
     public class ProfitAndLossController : OrgControllerBase
@@ -53,7 +53,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
         
         /// <summary>
-        /// nguyên nhân lãi lỗthông tinTra cứu
+        /// nguyên nhân lãi lỗ thông tinTra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
@@ -71,7 +71,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// nguyên nhân lãi lỗ xemhình
+        /// nguyên nhân lãi lỗ xem hình
         /// </summary>
         /// <returns></returns>
         public IActionResult SyyyForm()
@@ -80,13 +80,13 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Xóanguyên nhân lãi lỗ
+        /// Xóa nguyên nhân lãi lỗ
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         public IActionResult DeleteSyyyForm(string keyValue)
         {
-            return _iDeptKcSyyyRepo.DeleteSyyyById(keyValue) > 0 ? Success("Xóa thành công") : Error("Xóathất bại");
+            return _iDeptKcSyyyRepo.DeleteSyyyById(keyValue) > 0 ? Success("Xóa thành công") : Error("Xóa thất bại");
         }
 
         /// <summary>
@@ -109,11 +109,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         public IActionResult SubmitSyyyForm(DeptKcSyyyEntity deptKcSyyyEntity, string keyWord)
         {
             deptKcSyyyEntity.zt = deptKcSyyyEntity.zt == "true" ? "1" : "0";
-            return _iDeptKcSyyyRepo.SubmitForm(deptKcSyyyEntity, keyWord) > 0 ? Success("Thao tác thành công") : Error("Thao tácthất bại");
+            return _iDeptKcSyyyRepo.SubmitForm(deptKcSyyyEntity, keyWord) > 0 ? Success("Thao tác thành công") : Error("Thao tác thất bại");
         }
 
         /// <summary>
-        /// Lấynguyên nhân lãi lỗdướikéo
+        /// Lấy nguyên nhân lãi lỗ dưới kéo
         /// </summary>
         /// <returns></returns>
         public IActionResult GetLossProfitReasonListByType(string sybz = "")
@@ -136,7 +136,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Lấylãi lỗchi tiết
+        /// Lấy lãi lỗ chi tiết
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -145,7 +145,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         {
             var list = new
             {
-                // hiện tại Khoađănglục người
+                // hiện tại Khoa đăng lục người
                 rows = _kcSyxxDmnService.SelectLossAndProditInfoList(pagination, param, UserIdentity.DepartmentCode, OrganizeId),
                 total = pagination.total,
                 page = pagination.page,
@@ -159,7 +159,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         #region Generate profit or loss
 
         /// <summary>
-        /// Lấy Báo hỏngbáo thừaphiếusố phiếu
+        /// Lấy Báo hỏng báo thừa phiếu số phiếu
         /// </summary>
         /// <returns></returns>
         public IActionResult GenerateDjh()
@@ -169,7 +169,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         /// <summary>
-        /// Lấy Trách nhiệm ngườilist
+        /// Lấy Trách nhiệm người list
         /// </summary>
         /// <param name="inputCode"></param>
         /// <returns></returns>
@@ -187,7 +187,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult LossAndProfitSubmit(List<LossAndProditSubmitDTO> plist)
         {
-            //todo Lấyhiện tại Khoa
+            //todo Lấy hiện tại Khoa
             var result = _stockInventoryApp.LossAndProfitSubmit(plist, "");
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
         }

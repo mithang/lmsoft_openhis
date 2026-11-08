@@ -108,7 +108,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
 
         }
 
-        //Thêm mới Cập nhật Khoa bệnh ánhis Bảng quan hệ khoa
+        //Thêm mới Cập nhật Khoa bệnh án his Bảng quan hệ khoa
         public IActionResult SubmitForm(string hisdept, string hisdeptname, string baksId) {
             MrreldeptEntity entity= new MrreldeptEntity();
             entity.hisdept = hisdept;

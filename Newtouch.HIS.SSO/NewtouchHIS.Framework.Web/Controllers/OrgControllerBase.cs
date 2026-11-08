@@ -5,7 +5,7 @@ using NewtouchHIS.Lib.Base.Exceptions;
 namespace NewtouchHIS.Framework.Web.Controllers
 {
     /// <summary>
-    /// nhiều tổ chức Controllerlớp cơ sở
+    /// nhiều tổ chức Controller lớp cơ sở
     /// </summary>
     public abstract class OrgControllerBase : BaseController
     {

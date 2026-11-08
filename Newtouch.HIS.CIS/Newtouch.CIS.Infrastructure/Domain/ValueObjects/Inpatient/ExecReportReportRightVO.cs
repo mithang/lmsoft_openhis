@@ -27,7 +27,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public int? lyxh { get; set; }
         public string hzxm { get; set; }
         /// <summary>
-        /// là Khôngtínhphí
+        /// là Không tính phí
         /// </summary>
         public string isjf { get; set; }
         public string zyh { get; set; }

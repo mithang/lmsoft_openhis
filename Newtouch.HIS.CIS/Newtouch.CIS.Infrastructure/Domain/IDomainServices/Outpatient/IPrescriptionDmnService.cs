@@ -10,13 +10,13 @@ namespace Newtouch.Domain.IDomainServices
     public interface IPrescriptionDmnService
     {
         /// <summary>
-        /// lịch sử Đơn thuốccâychi tiết
+        /// lịch sử Đơn thuốc cây chi tiết
         /// </summary>
         /// <param name="cfId"></param>
         IList<HistoryPresFormSelectVO> GetHistoryPresDetailByCfId(string cfId);
 
         /// <summary>
-        /// TheocfIdhoặccfmxIdStr Tra cứuchi tiết
+        /// TheocfId hoặc cfmxIdStr Tra cứu chi tiết
         /// </summary>
         /// <param name="cflx"></param>
         /// <param name="cfId"></param>
@@ -25,7 +25,7 @@ namespace Newtouch.Domain.IDomainServices
         List<PrescriptionDetailQueryVO> GetPresDetailList(int cflx, string cfId, string cfmxIdStr);
 
         /// <summary>
-        /// Bảo hiểm y tế Bệnh nhân Phê duyệt Mục thu phílà Khôngchứatự chi trả
+        /// Bảo hiểm y tế Bệnh nhân Phê duyệt Mục thu phí là Không chứa tự chi trả
         /// </summary>
         /// <param name="sfxmCode"></param>
         /// <param name="cflx"></param>
@@ -33,7 +33,7 @@ namespace Newtouch.Domain.IDomainServices
         List<string> ValidateMedicalInsurance(Dictionary<int, string> dic, string orgId);
 
 		/// <summary>
-		/// mởlậpvật tư Mụcđôngkết Tồn kho Số lượng
+		/// mở lập vật tư Mục đông kết Tồn kho Số lượng
 		/// </summary>
 		/// <param name="cfh"></param>
 		/// <param name="orgId"></param>
@@ -41,7 +41,7 @@ namespace Newtouch.Domain.IDomainServices
 		int Sumwzdj(string[] cfh,string orgId,string rygh);
 
 		/// <summary>
-		/// mởlậpvật tư Mụcđôngkết Tồn kho Số lượng Hủy bỏ
+		/// mở lập vật tư Mục đông kết Tồn kho Số lượng Hủy bỏ
 		/// </summary>
 		/// <param name="cfh"></param>
 		/// <param name="orgId"></param>
@@ -49,7 +49,7 @@ namespace Newtouch.Domain.IDomainServices
 		int ZUOFwzdj(string cfh, string orgId, string rygh);
 
         /// <summary>
-        /// Bảo hiểm y tếđiện tử Đơn thuốc
+        /// Bảo hiểm y tế điện tử Đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="orgId"></param>

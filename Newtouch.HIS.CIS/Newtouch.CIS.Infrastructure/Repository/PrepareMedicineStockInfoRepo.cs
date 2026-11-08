@@ -22,7 +22,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// Tính toáncó thểdùng Tồn kho hiện tại Phương phápkhôngngàychí
+        /// Tính toán có thể dùng Tồn kho hiện tại Phương pháp không ngày chí
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="pc"></param>
@@ -57,7 +57,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// đổihơn Tồn kho Số lượng
+        /// đổi hơn Tồn kho Số lượng
         /// </summary>
         /// <param name="sl">Đơn vị nhỏ nhất Số lượng +:thêm Tồn kho  -:giảm Tồn kho</param>
         /// <param name="pc"></param>

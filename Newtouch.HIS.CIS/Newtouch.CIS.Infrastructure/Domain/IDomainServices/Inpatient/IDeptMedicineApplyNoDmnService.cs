@@ -11,7 +11,7 @@ namespace Newtouch.Domain.IDomainServices.Inpatient
     public interface IDeptMedicineApplyNoDmnService
     {
         /// <summary>
-        /// Tra cứuchuẩn bị thuốc Phiếu Trạng thái
+        /// Tra cứu chuẩn bị thuốc Phiếu Trạng thái
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="sqdArr"></param>
@@ -20,7 +20,7 @@ namespace Newtouch.Domain.IDomainServices.Inpatient
 
         List<DeptApplyNoResp> SelectApplyNoStatus(string orgId, string sqdArr, string UserCode);
         /// <summary>
-        /// Cập nhật Khoachuẩn bị thuốc Phiếu Trạng thái
+        /// Cập nhật Khoa chuẩn bị thuốc Phiếu Trạng thái
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="SqdArray"></param>
@@ -28,7 +28,7 @@ namespace Newtouch.Domain.IDomainServices.Inpatient
         int UpdateApplyNoStatus(string OrganizeId, string SqdArray,string UserCode);
 
         /// <summary>
-        /// Tồn kho Trả lại Phiếuvềtrảkiểm tra
+        /// Tồn kho Trả lại Phiếu về trả kiểm tra
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="sqdArr"></param>
@@ -36,7 +36,7 @@ namespace Newtouch.Domain.IDomainServices.Inpatient
         /// <returns></returns>
         string SelectKcthApplyNoStatus(string orgId, string sqdArr, string UserCode);
         /// <summary>
-        /// Cập nhật Khoatrả Tồn kho Trạng thái đăng ký
+        /// Cập nhật Khoa trả Tồn kho Trạng thái đăng ký
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="sqdArr"></param>

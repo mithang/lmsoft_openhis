@@ -4,7 +4,7 @@ namespace Newtouch.Domain.ValueObjects
 {
     public class PrescriptionHtmlVO
     {
-        #region Đơn thuốcchínhbảng
+        #region Đơn thuốc chính bảng
         /// <summary>
         /// 
         /// </summary>
@@ -36,7 +36,7 @@ namespace Newtouch.Domain.ValueObjects
         public string ys { get; set; }
 
         /// <summary>
-        /// dánsố
+        /// dán số
         /// </summary>
         public int? tieshu { get; set; }
 
@@ -50,15 +50,15 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public bool? djbz { get; set; }
         /// <summary>
-        /// Đơn thuốcnhãn JI tinhI JII tinh II MZ têsay
+        /// Đơn thuốc nhãn JI tinhI JII tinh II MZ tê say
         /// </summary>
         public string cftag { get; set; }
         /// <summary>
-        /// sắc hộphươngkiểu
+        /// sắc hộ phương kiểu
         /// </summary>
         public string djfs { get; set; }
         // <summary>
-        /// sắc hộtrảsố
+        /// sắc hộ trả số
         /// </summary>
         public string djts { get; set; }
         // <summary>
@@ -93,7 +93,7 @@ namespace Newtouch.Domain.ValueObjects
         public string ypmc { get; set; }
 
         /// <summary>
-        /// Liều mỗi lần điều trị  kimđối Phục hồi chức năng Mục
+        /// Liều mỗi lần điều trị  kim đối Phục hồi chức năng Mục
         /// </summary>
         public int? mczll { get; set; }
 
@@ -118,7 +118,7 @@ namespace Newtouch.Domain.ValueObjects
         public string pcCode { get; set; }
 
         /// <summary>
-        /// Thuốctrongcủa Số lượng=Tổng lượng   Phục hồi chức năngtrongcủa Tổng lượng(khônglà Số lượng)=Tổng lượng
+        /// Thuốc trong của Số lượng=Tổng lượng   Phục hồi chức năng trong của Tổng lượng(không là Số lượng)=Tổng lượng
         /// </summary>
         public int? zl { get; set; }
         
@@ -128,7 +128,7 @@ namespace Newtouch.Domain.ValueObjects
         public int sl { get; set; }
 
         /// <summary>
-        /// không Phục hồi chức năng Đơn thuốc tạmkhi Sử dụng
+        /// không Phục hồi chức năng Đơn thuốc tạm khi Sử dụng
         /// </summary>
         public string dw { get; set; }
 
@@ -143,7 +143,7 @@ namespace Newtouch.Domain.ValueObjects
         public decimal je { get; set; }
 
         /// <summary>
-        /// Số nhóm(Thuốccủa Số nhóm)
+        /// Số nhóm(Thuốc của Số nhóm)
         /// </summary>
         public string zh { get; set; }
 
@@ -168,7 +168,7 @@ namespace Newtouch.Domain.ValueObjects
         public string Remark { get; set; }
 
         /// <summary>
-        /// Khoa thực hiện(Thuốccủa Khoa dược,Xét nghiệm Kiểm tracủa Khoa thực hiện)(Phục hồi chức năng Đơn thuốccủa Khoa thực hiện)
+        /// Khoa thực hiện(Thuốc của Khoa dược,Xét nghiệm Kiểm tra của Khoa thực hiện)(Phục hồi chức năng Đơn thuốc của Khoa thực hiện)
         /// </summary>
         public string zxks { get; set; }
 
@@ -177,11 +177,11 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public DateTime? zxsj { get; set; }
         /// <summary>
-        /// Bảo hiểm y tếduy nhấtmộtmã
+        /// Bảo hiểm y tế duy nhất một mã
         /// </summary>
         public string ybwym { get; set; }
         /// <summary>
-        /// hạnchế Sử dụng Cờ
+        /// hạn chế Sử dụng Cờ
         /// </summary>
         public string xzsybz { get; set; }
         /// <summary>
@@ -193,7 +193,7 @@ namespace Newtouch.Domain.ValueObjects
         public string ztmc { get; set; }
 
         /// <summary>
-        /// Kháng sinhnguyên nhân
+        /// Kháng sinh nguyên nhân
         /// </summary>
         public string kssReason { get; set; }
         /// <summary>
@@ -256,7 +256,7 @@ namespace Newtouch.Domain.ValueObjects
         public int? sl2 { get; set; }
 
         /// <summary>
-        /// không Phục hồi chức năng Đơn thuốc tạmkhi Sử dụng
+        /// không Phục hồi chức năng Đơn thuốc tạm khi Sử dụng
         /// </summary>
         public string dw2 { get; set; }
 
@@ -275,7 +275,7 @@ namespace Newtouch.Domain.ValueObjects
         public string Remark2 { get; set; }
 
         /// <summary>
-        /// Khoa thực hiện(Thuốccủa Khoa dược,Xét nghiệm Kiểm tracủa Khoa thực hiện)(Phục hồi chức năng Đơn thuốccủa Khoa thực hiện)
+        /// Khoa thực hiện(Thuốc của Khoa dược,Xét nghiệm Kiểm tra của Khoa thực hiện)(Phục hồi chức năng Đơn thuốc của Khoa thực hiện)
         /// </summary>
         public string zxks2 { get; set; }
 

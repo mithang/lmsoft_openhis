@@ -22,7 +22,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
             _sysUserVDmn = sysUserVDmn;
         }
         /// <summary>
-        /// overridekhi,vui lòng cuối cùngreturn base.Index();
+        /// overridekhi,vui lòng cuối cùng return base.Index();
         /// </summary>
         public virtual IActionResult Index()
         {
@@ -74,7 +74,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         /// xác minh tính đúng đắn của mã xác minh
         /// </summary>
         /// <param name="code"></param>
-        /// <returns>mã xác minh đúng trả vềtrue,nếu không thì trả vềfalse</returns>
+        /// <returns>mã xác minh đúng trả về true,nếu không thì trả về false</returns>
         [NonAction]
         public virtual bool CheckChkCode(string code)
         {
@@ -105,7 +105,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
             {
                 return Content(new AjaxResult { state = ResultType.error.ToString(), message = "Thông tin người dùng bất thường" }.ToJson());
             }
-            //chỉ dùng làmtokenđổi lấy
+            //chỉ dùng làm token đổi lấy
             OperatorModel oprInit = new OperatorModel
             {
                 UserCode = logResult.Account,
@@ -211,7 +211,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
                 }
                 else
                 {
-                    addr = null;    //được coi lànull
+                    addr = null;    //được coi là null
                 }
             }
             return Content(new AjaxResult { state = ResultType.success.ToString(), data = addr }.ToJson());

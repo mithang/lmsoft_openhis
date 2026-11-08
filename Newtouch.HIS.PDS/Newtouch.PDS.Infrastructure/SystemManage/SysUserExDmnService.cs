@@ -149,7 +149,7 @@ where a.UserId = @userId";
         /// <param name="roleList"></param>
         public void UpdateUserRole(string keyValue, string[] roleList)
         {
-            //Vai tròlist
+            //Vai trò list
             var roleLists = new List<SysUserRoleEntity>();
             foreach (var item in roleList.Where(p => !string.IsNullOrWhiteSpace(p)).Distinct())
             {

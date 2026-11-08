@@ -58,7 +58,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         #region Lấy Dữ liệu
         /// <summary>
-        /// Lấy Ngoại trú Danh sách bệnh nhân (chờlàm Test da)
+        /// Lấy Ngoại trú Danh sách bệnh nhân (chờ làm Test da)
         /// </summary>
         /// <returns></returns>
         public IActionResult GetMzPatientListJson(Pagination pagination, string keyword, string ks, string kssj, string jssj, string zxzt)
@@ -78,7 +78,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Lấy Nhập viện Danh sách bệnh nhân (chờlàm Test da)
+        /// Lấy Nhập viện Danh sách bệnh nhân (chờ làm Test da)
         /// </summary>
         /// <returns></returns>
         public IActionResult GetZyPatientListJson(Pagination pagination, string keyword, string ks, string kssj, string jssj, string zxzt)
@@ -144,7 +144,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Lấyquamẫnthông tin
+        /// Lấy qua mẫn thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -167,7 +167,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Lấy Kháng sinh Thuốcthông tin
+        /// Lấy Kháng sinh Thuốc thông tin
         /// </summary>
         /// <returns></returns>
         public IActionResult GetKssYpListJson()
@@ -207,14 +207,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         /// <summary>
-        /// Xóa Thực hiệncủaquamẫnthông tin
+        /// Xóa Thực hiện của qua mẫn thông tin
         /// </summary>
         /// <param name="xmCode"></param>
         /// <returns></returns>
         public IActionResult DeleteExecutedGmxx(string gmxxId)
         {
             int ret = _IAllergyManageDmnService.DeleteAllergyInfo(gmxxId, this.OrganizeId, UserIdentity.UserCode, UserIdentity.UserName);
-            return ret > 0 ? Success("Thao tác thành công") : Error("Hủy Thực hiệnthất bại,Vui lòng liên hệ Quản trị viên!");
+            return ret > 0 ? Success("Thao tác thành công") : Error("Hủy Thực hiện thất bại,Vui lòng liên hệ Quản trị viên!");
         }
         #endregion
     }

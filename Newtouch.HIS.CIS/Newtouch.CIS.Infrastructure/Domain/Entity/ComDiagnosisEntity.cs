@@ -72,7 +72,7 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// Quyềnđiều khiển 1Cá nhân 2Khoa
+        /// Quyền điều khiển 1Cá nhân 2Khoa
         /// </summary>
         public string qxkz { get; set; }
     }

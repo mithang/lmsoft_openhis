@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.ViewModels
 {
     /// <summary>
-    /// Cách dùngliênđộnggắn
+    /// Cách dùng liên động gắn
     /// </summary>
     public class SysUsageLinkageVO
     {
@@ -48,7 +48,7 @@ namespace Newtouch.Domain.ViewModels
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// tạongười
+        /// tạo người
         /// </summary>
         public string CreatorCode { get; set; }
 
@@ -58,7 +58,7 @@ namespace Newtouch.Domain.ViewModels
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Sửangười
+        /// Sửa người
         /// </summary>
         public string LastModifierCode { get; set; }
 

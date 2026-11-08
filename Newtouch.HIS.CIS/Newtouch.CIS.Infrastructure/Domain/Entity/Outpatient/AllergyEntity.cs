@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// quamẫnthông tin
+    /// qua mẫn thông tin
     /// </summary>
     [SugarTable("xt_gmxx")]
     public class AllergyEntity
@@ -18,7 +18,7 @@ namespace Newtouch.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chứcid
+        /// Tổ chức id
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -38,17 +38,17 @@ namespace Newtouch.Domain.Entity
         public string sex { get; set; }
 
         /// <summary>
-        /// quamẫn Mục Code
+        /// qua mẫn Mục Code
         /// </summary>
         public string xmCode { get; set; }
 
         /// <summary>
-        /// quamẫn Tên mục
+        /// qua mẫn Tên mục
         /// </summary>
         public string xmmc { get; set; }
 
         /// <summary>
-        /// kếtnếu
+        /// kết nếu
         /// </summary>
         public string Result { get; set; }
 
@@ -93,12 +93,12 @@ namespace Newtouch.Domain.Entity
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// Y lệnhid
+        /// Y lệnh id
         /// </summary>
         public string yzid { get; set; }
 
         /// <summary>
-        /// Đơn thuốcchi tiếtid
+        /// Đơn thuốc chi tiết id
         /// </summary>
         public string cfmxid { get; set; }
 
@@ -108,12 +108,12 @@ namespace Newtouch.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// quamẫn Loại
+        /// qua mẫn Loại
         /// </summary>
         public string gmlx { get; set; }
 
         /// <summary>
-        /// quamẫn Thuốc Code
+        /// qua mẫn Thuốc Code
         /// </summary>
         public string ypCode { get; set; }
     }

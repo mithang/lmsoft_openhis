@@ -6,12 +6,12 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// Phương phápvận hànhdònggiám sát
+    /// Phương pháp vận hành dòng giám sát
     /// </summary>
     public class PerformanceMonitoring 
     {
         /// <summary>
-        /// ghi chéptiêu haokhi
+        /// ghi chép tiêu haokhi
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="missingHandler"></param>
@@ -23,14 +23,14 @@ namespace Newtouch.Infrastructure
         public static void TimeConsuming<T>(Action<T> missingHandler, T request, string title, string message, Dictionary<string, string> tags = null)
         {
             var stopwatch = new Stopwatch();
-            stopwatch.Start();//  Bắt đầugiám sátxem Mãvận hànhdòng Thời gian
-            missingHandler.Invoke(request);//Mãchínhthể
-            stopwatch.Stop();//  Dừnggiám sátxem
-            LogCore.Info(string.Format("Title:{0};\n message:{1} Phương pháptiêu haokhi-{2}", title, message, stopwatch.Elapsed.TotalMilliseconds), message, tags);//ghi chépngàychí
+            stopwatch.Start();//  Bắt đầu giám sát xem Mã vận hành dòng Thời gian
+            missingHandler.Invoke(request);//Mã chính thể
+            stopwatch.Stop();//  Dừng giám sát xem
+            LogCore.Info(string.Format("Title:{0};\n message:{1} Phương pháp tiêu haokhi-{2}", title, message, stopwatch.Elapsed.TotalMilliseconds), message, tags);//ghi chép ngày chí
         }
 
         /// <summary>
-        /// Mãvận hànhdòng Thời gian
+        /// Mã vận hành dòng Thời gian
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="missingHandler"></param>
@@ -41,10 +41,10 @@ namespace Newtouch.Infrastructure
         public static T Running<T>(Func<T> missingHandler, string title, string message, Dictionary<string, string> tags = null)
         {
             var stopwatch = new Stopwatch();
-            stopwatch.Start();//  Bắt đầugiám sátxem Mãvận hànhdòng Thời gian
-            dynamic value = missingHandler.Invoke();//Mãchínhthể
-            stopwatch.Stop();//  Dừnggiám sátxem
-            LogCore.Info(string.Format("Title:{0};\n message:{1} Phương pháptiêu haokhi-{2}", title, message, stopwatch.Elapsed.TotalMilliseconds), message, tags);//ghi chépngàychí
+            stopwatch.Start();//  Bắt đầu giám sát xem Mã vận hành dòng Thời gian
+            dynamic value = missingHandler.Invoke();//Mã chính thể
+            stopwatch.Stop();//  Dừng giám sát xem
+            LogCore.Info(string.Format("Title:{0};\n message:{1} Phương pháp tiêu haokhi-{2}", title, message, stopwatch.Elapsed.TotalMilliseconds), message, tags);//ghi chép ngày chí
             return value;
         }
 

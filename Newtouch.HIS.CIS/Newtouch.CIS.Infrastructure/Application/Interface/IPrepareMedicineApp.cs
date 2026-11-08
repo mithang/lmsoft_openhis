@@ -13,34 +13,34 @@ namespace Newtouch.Application.Interface
     public interface IPrepareMedicineApp
     {
         /// <summary>
-        /// Theolãi lỗ Loại Lấynguyên nhân lãi lỗ
+        /// Theo lãi lỗ Loại Lấy nguyên nhân lãi lỗ
         /// </summary>
         /// <param name="sylx"></param>
         /// <returns></returns>
         List<SysMedicineProfitLossReasonEntity> GetLossProfitReasonListByType(string sylx);
 
         /// <summary>
-        /// Tra cứulãi lỗ Thuốclist
+        /// Tra cứu lãi lỗ Thuốc list
         /// </summary>
         /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>
         List<ReportLossAndProfitMedicineInfoVO> SelectLossAndProfitMedicineList(string inputCode);
 
         /// <summary>
-        /// Gửi Báo hỏngbáo thừa
+        /// Gửi Báo hỏng báo thừa
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>
         string SubmitReportLossAndProfit(SysMedicineProfitLossEntity[] syxx);
 
         /// <summary>
-        /// Báo hỏngbáo thừa Lưu
+        /// Báo hỏng báo thừa Lưu
         /// </summary>
         /// <param name="profitLossEntityList"></param>
         //void SaveReportLossAndProfit(List<SysMedicineProfitLossEntity> profitLossEntityList);
 
         /// <summary>
-        /// Báo hỏngbáo thừa Tra cứu
+        /// Báo hỏng báo thừa Tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -58,7 +58,7 @@ namespace Newtouch.Application.Interface
         /// <param name="endTime">Thời gian kết thúc</param>
         /// <param name="syyy">nguyên nhân lãi lỗ</param>
         /// <param name="inputCode">Từ khóa</param>
-        /// <param name="syqk">lãi lỗtình hình</param>
+        /// <param name="syqk">lãi lỗ tình hình</param>
         /// <returns></returns>
         LossAndProditInfoJeVo ComputePjzeAndLjze(string startTime, string endTime, string syyy, string inputCode, int syqk);
     }

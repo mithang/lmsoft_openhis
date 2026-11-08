@@ -57,7 +57,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return View();
         }
         /// <summary>
-        /// Bệnh nhânvàokhu
+        /// Bệnh nhân vào khu
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="rqrq"></param>
@@ -80,14 +80,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             };
             string retMsg = "F|";
 
-            //mớivàokhu giường ký tự Có Khôngđãchiếmdùng
+            //mới vào khu giường ký tự Có Không đã chiếm dùng
             if (_ientryRegistrationDmnService.ValidationBedIsUse( this.OrganizeId, enterArea.cwCode, enterArea.bqdm) == true)
             {
                 retMsg= "F|Giường bệnh này đã có người";
             }
             else { 
             
-                //mớivàokhu Bệnh nhân,gọigiao diện Lấy Thông tin bệnh nhân;chuyển khu Bệnh nhântrực tiếp Sửa thông tin
+                //mới vào khu Bệnh nhân,gọi giao diện Lấy Thông tin bệnh nhân;chuyển khu Bệnh nhân trực tiếp Sửa thông tin
                 if (enterArea.qqlx =="0")
                 {
                     retMsg= _ientryRegistrationDmnService.SavePatInArea(reqInarea);
@@ -111,7 +111,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     retMsg = _ientryRegistrationDmnService.SaveChangeAreaPatInfo(patChangeAreaRequestDto);
                 }
             }
-            //VD nếu thành công,thìsản xuấtsinhgiường ký tựgắnliên quanChi phí
+            //VD nếu thành công,thì sản xuất sinh giường ký tự gắn liên quanChi phí
             if (retMsg.Split('|')[0].ToString()=="T")
             {
                 patBedFeeRequestDto req = new patBedFeeRequestDto()
@@ -130,7 +130,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Success();
         }
         /// <summary>
-        /// Bệnh nhânchuyểngiường
+        /// Bệnh nhân chuyển giường
         /// </summary>
         /// <param name="syxh"></param>
         /// <param name="bedCode"></param>
@@ -145,7 +145,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 user=UserIdentity.rygh
             };
             string retMsg = "F|";
-            //chuyểngiườnggiường ký tự Có Khôngbịchiếmdùng
+            //chuyển giường giường ký tự Có Không bị chiếm dùng
             if (_ientryRegistrationDmnService.ValidationBedIsUse(this.OrganizeId, bedCode, wardCode) == true)
             {
                 retMsg = "F|Giường bệnh này đã có người";
@@ -201,7 +201,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             var reqObj = new
             {
                 TimeStamp = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"),
-                //tạm Lấymột Thángcủatrongcủa Đăng kýthông tin
+                //tạm Lấy một Tháng của trong của Đăng ký thông tin
                 lastUpdateTime = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd hh:mm:ss"),//"2018-04-01 11:11:11",
                 zybz ="0",
                 bqCode=bqdm,
@@ -210,7 +210,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             List<NewPatInfoVO> apiRespList = new List<NewPatInfoVO>();
             if (qqlx=="0")
             {
-                //kéolấychờvàokhu Thông tin bệnh nhân
+                //kéo lấy chờ vào khu Thông tin bệnh nhân
                 var apiResp = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<InPatientQueryResponseVO>>(
                     "/api/patient/InPatientQuery", reqObj);
                 if (apiResp.data != null)
@@ -251,10 +251,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(list.ToJson());
         }
         /// <summary>
-        /// Lấygiường ký tựthông tin
+        /// Lấy giường ký tự thông tin
         /// </summary>
         /// <param name="pagination"></param>
-        /// <param name="cwlb">Tất cả Giường trốngđợi</param>
+        /// <param name="cwlb">Tất cả Giường trống đợi</param>
         /// <returns></returns>
         public IActionResult GetBedList(string bqdm, string cwlb)
         {
@@ -302,7 +302,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return View();
         }
         /// <summary>
-        /// Bệnh nhânchuyển khu
+        /// Bệnh nhân chuyển khu
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="bqdm"></param>
@@ -329,7 +329,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// ra khỏi khutriệuvề
+        /// ra khỏi khu triệu về
         /// </summary>
         /// <returns></returns>
         public IActionResult RecallOutArea()
@@ -339,7 +339,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <summary>
         /// Tra cứu
         /// </summary>
-        /// <param name="pagination">phúttrang</param>
+        /// <param name="pagination">phút trang</param>
         /// <param name="keyword">Từ khóa</param>
         /// <param name="ksrq">Ngày bắt đầu</param>
         /// <param name="jsrq">Ngày kết thúc</param>
@@ -358,7 +358,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(list.ToJson());
         }
         /// <summary>
-        /// ra khỏi khutriệuvề
+        /// ra khỏi khu triệu về
         /// </summary>
         /// <param name="zyh">Số nhập viện</param>
         /// <param name="bqdm">Khu bệnh Mã</param>
@@ -400,7 +400,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 		}
 
 		/// <summary>
-		/// Lấy Nhập việngiườngthẻ
+		/// Lấy Nhập viện giường thẻ
 		/// </summary>
 		/// <param name="zyh"></param>
 		/// <returns></returns>

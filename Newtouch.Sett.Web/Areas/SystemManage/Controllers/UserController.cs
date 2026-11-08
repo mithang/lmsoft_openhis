@@ -18,7 +18,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 {
 
     /// <summary>
-    /// hệthốngdùnghộ Mở rộng
+    /// hệ thống dùng hộ Mở rộng
     /// </summary>
     [Area("SystemManage")]
 
@@ -46,12 +46,12 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// dùnghộchọnchọndụng cụ
+        /// dùng hộ chọn chọn dụng cụ
         /// </summary>
         /// <returns></returns>
         /// <summary>
-        /// dùnghộchọnchọncây(Cấp ba:Cơ sở+Khoa+Người dùng).gốcthựchiệnđiềudùnghaivàochếquỹloạiphươngphương pháp
-        /// ComGetSysUserSelectorTree(khôngnguồnmã);nàynơitrảquayrỗngcây JSON,chờ SSO/quỹloạinặngcơ quan.
+        /// dùng hộ chọn chọn cây(Cấp ba:Cơ sở+Khoa+Người dùng).gốc thực hiện điều dùng hai vào chế quỹ loại phương phương pháp
+        /// ComGetSysUserSelectorTree(không nguồn mã);này nơi trả quay rỗng cây JSON,chờ SSO/quỹ loại nặng cơ quan.
         /// </summary>
         public IActionResult GetSysUserSelectorTree(string organizeId = null, string keyValue = null, string from = null, bool isExpand = true, bool isContansChildOrg = true
             , bool isShowEmpty = false)
@@ -60,11 +60,11 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// đượclấyhệthốngdùnghộcây haicấp(Khoa+Người dùng(Nhân viên))-có thểtratra cứu
+        /// được lấy hệ thống dùng hộ cây hai cấp(Khoa+Người dùng(Nhân viên))-có thể tra tra cứu
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="from"></param>
-        /// <param name="isShowEmpty">làkhônghiển thịhiển thịrỗngtrắngtiếtđiểm(khoaphòngtiếtđiểm)</param>
+        /// <param name="isShowEmpty">là không hiển thị hiển thị rỗng trắng tiết điểm(khoa phòng tiết điểm)</param>
         /// <param name="isExpand"></param>
         /// <returns></returns>
 
@@ -89,9 +89,9 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         {
             var treeList = new List<TreeViewModel>();
 
-            //khoaphòngtậphợp
+            //khoa phòng tập hợp
             var detpData = _sysDepartmentRepo.GetList(OrganizeId??orgId, "1");
-            //ngườiviêntậphợp(cóđốiphảiđăngghitài khoảnhộ)
+            //người viên tập hợp(có đối phải đăng ghi tài khoản hộ)
             var userStaffData = _sysUserDmnService.GetSatffVOListByOrg(OrganizeId??orgId, keyword);
 
             foreach (SysDepartmentVEntity deptItem in detpData)
@@ -137,15 +137,15 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             }
 
             #region Bổ sungNút cha start
-            // by haijiang.mo sửalạitìmtìmhaicấpbằngdướicủaconbộngoại trúdùnghộ,vìkhôngphương phápcơ quanlậpracâykếtcơ quan,màtìmtìmmấtthất bại
+            // by haijiang.mo sửa lại tìm tìm hai cấp bằng dưới của con bộ ngoại trú dùng hộ,vì không phương pháp cơ quan lập ra cây kết cơ quan,mà tìm tìm mất thất bại
             var parentDeptList = new HashSet<string>();
-            // điều khiểnchếtổngtínhtínhsâuđộ,phòng ngừadừngvìlàsốdữ liệusaisai,tìmkhôngđến Nút chachếttuân theovòng
+            // điều khiển chế tổng tính tính sâu độ,phòng ngừa dừng vì là số dữ liệu sai sai,tìm không đến Nút chachếttuân theo vòng
             var totalReFindParent = 10;
             do
             {
                 totalReFindParent--;
                 parentDeptList = new HashSet<string>();
-                // tìmratreeList trongkhôngcóparentId của 
+                // tìm ra treeList trong không có parentId của 
                 foreach (TreeViewModel item in treeList)
                 {
                     if (item.parentId == null)
@@ -187,9 +187,9 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             } while (parentDeptList.Count > 0 && totalReFindParent > 0);
             #endregion Bổ sungNút cha end
 
-            //bộ nhớ đệmend
-            IList<RoleUnionUser> checkedUserList = null; //Đãcheckedcủadùnghộ
-            if (from == "rolerelatioinuser" && !string.IsNullOrWhiteSpace(keyValue))   //Vai tròđãliên quanliêndùnghộ
+            //bộ nhớ đệm end
+            IList<RoleUnionUser> checkedUserList = null; //Đã checked của dùng hộ
+            if (from == "rolerelatioinuser" && !string.IsNullOrWhiteSpace(keyValue))   //Vai trò đã liên quan liên dùng hộ
             {
                 checkedUserList = _outPatientChargeQueryDmnService.GetCurUserIdListRoleId(keyValue);
             }

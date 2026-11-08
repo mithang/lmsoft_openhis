@@ -8,17 +8,17 @@ namespace Newtouch.Domain.DTO.InputDto
     public class LossAndProditSubmitDTO
     {
         /// <summary>
-        /// lãi lỗtình hình
+        /// lãi lỗ tình hình
         /// </summary>
         public string syqk { get; set; }
 
         /// <summary>
-        /// Đơn vị nhỏ nhấtsố
+        /// Đơn vị nhỏ nhất số
         /// </summary>
         public int Sysl { get; set; }
 
         /// <summary>
-        /// chuyểnhóavìcon
+        /// chuyển hóa vì con
         /// </summary>
         public int zhyz { get; set; }
 
@@ -38,7 +38,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public string sybz { get; set; }
 
         /// <summary>
-        /// phiếusố phiếu
+        /// phiếu số phiếu
         /// </summary>
         public string Djh { get; set; }
 
@@ -53,12 +53,12 @@ namespace Newtouch.Domain.DTO.InputDto
         public string wzmc { get; set; }
 
         /// <summary>
-        /// vàogiá  chuyểnhóavìcontương ứngvàogiá
+        /// vào giá  chuyển hóa vì con tương ứng vào giá
         /// </summary>
         public decimal Jj { get; set; }
 
         /// <summary>
-        /// Giá bán lẻ  chuyểnhóavìcontương ứngvàogiá
+        /// Giá bán lẻ  chuyển hóa vì con tương ứng vào giá
         /// </summary>
         public decimal Lsj { get; set; }
 
@@ -108,7 +108,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public string zrrmc { get; set; }
 
         /// <summary>
-        /// còn lại Tồn kho hiệncó Tồn kho Đơn vị nhỏ nhất
+        /// còn lại Tồn kho hiện có Tồn kho Đơn vị nhỏ nhất
         /// </summary>
         public int Sykc { get; set; }
 
@@ -118,7 +118,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public string remark { get; set; }
 
         /// <summary>
-        /// Đơn vị giáô Đơn vị,vàzhyzmộtthẳng
+        /// Đơn vị giáô Đơn vị,và zhyz một thẳng
         /// </summary>
         public string UnitId { get; set; }
 

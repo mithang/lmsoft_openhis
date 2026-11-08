@@ -6,24 +6,24 @@ using System.Xml.Serialization;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_08
 {
     /// <summary>
-    /// nhắclấy Đơn thuốcyêu cầuthể
+    /// nhắc lấy Đơn thuốc yêu cầu thể
     /// </summary>
     [XmlRoot("Request")]
     public class PullPrescriptionRequestEntity : RequestBase
     {
         /// <summary>
-        /// Đơn thuốcthông tinthể
+        /// Đơn thuốc thông tin thể
         /// </summary>
         public Prescription Prescription { get; set; }
     }
 
     /// <summary>
-    /// Đơn thuốcthông tinthể
+    /// Đơn thuốc thông tin thể
     /// </summary>
     public class Prescription
     {
         /// <summary>
-        /// Khám bệnhdòngchảysố
+        /// Khám bệnh dòng chảy số
         /// bắt buộc
         /// </summary>
         public string serialNo { get; set; }
@@ -35,18 +35,18 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_08
         public string orgCode { get; set; }
 
         /// <summary>
-        /// trực tiếpchọnphươngcủaphươngcon Tên
+        /// trực tiếp chọn phương của phương con Tên
         /// </summary>
         public string preName { get; set; }
 
         /// <summary>
-        /// thuốcphươngthông tintậphợp
+        /// thuốc phương thông tin tập hợp
         /// </summary>
         public List<DrugData> drugDataList { get; set; }
     }
 
     /// <summary>
-    /// thuốcphươngthông tintậphợp
+    /// thuốc phương thông tin tập hợp
     /// </summary>
     public class DrugData
     {
@@ -81,7 +81,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_08
     }
 
     /// <summary>
-    /// thuốcphươngmở rộngtriểnthông tin
+    /// thuốc phương mở rộng triển thông tin
     /// </summary>
     public class DrugDataEx : SfxmYpSelectResultVO
     {

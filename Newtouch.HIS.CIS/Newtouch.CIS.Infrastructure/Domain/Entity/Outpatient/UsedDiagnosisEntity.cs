@@ -30,11 +30,11 @@ namespace Newtouch.Domain.Entity
         public string ksCode { get; set; }
 
         /// <summary>
-        /// Sử dụng lầnsố
+        /// Sử dụng lần số
         /// </summary>
         public int? sycs { get; set; }
         /// <summary>
-        /// liên kếtbasekho Chẩn đoán hệ thốngbảng
+        /// liên kếtbasekho Chẩn đoán hệ thống bảng
         /// </summary>
         public string zdCode { get; set; }
 

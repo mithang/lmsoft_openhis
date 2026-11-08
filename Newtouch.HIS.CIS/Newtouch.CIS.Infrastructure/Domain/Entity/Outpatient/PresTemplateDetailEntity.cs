@@ -23,7 +23,7 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// liên kếtbảng mẫu
+        /// liên kết bảng mẫu
         /// </summary>
         public string mbId { get; set; }
 
@@ -33,7 +33,7 @@ namespace Newtouch.Domain.Entity
         public string xmCode { get; set; }
 
         /// <summary>
-        /// Dư thừachữđoạn
+        /// Dư thừa chữ đoạn
         /// </summary>
         public string xmmc { get; set; }
 
@@ -48,22 +48,22 @@ namespace Newtouch.Domain.Entity
         public string ypmc { get; set; }
 
         /// <summary>
-        /// kimđối Phục hồi chức năng Đơn thuốc
+        /// kim đối Phục hồi chức năng Đơn thuốc
         /// </summary>
         public int? mczll { get; set; }
 
         /// <summary>
-        /// kimđối Thuốc
+        /// kim đối Thuốc
         /// </summary>
         public decimal? mcjl { get; set; }
 
         /// <summary>
-        /// kimđối Thuốc
+        /// kim đối Thuốc
         /// </summary>
         public string mcjldw { get; set; }
 
         /// <summary>
-        /// kimđối Thuốc
+        /// kim đối Thuốc
         /// </summary>
         public string yfCode { get; set; }
 
@@ -73,12 +73,12 @@ namespace Newtouch.Domain.Entity
         public string pcCode { get; set; }
 
         /// <summary>
-        /// kimđối Thuốc
+        /// kim đối Thuốc
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// kimđối Phục hồi chức năng Đơn thuốc
+        /// kim đối Phục hồi chức năng Đơn thuốc
         /// </summary>
         public int? zl { get; set; }
 
@@ -127,7 +127,7 @@ namespace Newtouch.Domain.Entity
         public string Remark { get; set; }
 
         /// <summary>
-        /// Khoa thực hiện(Thuốccủalĩnhthuốc Khoa phòng yfbmCode)
+        /// Khoa thực hiện(Thuốc của lĩnh thuốc Khoa phòng yfbmCode)
         /// </summary>
         public string zxks { get; set; }
         /// <summary>

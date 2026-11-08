@@ -45,11 +45,11 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public string RegType { get; set; }
         /// <summary>
-        /// dấuđề
+        /// dấu đề
         /// </summary>
         public string Title { get; set; }
         /// <summary>
-        /// Thời gianđoạn
+        /// Thời gian đoạn
         /// </summary>
         public string Period { get; set; }
         /// <summary>
@@ -61,7 +61,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public int TotalNum { get; set; }
         /// <summary>
-        /// Thời gian bắt đầuđoạn
+        /// Thời gian bắt đầu đoạn
         /// </summary>
         public string PeriodStart { get; set; }
         /// <summary>
@@ -73,7 +73,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public Decimal RegFee { get; set; }
         /// <summary>
-        /// là Khôngcó thểđặt hẹn
+        /// là Không có thể đặt hẹn
         /// </summary>
         public string IsBook { get; set; }
         /// <summary>
@@ -93,7 +93,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public string IsCancel { get; set; }
         /// <summary>
-        /// Hủynguyên nhân
+        /// Hủy nguyên nhân
         /// </summary>
         public string CancelReason { get; set; }
         /// <summary>
@@ -105,7 +105,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// đặt hẹnsố
+        /// đặt hẹn số
         /// </summary>
         public int YYNum { get; set; }
         /// <summary>
@@ -125,11 +125,11 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// là Không Dừng khám 0Bình thườngrakhám  1Dừng khám Trạng thái
+        /// là Không Dừng khám 0Bình thường ra khám  1Dừng khám Trạng thái
         /// </summary>
         public string istz { get; set; }
         /// <summary>
-        /// Dừng khámnguyên nhân
+        /// Dừng khám nguyên nhân
         /// </summary>
         public string tzyy { get; set; }
         /// <summary>

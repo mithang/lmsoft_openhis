@@ -9,7 +9,7 @@ namespace Newtouch.Domain.DTO.InputDto
     public class InpMedReturnRequestDto
     {
         /// <summary>
-        /// Y lệnhsố
+        /// Y lệnh số
         /// </summary>
         public string yzId { get; set; }
         /// <summary>
@@ -18,7 +18,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public string ypCode { get; set; }
        
         /// <summary>
-        /// phútnhómthứ tựsố
+        /// phút nhóm thứ tự số
         /// </summary>
         public int? zh { get; set; }
       
@@ -29,7 +29,7 @@ namespace Newtouch.Domain.DTO.InputDto
 
         public int? zhyz { get; set; }
         /// <summary>
-        /// trảthuốc Đăng ký người
+        /// trả thuốc Đăng ký người
         /// </summary>
         public string tysqr { get; set; }
         /// <summary>

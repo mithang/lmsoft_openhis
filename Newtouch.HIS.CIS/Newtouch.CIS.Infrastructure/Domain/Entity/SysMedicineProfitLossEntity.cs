@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// Hệ thống Thuốclãi lỗthông tin
+    /// Hệ thống Thuốc lãi lỗ thông tin
     /// </summary>
     [SugarTable("zy_ksby_syxx")]
     public class SysMedicineProfitLossEntity
@@ -53,7 +53,7 @@ namespace Newtouch.Domain.Entity
         public DateTime Bgsj { get; set; }
 
         /// <summary>
-        /// đangsố:báo thừa,âmsố:Báo hỏng  Đơn vị nhỏ nhất Số lượng
+        /// đang số:báo thừa,âm số:Báo hỏng  Đơn vị nhỏ nhất Số lượng
         /// </summary>
         public int Sysl { get; set; }
 
@@ -82,7 +82,7 @@ namespace Newtouch.Domain.Entity
         public decimal Yklsj { get; set; }
 
         /// <summary>
-        /// chuyểnhóavìcon
+        /// chuyển hóa vì con
         /// </summary>
         public int Zhyz { get; set; }
 
@@ -97,7 +97,7 @@ namespace Newtouch.Domain.Entity
         public string Zrr { get; set; }
 
         /// <summary>
-        /// phiếusố phiếu
+        /// phiếu số phiếu
         /// </summary>
         public string Djh { get; set; }
 
@@ -107,7 +107,7 @@ namespace Newtouch.Domain.Entity
         public int Sykc { get; set; }
 
         /// <summary>
-        /// vàogiá
+        /// vào giá
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Jj { get; set; }

@@ -45,7 +45,7 @@ namespace Newtouch.Sett.Web.Areas.KnowledgeBaseManage.Controllers
         }
 
         /// <summary>
-        /// đượclấyy tếbảo hiểmchuẩn bịhồ sơcộtbảng
+        /// đượclấyy tế bảo hiểm chuẩn bị hồ sơ cột bảng
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="ksrq"></param>

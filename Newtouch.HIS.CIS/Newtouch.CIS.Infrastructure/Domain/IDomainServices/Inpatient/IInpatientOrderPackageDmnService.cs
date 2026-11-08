@@ -30,7 +30,7 @@ namespace Newtouch.Domain.IDomainServices
 
         string GetHistoricalRegist(string zyh,string curzyh, string yzlistId, string orgId, string creatorcode);
         /// <summary>
-        /// Xóamẫu
+        /// Xóa mẫu
         /// </summary>
         /// <param name="mbId"></param>
         void DeleteTemplate(string mbId, string orgId);

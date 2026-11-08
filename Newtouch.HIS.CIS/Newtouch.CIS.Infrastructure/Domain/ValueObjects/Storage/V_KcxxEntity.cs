@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Storage
 {
     /// <summary>
-    /// Tồn khothông tin kết chuyểndùng
+    /// Tồn kho thông tin kết chuyển dùng
     /// </summary>
     public class VKcxxEntity
     {
@@ -37,17 +37,17 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public int kcsl { get; set; }
 
         /// <summary>
-        /// Khoa phòng Giá bán lẻ chuyểnhóavìcontương ứng Đơn vị
+        /// Khoa phòng Giá bán lẻ chuyển hóa vì con tương ứng Đơn vị
         /// </summary>
         public decimal bmlsj { get; set; }
 
         /// <summary>
-        /// vàogiá chuyểnhóavìcontương ứng Đơn vị
+        /// vào giá chuyển hóa vì con tương ứng Đơn vị
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// chuyểnhóavìcon
+        /// chuyển hóa vì con
         /// </summary>
         public int zhyz { get; set; }
     }

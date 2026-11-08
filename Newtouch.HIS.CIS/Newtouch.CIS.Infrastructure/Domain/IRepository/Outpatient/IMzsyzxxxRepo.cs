@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.IRepository
 {
     /// <summary>
-    /// Ngoại trútruyền dịch Thực hiệnthông tin
+    /// Ngoại trú truyền dịch Thực hiện thông tin
     /// </summary>
     public interface IMzsyzxxxRepo : IRepositoryBase<MzsyzxxxEntity>
     {

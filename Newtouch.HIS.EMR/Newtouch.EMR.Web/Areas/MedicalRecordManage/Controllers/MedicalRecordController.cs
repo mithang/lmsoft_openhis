@@ -223,7 +223,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                         //var Zybrjbxx = GetZybrjbxxByZYH(zyh);
                         //engHTML = XMLDataBind(Zybrjbxx, currentFileName);
 
-                        //Lấy phần tử diễn biến bệnh của mẫuname
+                        //Lấy phần tử diễn biến bệnh của mẫu name
                         XTextElementList xTextElements = eng.Document.GetElementsByName("emr_bcrq");
                         if (xTextElements.Count > 0)
                         {
@@ -1153,7 +1153,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return View();
         }
         /// <summary>
-        /// Văn bản bệnh án lịch sửtreeV1
+        /// Văn bản bệnh án lịch sử treeV1
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="mzh"></param>
@@ -1216,7 +1216,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         }
         /// <summary>
-        /// Văn bản bệnh án lịch sửtreeV2
+        /// Văn bản bệnh án lịch sử treeV2
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="mzh"></param>

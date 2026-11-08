@@ -22,7 +22,7 @@ namespace Newtouch.Repository.Outpatient
         }
 
         /// <summary>
-        /// Lưu Phòng khámkhingàyrakhám Bác sĩ
+        /// Lưu Phòng khám khi ngày ra khám Bác sĩ
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
@@ -67,7 +67,7 @@ where zt=1 and zsCode=@zscode";
 				,new SqlParameter("@zsfh", zsov.zsfh??""),new SqlParameter("@ys", zsov.gh??""),new SqlParameter("@ysmc", zsov.ysxm??"") ,new SqlParameter("@zscode", zsov.zsCode) });
 		}
 		/// <summary>
-		/// Tra cứukhingày củaphútkhám Bác sĩ
+		/// Tra cứu khi ngày của phút khám Bác sĩ
 		/// </summary>
 		/// <param name="zsCode"></param>
 		/// <param name="orgId"></param>

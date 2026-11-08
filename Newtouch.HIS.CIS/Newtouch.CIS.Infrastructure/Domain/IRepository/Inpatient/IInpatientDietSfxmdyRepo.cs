@@ -7,9 +7,9 @@ namespace Newtouch.Domain.IRepository
     public interface IInpatientDietSfxmdyRepo : IRepositoryBase<InpatientDietSfxmdyEntity>
     {
         /// <summary>
-        /// Lưubảngphiếu(Thêm mới,Sửa)
+        /// Lưu bảng phiếu(Thêm mới,Sửa)
         /// </summary>
-        /// <param name="entity">thựcthểđối tượng</param>
+        /// <param name="entity">thực thể đối tượng</param>
         /// <param name="keyValue">Khóa chính Giá trị</param>
         void SubmitForm(InpatientDietSfxmdyEntity entity, string keyValue);
 

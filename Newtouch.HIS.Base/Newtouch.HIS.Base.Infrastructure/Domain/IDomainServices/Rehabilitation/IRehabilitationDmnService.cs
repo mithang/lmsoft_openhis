@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.Rehabilitation
         List<RehabChargeItemVO> GetRehabChargeItemList(string keyword, string OrganizeId);
 
         /// <summary>
-        /// Sửaform
+        /// Sửa form
         /// </summary>
         RehabChargeItemVO GetRehabChargeItemEntity(string sfxmId, string OrganizeId);
 
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.Rehabilitation
         List<RehabChargeItemComparisonVO> GetRehabChargeItemComparisonList(string keyword, string OrganizeId);
 
         /// <summary>
-        /// Sửaform(Đối chiếu hạng mục thu phí phục hồi chức năng)
+        /// Sửa form(Đối chiếu hạng mục thu phí phục hồi chức năng)
         /// </summary>
         RehabChargeItemComparisonVO GetRehabChargeItemComparisonEntity(string sfxmdzId,string OrganizeId);
 

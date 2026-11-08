@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Domain.IRepository
         List<SysMedicalOrderFrequencyEntity> GetOrderFrequencyList(string orgId, string keyword = null);
 
         /// <summary>
-        /// Sửaform
+        /// Sửa form
         /// </summary>
         SysMedicalOrderFrequencyEntity GetOrderFrequencyEntity(int? yzpcId, string orgId);
 

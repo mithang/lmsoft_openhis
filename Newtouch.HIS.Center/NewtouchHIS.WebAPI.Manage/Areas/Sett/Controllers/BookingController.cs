@@ -114,7 +114,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp,request.Data);
         }
         /// <summary>
-        /// Truy vấn danh sách đặt hẹnby Thông tin bệnh nhân
+        /// Truy vấn danh sách đặt hẹn by Thông tin bệnh nhân
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -132,7 +132,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// Truy vấn danh sách đặt hẹnby Thông tin bệnh nhân
+        /// Truy vấn danh sách đặt hẹn by Thông tin bệnh nhân
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

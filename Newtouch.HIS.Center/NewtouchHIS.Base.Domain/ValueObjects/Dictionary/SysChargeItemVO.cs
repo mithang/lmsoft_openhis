@@ -101,7 +101,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public string? flCode { get; set; }
 
         /// <summary>
-        /// Desc:Xác định tỷ lệ tiền mặt tự trả,không liên quan tới tính chất của phần này(Tự trả theo phân loại,Tự lo)	   Xem trườngzfxz	   	   Chú ý:Khi tỷ lệ tự trả là số âm,thể hiện tự trả định mức	   (Ví dụ:Một vật tư nào đó12300,Được thanh toán10000,thì tỷ lệ tự trả=-2300)
+        /// Desc:Xác định tỷ lệ tiền mặt tự trả,không liên quan tới tính chất của phần này(Tự trả theo phân loại,Tự lo)	   Xem trường zfxz	   	   Chú ý:Khi tỷ lệ tự trả là số âm,thể hiện tự trả định mức	   (Ví dụ:Một vật tư nào đó12300,Được thanh toán10000,thì tỷ lệ tự trả=-2300)
         /// Default:
         /// Nullable:False
         /// </summary>           

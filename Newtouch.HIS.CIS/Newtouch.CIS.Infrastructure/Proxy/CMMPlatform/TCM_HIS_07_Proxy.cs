@@ -6,7 +6,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform
 {
     /// <summary>
-    /// nhắclấyđiện tử Hồ sơ
+    /// nhắc lấy điện tử Hồ sơ
     /// </summary>
     internal class TcmHis07Proxy : GuiAnTelemedicinePlatformProxy<ReceiveRequestEntity, PullRecordRequestEntity>
     {

@@ -5,7 +5,7 @@ using System;
 namespace Newtouch.Domain.IRepository
 {
     /// <summary>
-    /// Ngoại trúđặt hẹnđăng ký khám
+    /// Ngoại trú đặt hẹn đăng ký khám
     /// </summary>
     public interface IMzyyghRepo : IRepositoryBase<MzyyghEntity>
     {

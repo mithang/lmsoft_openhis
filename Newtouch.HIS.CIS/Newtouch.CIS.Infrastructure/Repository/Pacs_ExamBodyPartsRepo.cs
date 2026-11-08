@@ -24,7 +24,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// Lấydanh sách
+        /// Lấy danh sách
         /// </summary>
         /// <returns></returns>
         public List<Pacs_ExamBodyPartsEntity> GetListByOrg(string orgId)
@@ -68,7 +68,7 @@ namespace Newtouch.Repository
                 entity.Create(true);
                 this.Insert(entity);
             }
-            //Làm mớichậmtồn tại
+            //Làm mới chậm tồn tại
             _cache.Remove(string.Format(CacheKey.ValidSysBodyPartsSetKey_, entity.OrganizeId));
         }
         /// <summary>

@@ -9,11 +9,11 @@ namespace Newtouch.Domain.ValueObjects
     public class OrderExecutionVO
      {
         /// <summary>
-        /// Y lệnhid
+        /// Y lệnh id
         /// </summary>
         public string yzid { get; set; }
         /// <summary>
-        /// lĩnhthuốcthứ tựsố
+        /// lĩnh thuốc thứ tự số
         /// </summary>
         public int lyxh { get; set; }
         /// <summary>
@@ -60,7 +60,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string tzysgh { get; set; }
         /// <summary>
-        /// Dừng/Hủy bỏ Thao tácviên
+        /// Dừng/Hủy bỏ Thao tác viên
         /// </summary>
         public string tzr { get; set; }
 
@@ -90,7 +90,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string zxr { get; set; }
         /// <summary>
-        /// là Khôngtínhphí
+        /// là Không tính phí
         /// </summary>
         public int? isjf { get; set; }
         public string yztag { get; set; }
@@ -98,7 +98,7 @@ namespace Newtouch.Domain.ValueObjects
         public string zh1 { get; set; }
         public string yfztbs { get; set; }
         /// <summary>
-        /// Thuốcmởlập Tồn khođếnnguồn 1:Bác sĩtrạm Khoachuẩn bị thuốc Tồn kho 2:Nhà thuốc Tồn kho
+        /// Thuốc mở lập Tồn kho đến nguồn 1:Bác sĩ trạm Khoa chuẩn bị thuốc Tồn kho 2:Nhà thuốc Tồn kho
         /// </summary>
         public int? yply { get; set; }
         public decimal? je { get; set; }
@@ -118,7 +118,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// Y lệnhid
+        /// Y lệnh id
         /// </summary>
         public string yzid { get; set; }
         /// <summary>
@@ -130,7 +130,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public int yzlx { get; set; }
         /// <summary>
-        /// lĩnhthuốcthứ tựsố
+        /// lĩnh thuốc thứ tự số
         /// </summary>
         public int lyxh { get; set; }
         /// <summary>
@@ -154,13 +154,13 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public int ? zh { get; set; }
         /// <summary>
-        /// là Khôngtínhphí 1:là 0:Không
+        /// là Không tính phí 1:là 0:Không
         /// </summary>
         public string isjf { get; set; }
         public string zh1 { get; set; }
         public string yfztbs { get; set; }
         /// <summary>
-        /// Thuốcđếnnguồn 1:Bác sĩtrạm Khoachuẩn bị thuốc Tồn kho  2:Nhà thuốc Tồn kho
+        /// Thuốc đến nguồn 1:Bác sĩ trạm Khoa chuẩn bị thuốc Tồn kho  2:Nhà thuốc Tồn kho
         /// </summary>
         public string yply { get; set; }
         /// <summary>

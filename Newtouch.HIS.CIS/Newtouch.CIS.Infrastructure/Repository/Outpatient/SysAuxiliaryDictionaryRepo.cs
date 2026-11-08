@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Lấyhiện tạitổ chứcdướicủatất cả Hiệu lựctừ điển
+        /// Lấy hiện tại tổ chức dưới của tất cả Hiệu lực từ điển
         /// </summary>
         /// <returns></returns>
         public IList<SysAuxiliaryDictionaryEntity> GetValidListByOrg(string orgId, bool withCache = false)
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Lấytừ điểndanh sách
+        /// Lấy từ điển danh sách
         /// </summary>
         /// <returns></returns>
         public List<SysAuxiliaryDictionaryEntity> GetListByOrg(string orgId)
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Repository
                     throw new FailedException("Số hiệu không được trùng lặp");
                 }
 
-                SysAuxiliaryDictionaryEntity oldEntity = null;   //đổihơntrước Entity
+                SysAuxiliaryDictionaryEntity oldEntity = null;   //đổi hơn trước Entity
                 oldEntity = this.FindEntity(keyValue);
                 this.DetacheEntity(oldEntity);
 

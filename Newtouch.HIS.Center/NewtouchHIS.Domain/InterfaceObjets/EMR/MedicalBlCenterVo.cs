@@ -26,7 +26,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.EMR
 
     }
     /// <summary>
-    /// Văn bản bệnh ántree
+    /// Văn bản bệnh án tree
     /// </summary>
     public class MedRecordTree 
     {

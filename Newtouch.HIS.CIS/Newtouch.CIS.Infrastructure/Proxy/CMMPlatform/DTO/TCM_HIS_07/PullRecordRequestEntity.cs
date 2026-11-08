@@ -4,24 +4,24 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
 {
     /// <summary>
-    /// nhắclấyđiện tử Hồ sơhưởngứngthể
+    /// nhắc lấy điện tử Hồ sơ hưởng ứng thể
     /// </summary>
     [XmlRoot("Request")]
     public class PullRecordRequestEntity : RequestBase
     {
         /// <summary>
-        /// Hồ sơthông tinthể
+        /// Hồ sơ thông tin thể
         /// </summary>
         public Record Record { get; set; }
     }
 
     /// <summary>
-    /// Hồ sơthông tinthể
+    /// Hồ sơ thông tin thể
     /// </summary>
     public class Record
     {
         /// <summary>
-        /// Khám bệnhdòngchảysố
+        /// Khám bệnh dòng chảy số
         /// bắt buộc
         /// </summary>
         public string serialNo { get; set; }
@@ -63,7 +63,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
         public string clinicDate { get; set; }
 
         /// <summary>
-        /// Bác sĩ Số hiệu(Người dùngtên)
+        /// Bác sĩ Số hiệu(Người dùng tên)
         /// bắt buộc
         /// </summary>
         public string doctorId { get; set; }
@@ -75,7 +75,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
         public string doctorName { get; set; }
 
         /// <summary>
-        /// chínhbảo
+        /// chính bảo
         /// </summary>
         public string priDepict { get; set; }
 
@@ -95,7 +95,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
         public string anamnesis { get; set; }
 
         /// <summary>
-        /// Cá nhânsử
+        /// Cá nhân sử
         /// </summary>
         public string individualHis { get; set; }
 
@@ -105,7 +105,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
         public string mcObstetrical { get; set; }
 
         /// <summary>
-        /// nhàtộcsử
+        /// nhà tộc sử
         /// </summary>
         public string fhx { get; set; }
 
@@ -120,7 +120,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
         public string smelling { get; set; }
 
         /// <summary>
-        /// cắtkhám
+        /// cắt khám
         /// </summary>
         public string palpation { get; set; }
 
@@ -135,7 +135,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
         public string psyCheck { get; set; }
 
         /// <summary>
-        /// Bác sĩxâynghị
+        /// Bác sĩ xây nghị
         /// </summary>
         public string suggession { get; set; }
 

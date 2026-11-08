@@ -167,13 +167,13 @@ GROUP BY s.ph,s.pc,s.yxq,s.scrq,s.fph,s.bmjj,s.minjj,s.zhyz,s.bmdwmc,s.zxdwmc
 
         #endregion
 
-        #region Khoavật tư Tồn kho
+        #region Khoa vật tư Tồn kho
         public List<WzTypeVo> GetWzTreeSelectJson()
         {
             return FindList<WzTypeVo>("select Id,name,parentId from NewtouchHIS_Base..wz_type where zt='1'");
         }
         /// <summary>
-        /// Tồn khohộitổng
+        /// Tồn kho hội tổng
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ks"></param>
@@ -272,7 +272,7 @@ WHERE  num=1 and yxq < GETDATE() ");
         }
         
         /// <summary>
-        /// Tồn kho Lô Số lôchi tiết
+        /// Tồn kho Lô Số lô chi tiết
         /// </summary>
         /// <param name="ks"></param>
         /// <param name="OrganizeId"></param>
@@ -310,7 +310,7 @@ WHERE  num=1 and yxq < GETDATE() ");
             return FindList<VProductStorageDetailEntity>(sql, param);
         }
         /// <summary>
-        /// đổihơn Tồn khocó thểdùng Trạng thái
+        /// đổi hơn Tồn kho có thể dùng Trạng thái
         /// </summary>
         /// <param name="mxId"></param>
         /// <param name="OrganizeId"></param>
@@ -323,7 +323,7 @@ WHERE  num=1 and yxq < GETDATE() ");
 
         }
         /// <summary>
-        /// Đồng bộvật tư Vật tư tiêu hao
+        /// Đồng bộ vật tư Vật tư tiêu hao
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="userCode"></param>

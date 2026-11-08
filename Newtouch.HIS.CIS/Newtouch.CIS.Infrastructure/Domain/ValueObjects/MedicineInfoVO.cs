@@ -46,12 +46,12 @@ namespace Newtouch.Domain.ValueObjects
         //public string ypkw { get; set; }
 
         /// <summary>
-        /// 0:khôngđiều khiển1:điều khiển
+        /// 0:không điều khiển1:điều khiển
         /// </summary>
         //public short kzbz { get; set; }
 
         /// <summary>
-        /// đãphốithuốcchưaphát(lĩnh)thuốccủa Số lượng
+        /// đã phối thuốc chưa phát(lĩnh)thuốc của Số lượng
         /// </summary>
         public int djsl { get; set; }
 
@@ -61,18 +61,18 @@ namespace Newtouch.Domain.ValueObjects
         public short tybz { get; set; }
 
         /// <summary>
-        /// đếntự bảng XT_YP_CRKMXK 
+        /// đến tự bảng XT_YP_CRKMXK 
         /// </summary>
         //public string crkmxId { get; set; }
 
         /// <summary>
-        /// vàogiá  Đơn vị kho thuốc
+        /// vào giá  Đơn vị kho thuốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal? jj { get; set; }
 
         /// <summary>
-        /// tương ứng Nhà thuốc Nhà thuốccủatháokhôngsố
+        /// tương ứng Nhà thuốc Nhà thuốc của tháo không số
         /// </summary>
         public int? zhyz { get; set; }
 
@@ -87,7 +87,7 @@ namespace Newtouch.Domain.ValueObjects
         public string pc { get; set; }
 
         /// <summary>
-        /// là Khôngđãkhóa  0:chưakhóa ;    1/null:đãkhóa
+        /// là Không đã khóa  0:chưa khóa ;    1/null:đã khóa
         /// </summary>
         public string locked { get; set; }
 
@@ -154,7 +154,7 @@ namespace Newtouch.Domain.ValueObjects
         public decimal? YkKcsl { get; set; }
 
         /// <summary>
-        /// Kho thuốckho ký tự
+        /// Kho thuốc kho ký tự
         /// </summary>
         public string YkDw { get; set; }
 

@@ -34,7 +34,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         private readonly ISysUserRoleRepo _sysUserRoleRepo;
 
         /// <summary>
-        /// cơ quantạothưsố
+        /// cơ quan tạo thư số
         /// </summary>
         /// <param name="roleApp"></param>
         /// <param name="moduleApp"></param>
@@ -106,7 +106,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lưu Vai tròdùnghộliên quanliênliên quanhệ
+        /// Lưu Vai trò dùng hộ liên quan liên liên quan hệ
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -117,7 +117,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Vai trò(cây)   (dùnghộchínhđộngliên quanliên Vai trò)
+        /// Vai trò(cây)   (dùng hộ chính động liên quan liên Vai trò)
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="organizeId"></param>

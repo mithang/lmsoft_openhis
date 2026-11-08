@@ -78,7 +78,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Sửaform
+        /// Sửa form
         /// </summary>
         public SysMedicalOrderFrequencyEntity GetOrderFrequencyEntity(int? yzpcId,string orgId)
         {

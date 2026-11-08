@@ -20,11 +20,11 @@ namespace Newtouch.Domain.ValueObjects
         public decimal? age { get; set; }
         public string insutype { get; set; }
         /// <summary>
-        ///  ngườiviên Loại
+        ///  người viên Loại
         /// </summary>
         public string psn_type { get; set; }
         /// <summary>
-        /// côngvụviên Cờ
+        /// công vụ viên Cờ
         /// </summary>
         public string cvlserv_flag { get; set; }
         public DateTime? setl_time { get; set; }
@@ -37,39 +37,39 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string med_type { get; set; }
         /// <summary>
-        /// y tếphítổngmức
+        /// y tế phí tổng mức
         /// </summary>
         public decimal? medfee_sumamt { get; set; }
         /// <summary>
-        /// toàntự chi trả Số tiền
+        /// toàn tự chi trả Số tiền
         /// </summary>
         public decimal? fulamt_ownpay_amt { get; set; }
         /// <summary>
-        /// vượthạngiátự chi trả Chi phí
+        /// vượt hạn giá tự chi trả Chi phí
         /// </summary>
         public decimal? overlmt_selfpay { get; set; }
         /// <summary>
-        /// trướcdòngtựtrả Số tiền
+        /// trước dòng tự trả Số tiền
         /// </summary>
         public decimal? preselfpay_amt { get; set; }
         /// <summary>
-        /// kýhợpchính sáchphạm vi Số tiền
+        /// ký hợp chính sách phạm vi Số tiền
         /// </summary>
         public decimal? inscp_scp_amt { get; set; }
         /// <summary>
-        ///  thực tếchitrảtừtrảđường
+        ///  thực tế chi trả từ trả đường
         /// </summary>
         public decimal? act_pay_dedc { get; set; }
         /// <summary>
-        /// cơ sởbảny tếbảonguy hiểmthốngchuẩn bịcơ sởkimchira
+        /// cơ sở bản y tếbảonguy hiểm thống chuẩn bị cơ sở kim chi ra
         /// </summary>
         public decimal? hifp_pay { get; set; }
         /// <summary>
-        /// cơ sởbảny tếbảonguy hiểmthốngchuẩn bịcơ sởkim chitrảsoVD
+        /// cơ sở bản y tếbảonguy hiểm thống chuẩn bị cơ sở kim chi trả soVD
         /// </summary>
         public decimal? pool_prop_selfpay { get; set; }
         /// <summary>
-        /// côngvụviêny tếbổ sunggiúptàikimchi ra
+        /// công vụ viên y tế bổ sung giúp tài kim chi ra
         /// </summary>
         public decimal? cvlserv_pay { get; set; }
         /// <summary>
@@ -77,40 +77,40 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public decimal? hifes_pay { get; set; }
         /// <summary>
-        /// cư dânlớnbệnhbảonguy hiểmtàikimchira
+        /// cư dânlớnbệnhbảonguy hiểm tài kim chi ra
         /// </summary>
         public decimal? hifmi_pay { get; set; }
         /// <summary>
-        /// chứccônglớnmứcy tế Chi phíbổ sunggiúp cơ sởkimchira
+        /// chức công lớn mức y tế Chi phí bổ sung giúp cơ sở kim chi ra
         /// </summary>
         public decimal? hifob_pay { get; set; }
         /// <summary>
-        /// y tếcứugiúpcơ sởkimchira
+        /// y tế cứu giúp cơ sở kim chi ra
         /// </summary>
         public decimal? maf_pay { get; set; }
         /// <summary>
-        /// yviệngánh nặng Số tiền
+        /// y viện gánh nặng Số tiền
         /// </summary>
         public decimal? hosp_part_amt { get; set; }
         public decimal? oth_pay { get; set; }
         /// <summary>
-        /// cơ sởkimchitrảtổngmức
+        /// cơ sở kim chi trả tổng mức
         /// </summary>
         public decimal? fund_pay_sumamt { get; set; }
         /// <summary>
-        /// Cá nhângánh nặng Tổng số tiền
+        /// Cá nhân gánh nặng Tổng số tiền
         /// </summary>
         public decimal? psn_part_amt { get; set; }
         /// <summary>
-        /// Cá nhân Tài khoảnchira
+        /// Cá nhân Tài khoản chi ra
         /// </summary>
         public decimal? acct_pay { get; set; }
         /// <summary>
-        /// Cá nhânhiệnkimchira
+        /// Cá nhân hiện kim chi ra
         /// </summary>
         public decimal? psn_cash_pay { get; set; }
         /// <summary>
-        /// dưmức
+        /// dư mức
         /// </summary>
         public decimal? balc { get; set; }
         /// <summary>
@@ -118,7 +118,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public decimal? acct_mulaid_pay { get; set; }
         /// <summary>
-        /// ythuốc Cơ sởquyết toán ID
+        /// y thuốc Cơ sở quyết toán ID
         /// </summary>
         public string medins_setl_id { get; set; }
         public string clr_optins { get; set; }

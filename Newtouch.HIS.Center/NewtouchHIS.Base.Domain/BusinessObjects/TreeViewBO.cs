@@ -17,7 +17,7 @@ namespace NewtouchHIS.Base.Domain
         public string id { get; set; }
 
         /// <summary>
-        /// parentId tương ứng với id cấp trên trong câyid
+        /// parentId tương ứng với id cấp trên trong cây id
         /// </summary>
         public string parentId { get; set; }
 
@@ -37,7 +37,7 @@ namespace NewtouchHIS.Base.Domain
         public int? checkstate { get; set; }
 
         /// <summary>
-        /// Có hay khôngshow check
+        /// Có hay không show check
         /// </summary>
         public bool showcheck { get; set; }
 

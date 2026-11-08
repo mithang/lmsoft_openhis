@@ -186,7 +186,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string SXYS { get; set; }
 
         /// <summary>
-        /// Mãviên
+        /// Mã viên
         /// </summary>
         /// <returns></returns>
         public string BMY { get; set; }

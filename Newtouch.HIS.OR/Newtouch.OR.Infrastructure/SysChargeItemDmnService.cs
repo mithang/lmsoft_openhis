@@ -22,7 +22,7 @@ namespace Newtouch.OR.ManageSystem.DomainServices
         {
         }
         /// <summary>
-        /// Trang mẫu thu phíindex list
+        /// Trang mẫu thu phí index list
         /// </summary>
         /// <returns></returns>
         public IList<SysChargeTemplateGridVO> Search(Pagination pagination, string keyword,string ks, string organizeId)

@@ -39,24 +39,24 @@ namespace Newtouch.Domain.ValueObjects.Queue
         public decimal? fee { get; set; }
         public int queno { get; set; }
         /// <summary>
-        /// là Khônghiện tạigọisố
+        /// là Không hiện tại gọi số
         /// </summary>
         public int iscalling { get; set; }
         /// <summary>
-        /// gọisố Trạng thái 1 đãkýđến 2 đãgọisố  3 đãquasố  4 đãứngđáp(gọisố Kết thúc)
+        /// gọi số Trạng thái 1 đã ký đến 2 đã gọi số  3 đã qua số  4 đã ứng đáp(gọi số Kết thúc)
         /// </summary>
         public int calledstu { get; set; }
         /// <summary>
-        /// là Khôngquasố
+        /// là Không qua số
         /// </summary>
         public int ispassed { get; set; }
         /// <summary>
-        /// gọisố lầnsố
+        /// gọi số lần số
         /// </summary>
         public int calledtimes { get; set; }
         public string memo { get; set; }
         /// <summary>
-        /// kýđến Thời gian
+        /// ký đến Thời gian
         /// </summary>
         public DateTime qdsj { get; set; }
     }

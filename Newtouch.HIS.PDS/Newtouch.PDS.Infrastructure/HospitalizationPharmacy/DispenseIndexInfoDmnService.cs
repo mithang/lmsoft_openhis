@@ -61,8 +61,8 @@ namespace Newtouch.HIS.DomainServices
             var sqlParList = new List<SugarParameter>();
             sqlParList.Add(new SugarParameter("@ai_nm", model.zxId));//Mã nội bộ đơn thuốc
             sqlParList.Add(new SugarParameter("@ai_mxnm", ""));//Mã nội bộ chi tiết
-            sqlParList.Add(new SugarParameter("@as_yp", model.ypCode.Trim()));//Thuốccode@ai_mxnm
-            sqlParList.Add(new SugarParameter("@as_yjbm", model.lyyf.Trim()));//Bộ phận dược(tương ứngks)  
+            sqlParList.Add(new SugarParameter("@as_yp", model.ypCode.Trim()));//Thuốc code@ai_mxnm
+            sqlParList.Add(new SugarParameter("@as_yjbm", model.lyyf.Trim()));//Bộ phận dược(tương ứng ks)  
             sqlParList.Add(new SugarParameter("@adc_sl", model.sl));//Số lượng
             sqlParList.Add(new SugarParameter("@ai_cls", model.cls));//Số chia lẻ(Không cần truyền chia lẻ1)
             sqlParList.Add(new SugarParameter("@OrganizeId", OperatorProvider.GetCurrent().OrganizeId));//OrganizeId
@@ -97,8 +97,8 @@ namespace Newtouch.HIS.DomainServices
             outpar.Direction = System.Data.ParameterDirection.Output;
             var sqlParList = new List<SugarParameter>();
             sqlParList.Add(new SugarParameter("@a_yzId", model.zxId));//Mã nội bộ đơn thuốc/Y lệnh ID
-            sqlParList.Add(new SugarParameter("@a_yp", model.ypCode));//Thuốccode
-            sqlParList.Add(new SugarParameter("@adt_tdrq", model.lyyf));//Bộ phận dược(tương ứngks)  
+            sqlParList.Add(new SugarParameter("@a_yp", model.ypCode));//Thuốc code
+            sqlParList.Add(new SugarParameter("@adt_tdrq", model.lyyf));//Bộ phận dược(tương ứng ks)  
             sqlParList.Add(new SugarParameter("@a_yjbm", model.sl));//Số lượng
             sqlParList.Add(new SugarParameter("@@a_sl", model.cls));//Số chia lẻ(Không cần truyền chia lẻ1)    
             sqlParList.Add(new SugarParameter("@a_cls", model.jdrq));// Ngày lấy hồ sơ

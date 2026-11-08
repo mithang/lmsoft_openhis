@@ -12,7 +12,7 @@ namespace Newtouch.OR.ManageSystem.Domain.IDomainServices
     public interface ISysChargeItemDmnService
     {
         /// <summary>
-        /// Trang mẫu thu phíindex list
+        /// Trang mẫu thu phí index list
         /// </summary>
         /// <returns></returns>
         IList<SysChargeTemplateGridVO> Search(Pagination pagination, string keyword, string ks, string organizeId);

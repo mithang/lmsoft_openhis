@@ -33,7 +33,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region trang khởi tạo
         /// <summary>
-        /// ngoại trúkhámthìkhámngườilầnngườisốphânphân tích
+        /// ngoại trú khám thì khám người lần người số phân phân tích
         /// </summary>
         /// <returns></returns>
         public IActionResult NumberofOutpatientVisits()
@@ -41,7 +41,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
             return View();
         }
         /// <summary>
-        /// ngoại trúkhámthuvàophânphân tích
+        /// ngoại trú khám thu vào phân phân tích
         /// </summary>
         /// <returns></returns>
         public IActionResult NumberofOutpatientSalary()
@@ -120,7 +120,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
 
         /// <summary>
-        ///đượclấyngoại trúkhámthìkhámngườisố
+        ///được lấy ngoại trú khám thì khám người số
         /// </summary>
         /// <returns></returns>
         public IActionResult GetOutpatientVisitNum()
@@ -130,7 +130,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
         }
 
         /// <summary>
-        /// đượclấyngoại trúkhámthìkhámngườilần
+        /// được lấy ngoại trú khám thì khám người lần
         /// </summary>
         /// <returns></returns>
         public IActionResult GetOutpatientVisitPerNum()
@@ -141,7 +141,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
 
         /// <summary>
-        /// đượclấyngoại trúkhámthuvàothốngtính
+        /// được lấy ngoại trú khám thu vào thống tính
         /// </summary>
         /// <returns></returns>
         public IActionResult GetOutpatientSalaryNum()

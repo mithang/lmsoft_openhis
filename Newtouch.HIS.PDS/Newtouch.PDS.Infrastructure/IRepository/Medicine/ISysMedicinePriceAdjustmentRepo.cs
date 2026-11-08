@@ -9,14 +9,14 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysMedicinePriceAdjustmentRepo : IRepositoryBase<SysMedicinePriceAdjustmentEntity>
     {
         /// <summary>
-        /// Lấy một điều chỉnh giáentity Chưa duyệt Chưa thực hiện
+        /// Lấy một điều chỉnh giá entity Chưa duyệt Chưa thực hiện
         /// </summary>
         /// <param name="ypCode"></param>
         /// <returns></returns>
         SysMedicinePriceAdjustmentEntity GetMedicinePriceAdjustmentNotApproveEntity(string ypCode);
 
         /// <summary>
-        /// Lấy một điều chỉnh giáentity Đã duyệt Chưa thực hiện
+        /// Lấy một điều chỉnh giá entity Đã duyệt Chưa thực hiện
         /// </summary>
         /// <param name="ypCode"></param>
         /// <returns></returns>

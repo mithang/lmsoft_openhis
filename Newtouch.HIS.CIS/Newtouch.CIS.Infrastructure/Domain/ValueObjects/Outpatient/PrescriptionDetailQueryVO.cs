@@ -7,11 +7,11 @@ namespace Newtouch.Domain.ValueObjects
     public class PrescriptionDetailQueryVO: PrescriptionDetailEntity
     {
         /// <summary>
-        /// Thuốcbảng từ điểncủajldw
+        /// Thuốc bảng từ điển của jldw
         /// </summary>
         public string redundant_jldw { get; set; }
         /// <summary>
-        /// Lưuchọncủajldw cùngmcjldw
+        /// Lưu chọn của jldw cùng mcjldw
         /// </summary>
         public string mcjldwwwwwww { get; set; }
         /// <summary>
@@ -23,7 +23,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string ypgg { get; set; }
         /// <summary>
-        /// Đơn vị ngoại trútháokhôngsố(mởcủa,tínhtiềncủamộtđịnhlàdùng Đơn vị ngoại trú)
+        /// Đơn vị ngoại trú tháo không số(mở của,tính tiền của một định là dùng Đơn vị ngoại trú)
         /// </summary>
         public decimal? cls { get; set; }
         /// <summary>

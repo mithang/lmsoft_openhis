@@ -31,7 +31,7 @@ namespace Newtouch.Domain.ValueObjects
         public string ypmc { get; set; }
 
         /// <summary>
-        /// Liều mỗi lần điều trị  kimđối Phục hồi chức năng Mục
+        /// Liều mỗi lần điều trị  kim đối Phục hồi chức năng Mục
         /// </summary>
         public int? mczll { get; set; }
 
@@ -56,7 +56,7 @@ namespace Newtouch.Domain.ValueObjects
         public string pcCode { get; set; }
 
         /// <summary>
-        /// Thuốctrongcủa Số lượng=Tổng lượng   Phục hồi chức năngtrongcủa Tổng lượng=Tổng lượng
+        /// Thuốc trong của Số lượng=Tổng lượng   Phục hồi chức năng trong của Tổng lượng=Tổng lượng
         /// </summary>
         public int? zl { get; set; }
 
@@ -114,11 +114,11 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public DateTime? zxsj { get; set; }
         /// <summary>
-        /// Bảo hiểm y tếduy nhấtmộtmã
+        /// Bảo hiểm y tế duy nhất một mã
         /// </summary>
         public string ybwym { get; set; }
         /// <summary>
-        /// hạnchế Sử dụng Cờ
+        /// hạn chế Sử dụng Cờ
         /// </summary>
         public string xzsybz { get; set; }
 
@@ -129,7 +129,7 @@ namespace Newtouch.Domain.ValueObjects
         public string ztCode { get; set; }
 
         /// <summary>
-        /// Kháng sinhnguyên nhân
+        /// Kháng sinh nguyên nhân
         /// </summary>
         public string kssReason { get; set; }
         public string bwff { get; set; }
@@ -153,14 +153,14 @@ namespace Newtouch.Domain.ValueObjects
         public string zysm { get; set; }
 
         /// <summary>
-        /// Đơn thuốckèmmangtạocủa Thường quy Đơn thuốc
+        /// Đơn thuốc kèm mang tạo của Thường quy Đơn thuốc
         /// </summary>
         public string syncfbz { get; set; }
 		#endregion
 
 
 		/// <summary>
-		/// Đơn thuốcid
+		/// Đơn thuốc id
 		/// </summary>
 		public string cfId { get; set; }
 

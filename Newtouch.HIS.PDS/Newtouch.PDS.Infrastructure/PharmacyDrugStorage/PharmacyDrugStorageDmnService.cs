@@ -1172,7 +1172,7 @@ AND (b.Name LIKE '%'+@keyword+'%' OR b.py LIKE '%'+@keyword+'%' OR b.Code LIKE '
         #region Đặt trước tài nguyên
 
         /// <summary>
-        /// Đặt trước tài nguyên (Đóng băng tồn kho,ghimz_cfmxphbảng)
+        /// Đặt trước tài nguyên (Đóng băng tồn kho,ghimz_cfmxph bảng)
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>

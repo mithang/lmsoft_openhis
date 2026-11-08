@@ -8,28 +8,28 @@ namespace Newtouch.Domain.IDomainServices
     public interface IInspectionTemplateDmnService
     {
         /// <summary>
-        /// Theotype Tra cứu Xét nghiệm Kiểm tramẫu
+        /// Theotype Tra cứu Xét nghiệm Kiểm tra mẫu
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="jyjcmbLx"></param>
         List<InspectionTemplateTreeVO> GetTemplateListByType(string orgId, int jyjcmbLx);
 
         /// <summary>
-        /// TheombId Tra cứumẫudưới Bộ mẫu Mục
+        /// TheombId Tra cứu mẫu dưới Bộ mẫu Mục
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mbId"></param>
         List<GPackageTreeDetailVO> GetTemplateDetailByMbId(string orgId, string mbId, string ztKeyword);
 
         /// <summary>
-        /// TheoztIdTra cứu Bộ mẫudướicủa Mục thu phí
+        /// TheoztIdTra cứu Bộ mẫu dưới của Mục thu phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ztId"></param>
         /// <returns></returns>
         List<GPackageZTTreeDetailVO> GetGPackageDetailByZtId(string orgId, string ztId,string mbId=null);
         /// <summary>
-        /// Lấy Bộ mẫuthông tin
+        /// Lấy Bộ mẫu thông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ztId"></param>

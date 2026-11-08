@@ -64,7 +64,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
 
         #region Kỹ thuật viên trị liệuCông việc Danh sách
         /// <summary>
-        /// tratra cứuđiều trịđiều trịsưcônglàmcộtbảng
+        /// tratra cứu điều trị điều trị sư công làm cột bảng
         /// </summary>
         /// <returns></returns>
         public IActionResult GetGridJson(Pagination pagination, string BeginDate, string EndDate, string hzxm, string zls, string dl)
@@ -102,7 +102,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        /// mớithêmxếpcathời gian,nêunộpđếnsốdữ liệukho
+        /// mới thêm xếp ca thời gian,nêu nộp đến số dữ liệu kho
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="orgId"></param>
@@ -113,7 +113,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        ///đượclấyphiếucáiđiều trịđiều trịsưphiếucáithángphầnxếpca
+        ///được lấy phiếu cái điều trị điều trị sư phiếu cái tháng phần xếp ca
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="orgId"></param>
@@ -124,7 +124,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        /// mãbiên tậpphiếucáiđiều trịđiều trịsưxếpca
+        /// mã biên tập phiếu cái điều trị điều trị sư xếp ca
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="orgId"></param>
@@ -135,7 +135,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        /// xóatrừxếpca
+        /// xóa trừ xếp ca
         /// </summary>
         /// <param name="keyvalue"></param>
         /// <returns></returns>
@@ -155,7 +155,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         #endregion
 
         /// <summary>
-        /// điều trịđiều trịsưcônglàmhiệu quảtỷ lệcộttrạng tháibiểu đồ
+        /// điều trị điều trị sư công làm hiệu quả tỷ lệ cột trạng thái biểu đồ
         /// </summary>
         public IActionResult GetVisitSC()
         {
@@ -175,7 +175,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
             if (string.IsNullOrWhiteSpace(time) || string.IsNullOrWhiteSpace(type))
             {
                 return Content("");
-                //throw FailedException("loạiloạihoặcthời giangiữalàrỗng!");
+                //throw FailedException("loại loại hoặc thời giangiữalàrỗng!");
             }
             if (!int.TryParse(time, out var timeVal))
             {

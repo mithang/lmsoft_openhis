@@ -20,9 +20,9 @@ namespace Newtouch.DomainServices.Inpatient
         public DeptMedicineApplyNoDmnService() : base()
         {
         }
-        #region Khoachuẩn bị thuốc
+        #region Khoa chuẩn bị thuốc
         /// <summary>
-        /// Tra cứuchuẩn bị thuốc Phiếu Trạng thái
+        /// Tra cứu chuẩn bị thuốc Phiếu Trạng thái
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="sqdArr"></param>
@@ -85,7 +85,7 @@ where  organizeid=@orgId and zt=1 and djh =@djh
         }
 
         /// <summary>
-        /// Cập nhậttrả Khoa Tồn kho Phiếu Trạng thái
+        /// Cập nhật trả Khoa Tồn kho Phiếu Trạng thái
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="sqdArr"></param>

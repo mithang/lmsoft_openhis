@@ -15,7 +15,7 @@ namespace Newtouch.CIS.APIRequest.Dto.TCM_HIS_01
         public string jzId { get; set; }
 
         /// <summary>
-        /// Tổ chứcid
+        /// Tổ chức id
         /// </summary>
         public string organizeId { get; set; }
     }

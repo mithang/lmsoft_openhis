@@ -42,7 +42,7 @@ namespace Newtouch.Domain.ValueObjects.Apply
         public string ksmc { get; set; }
 
         /// <summary>
-        /// tháokhôngsố
+        /// tháo không số
         /// </summary>
         public int? cls { get; set; }
         public decimal ztsl { get; set; }
@@ -60,7 +60,7 @@ namespace Newtouch.Domain.ValueObjects.Apply
         /// <returns></returns>
         public int? zxzq { get; set; }
         /// <summary>
-        /// Chu kỳ thực hiện Đơn vị -1:khôngquythìchu kỳ,0:ngày,1:giờ,2:Phút.Lưu ý:khilà-1khi,tuần Mã(zdm)làsốchữ(1234567)trongcủa Bất kỳ vàicáisốchữ
+        /// Chu kỳ thực hiện Đơn vị -1:không quy thì chu kỳ,0:ngày,1:giờ,2:Phút.Lưu ý:khi là-1khi,tuần Mã(zdm)là số chữ(1234567)trong của Bất kỳ vài cái số chữ
         /// </summary>
         /// <returns></returns>
         public int? zxzqdw { get; set; }

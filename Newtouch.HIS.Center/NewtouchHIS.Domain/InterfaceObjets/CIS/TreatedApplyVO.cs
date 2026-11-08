@@ -62,7 +62,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         /// Default:
         /// Nullable:True
         /// </summary>
-        [Required(ErrorMessage = "Bệnh nhânid không được để trống")]
+        [Required(ErrorMessage = "Bệnh nhân id không được để trống")]
         public string patid { get; set; }
         /// <summary>
         /// Khám bệnh Số thẻ
@@ -122,7 +122,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public string? mettingId { get; set; }
 
         /// <summary>
-        /// Desc:Đăng kýthông tin người
+        /// Desc:Đăng ký thông tin người
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -210,7 +210,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         /// Default:
         /// Nullable:True
         /// </summary>
-        [Required(ErrorMessage = "Bệnh nhânid không được để trống")]
+        [Required(ErrorMessage = "Bệnh nhân id không được để trống")]
         public string patid { get; set; }
         /// <summary>
         /// Khám bệnh Số thẻ
@@ -234,7 +234,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public string? mettingId { get; set; }
 
         /// <summary>
-        /// Desc:Đăng kýthông tin người(Có thể dùng cho Đăng ký Cuộc họp Phòng)
+        /// Desc:Đăng ký thông tin người(Có thể dùng cho Đăng ký Cuộc họp Phòng)
         /// Default:
         /// Nullable:True
         /// </summary>           

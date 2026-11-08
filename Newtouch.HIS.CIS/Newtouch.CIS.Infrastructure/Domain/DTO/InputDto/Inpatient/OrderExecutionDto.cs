@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.DTO.InputDto
 {
     /// <summary>
-    /// Y lệnhchi tiết
+    /// Y lệnh chi tiết
     /// </summary>
     public class OrderExecutionDto
     {
@@ -17,7 +17,7 @@ namespace Newtouch.Domain.DTO.InputDto
         /// </summary>
         public string yzId { get; set; }
         /// <summary>
-        /// lĩnhthuốcthứ tựsố
+        /// lĩnh thuốc thứ tự số
         /// </summary>
         public int? lyxh { get; set; }
         ///// <summary>
@@ -45,7 +45,7 @@ namespace Newtouch.Domain.DTO.InputDto
         /// </summary>
         public int? sl { get; set; }
         /// <summary>
-        /// uống,tĩnhgiọt...
+        /// uống,tĩnh giọt...
         /// </summary>
         public string zlff { get; set; }
         /// <summary>
@@ -53,15 +53,15 @@ namespace Newtouch.Domain.DTO.InputDto
         /// </summary>
         public string sjap { get; set; }
         /// <summary>
-        /// và Thực hiện Số lượngtương ứng
+        /// và Thực hiện Số lượng tương ứng
         /// </summary>
         public int? pcmc { get; set; }
         /// <summary>
-        /// dùnglượng
+        /// dùng lượng
         /// </summary>
         public string yl { get; set; }
         /// <summary>
-        /// dùnglượng Đơn vị
+        /// dùng lượng Đơn vị
         /// </summary>
         public string yldw { get; set; }
         /// <summary>
@@ -121,7 +121,7 @@ namespace Newtouch.Domain.DTO.InputDto
         /// </summary>
         public string cw { get; set; }
         /// <summary>
-        /// Cờ phát thuốc  0:chưaphát;1:đãxếp;2:đãphát;3:đãtrả
+        /// Cờ phát thuốc  0:chưa phát;1:đã xếp;2:đã phát;3:đã trả
         /// </summary>
         public char fybz { get; set; }
         /// <summary>
@@ -131,12 +131,12 @@ namespace Newtouch.Domain.DTO.InputDto
 
     }
     /// <summary>
-    /// Thực hiệnkếtnếu
+    /// Thực hiện kết nếu
     /// </summary>
     public class ActResult
     {
         /// <summary>
-        /// Thực hiệnkếtnếu
+        /// Thực hiện kết nếu
         /// </summary>
         public ActResult()
 
@@ -146,7 +146,7 @@ namespace Newtouch.Domain.DTO.InputDto
 
         }
         /// <summary>
-        /// là Khôngthành công
+        /// là Không thành công
         /// </summary>
         public bool IsSucceed { get; set; }
         /// <summary>
@@ -158,19 +158,19 @@ namespace Newtouch.Domain.DTO.InputDto
         /// </summary>
         public string ErrorMsg { get; set; }
         /// <summary>
-        /// Quay lạithông tin
+        /// Quay lại thông tin
         /// </summary>
         public dynamic Data { get; set; }
     }
 }
 
 /// <summary>
-/// dựđịnhthất bại mục
+/// dự định thất bại mục
 /// </summary>
 public class FailYzDetail : OrderExecutionDto
 {
     /// <summary>
-    /// thất bạinguyên nhân
+    /// thất bại nguyên nhân
     /// </summary>
     public string FailMsg { get; set; }
     /// <summary>

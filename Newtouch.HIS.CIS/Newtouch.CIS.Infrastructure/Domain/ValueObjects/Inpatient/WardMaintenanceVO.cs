@@ -14,7 +14,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string ChargeUtity { get; set; }
         public int ChargeNum { get; set; }
         public string ChargeItem { get; set; }
-        public string djbd { get; set; }//Cấp giường bệnhgắn Cờ
+        public string djbd { get; set; }//Cấp giường bệnh gắn Cờ
     }
     public class Dispensing
     {
@@ -70,7 +70,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
     }
 
     /// <summary>
-    /// rađi Chẩn đoán
+    /// ra đi Chẩn đoán
     /// </summary>
     public class PatOutAreaVO
     {
@@ -88,7 +88,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string fzzd3dm { get; set; }
         public string zdyzd { get; set; }
         /// <summary>
-        /// Xuất việntình hình EnumCYQK
+        /// Xuất viện tình hình EnumCYQK
         /// </summary>
         public string cyqk { get; set; }
         public string cyqk1 { get; set; }
@@ -108,7 +108,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
     }
 
     /// <summary>
-    /// vàokhu Chẩn đoán
+    /// vào khu Chẩn đoán
     /// </summary>
     public class PatInAreaVO
     {
@@ -118,47 +118,47 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string zyh { get; set; }
 
         /// <summary>
-        /// vàokhu Chẩn đoán1Tên
+        /// vào khu Chẩn đoán1Tên
         /// </summary>
         public string ryzdmc1 { get; set; }
 
         /// <summary>
-        /// vàokhu Chẩn đoán1Mã
+        /// vào khu Chẩn đoán1Mã
         /// </summary>
         public string ryzddm1 { get; set; }
 
         /// <summary>
-        /// vàokhu Chẩn đoán1ICD10
+        /// vào khu Chẩn đoán1ICD10
         /// </summary>
         public string ryzdICD101 { get; set; }
 
         /// <summary>
-        /// vàokhu Chẩn đoán2Tên
+        /// vào khu Chẩn đoán2Tên
         /// </summary>
         public string ryzdmc2 { get; set; }
 
         /// <summary>
-        /// vàokhu Chẩn đoán2Mã
+        /// vào khu Chẩn đoán2Mã
         /// </summary>
         public string ryzddm2 { get; set; }
 
         /// <summary>
-        /// vàokhu Chẩn đoán2ICD10
+        /// vào khu Chẩn đoán2ICD10
         /// </summary>
         public string ryzdICD102 { get; set; }
 
         /// <summary>
-        /// vàokhu Chẩn đoán3Tên
+        /// vào khu Chẩn đoán3Tên
         /// </summary>
         public string ryzdmc3 { get; set; }
 
         /// <summary>
-        /// vàokhu Chẩn đoán3Mã
+        /// vào khu Chẩn đoán3Mã
         /// </summary>
         public string ryzddm3 { get; set; }
 
         /// <summary>
-        /// vàokhu Chẩn đoán3ICD10
+        /// vào khu Chẩn đoán3ICD10
         /// </summary>
         public string ryzdICD103 { get; set; }
     }

@@ -17,7 +17,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public string xmmc { get; set; }
         /// <summary>
-        /// dathửkếtnếu
+        /// da thử kết nếu
         /// </summary>
         public string result { get; set; }
         /// <summary>

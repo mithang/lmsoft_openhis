@@ -25,7 +25,7 @@ namespace Newtouch.Domain.ValueObjects
         public string nl { get; set; }
 
         /// <summary>
-        /// giường ký tựsố
+        /// giường ký tự số
         /// </summary>
         public string BedNo { get; set; }
         public string rqrq { get; set; }

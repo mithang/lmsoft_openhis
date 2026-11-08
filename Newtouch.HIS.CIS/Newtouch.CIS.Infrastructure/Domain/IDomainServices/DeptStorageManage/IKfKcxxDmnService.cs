@@ -30,20 +30,20 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // string UpdateKcsl(List<UpdateKcslDTO> updateKcslDto);
 
         /// <summary>
-        /// đuổithêm Tồn kho,không Sửađôngkết Số lượng Quay lạihìnhhưởngdòng
+        /// đuổi thêm Tồn kho,không Sửa đông kết Số lượng Quay lại hình hưởng dòng
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="warehouseId"></param>
-        /// <param name="sl">Đơn vị nhỏ nhất Số lượng  phảicầnlàđangsố</param>
+        /// <param name="sl">Đơn vị nhỏ nhất Số lượng  phải cần là đang số</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
-        /// <returns>Quay lạihìnhhưởngdòng</returns>
+        /// <returns>Quay lại hình hưởng dòng</returns>
         int AddKcsl(string productId, string pc, string ph, string warehouseId, int sl, string organizeId, string userCode);
         
         // // /// <summary>
-        // // /// Sửa Tồn kho Số lượng,không Sửađôngkết Số lượng
+        // // /// Sửa Tồn kho Số lượng,không Sửa đông kết Số lượng
         // // /// </summary>
         // // /// <param name="updateKcslDto"></param>
         // // /// <returns></returns>
@@ -51,7 +51,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // //
         // //
         // // // /// <summary>
-        // // // /// Sửa Tồn kho Số lượng,không Sửađôngkết Số lượng
+        // // // /// Sửa Tồn kho Số lượng,không Sửa đông kết Số lượng
         // // // /// </summary>
         // // // /// <param name="updateKcslDto"></param>
         // // // /// <param name="db"></param>
@@ -59,7 +59,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // // // string JustSubtractKcslNoTrans(List<UpdateKcslDTO> updateKcslDto, EFDbTransaction db = null);
         // // //
         // // // /// <summary>
-        // // // /// Sửa Tồn kho Số lượng,không Sửađôngkết Số lượng
+        // // // /// Sửa Tồn kho Số lượng,không Sửa đông kết Số lượng
         // // // /// </summary>
         // // // /// <param name="updateKcslDto"></param>
         // // // /// <param name="db"></param>
@@ -67,7 +67,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // // // string JustSubtractKcsl(UpdateKcslDTO updateKcslDto, EFDbTransaction db = null);
         //
         // /// <summary>
-        // /// giảm Tồn kho Số lượng,đôngkết Số lượng(Xuất khocó thểdùng)
+        // /// giảm Tồn kho Số lượng,đông kết Số lượng(Xuất kho có thể dùng)
         // /// </summary>
         // /// <param name="productId"></param>
         // /// <param name="pc"></param>
@@ -93,7 +93,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // string Unfreeze(string productId, string pc, string ph, string warehouseId, int sl, string organizeId, string userCode);
         //
         // /// <summary>
-        // /// đôngkết Tồn kho
+        // /// đông kết Tồn kho
         // /// </summary>
         // /// <param name="sl">Đơn vị nhỏ nhất Số lượng</param>
         // /// <param name="pc"></param>
@@ -106,7 +106,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // string FrozenKc(int sl, string pc, string ph, string productId, string organizeId, string warehouseId, string userCode);
         //
         // /// <summary>
-        // /// ngoàibộ Nhập kho khấu Tồn kho(Hủy bỏ)
+        // /// ngoài bộ Nhập kho khấu Tồn kho(Hủy bỏ)
         // /// </summary>
         // /// <param name="sl">Đơn vị nhỏ nhất Số lượng</param>
         // /// <param name="pc"></param>
@@ -133,7 +133,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // string RevokeInstorage(int sl, string pc, string ph, string productId, string organizeId, string rkbm, string ckbm, string userCode);
 
         /// <summary>
-        /// Lấy Tồn khothông tin kết chuyểndùng
+        /// Lấy Tồn kho thông tin kết chuyển dùng
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>

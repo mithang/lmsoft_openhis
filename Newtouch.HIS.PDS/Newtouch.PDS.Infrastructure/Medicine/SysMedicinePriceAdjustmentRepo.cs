@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Repository
         /// <param name="databaseFactory"></param>
         
         /// <summary>
-        /// Lấy một điều chỉnh giáentity Chưa duyệt Chưa thực hiện
+        /// Lấy một điều chỉnh giá entity Chưa duyệt Chưa thực hiện
         /// </summary>
         /// <param name="ypCode"></param>
         /// <returns></returns>
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Lấy một điều chỉnh giáentity Đã duyệt Chưa thực hiện
+        /// Lấy một điều chỉnh giá entity Đã duyệt Chưa thực hiện
         /// </summary>
         /// <param name="ypCode"></param>
         /// <returns></returns>

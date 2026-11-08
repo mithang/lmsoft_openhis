@@ -312,7 +312,7 @@ on a.applyno=b.applyno and b.px=1
                         {
                             var newapplyinfo = NewApplyInfo(dto, pat);
 
-                            #region Chèn vàoCISbảng y lệnh
+                            #region Chèn vàoCIS bảng y lệnh
                             //JObject json = JObject.Parse(datas);
                             //Temporary_ordersEntity toe = new Temporary_ordersEntity();
                             //toe.OrganizeId = dto.organizeid;

@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Sett.Web.Controllers
 {
     /// <summary>
-    /// Home/Indexkhi tải mặc địnhnhậnthêmtảicủa chậmlưusốdữ liệu
+    /// Home/Indexkhi tải mặc định nhận thêm tải của chậm lưu số dữ liệu
     /// </summary>
     public class ClientsDataController : ClientsDataBaseController
     {
@@ -36,7 +36,7 @@ namespace Newtouch.Sett.Web.Controllers
         }
 
         /// <summary>
-        /// đượclấycùngbướccủabộphân
+        /// được lấy cùng bước của bộ phân
         /// </summary>
         [HttpGet]
         [HandlerAjaxOnly]
@@ -49,7 +49,7 @@ namespace Newtouch.Sett.Web.Controllers
         }
 
         /// <summary>
-        /// đượclấykhácbướccủabộphân (enums the QC pages need: ApplyTypeEnum, ApplyStatusEnum)
+        /// được lấy khác bước của bộ phân (enums the QC pages need: ApplyTypeEnum, ApplyStatusEnum)
         /// </summary>
         [HttpGet]
         [HandlerAjaxOnly]

@@ -81,7 +81,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
             {
                 organizeId = base.GetAuthOrganizeId();  //mặc định quyền OrganizeId
             }
-            //bộ nhớ đệmstart
+            //bộ nhớ đệm start
             var organizedata = await _sysOrgDmnService.GetOrganizeTree(organizeId);
             if (!isContansChildOrg)
             {
@@ -141,8 +141,8 @@ namespace HIS.SSO.Areas.SysManage.Controllers
                 tree.hasChildren = orgDetpData.Count > 0 || orgUserStaffData.Count > 0 || organizedata.Any(p => p.ParentId == orgItem.OrganizeId);
                 treeList.Add(tree);
             }
-            //bộ nhớ đệmend
-            IList<FirstSecond> checkedUserList = null; //đãcheckedngười dùng của
+            //bộ nhớ đệm end
+            IList<FirstSecond> checkedUserList = null; //đã checked người dùng của
             if (from == "rolerelatioinuser" && !string.IsNullOrWhiteSpace(keyValue))   //vai trò đã liên kết người dùng
             {
                 checkedUserList = await _userRoleAuthDmnService.GetCurUserIdListByRoleId(keyValue);
@@ -170,7 +170,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
                 while (count > 0)
                 {
                     count = treeList.RemoveAll(p => !p.showcheck && !p.hasChildren);
-                    //điều chỉnh lại cây xóa không có cấp dưới(cấp dưới vừa bị dời đi) lại không hiển thịshowcheckcủa
+                    //điều chỉnh lại cây xóa không có cấp dưới(cấp dưới vừa bị dời đi) lại không hiển thị show check của
                     treeList.RemoveAll(p => !p.showcheck && !treeList.Any(sub => sub.parentId == p.id));
                 }
             }

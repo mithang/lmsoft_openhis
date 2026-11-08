@@ -3,12 +3,12 @@ using System;
 namespace Newtouch.Domain.ViewModels
 {
     /// <summary>
-    /// rakhám Bác sĩthông tin
+    /// ra khám Bác sĩ thông tin
     /// </summary>
     public class VisitDeptSetVO
     {
         /// <summary>
-        /// viêncông Họ tên
+        /// viên công Họ tên
         /// </summary>
         public string staffName { get; set; }
 
@@ -18,23 +18,23 @@ namespace Newtouch.Domain.ViewModels
         public string account { get; set; }
 
         /// <summary>
-        /// viêncông Mã nhân viên
+        /// viên công Mã nhân viên
         /// </summary>
         public string ysgh { get; set; }
 
         /// <summary>
-        /// sởthuộc Khoa Mã
+        /// sở thuộc Khoa Mã
         /// </summary>
         public string subordinateDeptCode { get; set; }
 
         /// <summary>
-        /// sởthuộc Tên khoa
+        /// sở thuộc Tên khoa
         /// </summary>
         public string subordinateDeptName { get; set; }
     }
 
     /// <summary>
-    /// rakhám Khoachi tiết
+    /// ra khám Khoachi tiết
     /// </summary>
     public class VisitDeptDetail
     {
@@ -44,12 +44,12 @@ namespace Newtouch.Domain.ViewModels
         public string Id { get; set; }
 
         /// <summary>
-        /// tổ chứckếtcấu trúc
+        /// tổ chức kết cấu trúc
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// chứccông Tên
+        /// chức công Tên
         /// </summary>
         public string staffName { get; set; }
 
@@ -64,27 +64,27 @@ namespace Newtouch.Domain.ViewModels
         public string ysgh { get; set; }
 
         /// <summary>
-        /// rakhám Khoa Mã(gói Bao gồm thuộc Khoa)
+        /// ra khám Khoa Mã(gói Bao gồm thuộc Khoa)
         /// </summary>
         public string visitksCode { get; set; }
 
         /// <summary>
-        /// rakhám Tên khoa(gói Bao gồm thuộc Khoa)
+        /// ra khám Tên khoa(gói Bao gồm thuộc Khoa)
         /// </summary>
         public string visitDeptName { get; set; }
 
         /// <summary>
-        /// rakhám Loại  1-thông thường Ngoại trú;2-gấpkhám;3-chuyên gia Ngoại trú
+        /// ra khám Loại  1-thông thường Ngoại trú;2-gấp khám;3-chuyên gia Ngoại trú
         /// </summary>
         public int czlx { get; set; }
 
         /// <summary>
-        /// sởthuộc Khoa Mã
+        /// sở thuộc Khoa Mã
         /// </summary>
         public string SubordinateDepartments { get; set; }
 
         /// <summary>
-        /// sởthuộc Tên khoa
+        /// sở thuộc Tên khoa
         /// </summary>
         public string subordinateDeptName { get; set; }
 
@@ -99,7 +99,7 @@ namespace Newtouch.Domain.ViewModels
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// tạongười
+        /// tạo người
         /// </summary>
         public string CreatorCode { get; set; }
 
@@ -109,7 +109,7 @@ namespace Newtouch.Domain.ViewModels
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Sửangười
+        /// Sửa người
         /// </summary>
         public string LastModifierCode { get; set; }
     }

@@ -18,7 +18,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 {
 
     /// <summary>
-    /// baphươngmụcghiđốitheo
+    /// ba phương mục ghi đối theo
     /// </summary>
     [Area("SystemManage")]
 
@@ -119,7 +119,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         #region Main
 
         /// <summary>
-        /// Hộp chọn by Code đượclấychữđiểnhạng
+        /// Hộp chọn by Code được lấy chữ điển hạng
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>

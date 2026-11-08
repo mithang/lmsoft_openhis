@@ -75,7 +75,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Tra cứu Kiểm kêthông tin
+        /// Tra cứu Kiểm kê thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inventorySearchDTO"></param>
@@ -93,7 +93,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Tra cứu Kiểm kêthông tin khôngphút Lô
+        /// Tra cứu Kiểm kê thông tin không phút Lô
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inventorySearchDTO"></param>
@@ -137,7 +137,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// Kết thúc Kiểm kê
         /// </summary>
         /// <param name="pdId">Kiểm kê phiếu ID</param>
-        /// <param name="autoCarryDown">null/0:khôngtựđộngkết chuyển  1:tựđộngkết chuyển</param>
+        /// <param name="autoCarryDown">null/0:không tự động kết chuyển  1:tự động kết chuyển</param>
         /// <returns></returns>
         public IActionResult EndInventory(long pdId, string autoCarryDown)
         {

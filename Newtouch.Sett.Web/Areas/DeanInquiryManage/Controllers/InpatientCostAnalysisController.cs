@@ -44,7 +44,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
             return Content(dto.ToJson());
         }
         /// <summary>
-        /// Tra cứu của viện trưởng-Phân tích chi phí nội trú_khoaphòngphídùngphânphân tíchbộphân
+        /// Tra cứu của viện trưởng-Phân tích chi phí nội trú_khoa phòng phí dùng phân phân tích bộ phân
         /// </summary>
         public IActionResult ZYFYFX_KSFYFXDTO(string ksrq, string jsrq, string rtype)
         {
@@ -60,7 +60,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
             return Content(dto.ToJson());
         }
         /// <summary>
-        /// Tra cứu của viện trưởng-Phân tích chi phí nội trú_thốngtínhbiểu đồ
+        /// Tra cứu của viện trưởng-Phân tích chi phí nội trú_thống tính biểu đồ
         /// </summary>
         /// <param name="ksrq"></param>
         /// <param name="jsrq"></param>

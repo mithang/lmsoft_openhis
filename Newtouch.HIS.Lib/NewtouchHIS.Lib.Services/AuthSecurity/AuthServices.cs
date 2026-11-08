@@ -5,7 +5,7 @@ namespace NewtouchHIS.Lib.Services.AuthSecurity
     public class AuthSecurityServices
     {
         /// <summary>
-        /// Tạo thông tin ủy quyền ứng dụngkey
+        /// Tạo thông tin ủy quyền ứng dụng key
         /// </summary>
         /// <param name="keyStr"></param>
         /// <returns></returns>

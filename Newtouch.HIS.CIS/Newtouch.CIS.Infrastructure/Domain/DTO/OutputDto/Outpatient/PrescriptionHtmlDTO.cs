@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// trangmặt Gửiquađếncủa
+    /// trang mặt Gửi qua đến của
     /// </summary>
     public class PrescriptionHtmlDTO
     {
@@ -14,7 +14,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string cflx { get; set; }
 
         /// <summary>
-        /// Đơn thuốcthông tin
+        /// Đơn thuốc thông tin
         /// </summary>
         public List<PrescriptionHtmlVO> cfHtml;
     }

@@ -26,7 +26,7 @@ namespace Newtouch.DomainServices.Inpatient
         { }
 
         /// <summary>
-        /// trongbộloạiđịnhnghĩa(một lầntính Sử dụng)
+        /// trong bộ loại định nghĩa(một lần tính Sử dụng)
         /// </summary>
         public class UncheckedAdviceCount
         {
@@ -39,7 +39,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// Lấyở Khu bệnhcủabệnh nhânđối tượngtậphợp
+        /// Lấy ở Khu bệnh của bệnh nhân đối tượng tập hợp
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -232,7 +232,7 @@ WHERE   1 = 1");
         }
 
         /// <summary>
-        /// Lấyđãra khỏi khucủabệnh nhânđối tượngtậphợp
+        /// Lấy đã ra khỏi khu của bệnh nhân đối tượng tập hợp
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -304,7 +304,7 @@ FROM    dbo.zy_brxxk zyxx
         }
 
         /// <summary>
-        /// Nhập việnbệnh nhân Lọc
+        /// Nhập viện bệnh nhân Lọc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="bq"></param>
@@ -381,7 +381,7 @@ where zyxx.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// Số nhập viện,Họ tên,Số thẻ Lấybệnh nhân Thông tin cơ bản Họ tên,Giới tính,Tuổi,bệnh nhân Tính chất,Ngày nhập viện
+        /// Số nhập viện,Họ tên,Số thẻ Lấy bệnh nhân Thông tin cơ bản Họ tên,Giới tính,Tuổi,bệnh nhân Tính chất,Ngày nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -409,7 +409,7 @@ where zyxx.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// Số nhập viện Lấybệnh nhân Thông tin cơ bản Họ tên,Giới tính,Tuổi,bệnh nhân Tính chất
+        /// Số nhập viện Lấy bệnh nhân Thông tin cơ bản Họ tên,Giới tính,Tuổi,bệnh nhân Tính chất
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -454,7 +454,7 @@ where zyxx.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// Nhập việnbệnh nhân Lọc
+        /// Nhập viện bệnh nhân Lọc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="bq"></param>
@@ -502,7 +502,7 @@ where zyxx.OrganizeId = @orgId";
             return this.FindList<InPatientNursingInputVO>(sql,  pars.ToArray());
         }
         /// <summary>
-        /// Lấy Tất cảbệnh nhâncâythông tin
+        /// Lấy Tất cả bệnh nhân cây thông tin
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
@@ -558,7 +558,7 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
             return this.FirstOrDefault<InpWardPatTreeVO>(sql, par.ToArray());
         }
         /// <summary>
-        /// Nhập việnnhiềubệnh nhânđiều dưỡngnhập
+        /// Nhập viện nhiều bệnh nhân điều dưỡng nhập
         /// </summary>
         /// <param name="entity"></param>
         public void submitmutiple(List<InpatientVitalSignsEntity> entity,string orgId,int? sjd,DateTime rq, string flag)
@@ -581,14 +581,14 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
                         }
                         if (db.IQueryable<InpatientVitalSignsEntity>(p => p.zyh == item.zyh && p.rq == item.rq && p.sj == item.sj && p.zdysjd == item.zdysjd && p.lrflag == item.lrflag && p.zt == "1").Any())
                         {
-                            throw new FailedException("InpatientVitalSigns_Repeated_Error", "trùng lặpnhập");
+                            throw new FailedException("InpatientVitalSigns_Repeated_Error", "trùng lặp nhập");
                         }
                         item.OrganizeId = orgId;
                         
                         item.rq = rq;
                         item.lrflag = flag;
                         item.Create(true);
-                        if (flag == "1")//tựđịnhnghĩanhập
+                        if (flag == "1")//tự định nghĩa nhập
                         {
                             item.zdysjd = sjd.ToString();
                         }
@@ -732,7 +732,7 @@ where prejs_id=@prejs_id
 
         }
         /// <summary>
-        /// tạm ứng Số tiềnđộnhắcnhắc
+        /// tạm ứng Số tiền độ nhắc nhắc
         /// </summary>
         /// <param name="patlist"></param>
         /// <param name="orgId"></param>
@@ -779,7 +779,7 @@ zyxx.zt = 1 and  zyxx.OrganizeId=@orgId and zyxx.zyh in (select col from dbo.f_s
 			var val1 = outParameter1.Value;
 			var val2 = outParameter2.Value;
 			var val3 = outParameter3.Value;//Trạng thái
-			var val4 = outParameter4.Value;//Lỗithông tin
+			var val4 = outParameter4.Value;//Lỗi thông tin
 			RefSuccess reflist = new RefSuccess();
 			if (val1 != null)
 			{

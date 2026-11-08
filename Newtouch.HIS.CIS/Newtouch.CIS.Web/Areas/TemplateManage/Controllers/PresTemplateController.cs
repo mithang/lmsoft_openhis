@@ -79,7 +79,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// Đơn thuốcmẫucây
+        /// Đơn thuốc mẫu cây
         /// </summary>
         /// <param name="mblx"></param>
         /// <param name="cflx"></param>
@@ -113,7 +113,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         
         
         /// <summary>
-        /// Lấy Đơn thuốcmẫu
+        /// Lấy Đơn thuốc mẫu
         /// </summary>
         /// <param name="mblx"></param>
         /// <param name="cflx"></param>
@@ -157,19 +157,19 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// Đơn thuốcmẫu chi tiếtdanh sách
+        /// Đơn thuốc mẫu chi tiết danh sách
         /// </summary>
         /// <param name="mbId"></param>
         /// <returns></returns>
         public IActionResult PresTemplateDetail()
         {
-            //Bảo hiểm y tếđiều khiểncode
+            //Bảo hiểm y tế điều khiển code
             ViewBag.ControlbrxzCode = _sysConfigRepo.GetValueByCode("ControlbrxzCode", OrganizeId);
             return View();
         }
 
         /// <summary>
-        /// Tra cứumẫuchi tiết json
+        /// Tra cứu mẫu chi tiết json
         /// </summary>
         /// <param name="mbId"></param>
         /// <param name="mxIdStr"></param>
@@ -191,7 +191,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             catch (System.Exception e)
             {
 
-                return Error("Xóathất bại");
+                return Error("Xóa thất bại");
             }
         }
 
@@ -231,7 +231,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
 
             var treeList = new List<TreeViewModel>();
 
-            //Đơn thuốcmẫu
+            //Đơn thuốc mẫu
             treeList.Add(new TreeViewModel()
             {
                 id = cflx.ToString(),
@@ -242,7 +242,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
                 isexpand = (expandCflx ?? 0) != 0 ? (cflx == expandCflx ? true : false) : true,
                 complete = true,
             });
-            //Đơn thuốcmẫuchi tiết
+            //Đơn thuốc mẫu chi tiết
             //var data = _presTemplateDmnService.SelectCfTemplateList(cflx,mblx,this.OrganizeId, this.UserIdentity.DepartmentCode, this.UserIdentity.rygh,mbKeyword);
             var data = _presTemplateRepo.IQueryable().Where(a => a.OrganizeId == this.OrganizeId && a.mblx == mblx && a.cflx == cflx && a.zt == "1" && a.mbmc.Contains(mbKeyword) && (mblx == 1 ? a.ysgh == this.UserIdentity.rygh : (mblx == 2 ? a.ksCode == this.UserIdentity.DepartmentCode : 1 == 1))).Select(a => new { a.mbmc, a.cflx, a.mbId, a.CreateTime, a.LastModifyTime }).OrderByDescending(a => a.CreateTime).ThenByDescending(a => a.LastModifyTime).ToList();
             foreach (var item in data)

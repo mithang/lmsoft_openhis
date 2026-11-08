@@ -12,7 +12,7 @@ namespace Newtouch.Application.Interface
     public interface IInfusionApp
     {
         /// <summary>
-        /// Đồng bộđãquyết toán Đơn thuốcthông tin
+        /// Đồng bộ đã quyết toán Đơn thuốc thông tin
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -22,7 +22,7 @@ namespace Newtouch.Application.Interface
         string SyncSettRpDetail(DateTime kssj, DateTime jssj, string fph, string kh, string mzh);
 
         /// <summary>
-        /// đãquyết toán Đơn thuốcchi tiết Tra cứu
+        /// đã quyết toán Đơn thuốc chi tiết Tra cứu
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -32,9 +32,9 @@ namespace Newtouch.Application.Interface
         List<OutpatientSettledRpQueryResponseDTO> OutpatientSettledRpQuery(DateTime kssj, DateTime jssj, string fph, string kh,string mzh);
 
         /// <summary>
-        /// phútnhóm
+        /// phút nhóm
         /// </summary>
-        /// <param name="tags">truyền dịchchi tiết ID</param>
+        /// <param name="tags">truyền dịch chi tiết ID</param>
         /// <param name="groupNo">Số nhóm</param>
         /// <returns></returns>
         string Grouping(List<long> tags, string groupNo);
@@ -42,16 +42,16 @@ namespace Newtouch.Application.Interface
         /// <summary>
         /// truyền dịch Bắt đầu
         /// </summary>
-        /// <param name="tags">truyền dịchchi tiết ID</param>
+        /// <param name="tags">truyền dịch chi tiết ID</param>
         /// <param name="startDateTime">Thời gian bắt đầu</param>
-        /// <param name="seatNum">ghếsố/Số giường</param>
+        /// <param name="seatNum">ghế số/Số giường</param>
         /// <returns></returns>
         string StartInfusion(List<long> tags, DateTime startDateTime, string seatNum);
 
         /// <summary>
         /// truyền dịch Kết thúc
         /// </summary>
-        /// <param name="tags">truyền dịchchi tiết ID</param>
+        /// <param name="tags">truyền dịch chi tiết ID</param>
         /// <param name="endDateTime">Thời gian kết thúc</param>
         /// <returns></returns>
         string EndInfusion(List<long> tags, DateTime endDateTime);
@@ -64,15 +64,15 @@ namespace Newtouch.Application.Interface
         string CreateGroupNo(string kh,string mzh);
 
         /// <summary>
-        /// Cài đặtghế ký tựsố
+        /// Cài đặt ghế ký tự số
         /// </summary>
         /// <param name="tag">Mục tiêu ID</param>
-        /// <param name="seatNum">ghế ký tựsố</param>
+        /// <param name="seatNum">ghế ký tự số</param>
         /// <returns></returns>
         string SetSeatNum(long tag, string seatNum);
 
         /// <summary>
-        /// Tra cứutruyền dịchthông tin
+        /// Tra cứu truyền dịch thông tin
         /// </summary>
         /// <param name="ids"></param>
         /// <param name="organizeId"></param>

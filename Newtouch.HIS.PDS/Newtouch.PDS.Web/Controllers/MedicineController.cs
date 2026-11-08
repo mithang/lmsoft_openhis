@@ -225,7 +225,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// Lấy người chịu trách nhiệmlist
+		/// Lấy người chịu trách nhiệm list
 		/// </summary>
 		/// <param name="inputCode"></param>
 		/// <returns></returns>
@@ -236,7 +236,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// Truy vấn thuốc lãi lỗlist
+		/// Truy vấn thuốc lãi lỗ list
 		/// </summary>
 		/// <param name="inputCode"></param>
 		/// <returns></returns>
@@ -458,7 +458,7 @@ namespace Newtouch.HIS.Web.Controllers
 			sheet.columns.ToList().ForEach(p =>
 			{
 				p.WidthTimes = (double)p.Width / colStanWidth;
-				p.Width = 0;    //Widthđều đặt thành0
+				p.Width = 0;    //Width đều đặt thành0
 			});
 
 			var path = DateTime.Now.ToString("\\\\yyyyMMdd\\\\HHmmssfff") + "Truy vấn lãi lỗ điều chỉnh giá" + ".xls";

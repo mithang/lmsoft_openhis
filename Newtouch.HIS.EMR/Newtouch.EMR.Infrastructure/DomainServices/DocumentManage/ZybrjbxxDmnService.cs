@@ -57,7 +57,7 @@ namespace Newtouch.EMR.DomainServices
         }
 
         /// <summary>
-        ///  Đồng bộhis Giao diện thông tin bệnh nhân(API)
+        ///  Đồng bộ his Giao diện thông tin bệnh nhân(API)
         /// </summary>
         /// <param name="lastUpdate"></param>
         /// <param name="user"></param>
@@ -132,7 +132,7 @@ namespace Newtouch.EMR.DomainServices
             }
         }
         /// <summary>
-        /// Đồng bộhis Thông tin bệnh nhân(Cơ sở dữ liệu)
+        /// Đồng bộ his Thông tin bệnh nhân(Cơ sở dữ liệu)
         /// </summary>
         /// <param name="OrgId"></param>
         /// <param name="Bdate"></param>

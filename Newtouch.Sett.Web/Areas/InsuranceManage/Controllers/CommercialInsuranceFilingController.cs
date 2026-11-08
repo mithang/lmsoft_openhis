@@ -34,7 +34,7 @@ namespace Newtouch.Sett.Web.Areas.InsuranceManage.Controllers
 
 
         /// <summary>
-        /// đượclấythươngbảo hiểmchuẩn bịhồ sơcộtbảng
+        /// được lấy thương bảo hiểm chuẩn bị hồ sơ cột bảng
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

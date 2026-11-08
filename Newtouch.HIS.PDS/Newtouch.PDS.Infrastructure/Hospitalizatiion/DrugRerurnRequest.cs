@@ -16,7 +16,7 @@ namespace Newtouch.PDS.Requset.Hospitalizatiion
         public string yzId { get; set; }
 
         /// <summary>
-        /// Thuốccode
+        /// Thuốc code
         /// </summary>
         [Required]
         public string ypCode { get; set; }

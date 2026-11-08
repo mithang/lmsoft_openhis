@@ -21,12 +21,12 @@ namespace Newtouch.Infrastructure
     {
         public readonly static string SiteTokenAPIHost = ConfigurationHelper.GetAppConfigValue("SiteTokenAPIHost");//tokenTrang
         public readonly static string SiteConmonAPIHost = ConfigurationHelper.GetAppConfigValue("SiteConmonAPIHost"); //apiTrang trung tâm
-        public readonly static string appId = ConfigurationHelper.GetAppConfigValue("AppId");//apiTruy cập trang trung tâmappid
+        public readonly static string appId = ConfigurationHelper.GetAppConfigValue("AppId");//apiTruy cập trang trung tâm app id
         public readonly static string accessAppId = ConfigurationHelper.GetAppConfigValue("Token_ApiManage");//Apimanage AppId
-        //Đệm đăng nhập người dùngtoken
+        //Đệm đăng nhập người dùng token
         public static string userCacheToken = "";
         /// <summary>
-        /// Lấy giao diện trung tâmapi token
+        /// Lấy giao diện trung tâm api token
         /// </summary>
         /// <returns></returns>
         public static string GetToken()
@@ -86,7 +86,7 @@ namespace Newtouch.Infrastructure
                 ApiManageResponse<T> apiResp = JsonConvert.DeserializeObject<ApiManageResponse<T>>(response);
                 if (apiResp.HttpStatus == (int)HttpStatusCode.Unauthorized)
                 {
-                    //Xác thực quyền thất bại Làm mớitoken
+                    //Xác thực quyền thất bại Làm mới token
                     token = GetUserTokenRefesh(user, token);
                     //Yêu cầu lại giao diện
                     response = HttpMethods.HttpPostWithToken(uri, data, token);
@@ -131,7 +131,7 @@ namespace Newtouch.Infrastructure
             return Token.BusData.data.Token;
         }
         /// <summary>
-        /// Lấy sau khi người dùng đăng nhậpapi Chung token
+        /// Lấy sau khi người dùng đăng nhập api Chung token
         /// </summary>
         /// <returns></returns>
         public static string GetUserToken(OperatorModel user)

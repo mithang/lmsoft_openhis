@@ -2,12 +2,12 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.KRequest
 {
     /// <summary>
-    /// biếtbiếtkho Hệ thốngtậpthànhyêu cầuthể
+    /// biết biết kho Hệ thống tập thành yêu cầu thể
     /// </summary>
     public class KRequestEntity
     {
         /// <summary>
-        /// tàinguồn Tên:K_LOOK
+        /// tài nguồn Tên:K_LOOK
         /// </summary>
         public string resource { get; set; }
     }

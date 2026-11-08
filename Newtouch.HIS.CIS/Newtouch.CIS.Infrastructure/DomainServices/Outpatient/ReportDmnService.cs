@@ -28,7 +28,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// Đơn thuốc ngoại trúphiếu
+        /// Đơn thuốc ngoại trú phiếu
         /// </summary>
         /// <param name="cfId"></param>
         /// <param name="mzh"></param>
@@ -38,15 +38,15 @@ namespace Newtouch.DomainServices
             OutpatientCFDDto dto = new OutpatientCFDDto();
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                throw new FailedException("Đơn thuốc Khóa chínhlàtrống");
+                throw new FailedException("Đơn thuốc Khóa chính là trống");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("Tổ chứclàtrống");
+                throw new FailedException("Tổ chức là trống");
             }
             if (string.IsNullOrWhiteSpace(mzh))
             {
-                throw new FailedException("Số khám ngoại trúlàtrống");
+                throw new FailedException("Số khám ngoại trú là trống");
             }
             dto.PatientInfo = GetOutpatientInfo(orgId, mzh);
             var par = new List<SqlParameter>();
@@ -69,15 +69,15 @@ namespace Newtouch.DomainServices
         public string GetJYDjson(string cfId, string mzh,string orgId) {
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                throw new FailedException("Đơn thuốc Khóa chínhlàtrống");
+                throw new FailedException("Đơn thuốc Khóa chính là trống");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("Tổ chứclàtrống");
+                throw new FailedException("Tổ chức là trống");
             }
             if (string.IsNullOrWhiteSpace(mzh))
             {
-                throw new FailedException("Số khám ngoại trúlàtrống");
+                throw new FailedException("Số khám ngoại trú là trống");
             }
             OutpatientJYDDto dto = new OutpatientJYDDto();
             dto.PatientInfo = GetOutpatientInfo(orgId, mzh);
@@ -105,15 +105,15 @@ and exists(select 1 from xt_jz  d with(nolock) where a.jzid=d.jzid and a.organiz
         public string GetJCDjson(string cfId, string mzh,string orgId) {
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                throw new FailedException("Đơn thuốc Khóa chínhlàtrống");
+                throw new FailedException("Đơn thuốc Khóa chính là trống");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("Tổ chứclàtrống");
+                throw new FailedException("Tổ chức là trống");
             }
             if (string.IsNullOrWhiteSpace(mzh))
             {
-                throw new FailedException("Số khám ngoại trúlàtrống");
+                throw new FailedException("Số khám ngoại trú là trống");
             }
             OutpatientJCDDto dto = new OutpatientJCDDto();
             dto.PatientInfo = GetOutpatientInfo(orgId, mzh);
@@ -151,15 +151,15 @@ and exists(select 1 from xt_jz  d with(nolock) where a.jzid=d.jzid and a.organiz
         {
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                throw new FailedException("Đơn thuốc Khóa chínhlàtrống");
+                throw new FailedException("Đơn thuốc Khóa chính là trống");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("Tổ chứclàtrống");
+                throw new FailedException("Tổ chức là trống");
             }
             if (string.IsNullOrWhiteSpace(mzh))
             {
-                throw new FailedException("Số khám ngoại trúlàtrống");
+                throw new FailedException("Số khám ngoại trú là trống");
             }
             OutpatientWHDDto dto = new OutpatientWHDDto();
             dto.PatientInfo = GetOutpatientInfo(orgId, mzh);
@@ -257,15 +257,15 @@ DROP TABLE #zhfz";
         {
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                throw new FailedException("Đơn thuốc Khóa chínhlàtrống");
+                throw new FailedException("Đơn thuốc Khóa chính là trống");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("Tổ chứclàtrống");
+                throw new FailedException("Tổ chức là trống");
             }
             if (string.IsNullOrWhiteSpace(mzh))
             {
-                throw new FailedException("Số khám ngoại trúlàtrống");
+                throw new FailedException("Số khám ngoại trú là trống");
             }
             OutpatientZSDDto dto = new OutpatientZSDDto();
             dto.PatientInfo = GetOutpatientInfo(orgId, mzh);
@@ -372,7 +372,7 @@ DROP TABLE #zhfz";
         }
 
         /// <summary>
-        /// Đơn thuốc ngoại trúphiếu
+        /// Đơn thuốc ngoại trú phiếu
         /// </summary>
         /// <param name="cfId"></param>
         /// <param name="mzh"></param>
@@ -382,15 +382,15 @@ DROP TABLE #zhfz";
             OutpatientZCYCFDto dto = new OutpatientZCYCFDto();
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                throw new FailedException("Đơn thuốc Khóa chínhlàtrống");
+                throw new FailedException("Đơn thuốc Khóa chính là trống");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("Tổ chứclàtrống");
+                throw new FailedException("Tổ chức là trống");
             }
             if (string.IsNullOrWhiteSpace(mzh))
             {
-                throw new FailedException("Số khám ngoại trúlàtrống");
+                throw new FailedException("Số khám ngoại trú là trống");
             }
             dto.PatientInfo = GetOutpatientInfo(orgId, mzh);
             var par = new List<SqlParameter>();
@@ -452,7 +452,7 @@ declare @list1 table(
             return dto.ToJson();
         }
 
-        #region Báo cáocôngcụ thể
+        #region Báo cáo công cụ thể
         public IList<ReportConfigVO> ReportList(Pagination pagination, string orgId,string rptname,string keyword)
         {
             string sql = @"select [Id],[OrganizeId],[AppId],[RptName],[RptHost],[RptUrl],[RptSource]
@@ -523,7 +523,7 @@ where OrganizeId = @orgId and zt = '1'";
                 });
             if (ck > 0)
             {
-                throw new FailedException("Báo cáo Mãđãtồn tạiở！");
+                throw new FailedException("Báo cáo Mã đã tồn tại ở！");
             }
 
             if (!string.IsNullOrWhiteSpace(keyValue))

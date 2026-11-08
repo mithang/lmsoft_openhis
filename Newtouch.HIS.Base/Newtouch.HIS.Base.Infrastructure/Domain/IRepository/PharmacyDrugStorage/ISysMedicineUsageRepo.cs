@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Domain.IRepository
         List<SysMedicineUsageEntity> GetMedicineUsageList(string keyword = null);
 
         /// <summary>
-        /// Sửaform
+        /// Sửa form
         /// </summary>
         SysMedicineUsageEntity GetMedicineUsageEntity(int? yfId);
         

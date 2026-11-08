@@ -51,7 +51,7 @@ namespace NewtouchHIS.Domain.IDomainService.EMR
         /// <returns></returns>
         Task<List<MedDiagListVo>> MedicalCenterDiaglist(string zyh, string orgId, DBEnum db = DBEnum.EmrDb);
         /// <summary>
-        /// Văn bản bệnh ántree
+        /// Văn bản bệnh án tree
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

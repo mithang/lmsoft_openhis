@@ -55,7 +55,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lấygridgiá trị
+        /// Lấy grid giá trị
         /// </summary>
         /// <returns></returns>
         public IActionResult GetdlGridJson(Pagination pagination, string keyword)
@@ -79,7 +79,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// thuphílớnloạidướikéokhung
+        /// thu phí lớn loại dưới kéo khung
         /// </summary>
         /// <returns></returns>
         public IActionResult GetsfdlSelect()

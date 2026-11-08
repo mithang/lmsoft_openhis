@@ -72,7 +72,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// Tiền xử lý Lắp rápmz_cfvàmz_cfmx Dữ liệu
+        /// Tiền xử lý Lắp ráp mz_cf và mz_cfmx Dữ liệu
         /// </summary>
         /// <param name="actResult"></param>
         protected override void BeforeAction(ActResult actResult)

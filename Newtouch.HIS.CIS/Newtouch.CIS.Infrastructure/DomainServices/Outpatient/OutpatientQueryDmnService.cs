@@ -130,7 +130,7 @@ ks.Name ";
             return vo;
         }
         /// <summary>
-        /// Ngoại trúchi tiếttàiliệuchi tiết
+        /// Ngoại trú chi tiết tài liệu chi tiết
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -219,7 +219,7 @@ and jz.blh=@blh ";
 			}, false);
 		}
         /// <summary>
-        /// Ngoại trú Hồ sơghi chép-lịch sử Đơn thuốcchi tiết
+        /// Ngoại trú Hồ sơ ghi chép-lịch sử Đơn thuốc chi tiết
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>

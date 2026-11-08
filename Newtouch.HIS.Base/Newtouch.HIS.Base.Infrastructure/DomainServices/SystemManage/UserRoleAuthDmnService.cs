@@ -114,7 +114,7 @@ and a.zt = '1' and b.zt = '1'";
         /// <param name="roleIdList"></param>
         public void UpdateUserRole(string userId, string orgId, string[] roleIdList)
         {
-            //vai tròlist
+            //vai trò list
             var roleLists = new List<SysUserRoleEntity>();
             foreach (var item in roleIdList.Where(p => !string.IsNullOrWhiteSpace(p)).Distinct())
             {

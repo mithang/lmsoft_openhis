@@ -5,7 +5,7 @@ using Newtouch.CIS.Repository;
 namespace Newtouch.Domain.IRepository.DeptStorageManage
 {
     /// <summary>
-    /// Tồn kholãi lỗ
+    /// Tồn kho lãi lỗ
     /// </summary>
     public interface IKcSyxxRepo : IRepositoryBase<KcSyxxEntity>
     {

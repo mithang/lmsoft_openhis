@@ -47,11 +47,11 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         /// </summary>
         public string AAE013 { get; set; }
         /// <summary>
-        /// vi phạmcấploại
+        /// vi phạm cấp loại
         /// </summary>
         public string BAZ969 { get; set; }
         /// <summary>
-        /// hạnchếcấploại
+        /// hạn chế cấp loại
         /// </summary>
         public string BAZ970 { get; set; }
     }

@@ -23,9 +23,9 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
     {
         //quyết toán nhập viện
         private readonly IHospSettApp _outHospSettApp;
-        //Hủyquyết toán nhập viện
+        //Hủy quyết toán nhập viện
         private readonly IHospSettCancelApp _hospSettCancelApp;
-        //Truy vấnquyết toán nhập viện
+        //Truy vấn quyết toán nhập viện
         private readonly IHospSettDmnService _hospSettDmnService;
         public SettlementController(IHospSettApp outHospSettApp, IHospSettCancelApp hospSettCancelApp, IHospSettDmnService hospSettDmnService)
         {
@@ -38,7 +38,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         #region quyết toán nhập viện（Có thuật toán BHYT）
 
         /// <summary>
-        /// Lấy trạng tháiquyết toán của bệnh nhân nhập viện
+        /// Lấy trạng thái quyết toán của bệnh nhân nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="kh"></param>
@@ -52,10 +52,10 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Xem trước tính phí phân loạiquyết toán
+        /// Xem trước tính phí phân loại quyết toán
         /// </summary>
         /// <param name="zyh"></param>
-        /// <param name="expectedjsje">Số tiềnquyết toán Ngăn thay đổi phí trong quá trình</param>
+        /// <param name="expectedjsje">Số tiền quyết toán Ngăn thay đổi phí trong quá trình</param>
         /// <returns></returns>
         [HttpGet]
         public IActionResult SettPreview(string zyh, DateTime expectedcyrq, decimal expectedjsje)
@@ -65,11 +65,11 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Gửi Lưuquyết toán
+        /// Gửi Lưu quyết toán
         /// </summary>
         /// <param name="zyh"></param>
-        /// <param name="expectedyjjzhye">Tài khoảntạm ứng Hiện tại Số dư(còn Chưaquyết toán) Ngăn thay đổi phí trong quá trình</param>
-        /// <param name="expectedjsje">Số tiềnquyết toán Ngăn thay đổi phí trong quá trình</param>
+        /// <param name="expectedyjjzhye">Tài khoản tạm ứng Hiện tại Số dư(còn Chưa quyết toán) Ngăn thay đổi phí trong quá trình</param>
+        /// <param name="expectedjsje">Số tiền quyết toán Ngăn thay đổi phí trong quá trình</param>
         /// <param name="expectedzhaoling">Tiền thừa Ngăn thay đổi phí trong quá trình</param>
         /// <param name="xjzfListStr"></param>
         /// <returns></returns>
@@ -83,7 +83,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// quyết toán thành côngcủa Dialog Nhắc nhở
+        /// quyết toán thành công của Dialog Nhắc nhở
         /// </summary>
         /// <param name="yingshoukuan"></param>
         /// <param name="ssk"></param>
@@ -101,10 +101,10 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         #endregion
 
-        #region Hủyquyết toán nhập viện（Có thuật toán BHYT）
+        #region Hủy quyết toán nhập viện（Có thuật toán BHYT）
 
         /// <summary>
-        /// Hủyquyết toán Chế độ xem
+        /// Hủy quyết toán Chế độ xem
         /// </summary>
         /// <returns></returns>
         public IActionResult CancelIndex()
@@ -113,7 +113,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Hủyquyết toán Lấy trạng tháiquyết toán của bệnh nhân nhập viện
+        /// Hủy quyết toán Lấy trạng thái quyết toán của bệnh nhân nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="kh"></param>
@@ -128,7 +128,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Hủyquyết toán Gửi
+        /// Hủy quyết toán Gửi
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="cancelReason"></param>
@@ -140,12 +140,12 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         {
             _hospSettCancelApp.DoCancel(zyh, expectedjsnm, cancelReason);
 
-            return Success("Hủyquyết toán thành công");
+            return Success("Hủy quyết toán thành công");
         }
 
         #endregion
 
-        #region GRSTruy vấnquyết toán nhập viện（một bộ trang：quyết toán phí+Đăng ký xuất viện+Hủy đăng ký xuất viện）
+        #region GRSTruy vấn quyết toán nhập viện（một bộ trang：quyết toán phí+Đăng ký xuất viện+Hủy đăng ký xuất viện）
         public IActionResult InPatientSettQuery()
         {
             return View();
@@ -164,7 +164,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
         #endregion
 
-        #region （thông thườngBệnh viện）HISTruy vấnquyết toán nhập viện
+        #region （thông thườngBệnh viện）HISTruy vấn quyết toán nhập viện
 
         /// <summary>
         /// 
@@ -200,7 +200,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// Thông tin bệnh nhânquyết toán tự phí chờ tải lên
+        /// Thông tin bệnh nhân quyết toán tự phí chờ tải lên
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -235,7 +235,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             return View();
         }
         /// <summary>
-        /// Chi tiết phí truy vấnquyết toán xuất viện
+        /// Chi tiết phí truy vấn quyết toán xuất viện
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
@@ -257,7 +257,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         #endregion
 
         /// <summary>
-        /// cập nhậtquyết toán Bản ghicủa Số hóa đơn
+        /// cập nhật quyết toán Bản ghi của Số hóa đơn
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="fph"></param>

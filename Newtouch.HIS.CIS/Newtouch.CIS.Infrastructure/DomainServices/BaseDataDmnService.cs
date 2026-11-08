@@ -56,7 +56,7 @@ WHERE zt='1'
          return this.FindList<SysAuxiliaryDictionaryEntity>(sql);
         }
         /// <summary>
-        /// Lấy Thuốc Đông ysắc hộphí
+        /// Lấy Thuốc Đông y sắc hộ phí
         /// </summary>
         /// <returns></returns>
         public decimal? GetDjFee(string orgId)
@@ -170,7 +170,7 @@ select ztCode,ztmc from xt_zt where OrganizeId=@orgId and ksCode=@ksCode and zt 
 		}
 
 		/// <summary>
-		/// thông quatừ điển Mã Lấycon mục Dữ liệu
+		/// thông qua từ điển Mã Lấy con mục Dữ liệu
 		/// </summary>
 		/// <param name="code"></param>
 		/// <param name="orgId"></param>
@@ -220,7 +220,7 @@ select ztCode,ztmc from xt_zt where OrganizeId=@orgId and ksCode=@ksCode and zt 
 		}
 
 		/// <summary>
-		/// Lấybệnh nhân Thông tin cơ bản
+		/// Lấy bệnh nhân Thông tin cơ bản
 		/// </summary>
 		/// <param name="blh">Số bệnh án</param>
 		/// <param name="mzh">Số khám ngoại trú</param>
@@ -246,7 +246,7 @@ WHERE brxx.blh=@blh AND brxx.zt='1' AND brxx.OrganizeId=@OrganizeId
 		}
 
 		/// <summary>
-		/// Lấybệnh nhânthẻthông tin
+		/// Lấy bệnh nhân thẻ thông tin
 		/// </summary>
 		/// <param name="blh"></param>
 		/// <param name="organizeId"></param>
@@ -292,19 +292,19 @@ where a.OrganizeId=@orgId and a.zt='1'";
 		}
 
 		/// <summary>
-		/// Lấy Bác sĩmởthuốc Quyền
+		/// Lấy Bác sĩ mở thuốc Quyền
 		/// </summary>
 		/// <param name="orgid"></param>
 		/// <param name="gh">Mã nhân viên</param>
-		/// <param name="tsypzl">Thuốcloạiloại</param>
+		/// <param name="tsypzl">Thuốc loại loại</param>
 		/// <param name="qxMc">Tên quyền</param>
 		/// <returns></returns>
 		public int GetPermissions(string orgid, string gh, string tsypzl, string dlcode, string kssqxjb)
 		{
 			var code = 1;
-			string sqls = @"select count(*) from [Newtouch_CIS]..[Sys_Config] where OrganizeId=@orgId and code = 'DocPresAuthCtrl' and Value = '1'";//Xemlà Khôngcụ thểcómởthuốccủa Quyền,nàybảngcủavalue 0là chưa bật này Quyền,1làbật
+			string sqls = @"select count(*) from [Newtouch_CIS]..[Sys_Config] where OrganizeId=@orgId and code = 'DocPresAuthCtrl' and Value = '1'";//Xem là Không cụ thể có mở thuốc của Quyền,này bảng của value 0là chưa bật này Quyền,1là bật
 			var tt = this.FirstOrDefault<int>(sqls, new SqlParameter[] { new SqlParameter("@orgId", orgid) });
-			if (tt == 0) //nếuchưaở Bác sĩtrạmbậtmởthuốc Quyền,thìtất cả Thuốcđềucó thểmởlập
+			if (tt == 0) //nếu chưa ở Bác sĩ trạm bật mở thuốc Quyền,thì tất cả Thuốc đều có thể mở lập
 			{
 				return code;
 			}
@@ -319,7 +319,7 @@ where a.OrganizeId=@orgid and b.gh=@gh and a.rel_value=@ypzl and a.rel_lxcode=1 
 				new SqlParameter("@gh",gh),
 				new SqlParameter("@ypzl",tsypzl),
 			};
-				var tsbz = this.FirstOrDefault<int>(sql, parm);//Lấylà Khôngcụ thểcó Loại nàythuốcvậtcủa Cờ thuốc đặc biệtcủamởlập Quyền,nếu Lớn hơn0thì có Quyền,đợitại0 thìkhông Quyền
+				var tsbz = this.FirstOrDefault<int>(sql, parm);//Lấy là Không cụ thể có Loại này thuốc vật của Cờ thuốc đặc biệt của mở lập Quyền,nếu Lớn hơn0thì có Quyền,đợi tại0 thì không Quyền
 				if (tsbz == 0)
 				{
 					code = -1;
@@ -336,8 +336,8 @@ where a.OrganizeId=@orgid and b.gh=@gh and a.rel_value=2 and a.rel_lxcode=3 and 
 				new SqlParameter("@gh",gh),
 				new SqlParameter("@ksscode",kssqxjb),
 			};
-				var qxjb = this.FirstOrDefault<int>(sqlqxjb, parm1);//Lấylà Khôngcụ thểcó Loại nàythuốcvậtcủa Kháng sinhmởlập Quyền,nếu Lớn hơn0thì có Quyền,đợitại0 thìkhông Quyền
-				if (qxjb == 0)//Bác sĩkhôngcụ thểchuẩn bị Kháng sinh Thuốc dùng không hạn chế Quyền,thìvàodòng Bước tiếp theokiểm tra
+				var qxjb = this.FirstOrDefault<int>(sqlqxjb, parm1);//Lấy là Không cụ thể có Loại này thuốc vật của Kháng sinh mở lập Quyền,nếu Lớn hơn0thì có Quyền,đợi tại0 thì không Quyền
+				if (qxjb == 0)//Bác sĩ không cụ thể chuẩn bị Kháng sinh Thuốc dùng không hạn chế Quyền,thì vào dòng Bước tiếp theo kiểm tra
 				{
 					string sql = @"select COUNT(a.qxId) from  NewtouchHIS_Base.dbo.xt_qxkz a 
 left join  NewtouchHIS_Base.dbo.xt_qxkz_rel b on a.OrganizeId=b.OrganizeId and a.qxId=b.qxId
@@ -348,7 +348,7 @@ where a.OrganizeId=@orgid and b.gh=@gh and a.rel_value=@ksscode and a.rel_lxcode
 				new SqlParameter("@gh",gh),
 				new SqlParameter("@ksscode",kssqxjb),
 			};
-					var kss = this.FirstOrDefault<int>(sql, parm2);//Lấylà Khôngcụ thểcó Loại nàythuốcvậtcủa Kháng sinhmởlập Quyền,nếu Lớn hơn0thì có Quyền,đợitại0 thìkhông Quyền
+					var kss = this.FirstOrDefault<int>(sql, parm2);//Lấy là Không cụ thể có Loại này thuốc vật của Kháng sinh mở lập Quyền,nếu Lớn hơn0thì có Quyền,đợi tại0 thì không Quyền
 					if (kss == 0)
 					{
 						code = -2;
@@ -366,7 +366,7 @@ where a.OrganizeId=@orgid and b.gh=@gh and a.rel_value=@dlcode and a.rel_lxcode=
 				new SqlParameter("@gh",gh),
 				new SqlParameter("@dlcode",dlcode),
 			};
-				var ypdl= this.FirstOrDefault<int>(sql, parm);//Lấylà Khôngcụ thểcó Loại nàythuốcvậtcủa Tên nhóm lớnmởlập Quyền,nếu Lớn hơn0thì có Quyền,đợitại0 thìkhông Quyền
+				var ypdl= this.FirstOrDefault<int>(sql, parm);//Lấy là Không cụ thể có Loại này thuốc vật của Tên nhóm lớn mở lập Quyền,nếu Lớn hơn0thì có Quyền,đợi tại0 thì không Quyền
 				if (ypdl == 0)
 				{
 					code = -3;

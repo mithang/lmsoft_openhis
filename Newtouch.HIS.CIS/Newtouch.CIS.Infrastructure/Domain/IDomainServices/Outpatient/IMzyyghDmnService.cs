@@ -8,12 +8,12 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.IDomainServices
 {
     /// <summary>
-    /// Ngoại trúđặt hẹnđăng ký khám
+    /// Ngoại trú đặt hẹn đăng ký khám
     /// </summary>
     public interface IMzyyghDmnService
     {
         /// <summary>
-        /// Theo Số bệnh án Tra cứu Ngoại trúđặt hẹnđăng ký khámthông tin
+        /// Theo Số bệnh án Tra cứu Ngoại trú đặt hẹn đăng ký khám thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
@@ -23,7 +23,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<MzyyghVO> SelectMzyyghDetail(Pagination pagination, string blh, string organizeId, DateTime regDate);
 
         /// <summary>
-        /// Ngoại trúđặt hẹn Tra cứu
+        /// Ngoại trú đặt hẹn Tra cứu
         /// </summary>
         /// <param name="blh">Số bệnh án</param>
         /// <param name="kh">Số thẻ</param>
@@ -32,7 +32,7 @@ namespace Newtouch.Domain.IDomainServices
         List<MzBespeakRegisterQueryResponseDTO> MzBespeakRegisterQuery(string blh, string kh, string zjh, string organizeId);
 
         /// <summary>
-        /// Lấyhiện tại Khoahoặcchuyên giađãđặt hẹnđăng ký khámtổngsố
+        /// Lấy hiện tại Khoa hoặc chuyên gia đã đặt hẹn đăng ký khám tổng số
         /// </summary>
         /// <param name="ksCode"></param>
         /// <param name="ysgh"></param>
@@ -43,9 +43,9 @@ namespace Newtouch.Domain.IDomainServices
         MzAlreadyBespeakRegisterCountQueryResponseDTO SelectAlreadyBespeakRegisterCount(string ksCode, string ysgh, DateTime regDate, string regTime, string organizeId);
 
         /// <summary>
-        /// Tra cứuđãđặt hẹnđăng ký khám
+        /// Tra cứu đã đặt hẹn đăng ký khám
         /// </summary>
-        /// <param name="mzlx">Dấu hiệu ngoại trú/nội trú 1:thông thường Ngoại trú  2:gấpkhám   3:chuyên gia Ngoại trú</param>
+        /// <param name="mzlx">Dấu hiệu ngoại trú/nội trú 1:thông thường Ngoại trú  2:gấp khám   3:chuyên gia Ngoại trú</param>
         /// <param name="departmentCode"></param>
         /// <param name="ysgh"></param>
         /// <param name="beginTime"></param>

@@ -124,7 +124,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             var orgId = OrganizeId;
             var CreateCode = UserIdentity.UserName;
             var CreateTime = DateTime.Now;
-            //thiết lậpnàykhoadướitrạng tháilà0
+            //thiết lập này khoa dưới trạng thái là0
             _OutBookRepo.updateZt(ks, CreateCode, CreateTime,OrganizeId);
             foreach (var gh in ghList)
             {
@@ -146,7 +146,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                 var ghList = _OutBookRepo.getStaffByKs(result.ks,OrganizeId);//lấy danh sách mã nhân viên bác sĩ theo khoa
                 //if (result != null && result.mjzbz != ((int)EnumOutPatientType.expertOutpat).ToString())
                 //{
-                //    result.ys = getStaffGh(ghList);//nối phân tách bằng dấu phẩycủabác sĩmã nhân viên
+                //    result.ys = getStaffGh(ghList);//nối phân tách bằng dấu phẩy của bác sĩ mã nhân viên
                 //    result.ysxm = getStaffName(ghList);//chuyển danh sách mã nhân viên bác sĩ thành tên bác sĩ phân tách bằng dấu phẩy
                 //}
                 return Content(result.ToJson());
@@ -180,7 +180,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             return strName;
         }
 
-        //đembác sĩchuyển danh sách mã nhân viên thành phân tách bằng dấu phẩycủachuỗi
+        //đem bác sĩ chuyển danh sách mã nhân viên thành phân tách bằng dấu phẩy của chuỗi
         public string getStaffGh(IList<string> ghList) {
             if (ghList == null)
             {
@@ -209,12 +209,12 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             var Time = DateTime.Now;
             if (ghpbId == 0)
             {//thêm mới
-                //lấylịch trựcmã số
+                //lấy lịch trực mã số
                 var ghpbIdNew = _OutBookDmnService.getghpbId();
-                //thêm mớithông tin lịch trực[mz_ghpb_config]
+                //thêm mới thông tin lịch trực[mz_ghpb_config]
                 _OutBookDmnService.InsertArrange(entity, orgId, User, Time, ghpbIdNew);
-                //thêm mớibác sĩquan hệ[mz_ghpb_rel_doc]
-                //thêm mớithời gian lịch trực[mz_ghpb_date]
+                //thêm mới bác sĩ quan hệ[mz_ghpb_rel_doc]
+                //thêm mới thời gian lịch trực[mz_ghpb_date]
                 for (int i = 1; i <= 7; i++)
                 {
                     //thêm mới cập nhật thời gian lịch trực [mz_ghpb_date]
@@ -254,7 +254,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             return Success();
         }
         /// <summary>
-        /// sửakhám bệnhhoặcngười ngừng khámtrạng thái
+        /// sửa khám bệnh hoặc người ngừng khám trạng thái
         /// </summary>
         /// <returns></returns>
         public IActionResult SaveDatatzcz(Decimal ScheduId,string czzt,string tzyy)
@@ -327,7 +327,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                 _OutBookScheduleRepo.ExecSchedule();
             }
                 
-            //lấydanh sách
+            //lấy danh sách
             var list= _OutBookScheduleRepo.GetPagintionList(pagination,orgId, Time);
             var oplist = new List<OutBookScheduleVO>();
             for (int i = 0; i < list.Count; i++)
@@ -350,7 +350,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         {
 
             var orgId = OrganizeId;
-            //lấydanh sách
+            //lấy danh sách
             var list = _OutBookScheduleRepo.GetPagintionListTime(orgId, kssj, jssj, ys, czztcx, ScheduId, ks, lx);
             var oplist = new List<OutBookScheduleVO>();
             var data = new

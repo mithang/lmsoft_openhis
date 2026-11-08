@@ -58,7 +58,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// kèmthêm Thuộc tính
+        /// kèm thêm Thuộc tính
         /// </summary>
         /// <returns></returns>
         public IActionResult AttributesPlusBedForm()
@@ -152,7 +152,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Phí giường bệnhgắn
+        /// Phí giường bệnh gắn
         /// </summary>
         /// <returns></returns>
         public IActionResult BedBindingCostForm(string bedCode,string zyh)
@@ -182,12 +182,12 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         public IActionResult OutAreaForm(string zyh)
         {
             ViewBag.zyh = zyh;
-            ViewBag.isopenPriorReview = _sysConfigRepo.GetValueByCode("OpenPriorReview", OrganizeId);//Có Khôngbậtviệctrước Phê duyệtgiao diện
+            ViewBag.isopenPriorReview = _sysConfigRepo.GetValueByCode("OpenPriorReview", OrganizeId);//Có Không bật việc trước Phê duyệt giao diện
             return View();
         }
 
         /// <summary>
-        /// Bác sĩgắn
+        /// Bác sĩ gắn
         /// </summary>
         /// <returns></returns>
         public IActionResult DoctorBindingForm(string zyh)
@@ -197,7 +197,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
 		/// <summary>
-		/// Nhập việngiườngthẻ
+		/// Nhập viện giường thẻ
 		/// </summary>
 		/// <param name="zyh"></param>
 		/// <returns></returns>
@@ -208,7 +208,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 		}
 
 		/// <summary>
-		/// Nhập việngiườngthẻ In
+		/// Nhập viện giường thẻ In
 		/// </summary>
 		/// <param name="zyh"></param>
 		/// <returns></returns>
@@ -236,7 +236,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Lấyra khỏi khu Chẩn đoán
+        /// Lấy ra khỏi khu Chẩn đoán
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -275,7 +275,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             List<ZDSelect> zdlist = new List<ZDSelect>();
             IList<SysDiagnosisVEntity> data = new List<SysDiagnosisVEntity>();
             IList<SysTCMSyndromeVEntity> zyzhdata = new List<SysTCMSyndromeVEntity>();
-            if (zdlb == "ZYZH")//trongyhội chứng
+            if (zdlb == "ZYZH")//trong y hội chứng
             {
                 zyzhdata = _sysTcmsyndromeRepo.GetList(this.OrganizeId, ryzd);
             }
@@ -322,7 +322,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Bệnh nhânra khỏi khu
+        /// Bệnh nhân ra khỏi khu
         /// </summary>
         /// <param name="patOutAreaVO"></param>
         /// <returns></returns>
@@ -359,7 +359,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// ra khỏi khu Chẩn đoán--Bệnh nhânra khỏi khu
+        /// ra khỏi khu Chẩn đoán--Bệnh nhân ra khỏi khu
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -371,7 +371,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// ra khỏi khu Chẩn đoán--Bệnh nhânra khỏi khu
+        /// ra khỏi khu Chẩn đoán--Bệnh nhân ra khỏi khu
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -383,7 +383,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Lưu ra khỏi khu Chẩn đoán--Bệnh nhânra khỏi khu
+        /// Lưu ra khỏi khu Chẩn đoán--Bệnh nhân ra khỏi khu
         /// </summary>
         /// <param name="patOutAreaVO"></param>
         /// <returns></returns>
@@ -401,7 +401,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Lưuvàokhu Chẩn đoán
+        /// Lưu vào khu Chẩn đoán
         /// </summary>
         /// <param name="patInAreaVo"></param>
         /// <returns></returns>
@@ -412,7 +412,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
 		/// <summary>
-		/// Lưura khỏi khu Chẩn đoán List
+		/// Lưu ra khỏi khu Chẩn đoán List
 		/// </summary>
 		/// <param name="patOutAreaVO"></param>
 		/// <returns></returns>
@@ -430,7 +430,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
 		/// <summary>
-		/// Lưu Nhập việngiườngthẻ
+		/// Lưu Nhập viện giường thẻ
 		/// </summary>
 		[HttpPost]
 		[ValidateAntiForgeryToken]

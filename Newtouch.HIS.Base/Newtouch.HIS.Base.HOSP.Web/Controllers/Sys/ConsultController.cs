@@ -157,7 +157,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers.Sys
                 entity.ys = gh;
                 entity.OrganizeId = this.OrganizeId;
                 entity.py = staff.py + "ZJZS";
-                entity.xh = 0;//Phòng khám chuyên giaxhlà0
+                entity.xh = 0;//Phòng khám chuyên gia xh là0
                 
                 //Phòng khám đã tồn tại thì không chèn nữa
                 if (_sysConsultRepo.IQueryable().Any(p => p.zsCode == entity.zsCode && p.zt == "1"))

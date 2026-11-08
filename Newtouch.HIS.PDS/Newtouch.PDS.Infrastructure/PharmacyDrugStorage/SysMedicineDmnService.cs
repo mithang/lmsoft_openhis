@@ -1086,7 +1086,7 @@ where ypId=@ypId");
             modelyp.tsypbz = model.tsypbz;
             #endregion
 
-            #region ThuốcSXgiá trị
+            #region ThuốcSX giá trị
             modelypsx.OrganizeId = model.OrganizeId;    // Tổ chức Id
             modelypsx.dczdjl = model.dczdjl;
             modelypsx.dczdsl = model.dczdsl;

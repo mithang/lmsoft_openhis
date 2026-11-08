@@ -12,19 +12,19 @@ namespace Newtouch.Domain.IDomainServices
     public interface IIDBDmnService
     {
         /// <summary>
-        /// Tra cứu Bệnh nhânđăng ký khámthông tin
+        /// Tra cứu Bệnh nhân đăng ký khám thông tin
         /// </summary>
         /// <param name="ksCode"></param>
-        /// <param name="ysgh">//Lọcchuyên giasố chỉ xemtreotựtựsốcủa</param>
-        /// <param name="mjzbz">//1thông thường Ngoại trú 2gấpkhám 3chuyên gia Ngoại trú</param>
+        /// <param name="ysgh">//Lọc chuyên gia số chỉ xem treo tự tự số của</param>
+        /// <param name="mjzbz">//1thông thường Ngoại trú 2gấp khám 3chuyên gia Ngoại trú</param>
         /// <param name="jiuzhenbz"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         IList<TreatmentEntity> GetRegistrationInfoList(Pagination pagination, string orgId, string ksCode, string ysgh, string mjzbz, int jiuzhenbz, string keyword);
 
         /// <summary>
-        /// sẽmzhcủa Chưa thu phí Đơn thuốc+Khám bệnh Cờ đợithông tin Đồng bộđếntronggiữakho
-        /// (và Đồng bộ Đơn thuốcthành côngsaucầnvềviết Đơn thuốc Trạng thái đồng bộ)
+        /// sẽ mzh của Chưa thu phí Đơn thuốc+Khám bệnh Cờ đợi thông tin Đồng bộđếntronggiữakho
+        /// (và Đồng bộ Đơn thuốc thành công sau cần về viết Đơn thuốc Trạng thái đồng bộ)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -32,7 +32,7 @@ namespace Newtouch.Domain.IDomainServices
         void SyncTo(string orgId, string mzh, string cfId = null);
 
         /// <summary>
-        /// Hủy bỏhis Một lần Khám bệnhcủatất cả Đơn thuốc
+        /// Hủy bỏ his Một lần Khám bệnh của tất cả Đơn thuốc
         /// </summary>
         /// <param name="jzId"></param>
         /// <param name="orgId"></param>

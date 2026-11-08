@@ -14,7 +14,7 @@ namespace Newtouch.Repository.Inpatient
    public class InpatientMedicinejxCodeComparedRepo : RepositoryBase<InpatientMedicinejxCodeComparedEntity>, IInpatientMedicinejxCodeComparedRepo
     {
         /// <summary>
-        /// Mặc định Hàm khởi tạosố
+        /// Mặc định Hàm khởi tạo số
         /// </summary>
         /// <param name="databaseFactory">EF trên dưới văn Nhà máy</param>
         public InpatientMedicinejxCodeComparedRepo()
@@ -24,9 +24,9 @@ namespace Newtouch.Repository.Inpatient
         }
 
         /// <summary>
-        /// Lưubảngphiếu(Thêm mới,Sửa)
+        /// Lưu bảng phiếu(Thêm mới,Sửa)
         /// </summary>
-        /// <param name="entity">thựcthểđối tượng</param>
+        /// <param name="entity">thực thể đối tượng</param>
         /// <param name="keyValue">Khóa chính Giá trị</param>
         public void SubmitForm(InpatientMedicinejxCodeComparedEntity entity, string keyValue)
         {

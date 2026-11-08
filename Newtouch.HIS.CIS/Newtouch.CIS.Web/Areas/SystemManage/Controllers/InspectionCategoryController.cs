@@ -30,7 +30,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         [HttpGet]
         [HandlerAjaxOnly]
         /// <summary>
-        /// Lấytừ điểndanh sách
+        /// Lấy từ điển danh sách
         /// </summary>
         /// <returns></returns>
         public IActionResult GetTreeGridJson(string keyword)
@@ -44,7 +44,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Khi sửa thông tin,thông tinmangđếnmớitrangmặt
+        /// Khi sửa thông tin,thông tin mang đến mới trang mặt
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

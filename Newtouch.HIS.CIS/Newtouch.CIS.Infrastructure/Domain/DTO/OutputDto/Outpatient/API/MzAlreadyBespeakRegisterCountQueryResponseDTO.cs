@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.DTO.OutputDto.Outpatient.API
 {
     /// <summary>
-    /// Khoahoặcchuyên giađãđăng ký khámtổngsố Tra cứu Quay lạibáovăn
+    /// Khoa hoặc chuyên gia đã đăng ký khám tổng số Tra cứu Quay lại báo văn
     /// </summary>
     public class MzAlreadyBespeakRegisterCountQueryResponseDTO
     {
@@ -28,7 +28,7 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient.API
         public string regTime { get; set; }
 
         /// <summary>
-        /// đãđặt hẹnđăng ký khámtổngsố
+        /// đã đặt hẹn đăng ký khám tổng số
         /// </summary>
         public int alreadyBespeakRegisterCount { get; set; }
     }

@@ -11,12 +11,12 @@ namespace Newtouch.Domain.Entity
         public int xjzffsbh { get; set; }
 
         /// <summary>
-        /// hiệnkim Phương thức thanh toán
+        /// hiện kim Phương thức thanh toán
         /// </summary>
         public string xjzffs { get; set; }
 
         /// <summary>
-        /// hiệnkim Phương thức thanh toán Tên
+        /// hiện kim Phương thức thanh toán Tên
         /// </summary>
         public string xjzffsmc { get; set; }
 

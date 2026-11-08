@@ -38,12 +38,12 @@ namespace Newtouch.Domain.ViewModels
         public string dispenserName { get; set; }
 
         /// <summary>
-        /// Thực hiệnngười Mã nhân viên
+        /// Thực hiện người Mã nhân viên
         /// </summary>
         public string executor { get; set; }
 
         /// <summary>
-        /// Thực hiệnngười Họ tên
+        /// Thực hiện người Họ tên
         /// </summary>
         public string executorName { get; set; }
 

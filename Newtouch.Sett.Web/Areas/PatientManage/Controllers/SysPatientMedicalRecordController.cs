@@ -127,7 +127,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// nêunộpbảo hiểmlưu
+        /// nêu nộp bảo hiểm lưu
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -233,7 +233,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             return null;
         }
         /// <summary>
-        /// vệkhỏetrênchuyểnngàychí
+        /// vệ khỏe trên chuyển ngày chí
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ksrq"></param>

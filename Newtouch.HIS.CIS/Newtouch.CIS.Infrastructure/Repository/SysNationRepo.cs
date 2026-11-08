@@ -17,7 +17,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// Lấy Hiệu lựcdântộchộp thả xuống
+        /// Lấy Hiệu lực dân tộc hộp thả xuống
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

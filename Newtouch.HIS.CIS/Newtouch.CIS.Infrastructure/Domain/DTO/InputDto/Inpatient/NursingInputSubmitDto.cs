@@ -25,12 +25,12 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         public string Id { get; set; }
 
         /// <summary>
-        /// Liệt kê vui lònggiả từ chốiđo đợi
+        /// Liệt kê vui lòng giả từ chối đo đợi
         /// </summary>
         /// <returns></returns>
         public int? brzt { get; set; }
         /// <summary>
-        /// vượtdịchlượng
+        /// vượt dịch lượng
         /// </summary>
         /// <returns></returns>
         public int? cys { get; set; }
@@ -40,7 +40,7 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         /// <returns></returns>
         public int? dbcs { get; set; }
         /// <summary>
-        /// từ điểnkhôngkhuphút Org
+        /// từ điển không khu phút Org
         /// </summary>
         /// <returns></returns>
         public string dbcsbz { get; set; }
@@ -100,7 +100,7 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         /// <returns></returns>
         public decimal? tw { get; set; }
         /// <summary>
-        /// Nhiệt độđolượng Mô tả miệngnhiệt Nhiệt độ nách Nhiệt độ hậu môn
+        /// Nhiệt độ đo lượng Mô tả miệng nhiệt Nhiệt độ nách Nhiệt độ hậu môn
         /// </summary>
         /// <returns></returns>
         public int? twclfs { get; set; }
@@ -110,7 +110,7 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         /// <returns></returns>
         public decimal? tz { get; set; }
         /// <summary>
-        /// từ điểnkhôngkhuphút Org
+        /// từ điển không khu phút Org
         /// </summary>
         /// <returns></returns>
         public string tzclbz { get; set; }
@@ -135,7 +135,7 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         /// <returns></returns>
         public int? xybhd { get; set; }
         /// <summary>
-        /// từ điểnkhôngkhuphút Org
+        /// từ điển không khu phút Org
         /// </summary>
         /// <returns></returns>
         public string xyfs { get; set; }

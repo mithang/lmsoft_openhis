@@ -34,7 +34,7 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient.API
         public string mzcldw { get; set; }
         public string ds { get; set; }
         /// <summary>
-        /// Đơn thuốcnhãn JI tinhI JII tinh II MZ têsay
+        /// Đơn thuốc nhãn JI tinhI JII tinh II MZ tê say
         /// </summary>
         public string cftag { get; set; }
         public string Name { get; set; }

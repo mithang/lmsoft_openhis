@@ -34,26 +34,26 @@ namespace Newtouch.Domain.DTO.OutputDto
         public bool? djbz { get; set; }
 
         /// <summary>
-        /// phiếumộtđăng ký khámcó thểcó thểcókhôngcùngcủa Bác sĩchomở Đơn thuốc
+        /// phiếu một đăng ký khám có thể có thể có không cùng của Bác sĩ cho mở Đơn thuốc
         /// </summary>
         public string ys { get; set; }
 
         /// <summary>
-        /// phiếumộtđăng ký khámcó thểcó thểcókhôngcùngcủa Bác sĩchomở Đơn thuốc
+        /// phiếu một đăng ký khám có thể có thể có không cùng của Bác sĩ cho mở Đơn thuốc
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// lĩnhthuốc Nhà thuốc Code
+        /// lĩnh thuốc Nhà thuốc Code
         /// </summary>
         public string lyyf { get; set; }
 
         /// <summary>
-        /// Thuốcchi tiết
+        /// Thuốc chi tiết
         /// </summary>
         public List<MedicineItemVO> AddMedicineItems { get; set; }
         /// <summary>
-        /// Mụcchi tiết
+        /// Mục chi tiết
         /// </summary>
         public List<TreamentItemVO> AddTreamentItems { get; set; }
     }

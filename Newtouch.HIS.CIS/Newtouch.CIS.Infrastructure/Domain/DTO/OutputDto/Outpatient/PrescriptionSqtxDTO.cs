@@ -44,7 +44,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string YSXM { get; set; }
 
         /// <summary>
-        /// Đơn thuốcchi tiết
+        /// Đơn thuốc chi tiết
         /// </summary>
         public List<SqtxCFYP> ypcfmxList { get; set; }
 

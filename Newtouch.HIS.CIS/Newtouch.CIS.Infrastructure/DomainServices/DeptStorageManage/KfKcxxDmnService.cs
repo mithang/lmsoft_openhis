@@ -27,7 +27,7 @@ namespace Newtouch.DomainServices.DeptStorageManage
         }
 
          /// <summary>
-         /// Sửa Tồn kho Số lượng(thêm Tồn kho),không Sửađôngkết Số lượng  Quay lạihìnhhưởngdòng
+         /// Sửa Tồn kho Số lượng(thêm Tồn kho),không Sửa đông kết Số lượng  Quay lại hình hưởng dòng
          /// </summary>
          /// <param name="productId"></param>
          /// <param name="pc"></param>
@@ -36,7 +36,7 @@ namespace Newtouch.DomainServices.DeptStorageManage
          /// <param name="sl">Đơn vị nhỏ nhất Số lượng</param>
          /// <param name="organizeId"></param>
          /// <param name="userCode"></param>
-         /// <returns>Quay lạihìnhhưởngdòng</returns>
+         /// <returns>Quay lại hình hưởng dòng</returns>
          public int UpdateKcsl(string productId, string pc, string ph, string warehouseId, int sl, string organizeId, string userCode)
          {
              if (sl >= 0) return AddKcsl(productId, pc, ph, warehouseId, sl, organizeId, userCode);
@@ -52,7 +52,7 @@ namespace Newtouch.DomainServices.DeptStorageManage
 //         /// <returns></returns>
 //         public string UpdateKcsl(List<UpdateKcslDTO> updateKcslDto)
 //         {
-//             if (updateKcslDto == null || updateKcslDto.Count <= 0) return "vui lòngtruyềnvàocần Sửa Tồn khothông tin";
+//             if (updateKcslDto == null || updateKcslDto.Count <= 0) return "vui lòng truyền vào cần Sửa Tồn kho thông tin";
 //             using (var db = new EFDbTransaction().BeginTrans())
 //             {
 //                 foreach (var p in updateKcslDto)
@@ -60,7 +60,7 @@ namespace Newtouch.DomainServices.DeptStorageManage
 //                     if (UpdateKcsl(p.productId, p.pc, p.ph, p.warehouseId, p.sl, p.organizeId, p.userCode) <= 0)
 //                     {
 //                         var wz = _wzProductRepo.FindEntity(o => o.Id == p.productId && o.OrganizeId == p.organizeId && o.zt == ((int)Enumzt.Enable).ToString());
-//                         return string.Format("Sửavật tư【{0}】của Tồn khothất bại", wz.name ?? "");
+//                         return string.Format("Sửa vật tư【{0}】của Tồn kho thất bại", wz.name ?? "");
 //                     }
 //                 }
 //                 db.Commit();
@@ -69,19 +69,19 @@ namespace Newtouch.DomainServices.DeptStorageManage
 //         }
 //
         /// <summary>
-        /// đuổithêm Tồn kho,không Sửađôngkết Số lượng Quay lạihìnhhưởngdòng
+        /// đuổi thêm Tồn kho,không Sửa đông kết Số lượng Quay lại hình hưởng dòng
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="warehouseId"></param>
-        /// <param name="sl">Đơn vị nhỏ nhất Số lượng  phảicầnlàđangsố</param>
+        /// <param name="sl">Đơn vị nhỏ nhất Số lượng  phải cần là đang số</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
-        /// <returns>Quay lạihìnhhưởngdòng</returns>
+        /// <returns>Quay lại hình hưởng dòng</returns>
         public int AddKcsl(string productId, string pc, string ph, string warehouseId, int sl, string organizeId, string userCode)
         {
-            if (sl <= 0) throw new System.Exception("Số lượngphảicầnlàđangsố");
+            if (sl <= 0) throw new System.Exception("Số lượng phải cần là đang số");
             const string sql = @"
 UPDATE dbo.dept_kcxx 
 SET kcsl=kcsl+@sl, LastModifierCode=@userCode, LastModifyTime=GETDATE()
@@ -113,13 +113,13 @@ SELECT @@ROWCOUNT ;
         }
 //
          // /// <summary>
-         // /// Sửa Tồn kho Số lượng,không Sửađôngkết Số lượng
+         // /// Sửa Tồn kho Số lượng,không Sửa đông kết Số lượng
          // /// </summary>
          // /// <param name="updateKcslDto"></param>
          // /// <returns></returns>
          // public string JustSubtractKcsl(List<UpdateKcslDTO> updateKcslDto)
          // {
-         //     if (updateKcslDto == null || updateKcslDto.Count <= 0) return "Tồn khothông tinkhông thểlàtrống";
+         //     if (updateKcslDto == null || updateKcslDto.Count <= 0) return "Tồn kho thông tin không thể là trống";
          //     using (var db = new EFDbTransaction().BeginTrans())
          //     {
          //         foreach (var p in updateKcslDto)
@@ -133,14 +133,14 @@ SELECT @@ROWCOUNT ;
          // }
 //
 //         /// <summary>
-//         /// Sửa Tồn kho Số lượng,không Sửađôngkết Số lượng
+//         /// Sửa Tồn kho Số lượng,không Sửa đông kết Số lượng
 //         /// </summary>
 //         /// <param name="updateKcslDto"></param>
 //         /// <param name="db"></param>
 //         /// <returns></returns>
 //         public string JustSubtractKcslNoTrans(List<UpdateKcslDTO> updateKcslDto, Newtouch.Infrastructure.EF.EFDbTransaction db = null)
 //         {
-//             if (updateKcslDto == null || updateKcslDto.Count <= 0) return "Tồn khothông tinkhông thểlàtrống";
+//             if (updateKcslDto == null || updateKcslDto.Count <= 0) return "Tồn kho thông tin không thể là trống";
 //             foreach (var p in updateKcslDto)
 //             {
 //                 var result = JustSubtractKcsl(p, db);
@@ -150,14 +150,14 @@ SELECT @@ROWCOUNT ;
 //         }
 //
          /// <summary>
-         /// Sửa Tồn kho Số lượng,không Sửađôngkết Số lượng
+         /// Sửa Tồn kho Số lượng,không Sửa đông kết Số lượng
          /// </summary>
          /// <param name="updateKcslDto"></param>
          /// <param name="db"></param>
          /// <returns></returns>
          public string JustSubtractKcsl(UpdateKcslDTO updateKcslDto, Newtouch.Infrastructure.EF.EFDbTransaction db = null)
          {
-             if (updateKcslDto == null) return "Tồn khothông tinkhông thểđể trống";
+             if (updateKcslDto == null) return "Tồn kho thông tin không thể để trống";
              var param = new DbParameter[]
              {
                  new SqlParameter("@proId",updateKcslDto.productId),
@@ -173,7 +173,7 @@ SELECT @@ROWCOUNT ;
          }
 //
 //         /// <summary>
-//         /// giảm Tồn kho Số lượng,đôngkết Số lượng(Xuất khocó thểdùng)
+//         /// giảm Tồn kho Số lượng,đông kết Số lượng(Xuất kho có thể dùng)
 //         /// </summary>
 //         /// <param name="productId"></param>
 //         /// <param name="pc"></param>
@@ -225,7 +225,7 @@ SELECT @@ROWCOUNT ;
 //         }
 //
 //         /// <summary>
-//         /// đôngkết Tồn kho
+//         /// đông kết Tồn kho
 //         /// </summary>
 //         /// <param name="sl">Đơn vị nhỏ nhất Số lượng</param>
 //         /// <param name="pc"></param>
@@ -251,7 +251,7 @@ SELECT @@ROWCOUNT ;
 //         }
 
         // /// <summary>
-        // /// ngoàibộ Nhập kho khấu Tồn kho(Hủy bỏ)
+        // /// ngoài bộ Nhập kho khấu Tồn kho(Hủy bỏ)
         // /// </summary>
         // /// <param name="sl">Đơn vị nhỏ nhất Số lượng</param>
         // /// <param name="pc"></param>
@@ -278,7 +278,7 @@ SELECT @@ROWCOUNT ;
         // }
 
         // /// <summary>
-        // /// Thu hồi Nhập kho(trực tiếp Xuất kho Hủy bỏ) nếucần Sử dụng Phương phápvui lòngbộtrênviệcvụ,Phương pháptrongkhônglàmvềcuộn
+        // /// Thu hồi Nhập kho(trực tiếp Xuất kho Hủy bỏ) nếu cần Sử dụng Phương pháp vui lòng bộ trên việc vụ,Phương pháp trong không làm về cuộn
         // /// </summary>
         // /// <param name="sl">Đơn vị nhỏ nhất Số lượng</param>
         // /// <param name="pc"></param>
@@ -291,20 +291,20 @@ SELECT @@ROWCOUNT ;
         // /// <returns></returns>
         // public string RevokeInstorage(int sl, string pc, string ph, string productId, string organizeId, string rkbm, string ckbm, string userCode)
         // {
-        //     //Nhập khoKhoa phòngkhấu Tồn kho
+        //     //Nhập khoKhoa phòng khấu Tồn kho
         //     var substractResult = JustSubtractKcsl(new UpdateKcslDTO { organizeId = organizeId, pc = pc, ph = ph, productId = productId, sl = sl, userCode = userCode, warehouseId = rkbm });
         //     if (!string.IsNullOrWhiteSpace(substractResult)) return substractResult;
         //
-        //     //Xuất khoKhoa phòngcòn Tồn kho
+        //     //Xuất khoKhoa phòng còn Tồn kho
         //     if (UpdateKcsl(productId, pc, ph, ckbm, sl, organizeId, userCode) <= 0)
         //     {
-        //         return "còn Tồn khothất bại";
+        //         return "còn Tồn kho thất bại";
         //     }
         //     return "";
         // }
 
         /// <summary>
-        /// Lấy Tồn khothông tin kết chuyểndùng
+        /// Lấy Tồn kho thông tin kết chuyển dùng
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -345,7 +345,7 @@ AND kcxx.zt=@zt
         //        {
         //            const string sql = @"
         //DECLARE @rkkcsl INT;--Nhập kho Tồn kho
-        //DECLARE @rkdjsl INT;--Nhập khođôngkết Tồn kho
+        //DECLARE @rkdjsl INT;--Nhập kho đông kết Tồn kho
         //DECLARE @res INT;
         //SELECT @rkkcsl=kcsl, @rkdjsl=djsl FROM dbo.kf_kcxx WHERE productId=@proId AND pc=@pc AND ph=@ph AND OrganizeId=@OrganizeId AND zt=@zt AND warehouseId=@rkbm
         //IF @sl <= (@rkkcsl-@rkdjsl)
@@ -366,17 +366,17 @@ AND kcxx.zt=@zt
         //		END
         //		ELSE
         //		BEGIN
-        //			SELECT 'Xuất khoKhoa phòngvào Tồn khothất bại';
+        //			SELECT 'Xuất khoKhoa phòng vào Tồn kho thất bại';
         //		END
         //	END 
         //	ELSE
         //	BEGIN
-        //		SELECT 'Nhập khoKhoa phòngra Tồn khothất bại';
+        //		SELECT 'Nhập khoKhoa phòng ra Tồn kho thất bại';
         //	END
         //END
         //ELSE 
         //BEGIN
-        //	SELECT 'Tồn khokhôngđủ';
+        //	SELECT 'Tồn kho không đủ';
         //END 
         //";
         //            var param = new DbParameter[]

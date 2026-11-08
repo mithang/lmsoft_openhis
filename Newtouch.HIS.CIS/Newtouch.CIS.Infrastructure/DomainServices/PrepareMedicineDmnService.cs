@@ -32,7 +32,7 @@ namespace Newtouch.DomainServices
 
         #region Báo hỏng báo thừa
         /// <summary>
-        /// Tra cứulãi lỗ Thuốclist
+        /// Tra cứu lãi lỗ Thuốc list
         /// </summary>
         /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>
@@ -89,7 +89,7 @@ order by a.ypcode,a.kcsl,a.yxq
         }
 
         /// <summary>
-        /// Tra cứu Thuốccủakcslvàjj
+        /// Tra cứu Thuốc của kcsl và jj
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="ph"></param>
@@ -112,7 +112,7 @@ order by a.ypcode,a.kcsl,a.yxq
         //}
 
         /// <summary>
-        /// Gửi Báo hỏngbáolợi
+        /// Gửi Báo hỏng báo lợi
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>
@@ -125,10 +125,10 @@ order by a.ypcode,a.kcsl,a.yxq
                     var kcxxRepo = new PrepareMedicineStockInfoRepo();
                     var kcxx = kcxxRepo.SelectData(syxx.Ypdm, syxx.Ph, syxx.pc, syxx.yfbmCode, syxx.OrganizeId);
                     var curKcsl = kcxx.Sum(p => p.kcsl);
-                    if (syxx.Sysl < 0)//Báo hỏng  đĩa Tồn kholà Khôngnạpđủ
+                    if (syxx.Sysl < 0)//Báo hỏng  đĩa Tồn kho là Không nạp đủ
                     {
                         if (kcxx.Sum(p => p.kcsl) + syxx.Sysl < 0)
-                            return string.Format("mãlà{0}、Số lô{1}、Lô{2} của thuốc Tồn kho không đủ", syxx.Ypdm, syxx.Ph, syxx.pc);
+                            return string.Format("mã là{0}、Số lô{1}、Lô{2} của thuốc Tồn kho không đủ", syxx.Ypdm, syxx.Ph, syxx.pc);
                     }
 
                     kcxxRepo.UpdateKcslWithTrans(syxx.Sysl, syxx.pc, syxx.Ph, syxx.Ypdm, syxx.yfbmCode, syxx.OrganizeId,
@@ -159,10 +159,10 @@ order by a.ypcode,a.kcsl,a.yxq
         //    var organizeId = OperatorProvider.GetCurrent().OrganizeId;
         //    using (var db = new EFDbTransaction().BeginTrans())
         //    {
-        //        //insert lãi lỗbảng
+        //        //insert lãi lỗ bảng
         //        var sykc = kcsl + entity.Sysl;
         //        entity.Sykc = sykc; //lãi lỗ Tồn kho
-        //        entity.Jj = jj;  //vàogiá
+        //        entity.Jj = jj;  //vào giá
         //        db.Insert(entity);
 
         //        //update Tồn kho
@@ -176,7 +176,7 @@ order by a.ypcode,a.kcsl,a.yxq
         //}
 
         /// <summary>
-        /// Báo hỏngbáo thừa Lưu
+        /// Báo hỏng báo thừa Lưu
         /// </summary>
         /// <param name="profitLossEntityList"></param>
         //public string SaveReportLossAndProfit(List<YpSyxxVo> profitLossEntityList)
@@ -193,7 +193,7 @@ order by a.ypcode,a.kcsl,a.yxq
         //}
 
         /// <summary>
-        /// Báo hỏngbáo thừa Tra cứu
+        /// Báo hỏng báo thừa Tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -271,7 +271,7 @@ order by a.ypcode,a.kcsl,a.yxq
         /// <param name="endTime">Thời gian kết thúc</param>
         /// <param name="syyy">nguyên nhân lãi lỗ</param>
         /// <param name="inputCode">Từ khóa</param>
-        /// <param name="syqk">lãi lỗtình hình</param>
+        /// <param name="syqk">lãi lỗ tình hình</param>
         /// <returns></returns>
         public LossAndProditInfoJeVo ComputePjzeAndLjze(string startTime, string endTime, string syyy, string inputCode, int syqk)
         {
@@ -336,7 +336,7 @@ FROM (
 
         #endregion
 
-        #region Khoachuẩn bị thuốc Trả lại
+        #region Khoa chuẩn bị thuốc Trả lại
         public string PrepareMedicineReturnSubmit(OperatorModel user, string orgId, BythDjInfoDTO Djnr)
         {
             try
@@ -424,14 +424,14 @@ FROM (
                     var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/PrepareMedicineReturn", request);
                     if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS && apires.msg == "")
                     {
-                        return "Lưuvà Gửithành công！";
+                        return "Lưu và Gửi thành công！";
                     }
                     else
                     {
-                        return "gọi Nhà thuốcgiao diệnthất bại，vui lòngliênhệmởphát ngườiviên！";
+                        return "gọi Nhà thuốc giao diện thất bại，vui lòng liên hệ mở phát người viên！";
                     }
                 }
-                return "Khoachuẩn bị thuốc Trả lại Lưu thành công！";
+                return "Khoa chuẩn bị thuốc Trả lại Lưu thành công！";
             }
             catch (Exception ex)
             {
@@ -554,7 +554,7 @@ and a.CreateTime BETWEEN @kssj  AND  @jssj+' 23:59:59' "
         }
 
         /// <summary>
-        /// Gửichuẩn bị thuốc Phiếu
+        /// Gửi chuẩn bị thuốc Phiếu
         /// </summary>
         /// <param name="user"></param>
         /// <param name="orgId"></param>
@@ -666,7 +666,7 @@ where ypdm=@ypbm and ph=@ph and pc=@pc and OrganizeId=@orgId  and yfbmCode=@yfbm
         }
 
         /// <summary>
-        /// Khoachuẩn bị thuốc Trả lại rútvề
+        /// Khoa chuẩn bị thuốc Trả lại rút về
         /// </summary>
         /// <param name="Djh"></param>
         /// <param name="orgId"></param>
@@ -696,7 +696,7 @@ where ypdm=@ypbm and ph=@ph and pc=@pc and OrganizeId=@orgId  and yfbmCode=@yfbm
                 }
                 else
                 {
-                    return "gọi Nhà thuốcgiao diệnthất bại，vui lòngliênhệmởphát ngườiviên！";
+                    return "gọi Nhà thuốc giao diện thất bại，vui lòng liên hệ mở phát người viên！";
                 }
             }
             catch (Exception ex)
@@ -730,7 +730,7 @@ where ypdm=@ypbm and ph=@ph and pc=@pc and OrganizeId=@orgId  and yfbmCode=@yfbm
         }
         #endregion
 
-        #region Thuốcsử dụngTra cứu
+        #region Thuốc sử dụngTra cứu
         public IList<MedicineInfoVO> GetMedicineInfoListV2(Pagination pagination, MedicineInfoParam param, string orgId)
         {
             if (string.IsNullOrWhiteSpace(pagination.sidx))

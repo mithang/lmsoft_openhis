@@ -59,7 +59,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// Tra cứumẫuchi tiết
+        /// Tra cứu mẫu chi tiết
         /// </summary>
         /// <param name="mbId"></param>
         public MRTemplateBO SelectTemplateDetailByMbId(string mbId, string orgId)
@@ -68,11 +68,11 @@ namespace Newtouch.DomainServices
             var mbEntity = _mRTemplateRepo.IQueryable().Where(a => a.mbId == mbId && a.zt == "1").FirstOrDefault();
             if (mbEntity == null)
             {
-                throw new FailedException("Dữ liệu bất thường，chưa Tra cứura Hồ sơmẫuthông tin");
+                throw new FailedException("Dữ liệu bất thường，chưa Tra cứu ra Hồ sơ mẫu thông tin");
             }
             //Chẩn đoán Tây y
             //var wmdiagnosisEntityList = _mrTemplateWMDiagnosisRepo.IQueryable().Where(a => a.mbId == mbId && a.OrganizeId == orgId && a.zt == "1").ToList();
-            //Thêmcid10  lixin 20181016
+            //Thêm cid10  lixin 20181016
             var xysql = @"  SELECT a.zdCode,a.zdmc,a.zdlx,a.ysbz,b.icd10 FROM Newtouch_CIS.dbo.xt_blmbxyzd a  LEFT JOIN[NewtouchHIS_Base].[dbo].[V_S_xt_zd] b ON a.zdCode = b.zdCode AND (a.OrganizeId=b.OrganizeId OR b.OrganizeId='*')  AND a.zt = '1' AND b.zt = '1' WHERE a.mbId = @mbId AND a.OrganizeId = @orgId ";
             var wmdiagnosisEntityList = this.FindList<WMDiagnosisHtmlVO>(xysql, new[] { new System.Data.SqlClient.SqlParameter("@mbId", mbId), new System.Data.SqlClient.SqlParameter("@orgId", orgId) });
             List<WMDiagnosisHtmlVO> xyzdList = new List<WMDiagnosisHtmlVO>();
@@ -166,7 +166,7 @@ namespace Newtouch.DomainServices
                 }
                 else
                 {
-                    //Thêm mới Khám bệnhbảng
+                    //Thêm mới Khám bệnh bảng
                     blmbObject.mbId = Guid.NewGuid().ToString();
                     blmbObject.Create();
 
@@ -231,7 +231,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// Xóamẫu
+        /// Xóa mẫu
         /// </summary>
         /// <param name="mbId"></param>
         public void DeleteTemplate(string mbId)

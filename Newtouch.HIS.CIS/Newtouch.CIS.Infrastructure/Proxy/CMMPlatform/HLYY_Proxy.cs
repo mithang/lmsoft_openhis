@@ -36,7 +36,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform
         }
 
         /// <summary>
-        /// Mô tảsách
+        /// Mô tả sách
         /// </summary>
         public string GetHisSmsJson(string ypmcId)
         {

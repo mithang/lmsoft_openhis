@@ -23,7 +23,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
     {
         protected readonly IHttpClientHelper _httpClient;
         /// <summary>
-        /// xác thực Tokenđổi lấy
+        /// xác thực Token đổi lấy
         /// </summary>
         protected readonly IAuthCenterAppService _authCenterApp;
 
@@ -44,7 +44,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
         /// </summary>
         protected string ClientAppId = ConfigInitHelper.SysConfig.AppId ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "AppId");
         /// <summary>
-        /// ứng dụng Hostđịa chỉ
+        /// ứng dụng Host địa chỉ
         /// </summary>
         protected string? Host;
         /// <summary>
@@ -55,7 +55,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
         public async virtual Task<AppAPIHostDic> GetServiceAsync()
             => await Task.Run(() => new AppAPIHostDic { AppId = AppId, Host = Host });
         /// <summary>
-        /// token bộ nhớ đệmkey
+        /// token bộ nhớ đệm key
         /// </summary>
         /// <param name="userCacheKey"></param>
         /// <returns></returns>
@@ -171,7 +171,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
         /// <exception cref="FailedException"></exception>
         public async Task<TResp> HttpPostWithToken<TResp, TRequest>(Request<TRequest> request, string method, string userCacheKey, OperatorModel user)
         {
-            //đọctoken
+            //đọc token
             if (string.IsNullOrEmpty(user.UserCode)|| (string.IsNullOrEmpty(user.OrganizeId)&& string.IsNullOrEmpty(user.TopOrganizeId)))
             {
                 throw new FailedException(ResponseResultCode.FAILOfAuth,"Thông tin định danh người dùng bất thường: mã công tác/thông tin cơ sở không được để trống");

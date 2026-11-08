@@ -7,7 +7,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public int bqId { get; set; }//Khu bệnh ID
         public string bqCode { get; set; }//Mã khu bệnh
         public string bqmc { get; set; }//Tên khu bệnh
-        public string OrganizeId { get; set; }//Tổ chứcid
+        public string OrganizeId { get; set; }//Tổ chức id
         public string py { get; set; }//
         public string zt { get; set; }//
     }

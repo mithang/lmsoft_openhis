@@ -115,12 +115,12 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
             }
             if (extName != ".csv")
             {
-                //Tải vàoxls Tài liệu Chuyển đổicsv
+                //Tải vào xls Tài liệu Chuyển đổi csv
                 Workbook workbook = new Workbook();
                 workbook.LoadFromFile(filename);
                 //Lấy trang tính đầu tiên
                 Worksheet sheet = workbook.Worksheets[0];
-                //Lưu thànhcsv Định dạng
+                //Lưu thành csv Định dạng
                 sheet.SaveToFile(filename + ".csv", ",", Encoding.UTF8);
             }
 

@@ -56,7 +56,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lấygridgiá trị
+        /// Lấy grid giá trị
         /// </summary>
         /// <returns></returns>
         public IActionResult GetdzGridJson(string keyword)
@@ -79,7 +79,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// khoaphòngdướikéokhung
+        /// khoa phòng dưới kéo khung
         /// </summary>
         /// <returns></returns>
         public IActionResult GetksSelect()

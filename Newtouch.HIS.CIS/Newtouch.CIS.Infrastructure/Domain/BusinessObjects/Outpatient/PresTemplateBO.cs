@@ -29,7 +29,7 @@ namespace Newtouch.Domain.BusinessObjects
         public int mblx { get; set; }
 
         /// <summary>
-        /// mẫuchi tiết
+        /// mẫu chi tiết
         /// </summary>
         public List<PresTemplateDetailVO> mbmxList { get; set; }
     }

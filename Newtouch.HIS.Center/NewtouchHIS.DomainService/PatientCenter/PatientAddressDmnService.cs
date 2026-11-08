@@ -53,7 +53,7 @@ namespace NewtouchHIS.DomainService.PatientCenter
             }
 
 
-            //Điện thoại trùng khớp,Họ tênkhông trùng khớp
+            //Điện thoại trùng khớp,Họ tên không trùng khớp
             var dbentity = await baseDal.GetByWhereWithAttr<SysPatientAddressEntity>(p => p.patid == entity.patid && p.dh == entity.dh && p.xm != entity.xm && p.OrganizeId == entity.OrganizeId && p.zt == "1");
             if (dbentity.Count > 0)
             {

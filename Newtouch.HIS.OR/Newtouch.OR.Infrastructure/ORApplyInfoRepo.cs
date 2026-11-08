@@ -93,8 +93,8 @@ where yzlx=3 and zyh=@zyh and xmmc=@ssmcn and ysgh=@ysgh and OrganizeId=@orgId a
         }
 
         /// <summary>
-        /// Xếp lịch phẫu thuậtsau,Cập nhật trạng thái đơn đăng ký(2.Đã xếp lịch)
-        /// Hủy Xếp lịch phẫu thuậtsau,Cập nhật trạng thái đơn đăng ký(1.Đã đăng ký)
+        /// Xếp lịch phẫu thuật sau,Cập nhật trạng thái đơn đăng ký(2.Đã xếp lịch)
+        /// Hủy Xếp lịch phẫu thuật sau,Cập nhật trạng thái đơn đăng ký(1.Đã đăng ký)
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

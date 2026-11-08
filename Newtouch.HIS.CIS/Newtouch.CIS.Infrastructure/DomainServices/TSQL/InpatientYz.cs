@@ -7,7 +7,7 @@ namespace Newtouch.DomainServices.TSQL
     public class InpatientYz
     {
         /// <summary>
-        /// Y lệnh Thực hiện góigồmvăn bảnY lệnh
+        /// Y lệnh Thực hiện gói gồm văn bảnY lệnh
         /// </summary>
         public const string zyOrderExecutionWithWzYz = @"
 BEGIN TRAN
@@ -19,12 +19,12 @@ BEGIN TRY
 	SELECT * FROM dbo.f_split(@yzxhlist,',')
 	IF @@error <> 0 
 	BEGIN      
-		SELECT 'F|LấyY lệnhthứ tựsốtruyềngiá trịthất bại'  
+		SELECT 'F|LấyY lệnh thứ tự số truyền giá trị thất bại'  
 		ROLLBACK TRAN
 		RETURN    
 	END 
 
-	----tạoY lệnhbảng，LưuY lệnhthông tin
+	----tạoY lệnh bảng，LưuY lệnh thông tin
 	DECLARE @OrderTab TABLE
 	(
 		Id VARCHAR(50),
@@ -50,7 +50,7 @@ BEGIN TRY
 		yzxz INT,
         isjf INT
 	)
-	---theoY lệnhidsẽY lệnhthông tinChènbảngtrong
+	---theoY lệnh id sẽY lệnh thông tinChèn bảng trong
 	INSERT INTO @OrderTab
 	( 
 		Id ,
@@ -85,12 +85,12 @@ BEGIN TRY
 	WHERE Id IN (SELECT yzxh FROM @yzxhTab) --AND yzlx IN (2,4)
 	IF @@error <> 0 
 	BEGIN      
-		SELECT 'F|LấyY lệnhthông tinthất bại'  
+		SELECT 'F|LấyY lệnh thông tin thất bại'  
 		ROLLBACK TRAN
 		RETURN    
 	END 
 
-	-----ChènChi phíchi tiếtkho
+	-----ChènChi phí chi tiết kho
 	INSERT INTO dbo.zy_fymxk
 	( 
 		Id ,OrganizeId ,zyh ,yzxh ,	zxrq ,qqrq ,xmdm ,xmmc ,gg ,dw ,sl ,dj , zje ,yzxz ,ybdm ,jzks ,gdzxbz ,yzlb ,
@@ -110,12 +110,12 @@ BEGIN TRY
 	WHERE a.yzlx NOT IN (2,3,4,10,11)
 	IF @@error <> 0 
 	BEGIN      
-		SELECT 'F|ChènChi phíchi tiếtkhothất bại'   
+		SELECT 'F|ChènChi phí chi tiết kho thất bại'   
 		ROLLBACK TRAN
 		RETURN    
 	END 
 
-	-----ThuốcY lệnhChènphát thuốcyêu cầukho
+	-----ThuốcY lệnhChèn phát thuốc yêu cầu kho
 	INSERT INTO dbo.zy_fyqqk
 	( 
 		Id ,OrganizeId ,lyxh ,zyh ,hzxm ,yzxh ,fzxh ,yfdm ,WardCode ,DeptCode ,ysgh ,zxrq ,qqrq ,ypdm ,ypmc ,
@@ -129,12 +129,12 @@ BEGIN TRY
 	WHERE  a.yzlx IN (2,4,10) and a.isjf<>'0'
 	IF @@error <> 0 
 	BEGIN      
-		SELECT 'F|Chènphát thuốcyêu cầukhothất bại'    
+		SELECT 'F|Chèn phát thuốc yêu cầu kho thất bại'    
 		ROLLBACK TRAN
 		RETURN    
 	END 
 
-	-----MụcY lệnhChènChungăn uốngyêu cầukho
+	-----MụcY lệnhChènChung ăn uống yêu cầu kho
 	INSERT INTO dbo.zy_tyssqqk( 
 				Id , OrganizeId ,lyxh , zyh ,hzxm,yzxh,fzxh ,yfdm ,   WardCode ,DeptCode ,  ysgh ,zxrq ,qqrq ,     xmdm , xmmc ,  sl , dw ,  dj ,                  zxcs, zyxz ,  zbbz,  mcsl,  yzlx,CreateTime,CreatorCode ,zt)
 	SELECT NEWID(),a.OrganizeId,@lyxh,a.zyh,d.xm,a.Id,a.zh,a.zxksdm,a.WardCode,a.DeptCode,a.ysgh,@zxrq,GETDATE(),a.xmdm,a.xmmc,a.sl,b.dw ,ISNULL(b.dj,0) AS ypdj,a.zxcs,a.yzxz,a.zbbz,a.ypjl,a.yzlx,GETDATE(), @czyh,       '1' 
@@ -144,7 +144,7 @@ BEGIN TRY
 	WHERE  a.yzlx NOT IN (2,4,10)
 	IF @@error <> 0 
 	BEGIN      
-		SELECT 'F|ChènChungăn uốngyêu cầukhothất bại'   
+		SELECT 'F|ChènChung ăn uống yêu cầu kho thất bại'   
 		ROLLBACK TRAN
 		RETURN    
 	END 
@@ -164,7 +164,7 @@ BEGIN TRY
 		ROLLBACK TRAN
 		RETURN    
 	END 
-	SELECT 'T|Thực hiệnthành công'
+	SELECT 'T|Thực hiện thành công'
 	COMMIT TRAN
 END TRY
 BEGIN CATCH

@@ -10,9 +10,9 @@ namespace Newtouch.Domain.IRepository.Inpatient
    public interface IInpatientMedicinejxCodeComparedRepo
     {
         /// <summary>
-        /// Lưubảngphiếu(Thêm mới,Sửa)
+        /// Lưu bảng phiếu(Thêm mới,Sửa)
         /// </summary>
-        /// <param name="entity">thựcthểđối tượng</param>
+        /// <param name="entity">thực thể đối tượng</param>
         /// <param name="keyValue">Khóa chính Giá trị</param>
         void SubmitForm(InpatientMedicinejxCodeComparedEntity entity, string keyValue);
 

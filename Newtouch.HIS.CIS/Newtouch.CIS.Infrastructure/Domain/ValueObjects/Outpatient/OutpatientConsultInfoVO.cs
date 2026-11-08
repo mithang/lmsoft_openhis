@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Outpatient
 {
     /// <summary>
-    /// Thông tin phòng khám(nhỏmàn hình)
+    /// Thông tin phòng khám(nhỏ màn hình)
     /// </summary>
     public class OutpatientConsultInfoVO
     {
@@ -28,11 +28,11 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         /// </summary>
         public string ysjs { get; set; }
         /// <summary>
-        /// Khám bệnhtrong
+        /// Khám bệnh trong
         /// </summary>
         public string jzz { get; set; }
         /// <summary>
-        /// Khám bệnhtrongthứ tựsố
+        /// Khám bệnh trong thứ tự số
         /// </summary>
         public Int16? jzzxh { get; set; }
         /// <summary>
@@ -40,7 +40,7 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         /// </summary>
         public string djz { get; set; }
         /// <summary>
-        /// chờ Khám bệnhthứ tựsố
+        /// chờ Khám bệnh thứ tự số
         /// </summary>
         public Int16? djzxh { get; set; }
     }

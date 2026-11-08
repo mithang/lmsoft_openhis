@@ -52,7 +52,7 @@ WHERE sfxm.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// Sửaform(Hạng mục thu phí phục hồi chức năng)
+        /// Sửa form(Hạng mục thu phí phục hồi chức năng)
         /// </summary>
         /// <param name="sfxmId"></param>
         /// <returns></returns>
@@ -112,7 +112,7 @@ WHERE sfxm.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// Sửaform(Đối chiếu hạng mục thu phí phục hồi chức năng)
+        /// Sửa form(Đối chiếu hạng mục thu phí phục hồi chức năng)
         /// </summary>
         /// <param name="sfxmdzId"></param>
         /// <returns></returns>

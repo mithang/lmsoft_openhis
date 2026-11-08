@@ -130,7 +130,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             ViewBag.IsDefaultDepart = _sysConfigRepo.GetByCode("IsDefaultDepart", OrganizeId) == null ? "OFF" : _sysConfigRepo.GetByCode("IsDefaultDepart", OrganizeId).Value;
             ViewBag.IsDefaultDoc = _sysConfigRepo.GetByCode("IsDefaultDoc", OrganizeId) == null ? "OFF" : _sysConfigRepo.GetByCode("IsDefaultDoc", OrganizeId).Value;
             ViewBag.IsOpenSfqr = _sysConfigRepo.GetValueByCode("xt_isopen_sfqr", OrganizeId) == "ON";
-            //Sau khi hoàn thành đăng ký ngoại trú,nhảychuyểntrangmặtphốiđặt
+            //Sau khi hoàn thành đăng ký ngoại trú,nhảy chuyển trang mặt phối đặt
             ViewBag.TZPZ_OutpatientRegister = _sysConfigRepo.GetByCode("TZPZ_OutpatientRegister", OrganizeId) == null ? "" : _sysConfigRepo.GetByCode("TZPZ_OutpatientRegister", OrganizeId).Value;
             return View();
         }
@@ -144,7 +144,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             return View();
         }
         /// <summary>
-        /// y tếbảo hiểmbệnhngườiquỹnàythông tintin,thông tin tài khoản
+        /// y tế bảo hiểm bệnh người quỹ này thông tintin,thông tin tài khoản
         /// </summary>
         /// <returns></returns>
         public IActionResult YbPatientBasicInfo()
@@ -153,7 +153,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
         
         /// <summary>
-        /// y tếbảo hiểmmụcghidướitải Tra cứu Từ điển
+        /// y tế bảo hiểm mục ghi dưới tải Tra cứu Từ điển
         /// </summary>
         /// <returns></returns>
         public IActionResult MedicalInsuranceCatalogue()
@@ -239,7 +239,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
 
         #region bệnh nhân Quản lý
         /// <summary>
-        /// bệnhngườiquảnlýtratra cứu
+        /// bệnh người quản lý tra tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
@@ -282,7 +282,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             return View();
         }
         /// <summary>
-        /// mộtthẻthôngngàychí
+        /// một thẻ thông ngày chí
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="xm"></param>
@@ -322,7 +322,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// thẻquảnlýthêmtảisốdữ liệu
+        /// thẻ quản lý thêm tải số dữ liệu
         /// </summary>
         /// <param name="patId">patId</param>
         /// <returns></returns>
@@ -342,7 +342,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             {
                 return Success("Cùng loại không thể thêm nhiều thẻ");
             }
-            //kiểmthẻsốnặnglạikhiếndùng
+            //kiểm thẻ số nặng lại khiến dùng
             if (newCardEntity != null)
             {
                 throw new FailedException("Số thẻ Đã Tồn tại");
@@ -372,7 +372,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         //}
 
         /// <summary>
-        /// mớilậpđăngghi bảo hiểmlưuthẻsốvàbệnhngườiquỹnàythông tintin
+        /// mới lập đăng ghi bảo hiểm lưu thẻ số và bệnh người quỹ này thông tintin
         /// </summary>
         /// <param name="PatientBasicAndCardInfoVO"></param>
         /// <returns></returns>
@@ -429,7 +429,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// kiểm trakiểmtựphíthẻlàkhôngchínhthường
+        /// kiểm tra kiểm tự phí thẻ là không chính thường
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="zyh"></param>
@@ -466,7 +466,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// đượclấynhấtmớithẻsố
+        /// được lấy nhất mới thẻ số
         /// </summary>
         /// <returns></returns>
         public IActionResult GetNewCardNoAndBLH(bool khsc, bool blhsc)
@@ -486,7 +486,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// nhập việnviệnđăngghiđiểmnhấnbảo hiểmlưuthời gianthao táclàm
+        /// nhập viện viện đăng ghi điểm nhấn bảo hiểm lưu thời gianthao tác làm
         /// </summary>
         /// <param name="vo"></param>
         /// <returns></returns>
@@ -499,7 +499,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             {
                 yssfz = _outPatientSettleDmnService.GetDepartmentDoctorIdC(OrganizeId, vo.ks, vo.doctor);
             }
-            //hơnmớibáo cáocảnh báomức
+            //hơn mới báo cáo cảnh báo mức
             if (!string.IsNullOrWhiteSpace(vo.bje.ToString())) {
                 _PatientBasicInfoDmnService.updateZybrxxkExpandBje(zyh, OrganizeId,  vo.bje);
             }
@@ -512,7 +512,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// lấyhủyvàoviện
+        /// lấy hủy vào viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -550,7 +550,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             return Success("Hủy nhập viện thành công！");
 	    }
 		/// <summary>
-		/// theopatidđượclấynhập việnviệnthông tintin
+		/// theo patid được lấy nhập viện viện thông tintin
 		/// </summary>
 		/// <param name="patid"></param>
 		/// <returns></returns>
@@ -578,7 +578,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         #region in
 
         /// <summary>
-        /// nhập việnviệnquỹnàythông tintinđánhin
+        /// nhập viện viện quỹ này thông tin tin đánh in
         /// </summary>
         /// <param name="print"></param>
         /// <returns></returns>
@@ -672,7 +672,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// đánhincổ taymang
+        /// đánh in cổ taymang
         /// </summary>
         /// <param name="print"></param>
         /// <returns></returns>
@@ -739,7 +739,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             return Content(list.ToJson());
         }
         /// <summary>
-        /// ngoại trúkhámnhập việnviệntrướcnộptiềnbệnhngườinổilớp
+        /// ngoại trú khám nhập viện viện trước nộp tiền bệnh người nổi lớp
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -755,7 +755,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// xétđoạnlàkhôngnặnglạitreosố
+        /// xét đoạn là không nặng lại treo số
         /// </summary>
         /// <param name="patid"></param>
         /// <returns></returns>
@@ -772,7 +772,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
 
         }
         /// <summary>
-        /// căndữ liệubệnhlịchsố hoặc Số thẻ tratra cứubệnhngườiquỹnàythông tintin
+        /// căn dữ liệu bệnh lịch số hoặc Số thẻ tratra cứu bệnh người quỹ này thông tintin
         /// </summary>
         /// <param name="blh">Số bệnh án</param>
         /// <param name="kh">Số thẻ</param>
@@ -832,7 +832,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// căndữ liệuthânphầnchứngsốxétđoạnlàkhôngđầukhám
+        /// căn dữ liệu thân phần chứng số xét đoạn là không đầu khám
         /// </summary>
         /// <param name="sfzh"></param>
         /// <returns></returns>
@@ -847,7 +847,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// căndữ liệucáingườimãmãđượclấybệnhngườiquỹnàythông tintin
+        /// căn dữ liệu cái người mã mã được lấy bệnh người quỹ này thông tintin
         /// </summary>
         /// <param name="xnhgrbm">mã cá nhân hợp tác nông thôn mới</param>
         /// <returns></returns>
@@ -860,7 +860,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         //}
 
         /// <summary>
-        /// đượclấythẻsốthông tintin
+        /// được lấy thẻ số thông tintin
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="brxz"></param>
@@ -931,7 +931,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
         public IActionResult XnhCancelRybl(string zyh)
         {
-            #region kéo lấyS30mục lục đối vớitheo
+            #region kéo lấyS30mục lục đối với theo
             //string startDate = "2012-01-28 12:43:27 081";
             //for (int i = 0; i < 100; i++)
             //{
@@ -994,7 +994,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             {
                 if (_sysConfigRepo.GetBoolValueByCode("HOSP_INTERFACE_WITH_CPOE",this.OrganizeId) == true)
                 {
-                    //chỉmớivàoviệncó thểbằnglấyhủyvàoviệnđăngghi
+                    //chỉ mới vào viện có thể bằng lấy hủy vào viện đăng ghi
                     if (!(patinfo.zybz == ((int)EnumZYBZ.Xry).ToString()))
                     {
                         if (patinfo.zybz == ((int)EnumZYBZ.Bqz).ToString())
@@ -1037,7 +1037,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// hợp tác nông thôn mớiS06 vàoviệnlàmlýthông tintinsửasửa
+        /// hợp tác nông thôn mớiS06 vào viện làm lý thông tin tin sửa sửa
         /// </summary>
         /// <param name="VO"></param>
         /// <returns></returns>
@@ -1071,7 +1071,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// kiểmchứngmớinônghợpnhậnmiệngđốitheo
+        /// kiểm chứng mới nông hợp nhận miệng đối theo
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
@@ -1109,7 +1109,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
 
         #region Tính chất bệnh nhân
         /// <summary>
-        /// căndữ liệunguy hiểmloạiloạiloạiđượclấybệnhngườitínhchất
+        /// căn dữ liệunguy hiểm loại loại loại được lấy bệnh người tính chất
         /// </summary>
         /// <param name="xzlx"></param>
         /// <returns></returns>

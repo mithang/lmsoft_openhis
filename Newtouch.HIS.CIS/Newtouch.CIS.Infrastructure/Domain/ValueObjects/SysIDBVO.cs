@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects
 {
     /// <summary>
-    /// tronggiữakho Đồng bộđếnbảnđịa
+    /// tronggiữakho Đồng bộ đến bản địa
     /// </summary>
     public class SysIDBVO
     {
@@ -18,62 +18,62 @@ namespace Newtouch.Domain.ValueObjects
 
 
         /// <summary>
-        /// Dư thừađăng ký khámthông tin  Liệt kê 1 thông thường Ngoại trú 2 gấpkhám 3chuyên gia
+        /// Dư thừa đăng ký khám thông tin  Liệt kê 1 thông thường Ngoại trú 2 gấp khám 3chuyên gia
         /// </summary>
         public int mjzbz { get; set; }
 
         /// <summary>
-        /// tương ứngbillinggiao diệntrongcủa Số bệnh án
+        /// tương ứng billing giao diện trong của Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// liên kếtbilling Hệ thốngcủađăng ký khámbảng
+        /// liên kết billing Hệ thống của đăng ký khám bảng
         /// </summary>
         public string mzh { get; set; }
 
         /// <summary>
-        /// Dư thừa Thông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhân chữ đoạn
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// Dư thừa Thông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhân chữ đoạn
         /// </summary>
         public string xb { get; set; }
 
         /// <summary>
-        /// Dư thừa Thông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhân chữ đoạn
         /// </summary>
         public DateTime? csny { get; set; }
 
         /// <summary>
-        /// Dư thừa Thông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhân chữ đoạn
         /// </summary>
         public string brxzmc { get; set; }
 
         /// <summary>
-        /// Dư thừa Thông tin bệnh nhânchữđoạn Liệt kê
+        /// Dư thừa Thông tin bệnh nhân chữ đoạn Liệt kê
         /// </summary>
         public int? zjlx { get; set; }
 
         /// <summary>
-        /// Dư thừa Thông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhân chữ đoạn
         /// </summary>
         public string zjh { get; set; }
 
         /// <summary>
-        /// Dư thừađăng ký khámbảngchữđoạn Tên khoa
+        /// Dư thừa đăng ký khám bảng chữ đoạn Tên khoa
         /// </summary>
         public string ghksmc { get; set; }
 
         /// <summary>
-        /// Dư thừađăng ký khámbảngchữđoạn Bác sĩ Tên
+        /// Dư thừa đăng ký khám bảng chữ đoạn Bác sĩ Tên
         /// </summary>
         public string ghys { get; set; }
 
         /// <summary>
-        /// Dư thừađăng ký khámbảngchữđoạn
+        /// Dư thừa đăng ký khám bảng chữ đoạn
         /// </summary>
         public DateTime ghsj { get; set; }
 

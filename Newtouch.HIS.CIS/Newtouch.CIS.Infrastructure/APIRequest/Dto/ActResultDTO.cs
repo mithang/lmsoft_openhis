@@ -1,12 +1,12 @@
 ﻿namespace Newtouch.CIS.APIRequest.Dto
 {
     /// <summary>
-    /// Thực hiệnkếtnếu
+    /// Thực hiện kết nếu
     /// </summary>
     public class ActResultDTO
     {
         /// <summary>
-        /// Hàm khởi tạosố Khởi tạo
+        /// Hàm khởi tạo số Khởi tạo
         /// </summary>
         public ActResultDTO()
         {
@@ -14,7 +14,7 @@
         }
 
         /// <summary>
-        /// là Khôngthành công
+        /// là Không thành công
         /// </summary>
         public bool IsSucceed { get; set; }
 

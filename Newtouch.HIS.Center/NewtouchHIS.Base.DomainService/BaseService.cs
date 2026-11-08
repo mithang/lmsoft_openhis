@@ -104,7 +104,7 @@ namespace NewtouchHIS.Base.DomainService
             return true;
         }
         /// <summary>
-        /// Tự động lắp rápwhere Truy vấn(Theo T của Db Truy vấn theo đặc tính)
+        /// Tự động lắp ráp where Truy vấn(Theo T của Db Truy vấn theo đặc tính)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>

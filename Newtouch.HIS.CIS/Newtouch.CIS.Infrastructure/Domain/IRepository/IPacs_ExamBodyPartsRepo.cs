@@ -11,7 +11,7 @@ namespace Newtouch.Domain.IRepository
     public interface IPacs_ExamBodyPartsRepo : IRepositoryBase<Pacs_ExamBodyPartsEntity>
     {
         /// <summary>
-        /// Lấydanh sách
+        /// Lấy danh sách
         /// </summary>
         /// <returns></returns>
         List<Pacs_ExamBodyPartsEntity> GetListByOrg(string orgId);

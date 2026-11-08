@@ -47,7 +47,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         //}
 
         ///// <summary>
-        ///// đăng kýlĩnhphiếusố
+        ///// đăng ký lĩnh phiếu số
         ///// </summary>
         ///// <returns></returns>
         //[HttpGet]
@@ -58,7 +58,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         //}
 
         ///// <summary>
-        ///// dướikéovật tưthông tin
+        ///// dưới kéo vật tư thông tin
         ///// </summary>
         ///// <param name="key"></param>
         ///// <param name="slksbm"></param>
@@ -80,11 +80,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         ///// <summary>
-        ///// dướikéovật tư Số lô Lôthông tin
+        ///// dưới kéo vật tư Số lô Lô thông tin
         ///// </summary>
         ///// <param name="proId">vật tư ID</param>
         ///// <param name="gysId">Nhà cung cấp ID</param>
-        ///// <param name="deliveryNo">phốigửiphiếusố</param>
+        ///// <param name="deliveryNo">phối gửi phiếu số</param>
         ///// <param name="keyword"></param>
         ///// <returns></returns>
         //[HttpGet]

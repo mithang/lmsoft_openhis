@@ -5,13 +5,13 @@ using Newtouch.CIS.Repository;
 namespace Newtouch.Domain.IRepository
 {
     /// <summary>
-    /// rakhám Cài đặt
+    /// ra khám Cài đặt
     /// </summary>
     public interface IVisitDeptSetRepo : IRepositoryBase<VisitDeptSetEntity>
     {
 
         /// <summary>
-        /// Lấyrakhámthông tin
+        /// Lấy ra khám thông tin
         /// </summary>
         /// <param name="ysgh"></param>
         /// <param name="organizeId"></param>

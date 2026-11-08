@@ -4,19 +4,19 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_02
 {
     /// <summary>
-    /// đẩythảo dượcthông tin yêu cầuthể
+    /// đẩy thảo dược thông tin yêu cầu thể
     /// </summary>
     [XmlRoot("Request")]
     public class PushMedicineInfoRequestEntity : RequestBase
     {
         /// <summary>
-        /// thảo dượcthông tinthể
+        /// thảo dược thông tin thể
         /// </summary>
         public Medicine Medicine { get; set; }
     }
 
     /// <summary>
-    /// thảo dượcthông tinthể
+    /// thảo dược thông tin thể
     /// </summary>
     public class Medicine
     {

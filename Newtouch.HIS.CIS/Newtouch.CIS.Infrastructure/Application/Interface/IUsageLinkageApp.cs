@@ -4,7 +4,7 @@ using Newtouch.Domain.Entity;
 namespace Newtouch.Application.Interface
 {
     /// <summary>
-    /// Cách dùngliênđộng
+    /// Cách dùng liên động
     /// </summary>
     public interface IUsageLinkageApp
     {

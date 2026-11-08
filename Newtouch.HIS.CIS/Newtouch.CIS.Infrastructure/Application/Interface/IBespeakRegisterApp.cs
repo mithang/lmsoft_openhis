@@ -7,26 +7,26 @@ using System.Collections.Generic;
 namespace Newtouch.Application.Interface
 {
     /// <summary>
-    /// đặt hẹnđăng ký khám
+    /// đặt hẹn đăng ký khám
     /// </summary>
     public interface IBespeakRegisterApp
     {
         /// <summary>
-        /// Sửađặt hẹn Quản lý
+        /// Sửa đặt hẹn Quản lý
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
         string UpdateBespeakRegisterManage(List<SysBespeakRegisterEntity> entities);
 
         /// <summary>
-        /// Lấy Mặc địnhcủađặt hẹnđăng ký khám Thời gian
+        /// Lấy Mặc định của đặt hẹn đăng ký khám Thời gian
         /// </summary>
         /// <param name="sourceDate"></param>
         /// <returns></returns>
         List<SysBespeakRegisterDateTimeVO> GetRegisterDateByWeek(DateTime sourceDate);
 
         /// <summary>
-        /// Lấy Hệ thốngcấu hìnhđặt hẹn Thời gianđoạnvàcó thểđặt hẹntổngsố
+        /// Lấy Hệ thống cấu hình đặt hẹn Thời gian đoạn và có thể đặt hẹn tổng số
         /// </summary>
         /// <returns></returns>
         List<SysBespeakRegisterTimeVO> GetConfigureRegTime();
@@ -40,33 +40,33 @@ namespace Newtouch.Application.Interface
         string BuildNewRow(List<SysBespeakRegisterDateTimeVO> regDatas, List<SysBespeakRegisterTimeVO> regTimes);
 
         /// <summary>
-        /// Gửiđặt hẹnđăng ký khám Sửa
+        /// Gửi đặt hẹn đăng ký khám Sửa
         /// </summary>
         /// <param name="regData"></param>
         /// <returns></returns>
         string SubmitForm(List<SysBespeakRegisterEntity> regData);
 
         /// <summary>
-        /// Xóaquakỳđặt hẹnđăng ký khám
+        /// Xóa qua kỳ đặt hẹn đăng ký khám
         /// </summary>
         void DeleteExpireRegData();
 
         /// <summary>
-        /// Lấy Khoađặt hẹnđăng ký khámthông tin
+        /// Lấy Khoa đặt hẹn đăng ký khám thông tin
         /// </summary>
         /// <param name="deptCode"></param>
         /// <returns></returns>
         string GetRegDataHtmlByKs(string deptCode);
 
         /// <summary>
-        /// Lấy Khoa Mặc địnhđặt hẹnđăng ký khám
+        /// Lấy Khoa Mặc định đặt hẹn đăng ký khám
         /// </summary>
         /// <param name="deptCode"></param>
         /// <returns></returns>
         string GetDefaultHtmlByKs(string deptCode);
 
         /// <summary>
-        /// Theo Khoavà Mã nhân viênlắp rápđặt hẹnđăng ký khámthông tin
+        /// Theo Khoa và Mã nhân viên lắp ráp đặt hẹn đăng ký khám thông tin
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="gh"></param>
@@ -74,7 +74,7 @@ namespace Newtouch.Application.Interface
         string GetRegDataHtmlByKsAndGh(string deptCode, string gh);
 
         /// <summary>
-        /// Lấycó thểđặt hẹntổng ngườisốvàđãđặt hẹnsố
+        /// Lấy có thể đặt hẹn tổng người số và đã đặt hẹn số
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="regDate"></param>
@@ -84,7 +84,7 @@ namespace Newtouch.Application.Interface
         object GetBespeakMaxCount(string deptCode, DateTime regDate, string regTime, string gh);
 
         /// <summary>
-        /// Lưuđặt hẹnđăng ký khám
+        /// Lưu đặt hẹn đăng ký khám
         /// </summary>
         /// <param name="yyId"></param>
         /// <param name="brId"></param>
@@ -95,7 +95,7 @@ namespace Newtouch.Application.Interface
         string SaveYY(string yyId, string brId, string blh, int? zjlx, string zjh);
 
         /// <summary>
-        /// tạođặt hẹn Xếp lịchngàylịch
+        /// tạo đặt hẹn Xếp lịch ngày lịch
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>

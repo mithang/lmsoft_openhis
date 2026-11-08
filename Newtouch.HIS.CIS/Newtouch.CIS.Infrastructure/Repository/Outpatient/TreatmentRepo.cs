@@ -15,7 +15,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// Khám bệnhthông tin
+    /// Khám bệnh thông tin
     /// </summary>
     public class TreatmentRepo : RepositoryBase<TreatmentEntity>, ITreatmentRepo
     {
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// đã Khám bệnh Khám bệnhtrong danh sách( đã Khám bệnh: chỉcó thể Xemtựtựtêndướicủa Bệnh nhân)
+        /// đã Khám bệnh Khám bệnh trong danh sách( đã Khám bệnh: chỉ có thể Xem tự tự tên dưới của Bệnh nhân)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -94,7 +94,7 @@ AND ss.DepartmentCode=jz.jzks
 		{
 			var sql = @"select * from (
 select 
-Mdtrt_ID,--Bảo hiểm y tếKhám bệnhid
+Mdtrt_ID,--Bảo hiểm y tếKhám bệnh id
 PSN_NO,--
 PSN_NAME,--
 CERTNO,--Số chứng minh nhân dân
@@ -127,7 +127,7 @@ left join NewtouchHIS_Sett..mz_gh b  on b.ecToken is not null and b.ecToken=a.SB
 		public IList<RegisteredInfoRespVO> GetghList(string xm, string blh, string orgid)
 		{
 			var sql = @"select 
-Mdtrt_ID,--Bảo hiểm y tếKhám bệnhid
+Mdtrt_ID,--Bảo hiểm y tếKhám bệnh id
 PSN_NO,--
 PSN_NAME,--
 CERTNO,--Số chứng minh nhân dân
@@ -149,7 +149,7 @@ from [192.168.0.100].[bshrp].[dbo].[kk_1]
 		}
 		
 		/// <summary>
-		/// khôi phụclại Khám bệnh
+		/// khôi phục lại Khám bệnh
 		/// </summary>
 		/// <param name="orgId"></param>
 		/// <param name="jzId"></param>
@@ -158,7 +158,7 @@ from [192.168.0.100].[bshrp].[dbo].[kk_1]
             var entity = this.FindEntity(a => a.jzId == jzId && a.OrganizeId == orgId && a.zt == "1");
             if (entity == null)
             {
-                throw new FailedException("chưa Tra cứuđến Khám bệnhghi chép，khôi phụclại Khám bệnhthất bại");
+                throw new FailedException("chưa Tra cứu đến Khám bệnh ghi chép，khôi phục lại Khám bệnh thất bại");
             }
             entity.jzzt = (int)EnumJzzt.Treating;
             entity.Modify();

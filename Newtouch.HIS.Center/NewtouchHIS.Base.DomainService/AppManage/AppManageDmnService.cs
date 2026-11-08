@@ -32,7 +32,7 @@ namespace NewtouchHIS.Base.DomainService
             return app.Adapt<List<AuthAppVO>>();
         }
         /// <summary>
-        /// Tạo theo thông tin ủy quyền bạn bè của ứng dụngkey
+        /// Tạo theo thông tin ủy quyền bạn bè của ứng dụng key
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -98,7 +98,7 @@ namespace NewtouchHIS.Base.DomainService
             var existsApp = await GetByWhere(p => (p.AuthId == authApp.AuthId || p.AppName == authApp.AppName) && p.zt == "1");
             if (existsApp != null && existsApp!.Count > 0)
             {
-                throw new FailedException(existsApp.FirstOrDefault()!.AppId == authApp.AppId ? "Ứng dụng Idđã được đăng ký,Vui lòng đổi Id" : "Tên ứng dụng đã được đăng ký,Vui lòng đổi");
+                throw new FailedException(existsApp.FirstOrDefault()!.AppId == authApp.AppId ? "Ứng dụng Id đã được đăng ký,Vui lòng đổi Id" : "Tên ứng dụng đã được đăng ký,Vui lòng đổi");
             }
             if (authApp.AuthType > 0 && string.IsNullOrWhiteSpace(Enum.GetName(typeof(AuthTypeEnum), authApp.AuthType)))
             {

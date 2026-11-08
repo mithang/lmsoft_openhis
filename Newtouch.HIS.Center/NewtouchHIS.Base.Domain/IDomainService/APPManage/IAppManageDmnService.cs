@@ -19,7 +19,7 @@ namespace NewtouchHIS.Base.Domain.IDomainService
         /// <returns></returns>
         Task<AuthAppVO> GetAppInfo(AppFriendAuthKeyRequest request);
         /// <summary>
-        /// Tạo theo thông tin ủy quyền ứng dụngkey
+        /// Tạo theo thông tin ủy quyền ứng dụng key
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

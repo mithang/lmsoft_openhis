@@ -9,7 +9,7 @@ namespace Newtouch.Domain.ValueObjects
     public class OutpatientNursequeryVO
     {
         /// <summary>
-        /// Đơn thuốcchi tiếtid
+        /// Đơn thuốc chi tiết id
         /// </summary>
         public string cfmxId { get; set; }
         /// <summary>
@@ -42,12 +42,12 @@ namespace Newtouch.Domain.ValueObjects
         public string zh { get; set; }
 
         /// <summary>
-        /// mởlập Thời gian
+        /// mở lập Thời gian
         /// </summary>
         public DateTime? kssj { get; set; }
 
         /// <summary>
-        /// Đơn thuốcchi tiếtnội dung
+        /// Đơn thuốc chi tiết nội dung
         /// </summary>
         public string cfmxnr { get; set; }
 

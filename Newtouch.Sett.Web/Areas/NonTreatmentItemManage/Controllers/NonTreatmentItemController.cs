@@ -66,7 +66,7 @@ namespace Newtouch.Sett.Web.Areas.NonTreatmentItemManage.Controllers
 
         #region Khoản mục ghi sổ
         /// <summary>
-        /// căndữ liệubệnhlịchsốđượclấypatIdvà họ tên
+        /// căn dữ liệu bệnh lịch số được lấy patId và họ tên
         /// </summary>
         /// <param name="cardNo"></param>
         /// <returns></returns>
@@ -77,7 +77,7 @@ namespace Newtouch.Sett.Web.Areas.NonTreatmentItemManage.Controllers
         }
 
         /// <summary>
-        /// bảo hiểmlưughitài khoản
+        /// bảo hiểm lưu ghi tài khoản
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -126,7 +126,7 @@ namespace Newtouch.Sett.Web.Areas.NonTreatmentItemManage.Controllers
         #endregion
 
         #region ghi sổ Tra cứu
-        //thuphíphânloạisốdữ liệunguồn
+        //thu phí phân loại số dữ liệu nguồn
         [HttpGet]
 
         public IActionResult GetTreeSelectChargeCategoryJson()
@@ -205,7 +205,7 @@ namespace Newtouch.Sett.Web.Areas.NonTreatmentItemManage.Controllers
         }
 
         /// <summary>
-        /// bảo hiểmlưuhoànphí
+        /// bảo hiểm lưu hoàn phí
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -236,10 +236,10 @@ namespace Newtouch.Sett.Web.Areas.NonTreatmentItemManage.Controllers
                 entity.dlCode = item.dlCode;
                 entity.sl = 0-item.tsl.Value;    //Số lượng hoàn
                 entity.dj = item.dj.Value;    //Số lượng hoàn
-                entity.je = 0-item.tje.Value;    //hoàncủatiềnmức
-                entity.cxry = this.UserIdentity.UserCode;   //hủyhủyngườiviên
-                entity.cxrq = DateTime.Now;    //hủyhủyngàykỳ
-                entity.cxjfbId = item.jfbId;    //hủyhủyđốiphảicủajfbId
+                entity.je = 0-item.tje.Value;    //hoàn của tiền mức
+                entity.cxry = this.UserIdentity.UserCode;   //hủy hủy người viên
+                entity.cxrq = DateTime.Now;    //hủy hủy ngày kỳ
+                entity.cxjfbId = item.jfbId;    //hủy hủy đối phải của jfbId
                 entity.blh = item.blh;
                 entity.patId = item.patId;
                 entity.xm = item.xm;

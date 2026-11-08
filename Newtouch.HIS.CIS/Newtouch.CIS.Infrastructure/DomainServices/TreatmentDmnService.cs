@@ -16,7 +16,7 @@ using Newtouch.Domain.ViewModels;
 namespace Newtouch.DomainServices
 {
     /// <summary>
-    /// Khám bệnhthông tin
+    /// Khám bệnh thông tin
     /// </summary>
     public class TreatmentDmnService : DmnServiceBase, ITreatmentDmnService
     {
@@ -25,7 +25,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// Lấy Khám bệnhthông tin
+        /// Lấy Khám bệnh thông tin
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -49,7 +49,7 @@ WHERE jz.mzh=@mzh AND jz.OrganizeId=@orgId AND jz.zt='1'
         }
 
         /// <summary>
-        /// Lấy Khám bệnhthông tin
+        /// Lấy Khám bệnh thông tin
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>

@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// hơn Đơn thuốc mới Cờ thu phívà Đồng bộ Cờ
+        /// hơn Đơn thuốc mới Cờ thu phí và Đồng bộ Cờ
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="tbbz"></param>
@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Repository
             var entity = this.IQueryable().FirstOrDefault(a => a.OrganizeId == orgId && a.cfh == cfh && a.zt == "1");
             if (entity == null)
             {
-                throw new FailedException("prescription is not exist", "Đơn thuốckhôngtồn tạiở");
+                throw new FailedException("prescription is not exist", "Đơn thuốc không tồn tại ở");
             }
 
             entity.sfbz = sfbz;
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// hơn Đơn thuốc mớitrả Cờ
+        /// hơn Đơn thuốc mới trả Cờ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfh"></param>
@@ -103,7 +103,7 @@ namespace Newtouch.HIS.Repository
             var entity = this.IQueryable().FirstOrDefault(a => a.OrganizeId == orgId && a.cfh == cfh && a.zt == "1" && a.sfbz);
             if (entity == null)
             {
-                throw new FailedException("prescription is not exist", "Đơn thuốckhôngtồn tạiở");
+                throw new FailedException("prescription is not exist", "Đơn thuốc không tồn tại ở");
             }
 
             entity.tbz = tbz;
@@ -114,7 +114,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Lấy Đơn thuốcthông tin
+        /// Lấy Đơn thuốc thông tin
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="orgId"></param>
@@ -131,7 +131,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Lấy Đơn thuốcthông tin
+        /// Lấy Đơn thuốc thông tin
         /// </summary>
         /// <param name="jzId"></param>
         /// <param name="sfbz"></param>

@@ -19,11 +19,11 @@ namespace Newtouch.Infrastructure
         public static string SiteConmonAPIHost => AppConfig.SiteConmonAPIHost;
         public static string appId => AppConfig.AppId;
         public static string accessAppId => AppConfig.Token_ApiManage;
-        //Người dùngđănglụcchậmtồn tạitoken
+        //Người dùng đăng lục chậm tồn tại token
         public static string userCacheToken = "";
 
         /// <summary>
-        /// Lấytrongtimgiao diệnapi token
+        /// Lấy trong tim giao diện api token
         /// </summary>
         /// <returns></returns>
         public static string GetToken()
@@ -61,7 +61,7 @@ namespace Newtouch.Infrastructure
 
         /// <summary>
         /// Post yêu cầu
-        /// Xác thựcthất bạitựđộng Làm mới
+        /// Xác thực thất bại tự động Làm mới
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="data"></param>
@@ -76,15 +76,15 @@ namespace Newtouch.Infrastructure
                 token = GetUserToken(user);
                 if (string.IsNullOrWhiteSpace(token))
                 {
-                    throw new FailedException("[Xác thực]chưa Lấyđến Api thânphầnmã thông báo，vui lòngliênhệ Quản lýviên");
+                    throw new FailedException("[Xác thực]chưa Lấy đến Api thân phần mã thông báo，vui lòng liên hệ Quản lý viên");
                 }
                 string response = HttpMethods.HttpPostWithToken(uri, data, token);
                 ApiManageResponse<T> apiResp = JsonConvert.DeserializeObject<ApiManageResponse<T>>(response);
                 if (apiResp.HttpStatus == (int)HttpStatusCode.Unauthorized)
                 {
-                    //Xác thựcthất bại Làm mớitoken
+                    //Xác thực thất bại Làm mới token
                     token = GetUserTokenRefesh(user, token);
-                    //lạiyêu cầugiao diện
+                    //lại yêu cầu giao diện
                     response = HttpMethods.HttpPostWithToken(uri, data, token);
                     apiResp = JsonConvert.DeserializeObject<ApiManageResponse<T>>(response);
                 }
@@ -101,7 +101,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// token quakỳ mạnhchế Làm mới
+        /// token qua kỳ mạnh chế Làm mới
         /// </summary>
         /// <param name="user"></param>
         /// <param name="token"></param>
@@ -130,7 +130,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Người dùngđănglụcsau Lấyapi Chung token
+        /// Người dùng đăng lục sau Lấy api Chung token
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
@@ -171,7 +171,7 @@ namespace Newtouch.Infrastructure
         {
             if (string.IsNullOrWhiteSpace(accessAppId))
             {
-                throw new FailedException("[Xác thực]chưađọclấyđếngiao diện AppIdcấu hình（Token_ApiManage）thông tin");
+                throw new FailedException("[Xác thực]chưa đọc lấy đến giao diện AppId cấu hình（Token_ApiManage）thông tin");
             }
             if (string.IsNullOrWhiteSpace(userCacheToken))
             {
@@ -182,7 +182,7 @@ namespace Newtouch.Infrastructure
 
         #region API
         /// <summary>
-        /// lôlượngchỗlýđãđọc Trạng thái
+        /// lô lượng chỗ lý đã đọc Trạng thái
         /// </summary>
         public static string NoticeReadSendApi => $"{SiteConmonAPIHost}api/NoticeJob/NoticeListRead";
         #endregion

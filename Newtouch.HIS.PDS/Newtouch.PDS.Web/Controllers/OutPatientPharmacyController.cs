@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Web.Controllers
         private readonly IResourcesOperateApp _resourcesOperateApp;
         private readonly IOutPatientDispensingApp _outPatientDispensingApp;
         private readonly ISysYpksfypzEntityRepo _ISysYpksfypzEntityRepo;
-        private readonly string _OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//Tổ chứcid
+        private readonly string _OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//Tổ chức id
 
         #region Trang máy chủ trỏ tới
         /// <summary>

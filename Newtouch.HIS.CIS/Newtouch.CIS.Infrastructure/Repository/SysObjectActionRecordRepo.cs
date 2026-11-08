@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 namespace Newtouch.Repository
 {
     /// <summary>
-    /// Chungđối tượng Thao tácghi chép
+    /// Chung đối tượng Thao tác ghi chép
     /// </summary>
     public class SysObjectActionRecordRepo : RepositoryBase<SysObjectActionRecordEntity>, ISysObjectActionRecordRepo
     {
@@ -20,7 +20,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// Thêm mới Thao tácghi chép
+        /// Thêm mới Thao tác ghi chép
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>

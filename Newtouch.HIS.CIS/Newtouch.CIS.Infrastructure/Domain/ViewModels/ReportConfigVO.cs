@@ -11,7 +11,7 @@ namespace Newtouch.Domain.ViewModels
         public string Id { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// ứngdùng Mã Sett\CIS đợi
+        /// ứng dùng Mã Sett\CIS đợi
         /// </summary>
         public string AppId { get; set; }
         /// <summary>
@@ -19,7 +19,7 @@ namespace Newtouch.Domain.ViewModels
         /// </summary>
         public string RptName { get; set; }
         /// <summary>
-        /// Báo cáophụcvụroot
+        /// Báo cáo phục vụ root
         /// </summary>
         public string RptHost { get; set; }
         /// <summary>
@@ -35,7 +35,7 @@ namespace Newtouch.Domain.ViewModels
         /// </summary>
         public string Paras { get; set; }
         /// <summary>
-        /// côngcụ thểcột date(phiếu Ngày) ,daterange(Thời gianphạm vi)
+        /// công cụ thể cột date(phiếu Ngày) ,daterange(Thời gian phạm vi)
         /// </summary>
         public string Tools { get; set; }
         public DateTime CreateTime { get; set; }

@@ -448,7 +448,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string? OrganizeId { get; set; }
 
         /// <summary>
-        /// Tính chất gần nhất của bệnh nhânxt_brxz.brxz
+        /// Tính chất gần nhất của bệnh nhân xt_brxz.brxz
         /// </summary>
         public string? brxz { get; set; }
 

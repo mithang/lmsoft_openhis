@@ -26,11 +26,11 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// Tra cứu Bệnh nhânđăng ký khámthông tin
+        /// Tra cứu Bệnh nhân đăng ký khám thông tin
         /// </summary>
         /// <param name="ksCode"></param>
-        /// <param name="ysgh">//Lọcchuyên giasố chỉ xemtreotựtựsốcủa</param>
-        /// <param name="mjzbz">//1thông thường Ngoại trú 2gấpkhám 3chuyên gia Ngoại trú</param>
+        /// <param name="ysgh">//Lọc chuyên gia số chỉ xem treo tự tự số của</param>
+        /// <param name="mjzbz">//1thông thường Ngoại trú 2gấp khám 3chuyên gia Ngoại trú</param>
         /// <param name="jiuzhenbz"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -38,7 +38,7 @@ namespace Newtouch.DomainServices
         {
             if (jiuzhenbz < 0)
             {
-                throw new FailedException("Khám bệnh Cờlàtrống");
+                throw new FailedException("Khám bệnh Cờ là trống");
             }
             if (jiuzhenbz == (int)EnumJzzt.NotYetTreate)
             {
@@ -49,7 +49,7 @@ namespace Newtouch.DomainServices
 SELECT  --CAST(NEWID() AS VARCHAR(50)) jzId ,
 	@orgId OrganizeId ,
 	zjk.RegID mzh ,
-	1 mjzbz,--cầnsửaxác nhận
+	1 mjzbz,--cần sửa xác nhận
 	xxk.blh ,
 	zjk.PatName xm ,
 		CASE zjk.PatSex
@@ -105,8 +105,8 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         }
 
         /// <summary>
-        /// sẽmzhcủa Chưa thu phí Đơn thuốcđợithông tin Đồng bộđếntronggiữakho   
-        /// (và Đồng bộ Đơn thuốcthành côngsaucầnvềviết Đơn thuốc Trạng thái đồng bộ)
+        /// sẽ mzh của Chưa thu phí Đơn thuốc đợi thông tin Đồng bộđếntronggiữakho   
+        /// (và Đồng bộ Đơn thuốc thành công sau cần về viết Đơn thuốc Trạng thái đồng bộ)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -115,11 +115,11 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         {
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("Tổ chứclàtrống");
+                throw new FailedException("Tổ chức là trống");
             }
             if (string.IsNullOrWhiteSpace(mzh))
             {
-                throw new FailedException("Số khám ngoại trúlàtrống");
+                throw new FailedException("Số khám ngoại trú là trống");
             }
             var par = new List<SqlParameter>();
             par.Add(new SqlParameter("@orgId", orgId));
@@ -128,7 +128,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         }
 
         /// <summary>
-        /// Hủy bỏhis Một lần Khám bệnhcủatất cả Đơn thuốc
+        /// Hủy bỏ his Một lần Khám bệnh của tất cả Đơn thuốc
         /// </summary>
         /// <param name="jzId"></param>
         /// <param name="orgId"></param>
@@ -136,11 +136,11 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         {
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("Tổ chứclàtrống");
+                throw new FailedException("Tổ chức là trống");
             }
             if (string.IsNullOrWhiteSpace(jzId))
             {
-                throw new FailedException("Khám bệnhsốlàtrống");
+                throw new FailedException("Khám bệnh số là trống");
             }
             var par = new List<SqlParameter>();
             par.Add(new SqlParameter("@orgId", orgId));
@@ -161,11 +161,11 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         {
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("Tổ chứclàtrống");
+                throw new FailedException("Tổ chức là trống");
             }
             if (string.IsNullOrWhiteSpace(cfId)&& string.IsNullOrWhiteSpace(apicfh))
             {
-                throw new FailedException("thiếu Đơn thuốcthông tin");
+                throw new FailedException("thiếu Đơn thuốc thông tin");
             }
             var par = new List<SqlParameter>();
             par.Add(new SqlParameter("@orgId", orgId));

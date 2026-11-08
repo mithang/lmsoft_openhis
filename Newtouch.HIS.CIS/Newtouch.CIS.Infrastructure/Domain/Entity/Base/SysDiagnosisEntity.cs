@@ -83,7 +83,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// Loại chẩn đoán tương ứngtừ điển   DiagnosisType
+        /// Loại chẩn đoán tương ứng từ điển   DiagnosisType
         /// </summary>
         public string zdlx { get; set; }
 

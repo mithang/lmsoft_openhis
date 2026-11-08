@@ -19,7 +19,7 @@ namespace Newtouch.Domain.ValueObjects
         public decimal? Pjze { get; set; }
 
         /// <summary>
-        /// vàogiá Tổng số tiền
+        /// vào giá Tổng số tiền
         /// </summary>
         public decimal? Jjze { get; set; }
     }

@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Domain.Entity.Settlement
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Loại Liên kết từ điển ChargeCateTypemục từ điển của
+        /// Loại Liên kết từ điển ChargeCateType mục từ điển của
         /// </summary>
         public string Type { get; set; }
 

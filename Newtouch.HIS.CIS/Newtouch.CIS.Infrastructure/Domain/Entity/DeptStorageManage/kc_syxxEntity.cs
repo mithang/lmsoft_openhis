@@ -7,7 +7,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Domain.Entity.DeptStorageManage
 {
     /// <summary>
-    /// Tồn kholãi lỗ
+    /// Tồn kho lãi lỗ
     /// </summary>
     [SugarTable("dept_syxx")]
     public class KcSyxxEntity
@@ -20,7 +20,7 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public long Id { get; set; }
 
         /// <summary>
-        /// Tổ chức(yviện)
+        /// Tổ chức(y viện)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -55,23 +55,23 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public DateTime Bgsj { get; set; }
 
         /// <summary>
-        /// đangsố:báo thừa,âmsố:Báo hỏng Đơn vị nhỏ nhấtsố
+        /// đang số:báo thừa,âm số:Báo hỏng Đơn vị nhỏ nhất số
         /// </summary>
         public int Sysl { get; set; }
 
         /// <summary>
-        /// Đơn vị ID  vàgiáôphốihợp Sử dụng,vàzhyzthànhbộ
+        /// Đơn vị ID  vàgiáôphốihợp Sử dụng,và zhyz thành bộ
         /// </summary>
         public string UnitId { get; set; }
 
         /// <summary>
-        /// Giá bán lẻ  chuyểnhóavìcontương ứngvàogiá
+        /// Giá bán lẻ  chuyển hóa vì con tương ứng vào giá
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Lsj { get; set; }
 
         /// <summary>
-        /// chuyểnhóavìcon
+        /// chuyển hóa vì con
         /// </summary>
         public int Zhyz { get; set; }
 
@@ -86,17 +86,17 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public string Zrr { get; set; }
 
         /// <summary>
-        /// phiếusố phiếu
+        /// phiếu số phiếu
         /// </summary>
         public string Djh { get; set; }
 
         /// <summary>
-        /// còn lại Tồn kho hiệncó Tồn kho Đơn vị nhỏ nhất kcsl
+        /// còn lại Tồn kho hiện có Tồn kho Đơn vị nhỏ nhất kcsl
         /// </summary>
         public int Sykc { get; set; }
 
         /// <summary>
-        /// vàogiá
+        /// vào giá
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Jj { get; set; }

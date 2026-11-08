@@ -65,7 +65,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// Cá nhâncònlà Khoa
+        /// Cá nhân còn là Khoa
         /// </summary>
         public string isgr { get; set; }
         /// <summary>

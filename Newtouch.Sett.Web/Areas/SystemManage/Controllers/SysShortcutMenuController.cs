@@ -38,7 +38,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 
 
         /// <summary>
-        /// đượclấythựcthểcộtbảng
+        /// được lấy thực thể cột bảng
         /// </summary>
         /// <param name="keyword">Từ khóa lọc</param>
         /// <returns></returns>

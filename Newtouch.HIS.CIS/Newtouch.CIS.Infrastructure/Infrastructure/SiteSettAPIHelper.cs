@@ -6,12 +6,12 @@ using System;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// Sett API yêu cầugiúpgiúploại
+    /// Sett API yêu cầu giúp giúp loại
     /// </summary>
     public class SiteSettAPIHelper : SiteAPIRequestHelperBase<SiteSettAPIHelper>
     {
         /// <summary>
-        /// lĩnh vực Addrcấu hình của Key
+        /// lĩnh vực Addr cấu hình của Key
         /// </summary>
         private readonly static string _domainConfigKey = "SiteSettAPIHost";
 
@@ -43,7 +43,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// đãquyết toán Đơn thuốcchi tiết Tra cứu
+        /// đã quyết toán Đơn thuốc chi tiết Tra cứu
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -76,7 +76,7 @@ namespace Newtouch.Infrastructure
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// ởviện Cờ
+        /// ở viện Cờ
         /// </summary>
         public int zybz { get; set; }
         /// <summary>

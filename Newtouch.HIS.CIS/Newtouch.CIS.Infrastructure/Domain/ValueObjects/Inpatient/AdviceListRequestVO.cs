@@ -13,7 +13,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
     {
 
         /// <summary>
-        /// khingàyY lệnh
+        /// khi ngàyY lệnh
         /// </summary>
         public bool dryz { get; set; }
         

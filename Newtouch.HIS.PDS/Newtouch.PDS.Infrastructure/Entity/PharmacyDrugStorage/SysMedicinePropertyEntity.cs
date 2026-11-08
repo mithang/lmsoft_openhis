@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string zbbz { get; set; }
 
         /// <summary>
-        /// Cách dùng mặc định từxt_ypyf
+        /// Cách dùng mặc định từ xt_ypyf
         /// </summary>
         public string zlff { get; set; }
 
@@ -126,12 +126,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string pzwh { get; set; }
 
         /// <summary>
-        /// Từ thuộc tính đặc biệt thuốc hệ thốngxt_ypxz
+        /// Từ thuộc tính đặc biệt thuốc hệ thống xt_ypxz
         /// </summary>
         public string yptssx { get; set; }
 
         /// <summary>
-        /// Từxt_ypfl
+        /// Từ xt_ypfl
         /// </summary>
         public string ypflCode { get; set; }
 

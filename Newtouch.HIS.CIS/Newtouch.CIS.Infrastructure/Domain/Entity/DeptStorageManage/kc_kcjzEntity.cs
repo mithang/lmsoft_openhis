@@ -7,7 +7,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Domain.Entity.DeptStorageManage
 {
     /// <summary>
-    /// Tồn kho_Tồn khokết chuyển
+    /// Tồn kho_Tồn kho kết chuyển
     /// </summary>
     [SugarTable("dept_kcjz")]
     public class KcKcjzEntity
@@ -19,7 +19,7 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chức Id(cócụ thểthểnghiệp vụcủayviện)
+        /// Tổ chức Id(có cụ thể thể nghiệp vụ của y viện)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -54,19 +54,19 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public int kcsl { get; set; }
 
         /// <summary>
-        /// Khoa phòng Giá bán lẻ,chuyểnhóavìcontương ứng Đơn vị
+        /// Khoa phòng Giá bán lẻ,chuyển hóa vì con tương ứng Đơn vị
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal bmlsj { get; set; }
 
         /// <summary>
-        /// vàogiá,chuyểnhóavìcontương ứng Đơn vị
+        /// vào giá,chuyển hóa vì con tương ứng Đơn vị
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal jj { get; set; }
 
         /// <summary>
-        /// chuyểnhóavìcon(bắt buộc)
+        /// chuyển hóa vì con(bắt buộc)
         /// </summary>
         public int zhyz { get; set; }
 

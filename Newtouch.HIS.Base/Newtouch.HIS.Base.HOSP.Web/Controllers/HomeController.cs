@@ -83,7 +83,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                 ViewBag.OrgName = _sysOrganizeDmnService.GetNameByOrgId(opr.TopOrganizeId);
             }
 
-            if (!opr.IsRoot && !opr.IsAdministrator)    //Luôntrue
+            if (!opr.IsRoot && !opr.IsAdministrator)    //Luôn true
             {
                 //Hiện tại UserId tất cả tương ứng Cơ sở y tế List
                 var mediOrgList = _sysOrganizeDmnService.GetMedicalOrganizeListByUserId(opr.UserId);
@@ -148,7 +148,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                 opr.DepartmentName = _sysDepartmentRepo.GetNameByCode(orgStaff.DepartmentCode, orgStaff.OrganizeId);
 
                 var roleList = _userRoleAuthDmnService.GetUserRoleList(opr.UserId, orgStaff.OrganizeId);
-                //170904 Administrator Không thể liên kết nữa Staff,Chỉadmin
+                //170904 Administrator Không thể liên kết nữa Staff,Chỉ admin
                 opr.RoleIdList = roleList.Select(p => p.Id).ToList();
                 opr.IsHospAdministrator = roleList.Any(p => p.Code == "HospAdministrator");
 

@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Domain.IRepository
         List<RehabChargeClassificationEntity> GetRehabChargeClassificationList(string OrganizeId, string keyword = null);
 
         /// <summary>
-        /// Sửaform
+        /// Sửa form
         /// </summary>
         RehabChargeClassificationEntity GetRehabChargeClassificationEntity(string sfflId, string OrganizeId);
 

@@ -27,27 +27,27 @@ namespace Newtouch.Domain.Entity
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 0 thông thường Mục 1 đặcđặc Mục Thuốc đặc biệt Mô tảlàđặcđịnhcủabệnh nhân Tính chấtmớicó thể Sử dụngcủa.
+        /// 0 thông thường Mục 1 đặc đặc Mục Thuốc đặc biệt Mô tả là đặc định của bệnh nhân Tính chất mới có thể Sử dụng của.
         /// </summary>
         public string tsbz { get; set; }
 
         /// <summary>
-        /// đắttrọngthuốc
+        /// đắt trọng thuốc
         /// </summary>
         public string gzy { get; set; }
 
         /// <summary>
-        /// têsaythuốc
+        /// tê say thuốc
         /// </summary>
         public string mzy { get; set; }
 
         /// <summary>
-        /// tinhthầnthuốc
+        /// tinh thần thuốc
         /// </summary>
         public string yljsy { get; set; }
 
         /// <summary>
-        /// Điều trị Phương pháp(cùngdạng liên kết Cách dùng thuốc)
+        /// Điều trị Phương pháp(cùng dạng liên kết Cách dùng thuốc)
         /// </summary>
         public string zlff { get; set; }
 
@@ -57,12 +57,12 @@ namespace Newtouch.Domain.Entity
         public string sjap { get; set; }
 
         /// <summary>
-        /// dùnglượng
+        /// dùng lượng
         /// </summary>
         public decimal? yl { get; set; }
 
         /// <summary>
-        /// dùnglượng Đơn vị
+        /// dùng lượng Đơn vị
         /// </summary>
         public string yldw { get; set; }
 
@@ -77,27 +77,27 @@ namespace Newtouch.Domain.Entity
         public string ybdm { get; set; }
 
         /// <summary>
-        /// Sử dụng Số ngày(Bảo hiểm y tếkiểm soátlượng Cài đặtchữđoạn)
+        /// Sử dụng Số ngày(Bảo hiểm y tế kiểm soát lượng Cài đặt chữ đoạn)
         /// </summary>
         public int? syts { get; set; }
 
         /// <summary>
-        /// Một lầnnhấtlớn Liều lượng(Bảo hiểm y tếkiểm soátlượng Cài đặtchữđoạn)
+        /// Một lần nhất lớn Liều lượng(Bảo hiểm y tế kiểm soát lượng Cài đặt chữ đoạn)
         /// </summary>
         public decimal? dczdjl { get; set; }
 
         /// <summary>
-        /// Một lầnnhấtlớn Số lượng(Bảo hiểm y tếkiểm soátlượng Cài đặtchữđoạn)
+        /// Một lần nhất lớn Số lượng(Bảo hiểm y tế kiểm soát lượng Cài đặt chữ đoạn)
         /// </summary>
         public decimal? dczdsl { get; set; }
 
         /// <summary>
-        /// lũytínhnhấtlớn Liều lượng(Bảo hiểm y tếkiểm soátlượng Cài đặtchữđoạn)
+        /// lũy tính nhất lớn Liều lượng(Bảo hiểm y tế kiểm soát lượng Cài đặt chữ đoạn)
         /// </summary>
         public decimal? ljzdjl { get; set; }
 
         /// <summary>
-        /// lũytínhnhấtlớn Số lượng(Bảo hiểm y tếkiểm soátlượng Cài đặtchữđoạn)
+        /// lũy tính nhất lớn Số lượng(Bảo hiểm y tế kiểm soát lượng Cài đặt chữ đoạn)
         /// </summary>
         public decimal? ljzdsl { get; set; }
 
@@ -107,7 +107,7 @@ namespace Newtouch.Domain.Entity
         public string pzwh { get; set; }
 
         /// <summary>
-        /// Thuốcđặcđặc Thuộc tính
+        /// Thuốc đặc đặc Thuộc tính
         /// </summary>
         public string yptssx { get; set; }
 
@@ -122,12 +122,12 @@ namespace Newtouch.Domain.Entity
         public string jzlx { get; set; }
 
         /// <summary>
-        /// Mặc địnhbảochấtkỳ
+        /// Mặc định bảo chất kỳ
         /// </summary>
         public int? mrbzq { get; set; }
 
         /// <summary>
-        /// cung cấphàng Đơn vị
+        /// cung cấp hàng Đơn vị
         /// </summary>
         public string ghdw { get; set; }
 

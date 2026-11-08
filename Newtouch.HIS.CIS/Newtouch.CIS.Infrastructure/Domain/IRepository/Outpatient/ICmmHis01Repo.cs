@@ -4,7 +4,7 @@ using Newtouch.CIS.Repository;
 namespace Newtouch.Domain.IRepository
 {
     /// <summary>
-    /// trongyquánđẩy Thông tin bệnh nhân
+    /// trong y quán đẩy Thông tin bệnh nhân
     /// </summary>
     public interface ICmmHis01Repo : IRepositoryBase<CmmHis01Entity>
     {

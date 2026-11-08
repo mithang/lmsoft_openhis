@@ -363,7 +363,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// GetfyDetailCFList Chuyển thànhfyMeidicneInfo
+        /// GetfyDetailCFList Chuyển thành fyMeidicneInfo
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>

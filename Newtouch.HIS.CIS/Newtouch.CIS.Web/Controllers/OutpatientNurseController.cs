@@ -37,7 +37,7 @@ namespace Newtouch.CIS.Web.Controllers
         #region View Chế độ xem
         // GET: OutpatientNurse
         /// <summary>
-        /// Test da Thực hiệntrangmặt
+        /// Test da Thực hiện trang mặt
         /// </summary>
         /// <returns></returns>
         public IActionResult PerformIndex()
@@ -65,7 +65,7 @@ namespace Newtouch.CIS.Web.Controllers
             return View();
         }
         /// <summary>
-        /// Ngoại trúgiữxem Tra cứu
+        /// Ngoại trú giữ xem Tra cứu
         /// </summary>
         /// <returns></returns>
         public IActionResult observationQuery()
@@ -73,7 +73,7 @@ namespace Newtouch.CIS.Web.Controllers
             return View();
         }
         /// <summary>
-        /// Ngoại trúvạchgiá
+        /// Ngoại trú vạch giá
         /// </summary>
         /// <returns></returns>
         public IActionResult OutpatientPricing()
@@ -83,7 +83,7 @@ namespace Newtouch.CIS.Web.Controllers
         #endregion
         
         #region Test da
-        //Test datrangmặtcâykiểm soátmục
+        //Test da trang mặt cây kiểm soát mục
         public IActionResult SkintestTree(string keyword, DateTime? kssj, DateTime? jssj, string type)
         {
             var wardTree = _OutpatientNurseDmnService.OutpatientNurseTreeVO(this.OrganizeId, keyword, kssj, jssj, type);
@@ -188,14 +188,14 @@ namespace Newtouch.CIS.Web.Controllers
             }
             else
             {
-                return Success("Hủy Thực hiệnthành công");
+                return Success("Hủy Thực hiện thành công");
             }
         }
         #endregion
 
         #region Ngoại trú Bệnh ánIn
         /// <summary>
-        /// Lấy Đơn thuốc ngườiviên Tra cứucây
+        /// Lấy Đơn thuốc người viên Tra cứu cây
         /// </summary>
         /// <returns></returns>
         public IActionResult GetPatcfTree(string keyword)
@@ -299,7 +299,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
         #endregion
 
-        #region Ngoại trúvạchgiá
+        #region Ngoại trú vạch giá
 
 
         #endregion

@@ -34,7 +34,7 @@ namespace NewtouchHIS.Base.DomainService
             }
             else
             {
-                //Chỉ hiển thị của Tổ chứcngười dùng
+                //Chỉ hiển thị của Tổ chức người dùng
                 orgName = orgList.FirstOrDefault(p => p.Id == orgId)?.Name;
                 whereExp.And((a, b, c, d) => c.OrganizeId == orgId && !string.IsNullOrWhiteSpace(c.Id));
 
@@ -199,7 +199,7 @@ namespace NewtouchHIS.Base.DomainService
             return staffList;
         }
         /// <summary>
-        /// Lấy thông tin nhân viên Theo Tổ chứcvà từ khóa
+        /// Lấy thông tin nhân viên Theo Tổ chức và từ khóa
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>

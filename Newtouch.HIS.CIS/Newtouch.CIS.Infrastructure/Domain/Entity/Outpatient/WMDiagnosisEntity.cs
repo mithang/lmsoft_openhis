@@ -23,7 +23,7 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// liên kết Khám bệnhbảng
+        /// liên kết Khám bệnh bảng
         /// </summary>
         public string jzId { get; set; }
 
@@ -33,12 +33,12 @@ namespace Newtouch.Domain.Entity
         public int zdlx { get; set; }
 
         /// <summary>
-        /// liên kếtbasekho Chẩn đoán hệ thốngbảng
+        /// liên kếtbasekho Chẩn đoán hệ thống bảng
         /// </summary>
         public string zdCode { get; set; }
 
         /// <summary>
-        /// Dư thừachữđoạn
+        /// Dư thừa chữ đoạn
         /// </summary>
         public string zdmc { get; set; }
 
@@ -76,15 +76,15 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public string zdbz { get; set; }
         /// <summary>
-        /// răng ký tựhình Loại
+        /// răng ký tự hình Loại
         /// </summary>
         public string ywlx { get; set; }
         /// <summary>
-        /// răng ký tựhình Vị trí
+        /// răng ký tự hình Vị trí
         /// </summary>
         public string ywstr { get; set; }
         /// <summary>
-        /// răng ký tựhình Hiển thị
+        /// răng ký tự hình Hiển thị
         /// </summary>
         public string ywxs { get; set; }
     }

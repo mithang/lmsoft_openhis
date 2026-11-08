@@ -38,7 +38,7 @@ namespace Newtouch.Domain.Entity
         public string Description { get; set; }
 
         /// <summary>
-        /// Lưu ýviệc mục
+        /// Lưu ý việc mục
         /// </summary>
         public string Remark { get; set; }
 

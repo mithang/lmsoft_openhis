@@ -150,7 +150,7 @@ from [bl_bllx] with(nolock) where zt=1 and OrganizeId=@orgId
             return DiagList;
         }
         /// <summary>
-        /// Văn bản bệnh ántree
+        /// Văn bản bệnh án tree
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

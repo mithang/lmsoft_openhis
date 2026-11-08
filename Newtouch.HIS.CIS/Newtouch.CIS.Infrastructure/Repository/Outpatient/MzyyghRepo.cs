@@ -8,7 +8,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Repository
 {
     /// <summary>
-    /// Ngoại trúđặt hẹnđăng ký khám
+    /// Ngoại trú đặt hẹn đăng ký khám
     /// </summary>
     public class MzyyghRepo : RepositoryBase<MzyyghEntity>, IMzyyghRepo
     {

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// Khoachuẩn bị thuốc Thuốcnguyên nhân lãi lỗ
+    /// Khoa chuẩn bị thuốc Thuốc nguyên nhân lãi lỗ
     /// </summary>
     [SugarTable("xt_ksbysyyy")]
 

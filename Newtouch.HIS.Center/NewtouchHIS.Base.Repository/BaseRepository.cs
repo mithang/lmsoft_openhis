@@ -23,7 +23,7 @@ namespace NewtouchHIS.Base.Repository
         public async Task<long> Add(TEntity model)
         {
             var i = await Task.Run(() => Db.Insertable(model).ExecuteCommand());
-            //trả vềi Cólong Loại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
+            //trả vềi Có long Loại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
             return i;
         }
 
@@ -56,7 +56,7 @@ namespace NewtouchHIS.Base.Repository
         /// <returns></returns>
         public async Task<bool> Update(TEntity model)
         {
-            //Cách này sẽ lấy Khóa chínhlàm điều kiện
+            //Cách này sẽ lấy Khóa chính làm điều kiện
             var i = await Task.Run(() => Db.Updateable(model).ExecuteCommand());
             return i > 0;
         }
@@ -133,13 +133,13 @@ namespace NewtouchHIS.Base.Repository
         /// <returns></returns>
         public async Task<TEntity> getFirstOrDefault(Expression<Func<TEntity, bool>> where)
         {
-            return await Db.Queryable<TEntity>().FirstAsync(where);//Truy vấn một bản ghi, không có dữ liệu thì trả về NULL, Singlevượt quá1bản ghi sẽ báo lỗi,Firstsẽ không
+            return await Db.Queryable<TEntity>().FirstAsync(where);//Truy vấn một bản ghi, không có dữ liệu thì trả về NULL, Single vượt quá1bản ghi sẽ báo lỗi,First sẽ không
         }
 
         /// <summary>
         /// Theo Khóa chính In  Truy vấn
         /// </summary>
-        /// <typeparam name="S">Khóa chínhkiểu</typeparam>
+        /// <typeparam name="S">Khóa chính kiểu</typeparam>
         /// <param name="list">Khóa chính In Tập kết quả của thao tác</param>
         /// <returns></returns>
         public async Task<List<TEntity>> getByIn<S>(List<S> list, bool isOrderBy = false, Expression<Func<TEntity, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
@@ -163,7 +163,7 @@ namespace NewtouchHIS.Base.Repository
         /// Theo cột chỉ định Not In (!Contain)Truy vấn
         /// </summary>
         /// <typeparam name="S">Kiểu cột chỉ định</typeparam>
-        /// <param name="list">Not Intập kết quả</param>
+        /// <param name="list">Not In tập kết quả</param>
         /// <param name="field">Cột chỉ định</param>
         /// <returns></returns>
         public async Task<List<TEntity>> getByNotIn<S>(List<S> list, object field, bool isOrderBy = false, Expression<Func<TEntity, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
@@ -208,7 +208,7 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// Truy vấn Giá trị của cột chỉ định tại startđếnend dữ liệu trong khoảng
+        /// Truy vấn Giá trị của cột chỉ định tại start đến end dữ liệu trong khoảng
         /// </summary>
         /// <param name="value">Lớp chỉ định</param>
         /// <param name="start">Bắt đầu</param>
@@ -326,9 +326,9 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// Thực thi truy vấnsqlcâu lệnh ,Trả về tập dữ liệu
+        /// Thực thi truy vấn sql câu lệnh ,Trả về tập dữ liệu
         /// </summary>
-        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="sql">sql câu lệnh</param>
         /// <returns></returns>
         public async Task<List<TEntity>> getListBySql(string sql)
         {
@@ -337,9 +337,9 @@ namespace NewtouchHIS.Base.Repository
 
         #region Ado 
         /// <summary>
-        /// Thực thi câu lệnh không truy vấnsqlcâu lệnh,trả về thao tác có thành công hay không
+        /// Thực thi câu lệnh không truy vấn sql câu lệnh,trả về thao tác có thành công hay không
         /// </summary>
-        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="sql">sql câu lệnh</param>
         /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public async Task<bool> ExecuteCommandSql(string sql, params SugarParameter[] parameters)
@@ -348,9 +348,9 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// Thực thi truy vấnsqlcâu lệnh,Trả về tập kết quả truy vấn
+        /// Thực thi truy vấn sql câu lệnh,Trả về tập kết quả truy vấn
         /// </summary>
-        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="sql">sql câu lệnh</param>
         /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public async Task<List<TEntity>> getListBySqlQuery(string sql, params SugarParameter[] parameters)
@@ -359,9 +359,9 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// Thực thi truy vấnsqlcâu lệnh,Trả về Hàng đầu tiên, cột đầu tiên
+        /// Thực thi truy vấn sql câu lệnh,Trả về Hàng đầu tiên, cột đầu tiên
         /// </summary>
-        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="sql">sql câu lệnh</param>
         /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public async Task<object> getScalar(string sql, params SugarParameter[] parameters)
@@ -405,9 +405,9 @@ namespace NewtouchHIS.Base.Repository
 
         #region Ado 
         /// <summary>
-        /// Thực thi câu lệnh không truy vấnsqlcâu lệnh,trả về thao tác có thành công hay không(choose db)
+        /// Thực thi câu lệnh không truy vấn sql câu lệnh,trả về thao tác có thành công hay không(choose db)
         /// </summary>
-        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="sql">sql câu lệnh</param>
         /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public async Task<bool> ExecuteCommandSql(string db, string sql, params SugarParameter[] parameters)
@@ -416,9 +416,9 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// Thực thi truy vấnsqlcâu lệnh,Trả về tập kết quả truy vấn(choose db)
+        /// Thực thi truy vấn sql câu lệnh,Trả về tập kết quả truy vấn(choose db)
         /// </summary>
-        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="sql">sql câu lệnh</param>
         /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public async Task<List<T>> getListBySqlQuery<T>(string db, string sql, List<DbParameter> parameters)
@@ -432,9 +432,9 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// Thực thi truy vấnsqlcâu lệnh,Trả về Hàng đầu tiên, cột đầu tiên(choose db)
+        /// Thực thi truy vấn sql câu lệnh,Trả về Hàng đầu tiên, cột đầu tiên(choose db)
         /// </summary>
-        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="sql">sql câu lệnh</param>
         /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public async Task<object> getScalar(string db, string sql, params SugarParameter[] parameters)

@@ -112,7 +112,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
 
         #region get
         /// <summary>
-        /// getyêu cầu
+        /// get yêu cầu
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>
@@ -177,7 +177,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
         /// <param name="requestEncoding"></param>
         /// <param name="responseEncoding"></param>
         /// <param name="cookies"></param>
-        /// <param name="contentType">mặc địnhjson</param>
+        /// <param name="contentType">mặc định json</param>
         /// <returns></returns>
         public T HttpPostStringAndRead<T>(string url, string postDataStr
             , int? timeout = 120000, string? userAgent = null, Encoding? requestEncoding = null
@@ -252,7 +252,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
         }
 
         /// <summary>
-        /// Phương thức Get thông thường, trả vềstring
+        /// Phương thức Get thông thường, trả về string
         /// </summary>
         /// <param name="url"></param>
         /// <param name="timeout">Thời gian chờ yêu cầu (tính bằng mili giây)</param>
@@ -345,7 +345,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
         #region private mthods
 
         /// <summary>
-        /// Phương thức Get thông thường, trả vềstring
+        /// Phương thức Get thông thường, trả về string
         /// </summary>
         /// <param name="url"></param>
         /// <param name="response">HttpWebResponse</param>

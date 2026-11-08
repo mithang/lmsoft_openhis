@@ -17,7 +17,7 @@ using System.Text;
 namespace Newtouch.DomainServices
 {
     /// <summary>
-    /// Ngoại trúđặt hẹnđăng ký khám
+    /// Ngoại trú đặt hẹn đăng ký khám
     /// </summary>
     public class MzyyghDmnService : DmnServiceBase, IMzyyghDmnService
     {
@@ -34,13 +34,13 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// Theo Số bệnh án Tra cứu Ngoại trúđặt hẹnđăng ký khámthông tin
+        /// Theo Số bệnh án Tra cứu Ngoại trú đặt hẹn đăng ký khám thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
         /// <param name="organizeId"></param>
         /// <param name="regDate"></param>
-        /// <returns>Quay lạinayngàyvànayngàylấysaucủađặt hẹnđăng ký khám</returns>
+        /// <returns>Quay lại nay ngày và nay ngày lấy sau của đặt hẹn đăng ký khám</returns>
         public IList<MzyyghVO> SelectMzyyghDetail(Pagination pagination, string blh, string organizeId, DateTime regDate)
         {
             var sql = @"
@@ -62,7 +62,7 @@ AND br.regDate>=@regDate ";
         }
 
         /// <summary>
-        /// Ngoại trúđặt hẹn Tra cứu
+        /// Ngoại trú đặt hẹn Tra cứu
         /// </summary>
         /// <param name="blh">Số bệnh án</param>
         /// <param name="kh">Số thẻ</param>
@@ -91,7 +91,7 @@ AND yygh.zt='1' ";
         }
 
         /// <summary>
-        /// Lấyhiện tại Khoahoặcchuyên giađãđặt hẹnđăng ký khámtổngsố
+        /// Lấy hiện tại Khoa hoặc chuyên gia đã đặt hẹn đăng ký khám tổng số
         /// </summary>
         /// <param name="ksCode"></param>
         /// <param name="ysgh"></param>
@@ -128,9 +128,9 @@ AND yygh.zt='1' ";
         }
 
         /// <summary>
-        /// Tra cứuđãđặt hẹnđăng ký khám
+        /// Tra cứu đã đặt hẹn đăng ký khám
         /// </summary>
-        /// <param name="mzlx">Dấu hiệu ngoại trú/nội trú 1:thông thường Ngoại trú  2:gấpkhám   3:chuyên gia Ngoại trú</param>
+        /// <param name="mzlx">Dấu hiệu ngoại trú/nội trú 1:thông thường Ngoại trú  2:gấp khám   3:chuyên gia Ngoại trú</param>
         /// <param name="departmentCode"></param>
         /// <param name="ysgh"></param>
         /// <param name="beginTime"></param>

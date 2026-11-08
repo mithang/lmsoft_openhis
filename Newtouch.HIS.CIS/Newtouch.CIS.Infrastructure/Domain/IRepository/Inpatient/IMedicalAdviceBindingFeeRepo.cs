@@ -9,9 +9,9 @@ namespace Newtouch.Domain.IRepository
     public interface IMedicalAdviceBindingFeeRepo : IRepositoryBase<MedicalAdviceBindingFeeEntity>
     {
         /// <summary>
-        /// Lưubảngphiếu(Thêm mới,Sửa)
+        /// Lưu bảng phiếu(Thêm mới,Sửa)
         /// </summary>
-        /// <param name="entity">thựcthểđối tượng</param>
+        /// <param name="entity">thực thể đối tượng</param>
         /// <param name="keyValue">Khóa chính Giá trị</param>
         void SubmitForm(MedicalAdviceBindingFeeEntity entity, string keyValue);
 

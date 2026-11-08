@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Inpatient
 {
     /// <summary>
-    /// phiếucứnội dung
+    /// phiếu cứ nội dung
     /// </summary>
     public class BYDjInfoDTO
     {
@@ -29,12 +29,12 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
     }
 
     /// <summary>
-    /// phiếucứchi tiết
+    /// phiếu cứ chi tiết
     /// </summary>
     public class DjDetailDTO
     {
         /// <summary>
-        /// đăng kýlĩnhphiếuchi tiếtid
+        /// đăng ký lĩnh phiếu chi tiết id
         /// </summary>
         public string sldmxId { get; set; }
 
@@ -58,7 +58,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string lsj { get; set; }
 
         /// <summary>
-        /// vàogiá  Đơn vị kho thuốc
+        /// vào giá  Đơn vị kho thuốc
         /// </summary>
         public string jj { get; set; }
 
@@ -73,12 +73,12 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string yklsj { get; set; }
 
         /// <summary>
-        /// Tổng số tiền  vàogiá Tổng số tiền
+        /// Tổng số tiền  vào giá Tổng số tiền
         /// </summary>
         public string zje { get; set; }
 
         /// <summary>
-        /// Số lượng Khoa phòng Đơn vị Số lượng và Xuất khochuyểnhóavìcontương ứng
+        /// Số lượng Khoa phòng Đơn vị Số lượng và Xuất kho chuyển hóa vì con tương ứng
         /// </summary>
         public string sl { get; set; }
 
@@ -98,7 +98,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public int? rkbmkc { get; set; }
 
         /// <summary>
-        /// Nhập khoKhoa phòngchuyểnhóavìcon
+        /// Nhập khoKhoa phòng chuyển hóa vì con
         /// </summary>
         public int? rkzhyz { get; set; }
 
@@ -108,7 +108,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string rkdw { get; set; }
         public string dw { get; set; }
         /// <summary>
-        /// Xuất khoKhoa phòngchuyểnhóavìcon
+        /// Xuất khoKhoa phòng chuyển hóa vì con
         /// </summary>
         public int? ckzhyz { get; set; }
 
@@ -118,7 +118,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string sccj { get; set; }
 
         /// <summary>
-        /// khấutỷ lệ
+        /// khấu tỷ lệ
         /// </summary>
         public decimal? kl { get; set; }
 
@@ -128,12 +128,12 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string kprq { get; set; }
 
         /// <summary>
-        /// sinhsản xuất Ngày
+        /// sinh sản xuất Ngày
         /// </summary>
         public string scrq { get; set; }
 
         /// <summary>
-        /// trả hàngnguyên nhân
+        /// trả hàng nguyên nhân
         /// </summary>
         public string thyy { get; set; }
         /// <summary>

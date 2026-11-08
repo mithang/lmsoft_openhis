@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string flCode { get; set; }
 
         /// <summary>
-        /// Xác định tỷ lệ tiền mặt tự chi trả,Không liên quan tính chất của phần này(Tự trả theo loại,Tự chi trả)   xem trườngzfxz      Chú ý:Khi tỷ lệ tự chi trả là số âm,thể hiện tự chi trả định mức   (VD:Một vật tư nào đó12300,Được thanh toán10000,thì tỷ lệ tự chi trả=-2300)
+        /// Xác định tỷ lệ tiền mặt tự chi trả,Không liên quan tính chất của phần này(Tự trả theo loại,Tự chi trả)   xem trường zfxz      Chú ý:Khi tỷ lệ tự chi trả là số âm,thể hiện tự chi trả định mức   (VD:Một vật tư nào đó12300,Được thanh toán10000,thì tỷ lệ tự chi trả=-2300)
         /// </summary>
         public decimal zfbl { get; set; }
 

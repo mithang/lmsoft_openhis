@@ -2,7 +2,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.Dapper
 {
     /// <summary>
-    /// thíchphối
+    /// thích phối
     /// </summary>
     /// <typeparam name="TProxyRequest"></typeparam>
     /// <typeparam name="TProxyResponse"></typeparam>
@@ -12,19 +12,19 @@ namespace Newtouch.CIS.Proxy.Dapper
         public TProxyRequest Request;
         public TProxyResponse Response;
         /// <summary>
-        /// nhómxâyyêu cầubáovăn
+        /// nhómxâyyêu cầu báo văn
         /// </summary>
         /// <returns></returns>
         public abstract void BuildProxyRequest();
 
         /// <summary>
-        /// Thực hiệnthaylýgiao diện
+        /// Thực hiện thay lý giao diện
         /// </summary>
         /// <returns></returns>
         public abstract void ExecuteProxy();
 
         /// <summary>
-        /// nhắclấy Quay lại Dữ liệu
+        /// nhắc lấy Quay lại Dữ liệu
         /// </summary>
         /// <returns></returns>
         public abstract TResult ExtractProxyResponse();

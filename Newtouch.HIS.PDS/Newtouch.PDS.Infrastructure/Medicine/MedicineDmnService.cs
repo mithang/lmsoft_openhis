@@ -25,7 +25,7 @@ namespace Newtouch.HIS.DomainServices
         
         #region Báo hỏng báo thừa
         /// <summary>
-        /// Truy vấn thuốc lãi lỗlist
+        /// Truy vấn thuốc lãi lỗ list
         /// </summary>
         /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>
@@ -78,7 +78,7 @@ order by a.ypcode,a.kcsl,a.yxq
         }
 
         /// <summary>
-        /// Truy vấn của thuốckcslvàjj
+        /// Truy vấn của thuốc kcsl và jj
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="ph"></param>

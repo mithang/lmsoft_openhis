@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IPrescriptionRepo : IRepositoryBase<PrescriptionEntity>
     {
         /// <summary>
-        /// hơn Đơn thuốc mới Cờ thu phívà Đồng bộ Cờ
+        /// hơn Đơn thuốc mới Cờ thu phí và Đồng bộ Cờ
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="tbbz"></param>
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Domain.IRepository
         void UpdateChargeStatus(string orgId, string cfh, bool sfbz, string account);
 
         /// <summary>
-        /// hơn Đơn thuốc mớitrả Cờ
+        /// hơn Đơn thuốc mới trả Cờ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfh"></param>
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Domain.IRepository
         void UpdateChargeTbz(string orgId, string cfh, bool tbz, string account);
 
         /// <summary>
-        /// Lấy Đơn thuốcthông tin
+        /// Lấy Đơn thuốc thông tin
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="orgId"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Domain.IRepository
         PrescriptionEntity FindListByCfh(string cfh, string orgId);
 
         /// <summary>
-        /// Lấy Đơn thuốcthông tin
+        /// Lấy Đơn thuốc thông tin
         /// </summary>
         /// <param name="jzId"></param>
         /// <param name="sfbz"></param>

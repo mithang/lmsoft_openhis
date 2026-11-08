@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 namespace Newtouch.CIS.Web.Controllers
 {
     /// <summary>
-    /// Đăng nhậpđăngra (SSO/UA callback actions from the Framework version are dropped:
+    /// Đăng nhập đăng ra (SSO/UA callback actions from the Framework version are dropped:
     /// they depend on external SSO/UA hosts that do not exist in this deployment.
     /// Core login goes through LoginBaseController.CheckLogin -> BaseAPI.)
     /// GetUALoginAddres + OutLogin are inherited from LoginBaseController.
@@ -54,7 +54,7 @@ namespace Newtouch.CIS.Web.Controllers
         [HttpGet]
         public override IActionResult Index()
         {
-            //loại bỏ SSO Đăng nhậpđếnnguồndấughi
+            //loại bỏ SSO Đăng nhập đến nguồn dấu ghi
             HttpWebHelper.RemoveCookie(ConfigInitHelper.SysConfig.AppId + "_LoginFromFlag");
 
             return base.Index();

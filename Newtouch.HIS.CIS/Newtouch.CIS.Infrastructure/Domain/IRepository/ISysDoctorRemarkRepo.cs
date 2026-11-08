@@ -8,7 +8,7 @@ namespace Newtouch.Domain.IRepository
     public interface ISysDoctorRemarkRepo : IRepositoryBase<SysDoctorRemarkEntity>
     {
         /// <summary>
-        /// Lấydanh sách
+        /// Lấy danh sách
         /// </summary>
         /// <returns></returns>
         List<SysDoctorRemarkVO> GetListByOrg(string orgId);
@@ -28,7 +28,7 @@ namespace Newtouch.Domain.IRepository
 
 
 
-        #region Bác sĩtrạm--》văn bảnnhập--》chỉhiển thịvăn bảnkhungNút
+        #region Bác sĩ trạm--》văn bản nhập--》chỉ hiển thị văn bản khungNút
 
         //List<SyssurgeryTextVO> surgery_record(string OrganizeId);
 

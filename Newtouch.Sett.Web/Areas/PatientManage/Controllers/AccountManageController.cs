@@ -69,12 +69,12 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// phântrangsốdữ liệuthêmtải
+        /// phân trang số dữ liệu thêm tải
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
         /// <param name="xm"></param>
-        /// <param name="brzybz">bệnhngườitạiviệntiêuchí:null/Emptyxếptrừlàmhủylấyhủyvàoviện;của nóanh tađốiphảizybzEnum,nhiềucáidùngtrêusốphâncắt</param>
+        /// <param name="brzybz">bệnh người tại viện tiêu chí:null/Empty xếp trừ làm hủy lấy hủy vào viện;của nó anh ta đối phải zybzEnum,nhiều cái dùng trêu số phân cắt</param>
         /// <returns></returns>
         [HttpGet]
 
@@ -91,7 +91,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// ngườiviêntratra cứucộtbảng chỉbệnhlịchsố
+        /// người viên tra tra cứu cột bảng chỉ bệnh lịch số
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
@@ -171,7 +171,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
 
         #region Số chứng từ
         /// <summary>
-        /// thêmthêmchứngchứngsốcửa sổmiệng
+        /// thêm thêm chứng chứng số cửa sổ miệng
         /// </summary>
         /// <returns></returns>
         public IActionResult ChooseReceipt()
@@ -190,7 +190,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// kiểmchứngchứngchứngsố
+        /// kiểm chứng chứng chứng số
         /// </summary>
         /// <param name="pzh">Số chứng từ</param>
         /// <returns></returns>
@@ -227,7 +227,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         /// Nạp tiền
         /// </summary>
         /// <param name="depDto">Tập dữ liệu nạp tiền</param>
-        /// <returns>trảquaymớitài khoảnhộthông tintin</returns>
+        /// <returns>trả quay mới tài khoản hộ thông tintin</returns>
         public IActionResult PayDepositPostAcnt(DeposDto depDto)
         {
             var ety = _accountApp.PayDepositPostAcnt(depDto);
@@ -255,7 +255,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// đượclấytài khoảnhộcòn lạimức
+        /// được lấy tài khoản hộ còn lại mức
         /// </summary>
         /// <param name="patid">patid</param>
         /// <returns></returns>

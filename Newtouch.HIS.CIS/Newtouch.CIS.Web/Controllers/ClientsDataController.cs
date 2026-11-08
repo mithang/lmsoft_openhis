@@ -20,7 +20,7 @@ using NewtouchHIS.Base.Domain.EnumExtend;
 namespace Newtouch.CIS.Web.Controllers
 {
     /// <summary>
-    /// Home/Indextảikhi Mặc địnhtảicủa chậmtồn tại Dữ liệu
+    /// Home/Index tải khi Mặc định tải của chậm tồn tại Dữ liệu
     /// </summary>
     public class ClientsDataController : ClientsDataBaseController
     {
@@ -28,7 +28,7 @@ namespace Newtouch.CIS.Web.Controllers
 
         private readonly ISysUserDmnService _sysUserDmnService;
         /// <summary>
-        /// dântộc
+        /// dân tộc
         /// </summary>
         private readonly ISysNationRepo _sysNationRepo;
         /// <summary>
@@ -139,7 +139,7 @@ namespace Newtouch.CIS.Web.Controllers
                 sysStaffDutyList = _sysUserDmnService.GetStaffDutyListByOrganizeId(opr.OrganizeId);//(Bác sĩ,sức khỏehuấn luyện viên)
                 doctorInHosBookkeep = _sysUserDmnService.GetStaffByDutyCode(opr.OrganizeId, "Doctor");//Ghi nợ nội trú Lấy Ngoại trú Bác sĩ
                 sysDepartList = _sysDepartmentRepo.GetList(opr.OrganizeId, "1");//Khoa
-                sysPatientNatureList = _sysNationalityRepo.GetBRXZList(opr.OrganizeId);//Tính chất bệnh nhân,báobánchính sách
+                sysPatientNatureList = _sysNationalityRepo.GetBRXZList(opr.OrganizeId);//Tính chất bệnh nhân,báo bán chính sách
             }
 
             var cisEnums = GetClientEnums();
@@ -149,8 +149,8 @@ namespace Newtouch.CIS.Web.Controllers
                 sysDepartList = sysDepartList == null ? null : sysDepartList.ToJson(new[] { "Name", "Code", "yjbz", "py", "zlks" }),    //Khoa
                 sysPatientNatureList = sysPatientNatureList,
                 sysStaffDutyList = sysStaffDutyList == null ? null : sysStaffDutyList.ToJson(new[] { "StaffGh", "StaffName", "StaffPY", "DutyCode" }),//sức khỏehuấn luyện viên,Bác sĩ
-                sysNationList = _sysNationRepo.GetmzList(),//dântộc
-                SysForCashPayList = _sysNationalityRepo.GetCashPay(), //Lấyhiệnkim Phương thức thanh toán
+                sysNationList = _sysNationRepo.GetmzList(),//dân tộc
+                SysForCashPayList = _sysNationalityRepo.GetCashPay(), //Lấy hiện kim Phương thức thanh toán
                 sysNationalityList = _sysNationalityRepo.GetgjList()//quốc tịch
         };
             return Content(data.ToJson());

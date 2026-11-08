@@ -31,7 +31,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
         }
       
         /// <summary>
-        /// traphátphiếusố
+        /// tra phát phiếu số
         /// </summary>
         /// <param name="kh"></param>
         /// <returns></returns>
@@ -51,7 +51,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
 
         }
         /// <summary>
-        /// căndữ liệuphátphiếucủakếttínhtrongmãtratra cứungoại trúkhámtreosốhạngmục
+        /// căn dữ liệu phát phiếu của kết tính trong mã tra tra cứu ngoại trú khám treo số hạng mục
         /// </summary>
         /// <param name="jsnm">Mã nội bộ quyết toán</param>
         /// <returns></returns>
@@ -66,7 +66,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
 
         }
         /// <summary>
-        /// theokếttínhtrongmãtrangoại trúkhámhạngmục
+        /// theo kết tính trong mã tra ngoại trú khám hạng mục
         /// </summary>
         /// <param name="jsnm">Mã nội bộ quyết toán</param>
         /// <returns></returns>

@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Repository
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                PatientVitalSignsEntity oldEntity = null;   //đổihơntrước Entity
+                PatientVitalSignsEntity oldEntity = null;   //đổi hơn trước Entity
                 oldEntity = this.FindEntity(keyValue);
                 this.DetacheEntity(oldEntity);
 

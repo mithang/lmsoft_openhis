@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IGroupPackageRepo : IRepositoryBase<GroupPackageEntity>
     {
         /// <summary>
-        /// Bộ mẫudanh sách
+        /// Bộ mẫu danh sách
         /// </summary>
         /// <returns></returns>
         List<GroupPackageEntity> GetList(int type, string orgId, string keyword);

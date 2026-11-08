@@ -247,7 +247,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region Đặt trước tài nguyên
 
         /// <summary>
-        /// Đặt trước tài nguyên (Đóng băng tồn kho,ghimz_cfmxphbảng)
+        /// Đặt trước tài nguyên (Đóng băng tồn kho,ghimz_cfmxph bảng)
         /// </summary>
         /// <param name="bookItemDo"></param>
         void BookItem(BookItemDo bookItemDo);

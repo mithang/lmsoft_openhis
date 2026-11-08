@@ -9,7 +9,7 @@ namespace Newtouch.Domain.IDomainServices
     public interface IExceReportPrintDmnService
     {
         /// <summary>
-        /// Lấy Khu bệnhphát thuốc Bệnh nhâncây
+        /// Lấy Khu bệnh phát thuốc Bệnh nhân cây
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>

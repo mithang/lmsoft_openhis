@@ -4,7 +4,7 @@ using System.Reflection;
 namespace NewtouchHIS.Lib.Base.Extension
 {
     /// <summary>
-    /// Typemở rộng
+    /// Type mở rộng
     /// </summary>
     public static class TypeExtension
     {

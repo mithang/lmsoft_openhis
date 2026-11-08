@@ -11,10 +11,10 @@ using System.Reflection;
 namespace NewtouchHIS.Base.DomainService
 {
     /// <summary>
-    /// Kế thừa DBContext,vớiservice mở ISqlSugarClient Giao diện
+    /// Kế thừa DBContext,với service mở ISqlSugarClient Giao diện
     /// Hỗ trợ base.Context Đổi cơ sở dữ liệu
     /// Mặc định base.Context là TEntity đã gắn TenantAttr
-    /// Ghi chú:Thêm,Xóa,Sửa Cấm xuyên cơ sở dữ liệu,Cấm dùngsqlcâu lệnh,nếu cần thì thêm mớiservice,Đạtbase.Context Chỉ định cơ sở dữ liệu đích
+    /// Ghi chú:Thêm,Xóa,Sửa Cấm xuyên cơ sở dữ liệu,Cấm dùng sql câu lệnh,nếu cần thì thêm mới service,Đạtbase.Context Chỉ định cơ sở dữ liệu đích
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     public class BaseDmnService<TEntity> : SugarRepository<TEntity> where TEntity : class, new()
@@ -105,7 +105,7 @@ namespace NewtouchHIS.Base.DomainService
             return true;
         }
         /// <summary>
-        /// Tự động lắp rápwhere Truy vấn(Theo T của Db Truy vấn theo đặc tính)
+        /// Tự động lắp ráp where Truy vấn(Theo T của Db Truy vấn theo đặc tính)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>

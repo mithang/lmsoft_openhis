@@ -24,7 +24,7 @@ namespace Newtouch.Domain.ViewModels
         public string week { get; set; }
 
         /// <summary>
-        /// đặt hẹn Thời gianđoạn
+        /// đặt hẹn Thời gian đoạn
         /// </summary>
         public List<SysBespeakRegisterTimeVO> regTimes { get; set; }
     }
@@ -55,12 +55,12 @@ namespace Newtouch.Domain.ViewModels
         public DateTime regEndTime { get; set; }
 
         /// <summary>
-        /// đặt hẹn Thời gian  regBeginTimevàregEndTimekếthợp
+        /// đặt hẹn Thời gian  regBeginTime và regEndTime kết hợp
         /// </summary>
         public string regTime { get; set; }
 
         /// <summary>
-        /// nhấtlớnđặt hẹn ngườisố
+        /// nhất lớn đặt hẹn người số
         /// </summary>
         public int bespeakMaxCount { get; set; }
     }

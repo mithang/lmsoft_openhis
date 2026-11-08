@@ -32,7 +32,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lấydanh sách
+        /// Lấy danh sách
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -56,7 +56,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Khi sửa thông tin,thông tinmangđếnmớitrangmặt
+        /// Khi sửa thông tin,thông tin mang đến mới trang mặt
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -68,7 +68,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             return Content(entity.ToJson());
         }
         /// <summary>
-        /// Khi sửa thông tin,thông tinmangđếnmớitrangmặt
+        /// Khi sửa thông tin,thông tin mang đến mới trang mặt
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

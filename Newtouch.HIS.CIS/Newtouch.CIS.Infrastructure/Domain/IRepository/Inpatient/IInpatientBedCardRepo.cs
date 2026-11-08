@@ -11,9 +11,9 @@ namespace Newtouch.Domain.IRepository.Inpatient
 	public interface IInpatientBedCardRepo : IRepositoryBase<InpatientBedCardEntity>
 	{
 		/// <summary>
-		/// Lưubảngphiếu(Thêm mới,Sửa)
+		/// Lưu bảng phiếu(Thêm mới,Sửa)
 		/// </summary>
-		/// <param name="entity">thựcthểđối tượng</param>
+		/// <param name="entity">thực thể đối tượng</param>
 		/// <param name="keyValue">Khóa chính Giá trị</param>
 		bool SubmitForm(InpatientBedCardEntity entity, string keyValue);
 

@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.ViewModels
 {
     /// <summary>
-    /// Khám bệnhthông tin
+    /// Khám bệnh thông tin
     /// </summary>
     public class TreatmentVo
     {
@@ -18,62 +18,62 @@ namespace Newtouch.Domain.ViewModels
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// liên kếtbilling Hệ thốngcủađăng ký khámbảng
+        /// liên kết billing Hệ thống của đăng ký khám bảng
         /// </summary>
         public string mzh { get; set; }
 
         /// <summary>
-        /// Dư thừađăng ký khámthông tin  Liệt kê 1 thông thường Ngoại trú 2 gấpkhám 3chuyên gia
+        /// Dư thừa đăng ký khám thông tin  Liệt kê 1 thông thường Ngoại trú 2 gấp khám 3chuyên gia
         /// </summary>
         public int mjzbz { get; set; }
 
         /// <summary>
-        /// tương ứngbillinggiao diệntrongcủa Số bệnh án
+        /// tương ứng billing giao diện trong của Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// Dư thừa Thông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhân chữ đoạn
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// Dư thừa Thông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhân chữ đoạn
         /// </summary>
         public string xb { get; set; }
 
         /// <summary>
-        /// Dư thừa Thông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhân chữ đoạn
         /// </summary>
         public DateTime? csny { get; set; }
 
         /// <summary>
-        /// Dư thừa Thông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhân chữ đoạn
         /// </summary>
         public string brxzmc { get; set; }
 
         /// <summary>
-        /// Dư thừa Thông tin bệnh nhânchữđoạn Liệt kê
+        /// Dư thừa Thông tin bệnh nhân chữ đoạn Liệt kê
         /// </summary>
         public int? zjlx { get; set; }
 
         /// <summary>
-        /// Dư thừa Thông tin bệnh nhânchữđoạn
+        /// Dư thừa Thông tin bệnh nhân chữ đoạn
         /// </summary>
         public string zjh { get; set; }
 
         /// <summary>
-        /// Dư thừađăng ký khámbảngchữđoạn Tên khoa
+        /// Dư thừa đăng ký khám bảng chữ đoạn Tên khoa
         /// </summary>
         public string ghksmc { get; set; }
 
         /// <summary>
-        /// Dư thừađăng ký khámbảngchữđoạn Bác sĩ Tên
+        /// Dư thừa đăng ký khám bảng chữ đoạn Bác sĩ Tên
         /// </summary>
         public string ghys { get; set; }
 
         /// <summary>
-        /// Dư thừađăng ký khámbảngchữđoạn
+        /// Dư thừa đăng ký khám bảng chữ đoạn
         /// </summary>
         public DateTime ghsj { get; set; }
 
@@ -103,7 +103,7 @@ namespace Newtouch.Domain.ViewModels
         public decimal? xueya { get; set; }
 
         /// <summary>
-        /// đường huyếtphương thức đo Sau ăn Lúc đói Ngẫu nhiên
+        /// đường huyết phương thức đo Sau ăn Lúc đói Ngẫu nhiên
         /// </summary>
         public string xuetangclfs { get; set; }
 
@@ -113,7 +113,7 @@ namespace Newtouch.Domain.ViewModels
         public decimal? xuetang { get; set; }
 
         /// <summary>
-        /// kimđốimộtbệnhbệnh Bác sĩvàodòngkiểm tra
+        /// kim đối một bệnh bệnh Bác sĩ vào dòng kiểm tra
         /// </summary>
         public bool fzbz { get; set; }
 
@@ -128,22 +128,22 @@ namespace Newtouch.Domain.ViewModels
         public DateTime? zljssj { get; set; }
 
         /// <summary>
-        /// liên kếtbasekho Khoabảng
+        /// liên kếtbasekho Khoa bảng
         /// </summary>
         public string jzks { get; set; }
 
         /// <summary>
-        /// liên kếtbasekho  ngườiviênbảng(cuối cùngxemkhám Bác sĩ)
+        /// liên kếtbasekho  người viên bảng(cuối cùng xem khám Bác sĩ)
         /// </summary>
         public string jzys { get; set; }
 
         /// <summary>
-        /// (cuối cùng)xemkhám Bác sĩ Tên
+        /// (cuối cùng)xem khám Bác sĩ Tên
         /// </summary>
         public string jzysmc { get; set; }
 
         /// <summary>
-        /// Liệt kê 1 chưa Khám bệnh 2 Khám bệnhtrong 3 đã Khám bệnh (dùngđếnkhôi phụclại Kết thúc Khám bệnhcủaghi chép)
+        /// Liệt kê 1 chưa Khám bệnh 2 Khám bệnh trong 3 đã Khám bệnh (dùng đến khôi phục lại Kết thúc Khám bệnh của ghi chép)
         /// </summary>
         public int jzzt { get; set; }
 
@@ -175,23 +175,23 @@ namespace Newtouch.Domain.ViewModels
         public string brxzCode { get; set; }
 
         /// <summary>
-        /// Bảo hiểm y tếquyết toánsố(Bảo hiểm y tế Quay lại)
+        /// Bảo hiểm y tế quyết toán số(Bảo hiểm y tế Quay lại)
         /// </summary>
         public string ybjsh { get; set; }
         /// <summary>
-        /// ban đầulạikhám Cờ 1lạikhám
+        /// ban đầu lại khám Cờ 1lại khám
         /// </summary>
         public string cfzbz { get; set; }
         /// <summary>
-        /// xãbảo Số hiệu
+        /// xã bảo Số hiệu
         /// </summary>
         public string sbbh { get; set; }
         /// <summary>
-        /// tham sốbảođịa Mã
+        /// tham số bảo địa Mã
         /// </summary>
         public string cbdbm { get; set; }
         /// <summary>
-        /// thâncao
+        /// thân cao
         /// </summary>
         public decimal? shengao { get; set; }
         /// <summary>
@@ -199,7 +199,7 @@ namespace Newtouch.Domain.ViewModels
         /// </summary>
         public decimal? shousuoya { get; set; }
         /// <summary>
-        /// thưtờáp
+        /// thư tờ áp
         /// </summary>
         public decimal? shuzhangya { get; set; }
         /// <summary>

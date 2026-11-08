@@ -3,7 +3,7 @@
     public class MeettingTokenRequest
     {
         /// <summary>
-        /// Số phòng âm thanh/hình ảnh,Khác nhau Cuộc họpsố phòng cần duy nhất,Độ dài không vượt quá 50 ký tự,Khuyên dùng khóa chính tự tăng Khóa chínhhoặc UUID
+        /// Số phòng âm thanh/hình ảnh,Khác nhau Cuộc họp số phòng cần duy nhất,Độ dài không vượt quá 50 ký tự,Khuyên dùng khóa chính tự tăng Khóa chính hoặc UUID
         /// </summary>
         public string roomid { get; set; }
         /// <summary>

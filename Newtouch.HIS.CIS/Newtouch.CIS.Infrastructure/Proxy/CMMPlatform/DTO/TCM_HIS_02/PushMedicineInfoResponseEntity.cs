@@ -4,7 +4,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_02
 {
     /// <summary>
-    /// đẩythảo dượcthông tin hưởngứngthể
+    /// đẩy thảo dược thông tin hưởng ứng thể
     /// </summary>
     [XmlRoot("Response")]
     public class PushMedicineInfoResponseEntity : ResponseBase

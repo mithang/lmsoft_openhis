@@ -201,10 +201,10 @@ order by kc.ypdm , kc.yxq
 		{
 			using (var db = new EFDbTransaction().BeginTrans())
 			{
-				db.Insert(ioReceiptEntity); //Thêm mớixt_yp_crkdj
+				db.Insert(ioReceiptEntity); //Thêm mới xt_yp_crkdj
 				foreach (var item in ioReceiptDetailList)
 				{
-					db.Insert(item); //Thêm mớixt_yp_crkmx
+					db.Insert(item); //Thêm mới xt_yp_crkmx
 				}
 				db.Commit();
 			}
@@ -220,7 +220,7 @@ order by kc.ypdm , kc.yxq
 		{
 			using (var db = new EFDbTransaction().BeginTrans())
 			{
-				//Thêm mớixt_yp_crkdj
+				//Thêm mới xt_yp_crkdj
 				db.Insert(ioReceiptEntity);
 				foreach (var item in ioReceiptDetailList)
 				{
@@ -272,7 +272,7 @@ order by kc.ypdm , kc.yxq
 					};
 					ioReceiptDetailEntity.Create();
 
-					//Thêm mớixt_yp_crkmx
+					//Thêm mới xt_yp_crkmx
 					db.Insert(ioReceiptDetailEntity);
 				}
 
@@ -395,7 +395,7 @@ where yp.OrganizeId=@OrganizeId
 				{
 					return "Thực hiện thay đổi giá thất bại";
 				}
-				//1.update xt_ypbảng
+				//1.update xt_yp bảng
 				var medicineEntity = _sysMedicineRepo.GetMedicineByCode(OperatorProvider.GetCurrent().OrganizeId, item.ToString());
 				string strSql = @" 
 update " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.V_S_xt_yp 
@@ -416,7 +416,7 @@ where ypCode=@ypCode and OrganizeId=@OrganizeId ";
 				{
 					using (var db = new EFDbTransaction().BeginTrans())
 					{
-						//1.update xt_yptjbảng
+						//1.update xt_yptj bảng
 						entity.zxbz = ((int)EnumPriceAdjustZXStatus.Executed).ToString();
 						entity.zxsj = executeTime;
 						entity.Modify();
@@ -428,7 +428,7 @@ where ypCode=@ypCode and OrganizeId=@OrganizeId ";
 						{
 							throw new FailedCodeException("INSERTED_INTO_THE_TJSY_TABLE_FAILED_NO_MATCHING_DRUG_INFORMATION_OR_STOCK_INFORMATION");
 						}
-						//2.insert tớixt_yp_tjsybảng
+						//2.insert tới xt_yp_tjsy bảng
 						foreach (var syitem in list)
 						{
 							var priceAdjustmentProfitLossEntity = new SysMedicinePriceAdjustmentProfitLossEntity

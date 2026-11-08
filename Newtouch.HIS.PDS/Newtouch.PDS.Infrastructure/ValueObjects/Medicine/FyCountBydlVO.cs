@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     }
 
     /// <summary>
-    /// Thống kê Số phát thuốc theo loại lớn  Thống kê trang chủhighcharts Chuyên dùng
+    /// Thống kê Số phát thuốc theo loại lớn  Thống kê trang chủ highcharts Chuyên dùng
     /// </summary>
     public class FyClassificationStatistics
     {

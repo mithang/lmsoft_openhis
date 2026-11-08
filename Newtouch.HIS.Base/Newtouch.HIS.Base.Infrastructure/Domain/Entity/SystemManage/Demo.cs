@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity.SystemManage
 {
     /// <summary>
-    /// Kiểm thửdemo
+    /// Kiểm thử demo
     /// </summary>
     [SugarTable("t_demo")]
     public class Demo : EntityBase

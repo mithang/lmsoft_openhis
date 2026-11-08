@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.ValueObjects.Storage
 {
     /// <summary>
-    /// vật tư Tồn khophút Lô Số lôhộitổng
+    /// vật tư Tồn kho phút Lô Số lô hội tổng
     /// </summary>
     public class VProductStorageDetailEntity
     {
@@ -49,12 +49,12 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string zxdwmc { get; set; }
 
         /// <summary>
-        /// chuyểnhóavìcon
+        /// chuyển hóa vì con
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// Khoa phòngđôngkết Số lượng  mang Đơn vị
+        /// Khoa phòng đông kết Số lượng  mang Đơn vị
         /// </summary>
         public string bmdjslStr { get; set; }
 
@@ -64,7 +64,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public int? kcsl { get; set; }
 
         /// <summary>
-        /// đôngkết Số lượng
+        /// đông kết Số lượng
         /// </summary>
         public int? djsl { get; set; }
 
@@ -74,21 +74,21 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string bmkcslStr { get; set; }
 
         /// <summary>
-        /// vàogiá Tổng số tiền
+        /// vào giá Tổng số tiền
         /// </summary>
         public decimal jjze { get; set; }
 
         /// <summary>
-        /// vàogiá
+        /// vào giá
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// vàogiámang Đơn vị
+        /// vào giá mang Đơn vị
         /// </summary>
         public string jjStr { get; set; }
         /// <summary>
-        /// vàogiá
+        /// vào giá
         /// </summary>
         public decimal lsj { get; set; }
         /// <summary>
@@ -96,7 +96,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         /// </summary>
         public decimal lsze { get; set; }
         /// <summary>
-        /// Giá bán lẻmang Đơn vị
+        /// Giá bán lẻ mang Đơn vị
         /// </summary>
         public string lsjStr { get; set; }
         /// <summary>
@@ -115,7 +115,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string brand { get; set; }
 
         /// <summary>
-        /// sinhsản xuất Tên nhà sản xuất
+        /// sinh sản xuất Tên nhà sản xuất
         /// </summary>
         public string sccj { get; set; }
 

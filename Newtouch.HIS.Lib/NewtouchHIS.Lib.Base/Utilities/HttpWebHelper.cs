@@ -25,7 +25,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         /// GhiSession
         /// </summary>
         /// <param name="key">Tên khóa của Session</param>
-        /// <param name="value">Sessioncủa giá trị khóa</param>
+        /// <param name="value">Session của giá trị khóa</param>
         public static void WriteSession(string key, string value)
         {
             WriteSession<string>(key, value);
@@ -36,7 +36,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         /// </summary>
         /// <typeparam name="T">Session Loại của giá trị khóa</typeparam>
         /// <param name="key">Tên khóa của Session</param>
-        /// <param name="value">Sessioncủa giá trị khóa</param>
+        /// <param name="value">Session của giá trị khóa</param>
         public static void WriteSession<T>(string key, T value)
         {
             if (string.IsNullOrEmpty(key) || value == null)
@@ -132,7 +132,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         /// Đọc giá trị cookie
         /// </summary>
         /// <param name="strName">tên</param>
-        /// <returns>cookiegiá trị</returns>
+        /// <returns>cookie giá trị</returns>
         public static string? GetCookie(string strName)
         {
             return HttpCurrent.Request.Cookies[strName];

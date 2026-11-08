@@ -7,7 +7,7 @@ namespace Newtouch.Domain.IRepository
     public interface ISysBodyPartsRepo : IRepositoryBase<SysBodyPartsEntity>
     {
         /// <summary>
-        /// Lấydanh sách
+        /// Lấy danh sách
         /// </summary>
         /// <returns></returns>
         List<SysBodyPartsEntity> GetListByOrg(string orgId);

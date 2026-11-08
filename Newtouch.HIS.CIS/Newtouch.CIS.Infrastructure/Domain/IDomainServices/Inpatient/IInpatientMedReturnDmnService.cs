@@ -16,13 +16,13 @@ namespace Newtouch.Domain.IDomainServices
     public interface IInpatientMedReturnDmnService
     {
         /// <summary>
-        /// Khu bệnhphát thuốc Bệnh nhâncây
+        /// Khu bệnh phát thuốc Bệnh nhân cây
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
         IList<InpWardPatTreeVO> GetPatTree(string keyword,string staffId, string orgId,string ReturnZcyMed=null);
         /// <summary>
-        /// Tra cứucó thểtrảthuốcdanh sách
+        /// Tra cứu có thể trả thuốc danh sách
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patInfo"></param>
@@ -32,7 +32,7 @@ namespace Newtouch.Domain.IDomainServices
         /// <returns></returns>
         IList<InpatientMedicineGrantDto> GetPatMedReturnList(string patInfo, string keyword, string kssj, string jssj,string orgId, string ReturnZcyMed = null);
         /// <summary>
-        /// Đăng kýtrảthuốc
+        /// Đăng ký trả thuốc
         /// </summary>
         /// <param name="user"></param>
         /// <param name="medList"></param>

@@ -6,7 +6,7 @@ namespace Newtouch.Infrastructure.TSql
     public class StockOperate
     {
         /// <summary>
-        /// giảm Tồn kho khôngcần Rã đông
+        /// giảm Tồn kho không cần Rã đông
         /// </summary>
         public const string just_subtract_kcsl = @"
 BEGIN TRANSACTION
@@ -23,7 +23,7 @@ BEGIN TRY
 	WHERE productId=@proId AND ks=@warehouseId AND OrganizeId=@OrganizeId AND pc=@pc AND ph=@ph AND zt='1' 
 	IF @totalKcsl<@sl
 	BEGIN
-		SELECT 'Tồn kho không đủ，Xuất khothất bại';
+		SELECT 'Tồn kho không đủ，Xuất kho thất bại';
 		ROLLBACK TRANSACTION;
 		RETURN
 	END 
@@ -79,7 +79,7 @@ BEGIN CATCH
 END CATCH
 ";
         /// <summary>
-        /// chỉđôngkết Tồn kho
+        /// chỉ đông kết Tồn kho
         /// </summary>
         public const string just_frozen_kcsl = @"
 BEGIN TRANSACTION
@@ -138,13 +138,13 @@ END CATCH
 ";
 
         /// <summary>
-        /// giảmđôngkếtvàkhấu Tồn kho  Bình thườngdùng làm Phê duyệtthông qua
+        /// giảm đông kết và khấu Tồn kho  Bình thường dùng làm Phê duyệt thông qua
         /// </summary>
         public const string subtract_freeze_and_kcsl = @"
 BEGIN TRANSACTION
 BEGIN TRY
 	DECLARE @kcsl INT; --Tồn kho hiện tại
-	DECLARE @djsl INT; --hiện tạiđôngkết Tồn kho
+	DECLARE @djsl INT; --hiện tại đông kết Tồn kho
 	SELECT @kcsl=ISNULL(SUM(kcsl),0), @djsl=ISNULL(SUM(djsl),0)
 	FROM dbo.Dept_kcxx 
 	WHERE productId=@proId AND pc=@pc AND ph=@ph AND OrganizeId=@OrganizeId AND zt='1' AND ks=@warehouseId AND djsl>0 AND kcsl>0
@@ -184,7 +184,7 @@ BEGIN TRY
 		END 
 		ELSE 
 		BEGIN
-			--lấyđôngkếtsốvàTồn khosốtrongnhấtnhỏcủamộtGán giá trịcho@tmpsl
+			--lấy đông kết số vàTồn kho số trong nhất nhỏ của mộtGán giá trị cho@tmpsl
 			IF @curdjsl<=@curkcsl
 			BEGIN 
 				SET @tmpsl=@curdjsl;
@@ -241,7 +241,7 @@ BEGIN TRY
 	SELECT Id, djsl INTO #allkcxx FROM dbo.Dept_kcxx 
 	WHERE productId=@proId AND ks=@warehouseId AND OrganizeId=@OrganizeId AND pc=@pc AND ph=@ph AND zt='1' AND djsl>0
 		
-	DECLARE @djsl INT; --hiện tạiđôngkết Số lượng
+	DECLARE @djsl INT; --hiện tại đông kết Số lượng
 	DECLARE @kcId VARCHAR(50); --Tồn kho hiện tạiID
 	DECLARE @sysl INT; --Số lượng còn lại
 	SET @sysl=@sl; 
@@ -290,14 +290,14 @@ BEGIN TRY
 	WHERE pc=@pc AND ph=@ph AND OrganizeId=@OrganizeId AND ks=@warehouseId AND productId=@proId AND zt=@zt
 	IF @totalDjsl>0  
 	BEGIN
-		-- cóđôngkếtMô tảđangởbịsử dụng，hủy bỏcó thểhướnggâysaukỳkhấu Tồn kho Tồn kho không đủ
+		-- có đông kếtMô tả đang ở bị sử dụng，hủy bỏ có thể hướng gây sau kỳ khấu Tồn kho Tồn kho không đủ
 		SELECT 'Lô này còn tồn kho đóng băng, không thể hủy bỏ';
 		ROLLBACK TRANSACTION;
 		RETURN;
 	END
 	IF @totalKcsl<@sl
 	BEGIN
-		SELECT 'Tồn kho không đủ，không thểhủy bỏ';
+		SELECT 'Tồn kho không đủ，không thể hủy bỏ';
 		ROLLBACK TRANSACTION;
 		RETURN;
 	END

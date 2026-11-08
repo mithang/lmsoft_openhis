@@ -296,7 +296,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic
     public class ClinicDrugInfoDTO
     {
         /// <summary>
-        /// Thuốcid
+        /// Thuốc id
         /// </summary>
         public string? drugStuffId { get; set; }
         /// <summary>

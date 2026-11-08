@@ -7,7 +7,7 @@ namespace Newtouch.CIS.APIRequest.Dto
     {
 
         /// <summary>
-        /// đặt hẹnđăng ký khám Khóa chính mz_yygh.id
+        /// đặt hẹn đăng ký khám Khóa chính mz_yygh.id
         /// </summary>
         public string mzyyghId { get; set; }
 
@@ -17,7 +17,7 @@ namespace Newtouch.CIS.APIRequest.Dto
         public DateTime arrivalDate { get; set; }
 
         /// <summary>
-        /// hiệntrườngchỗlýđăng ký khám ngườiviên
+        /// hiện trường chỗ lý đăng ký khám người viên
         /// </summary>
         public string arrivalOpereater { get; set; }
     }

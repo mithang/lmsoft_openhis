@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// Truy vấn thuốc lãi lỗlist
+        /// Truy vấn thuốc lãi lỗ list
         /// </summary>
         /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 int kcsl = 0;
                 decimal jj = 0;
-                //1.Tìm rakcslvàjj
+                //1.Tìm ra kcsl và jj
                 _medicineDmnService.SelectKcslAndJj(item.Ypdm, item.Ph, item.pc, item.Yxq, out kcsl, out jj);
                 if (item.Sysl <= 0)  //Báo hỏng
                 {

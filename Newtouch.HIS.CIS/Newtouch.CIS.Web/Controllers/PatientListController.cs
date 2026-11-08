@@ -365,7 +365,7 @@ namespace Newtouch.CIS.Web.Controllers
             return null;
         }
 
-        #region Nhập viện Bệnh nhânmộtxem
+        #region Nhập viện Bệnh nhân một xem
         /// <summary>
         /// Lấy đang ở khu bệnh của bệnh người
         /// </summary>
@@ -494,7 +494,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
         #endregion
 
-        #region Nhập viện Bệnh nhânChọnbậtlớp
+        #region Nhập viện Bệnh nhânChọn bật lớp
 
         /// <summary>
         /// Bệnh nhân nội trú chọn bật lớp

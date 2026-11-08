@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// Thuốccode
+        /// Thuốc code
         /// </summary>
         public string ypCode{ get; set; }
 

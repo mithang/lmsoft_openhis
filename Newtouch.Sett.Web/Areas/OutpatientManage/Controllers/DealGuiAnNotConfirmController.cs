@@ -20,7 +20,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         {
             _commonDmnService = commonDmnService;
         }
-        // xử lýkhung nhìn giao dịch chưa xác định
+        // xử lý khung nhìn giao dịch chưa xác định
         public IActionResult DealGuiAnNotConfirm()
         {
             return View();

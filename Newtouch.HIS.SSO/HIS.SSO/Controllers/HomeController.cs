@@ -69,7 +69,7 @@ namespace HIS.SSO.Controllers
         #region  bàn làm việc
 
         /// <summary>
-        /// menu phím tắtlist
+        /// menu phím tắt list
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// Chungđối tượng Thao tácghi chépbảng
+    /// Chung đối tượng Thao tác ghi chép bảng
     /// </summary>
     [SugarTable("xt_dxczjl")]
     public class SysObjectActionRecordEntity
@@ -28,7 +28,7 @@ namespace Newtouch.Domain.Entity
         public string objectType { get; set; }
 
         /// <summary>
-        /// objectphím
+        /// object phím
         /// </summary>
         public string objectKey { get; set; }
 

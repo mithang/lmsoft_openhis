@@ -42,7 +42,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         #region thu chi Thống kê Phê duyệt
 
         /// <summary>
-        /// đượclấychờxét duyệtthuchithốngtínhsốdữ liệu
+        /// được lấy chờ xét duyệt thu chi thống tính số dữ liệu
         /// </summary>
         /// <returns></returns>
         public IActionResult GetAwaitingTrialSiteStatisticsGridJson()
@@ -60,7 +60,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// Phê duyệt thốngtínhrõchi tiết khung nhìn
+        /// Phê duyệt thống tính rõ chi tiết khung nhìn
         /// </summary>
         /// <returns></returns>
         public IActionResult VerifySiteStatisticsDetail()
@@ -74,7 +74,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         #region thu chi Thống kê Nhập
 
         /// <summary>
-        /// đượclấychínhtrangsốdữ liệu
+        /// được lấy chính trang số dữ liệu
         /// </summary>
         /// <returns></returns>
         public IActionResult GetSiteStatisticsGridJson()
@@ -107,7 +107,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// máycơ quanthuchiđiềnbáo cáo
+        /// máy cơ quan thu chi điền báo cáo
         /// </summary>
         /// <param name="siteId"></param>
         /// <param name="year"></param>
@@ -262,7 +262,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
             //    configFileExportBaseDir = "D:\\";
             //}
 
-            //1.chỉđịnhcầnviếtđếncủavănhạngmụcghivàtêngọi
+            //1.chỉ định cần viết đến của văn hạng mục ghi và tên gọi
             byte[] buffer = System.IO.File.ReadAllBytes(earn.fjPath);
 
             return File(buffer, earn.ContentType, System.IO.Path.GetFileName(earn.fjPath));
@@ -330,7 +330,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         #endregion
 
         /// <summary>
-        /// xét duyệtkiểm trathao táclàm
+        /// xét duyệt kiểm trathao tác làm
         /// </summary>
         /// <param name="id"></param>
         /// <param name="shzt"></param>
@@ -344,7 +344,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// khitrướcđăngghingườicủanhómtổ chứcmáycơ quan
+        /// khi trước đăng ghi người của nhóm tổ chức máy cơ quan
         /// </summary>
         /// <returns></returns>
         public IActionResult getCurrentOrgIds()
@@ -354,7 +354,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// khitrướcđăngghingườicủacâynhómtổ chứcmáycơ quan
+        /// khi trước đăng ghi người của cây nhóm tổ chức máy cơ quan
         /// </summary>
         /// <returns></returns>
         public IActionResult getCurrentTreeOrgIds()
@@ -382,7 +382,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// khitrướcnhómtổ chứcmáycơ quankhitrướcthời giangiữalàkhôngđãlưutạiqua
+        /// khi trước nhóm tổ chức máy cơ quan khi trước thời giangiữalàkhôngđãlưutạiqua
         /// </summary>
         /// <param name="siteId"></param>
         /// <param name="year"></param>
@@ -400,7 +400,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// đượclấytrêncáithángcủathànhnàythông tintin
+        /// được lấy trên cái tháng của thành này thông tintin
         /// </summary>
         /// <param name="site"></param>
         /// <param name="year"></param>

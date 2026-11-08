@@ -38,7 +38,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string ksbm { get; set; }
         /// <summary>
-        /// từdòngnội dung
+        /// từ dòng nội dung
         /// </summary>
         /// <returns></returns>
         public string ctnr { get; set; }

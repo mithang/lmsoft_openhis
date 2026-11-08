@@ -37,7 +37,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 
 
         /// <summary>
-        /// đượclấythuphílớnloạicộtbảng
+        /// được lấy thu phí lớn loại cột bảng
         /// </summary>
         /// <param name="dllbs"></param>
         /// <returns></returns>
@@ -57,7 +57,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             return Content(treeList.TreeSelectJson(null));
         }
         /// <summary>
-        /// đượclấythuphílớnloạinổilớplist
+        /// được lấy thu phí lớn loại nổi lớp list
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -69,13 +69,13 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             // the show-medicines branch, exactly the old `Value == false` branch;
             // `Value == true` still filters out 01/02/03. Keyword/py are also
             // null-guarded (bare call passed null into IndexOf).
-            var iszytfyp = _sysConfigRepo.GetBoolValueByCode("YXZ_SETT_1010", OrganizeId);//độngtrạng tháithamsố:nhập việnviệnhoànphílàkhônghoànthuốcphẩmphídùng
+            var iszytfyp = _sysConfigRepo.GetBoolValueByCode("YXZ_SETT_1010", OrganizeId);//động trạng thái tham số:nhập viện viện hoàn phí là không hoàn thuốc phẩm phí dùng
             var sysDls = new List<SysChargeCategoryVEntity>();
             if (iszytfyp == null || iszytfyp.Value == false)
-            {//hiển thịhiển thịthuốcphẩm
+            {//hiển thị hiển thị thuốc phẩm
                 sysDls = _sysChargeCategoryRepo.GetLazyList(this.OrganizeId).ToList();
             }
-            else {//khônghiển thịhiển thịthuốcphẩm
+            else {//không hiển thị hiển thị thuốc phẩm
                 sysDls = _sysChargeCategoryRepo.GetLazyList(this.OrganizeId).Where(p => p.dlCode != "01" && p.dlCode != "02" && p.dlCode != "03").ToList();
             }
             //sysDls = sysDls.Where(p=>p.py.Contains(keyword)||p.dlmc.Contains(keyword)).ToList();

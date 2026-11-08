@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Repository
     {
         
         /// <summary>
-        /// Trả về dạng bào chế thuốclist
+        /// Trả về dạng bào chế thuốc list
         /// </summary>
         /// <returns></returns>
         public List<MedicineFormulationVO> GetMedicineFormulationList()

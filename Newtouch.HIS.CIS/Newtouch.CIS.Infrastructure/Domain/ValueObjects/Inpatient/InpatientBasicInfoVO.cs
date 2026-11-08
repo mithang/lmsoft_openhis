@@ -21,23 +21,23 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public int? zhxz { get; set; }
         /// <summary>
-        /// tạm ứngkimdưmức
+        /// tạm ứng kim dư mức
         /// </summary>
         public string zhye { get; set; }
         /// <summary>
-        /// phátsinhcủatổng Chi phí
+        /// phát sinh của tổng Chi phí
         /// </summary>
         public decimal? zje { get; set; }
         /// <summary>
-        /// đãkết Chi phí
+        /// đã kết Chi phí
         /// </summary>
         public decimal? yjfy { get; set; }
         /// <summary>
-        /// tạm ứngkimbáocảnh báomức
+        /// tạm ứng kim báo cảnh báo mức
         /// </summary>
         public decimal? bje { get; set; }
         /// <summary>
-        /// Bảo hiểm y tếhiệnkimchitrả
+        /// Bảo hiểm y tế hiện kim chi trả
         /// </summary>
         public decimal? ybxjzf { get; set; }
         public List<InpatientBedUseInfoVO> patTransList { get; set; }

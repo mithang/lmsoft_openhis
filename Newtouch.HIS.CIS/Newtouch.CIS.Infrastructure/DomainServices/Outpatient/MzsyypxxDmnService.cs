@@ -15,7 +15,7 @@ using Newtouch.Domain.ViewModels;
 namespace Newtouch.DomainServices
 {
     /// <summary>
-    /// Ngoại trútruyền dịch Thuốcthông tin
+    /// Ngoại trú truyền dịch Thuốc thông tin
     /// </summary>
     public class MzsyypxxDmnService : DmnServiceBase, IMzsyypxxDmnService
     {
@@ -24,13 +24,13 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// Theo Số thẻ Lấytruyền dịchthông tin
+        /// Theo Số thẻ Lấy truyền dịch thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
-        /// <param name="isEnd">true:đã Kết thúctruyền dịch;false:chưa Kết thúctruyền dịch</param>
+        /// <param name="isEnd">true:đã Kết thúc truyền dịch;false:chưa Kết thúc truyền dịch</param>
         /// <returns></returns>
         public IList<MzsyypxxVO> SelectMzsyypxxByKh(Pagination pagination, string kh,string mzh, string organizeId, bool isEnd)
         {
@@ -80,7 +80,7 @@ AND syyp.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// Theo Số thẻ Lấytruyền dịchthông tin
+        /// Theo Số thẻ Lấy truyền dịch thông tin
         /// </summary>
         /// <param name="id"></param>
         /// <param name="organizeId"></param>
@@ -106,7 +106,7 @@ AND syyp.OrganizeId=@OrganizeId ");
         }
 
         /// <summary>
-        /// chưa Kết thúccủatruyền dịch Bệnh nhân
+        /// chưa Kết thúc của truyền dịch Bệnh nhân
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
@@ -115,7 +115,7 @@ AND syyp.OrganizeId=@OrganizeId ");
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
         /// <param name="organizeId"></param>
-        /// <param name="isEnd">là Không Kết thúc  false:truyền dịchchưa Kết thúc  true:truyền dịchđã Kết thúc</param>
+        /// <param name="isEnd">là Không Kết thúc  false:truyền dịch chưa Kết thúc  true:truyền dịch đã Kết thúc</param>
         /// <returns></returns>
         public IList<MzsyhzxxVO> SelectKhAndXm(Pagination pagination, string kh,string keyvalue, string fph, DateTime kssj, DateTime jssj, string organizeId, bool isEnd = false)
         {
@@ -167,7 +167,7 @@ AND mzh=@mzh
         }
 
 		/// <summary>
-		/// đãquyết toán Đơn thuốcchi tiết Tra cứu
+		/// đã quyết toán Đơn thuốc chi tiết Tra cứu
 		/// </summary>
 		/// <param name="organizeId"></param>
 		/// <param name="kssj"></param>
@@ -211,7 +211,7 @@ AND cfmx.yfCode in (select col from f_split(@yfCode,',') where col>'') ";
 		}
 
 		/// <summary>
-		/// Chènmớitruyền dịchthông tin
+		/// Chèn mới truyền dịch thông tin
 		/// </summary>
 		/// <param name="item"></param>
 		/// <param name="organizeId"></param>

@@ -51,7 +51,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(patList.ToJson());
         }
         /// <summary>
-        /// Lấy Khu bệnh ngườiviênphát thuốccây
+        /// Lấy Khu bệnh người viên phát thuốc cây
         /// </summary>
         /// <returns></returns>
         public IActionResult GetPatWardTree(string keyword)
@@ -109,7 +109,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             {
                 string tyxh = _InpatientMedReturnDmnService.MedReturnSubmit(user, medIds);
                 //return Content(new { tyxh = tyxh }.ToJson());
-                return Success("Trả thuốcthành công", tyxh);
+                return Success("Trả thuốc thành công", tyxh);
             }
             else
             {
@@ -121,7 +121,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
 
-        //--------------------------------------lấydưới Có:Y lệnhtrảthuốc Tra cứu--------------------------------------
+        //--------------------------------------lấy dưới Có:Y lệnh trả thuốc Tra cứu--------------------------------------
 
         public IActionResult Drug_withdrawal() {
             ViewBag.OrgId = this.OrganizeId;

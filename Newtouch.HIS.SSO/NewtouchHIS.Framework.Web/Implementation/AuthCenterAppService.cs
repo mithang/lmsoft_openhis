@@ -15,7 +15,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
         /// <returns></returns>
         Task<string> GetAppToken(string accessAppId);
         /// <summary>
-        /// người dùng Tokenlấy
+        /// người dùng Token lấy
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
         /// </summary>
         internal string? ClientAppId;
         /// <summary>
-        /// ứng dụng Hostđịa chỉ
+        /// ứng dụng Host địa chỉ
         /// </summary>
         internal string? Host;
         public AuthCenterAppService(IHttpClientHelper httpClient)
@@ -65,7 +65,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
 
         #endregion
         /// <summary>
-        /// Applấy ủy quyền Token
+        /// App lấy ủy quyền Token
         /// </summary>
         /// <param name="appId">ứng dụng này Id</param>
         /// <param name="accessAppId">xin truy cập ứng dụng Id</param>

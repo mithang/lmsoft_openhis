@@ -18,7 +18,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 {
 
     /// <summary>
-    /// hệthốngthamsốđặtđặt
+    /// hệ thống tham số đặt đặt
     /// </summary>
     [Area("SystemManage")]
 
@@ -101,7 +101,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// bảo hiểmlưuthao táclàm
+        /// bảo hiểm lưu thao tác làm
         /// </summary>
         /// <param name="moduleEntity"></param>
         /// <param name="keyValue"></param>

@@ -69,7 +69,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<OperatorModel> { code = ResponseResultCode.SUCCESS, Data = userOpr };
         }
         /// <summary>
-        /// tokenđổi lấy thông tin danh tính người dùng
+        /// token đổi lấy thông tin danh tính người dùng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

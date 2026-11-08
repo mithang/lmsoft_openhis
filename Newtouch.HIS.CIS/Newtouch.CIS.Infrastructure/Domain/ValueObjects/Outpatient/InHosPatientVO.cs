@@ -17,7 +17,7 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         public string Id { get; set; }
 
         /// <summary>
-        /// tổ chứckếtcấu trúcid
+        /// tổ chức kết cấu trúc id
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -42,7 +42,7 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         public string sex { get; set; }
 
         /// <summary>
-        /// rasinhnăm Tháng
+        /// ra sinh năm Tháng
         /// </summary>
         public DateTime birth { get; set; }
 

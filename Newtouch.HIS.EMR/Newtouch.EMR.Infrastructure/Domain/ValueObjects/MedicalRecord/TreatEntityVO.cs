@@ -26,7 +26,7 @@ namespace Newtouch.EMR.Domain.ValueObjects
         public int mjzbz { get; set; }
 
         /// <summary>
-        /// Tương ứngbillingsố bệnh án trong giao diện
+        /// Tương ứng billing số bệnh án trong giao diện
         /// </summary>
         public string blh { get; set; }
 

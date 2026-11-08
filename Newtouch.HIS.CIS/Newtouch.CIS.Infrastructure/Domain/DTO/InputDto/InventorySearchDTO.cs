@@ -37,7 +37,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public string lb { get; set; }
 
         /// <summary>
-        /// Tồn kho Hiển thị -1hoặctrống:Tất cả
+        /// Tồn kho Hiển thị -1hoặc trống:Tất cả
         /// </summary>
         public int kcxs { get; set; }
 
@@ -49,7 +49,7 @@ namespace Newtouch.Domain.DTO.InputDto
     public class SaveInventoryDTO
     {
         /// <summary>
-        /// Kiểm kêchi tiết ID
+        /// Kiểm kê chi tiết ID
         /// </summary>
         public long? pdmxId { get; set; }
 

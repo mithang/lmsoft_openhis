@@ -1,17 +1,17 @@
 namespace Newtouch.Domain.DTO
 {
     /// <summary>
-    /// Điều trịxâynghịchuyểnđổi Cờ
+    /// Điều trị xây nghị chuyển đổi Cờ
     /// </summary>
     public class SuggestionCvStatuDTO
     {
         /// <summary>
-        /// xâynghị Id
+        /// xây nghị Id
         /// </summary>
         public string jyId { get; set; }
 
         /// <summary>
-        /// chuyểnđổi Cờ
+        /// chuyển đổi Cờ
         /// </summary>
         public string zhbz { get; set; }
     }

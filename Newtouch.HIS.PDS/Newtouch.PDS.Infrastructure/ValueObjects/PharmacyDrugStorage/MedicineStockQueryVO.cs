@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public string ypmc { get; set; }
         /// <summary>
-        /// Thuốccode
+        /// Thuốc code
         /// </summary>
         public string ypCode { get; set; }
         /// <summary>

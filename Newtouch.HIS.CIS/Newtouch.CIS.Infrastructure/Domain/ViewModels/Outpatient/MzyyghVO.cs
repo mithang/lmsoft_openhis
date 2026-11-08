@@ -3,17 +3,17 @@ using System;
 namespace Newtouch.Domain.ViewModels.Outpatient
 {
     /// <summary>
-    /// đặt hẹnđăng ký khámthông tin
+    /// đặt hẹn đăng ký khám thông tin
     /// </summary>
     public class MzyyghVO
     {
         /// <summary>
-        /// đặt hẹnđăng ký khám ID mz_yyghbảng Khóa chính
+        /// đặt hẹn đăng ký khám ID mz_yyghbảng Khóa chính
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// tổ chứckếtcấu trúc ID
+        /// tổ chức kết cấu trúc ID
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -38,7 +38,7 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public DateTime regDate { get; set; }
 
         /// <summary>
-        /// khiđoạn
+        /// khi đoạn
         /// </summary>
         public string regTime { get; set; }
 
@@ -53,7 +53,7 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public string zjmc { get; set; }
 
         /// <summary>
-        /// đặt hẹnsố
+        /// đặt hẹn số
         /// </summary>
         public int bespeakNo { get; set; }
 
@@ -69,17 +69,17 @@ namespace Newtouch.Domain.ViewModels.Outpatient
     }
 
     /// <summary>
-    /// Ngoại trúđặt hẹnđăng ký khámchi tiết
+    /// Ngoại trú đặt hẹn đăng ký khám chi tiết
     /// </summary>
     public class MzyyghDetailVo
     {
         /// <summary>
-        /// nhấtlớn Hỗ trợđặt hẹnsố
+        /// nhất lớn Hỗ trợ đặt hẹn số
         /// </summary>
         public int bespeakMaxCount { get; set; }
 
         /// <summary>
-        /// đãđặt hẹnsố
+        /// đã đặt hẹn số
         /// </summary>
         public int bespeakedCount { get; set; }
 
@@ -100,12 +100,12 @@ namespace Newtouch.Domain.ViewModels.Outpatient
     }
 
     /// <summary>
-    /// đăng ký khámđặt hẹn Xếp lịch
+    /// đăng ký khám đặt hẹn Xếp lịch
     /// </summary>
     public class BespeakRegisterScheduling
     {
         /// <summary>
-        /// ngàylịch Ngày
+        /// ngày lịch Ngày
         /// </summary>
         public DateTime CalendarDate { get; set; }
 

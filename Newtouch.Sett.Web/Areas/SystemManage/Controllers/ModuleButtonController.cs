@@ -78,7 +78,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Phân quyềnchochỉđịnhnhómtổ chứcmáycơ quan
+        /// Phân quyền cho chỉ định nhóm tổ chức máy cơ quan
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="orgList"></param>
@@ -96,7 +96,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Phân quyềnchonơicónhómtổ chứcmáycơ quan
+        /// Phân quyền cho nơi có nhóm tổ chức máy cơ quan
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

@@ -163,7 +163,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             {
                 organizeId = base.GetAuthOrganizeId();  //Mặc định Quyền OrganizeId
             }
-            //Bộ nhớ đệmstart
+            //Bộ nhớ đệm start
             var organizedata = _sysOrganizeRepository.GetValidListByParentOrg(organizeId);
             if (!isContansChildOrg)
             {
@@ -223,8 +223,8 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                 tree.hasChildren = orgDetpData.Count > 0 || orgUserStaffData.Count > 0 || organizedata.Any(p => p.ParentId == orgItem.Id);
                 treeList.Add(tree);
             }
-            //Bộ nhớ đệmend
-            IList<FirstSecond> checkedUserList = null; //Đãcheckedngười dùng của
+            //Bộ nhớ đệm end
+            IList<FirstSecond> checkedUserList = null; //Đã checked người dùng của
             if (from == "rolerelatioinuser" && !string.IsNullOrWhiteSpace(keyValue))   //Vai trò đã liên kết người dùng
             {
                 checkedUserList = _userRoleAuthDmnService.GetCurUserIdListByRoleId(keyValue);
@@ -252,7 +252,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                 while (count > 0)
                 {
                     count = treeList.RemoveAll(p => !p.showcheck && !p.hasChildren);
-                    //Điều chỉnh lại cây Loại bỏ Không có cấp dưới(Cấp dưới vừa bị chuyển) lại Không hiển thịshowcheckcủa
+                    //Điều chỉnh lại cây Loại bỏ Không có cấp dưới(Cấp dưới vừa bị chuyển) lại Không hiển thị show check của
                     treeList.RemoveAll(p => !p.showcheck && !treeList.Any(sub => sub.parentId == p.id));
                 }
             }

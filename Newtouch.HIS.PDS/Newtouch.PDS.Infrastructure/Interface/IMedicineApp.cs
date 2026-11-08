@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Application.Interface
         List<SysMedicineProfitLossReasonEntity> GetLossProfitReasonListByType(string sylx);
 
         /// <summary>
-        /// Truy vấn thuốc lãi lỗlist
+        /// Truy vấn thuốc lãi lỗ list
         /// </summary>
         /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>

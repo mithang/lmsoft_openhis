@@ -27,7 +27,7 @@ namespace NewtouchHIS.Lib.DataBaseSvr
         public DbContextV2()
         {
             //Mặc định sử dụng tên mục cấu hình
-            //appSettings/DefaultDb Mục cấu hình là của chuỗi kết nối được chỉ địnhname
+            //appSettings/DefaultDb Mục cấu hình là của chuỗi kết nối được chỉ định name
             var dbConfigName = ConfigurationManager.AppSettings["Default"];
             Init(dbConfigName);
         }

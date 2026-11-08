@@ -220,7 +220,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         }
         /// <summary>
-        /// Lấy thông tin hoàn trảquyết toán
+        /// Lấy thông tin hoàn trả quyết toán
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
@@ -232,7 +232,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Lấy thông tinquyết toán
+        /// Lấy thông tin quyết toán
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
@@ -266,7 +266,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Hủyquyết toán xuất viện
+        /// Hủy quyết toán xuất viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -305,7 +305,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// Lấy mã nhập viện theo mã cá nhân(Nông thôn mới)
         /// </summary>
         /// <param name="xnhgrbm">Mã cá nhân</param>
-        /// <param name="sfjs">Cóquyết toán hay không1Đãquyết toán 0 chưakết</param>
+        /// <param name="sfjs">Có quyết toán hay không1Đã quyết toán 0 chưa kết</param>
         /// <returns></returns>
         public IActionResult GetZyhByGrbm(string xnhgrbm, string sfjs)
         {
@@ -315,10 +315,10 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         #endregion
 
-        #region quyết toán xuất viện//(Không có thuật toán BHYT)//20190408sửalà Có thuật toán BHYT
+        #region quyết toán xuất viện//(Không có thuật toán BHYT)//20190408sửa là Có thuật toán BHYT
 
         /// <summary>
-        /// Dữ liệu truy vấn mã nhập viện(bao gồm Bệnh nhânthông tinvà Chi tiết tính phí) zyh hoặc kh +cardType hoặc sfz +cardType
+        /// Dữ liệu truy vấn mã nhập viện(bao gồm Bệnh nhân thông tin và Chi tiết tính phí) zyh hoặc kh +cardType hoặc sfz +cardType
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="sfz"></param>
@@ -350,7 +350,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// mangmẫuhồ Truy vấn
+        /// mang mẫu hồ Truy vấn
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
@@ -390,7 +390,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// Truy vấnnhập việnphí Hóa đơn
+        /// Truy vấn nhập viện phí Hóa đơn
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
@@ -465,12 +465,12 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Lưuquyết toán
+        /// Lưu quyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="expectedcyrq"></param>
         /// <param name="fph"></param>
-        /// <param name="feeRelated">Số tiềnvà Thông tin thanh toán</param>
+        /// <param name="feeRelated">Số tiền và Thông tin thanh toán</param>
         /// <param name="ybfeeRelated">Liên quan BHYT Thông tin phí</param>
         /// <param name="outTradeNo">Số giao dịch thanh toán</param>
         /// <returns></returns>
@@ -485,7 +485,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// lấyquyết toán BHYT cơ quantạovàotham
+        /// lấy quyết toán BHYT cơ quan tạo vào tham
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -532,10 +532,10 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         #endregion
 
-        #region Hủyquyết toán xuất viện//(Không có thuật toán BHYT)//20190408sửalà Có thuật toán BHYT
+        #region Hủy quyết toán xuất viện//(Không có thuật toán BHYT)//20190408sửa là Có thuật toán BHYT
 
         /// <summary>
-        /// Truy vấn hủyquyết toán
+        /// Truy vấn hủy quyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -548,7 +548,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Hủyquyết toán
+        /// Hủy quyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="expectedjsnm"></param>
@@ -565,7 +565,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
             if (_sysConfigRepo.GetBoolValueByCode("HOSP_INTERFACE_WITH_CPOE", this.OrganizeId) == true)
             {
-                //Đồng bộzybz Chờquyết toán cho CIS
+                //Đồng bộ zybz Chờ quyết toán cho CIS
                 Newtouch.Sett.Infrastructure.SiteCISAPIHelper.UpdateInpatientBasicInfo(new InpatientPatientInfoDTO()
                 {
                     zyh = zyh,
@@ -578,10 +578,10 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             {
                 string errorMsg;
                 var refundReuslt = _payApp.TradeRefund(outTradeNo, refundAmount, "Ngoại trú hoàn phí", "", out errorMsg);
-                isTradeRefundError = refundReuslt == (int)Newtouch.Sett.Domain.EnumRefundStatus.Failed || refundReuslt == (int)Newtouch.Sett.Domain.EnumRefundStatus.UnKnown;    //Thất bại hoặc chưabiết
+                isTradeRefundError = refundReuslt == (int)Newtouch.Sett.Domain.EnumRefundStatus.Failed || refundReuslt == (int)Newtouch.Sett.Domain.EnumRefundStatus.UnKnown;    //Thất bại hoặc chưa biết
             }
             _hospdrugbillingRepo.Updatezy_brxxexpand(this.OrganizeId, zyh);
-            var msg = "Hủyquyết toán thành công";  
+            var msg = "Hủy quyết toán thành công";  
             if (isTradeRefundError.HasValue)
             {
                 if (!isTradeRefundError.Value)
@@ -625,7 +625,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             return View();
         }
         /// <summary>
-        /// quyết toán mô phỏng Gửisaumáy lưu Kết quả
+        /// quyết toán mô phỏng Gửi sau máy lưu Kết quả
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -639,7 +639,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         #region private methods
 
         /// <summary>
-        /// lấy Trả vềtrongdungtrongcủaflaggiá trị
+        /// lấy Trả về trong dung trong của flag giá trị
         /// </summary>
         /// <param name="xml"></param>
         /// <returns></returns>
@@ -658,7 +658,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// từxmltrong Trích xuấttableNamecủa DataTable
+        /// từ xml trong Trích xuấttableName của DataTable
         /// </summary>
         /// <param name="xml"></param>
         /// <returns></returns>
@@ -723,7 +723,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
             if (string.IsNullOrEmpty(jslx))
             {
-                return Error("Loạiquyết toán không được để trống, vui lòng liên hệ vận hành HIS！");
+                return Error("Loại quyết toán không được để trống, vui lòng liên hệ vận hành HIS！");
             }
 
 
@@ -737,7 +737,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             return Success(null, res);
         }
         /// <summary>
-        /// Sauquyết toán giữa kỳ cần xử lý bản ghi chi tiết đã tải lên Tránh việc BHYT lấy số liệu không chính xác khi xuất viện
+        /// Sau quyết toán giữa kỳ cần xử lý bản ghi chi tiết đã tải lên Tránh việc BHYT lấy số liệu không chính xác khi xuất viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -747,7 +747,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             return Success();
         }
         /// <summary>
-        /// Dữ liệu truy vấn mã nhập viện(bao gồm Bệnh nhânthông tinvà Chi tiết tính phí) zyh hoặc kh +cardType hoặc sfz +cardType
+        /// Dữ liệu truy vấn mã nhập viện(bao gồm Bệnh nhân thông tin và Chi tiết tính phí) zyh hoặc kh +cardType hoặc sfz +cardType
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="sfz"></param>
@@ -767,7 +767,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Chuyểnquyết toán xuất viện
+        /// Chuyển quyết toán xuất viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -789,7 +789,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         {
             if (jsnm == 0)
             {
-                throw new FailedException("Thiếu mãquyết toán");
+                throw new FailedException("Thiếu mã quyết toán");
             }
             var jsentity = _hospSettlementRepo.IQueryable(p => p.jsnm == jsnm && p.OrganizeId == OrganizeId && p.zt == "1" && p.jszt == "1").ToList().FirstOrDefault();
             return Success("", jsentity.xjzf);
@@ -797,7 +797,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
         #endregion
 
-        #region Hủyquyết toán xuất viện
+        #region Hủy quyết toán xuất viện
         public IActionResult GetCQLastjsnm(string zyh)
         {
             var data = _dischargeSettleDmnService.GetCQLastJsnm(zyh, this.OrganizeId);
@@ -861,7 +861,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
         #endregion
 
-        #region BHYTLưuquyết toán trước
+        #region BHYTLưu quyết toán trước
         public IActionResult subybyjsld(CqybSett2303Entity YuJieSuan)
         {
             DateTime dateTime = DateTime.Now;

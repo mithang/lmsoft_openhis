@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Sửaform
+        /// Sửa form
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

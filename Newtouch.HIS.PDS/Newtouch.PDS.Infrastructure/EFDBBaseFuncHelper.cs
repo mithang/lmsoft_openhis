@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// Thường dùng(đặt Repo,DmnServiceđều không phù hợp,nhưng lại phải yêu cầu cơ sở dữ liệu)
+    /// Thường dùng(đặt Repo,DmnService đều không phù hợp,nhưng lại phải yêu cầu cơ sở dữ liệu)
     /// Ví dụ lấy số hiệu duy nhất(Tự tăng,nhưng không thể trùng lặp)
     /// </summary>
     public class EFDBBaseFuncHelper

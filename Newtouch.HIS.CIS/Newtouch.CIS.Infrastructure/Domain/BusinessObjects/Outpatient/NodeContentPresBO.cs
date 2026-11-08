@@ -8,12 +8,12 @@ namespace Newtouch.Domain.BusinessObjects
     public class NodeContentPresBO
     {
         /// <summary>
-        /// Đơn thuốcchínhbảng
+        /// Đơn thuốc chính bảng
         /// </summary>
         public PrescriptionEntity presEntity { get; set; }
 
         /// <summary>
-        /// Đơn thuốcchi tiết
+        /// Đơn thuốc chi tiết
         /// </summary>
         public List<PrescriptionDetailQueryVO> presDetailList { get; set; }
 
@@ -23,7 +23,7 @@ namespace Newtouch.Domain.BusinessObjects
         public DateTime? cfzhdysj { get; set; }
 
         /// <summary>
-        /// Điều trịphiếu In Thời gian(chỉ Phục hồi chức năng)
+        /// Điều trị phiếu In Thời gian(chỉ Phục hồi chức năng)
         /// </summary>
         public DateTime? zldzhdysj { get; set; }
 

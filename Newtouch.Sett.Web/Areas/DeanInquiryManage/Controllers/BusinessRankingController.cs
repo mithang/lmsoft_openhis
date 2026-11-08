@@ -36,7 +36,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// ngoại trúkhámy tếsinhcônglàmlượng
+        /// ngoại trú khám y tế sinh công làm lượng
         /// </summary>
         public IActionResult GetMzysgzl(string kssj, string jssj)
         {
@@ -45,7 +45,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// ngoại trúkhámkhoaphòngthuvào
+        /// ngoại trú khám khoa phòng thu vào
         /// </summary>
         public IActionResult GetMzkssr(string kssj, string jssj)
         {
@@ -54,7 +54,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// nhập việnviệnnghiệpvụkhoaphòngthuvào
+        /// nhập viện viện nghiệp vụ khoa phòng thu vào
         /// </summary>
         public IActionResult GetZyywks(string kssj, string jssj)
         {
@@ -63,7 +63,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// y tếsinhnghiệpvụthuvào
+        /// y tế sinh nghiệp vụ thu vào
         /// </summary>
         public IActionResult GetYsyw(string kssj, string jssj, string bqCode)
         {

@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.ValueObjects
 {
     /// <summary>
-    /// Danh sách thả xuốngvật tưthông tin
+    /// Danh sách thả xuống vật tư thông tin
     /// </summary>
     public class VSelProductInfoVO
     {
@@ -13,7 +13,7 @@ namespace Newtouch.Domain.ValueObjects
         public string Id { get; set; }
 
         /// <summary>
-        /// tổ chứckếtcấu trúc
+        /// tổ chức kết cấu trúc
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -28,7 +28,7 @@ namespace Newtouch.Domain.ValueObjects
         public int kcsl { get; set; }
 
         /// <summary>
-        /// có thểdùng Tồn kho Đơn vị nhỏ nhất
+        /// có thể dùng Tồn kho Đơn vị nhỏ nhất
         /// </summary>
         public int kykcsl { get; set; }
 
@@ -48,12 +48,12 @@ namespace Newtouch.Domain.ValueObjects
         public decimal bmlsj { get; set; }
 
         /// <summary>
-        /// chuyểnhóavìcon
+        /// chuyển hóa vì con
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// Khoa phòng Đơn vịchuyểnhóavìcon
+        /// Khoa phòng Đơn vị chuyển hóa vì con
         /// </summary>
         public int bmdwzhyz { get; set; }
 
@@ -110,7 +110,7 @@ namespace Newtouch.Domain.ValueObjects
 
 
     /// <summary>
-    /// vật tư Lôthông tin
+    /// vật tư Lô thông tin
     /// </summary>
     public class VProductBatchInfoVO
     {
@@ -130,7 +130,7 @@ namespace Newtouch.Domain.ValueObjects
         public int kcsl { get; set; }
 
         /// <summary>
-        /// có thểdùng Tồn kho(kcsl-djsl),Đơn vị nhỏ nhất
+        /// có thể dùng Tồn kho(kcsl-djsl),Đơn vị nhỏ nhất
         /// </summary>
         public int kykcsl { get; set; }
 
@@ -145,32 +145,32 @@ namespace Newtouch.Domain.ValueObjects
         public DateTime yxq { get; set; }
 
         /// <summary>
-        /// sinhsản xuất Ngày
+        /// sinh sản xuất Ngày
         /// </summary>
         public DateTime? scrq { get; set; }
 
         /// <summary>
-        /// Khoa phòng Đơn vịvàogiá
+        /// Khoa phòng Đơn vị vào giá
         /// </summary>
         public decimal bmjj { get; set; }
 
         /// <summary>
-        /// Đơn vị nhỏ nhấtvàogiá
+        /// Đơn vị nhỏ nhất vào giá
         /// </summary>
         public decimal minjj { get; set; }
 
         /// <summary>
-        /// vàogiátổngmức
+        /// vào giá tổng mức
         /// </summary>
         public decimal jjzje { get; set; }
 
         /// <summary>
-        /// Hóa đơnsố
+        /// Hóa đơn số
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// vàogiá Đơn vị Đơn giá
+        /// vào giá Đơn vị Đơn giá
         /// </summary>
         public string jjdwdj { get; set; }
     }

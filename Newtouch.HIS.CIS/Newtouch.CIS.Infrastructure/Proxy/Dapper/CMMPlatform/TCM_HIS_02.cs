@@ -6,7 +6,7 @@ using Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_02;
 namespace Newtouch.CIS.Proxy.Dapper.CMMPlatform
 {
     /// <summary>
-    /// đẩythảo dượcthông tin
+    /// đẩy thảo dược thông tin
     /// </summary>
     public class TcmHis02 : ProxyDapperBase<PushMedicineInfoRequestEntity, PushMedicineInfoResponseEntity, Result>
     {

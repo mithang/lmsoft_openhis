@@ -7,7 +7,7 @@ using NewtouchHIS.Lib.Framework.Operator;
 namespace NewtouchHIS.Framework.Web.Controllers
 {
     /// <summary>
-    /// đã đăng nhập Controllerlớp cơ sở
+    /// đã đăng nhập Controller lớp cơ sở
     /// </summary>
     public abstract class BaseController : Controller
     {

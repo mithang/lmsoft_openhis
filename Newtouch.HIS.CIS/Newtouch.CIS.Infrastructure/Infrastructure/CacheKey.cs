@@ -14,12 +14,12 @@ namespace Newtouch.Infrastructure
         public static string ValidSystemBwFlSetKey = "set:VBodyDlSetKey_{0}";
 
         /// <summary>
-        /// hiện tại Đăng nhậpcủa Người dùngcủa Khoa dượcthông tin  {0}UserId
+        /// hiện tại Đăng nhập của Người dùng của Khoa dược thông tin  {0}UserId
         /// </summary>
         public static string CurrentYfbmInfoEntityKey = "string:CurrentYfbmInfo_{0}";
 
         /// <summary>
-        /// Người dùngđănglụcthứbaphươngủy quyềntoken {0} hiện tại Hệ thống AppId {1} Cơ sở Mã {2} Người dùng
+        /// Người dùng đăng lục thứ ba phương ủy quyền token {0} hiện tại Hệ thống AppId {1} Cơ sở Mã {2} Người dùng
         /// </summary>
         public static string AccessToken = "${0}${1}:accesstoken_{2}";
     }

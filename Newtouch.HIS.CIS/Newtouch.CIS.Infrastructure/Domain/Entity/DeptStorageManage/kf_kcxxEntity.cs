@@ -7,7 +7,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Domain.Entity.DeptStorageManage
 {
     /// <summary>
-    /// Tồn khobảng
+    /// Tồn kho bảng
     /// </summary>
     [SugarTable("kf_kcxx")]
     public class KfKcxxEntity
@@ -19,7 +19,7 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chức Id(cócụ thểthểnghiệp vụcủayviện)
+        /// Tổ chức Id(có cụ thể thể nghiệp vụ của y viện)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -54,7 +54,7 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public int kcsl { get; set; }
 
         /// <summary>
-        /// đôngkết Số lượng Đơn vị nhỏ nhất Số lượng
+        /// đông kết Số lượng Đơn vị nhỏ nhất Số lượng
         /// </summary>
         public int djsl { get; set; }
 
@@ -64,18 +64,18 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public long crkmxId { get; set; }
 
         /// <summary>
-        /// vàogiá chuyểnhóavìcontương ứng Đơn vị
+        /// vào giá chuyển hóa vì con tương ứng Đơn vị
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal jj { get; set; }
 
         /// <summary>
-        /// chuyểnhóavìcon,chuyểnhóathànhhiện tại Kho Đơn vị
+        /// chuyển hóa vì con,chuyển hóa thành hiện tại Kho Đơn vị
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// Tồn khokhóa 0/null:chưatrênkhóa      >0:đãkhóa
+        /// Tồn kho khóa 0/null:chưa trên khóa      >0:đã khóa
         /// </summary>
         public int? locked { get; set; }
 

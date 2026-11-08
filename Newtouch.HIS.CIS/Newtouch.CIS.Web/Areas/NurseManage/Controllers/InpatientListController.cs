@@ -132,7 +132,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         public IActionResult InHosNursingInput()
         {
             ViewBag.MutipatientNursingInputFlag = _sysConfigRepo.GetIntValueByCode("MutipatientNursingInputFlag", OrganizeId, 0);
-            ViewBag.ScdCode = _sysConfigRepo.GetValueByCode("ScdTimePoint", OrganizeId);//Phiếu đo ba chỉ số Thời gianđiểm Lẻ chẵnsố Cài đặt 1 lẻsố 0 chẵnsố
+            ViewBag.ScdCode = _sysConfigRepo.GetValueByCode("ScdTimePoint", OrganizeId);//Phiếu đo ba chỉ số Thời gian điểm Lẻ chẵn số Cài đặt 1 lẻ số 0 chẵn số
             return View();
         }
         public IActionResult InHosPrint()

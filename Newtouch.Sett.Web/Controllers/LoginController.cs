@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 namespace Newtouch.Sett.Web.Controllers
 {
     /// <summary>
-    /// đăngghiđăngra (SSO/UA callback actions from the Framework version are dropped:
+    /// đăng ghi đăng ra (SSO/UA callback actions from the Framework version are dropped:
     /// they depend on external SSO/UA hosts that do not exist in this deployment.
     /// NX16-001: UALogin IS now ported (HOSP pattern, NX2-002) — mint Redis-truc-tiep;
     /// other SSO/UA callbacks stay dropped.

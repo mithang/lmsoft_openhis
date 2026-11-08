@@ -204,7 +204,7 @@ WHERE kcId=@kcId AND OrganizeId=@OrganizeId AND zt='1' AND tybz='0'
         }
 
         /// <summary>
-        /// Giảmdjslvàkcsl
+        /// Giảm djsl và kcsl
         /// </summary>
         /// <param name="sl">Số lượng đơn vị nhỏ nhất Số tồn kho cần trừ</param>
         /// <param name="pc"></param>

@@ -142,7 +142,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// Báo cáo tháng vui lòngyêu cầutratra cứu thựcthời gian của dữ liệu
+        /// Báo cáo tháng vui lòng yêu cầu tra tra cứu thực thời gian của dữ liệu
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>
@@ -396,7 +396,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
             return View();
         }
         #endregion
-        #region Ngoại trú ngàykết báo cáo
+        #region Ngoại trú ngày kết báo cáo
         public IActionResult ChargeDailysettlement()
         {
             ReportingServiceCom();
@@ -413,7 +413,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
 		#endregion
 
-		#region Bệnh việnứng trướctrả Số tiền chi tiết
+		#region Bệnh viện ứng trước trả Số tiền chi tiết
 		public IActionResult HosAdvanceAmount()
 		{
 			ReportingServiceCom();
@@ -1188,7 +1188,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 				}
 			}
 
-			#region  dbf TệpFileStreamđọc lấy không đến Tệp Chưa tìm thấy lý do hiện Sử dụngGhép địa chỉ trước phía Tải xuống
+			#region  dbf TệpFileStream đọc lấy không đến Tệp Chưa tìm thấy lý do hiện Sử dụngGhép địa chỉ trước phía Tải xuống
 			//try
 			//{
 			//	System.IO.FileStream fs = new System.IO.FileStream(filepath, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.ReadWrite, 40960,true);
@@ -1250,7 +1250,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
             };
             return Content(list.ToJson());
         }
-        #endregion BHYT trênbáo cáo báo cáo
+        #endregion BHYT trên báo cáo báo cáo
         #region
         /// <summary>
         /// tổng trang mặt

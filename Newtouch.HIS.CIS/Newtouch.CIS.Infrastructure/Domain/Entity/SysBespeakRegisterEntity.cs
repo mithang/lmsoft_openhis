@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// Hệ thốngđặt hẹnđăng ký khám Bảo trì
+    /// Hệ thống đặt hẹn đăng ký khám Bảo trì
     /// </summary>
     [SugarTable("xt_bespeakRegister")]
     public class SysBespeakRegisterEntity
@@ -18,12 +18,12 @@ namespace Newtouch.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// tổ chứckếtcấu trúc
+        /// tổ chức kết cấu trúc
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Dấu hiệu ngoại trú/nội trú 1:thông thường Ngoại trú  2:gấpkhám   3:chuyên gia Ngoại trú
+        /// Dấu hiệu ngoại trú/nội trú 1:thông thường Ngoại trú  2:gấp khám   3:chuyên gia Ngoại trú
         /// </summary>
         public string mzlx { get; set; }
 
@@ -33,17 +33,17 @@ namespace Newtouch.Domain.Entity
         public DateTime regDate { get; set; }
 
         /// <summary>
-        /// đăng ký khám Bắt đầukhiđoạn
+        /// đăng ký khám Bắt đầu khi đoạn
         /// </summary>
         public DateTime regBeginTime { get; set; }
 
         /// <summary>
-        /// đăng ký khám Kết thúckhiđoạn
+        /// đăng ký khám Kết thúc khi đoạn
         /// </summary>
         public DateTime regEndTime { get; set; }
 
         /// <summary>
-        /// đăng ký khámkhiđoạn,đăng ký khám Bắt đầukhiđoạnvàđăng ký khám Kết thúckhiđoạnkếthợp
+        /// đăng ký khám khi đoạn,đăng ký khám Bắt đầu khi đoạn và đăng ký khám Kết thúc khi đoạn kết hợp
         /// </summary>
         public string regTime { get; set; }
 
@@ -58,7 +58,7 @@ namespace Newtouch.Domain.Entity
         public string ysgh { get; set; }
 
         /// <summary>
-        /// nhấtlớnđặt hẹnsố
+        /// nhất lớn đặt hẹn số
         /// </summary>
         public int bespeakMaxCount { get; set; }
 
@@ -68,7 +68,7 @@ namespace Newtouch.Domain.Entity
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// tạongười
+        /// tạo người
         /// </summary>
         public string CreatorCode { get; set; }
 
@@ -78,7 +78,7 @@ namespace Newtouch.Domain.Entity
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Sửangười
+        /// Sửa người
         /// </summary>
         public string LastModifierCode { get; set; }
 

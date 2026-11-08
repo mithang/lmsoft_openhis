@@ -74,7 +74,7 @@ namespace Newtouch.HIS.DomainServices.SystemManage
 			if (!string.IsNullOrEmpty(keyValue))
 			{
 				if (_sysStaffRepo.IQueryable().Any(p => p.OrganizeId == entity.OrganizeId && p.Id != keyValue
-					&& p.gh == entity.gh))  //Trong cùng một bệnh viện không được cóghgiống nhau
+					&& p.gh == entity.gh))  //Trong cùng một bệnh viện không được có gh giống nhau
 				{
 					throw new FailedException("Mã nhân viên không được trùng lặp");
 				}
@@ -98,7 +98,7 @@ namespace Newtouch.HIS.DomainServices.SystemManage
 				using (var db = new DbTrans())
 				{
 					if (db.IQueryable<SysStaffEntity>().Any(p => p.OrganizeId == entity.OrganizeId
-	   && p.gh == entity.gh))   //Trong cùng một bệnh viện không được cóghgiống nhau
+	   && p.gh == entity.gh))   //Trong cùng một bệnh viện không được có gh giống nhau
 					{
 						throw new FailedException("Mã nhân viên không được trùng lặp");
 					}
@@ -118,7 +118,7 @@ namespace Newtouch.HIS.DomainServices.SystemManage
                             //Tạo tài khoản hệ thống
 
                             if (!_sysUserRepo.IQueryable().Any(p => p.TopOrganizeId == entity.TopOrganizeId
-    && p.Account == accont))    //Trong cùng một tổ chức cấp cao nhất không được có Accountgiống nhau
+    && p.Account == accont))    //Trong cùng một tổ chức cấp cao nhất không được có Account giống nhau
                             {
                                 var userEntity = new SysUserEntity()    //
                                 {
@@ -175,7 +175,7 @@ namespace Newtouch.HIS.DomainServices.SystemManage
 			{
 				return;
 			}
-			//vai tròlist
+			//vai trò list
 			var dutyLists = new List<SysStaffDutyEntity>();
 			foreach (var item in dutyIdList.Where(p => !string.IsNullOrWhiteSpace(p)).Distinct())
 			{

@@ -42,7 +42,7 @@ namespace Newtouch.HIS.Web.Controllers
         private readonly IDispensingDmnService _dispensingDmnService;
         private readonly IHospitalizationPharmacyApp _hospitalizationPharmacyApp;
         private readonly IResourcesOperateApp _resourcesOperateApp;
-        private readonly string _OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//Tổ chứcid
+        private readonly string _OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//Tổ chức id
 
         #region Liên kết
         public IActionResult DispenseIndex()

@@ -8,7 +8,7 @@
         public string? BookId { get; set; }
 
         /// <summary>
-        /// Ngày khám theo hẹn(Ưu tiên cao hơnksrq|jsrq)
+        /// Ngày khám theo hẹn(Ưu tiên cao hơn ksrq|jsrq)
         /// </summary>
         public string? OutDate { get; set; }
         /// <summary>

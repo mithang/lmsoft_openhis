@@ -4,13 +4,13 @@ using Newtouch.Domain.Entity;
 namespace Newtouch.Domain.IDomainServices
 {
     /// <summary>
-    /// đẩy Thuốc Đông ythông tin
+    /// đẩy Thuốc Đông y thông tin
     /// </summary>
     public interface ICmmHis02RecordDmnService
     {
 
         /// <summary>
-        /// Lấychưa Đồng bộ của thuốc
+        /// Lấy chưa Đồng bộ của thuốc
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="dlType"></param>
@@ -18,16 +18,16 @@ namespace Newtouch.Domain.IDomainServices
         List<SysMedicineExVEntity> SelectNoSyncMedicines(string organizeId, string dlType = "TCM");
 
         /// <summary>
-        /// Lấychưa Đồng bộ của thuốc
+        /// Lấy chưa Đồng bộ của thuốc
         /// </summary>
-        /// <param name="topSize">Một lầnyêu cầutổngdòngsố</param>
+        /// <param name="topSize">Một lần yêu cầu tổng dòng số</param>
         /// <param name="organizeId"></param>
         /// <param name="dlType"></param>
         /// <returns></returns>
         List<SysMedicineExVEntity> SelectNoSyncMedicines(int topSize, string organizeId, string dlType = "TCM");
 
         /// <summary>
-        /// Lấy Đồng bộthất bại của thuốc
+        /// Lấy Đồng bộ thất bại của thuốc
         /// </summary>
         /// <param name="organizeId"></param>
         /// <returns></returns>

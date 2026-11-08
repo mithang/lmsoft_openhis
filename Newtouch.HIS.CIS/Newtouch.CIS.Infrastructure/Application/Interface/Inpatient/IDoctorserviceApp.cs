@@ -6,7 +6,7 @@ namespace Newtouch.Application.Interface.Inpatient
    public interface IDoctorserviceApp
     {
         /// <summary>
-        /// Sửa ThuốcY lệnhkhi,TheoY lệnh Id Lấy Chi tiếtvàvàtriểnhiển thịđếnY lệnhnhậpgiớimặt
+        /// Sửa ThuốcY lệnh khi,TheoY lệnh Id Lấy Chi tiết và và triển hiển thị đếnY lệnh nhập giới mặt
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="yzlx"></param>

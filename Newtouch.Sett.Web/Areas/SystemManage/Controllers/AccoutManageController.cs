@@ -28,7 +28,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// tratra cứubệnhngườiquỹnàythông tintinvàtài khoảnhộthông tintin
+        /// tratra cứu bệnh người quỹ này thông tin tin và tài khoản hộ thông tintin
         /// </summary>
         /// <param name="patid"></param>
         /// <returns></returns>

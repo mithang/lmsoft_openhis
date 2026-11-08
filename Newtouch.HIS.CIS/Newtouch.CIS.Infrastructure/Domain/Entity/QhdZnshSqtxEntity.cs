@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// trícó thể Phê duyệtngàychí
+    /// trí có thể Phê duyệt ngày chí
     /// </summary>
     [SugarTable("qhd_znshsqtx")]
     public class QhdZnshSqtxEntity
@@ -31,11 +31,11 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public string Type { get; set; }
         /// <summary>
-        /// Tham số đầu vàoxml
+        /// Tham số đầu vào xml
         /// </summary>
         public string XmlRequest { get; set; }
         /// <summary>
-        /// ratham sốxml
+        /// ratham số xml
         /// </summary>
         public string XmlResponse { get; set; }
         public string zt { get; set; }

@@ -133,7 +133,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public string? mettingId { get; set; }
 
         /// <summary>
-        /// Desc:Đăng kýthông tin người
+        /// Desc:Đăng ký thông tin người
         /// Default:
         /// Nullable:True
         /// </summary>           

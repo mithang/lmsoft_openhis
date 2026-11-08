@@ -65,13 +65,13 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             //{
             //    //Tập hợp khu bệnh của cơ quan
             //    var orgBqData = _sysWardRepo.GetbqList(orgItem.Id);
-            //    //máycơ quanbệnhngườitậphợp
+            //    //máy cơ quan bệnh người tập hợp
             //    var orgPatientData =_bookkeepInHosDmnService.GetPendingExecutionPatientVOList(orgItem.Id);
-            //    #region máycơ quandướinơicóbệnhquận
+            //    #region máy cơ quan dưới nơi có bệnh quận
             //    foreach (var bqItem in orgBqData)
             //    {
             //        var bqPatientData = orgPatientData.Where(p => p.bqCode == bqItem.bqCode).ToList();
-            //        #region máycơ quandướinơicóbệnhngười
+            //        #region máy cơ quan dưới nơi có bệnh người
             //        foreach (var patientItem in bqPatientData)
             //        {
             //            TreeViewModel subsubTree = new TreeViewModel();
@@ -87,7 +87,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             //            subsubTree.showcheck = true;
             //            subsubTree.checkstate = 0;   //Gán giá trị ở ngoài,Thuận tiện cho bộ nhớ đệm
 
-            //            subsubTree.Ex1 = "1";    //tiêuhiển thịlàbệnhngười,dùngtạiquậnphân bệnh nhân,bệnhquậncủalạichọnkhung
+            //            subsubTree.Ex1 = "1";    //tiêu hiển thị là bệnh người,dùng tại quận phân bệnh nhân,bệnh quận của lại chọn khung
 
             //            treeList.Add(subsubTree);
             //        }
@@ -120,7 +120,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             ////if (from == "selecttherapist")   //Chọn trị liệu sư của hệ thống
             ////{
             ////    var whereList = _sysUserDmnService.GetStaffIdListByParentOrg(organizeId, "RehabDoctor");   //Kỹ thuật viên trị liệu
-            ////    treeList = treeList.Where(p => !p.showcheck || whereList.Contains(p.id)).ToList();  //chỉhiển thịhiển thịđiều trịđiều trịsư
+            ////    treeList = treeList.Where(p => !p.showcheck || whereList.Contains(p.id)).ToList();  //chỉ hiển thị hiển thị điều trị điều trị sư
             ////}
 
             //IList<string> checkedStaffIdList = null;
@@ -145,13 +145,13 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             //        }
             //    }
             //}
-            //if (!isShowEmpty)   //khônghiển thịhiển thịnhiềucòn lạicủa
+            //if (!isShowEmpty)   //không hiển thị hiển thị nhiều còn lại của
             //{
-            //    var count = 1;  //di chuyểntrừcủathực hiệnsố
+            //    var count = 1;  //di chuyển trừ của thực hiện số
             //    while (count > 0)
             //    {
             //        count = treeList.RemoveAll(p => !p.showcheck && !p.hasChildren);
-            //        //nặngmớiđiềuchỉnhdướicây gỡ khôngcódướicấp(dướicấpvừabịdi chuyểnrồi) lại khônghiển thịhiển thịshowcheckcủa
+            //        //nặng mới điều chỉnh dưới cây gỡ không có dưới cấp(dưới cấp vừa bị di chuyển rồi) lại không hiển thị hiển thị show check của
             //        treeList.RemoveAll(p => !p.showcheck && !treeList.Any(sub => sub.parentId == p.id));
             //    }
             //}
@@ -206,20 +206,20 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             return View();
         }
         /// <summary>
-        /// kếttínhxóaphiếutrênchuyểnchỉnhhợptrangmặt
+        /// kết tính xóa phiếu trên chuyển chỉnh hợp trang mặt
         /// </summary>
         /// <returns></returns>
         public IActionResult SettlementListUpload()
         {
             return View();
         }
-        //kếttínhxóaphiếuchấtđiều khiểntratra cứu
+        //kết tính xóa phiếu chất điều khiển tra tra cứu
         public IActionResult SettlementListResultFrom()
         {
             ViewBag.OrgId = this.OrganizeId;
             return View();
         }
-        //kếttínhxóaphiếusốlượngthốngtínhkếtkết quảtratra cứu
+        //kết tính xóa phiếu số lượng thống tính kết kết quả tra tra cứu
         public IActionResult QuerySettlementResultFrom()
         {
             ViewBag.OrgId = this.OrganizeId;
@@ -285,7 +285,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
 
         #region ZFToYB steps
         /// <summary>
-        /// làkhôngđầulầny tếbảo hiểmthìkhám
+        /// là không đầu lần y tế bảo hiểm thì khám
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -334,7 +334,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             return Success(null, data);
         }
 		/// <summary>
-		/// nặngmừngtựphíchuyểny tếbảo hiểm--Nội trú
+		/// nặng mừng tự phí chuyển y tế bảo hiểm--Nội trú
 		/// </summary>
 		/// <param name="zyh"></param>
 		/// <param name="patid"></param>
@@ -395,7 +395,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             return Success(null, data);
         }
 		/// <summary>
-		/// nặngmừngy tếbảo hiểmđượclấybệnhngườithìkhámđăngghirơiđịasốdữ liệu
+		/// nặng mừng y tế bảo hiểm được lấy bệnh người thì khám đăng ghi rơi địa số dữ liệu
 		/// </summary>
 		/// <param name="zyh"></param>
 		/// <returns></returns>
@@ -462,7 +462,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                     {
                         isSuccess = false;
                         state = "0";
-                        message = "Lấy Bệnh nhân nông thôn mới Nhập viện bồi thường Số thứ tựinp Id là trống，Vui lòng liên hệhis xử lý";
+                        message = "Lấy Bệnh nhân nông thôn mới Nhập viện bồi thường Số thứ tự inp Id là trống，Vui lòng liên hệ his xử lý";
                     }
                     if (patinfo.zybz== ((int)EnumZYBZ.Wry).ToString()|| patinfo.zybz == ((int)EnumZYBZ.Ycy).ToString())
                     {
@@ -489,7 +489,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                         }
                         else
                         {
-                            //1.his Chuyển BHYT sang tự chi trả   2.đồng bộcpoe
+                            //1.his Chuyển BHYT sang tự chi trả   2.đồng bộ cpoe
                             _inpatientApp.YBToZF_Step_5(zyh, patinfo.patid);
                             YBToZF_Step_7(zyh);
                         }
@@ -633,7 +633,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         #endregion
 
         /// <summary>
-        /// kếttínhxóaphiếutrênchuyểntrongdungtratra cứu
+        /// kết tính xóa phiếu trên chuyển trong dung tra tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="sczt"></param>

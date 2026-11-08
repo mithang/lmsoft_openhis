@@ -40,7 +40,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
 
         #region tải Đăng ký khám thông tin
         /// <summary>
-        /// căndữ liệuthẻsốthêmtảibệnhngườitreosốthông tintin
+        /// căn dữ liệu thẻ số thêm tải bệnh người treo số thông tintin
         /// </summary>
         /// <param name="kh"></param>
         /// <returns></returns>
@@ -58,7 +58,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
             }
         }
         /// <summary>
-        /// hệthốngkhámđoạn
+        /// hệ thống khám đoạn
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -95,7 +95,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
             return View();
         }
         /// <summary>
-        /// căndữ liệucôngsốđượclấyphátphiếusố
+        /// căn dữ liệu công số được lấy phát phiếu số
         /// </summary>
         /// <param name="employeeNo"></param>
         /// <returns></returns>
@@ -105,7 +105,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
             return Content(data);
         }
         /// <summary>
-        /// kiểmchứngchuyểnvàophátphiếusốlàkhôngcó thểdùng
+        /// kiểm chứng chuyển vào phát phiếu số là không có thể dùng
         /// by caishanshan
         /// </summary>
         /// <param name="inputFPH"></param>
@@ -119,7 +119,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
 
         #region Đang đăng ký khám Danh sách
         /// <summary>
-        /// chínhtạitreosốcộtbảng
+        /// chính tại treo số cột bảng
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
@@ -134,7 +134,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
             return Content("");
         }
         /// <summary>
-        /// đượclấytreosốphí Phí chẩn trị Phí thẻ từ Phí làm thẻ
+        /// được lấy treo số phí Phí chẩn trị Phí thẻ từ Phí làm thẻ
         /// </summary>
         /// <param name="ghlx">Loại đăng ký khám</param>
         /// <param name="isZzjm">Miễn giảm chuyển tuyến</param>
@@ -148,9 +148,9 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
         }
         #endregion
 
-        #region Chưa quyết toán/Đã Danh sách quyết toán  cầnyêu cầuđổihơn：bỏ đi Đã quyết toán trongdung update by caishanshan 20161229
+        #region Chưa quyết toán/Đã Danh sách quyết toán  cần yêu cầu đổi hơn：bỏ đi Đã quyết toán trongdung update by caishanshan 20161229
         /// <summary>
-        /// đượclấykếttínhcộtbảng(quyết toán/Chưa quyết toán)
+        /// được lấy kết tính cột bảng(quyết toán/Chưa quyết toán)
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="isJz"></param>
@@ -170,13 +170,13 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
 
         #region Quyết toán lần trước
         /// <summary>
-        /// thêmtảitrước đólầnkếttínhthông tintin
+        /// thêm tải trước đó lần kết tính thông tintin
         /// </summary>
         /// <param name="userLogin"></param>
         /// <returns></returns>
         public IActionResult GetLastSettleInfo(string userLogin)
         {
-            //chú ý  sửathànhđốitượng
+            //chú ý  sửa thành đối tượng
             List<LastSettleInfoVO> info = _outpatientRegApp.GetLastSettleInfo(this.UserIdentity.UserCode);
             return Content(info.ToJson());
         }
@@ -184,7 +184,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
 
         #region Hủy bỏ
         /// <summary>
-        /// bảo hiểmlưungoại trúkhámtreosốlàmhủyghighi
+        /// bảo hiểm lưu ngoại trú khám treo số làm hủy ghi ghi
         /// </summary>
         /// <param name="outPatientRegAbandEntity"></param>
         /// <returns></returns>
@@ -221,7 +221,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
 
         #region Lưu
         /// <summary>
-        /// đượclấythìkhámthứ tựsố
+        /// được lấy thì khám thứ tự số
         /// </summary>
         /// <param name="ghlx"></param>
         /// <param name="ks"></param>
@@ -265,7 +265,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
         /// <param name="gbf"></param>
         /// <param name="zzjm"></param>
         /// <param name="kh"></param>
-        /// <param name="isJS">cầnyêu cầuđổihơn đirớtchưakếttínhtrongdung nơibằngnàychữđoạnkhôngdùngrồi</param>
+        /// <param name="isJS">cần yêu cầu đổi hơn đi rớt chưa kết tính trong dung nơi bằng này chữ đoạn không dùng rồi</param>
         /// <param name="ysk"></param>
         /// <param name="ssk"></param>
         /// <param name="fph"></param>

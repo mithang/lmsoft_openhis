@@ -19,7 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.CIS.Web.Controllers
 {
     /// <summary>
-    /// Ngoại trúđặt hẹn
+    /// Ngoại trú đặt hẹn
     /// </summary>
     public class BespeakRegisterController : OrgControllerBase
     {
@@ -30,7 +30,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Hủyđặt hẹn
+        /// Hủy đặt hẹn
         /// </summary>
         /// <param name="yyId"></param>
         /// <returns></returns>

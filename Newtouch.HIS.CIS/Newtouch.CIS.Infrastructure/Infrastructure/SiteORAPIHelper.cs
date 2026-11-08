@@ -10,7 +10,7 @@ namespace Newtouch.Infrastructure
     public class SiteORAPIHelper: SiteAPIRequestHelperBase<SiteORAPIHelper>
     {
         /// <summary>
-        /// lĩnh vực Addrcấu hình của Key
+        /// lĩnh vực Addr cấu hình của Key
         /// </summary>
         private readonly static string _domainConfigKey = "SiteORAPIHost";
 

@@ -72,7 +72,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             _SysChargeAddCategApp.SubmitForm(sysChargeAddCategEntity, keyValue);
             return Success("Thao tác thành công。");
         }
-        //kèmthêmhiển thịhiển thịlớnloạidướikéokhung
+        //kèm thêm hiển thị hiển thị lớn loại dưới kéo khung
         public IActionResult GetSysChargeAddCategSelect()
         {
             var treeList = _SysChargeAddCategApp.GetSysChargeAddCategSelect();

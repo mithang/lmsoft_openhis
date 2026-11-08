@@ -202,7 +202,7 @@ namespace NewtouchHIS.Base.DomainService
                 logEntity.NickName = staff == null ? null : staff.Name;
                 logEntity.Result = true;
                 logEntity.Description = "Dang nhap he thong thanh cong";
-                //Liên kết nhiều Tổ chứckhi không chính xác
+                //Liên kết nhiều Tổ chức khi không chính xác
                 logEntity.OrganizeId = staff == null ? null : staff?.OrganizeId;
             }
             return operatorModel;

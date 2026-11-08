@@ -794,12 +794,12 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
         /// <returns></returns>
         public string cyzdmc { get; set; }
         /// <summary>
-        /// Nơi sinh-tỉnhcsd_s
+        /// Nơi sinh-tỉnh csd_s
         /// </summary>
         /// <returns></returns>
         public string csd_s { get; set; }
         /// <summary>
-        /// Nơi sinh-huyệncsd_x
+        /// Nơi sinh-huyện csd_x
         /// </summary>
         /// <returns></returns>
         public string csd_x { get; set; }
@@ -1049,12 +1049,12 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
         /// <returns></returns>
         public string zzyb { get; set; }
         /// <summary>
-        /// Chẩn đoán ngoại trúmzzd_icd
+        /// Chẩn đoán ngoại trú mzzd_icd
         /// </summary>
         /// <returns></returns>
         public string mzzd_icd { get; set; }
         /// <summary>
-        /// Chẩn đoán giải phẫu bệnhicd
+        /// Chẩn đoán giải phẫu bệnh icd
         /// </summary>
         /// <returns></returns>
         public string blzd_icd { get; set; }
@@ -1299,12 +1299,12 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
         /// <returns></returns>
         public string tnmfq { get; set; }
         /// <summary>
-        /// Quê quán-Tỉnh/thành phốjg_s
+        /// Quê quán-Tỉnh/thành phố jg_s
         /// </summary>
         /// <returns></returns>
         public string jg_s { get; set; }
         /// <summary>
-        /// Quê quán-Quận/thành phốjg_qs
+        /// Quê quán-Quận/thành phố jg_qs
         /// </summary>
         /// <returns></returns>
         public string jg_qs { get; set; }
@@ -1784,12 +1784,12 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
         /// </summary>
         public string ryqk { get; set; }
         /// <summary>
-        /// Nơi sinh-Quận/thành phốcsd_qs
+        /// Nơi sinh-Quận/thành phố csd_qs
         /// </summary>
         /// <returns></returns>
         public string csd_qs { get; set; }
         /// <summary>
-        /// Nơi ở hiện tại-Quận/thành phốcsd_qs
+        /// Nơi ở hiện tại-Quận/thành phố csd_qs
         /// </summary>
         /// <returns></returns>
         public string xzd_qs { get; set; }

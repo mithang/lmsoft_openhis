@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Inpatient
 {
     /// <summary>
-    /// phiếucứnội dung
+    /// phiếu cứ nội dung
     /// </summary>
     public class BYDjInfoSubmit
     {

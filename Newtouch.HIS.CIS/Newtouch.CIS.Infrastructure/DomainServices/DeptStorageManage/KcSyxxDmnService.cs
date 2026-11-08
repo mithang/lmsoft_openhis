@@ -13,7 +13,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.DomainServices.DeptStorageManage
 {
     /// <summary>
-    /// lãi lỗthông tin
+    /// lãi lỗ thông tin
     /// </summary>
     public class KcSyxxDmnService : DmnServiceBase, IKcSyxxDmnService
     {
@@ -22,7 +22,7 @@ namespace Newtouch.DomainServices.DeptStorageManage
         }
 
         /// <summary>
-        /// Lấylãi lỗchi tiếtthông tin
+        /// Lấy lãi lỗ chi tiết thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>

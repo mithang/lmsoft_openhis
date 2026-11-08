@@ -26,7 +26,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<SysBespeakRegisterVO> SelectSysBespeakregister(string deptCode, string gh, string OrganizeId, DateTime? regDate, string regTime = "");
 
         /// <summary>
-        /// Theo Khoavà Xếp lịch Ngày Lấy Hệ thốngđặt hẹn Xếp lịch
+        /// Theo Khoa và Xếp lịch Ngày Lấy Hệ thống đặt hẹn Xếp lịch
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="regDate"></param>
@@ -35,7 +35,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<SysBespeakRegisterVO> SelectSysBespeakregister(string deptCode, DateTime regDate, string organizeId);
 
         /// <summary>
-        /// Theo Khoa Lấy Hệ thốngđặt hẹn Xếp lịch
+        /// Theo Khoa Lấy Hệ thống đặt hẹn Xếp lịch
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="organizeId"></param>

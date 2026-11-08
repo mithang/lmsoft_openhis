@@ -46,7 +46,7 @@ namespace Newtouch.MRMS.Web.Controllers
         }
 
         /// <summary>
-        /// Lưubiểu mẫu(Thêm mới, Sửa)
+        /// Lưu biểu mẫu(Thêm mới, Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

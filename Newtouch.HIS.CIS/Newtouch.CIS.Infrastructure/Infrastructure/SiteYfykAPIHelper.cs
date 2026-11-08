@@ -5,7 +5,7 @@ namespace Newtouch.Infrastructure
     public class SiteYfykAPIHelper:SiteAPIRequestHelperBase<SiteYfykAPIHelper>
     {
         /// <summary>
-        /// lĩnh vực Addrcấu hình của Key
+        /// lĩnh vực Addr cấu hình của Key
         /// </summary>
         private readonly static string _domainConfigKey = "SiteYfykAPIHost";
 

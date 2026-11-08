@@ -14,17 +14,17 @@ namespace HIS.SSO.Domain.Model.SysManage
         /// </summary>
         public string host { get; set; }
         /// <summary>
-        /// hệ thốngappid
+        /// hệ thống app id
         /// </summary>
         public string AppId { get; set; }
         /// <summary>
-        /// menu phím tắturl
+        /// menu phím tắt url
         /// </summary>
         public string returnUrl { get; set; }
 
         public string MenuUrl { get; set; }
         /// <summary>
-        /// mã thông báotoken
+        /// mã thông báo token
         /// </summary>
         public string access_token { get; set; }
 

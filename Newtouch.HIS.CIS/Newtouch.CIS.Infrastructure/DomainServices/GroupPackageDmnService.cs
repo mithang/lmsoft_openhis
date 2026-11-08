@@ -31,14 +31,14 @@ namespace Newtouch.DomainServices
         {
             if (string.IsNullOrWhiteSpace(ztId))
             {
-                throw new FailedException("Dữ liệu bất thường，ztIdlàtrốnghoặcnull");
+                throw new FailedException("Dữ liệu bất thường，ztId là trống hoặc null");
             }
 
-            //Bộ mẫuthông tin
+            //Bộ mẫu thông tin
             var ztEntity = _groupPackageRepo.IQueryable().Where(a => a.ztId == ztId).FirstOrDefault();
             if (ztEntity == null)
             {
-                throw new FailedException("Dữ liệu bất thường，Không cótìmđến Bộ mẫuthông tin");
+                throw new FailedException("Dữ liệu bất thường，Không có tìm đến Bộ mẫu thông tin");
             }
             //Bộ mẫu Mục
             var sql = @"
@@ -75,7 +75,7 @@ WHERE ztxm.OrganizeId=@orgId
 
                     db.Update(ztobj);
 
-                    db.Delete<GroupPackageItemEntity>(a => a.ztId == ztobj.ztId); //trướctoànxóa,lại Thêm mới
+                    db.Delete<GroupPackageItemEntity>(a => a.ztId == ztobj.ztId); //trước toàn xóa,lại Thêm mới
                 }
                 else
                 {

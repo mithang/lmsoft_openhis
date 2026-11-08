@@ -5,25 +5,25 @@ using System.Xml.Serialization;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
 {
     /// <summary>
-    /// nhắclấy Chẩn đoánthông tinyêu cầuthể
+    /// nhắc lấy Chẩn đoánthông tin yêu cầu thể
     /// </summary>
     [XmlRoot("Request")]
     public class PullDiagInfoRequestEntity : RequestBase
     {
 
         /// <summary>
-        /// Chẩn đoánthông tinthể
+        /// Chẩn đoánthông tin thể
         /// </summary>
         public DiagInfo DiagInfo { get; set; }
     }
 
     /// <summary>
-    /// Chẩn đoánthông tinthể
+    /// Chẩn đoánthông tin thể
     /// </summary>
     public class DiagInfo
     {
         /// <summary>
-        /// Khám bệnhdòngchảysố
+        /// Khám bệnh dòng chảy số
         /// bắt buộc
         /// </summary>
         public string serialNo { get; set; }
@@ -35,7 +35,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
         public string orgCode { get; set; }
 
         /// <summary>
-        /// Chẩn đoánchi tiếttậphợp
+        /// Chẩn đoánchi tiết tập hợp
         /// </summary>
         public List<Diagnosis> diagnosislist { get; set; }
     }
@@ -46,7 +46,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
     public class Diagnosis
     {
         /// <summary>
-        /// bảnđịa Chẩn đoán Mã
+        /// bản địa Chẩn đoán Mã
         /// </summary>
         public string localCode { get; set; }
 
@@ -69,18 +69,18 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
         public string name { get; set; }
 
         /// <summary>
-        ///Chẩn đoán YHCT Loại 0:bệnhbệnh 1:hội chứng; khi Chẩn đoán Phân loạilàtrongykhibắt buộc
+        ///Chẩn đoán YHCT Loại 0:bệnh bệnh 1:hội chứng; khi Chẩn đoán Phân loại là trong y khi bắt buộc
         /// bắt buộc
         /// </summary>
         public string type { get; set; }
 
         /// <summary>
-        ///Chẩn đoán YHCT phút nhóm nàynhận dạngnhaucùngcủabệnhbệnhvàhội chứng Chẩn đoánlàmộtnhóm
+        ///Chẩn đoán YHCT phút nhóm này nhận dạng nhau cùng của bệnh bệnh và hội chứng Chẩn đoánlàmộtnhóm
         /// </summary>
         public string group { get; set; }
 
         /// <summary>
-        ///Chẩn đoán YHCT cấp loại 0:chínhcần Chẩn đoán 1: lầncần Chẩn đoán
+        ///Chẩn đoán YHCT cấp loại 0:chính cần Chẩn đoán 1: lần cần Chẩn đoán
         /// </summary>
         public string level { get; set; }
 

@@ -71,7 +71,7 @@ namespace Newtouch.HIS.Application.Implementation
                                 return true;
 
                                 #endregion
-                                errorMsg = string.Format("Thực hiệnitem {0} Thất bại", item);
+                                errorMsg = string.Format("Thực hiện item {0} Thất bại", item);
                                 cts.Cancel();
                                 return false;
                             }, cts.Token);

@@ -36,7 +36,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             this._IExceReportPrintDmnService = iExceReportPrintDmnService;
         }
         /// <summary>
-        /// Lấy Khu bệnh ngườiviên Thực hiệncây
+        /// Lấy Khu bệnh người viên Thực hiện cây
         /// </summary>
         /// <returns></returns>
         public IActionResult GetPatWardTree(string zyzt, string keyword)
@@ -118,9 +118,9 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         public override IActionResult Index()
         {
-            //Lưu ýxạ Cách dùngđiều khiển
+            //Lưu ýxạ Cách dùng điều khiển
             ViewBag.ControlzsyfCode = _sysConfigRepo.GetValueByCode("zsyfpz", OrganizeId);
-            //khí dung Cách dùngđiều khiển
+            //khí dung Cách dùng điều khiển
             ViewBag.ControlwhyfCode = _sysConfigRepo.GetValueByCode("whyfpz", OrganizeId);
             ViewBag.OrgId = this.OrganizeId;
             ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
@@ -128,9 +128,9 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         public  IActionResult QueryPrintIndex() {
-            //Lưu ýxạ Cách dùngđiều khiển
+            //Lưu ýxạ Cách dùng điều khiển
             ViewBag.ControlzsyfCode = _sysConfigRepo.GetValueByCode("zsyfpz", OrganizeId);
-            //khí dung Cách dùngđiều khiển
+            //khí dung Cách dùng điều khiển
             ViewBag.ControlwhyfCode = _sysConfigRepo.GetValueByCode("whyfpz", OrganizeId);
             ViewBag.OrgId = this.OrganizeId;
             ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");

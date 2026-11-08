@@ -12,7 +12,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
     public interface IKcSyxxDmnService
     {
         /// <summary>
-        /// Lấylãi lỗchi tiết
+        /// Lấy lãi lỗ chi tiết
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>

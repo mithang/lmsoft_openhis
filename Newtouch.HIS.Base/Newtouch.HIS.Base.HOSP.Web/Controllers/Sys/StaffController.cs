@@ -148,7 +148,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 			sheet.columns.ToList().ForEach(p =>
 				{
 					p.WidthTimes = (double)p.Width / colStanWidth;
-					p.Width = 0;    //Widthđều đặt thành0
+					p.Width = 0;    //Width đều đặt thành0
 				});
 
 			var path = DateTime.Now.ToString("\\\\yyyyMMdd\\\\HHmmssfff") + "Nhân viên.xls";
@@ -236,7 +236,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 				}
 				//Lấy tên tệp
 				string sFilename = System.IO.Path.GetFileName(pUpImage.FileName).ToLower();
-				//LấyupImage Phần mở rộng của tệp
+				//Lấy upImage Phần mở rộng của tệp
 				string extendName = System.IO.Path.GetExtension(sFilename);
 				//Xét xem có phải định dạng hình ảnh không
 				if (extendName != ".jpg" && extendName != ".png")
@@ -333,7 +333,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 			{
 				organizeId = base.GetAuthOrganizeId();  //Mặc định Quyền OrganizeId
 			}
-			//Bộ nhớ đệmstart
+			//Bộ nhớ đệm start
 			var organizedata = _sysOrganizeRepository.GetValidListByParentOrg(organizeId);
 			var treeList = new List<TreeViewModel>();
 			foreach (SysOrganizeEntity orgItem in organizedata)
@@ -384,7 +384,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 				tree.hasChildren = true;
 				treeList.Add(tree);
 			}
-			//Bộ nhớ đệmend
+			//Bộ nhớ đệm end
 			IList<string> checkedStaffIdList = new List<string>();
 			if (from == "userrelatioinstaff" && !string.IsNullOrWhiteSpace(keyValue))   //Người dùng đã liên kết nhân viên
 			{
@@ -416,7 +416,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 				while (count > 0)
 				{
 					count = treeList.RemoveAll(p => !p.showcheck && !p.hasChildren);
-					//Điều chỉnh lại cây Loại bỏ Không có cấp dưới(Cấp dưới vừa bị chuyển) lại Không hiển thịshowcheckcủa
+					//Điều chỉnh lại cây Loại bỏ Không có cấp dưới(Cấp dưới vừa bị chuyển) lại Không hiển thị show check của
 					treeList.RemoveAll(p => !p.showcheck && !treeList.Any(sub => sub.parentId == p.id));
 				}
 			}

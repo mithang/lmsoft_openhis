@@ -8,7 +8,7 @@ namespace Newtouch.Domain.DTO.OutputDto
     public class PatientRyDiagnosisDto
     {
         /// <summary>
-        /// Nhập việnnhiều Chẩn đoán ID
+        /// Nhập viện nhiều Chẩn đoán ID
         /// </summary>
         public string rydzdId { get; set; }
         
@@ -38,7 +38,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string zdpx { get; set; }
 
         /// <summary>
-        /// Tổ chức Id(cócụ thểthểnghiệp vụcủayviện)
+        /// Tổ chức Id(có cụ thể thể nghiệp vụ của y viện)
         /// </summary>
         public string OrganizeId { get; set; }
         

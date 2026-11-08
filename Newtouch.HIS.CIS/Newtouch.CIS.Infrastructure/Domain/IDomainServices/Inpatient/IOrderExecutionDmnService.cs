@@ -19,7 +19,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<InpWardPatTreeVO> GetPatTree(string staffId, DateTime Vzxsj, bool wnes, string orgId);
 
         /// <summary>
-        /// Lấychờ Thực hiệnY lệnh Bệnh nhâncây(góigồmvăn bảnY lệnh)
+        /// Lấy chờ Thực hiệnY lệnh Bệnh nhân cây(gói gồm văn bảnY lệnh)
         /// </summary>
         /// <param name="staffId"></param>
         /// <param name="vzxsj"></param>
@@ -30,7 +30,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<OrderExecutionVO> GetOrderExecutionYZList(ref Pagination pagination, string patList, string orgId, string Vzxsj, bool wnes, string IsRehabAuthtoNurse = null, bool Iskf = false,string zxks=null);
 
         /// <summary>
-        /// LấyphúttrangY lệnhdanh sách(góigồmvăn bảnY lệnh)
+        /// Lấy phút trangY lệnh danh sách(gói gồm văn bảnY lệnh)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
@@ -40,14 +40,14 @@ namespace Newtouch.Domain.IDomainServices
         IList<OrderExecutionVO> GetOrderExecutionYZListIncludeWzyz(Pagination pagination, string patList, string orgId, string vzxsj);
 
         /// <summary>
-        /// Thực hiệnY lệnhthông tin Thuốc Mục Thực hiện
+        /// Thực hiệnY lệnh thông tin Thuốc Mục Thực hiện
         /// </summary>
         /// <param name="user"></param>
         /// <param name="orderList"></param>
         /// <param name="zxsj"></param>
         string OrderExecutionSubmit(OperatorModel user, IList<YzDetail> orderList, int lyxh, DateTime zxrq);
         /// <summary>
-        /// Thực hiệnY lệnhthông tin Thuốc Mục Thực hiện by Dài hạn/Tạm thời/Tất cả 
+        /// Thực hiệnY lệnh thông tin Thuốc Mục Thực hiện by Dài hạn/Tạm thời/Tất cả 
         /// </summary>
         /// <param name="user"></param>
         /// <param name="orderList"></param>
@@ -58,7 +58,7 @@ namespace Newtouch.Domain.IDomainServices
         /// <returns></returns>
         string OrderExecutionSubmitbyYzxz(OperatorModel user, IList<YzDetail> orderList, int lyxh, DateTime zxrq,int? yzlx, int? isyp);
         /// <summary>
-        /// khôngtínhphíY lệnh Thực hiện
+        /// không tính phíY lệnh Thực hiện
         /// </summary>
         /// <param name="user"></param>
         /// <param name="orderList"></param>
@@ -71,7 +71,7 @@ namespace Newtouch.Domain.IDomainServices
         List<ApiResponseVO> GetAllYZ(string zyh, int zxlx, DateTime zxsj, string IsRehabAuthtoNurse = null);
 
         /// <summary>
-        /// Lấy Thực hiện Tất cảY lệnhgóigồmvăn bảnY lệnh
+        /// Lấy Thực hiện Tất cảY lệnh gói gồm văn bảnY lệnh
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="zxlx"></param>
@@ -99,14 +99,14 @@ namespace Newtouch.Domain.IDomainServices
         string OrderExecutionXmWithWzyz(string rygh, IList<ApiResponseVO> orderExeList, int lyxh, DateTime zxrq,string orgId, int? yzxz = null);
 
         /// <summary>
-        /// có thể Thực hiệnY lệnhthông tin
+        /// có thể Thực hiệnY lệnh thông tin
         /// </summary>
         /// <param name="OrderList"></param>
         /// <param name="Vzxsj"></param>
         /// <returns></returns>
         string IsOKOrderExecution(IList<ApiResponseVO> OrderList, DateTime Vzxsj,string orgId, string user = null);
         ///// <summary>
-        /////  Tạm thời,Dài hạn,Tất cảăn uống Mục Thực hiện
+        /////  Tạm thời,Dài hạn,Tất cả ăn uống Mục Thực hiện
         ///// </summary>
         ///// <param name="user"></param>
         ///// <param name="zyh"></param>
@@ -122,7 +122,7 @@ namespace Newtouch.Domain.IDomainServices
         ///// <param name="zxsj"></param>
         //void OrderExecutionSubmitALLYP(OperatorModel user, IList<ApiResponseVO> orderExeList, DateTime zxsj);
 
-        #region hủytinnhắcnhắc
+        #region hủy tin nhắc nhắc
         IList<SysMSGQueryVO> MSGQuery(string gh,string orgId);
 
 

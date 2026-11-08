@@ -28,7 +28,7 @@ namespace Newtouch.Domain.ValueObjects
         public string ghksmc { get; set; }
 
         /// <summary>
-        /// cuối cùngxemkhám Bác sĩ
+        /// cuối cùng xem khám Bác sĩ
         /// </summary>
         public string jzysmc { get; set; }
     }

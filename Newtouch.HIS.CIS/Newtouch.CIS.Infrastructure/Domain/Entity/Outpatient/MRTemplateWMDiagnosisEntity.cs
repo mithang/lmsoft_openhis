@@ -33,12 +33,12 @@ namespace Newtouch.Domain.Entity
         public int zdlx { get; set; }
 
         /// <summary>
-        /// liên kếtbasekho Chẩn đoán hệ thốngbảng
+        /// liên kếtbasekho Chẩn đoán hệ thống bảng
         /// </summary>
         public string zdCode { get; set; }
 
         /// <summary>
-        /// Dư thừachữđoạn
+        /// Dư thừa chữ đoạn
         /// </summary>
         public string zdmc { get; set; }
 

@@ -32,7 +32,7 @@
         #endregion
 
 
-        #region Lấypacs Kết quả báo cáo
+        #region Lấy pacs Kết quả báo cáo
         public string pid { get; set; }
         public string applyNo { get; set; }
         public string checkTime { get; set; }

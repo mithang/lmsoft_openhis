@@ -7,7 +7,7 @@ namespace Newtouch.Domain.Entity
 {
 
     /// <summary>
-    /// Hệ thống Cách dùngliênđộng
+    /// Hệ thống Cách dùng liên động
     /// </summary>
     [SugarTable("xt_usageLinkage")]
     public class SysUsageLinkageEntity
@@ -20,7 +20,7 @@ namespace Newtouch.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// tổ chứckếtcấu trúc
+        /// tổ chức kết cấu trúc
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -45,7 +45,7 @@ namespace Newtouch.Domain.Entity
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// tạongười
+        /// tạo người
         /// </summary>
         public string CreatorCode { get; set; }
 
@@ -55,7 +55,7 @@ namespace Newtouch.Domain.Entity
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Sửangười
+        /// Sửa người
         /// </summary>
         public string LastModifierCode { get; set; }
 

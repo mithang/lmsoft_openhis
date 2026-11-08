@@ -118,7 +118,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
         /// <returns></returns>
         List<SysDutyStaffVO> GetStaffByDutyCode(string orgId, string dutyCode, string keyword = null);
         /// <summary>
-        /// Lấyhis Danh sách khoa
+        /// Lấy his Danh sách khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="code"></param>

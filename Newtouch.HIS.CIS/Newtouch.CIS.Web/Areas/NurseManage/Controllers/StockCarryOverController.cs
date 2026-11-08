@@ -20,7 +20,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
     /// <summary>
-    /// Tồn khokết chuyển
+    /// Tồn kho kết chuyển
     /// </summary>
     [Area("NurseManage")]
     public class StockCarryOverController : OrgControllerBase
@@ -35,7 +35,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// choxemhìnhtrong OrganizeIdcủa Gán giá trị
+        /// cho xem hình trong OrganizeId của Gán giá trị
         /// </summary>
         /// <returns></returns>
         public override IActionResult Index()
@@ -45,7 +45,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Lấy Lịch sửkết chuyển Thời gian
+        /// Lấy Lịch sử kết chuyển Thời gian
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -68,7 +68,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Tra cứucái trước lầnkết chuyểncủa Thời gian
+        /// Tra cứu cái trước lần kết chuyển của Thời gian
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -79,7 +79,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Tra cứuđãkết chuyểnvật tưthông tin
+        /// Tra cứu đã kết chuyển vật tư thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="jzsj"></param>
@@ -106,7 +106,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         public IActionResult CarryOverProduct()
         {
             var ret = _kcKcjzDmnService.CarryOverProduct(Constants.DeptCode, OrganizeId, OperatorProvider.GetCurrent().UserCode);
-            return string.IsNullOrWhiteSpace(ret) ? Success() : Error("Kết chuyểnthất bại");
+            return string.IsNullOrWhiteSpace(ret) ? Success() : Error("Kết chuyển thất bại");
         }
     }
 }

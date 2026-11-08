@@ -2,40 +2,40 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_PLAT_06
 {
     /// <summary>
-    /// đẩy Thông tin bệnh nhânyêu cầuthể
+    /// đẩy Thông tin bệnh nhân yêu cầu thể
     /// </summary>
     public class PullUserRequestEntity : RequestBase
     {
         /// <summary>
-        /// chỗlý Loạiyêu cầuthể
+        /// chỗ lý Loại yêu cầu thể
         /// </summary>
         public HandleType HandleType { get; set; }
 
         /// <summary>
-        /// Thông tin nhân viênthể
+        /// Thông tin nhân viên thể
         /// </summary>
         public User User { get; set; }
     }
 
     /// <summary>
-    /// chỗlý Loạiyêu cầuthể
+    /// chỗ lý Loại yêu cầu thể
     /// </summary>
     public class HandleType
     {
         /// <summary>
-        /// chỗlý Loại:A-Thêm mới,U-Sửa
+        /// chỗ lý Loại:A-Thêm mới,U-Sửa
         /// bắt buộc
         /// </summary>
         public string handleType { get; set; }
     }
 
     /// <summary>
-    /// Thông tin nhân viênthể
+    /// Thông tin nhân viên thể
     /// </summary>
     public class User
     {
         /// <summary>
-        /// ngườiviên Số hiệu(Người dùngtên)
+        /// người viên Số hiệu(Người dùng tên)
         /// bắt buộc
         /// </summary>
         /// <returns></returns>
@@ -76,14 +76,14 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_PLAT_06
         public string gender { get; set; }
 
         /// <summary>
-        ///chứngmục Mã loại
+        ///chứng mục Mã loại
         /// bắt buộc
         /// </summary>
         /// <returns></returns>
         public string cardTypeCode { get; set; }
 
         /// <summary>
-        ///chứngmục Loại
+        ///chứng mục Loại
         /// bắt buộc
         /// </summary>
         /// <returns></returns>
@@ -133,28 +133,28 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_PLAT_06
         public string proTitle { get; set; }
 
         /// <summary>
-        ///sởthuộc Cơ sở Mã
+        ///sở thuộc Cơ sở Mã
         /// bắt buộc
         /// </summary>
         /// <returns></returns>
         public string orgCode { get; set; }
 
         /// <summary>
-        ///sởthuộc Mã khoa
+        ///sở thuộc Mã khoa
         /// bắt buộc
         /// </summary>
         /// <returns></returns>
         public string deptCode { get; set; }
 
         /// <summary>
-        ///Vai trò Mã 0: tỉnh Quản lýviên,1: trongyquán Quản lýviên,2: Bác sĩ
+        ///Vai trò Mã 0: tỉnh Quản lý viên,1: trong y quán Quản lý viên,2: Bác sĩ
         /// bắt buộc
         /// </summary>
         /// <returns></returns>
         public string roleCode { get; set; }
 
         /// <summary>
-        ///Cơ sở Số hiệu(duy nhấtmộtnhận dạng)
+        ///Cơ sở Số hiệu(duy nhất một nhận dạng)
         /// bắt buộc
         /// </summary>
         /// <returns></returns>

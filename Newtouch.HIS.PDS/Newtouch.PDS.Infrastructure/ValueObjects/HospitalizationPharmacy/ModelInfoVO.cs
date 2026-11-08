@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string zyh { get; set; }//Số nội trú
         public string xm { get; set; }//Họ tên
         public string cw { get; set; }//Giường bệnh
-        public string ypCode { get; set; }//Thuốccode
+        public string ypCode { get; set; }//Thuốc code
         public string ypmc { get; set; }//Tên thuốc
         public string ycmc { get; set; }//Tên hãng thuốc
         public string ypgg { get; set; }//Quy cách thuốc

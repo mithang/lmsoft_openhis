@@ -241,7 +241,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             OperatorModel user = this.UserIdentity;
            // submitForm(mbInfo, mbId, mbly);
 
-            //Khi thêm mới lấy theo mãmb Id 
+            //Khi thêm mới lấy theo mã mb Id 
             if (string.IsNullOrWhiteSpace(mbId))
             {
                 mbId = _BlmblbRepo.FindEntity(p => p.mbbm == mbbm && p.OrganizeId == OrganizeId && p.zt == "1").Id;

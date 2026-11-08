@@ -11,7 +11,7 @@ namespace Newtouch.Domain.Entity
         public int brxzbh { get; set; }
 
         /// <summary>
-        /// Tổ chức Id(cócụ thểthểnghiệp vụcủayviện)
+        /// Tổ chức Id(có cụ thể thể nghiệp vụ của y viện)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -31,12 +31,12 @@ namespace Newtouch.Domain.Entity
         public string py { get; set; }
 
         /// <summary>
-        /// 0 tất cảthẻđềucó thểchọncủa Loại   1 Bảo hiểm y tếthẻcó thểchọncủa Loại
+        /// 0 tất cả thẻ đều có thể chọn của Loại   1 Bảo hiểm y tế thẻ có thể chọn của Loại
         /// </summary>
         public string brxzlb { get; set; }
 
         /// <summary>
-        /// 0 khônggiao dịch 1 thông thườnggiao dịch 2 lớnbệnhgiao dịch 3 nhàgiườnggiao dịch
+        /// 0 không giao dịch 1 thông thường giao dịch 2 lớn bệnh giao dịch 3 nhà giường giao dịch
         /// </summary>
         public string ybjylx { get; set; }
 
@@ -56,7 +56,7 @@ namespace Newtouch.Domain.Entity
         public string pzbz { get; set; }
 
         /// <summary>
-        /// 0 Chung 1 chỉ Ngoại trú 2 chỉ Nhập viện    3 Hệ thống(Ngoại trú Nhập việnđềukhôngcó thểdùng)VD nếu:nhàgiường
+        /// 0 Chung 1 chỉ Ngoại trú 2 chỉ Nhập viện    3 Hệ thống(Ngoại trú Nhập viện đều không có thể dùng)VD nếu:nhà giường
         /// </summary>
         public string mzzybz { get; set; }
 
@@ -66,12 +66,12 @@ namespace Newtouch.Domain.Entity
         public int? bzs { get; set; }
 
         /// <summary>
-        /// 0 khônghưởng giảm miễn(khámtrịphí)   1 hưởng giảm miễn
+        /// 0 không hưởng giảm miễn(khám trị phí)   1 hưởng giảm miễn
         /// </summary>
         public string sqjmbz { get; set; }
 
         /// <summary>
-        /// from xt_zhxz   nếunếucó Cài đặt:thìởquyết toánkhi,ưutrướckhấutrừ Cài đặtcủa Tài khoản   (VD nếu:Hỗ trợ khó khănbệnh nhânnàychữđoạn Cài đặtlà4,khiquyết toánkhi,trướckhấutrừ Hỗ trợ khó khăn Tài khoản)
+        /// from xt_zhxz   nếu nếu có Cài đặt:thì ở quyết toán khi,ưu trước khấu trừ Cài đặt của Tài khoản   (VD nếu:Hỗ trợ khó khăn bệnh nhân này chữ đoạn Cài đặt là4,khi quyết toán khi,trước khấu trừ Hỗ trợ khó khăn Tài khoản)
         /// </summary>
         public string zhxz { get; set; }
 
@@ -127,7 +127,7 @@ namespace Newtouch.Domain.Entity
         public string bz { get; set; }
 
         /// <summary>
-        /// liên kết Khóa chínhbrxzbh
+        /// liên kết Khóa chính brxzbh
         /// </summary>
         public int? ParentId { get; set; }
         public string insutype { get; set; }

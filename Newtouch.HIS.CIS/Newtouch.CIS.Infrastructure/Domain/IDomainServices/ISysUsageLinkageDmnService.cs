@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.IDomainServices
 {
     /// <summary>
-    /// Cách dùngliênđộng
+    /// Cách dùng liên động
     /// </summary>
     public interface ISysUsageLinkageDmnService
     {

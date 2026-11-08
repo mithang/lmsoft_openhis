@@ -7,7 +7,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.CIS.Proxy.CMMPlatform
 {
     /// <summary>
-    /// biệnchứngluậnđiều trị
+    /// biện chứng luận điều trị
     /// </summary>
     internal class AERequestProxy : GuiAnTelemedicinePlatformProxy<AERequestEntity, string>
     {

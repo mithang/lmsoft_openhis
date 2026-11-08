@@ -27,7 +27,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         public string mzh { get; set; }
 
         /// <summary>
-        /// Dư thừađăng ký khámthông tin  Liệt kê 1 thông thường Ngoại trú 2 gấpkhám 3chuyên gia
+        /// Dư thừa đăng ký khám thông tin  Liệt kê 1 thông thường Ngoại trú 2 gấp khám 3chuyên gia
         /// </summary>
         public int? mjzbz { get; set; }
 
@@ -37,7 +37,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         public string blh { get; set; }
         #region Bình thườngKiểm tra
         /// <summary>
-        /// thểtrọng
+        /// thể trọng
         /// </summary>
         public decimal? tizhong { get; set; }
 
@@ -52,7 +52,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         public decimal? maibo { get; set; }
 
         /// <summary>
-        /// đường huyếtphương thức đo Sau ăn Lúc đói Ngẫu nhiên 
+        /// đường huyết phương thức đo Sau ăn Lúc đói Ngẫu nhiên 
         /// EnumXtclfs
         /// </summary>
         public string xuetangclfs { get; set; }
@@ -62,7 +62,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public decimal? xuetang { get; set; }
         /// <summary>
-        /// thâncao
+        /// thân cao
         /// </summary>
         public decimal? shengao { get; set; }
         /// <summary>
@@ -70,7 +70,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public decimal? shousuoya { get; set; }
         /// <summary>
-        /// thưtờáp
+        /// thư tờ áp
         /// </summary>
         public decimal? shuzhangya { get; set; }
         /// <summary>
@@ -84,17 +84,17 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         #endregion
 
         /// <summary>
-        /// chínhbảo
+        /// chính bảo
         /// </summary>
         public string zs { get; set; }
 
         /// <summary>
-        /// phátbệnh Thời gian
+        /// phát bệnh Thời gian
         /// </summary>
         public DateTime? fbsj { get; set; }
 
         /// <summary>
-        /// hiệnbệnhsử
+        /// hiện bệnh sử
         /// </summary>
         public string xbs { get; set; }
 
@@ -104,11 +104,11 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         public string jws { get; set; }
 
         /// <summary>
-        /// trathể
+        /// tra thể
         /// </summary>
         public string ct { get; set; }
         /// <summary>
-        /// chỗlý
+        /// chỗ lý
         /// </summary>
         public string clfa { get; set; }
         /// <summary>
@@ -116,7 +116,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public string fzjc { get; set; }
         /// <summary>
-        /// Thángtiền sử bệnh
+        /// Tháng tiền sử bệnh
         /// </summary>
         public string yjs { get; set; }
         /// <summary>

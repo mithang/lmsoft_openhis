@@ -65,7 +65,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             }
             var dto = _inpatientRefundApp.InpatientRefundQuery(zyh, kssj, jssj, ks, xmlb, xmmc);
             var ztlist = dto.InpatientSettleItemBO.TreatmentItemList.Where(p => p.ztbh != null).ToList();
-            //Mẫuthu phí Dữ liệu Xử lý
+            //Mẫu thu phí Dữ liệu Xử lý
             if (ztlist.Count()>0)
             {
                 ztlist = ztlist.GroupBy(m => new { m.isYP, m.sfmbmc, m.tdrq, m.ztbh, m.ztsl,m.ztylsl, m.dcztbs }).Select(p =>
@@ -202,9 +202,9 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             if (string.IsNullOrWhiteSpace(result))
             {
                 if (_hospdrugbillingRepo.getHckcWith(this.OrganizeId) > 0) {
-                    //hoàncòntrừgiảm Vật tư tiêu hao Tồn kho
-                    var hclist = xmjfbEntitylist.Where(m => m.yzwym == null && m.sfxm.Contains("wz")).ToList();//ghi sổ nhập việnnơimở Vật tư tiêu hao
-                    var yszhclist = xmjfbEntitylist.Where(m => m.yzwym != null && m.sfxm.Contains("wz")).ToList();//Bác sĩtrạmmởlập Vật tư tiêu hao
+                    //hoàn còn trừ giảm Vật tư tiêu hao Tồn kho
+                    var hclist = xmjfbEntitylist.Where(m => m.yzwym == null && m.sfxm.Contains("wz")).ToList();//ghi sổ nhập viện nơi mở Vật tư tiêu hao
+                    var yszhclist = xmjfbEntitylist.Where(m => m.yzwym != null && m.sfxm.Contains("wz")).ToList();//Bác sĩ trạm mở lập Vật tư tiêu hao
                     if (hclist.Count > 0)
                     {
                         string jfbhString = string.Join(",", xmjfbEntitylist.Where(m => m.sfxm.Contains("wz")).Select(p => p.cxzyjfbbh));
@@ -213,7 +213,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
                     if (yszhclist.Count > 0)
                         _hospdrugbillingRepo.Updatezyyz_wzkcReturn(yszhclist, this.OrganizeId, this.UserIdentity.UserCode);
                 }
-                //cập nhậtcisnhập viện Bệnh nhân Xem trướcphảibênphí Thẻphimthông tin
+                //cập nhật cis nhập viện Bệnh nhân Xem trước phải bên phí Thẻ phim thông tin
                 _hospdrugbillingRepo.Updatezy_brxxexpand(this.OrganizeId, zyh);
             }else
                 throw new FailedException(result);

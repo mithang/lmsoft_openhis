@@ -27,7 +27,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
 
 
         /// <summary>
-        /// từ điển phân loại chỉ những cái có hiệu lực,mục từ điển bao gồm những cái không hợp lệ(có thể dùng để hiển thị thànhselect)
+        /// từ điển phân loại chỉ những cái có hiệu lực,mục từ điển bao gồm những cái không hợp lệ(có thể dùng để hiển thị thành select)
         /// {Type:"OrganizeType",Items:[{Code:"001",Name:"tập đoàn",zt:"1"},{Code:"002",Name:"khu vực",zt:"1"}]}
         /// </summary>
         /// <returns></returns>
@@ -118,7 +118,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
                     {
                         if (enm.IsEnum)
                         {
-                            //DbLogType DbLogType_Exđược coi là cùng một enum
+                            //DbLogType DbLogType_Ex được coi là cùng một enum
                             var typeName = enm.Name.EndsWith("_Ex") ? enm.Name.Substring(0, enm.Name.Length - 3) : enm.Name;
                             var items = enm.getEnumNameValueDescInfo().ToList();
                             if (!result.ContainsKey(typeName))
@@ -155,7 +155,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
             return await _systemApp.GetsysNationListAsync("");
         }
         ///// <summary>
-        ///// Settlấy bộ nhớ đệm từ điển
+        ///// Sett lấy bộ nhớ đệm từ điển
         ///// </summary>
         ///// <returns></returns>
         //[NonAction]

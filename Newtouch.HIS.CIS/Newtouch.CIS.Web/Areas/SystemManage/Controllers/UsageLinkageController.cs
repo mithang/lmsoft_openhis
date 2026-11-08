@@ -17,7 +17,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
-    /// Cách dùngliênđộng Bảo trì
+    /// Cách dùng liên động Bảo trì
     /// </summary>
     [Area("SystemManage")]
     public class UsageLinkageController : OrgControllerBase
@@ -34,7 +34,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lấychínhdanh sách
+        /// Lấy chính danh sách
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="yfCode"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Khi sửa thông tin,thông tinmangđếnmớitrangmặt
+        /// Khi sửa thông tin,thông tin mang đến mới trang mặt
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -97,7 +97,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         {
             var entity = _sysUsageLinkageRepo.FindEntity(keyValue);
             if (entity == null) return Success("Xóa thành công.");
-            return _sysUsageLinkageRepo.Delete(entity) > 0 ? Success("Xóa thành công.") : Error("Xóathất bại.");
+            return _sysUsageLinkageRepo.Delete(entity) > 0 ? Success("Xóa thành công.") : Error("Xóa thất bại.");
         }
     }
 }

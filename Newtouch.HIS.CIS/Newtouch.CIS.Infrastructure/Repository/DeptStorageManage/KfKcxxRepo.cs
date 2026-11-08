@@ -10,7 +10,7 @@ using Newtouch.Domain.IRepository.DeptStorageManage;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// Tồn khothông tin
+    /// Tồn kho thông tin
     /// </summary>
     public class KfKcxxRepo : RepositoryBase<KfKcxxEntity>, IKfKcxxRepo
     {
@@ -19,7 +19,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// Tra cứu Tồn khothông tin
+        /// Tra cứu Tồn kho thông tin
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="productId"></param>

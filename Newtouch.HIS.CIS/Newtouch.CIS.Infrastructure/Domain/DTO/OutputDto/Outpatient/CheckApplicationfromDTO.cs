@@ -29,9 +29,9 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient
         public DateTime? Birthday { get; set; }
         //CMND/CCCD số Y
         public string IdentityID { get; set; }
-        // Khu bệnhsố
+        // Khu bệnh số
         public string WardNo { get; set; }
-        //giường ký tựsố
+        //giường ký tự số
         public string BedNo { get; set; }
         //bệnh nhân Số thẻ  Y
         public string CardID { get; set; }
@@ -50,27 +50,27 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient
         public string DoctorName { get; set; }
         // Bác sĩ đăng ký CMND/CCCD
         public string DoctorIdCard { get; set; }
-        // Khám bệnhghi chép Mã  Y Ngoại trú,Nhập viện,thểkiểm trasố
+        // Khám bệnh ghi chép Mã  Y Ngoại trú,Nhập viện,thể kiểm tra số
         public string RecordID { get; set; }
-        //đếnnguồn   Y Ngoại trú MagQ700001   Nhập viện MagQ700002  thểkiểm tra MagQ700003
+        //đến nguồn   Y Ngoại trú MagQ700001   Nhập viện MagQ700002  thể kiểm tra MagQ700003
         public string Source { get; set; }
-        //Hình ảnhbáo cáo Loại
+        //Hình ảnh báo cáo Loại
         public string Pic { get; set; }
-        //báo cáochi tiết Loại  Y
+        //báo cáo chi tiết Loại  Y
         public string PicDetail { get; set; }
         //Phiếu Tên
         public string ApplyName { get; set; }
         //Vị trí:Phương pháp
         public string BodyPart { get; set; }
-        //thứ tựsố
+        //thứ tự số
         public int? WhichNo { get; set; }
         // Cờ hiệu lực ký tự  N/Y,N biểu thị Hủy
         public string IsVaild { get; set; }
-        //là Khôngđãqua Thu phí
+        //là Không đã qua Thu phí
         public string IsCharge { get; set; }
         //Thu phí Ngày
         public DateTime? ChargeDate { get; set; }
-        //nghiệp vụphiếusố phiếu
+        //nghiệp vụ phiếu số phiếu
         public string InvoiceID { get; set; }
         //Hủy Ngày
         public DateTime? CancelDate { get; set; }
@@ -87,7 +87,7 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient
     }
     public class Order
     {
-        //Phiếuchi tiếtsố  Y
+        //Phiếu chi tiết số  Y
         public string Seqno { get; set; }
         //Số phiếu  Y
         public string Reqno { get; set; }
@@ -101,13 +101,13 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient
         public string Qty { get; set; }
         //Đơn giá
         public string Price { get; set; }
-        //thứ tựsố
+        //thứ tự số
         public string SN { get; set; }
     }
 
     public class CheckfromDTO
     {
-        // Khám bệnhghi chép Mã  Y Ngoại trú,Nhập viện,thểkiểm trasố
+        // Khám bệnh ghi chép Mã  Y Ngoại trú,Nhập viện,thể kiểm tra số
         public string RecordID { get; set; }
         //Phiếu Tên
         public string ApplyName { get; set; }
@@ -123,13 +123,13 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient
         public string ApplyDepartmentCode { get; set; }
         //Khoa đăng ký Tên Y
         public string ApplyDepartmentName { get; set; }
-        // Khu bệnhsố
+        // Khu bệnh số
         public string WardNo { get; set; }
-        //giường ký tựsố
+        //giường ký tự số
         public string BedNo { get; set; }
         //bệnh nhân Số thẻ  Y
         public string CardID { get; set; }
-        //Phiếuchi tiếtsố  Y
+        //Phiếu chi tiết số  Y
         public string Seqno { get; set; }
 
         //Mã hạng mục  Y

@@ -41,7 +41,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// Đồng bộđãquyết toán Đơn thuốcthông tin
+        /// Đồng bộ đã quyết toán Đơn thuốc thông tin
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -50,12 +50,12 @@ namespace Newtouch.Application.Implementation
         /// <returns></returns>
         public string SyncSettRpDetail(DateTime kssj, DateTime jssj, string fph, string kh,string mzh)
         {
-            #region thứmộtbước：theođiều kiệntừquyết toán Hệ thốngTra cứuĐã quyết toán Đơn thuốcthông tin settRpDetail
+            #region thứ một bước：theo điều kiện từ quyết toán Hệ thốngTra cứuĐã quyết toán Đơn thuốc thông tin settRpDetail
             var settRpDetail = OutpatientSettledRpQuery(kssj, jssj, fph, kh, mzh);
             if (settRpDetail == null || settRpDetail.Count <= 0) return "";
             #endregion
 
-            #region thứhaibước：theođiều kiệnkéolấybảnđịatruyền dịchthông tin，sởtheocứđiều kiệnvàthứmộtbướcnhaucùng syxx
+            #region thứ hai bước：theo điều kiện kéo lấy bản địa truyền dịch thông tin，sở theo cứ điều kiện và thứ một bước nhau cùng syxx
             var syxx = _mzsyypxx.IQueryable(p => p.sfsj >= kssj && p.sfsj < jssj && p.OrganizeId == OrganizeId && p.zt == "1");
             if (syxx.Any())
             {
@@ -68,13 +68,13 @@ namespace Newtouch.Application.Implementation
             var newData = ScreeningNewInfusionData(settRpDetail, syxx.ToList());
             #endregion
 
-            #region thứbốnbước：LưuThêm mớicủatruyền dịchthông tin
+            #region thứ bốn bước：LưuThêm mới của truyền dịch thông tin
             return SaveNewInfusionData(newData);
             #endregion
         }
 
         /// <summary>
-        /// Lọcramớicủa Đơn thuốcquyết toánthông tin
+        /// Lọc ra mới của Đơn thuốc quyết toán thông tin
         /// </summary>
         /// <param name="tagDate"></param>
         /// <param name="srcData"></param>
@@ -92,7 +92,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// đãquyết toán Đơn thuốcchi tiết Tra cứu
+        /// đã quyết toán Đơn thuốc chi tiết Tra cứu
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -102,11 +102,11 @@ namespace Newtouch.Application.Implementation
         public List<OutpatientSettledRpQueryResponseDTO> OutpatientSettledRpQuery(DateTime kssj, DateTime jssj, string fph, string kh,string mzh)
         {
             var yfCode = _sysConfigRepo.GetValueByCode("syyfCode", this.OrganizeId);
-            if (string.IsNullOrWhiteSpace(yfCode)) throw new Exception("vui lòngliênhệ Quản lýviêncấu hìnhtruyền dịch Cách dùng Mãđộngtrạng tháitham số,tham số Mã：syyfCode");
+            if (string.IsNullOrWhiteSpace(yfCode)) throw new Exception("vui lòng liên hệ Quản lý viên cấu hình truyền dịch Cách dùng Mã động trạng thái tham số,tham số Mã：syyfCode");
             var response = _mzsyypxxDmnService.OutpatientSettledRpQuery(this.OrganizeId,kssj, jssj, fph, kh, yfCode,mzh);
 
 			if (response != null) return response;
-            throw new Exception(response == null ? "Lấy Đã quyết toán Chi tiết đơn thuốcthất bại" : "chưa Tra cứuđếndữ liệu");
+            throw new Exception(response == null ? "Lấy Đã quyết toán Chi tiết đơn thuốc thất bại" : "chưa Tra cứu đến dữ liệu");
         }
 		
 		/// <summary>
@@ -130,7 +130,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// Lưumớicủatruyền dịchthông tin
+        /// Lưu mới của truyền dịch thông tin
         /// </summary>
         /// <param name="source">Nguồn dữ liệu</param>
         /// <returns></returns>
@@ -142,19 +142,19 @@ namespace Newtouch.Application.Implementation
             {
                 successCount += _mzsyypxxDmnService.InsertNewMzsyypxx(p, OrganizeId, UserIdentity.UserCode);
             });
-            if (successCount == 0) return "mớitruyền dịchthông tin Lưu thất bại";
-            return successCount < source.Count ? "một phầntruyền dịchthông tin Lưu thất bại" : "";
+            if (successCount == 0) return "mới truyền dịch thông tin Lưu thất bại";
+            return successCount < source.Count ? "một phần truyền dịch thông tin Lưu thất bại" : "";
         }
 
         /// <summary>
-        /// phútnhóm
+        /// phút nhóm
         /// </summary>
         /// <param name="tags"></param>
         /// <param name="groupNo">Số nhóm</param>
         /// <returns></returns>
         public string Grouping(List<long> tags, string groupNo)
         {
-            if (tags == null || tags.Count <= 0) return "Vui lòng chọncầnthànhnhóm của thuốc";
+            if (tags == null || tags.Count <= 0) return "Vui lòng chọn cần thành nhóm của thuốc";
             var successCount = 0;
             tags.ForEach(p =>
             {
@@ -166,19 +166,19 @@ namespace Newtouch.Application.Implementation
                 successCount += _mzsyypxx.Update(entity);
             });
             if (successCount == 0) return "Không tìm thấy thuốc phù hợp yêu cầu";
-            return successCount != tags.Count ? "một phầnthànhnhómthành công" : "";
+            return successCount != tags.Count ? "một phần thành nhóm thành công" : "";
         }
 
         /// <summary>
         /// truyền dịch Bắt đầu
         /// </summary>
-        /// <param name="tags">truyền dịchchi tiết ID</param>
+        /// <param name="tags">truyền dịch chi tiết ID</param>
         /// <param name="startDateTime">jThời gian kết thúc</param>
-        /// <param name="seatNum">ghếsố/Số giường</param>
+        /// <param name="seatNum">ghế số/Số giường</param>
         /// <returns></returns>
         public string StartInfusion(List<long> tags, DateTime startDateTime, string seatNum)
         {
-            if (tags == null || tags.Count <= 0) return "Vui lòng chọncầnbắt đầutruyền dịch của thuốc";
+            if (tags == null || tags.Count <= 0) return "Vui lòng chọn cần bắt đầu truyền dịch của thuốc";
             var successCount = 0;
             tags.ForEach(p =>
             {
@@ -205,13 +205,13 @@ namespace Newtouch.Application.Implementation
                 }
             });
             if (successCount == 0) return "Không tìm thấy thuốc phù hợp yêu cầu";
-            return successCount != tags.Count ? "một phầntruyền dịchbắt đầuthành công" : "";
+            return successCount != tags.Count ? "một phần truyền dịch bắt đầu thành công" : "";
         }
 
         /// <summary>
         /// truyền dịch Kết thúc
         /// </summary>
-        /// <param name="tags">truyền dịchchi tiết ID</param>
+        /// <param name="tags">truyền dịch chi tiết ID</param>
         /// <param name="endDateTime">jThời gian kết thúc</param>
         /// <returns></returns>
         public string EndInfusion(List<long> tags, DateTime endDateTime)
@@ -241,7 +241,7 @@ namespace Newtouch.Application.Implementation
                 }
             });
             if (successCount == 0) return "Không tìm thấy thuốc phù hợp yêu cầu";
-            return successCount != tags.Count ? "một phầntruyền dịch Kết thúcthành công" : "";
+            return successCount != tags.Count ? "một phần truyền dịch Kết thúc thành công" : "";
         }
 
         /// <summary>
@@ -267,10 +267,10 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// Cài đặtghế ký tựsố
+        /// Cài đặt ghế ký tự số
         /// </summary>
         /// <param name="tag">Mục tiêu ID</param>
-        /// <param name="seatNum">ghế ký tựsố</param>
+        /// <param name="seatNum">ghế ký tự số</param>
         /// <returns></returns>
         public string SetSeatNum(long tag, string seatNum)
         {
@@ -294,7 +294,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// Tra cứutruyền dịchthông tin
+        /// Tra cứu truyền dịch thông tin
         /// </summary>
         /// <param name="ids"></param>
         /// <param name="organizeId"></param>

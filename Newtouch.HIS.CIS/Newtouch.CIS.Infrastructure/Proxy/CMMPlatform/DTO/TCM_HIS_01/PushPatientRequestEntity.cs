@@ -4,19 +4,19 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 {
     /// <summary>
-    /// đẩy Thông tin bệnh nhânyêu cầuthể
+    /// đẩy Thông tin bệnh nhân yêu cầu thể
     /// </summary>
     [XmlRoot("Request")]
     public class PushPatientRequestEntity : RequestBase
     {
         /// <summary>
-        /// Thông tin bệnh nhânthể
+        /// Thông tin bệnh nhân thể
         /// </summary>
         public Patient Patient { get; set; }
     }
 
     /// <summary>
-    /// Thông tin bệnh nhânthể
+    /// Thông tin bệnh nhân thể
     /// </summary>
     public class Patient
     {
@@ -24,7 +24,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
         private string _id = "";
 
         /// <summary>
-        ///Bệnh nhân Số hiệu(một Bệnh nhântương ứngmột Số hiệu,vàvà CMND/CCCD số mã một một tương ứng)
+        ///Bệnh nhân Số hiệu(một Bệnh nhân tương ứng một Số hiệu,và và CMND/CCCD số mã một một tương ứng)
         /// bắt buộc
         /// </summary>
         public string id
@@ -79,7 +79,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _cardTypeCode = "";
         /// <summary>
-        /// chứngmục Mã loại
+        /// chứng mục Mã loại
         /// bắt buộc
         /// </summary>
         public string cardTypeCode
@@ -90,7 +90,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _cardType = "";
         /// <summary>
-        /// chứngmục Loại(Bình thườngchỉcư dân CMND/CCCD số)
+        /// chứng mục Loại(Bình thường chỉ cư dân CMND/CCCD số)
         /// bắt buộc
         /// </summary>
         public string cardType
@@ -172,7 +172,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _nationalityCode = "";
         /// <summary>
-        /// dântộc Mã
+        /// dân tộc Mã
         /// </summary>
         public string nationalityCode
         {
@@ -182,7 +182,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _nationality = "";
         /// <summary>
-        /// dântộc
+        /// dân tộc
         /// </summary>
         public string nationality
         {
@@ -203,7 +203,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _cityCode = "";
         /// <summary>
-        /// nhà Thành phố địa chỉ nhàcấp Mã
+        /// nhà Thành phố địa chỉ nhà cấp Mã
         /// bắt buộc
         /// </summary>
         public string cityCode
@@ -214,7 +214,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _areaCode = "";
         /// <summary>
-        /// nhà Địa chỉ nhàkhuhuyện Mã(bảogiữvàmâybìnhbàncủa Phân vùng hành chính Mãnhất quán)
+        /// nhà Địa chỉ nhà khu huyện Mã(bảo giữ và mây bình bàn của Phân vùng hành chính Mã nhất quán)
         /// bắt buộc
         /// </summary>
         public string areaCode
@@ -235,7 +235,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _city = "";
         /// <summary>
-        /// nhà Thành phố địa chỉ nhàcấp
+        /// nhà Thành phố địa chỉ nhà cấp
         /// </summary>
         public string city
         {
@@ -245,7 +245,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _area = "";
         /// <summary>
-        /// nhà Địa chỉ nhàkhuhuyện
+        /// nhà Địa chỉ nhà khu huyện
         /// </summary>
         public string area
         {
@@ -255,7 +255,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _streetInfo = "";
         /// <summary>
-        /// phốđườngthông tin
+        /// phố đường thông tin
         /// </summary>
         public string streetInfo
         {
@@ -265,7 +265,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _postcode = "";
         /// <summary>
-        /// bưubiên
+        /// bưu biên
         /// </summary>
         public string postcode
         {
@@ -285,7 +285,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _ctRoleId = "";
         /// <summary>
-        /// và Người liên hệquan hệ
+        /// và Người liên hệ quan hệ
         /// </summary>
         public string ctRoleId
         {
@@ -345,7 +345,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _outpatientNo = "";
         /// <summary>
-        /// Số khám ngoại trú, tức Khám bệnhdòngchảysố
+        /// Số khám ngoại trú, tức Khám bệnh dòng chảy số
         /// bắt buộc
         /// </summary>
         public string outpatientNo
@@ -367,7 +367,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
     }
 
     /// <summary>
-    /// dòngchính Cơ sởcấu hình
+    /// dòng chính Cơ sở cấu hình
     /// </summary>
     public class ConfigurationInfo
     {
@@ -377,7 +377,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
         public string xz { get; set; }
 
         /// <summary>
-        /// dòngchính Mã
+        /// dòng chính Mã
         /// </summary>
         public string xzbm { get; set; }
 
@@ -387,7 +387,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
         public string jgdm { get; set; }
 
         /// <summary>
-        /// nhà Địa chỉ nhàkhuhuyện Mã(bảogiữvàmâybìnhbàncủa Phân vùng hành chính Mãnhất quán)
+        /// nhà Địa chỉ nhà khu huyện Mã(bảo giữ và mây bình bàn của Phân vùng hành chính Mã nhất quán)
         /// </summary>
         public string areaCode { get; set; }
     }

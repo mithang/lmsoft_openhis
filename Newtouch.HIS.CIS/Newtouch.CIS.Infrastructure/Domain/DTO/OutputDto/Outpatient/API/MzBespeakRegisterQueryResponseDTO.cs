@@ -3,17 +3,17 @@ using System;
 namespace Newtouch.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// Ngoại trúđặt hẹn Tra cứu Quay lạibáovăn
+    /// Ngoại trú đặt hẹn Tra cứu Quay lại báo văn
     /// </summary>
     public class MzBespeakRegisterQueryResponseDTO
     {
         /// <summary>
-        /// Ngoại trúđặt hẹnđăng ký khám ID
+        /// Ngoại trú đặt hẹn đăng ký khám ID
         /// </summary>
         public string mzyyghId { get; set; }
         
         /// <summary>
-        /// chứngmục Loại
+        /// chứng mục Loại
         /// </summary>
         public int? zjlx { get; set; }
 
@@ -28,7 +28,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string blh { get; set; }
         
         /// <summary>
-        /// Dấu hiệu ngoại trú/nội trú 1:thông thường Ngoại trú  2:gấpkhám   3:chuyên gia Ngoại trú
+        /// Dấu hiệu ngoại trú/nội trú 1:thông thường Ngoại trú  2:gấp khám   3:chuyên gia Ngoại trú
         /// </summary>
         public string mzlx { get; set; }
 
@@ -63,12 +63,12 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string ysmc { get; set; }
 
         /// <summary>
-        /// nhấtlớnđặt hẹnsố
+        /// nhất lớn đặt hẹn số
         /// </summary>
         public int bespeakMaxCount { get; set; }
 
         /// <summary>
-        /// đặt hẹnsố
+        /// đặt hẹn số
         /// </summary>
         public int bespeakNo { get; set; }
 
@@ -78,7 +78,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public DateTime? arrivalDate { get; set; }
 
         /// <summary>
-        /// hiệntrườngchỗlýđăng ký khám ngườiviên
+        /// hiện trường chỗ lý đăng ký khám người viên
         /// </summary>
         public string arrivalOpereater { get; set; }
 
@@ -88,7 +88,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// đặt hẹn Thao tác ngườiviên
+        /// đặt hẹn Thao tác người viên
         /// </summary>
         public string CreatorCode { get; set; }
     }

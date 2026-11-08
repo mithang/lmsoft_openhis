@@ -136,7 +136,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public string bz { get; set; }
 
         /// <summary>
-        /// Liên kết Khóa chínhbrxzbh
+        /// Liên kết Khóa chính brxzbh
         /// </summary>
         public int? ParentId { get; set; }
         public string insutype { get; set; }

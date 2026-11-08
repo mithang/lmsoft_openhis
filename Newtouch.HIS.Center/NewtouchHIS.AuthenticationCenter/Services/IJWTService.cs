@@ -31,7 +31,7 @@ namespace NewtouchHIS.AuthenticationCenter.Services
         //Task<BusResult<JWTToken>> GetTokenWithRefresh(string authCode);
 
         ///// <summary>
-        ///// Theo RefreshTokenlàm mới Token
+        ///// Theo RefreshToken làm mới Token
         ///// </summary>
         ///// <param name="refreshToken"></param>
         ///// <param name="clientId"></param>

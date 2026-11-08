@@ -15,16 +15,16 @@ namespace Newtouch.Domain.IDomainServices
 {
     public interface IPrepareMedicineDmnService
     {
-        #region Báo hỏngbáolợi
+        #region Báo hỏng báo lợi
         /// <summary>
-        /// Tra cứulãi lỗ Thuốclist
+        /// Tra cứu lãi lỗ Thuốc list
         /// </summary>
         /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>
         List<ReportLossAndProfitMedicineInfoVO> SelectLossAndProfitMedicineList(string inputCode);
 
         /// <summary>
-        /// Tra cứu Thuốccủakcslvàjj
+        /// Tra cứu Thuốc của kcsl và jj
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="ph"></param>
@@ -35,7 +35,7 @@ namespace Newtouch.Domain.IDomainServices
         //void SelectKcslAndJj(string ypCode, string ph, string pc, DateTime? yxq, out int kcsl, out decimal jj);
 
         ///// <summary>
-        ///// bảnghơn Tồn kho Số lượng
+        ///// bảng hơn Tồn kho Số lượng
         ///// </summary>
         ///// <param name="ypCode"></param>
         ///// <param name="ph"></param>
@@ -46,7 +46,7 @@ namespace Newtouch.Domain.IDomainServices
 
 
         /// <summary>
-        /// Gửi Báo hỏngbáolợi
+        /// Gửi Báo hỏng báo lợi
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>
@@ -61,7 +61,7 @@ namespace Newtouch.Domain.IDomainServices
         //void SaveReportLossAndProfit(SysMedicineProfitLossEntity entity, int kcsl, decimal jj);
 
         /// <summary>
-        /// Báo hỏngbáo thừa Tra cứu
+        /// Báo hỏng báo thừa Tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -79,19 +79,19 @@ namespace Newtouch.Domain.IDomainServices
         /// <param name="endTime">Thời gian kết thúc</param>
         /// <param name="syyy">nguyên nhân lãi lỗ</param>
         /// <param name="inputCode">Từ khóa</param>
-        /// <param name="syqk">lãi lỗtình hình</param>
+        /// <param name="syqk">lãi lỗ tình hình</param>
         /// <returns></returns>
         //LossAndProditInfoJeVo ComputePjzeAndLjze(string startTime, string endTime, string syyy, string inputCode, int syqk);
 
         /// <summary>
-        /// Báo hỏngbáo thừa Lưu
+        /// Báo hỏng báo thừa Lưu
         /// </summary>
         /// <param name="profitLossEntityList"></param>
         //string SaveReportLossAndProfit(List<YpSyxxVo> profitLossEntityList);
 
 
         /// <summary>
-        /// Báo hỏngbáo thừa Tra cứu
+        /// Báo hỏng báo thừa Tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -106,7 +106,7 @@ namespace Newtouch.Domain.IDomainServices
         
         #endregion
 
-        #region Khoachuẩn bị thuốc Trả lại
+        #region Khoa chuẩn bị thuốc Trả lại
         string PrepareMedicineReturnSubmit(OperatorModel user, string orgId, BythDjInfoDTO Djnr);
         List<DrugStockInfoVEntity> GetDrugAndStock(string yfcode, string keyWord, string organizeid);
         List<DrugStockInfoVEntity> GetApplyDrugAndStock(string ypcodestr,string yfbmstr, string organizeid);
@@ -121,7 +121,7 @@ namespace Newtouch.Domain.IDomainServices
         string PrepareMedicineReturndelete(string ById, string OrganizeId, OperatorModel user);
         #endregion
 
-        #region Thuốcsử dụngTra cứu
+        #region Thuốc sử dụngTra cứu
         IList<MedicineInfoVO> GetMedicineInfoListV2(Pagination pagination, MedicineInfoParam param, string orgId);
         #endregion
     }

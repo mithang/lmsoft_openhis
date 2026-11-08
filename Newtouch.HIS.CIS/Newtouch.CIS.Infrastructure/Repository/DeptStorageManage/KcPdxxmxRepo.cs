@@ -10,7 +10,7 @@ using Newtouch.Domain.IRepository.DeptStorageManage;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// Kiểm kêchi tiết
+    /// Kiểm kê chi tiết
     /// </summary>
     public class KcPdxxmxRepo : RepositoryBase<KcPdxxmxEntity>, IKcPdxxmxRepo
     {
@@ -19,7 +19,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// Kiểm kê Lưukhi đổihơn Số lượng
+        /// Kiểm kê Lưu khi đổi hơn Số lượng
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         public void UpdateSlBySaveInventoryInfo(List<SaveInventoryDTO> inventoryInfoList)
@@ -38,7 +38,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// Kiểm kê Lưukhi đổihơn Số lượng
+        /// Kiểm kê Lưu khi đổi hơn Số lượng
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         public void UpdateSlBySaveInventoryInfoNoPc(List<SaveInventoryDTO> inventoryInfoList)

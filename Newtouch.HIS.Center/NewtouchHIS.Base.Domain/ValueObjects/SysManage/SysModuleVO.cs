@@ -7,7 +7,7 @@
     {
         public string? Id { get; set; }
         /// <summary>
-        /// Tổ chức Id(Tùy chọn,nullthì là dùng chung cho mọi Tổ chứctổ chức)
+        /// Tổ chức Id(Tùy chọn,null thì là dùng chung cho mọi Tổ chức tổ chức)
         /// </summary>
         public string? OrganizeId { get; set; }
         /// <summary>

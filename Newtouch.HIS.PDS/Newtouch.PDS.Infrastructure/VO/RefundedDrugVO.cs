@@ -58,12 +58,12 @@ namespace Newtouch.HIS.Domain.VO
         public string czh { get; set; }
 
         /// <summary>
-        /// Số lượng (Số lượng đơn vị bộ phận) Mặc định vớiktsl Giống nhau
+        /// Số lượng (Số lượng đơn vị bộ phận) Mặc định với ktsl Giống nhau
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// Số lượng có thể trả (Số lượng đơn vị bộ phận) Mặc định vớisl Giống nhau
+        /// Số lượng có thể trả (Số lượng đơn vị bộ phận) Mặc định với sl Giống nhau
         /// </summary>
         public int ktsl { get; set; }
 

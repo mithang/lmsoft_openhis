@@ -47,7 +47,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// Bộ mẫudanh sách(Tra cứu)
+        /// Bộ mẫu danh sách(Tra cứu)
         /// </summary>
         /// <param name="zutaoType"></param>
         /// <returns></returns>

@@ -240,7 +240,7 @@ namespace Newtouch.HIS.Application.Implementation
 
         #region Thống kê nhập xuất tồn
         /// <summary>
-        /// Trả về dạng bào chế thuốclist
+        /// Trả về dạng bào chế thuốc list
         /// </summary>
         /// <returns></returns>
         public List<MedicineFormulationVO> GetMedicineFormulationList()

@@ -83,7 +83,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
 
         #region get
         /// <summary>
-        /// getyêu cầu
+        /// get yêu cầu
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>

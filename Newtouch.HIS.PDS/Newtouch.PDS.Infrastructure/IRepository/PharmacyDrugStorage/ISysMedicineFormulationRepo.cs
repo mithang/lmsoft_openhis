@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysMedicineFormulationRepo : IRepositoryBase<SysMedicineFormulationVEntity>
     {
         /// <summary>
-        /// Trả về dạng bào chế thuốclist
+        /// Trả về dạng bào chế thuốc list
         /// </summary>
         /// <returns></returns>
         List<MedicineFormulationVO> GetMedicineFormulationList();

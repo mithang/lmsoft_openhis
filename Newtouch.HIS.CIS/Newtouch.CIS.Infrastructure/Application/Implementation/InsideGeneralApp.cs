@@ -11,14 +11,14 @@ using NewtouchHIS.Lib.Base.Extension;
 namespace Newtouch.Application.Implementation
 {
     /// <summary>
-    /// trongbộgiao diệngọinghiệp vụ
+    /// trong bộ giao diện gọi nghiệp vụ
     /// </summary>
     public class InsideGeneralApp : AppBase, IInsideGeneralApp
     {
         private readonly IPrescriptionRepo _prescriptionRepo;
 
         /// <summary>
-        /// công cộngvàomiệng
+        /// công cộng vào miệng
         /// </summary>
         /// <param name="requestDto"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ namespace Newtouch.Application.Implementation
 
             switch (o.OperationType)
             {
-                case "UpdateChargeStatus"://Tra cứuvàrơiđịaS27(quyết toán Tra cứu)kết quả
+                case "UpdateChargeStatus"://Tra cứu và rơi địaS27(quyết toán Tra cứu)kết quả
                     var pr = UpdateChargeStatus(o.Content);
                     if (!string.IsNullOrWhiteSpace(pr)) throw new FailedException(pr);
                     break;

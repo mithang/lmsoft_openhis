@@ -49,7 +49,7 @@ namespace Newtouch.HIS.DomainServices
                 var adminRoleId = _sysRoleRepo.IQueryable().Where(p => p.OrganizeId == "*" && p.Code == "Administrator").Select(p => p.Id).FirstOrDefault();
                 if (!string.IsNullOrWhiteSpace(adminRoleId))
                 {
-                    //Cho Roleđang mở
+                    //Cho Role đang mở
                     mIdList = _sysRoleAuthorizeRepository.IQueryable(t => t.zt == "1"
     && t.RoleId == adminRoleId).Select(p => p.ItemId).ToList();
                 }
@@ -67,11 +67,11 @@ namespace Newtouch.HIS.DomainServices
                     return null;
                 }
 
-                //Choorganizeđang mở
+                //Cho organize đang mở
                 var orgItemIdList = _sysModuleRepository.IQueryable(t => t.zt == "1"
      && (t.OrganizeId == null || t.OrganizeId == orgId))
      .Select(p => p.Id).ToList();
-                //Cho Roleđang mở
+                //Cho Role đang mở
                 var idList = _sysRoleAuthorizeRepository.IQueryable(t => t.zt == "1"
 && roleIdList.Contains(t.RoleId)).Select(p => p.ItemId).ToList();
                 query = query.Where(p => orgItemIdList.Contains(p.Id) && idList.Contains(p.Id));
@@ -224,7 +224,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SqlParamet
 
                     if (!string.IsNullOrWhiteSpace(topOrgId))
                     {
-                        //Tự động chotopOrganizeId Phân bổ ModuleButtonquyền của
+                        //Tự động chotopOrganizeId Phân bổ ModuleButton quyền của
                         var authEntity = new SysOrganizeAuthorizeEntity()
                         {
                             TopOrganizeId = topOrgId,

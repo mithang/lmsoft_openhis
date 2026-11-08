@@ -90,10 +90,10 @@ namespace Newtouch.Herp.Application.Implementation
                         }
 
                         var appBillDetail = _kfApplyOrderDetailRepo.SelectData(sldh, Request.crkdj.OrganizeId);
-                        if (appBillDetail == null || appBillDetail.Count == 0) throw new Exception(string.Format("Phiếu lĩnhkhông tìm thấy chi tiết phiếu lĩnh hợp lệ", sldh));
+                        if (appBillDetail == null || appBillDetail.Count == 0) throw new Exception(string.Format("Phiếu lĩnh không tìm thấy chi tiết phiếu lĩnh hợp lệ", sldh));
 
                         var applyBill = _kfApplyOrderRepo.SelectData(sldh, Request.crkdj.OrganizeId);
-                        if (applyBill == null) throw new Exception(string.Format("Số phiếu lĩnhkhông hợp lệ", sldh));
+                        if (applyBill == null) throw new Exception(string.Format("Số phiếu lĩnh không hợp lệ", sldh));
 
                         applyBill.applyProcess = (int)(appBillDetail.Exists(p => p.sl > p.yfsl)
                         ? EnumApplyProcess.PartialCompletion

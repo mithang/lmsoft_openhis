@@ -39,7 +39,7 @@ namespace Newtouch.Domain.ValueObjects
         public string WardName { get; set; }
 
         /// <summary>
-        /// rasinhnăm Tháng
+        /// ra sinh năm Tháng
         /// </summary>
         public DateTime? birth { get; set; }
 
@@ -49,7 +49,7 @@ namespace Newtouch.Domain.ValueObjects
         public DateTime? ryrq { get; set; }
 
         /// <summary>
-        /// vàokhu Ngày
+        /// vào khu Ngày
         /// </summary>
         public DateTime? rqrq { get; set; }
 
@@ -85,7 +85,7 @@ namespace Newtouch.Domain.ValueObjects
         public string WardName { get; set; }
 
         /// <summary>
-        /// rasinhnăm Tháng
+        /// ra sinh năm Tháng
         /// </summary>
         public DateTime? birth { get; set; }
 
@@ -95,7 +95,7 @@ namespace Newtouch.Domain.ValueObjects
         public DateTime? ryrq { get; set; }
 
         /// <summary>
-        /// vàokhu Ngày
+        /// vào khu Ngày
         /// </summary>
         public DateTime? rqrq { get; set; }
         /// <summary>
@@ -119,12 +119,12 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public DateTime? rq { get; set; }
         /// <summary>
-        /// Thời gianđiểm 4 8 12 16 20 24
+        /// Thời gian điểm 4 8 12 16 20 24
         /// </summary>
         /// <returns></returns>
         public int? sj { get; set; }
         /// <summary>
-        /// Liệt kê vui lònggiả từ chốiđo đợi
+        /// Liệt kê vui lòng giả từ chối đo đợi
         /// </summary>
         /// <returns></returns>
         public int? brzt { get; set; }
@@ -134,7 +134,7 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public decimal? tw { get; set; }
         /// <summary>
-        /// Nhiệt độđolượng Mô tả miệngnhiệt Nhiệt độ nách Nhiệt độ hậu môn
+        /// Nhiệt độ đo lượng Mô tả miệng nhiệt Nhiệt độ nách Nhiệt độ hậu môn
         /// </summary>
         /// <returns></returns>
         public int? twclfs { get; set; }
@@ -179,7 +179,7 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public string tz { get; set; }
         /// <summary>
-        /// từ điểnkhôngkhuphút Org
+        /// từ điển không khu phút Org
         /// </summary>
         /// <returns></returns>
         public string tzclbz { get; set; }
@@ -204,7 +204,7 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public int? dbcs { get; set; }
         /// <summary>
-        /// từ điểnkhôngkhuphút Org
+        /// từ điển không khu phút Org
         /// </summary>
         /// <returns></returns>
         public string dbcsbz { get; set; }
@@ -219,7 +219,7 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public int? xbl { get; set; }
         /// <summary>
-        /// vượtdịchlượng
+        /// vượt dịch lượng
         /// </summary>
         /// <returns></returns>
         public int? cys { get; set; }
@@ -254,7 +254,7 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public int? xyll { get; set; }
         /// <summary>
-        /// từ điểnkhôngkhuphút Org
+        /// từ điển không khu phút Org
         /// </summary>
         /// <returns></returns>
         public string xyfs { get; set; }
@@ -294,7 +294,7 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public string zt { get; set; }
         /// <summary>
-        /// tựđịnhnghĩa Thời gianđiểm
+        /// tự định nghĩa Thời gian điểm
         /// </summary>
         public string zdysjd { get; set; }
 
@@ -309,7 +309,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string brzt_mi { get; set; }
         /// <summary>
-        /// dẫndònglượng
+        /// dẫn dòng lượng
         /// </summary>
         public string yll { get; set; }
         /// <summary>
@@ -321,11 +321,11 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string zcl { get; set; }
         /// <summary>
-        /// quamẫnthuốcvật
+        /// qua mẫn thuốc vật
         /// </summary>
         public string gmyw { get; set; }
         /// <summary>
-        /// thâncao
+        /// thân cao
         /// </summary>
         public string sg { get; set; }
         /// <summary>
@@ -334,7 +334,7 @@ namespace Newtouch.Domain.ValueObjects
         public string ttpf { get; set; }
 
         /// <summary>
-        /// Huyết áptrêndưới Giá trịhợpvà Hiển thị
+        /// Huyết áp trên dưới Giá trị hợp và Hiển thị
         /// </summary>
         public string xysxz { get; set; }
     }

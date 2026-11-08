@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Outpatient
 {
     /// <summary>
-    /// Bệnh nhânquamẫnthông tin
+    /// Bệnh nhân qua mẫn thông tin
     /// </summary>
     public class PatientGmxxDetailVO
     {
         /// <summary>
-        /// quamẫnthông tinbảng Khóa chính
+        /// qua mẫn thông tin bảng Khóa chính
         /// </summary>
         public string Id { get; set; }
 
@@ -22,7 +22,7 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         public string xm { get; set; }
 
         /// <summary>
-        /// rasinhnăm Tháng
+        /// ra sinh năm Tháng
         /// </summary>
         public DateTime csrq { get; set; }
 
@@ -42,27 +42,27 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         public string mzh { get; set; }
 
         /// <summary>
-        /// quamẫn Mục
+        /// qua mẫn Mục
         /// </summary>
         public string xmCode { get; set; }
 
         /// <summary>
-        /// quamẫn Tên mục
+        /// qua mẫn Tên mục
         /// </summary>
         public string xmmc { get; set; }
 
         /// <summary>
-        /// quamẫn Loại
+        /// qua mẫn Loại
         /// </summary>
         public string gmlx { get; set; }
 
         /// <summary>
-        /// quamẫn Tên loại
+        /// qua mẫn Tên loại
         /// </summary>
         public string gmlxmc { get; set; }
 
         /// <summary>
-        /// quamẫn Thuốc
+        /// qua mẫn Thuốc
         /// </summary>
         public string gmyp { get; set; }
 

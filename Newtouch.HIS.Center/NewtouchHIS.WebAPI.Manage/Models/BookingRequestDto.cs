@@ -46,7 +46,7 @@ namespace NewtouchHIS.WebAPI.Manage.Models
         /// </summary>
         public string regType { get; set; }
         /// <summary>
-        /// mz_ghpb_config  Lịch trựcid
+        /// mz_ghpb_config  Lịch trực id
         /// </summary>
         public string ghpbId { get; set; }
         /// <summary>

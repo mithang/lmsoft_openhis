@@ -93,7 +93,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PACS.Controllers
 
 
         /// <summary>
-        /// Lấypacs Kết quả báo cáo(Bản Jinfeng Yitong)
+        /// Lấy pacs Kết quả báo cáo(Bản Jinfeng Yitong)
         /// </summary>
         /// <param name="post"></param>
         /// <returns></returns>

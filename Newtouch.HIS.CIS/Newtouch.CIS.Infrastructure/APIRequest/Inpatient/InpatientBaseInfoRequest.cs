@@ -3,7 +3,7 @@
 namespace Newtouch.CIS.APIRequest.Inpatient
 {
     /// <summary>
-    /// Lấy Nhập việnbệnh nhân Thông tin cơ bản
+    /// Lấy Nhập viện bệnh nhân Thông tin cơ bản
     /// </summary>
     public class InpatientBaseInfoRequest : JSONRequestBase
     {

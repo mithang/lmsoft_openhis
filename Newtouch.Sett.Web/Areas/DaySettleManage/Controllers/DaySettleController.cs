@@ -55,7 +55,7 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
         #region Lấy dữ liệu
 
         /// <summary>
-        /// đượclấyngoại trúkhám(Nội trú)ngàykếttínhcộtbảng
+        /// được lấy ngoại trú khám(Nội trú)ngày kết tính cột bảng
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kssj"></param>
@@ -89,7 +89,7 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
 
         #region dữ liệu Lưu
         /// <summary>
-        /// ngoại trúkhámngàykếttính
+        /// ngoại trú khám ngày kết tính
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -113,7 +113,7 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
         }
 
         /// <summary>
-        /// nhập việnviệnngàykếttính
+        /// nhập viện viện ngày kết tính
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -137,7 +137,7 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
         }
 
         /// <summary>
-        /// lấyhủyngoại trúkhámngàykếttính
+        /// lấy hủy ngoại trú khám ngày kết tính
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -153,7 +153,7 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
 
 
 		/// <summary>
-		/// xóatínhđốitổngtài khoản
+		/// xóa tính đối tổng tài khoản
 		/// </summary>
 		public IActionResult ApplicationIndex()
 		{
@@ -161,7 +161,7 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
 		}
 
 		/// <summary>
-		/// xóatínhrõchi tiết
+		/// xóa tính rõ chi tiết
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult ApplicationDetailed()
@@ -201,7 +201,7 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
 		}
 
 		/// <summary>
-		/// đượclấyxóatínhđốitổngtài khoản
+		/// được lấy xóa tính đối tổng tài khoản
 		/// </summary>
 		/// <param name="ksrq">Ngày bắt đầu</param>
 		/// <param name="jsrq">Ngày kết thúc</param>
@@ -221,7 +221,7 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
 		}
 
 		/// <summary>
-		/// Lấy chi tiết thanh toán(trênnửabộphân)
+		/// Lấy chi tiết thanh toán(trên nửa bộ phân)
 		/// </summary>
 		/// <param name="ksrq">Ngày bắt đầu</param>
 		/// <param name="jsrq">Ngày kết thúc</param>
@@ -234,7 +234,7 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
 		}
 
 		/// <summary>
-		/// Lấy chi tiết thanh toán(dướinửabộphân)
+		/// Lấy chi tiết thanh toán(dưới nửa bộ phân)
 		/// </summary>
 		/// <param name="ksrq">Ngày bắt đầu</param>
 		/// <param name="jsrq">Ngày kết thúc</param>
@@ -251,7 +251,7 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
 		/// </summary>
 		/// <param name="ksrq">Ngày bắt đầu</param>
 		/// <param name="jsrq">Ngày kết thúc</param>
-		/// <param name="sfyd">làkhôngkhácđịa</param>
+		/// <param name="sfyd">là không khác địa</param>
 		/// <returns></returns>
 		public IActionResult GetQssq(string ksrq, string jsrq, string sfyd)
 		{
@@ -283,7 +283,7 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
             return View();
         }
         /// <summary>
-        /// lịchsửđốitài khoảnghighi
+        /// lịch sử đối tài khoản ghi ghi
         /// </summary>
         /// <returns></returns>
         public IActionResult DzrHistory()
@@ -302,7 +302,7 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
 			return Content(list.ToJson());
 		}
         /// <summary>
-        /// đượclấynàyđịađốitài khoảnsốdữ liệurõchi tiết
+        /// được lấy này địa đối tài khoản số dữ liệu rõ chi tiết
         /// </summary>
         /// <param name="ksrq"></param>
         /// <param name="jsrq"></param>

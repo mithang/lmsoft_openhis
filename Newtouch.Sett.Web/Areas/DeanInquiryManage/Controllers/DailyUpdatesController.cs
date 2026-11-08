@@ -36,7 +36,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// tất cảviệnthuvào
+        /// tất cả viện thu vào
         /// </summary>
         public IActionResult GetQysr()
         {
@@ -44,7 +44,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
             return Content(list.ToJson());
         }
         /// <summary>
-        /// Tra cứu của viện trưởng-nayngàyđộngtrạng thái-banner 
+        /// Tra cứu của viện trưởng-nay ngày động trạng thái-banner 
         /// </summary>
         /// <returns></returns>
         public IActionResult GetJRDTBanner()
@@ -71,7 +71,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
          
         /// <summary>
-        /// ngoại trúkhámphídùng
+        /// ngoại trú khám phí dùng
         /// </summary>
         public IActionResult GetMzfy()
         {

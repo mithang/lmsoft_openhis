@@ -29,7 +29,7 @@ namespace NewtouchHIS.Base.Domain.Entity.Dictionary
         public String OrganizeId { get; set; }
 
         /// <summary>
-        /// Liên kết ChargeCateTypemục từ điển
+        /// Liên kết ChargeCateType mục từ điển
         /// </summary>
         public String Type { get; set; }
 

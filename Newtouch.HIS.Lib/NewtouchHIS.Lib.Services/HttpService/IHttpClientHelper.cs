@@ -7,7 +7,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
     public interface IHttpClientHelper
     {
         /// <summary>
-        /// Postyêu cầu
+        /// Post yêu cầu
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>

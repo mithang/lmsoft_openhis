@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// Phẫu thuật Chi phíbổ sungghi
+    /// Phẫu thuật Chi phí bổ sungghi
     /// </summary>
     public class OperatFeeVO
     {
@@ -140,7 +140,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string jzks { get; set; }
         /// <summary>
-        /// 1cố địnhđịnh0khôngcố địnhđịnh
+        /// 1cố định định0không cố định định
         /// </summary>
         /// <returns></returns>
         public int? gdzxbz { get; set; }

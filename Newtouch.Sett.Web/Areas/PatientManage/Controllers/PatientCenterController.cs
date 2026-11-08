@@ -166,7 +166,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             return Content(resultDto.GroupFeeVOList.ToJson());
         }
         /// <summary>
-        /// đượclấytínhphíbảngphídùng
+        /// được lấy tính phí bảng phí dùng
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="group">1 sfdl 2 sfxm 3 sfxm+jfrq 4 Không có</param>
@@ -183,7 +183,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// mangmẫuhồtratra cứu
+        /// mang mẫu hồ tra tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>

@@ -55,16 +55,16 @@ namespace HIS.SSO.Domain.Entity.SysManage
 		/// Default:
 		/// Nullable:False
 		/// </summary>           
-		//[Required(ErrorMessage = "OrganizeIdkhông được để trống")]
-		//[StringLength(50, ErrorMessage = "OrganizeIdgiới hạn độ dài là50")]
+		//[Required(ErrorMessage = "OrganizeId không được để trống")]
+		//[StringLength(50, ErrorMessage = "OrganizeId giới hạn độ dài là50")]
 		//public string OrganizeId { get; set; }
 		///// <summary>
 		/// Desc:người tạo
 		/// Default:
 		/// Nullable:False
 		/// </summary>           
-		//[Required(ErrorMessage = "CreatorCodekhông được để trống")]
-		//[StringLength(20, ErrorMessage = "CreatorCodegiới hạn độ dài là20")]
+		//[Required(ErrorMessage = "CreatorCode không được để trống")]
+		//[StringLength(20, ErrorMessage = "CreatorCode giới hạn độ dài là20")]
 		//public string CreatorCode { get; set; }
 
 		/// <summary>
@@ -72,7 +72,7 @@ namespace HIS.SSO.Domain.Entity.SysManage
 		/// Default:
 		/// Nullable:False
 		/// </summary>           
-		//[Required(ErrorMessage = "Createtimekhông được để trống")]
+		//[Required(ErrorMessage = "Createtime không được để trống")]
 		//public DateTime Createtime { get; set; }
 
 		/// <summary>
@@ -87,7 +87,7 @@ namespace HIS.SSO.Domain.Entity.SysManage
 		/// Default:
 		/// Nullable:True
 		/// </summary>           
-		//[StringLength(20, ErrorMessage = "LastModifierCodegiới hạn độ dài là500")]
+		//[StringLength(20, ErrorMessage = "LastModifierCode giới hạn độ dài là500")]
 		//public string? LastModifierCode { get; set; }
 
 		/// <summary>
@@ -102,7 +102,7 @@ namespace HIS.SSO.Domain.Entity.SysManage
 		/// Default:
 		/// Nullable:False
 		/// </summary>           
-		//[StringLength(1, ErrorMessage = "ztgiới hạn độ dài là1")]
+		//[StringLength(1, ErrorMessage = "zt giới hạn độ dài là1")]
 		//public string zt { get; set; }
 	}
 }

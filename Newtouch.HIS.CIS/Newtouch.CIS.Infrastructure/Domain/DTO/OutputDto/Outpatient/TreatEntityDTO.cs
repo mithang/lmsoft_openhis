@@ -24,7 +24,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string address { get; set; }
         public int? queno { get; set; }
         /// <summary>
-        /// chuyểnkhámnhận dạng:là Khônglàchuyểnkhám Bệnh nhân
+        /// chuyển khám nhận dạng:là Không là chuyển khám Bệnh nhân
         /// </summary>
         public string zzbs { get; set; }
     }
@@ -76,11 +76,11 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string maritalStatusValue { get; set; }
         /// <summary>
-        /// chứngmục Loại
+        /// chứng mục Loại
         /// </summary>
         public string zjlx { get; set; }
         /// <summary>
-        /// chứngmục Loại
+        /// chứng mục Loại
         /// </summary>
         public string zjlxValue { get; set; }
         /// <summary>
@@ -92,7 +92,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string idCardNo { get; set; }
         /// <summary>
-        /// liênhệsốmã
+        /// liên hệ số mã
         /// </summary>
         public string contactNum { get; set; }
         /// <summary>
@@ -136,19 +136,19 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string ghsj { get; set; }
         /// <summary>
-        /// gấpgấp Người liên hệ
+        /// gấp gấp Người liên hệ
         /// </summary>
         public string contPerName { get; set; }
         /// <summary>
-        /// gấpgấp Người liên hệ Điện thoại
+        /// gấp gấp Người liên hệ Điện thoại
         /// </summary>
         public string contPerPhoneNum { get; set; }
         /// <summary>
-        /// gấpgấp Người liên hệquan hệ
+        /// gấp gấp Người liên hệ quan hệ
         /// </summary>
         public string contPerRel { get; set; }
         /// <summary>
-        /// gấpgấp Người liên hệquan hệ
+        /// gấp gấp Người liên hệ quan hệ
         /// </summary>
         public string contPerRelValue { get; set; }
         /// <summary>
@@ -157,12 +157,12 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string updateTime { get; set; }
 
         /// <summary>
-        /// cửagấpkhám Cờ
+        /// cửa gấp khám Cờ
         /// </summary>
         public string mjzbz { get; set; }
 
         /// <summary>
-        /// cửagấpkhám Cờ
+        /// cửa gấp khám Cờ
         /// </summary>
         public string mjzbzValue { get; set; }
 
@@ -182,22 +182,22 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string operatingTime { get; set; }
 
         /// <summary>
-        /// Bảo hiểm y tếquyết toánsố(trướcđặt)
+        /// Bảo hiểm y tế quyết toán số(trước đặt)
         /// </summary>
         public string ybjsh { get; set; }
 
         /// <summary>
-        /// lạikhám Cờ 1lạikhám
+        /// lại khám Cờ 1lại khám
         /// </summary>
         public string fzbz { get; set; }
 
         /// <summary>
-        /// xãbảo Số hiệu
+        /// xã bảo Số hiệu
         /// </summary>
         public string sbbh { get; set; }
 
         /// <summary>
-        /// tham sốbảođịa Mã
+        /// tham số bảo địa Mã
         /// </summary>
         public string cbdbm { get; set; }
 
@@ -212,7 +212,7 @@ namespace Newtouch.Domain.DTO.OutputDto
 
         public string nlshow { get; set; }
         /// <summary>
-        /// đăng ký khámđếnnguồnnhãn 2020-3-4 Thêm mới
+        /// đăng ký khám đến nguồn nhãn 2020-3-4 Thêm mới
         /// </summary>
         public string ghlybz { get; set; }
 

@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Domain.DTO.Medicine
         /// <returns></returns>
         public string zyh { get; set; }
         /// <summary>
-        /// Số y lệnh,Trong cùng một số y lệnh chứa nhiềuyzId
+        /// Số y lệnh,Trong cùng một số y lệnh chứa nhiều yzId
         /// </summary>
         /// <returns></returns>
         public string yzh { get; set; }
@@ -244,7 +244,7 @@ namespace Newtouch.HIS.Domain.DTO.Medicine
         /// </summary>
         public string kssReason { get; set; }
         /// <summary>
-        /// Loại đơn xin,Truyền tớipacsdùng
+        /// Loại đơn xin,Truyền tới pacs dùng
         /// </summary>
         public string sqlx { get; set; }
         /// <summary>

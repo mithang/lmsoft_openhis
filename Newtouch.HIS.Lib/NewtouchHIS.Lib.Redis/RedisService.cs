@@ -106,7 +106,7 @@ namespace NewtouchHIS.Lib.Redis
                 " local res = redis.call('KEYS', @keywords) " +
                 " return res "), new { @keywords = $"{InitKey(key)}*" });
             if (!redisResult.IsNull)
-                await _database.KeyDeleteAsync((RedisKey[])redisResult); //Xóa một nhómkey
+                await _database.KeyDeleteAsync((RedisKey[])redisResult); //Xóa một nhóm key
         }
 
         public async Task<long> GetIncr(string key)

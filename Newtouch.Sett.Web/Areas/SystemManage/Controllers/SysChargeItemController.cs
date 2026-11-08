@@ -77,7 +77,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// đượclấymáycơ quanngườiviêncây Cấp ba(Cơ sở+Khoa+Nhân viên)
+        /// được lấy máy cơ quan người viên cây Cấp ba(Cơ sở+Khoa+Nhân viên)
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -91,14 +91,14 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             IList<string> checkedStaffIdList = new List<string>();
             var initIdSelectedArr = (initIdSelected ?? "").Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
             checkedStaffIdList = checkedStaffIdList.Union(initIdSelectedArr).Distinct().ToList();
-            //bộ nhớ đệmstart
+            //bộ nhớ đệm start
             var treeList = _cache.Get(string.Format(CacheKey.OrganizeStaffTreeSetKey, organizeId), () =>
             {
                 var organizedata = _sysOrganizeDmnService.GetValidListByParentOrg(organizeId);
                 var iitreeList = new List<TreeViewModel>();
                 foreach (var orgItem in organizedata)
                 {
-                    //nơicóthuphíhạngmục
+                    //nơi có thu phí hạng mục
                     var orgsfxmData = _sysChargeItemDmnService.GetSFDLList(organizeId);
                     foreach (var Item in orgsfxmData)
                     {

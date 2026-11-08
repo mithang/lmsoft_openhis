@@ -23,12 +23,12 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// liên kết Khám bệnhbảng
+        /// liên kết Khám bệnh bảng
         /// </summary>
         public string jzId { get; set; }
 
         /// <summary>
-        /// billing Hệ thốngcủa Thu phí Trạng thái
+        /// billing Hệ thống của Thu phí Trạng thái
         /// </summary>
         public bool sfbz { get; set; }
 
@@ -48,7 +48,7 @@ namespace Newtouch.Domain.Entity
         public decimal zje { get; set; }
 
         /// <summary>
-        /// liên kếtbasekhocủa ngườiviên Mã nhân viên
+        /// liên kếtbasekhocủa người viên Mã nhân viên
         /// </summary>
         public string ys { get; set; }
 
@@ -116,19 +116,19 @@ namespace Newtouch.Domain.Entity
         public bool? tbz { get; set; }
 
         /// <summary>
-        /// Số phiếu(xatrìnhy tế Đăng kýcầnguid)
+        /// Số phiếu(xa trình y tế Đăng ký cần guid)
         /// </summary>
         public string sqdh { get; set; }
         /// <summary>
-        /// Đơn thuốcnhãn JI tinhI JII tinh II MZ têsay
+        /// Đơn thuốc nhãn JI tinhI JII tinh II MZ tê say
         /// </summary>
         public string cftag { get; set; }
         /// <summary>
-        /// sắc hộphươngkiểu
+        /// sắc hộ phương kiểu
         /// </summary>
         public string djfs { get; set; }
         // <summary>
-        /// sắc hộtrảsố
+        /// sắc hộ trả số
         /// </summary>
         public string djts { get; set; }
         // <summary>

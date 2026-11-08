@@ -47,7 +47,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         #region Thời lượng Điều chỉnh
 
         /// <summary>
-        /// tratra cứuđượcđếnthời giandàitổngvà
+        /// tratra cứu được đến thời gian dài tổng và
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ysgh"></param>
@@ -68,7 +68,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        /// đượcđếnmỗicáiđiều trịđiều trịsưnào đóthángchi tiếtchi tiếtthời giandài
+        /// được đến mỗi cái điều trị điều trị sư nào đó tháng chi tiết chi tiết thời gian dài
         /// </summary>
         /// <param name="vo"></param>
         /// <returns></returns>
@@ -83,7 +83,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        /// thời giandàiđiềuchỉnh,hơnmớiđếnsốdữ liệukho
+        /// thời gian dài điều chỉnh,hơn mới đến số dữ liệu kho
         /// </summary>
         /// <param name="vo"></param>
         /// <returns></returns>

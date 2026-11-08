@@ -3,18 +3,18 @@
 namespace Newtouch.CIS.APIRequest.Dto
 {
     /// <summary>
-    /// Chunghủytinyêu cầubáovăn
+    /// Chung hủy tin yêu cầu báo văn
     /// </summary>
     public class MqGeneralTaskRequestDto : RequestBase
     {
         /// <summary>
-        /// hủytinchínhnội dung
+        /// hủy tin chính nội dung
         /// </summary>
         public string body { get; set; }
     }
 
     /// <summary>
-    /// MqGeneralTaskRequestDto.bodyphảnthứ tựcộthóanội dung
+    /// MqGeneralTaskRequestDto.body phản thứ tự cột hóa nội dung
     /// </summary>
     public class MqGeneralTaskBody
     {
@@ -24,7 +24,7 @@ namespace Newtouch.CIS.APIRequest.Dto
         public string OperationType { get; set; }
 
         /// <summary>
-        /// nội dung,actiontruyềntham số
+        /// nội dung,action truyền tham số
         /// </summary>
         public string Content { get; set; }
     }

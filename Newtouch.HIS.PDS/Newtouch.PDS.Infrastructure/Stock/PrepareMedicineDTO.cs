@@ -48,7 +48,7 @@ namespace Newtouch.PDS.Requset
     public class DjDetailDTO
     {
         /// <summary>
-        /// Chi tiết đơn lĩnhid
+        /// Chi tiết đơn lĩnh id
         /// </summary>
         public string sldmxId { get; set; }
 

@@ -97,7 +97,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Đơn thuốc lịch sửdanh sách
+        /// Đơn thuốc lịch sử danh sách
         /// </summary>
         /// <returns></returns>
         public IActionResult HistoryPresForm()
@@ -107,7 +107,7 @@ namespace Newtouch.CIS.Web.Controllers
         #endregion
 
         /// <summary>
-        /// Đơn thuốc lịch sửcây
+        /// Đơn thuốc lịch sử cây
         /// </summary>
         /// <param name="jzId"></param>
         /// <returns></returns>
@@ -125,7 +125,7 @@ namespace Newtouch.CIS.Web.Controllers
                     value = DateTime.Now.ToString("yyyy-MM-dd"),
                     text = DateTime.Now.ToString("yyyy-MM-dd") + "(Lần khám này)",
                     parentId = null,
-                    hasChildren = true, //códướicấp kiểu
+                    hasChildren = true, //có dưới cấp kiểu
                     isexpand = true,
                     complete = true,
                 };
@@ -140,7 +140,7 @@ namespace Newtouch.CIS.Web.Controllers
                     value = thisPart.CreateTime.ToString("yyyy-MM-dd"),
                     text = thisPart.CreateTime.ToString("yyyy-MM-dd") + "(Lần khám này)",
                     parentId = null,
-                    hasChildren = true, //códướicấp kiểu
+                    hasChildren = true, //có dưới cấp kiểu
                     isexpand = true,
                     complete = true,
                 };
@@ -166,7 +166,7 @@ namespace Newtouch.CIS.Web.Controllers
             //nhấtmớicủaxếpởphía trên
             foreach (var rq in historyPartList.Select(p => p.CreateTime.ToString("yyyy-MM-dd")).Distinct().OrderByDescending(p => p))
             {
-                //Ngàydướicủatất cả Hồ sơ
+                //Ngày dưới của tất cả Hồ sơ
                 var newId = Guid.NewGuid().ToString();
                 bool hasChildren = false;
 
@@ -195,7 +195,7 @@ namespace Newtouch.CIS.Web.Controllers
 
                 if (!hasChildren)
                 {
-                    continue;   //không Hồ sơcủakhông Hiển thị
+                    continue;   //không Hồ sơ của không Hiển thị
                 }
                 var ptreeItem = new TreeViewModel()
                 {
@@ -213,7 +213,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Đơn thuốc lịch sửcâychi tiết
+        /// Đơn thuốc lịch sử cây chi tiết
         /// </summary>
         /// <param name="cfId"></param>
         /// <returns></returns>
@@ -234,7 +234,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// TheocfIdhoặccfmxIdStr Tra cứuchi tiết
+        /// TheocfId hoặc cfmxIdStr Tra cứu chi tiết
         /// </summary>
         /// <param name="cflx"></param>
         /// <param name="cfId"></param>
@@ -247,7 +247,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Trích dẫn Điều trịxâynghị
+        /// Trích dẫn Điều trị xây nghị
         /// </summary>
         /// <returns></returns>
         public IActionResult AddKfjyForm()
@@ -256,7 +256,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// kéolấy Chờ khám bệnh Điều trịxâynghịdanh sách
+        /// kéo lấy Chờ khám bệnh Điều trị xây nghị danh sách
         /// </summary>
         /// <param name="brlx"></param>
         /// <param name="mzzyh"></param>
@@ -273,7 +273,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// hơn Tạo mớinghịcủachuyểnđổi Trạng thái
+        /// hơn Tạo mới nghị của chuyển đổi Trạng thái
         /// </summary>
         /// <param name="cvList"></param>
         /// <returns></returns>
@@ -284,11 +284,11 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Tần Hoàng Đảosổphiếugiao diện(nhắccung cấp cho HIS)
+        /// Tần Hoàng Đảo sổ phiếu giao diện(nhắc cung cấp cho HIS)
         /// </summary>
-        /// <param name="Opt">giao diện Loại:lấy Giá trị:zd(sổphiếu)</param>
-        /// <param name="Brwym">bệnh ngườiduy nhấtmộtmã(bệnh ngườiởHIStrongcủaduy nhấtmộtmã,khônglàmSPcủatham sốdùng,chỉlàmhạt nhânđốidùng)</param>
-        /// <param name="Zdlx">sổphiếu Loại:00:dònghìnhmã01:Thuốc02:Kiểm tra03:Xét nghiệm04:Điều trịkhôngtruyềnnàychữđoạnthì Quay lại Tất cảsổphiếu(Đơn thuốc,LIS,PACS,Điều trị)</param>
+        /// <param name="Opt">giao diện Loại:lấy Giá trị:zd(sổ phiếu)</param>
+        /// <param name="Brwym">bệnh người duy nhất một mã(bệnh người ởHIStrong của duy nhất một mã,không làmSP của tham số dùng,chỉ làm hạt nhân đối dùng)</param>
+        /// <param name="Zdlx">sổ phiếu Loại:00:dòng hình mã01:Thuốc02:Kiểm tra03:Xét nghiệm04:Điều trị không truyền này chữ đoạn thì Quay lại Tất cả sổ phiếu(Đơn thuốc,LIS,PACS,Điều trị)</param>
         /// <param name="Brxz">Tính chất bệnh nhân</param>
         /// <param name="startDate">Thời gian bắt đầu</param>
         /// <param name="endDate">Thời gian kết thúc</param>
@@ -335,7 +335,7 @@ namespace Newtouch.CIS.Web.Controllers
 
 		#region Vật tư
 		/// <summary>
-		/// mởlậpvật tư Mụcđôngkết Tồn kho Số lượng
+		/// mở lập vật tư Mục đông kết Tồn kho Số lượng
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult Sumwzdj(string[] cfh)
@@ -349,7 +349,7 @@ namespace Newtouch.CIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// mởlậpvật tư Mụcđôngkết Tồn kho Số lượng
+		/// mở lập vật tư Mục đông kết Tồn kho Số lượng
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult ZUOFwzdj(string cfh)
@@ -388,7 +388,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Bảo hiểm y tếđiện tử Đơn thuốc
+        /// Bảo hiểm y tế điện tử Đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <returns></returns>

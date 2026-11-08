@@ -308,15 +308,15 @@ namespace Newtouch.HIS.Web.Controllers
         /// <returns></returns>
         public IActionResult StockInventoryV2()
         {
-            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//Khoa dượccode
-            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//Tổ chứcid
+            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//Khoa dược code
+            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//Tổ chức id
             return View("StockInventoryIndex");
         }
 
         public IActionResult StockInventoryV3()
         {
-            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//Khoa dượccode
-            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//Tổ chứcid
+            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//Khoa dược code
+            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//Tổ chức id
             return View("StockInventoryIndexV2");
         }
 
@@ -327,15 +327,15 @@ namespace Newtouch.HIS.Web.Controllers
         /// <returns></returns>
         public IActionResult InventoryQuery()
         {
-            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//Khoa dượccode
-            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//Tổ chứcid
+            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//Khoa dược code
+            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//Tổ chức id
             return View();
         }
 
         public IActionResult InventoryQueryV2()
         {
-            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//Khoa dượccode
-            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//Tổ chứcid
+            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//Khoa dược code
+            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//Tổ chức id
             return View();
         }
 
@@ -345,15 +345,15 @@ namespace Newtouch.HIS.Web.Controllers
         /// <returns></returns>
         public IActionResult InventoryAction()
         {
-            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//Khoa dượccode
-            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//Tổ chứcid
+            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//Khoa dược code
+            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//Tổ chức id
             return View();
         }
 
         public IActionResult InventoryActionV2()
         {
-            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//Khoa dượccode
-            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//Tổ chứcid
+            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//Khoa dược code
+            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//Tổ chức id
             return View();
         }
 

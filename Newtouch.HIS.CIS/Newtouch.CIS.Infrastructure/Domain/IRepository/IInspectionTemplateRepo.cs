@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IInspectionTemplateRepo : IRepositoryBase<InspectionTemplateEntity>
     {
         /// <summary>
-        /// mẫudanh sách
+        /// mẫu danh sách
         /// </summary>
         /// <returns></returns>
         List<InspectionTemplateEntity> GetList(int type, string orgId);

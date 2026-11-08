@@ -21,7 +21,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
     public class HandlerAuthorizeAttribute : ActionFilterAttribute
     {
         /// <summary>
-        /// ứng dụng Id(trongconfigcấu hình AppId)
+        /// ứng dụng Id(trong config cấu hình AppId)
         /// </summary>
         public static string _appId { get; private set; }
 

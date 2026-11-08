@@ -6,12 +6,12 @@ using Newtouch.CIS.Repository;
 namespace Newtouch.Domain.IRepository.DeptStorageManage
 {
     /// <summary>
-    /// Tồn khokết chuyển
+    /// Tồn kho kết chuyển
     /// </summary>
     public interface IKcKcjzRepo : IRepositoryBase<KcKcjzEntity>
     {
         /// <summary>
-        /// Lấylịch sửkết chuyển Thời gian
+        /// Lấy lịch sử kết chuyển Thời gian
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -19,7 +19,7 @@ namespace Newtouch.Domain.IRepository.DeptStorageManage
         List<SelectVo> GetlsjzDateTime(string warehouseId, string organizeId);
 
         /// <summary>
-        /// Lấynhấtgầnmột lầnkết chuyểnthông tin
+        /// Lấy nhất gần một lần kết chuyển thông tin
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>

@@ -1,17 +1,17 @@
 namespace Newtouch.Domain.DTO.InputDto
 {
     /// <summary>
-    /// vàobántồn tại Thống kê Điều kiện tìm kiếm
+    /// vào bán tồn tại Thống kê Điều kiện tìm kiếm
     /// </summary>
     public class PsiStatisticsDTO
     {
         /// <summary>
-        /// Bắt đầukết chuyển Thời gian
+        /// Bắt đầu kết chuyển Thời gian
         /// </summary>
         public string ksjzsj { get; set; }
 
         /// <summary>
-        /// Kết thúckết chuyển Thời gian
+        /// Kết thúc kết chuyển Thời gian
         /// </summary>
         public string jsjzsj { get; set; }
 
@@ -21,7 +21,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public string wzzt { get; set; }
 
         /// <summary>
-        /// nhậpmã/Mã thuốc
+        /// nhập mã/Mã thuốc
         /// </summary>
         public string srm { get; set; }
 
@@ -31,12 +31,12 @@ namespace Newtouch.Domain.DTO.InputDto
         public string dl { get; set; }
 
         /// <summary>
-        /// khôngsaitỷ lệ
+        /// không sai tỷ lệ
         /// </summary>
         public string rate { get; set; }
 
         /// <summary>
-        /// Hiển thịkhôngvàobántồn tại Thuốc
+        /// Hiển thị không vào bán tồn tại Thuốc
         /// </summary>
         public string noPSI { get; set; }
     }

@@ -32,7 +32,7 @@ namespace Newtouch.Application.Implementation
 
         #region Báo hỏng báo thừa
         /// <summary>
-        /// Theolãi lỗ Loại Lấynguyên nhân lãi lỗ
+        /// Theo lãi lỗ Loại Lấy nguyên nhân lãi lỗ
         /// </summary>
         /// <param name="sylx"></param>
         /// <returns></returns>
@@ -42,7 +42,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// Tra cứulãi lỗ Thuốclist
+        /// Tra cứu lãi lỗ Thuốc list
         /// </summary>
         /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>
@@ -53,13 +53,13 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// Gửi Báo hỏngbáo thừa
+        /// Gửi Báo hỏng báo thừa
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>
         public string SubmitReportLossAndProfit(SysMedicineProfitLossEntity[] syxx)
         {
-            if (syxx == null || syxx.Length <= 0) return "lãi lỗchi tiếtkhông thểđể trống";
+            if (syxx == null || syxx.Length <= 0) return "lãi lỗ chi tiết không thể để trống";
             var errorMsg = "";
             var cts = new CancellationTokenSource();
             try
@@ -104,7 +104,7 @@ namespace Newtouch.Application.Implementation
 
         #region Báo hỏng báo thừa Tra cứu
         /// <summary>
-        /// Báo hỏngbáo thừa Tra cứu
+        /// Báo hỏng báo thừa Tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -125,7 +125,7 @@ namespace Newtouch.Application.Implementation
         /// <param name="endTime">Thời gian kết thúc</param>
         /// <param name="syyy">nguyên nhân lãi lỗ</param>
         /// <param name="inputCode">Từ khóa</param>
-        /// <param name="syqk">lãi lỗtình hình</param>
+        /// <param name="syqk">lãi lỗ tình hình</param>
         /// <returns></returns>
         public LossAndProditInfoJeVo ComputePjzeAndLjze(string startTime, string endTime, string syyy, string inputCode, int syqk)
         {
@@ -133,7 +133,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// Báo hỏngbáo thừa Lưu
+        /// Báo hỏng báo thừa Lưu
         /// </summary>
         /// <param name="profitLossEntityList"></param>
         //public void SaveReportLossAndProfit(List<SysMedicineProfitLossEntity> profitLossEntityList)
@@ -142,13 +142,13 @@ namespace Newtouch.Application.Implementation
         //    {
         //        int kcsl = 0;
         //        decimal jj = 0;
-        //        //1.trarakcslvàjj
+        //        //1.tra ra kcsl và jj
         //        _medicineDmnService.SelectKcslAndJj(item.Ypdm, item.Ph, item.pc, item.Yxq, out kcsl, out jj);
         //        if (item.Sysl <= 0)  //Báo hỏng
         //        {
         //            if (kcsl + item.Sysl >= 0)
         //            {
-        //                //Lưu(update Tồn kho insertlãi lỗbảng)
+        //                //Lưu(update Tồn kho insert lãi lỗ bảng)
         //                _medicineDmnService.SaveReportLossAndProfit(item, kcsl, jj);
         //            }
         //            else
@@ -158,7 +158,7 @@ namespace Newtouch.Application.Implementation
         //        }
         //        else  //báo thừa
         //        {
-        //            //Lưu(update Tồn kho insertlãi lỗbảng)
+        //            //Lưu(update Tồn kho insert lãi lỗ bảng)
         //            _medicineDmnService.SaveReportLossAndProfit(item, kcsl, jj);
         //        }
         //    }

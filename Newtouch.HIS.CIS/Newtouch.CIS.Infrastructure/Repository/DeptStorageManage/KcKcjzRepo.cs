@@ -13,7 +13,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// Tồn khokết chuyển
+    /// Tồn kho kết chuyển
     /// </summary>
     public class KcKcjzRepo : RepositoryBase<KcKcjzEntity>, IKcKcjzRepo
     {
@@ -22,7 +22,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// Lấylịch sửkết chuyển Thời gian
+        /// Lấy lịch sử kết chuyển Thời gian
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -49,7 +49,7 @@ namespace Newtouch.Herp.Repository
             {
                 result.Add(new SelectVo
                 {
-                    text = "Vui lòng chọnlịch sửkết chuyển",
+                    text = "Vui lòng chọn lịch sử kết chuyển",
                     value = ""
                 });
             }
@@ -57,7 +57,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// Lấynhấtgầnmột lầnkết chuyểnthông tin
+        /// Lấy nhất gần một lần kết chuyển thông tin
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>

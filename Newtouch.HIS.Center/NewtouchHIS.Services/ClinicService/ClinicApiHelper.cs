@@ -32,7 +32,7 @@ namespace NewtouchHIS.Services
         public static Dictionary<string, string> HeaderItems(string? token)
         {
             string cacheTokenKey = RedisKey.TokenOfOhClinic;
-            //Truyền vàotoken không rỗng thì đặt lạitoken Cache
+            //Truyền vào token không rỗng thì đặt lại token Cache
             if (!string.IsNullOrWhiteSpace(token))
             {
                 RedisHelper.SetString(cacheTokenKey, token);

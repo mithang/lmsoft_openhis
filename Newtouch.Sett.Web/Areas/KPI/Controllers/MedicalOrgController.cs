@@ -174,7 +174,7 @@ namespace Newtouch.Sett.Web.Areas.KPI.Controllers
         }
 
         /// <summary>
-        /// nêunộpy tếđiều trịmáycơ quannêuthànhphốiđặt
+        /// nêu nộp y tế điều trị máy cơ quan nêu thành phối đặt
         /// </summary>
         /// <param name="entity"></param>
         public IActionResult SubmitMedicalOrgPSConfig(MedicalOrgMonthProfitShareConfigEntity entity, string keyValue)

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.Sett.Web.Controllers
 {
     /// <summary>
-    /// hệthốngsaisai bạntốtthểkiểm
+    /// hệ thống sai sai bạn tốt thể kiểm
     /// </summary>
     public class ErrorController : Controller
     {

@@ -7,7 +7,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     /// </summary>
     public class DepartmentMedicineVO
     {
-        #region Thuốc hệ thốngxt_yp
+        #region Thuốc hệ thống xt_yp
         /// <summary>
         /// Loại thuốc
         /// </summary>
@@ -108,7 +108,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public decimal kl { get; set; }
         #endregion
 
-        #region Thuộc tính thuốcxt_ypsx
+        #region Thuộc tính thuốc xt_ypsx
         /// <summary>
         /// Số văn bản phê duyệt
         /// </summary>

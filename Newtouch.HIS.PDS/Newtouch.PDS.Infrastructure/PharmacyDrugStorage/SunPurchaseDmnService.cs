@@ -155,7 +155,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     // Gọi nền tảng mua hàng SunshineWebService Giao diện
                     AppLogger.Info("============= " + sXxlx + " ============= ");
                     AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                    AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
+                    AppLogger.Info("Gọi yêu cầu giao dịch mua hàng url: " + responsexml);
                     YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                     var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
                     AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
@@ -231,7 +231,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                 // Gọi nền tảng mua hàng SunshineWebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
+                AppLogger.Info("Gọi yêu cầu giao dịch mua hàng url: " + responsexml);
                 YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                 var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
                 AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
@@ -314,7 +314,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                 // Gọi nền tảng mua hàng SunshineWebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
+                AppLogger.Info("Gọi yêu cầu giao dịch mua hàng url: " + responsexml);
                 YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                 var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
                 AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
@@ -383,7 +383,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                 // Gọi nền tảng mua hàng SunshineWebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
+                AppLogger.Info("Gọi yêu cầu giao dịch mua hàng url: " + responsexml);
                 YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                 var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
                 AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
@@ -459,7 +459,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     // Gọi nền tảng mua hàng SunshineWebService Giao diện
                     AppLogger.Info("============= " + sXxlx + " ============= ");
                     AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                    AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
+                    AppLogger.Info("Gọi yêu cầu giao dịch mua hàng url: " + responsexml);
                     YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                     var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
                     AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
@@ -527,7 +527,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     // Gọi nền tảng mua hàng SunshineWebService Giao diện
                     AppLogger.Info("============= " + sXxlx + " ============= ");
                     AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                    AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
+                    AppLogger.Info("Gọi yêu cầu giao dịch mua hàng url: " + responsexml);
                     YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                     var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
                     AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
@@ -638,7 +638,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     // Gọi nền tảng mua hàng SunshineWebService Giao diện
                     AppLogger.Info("============= " + sXxlx + " ============= ");
                     AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                    AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
+                    AppLogger.Info("Gọi yêu cầu giao dịch mua hàng url: " + responsexml);
                     YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                     var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
                     AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
@@ -706,7 +706,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     // Gọi nền tảng mua hàng SunshineWebService Giao diện
                     AppLogger.Info("============= " + sXxlx + " ============= ");
                     AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                    AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
+                    AppLogger.Info("Gọi yêu cầu giao dịch mua hàng url: " + responsexml);
                     YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                     var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
                     AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
@@ -808,7 +808,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     // Gọi nền tảng mua hàng SunshineWebService Giao diện
                     AppLogger.Info("============= " + sXxlx + " ============= ");
                     AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                    AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
+                    AppLogger.Info("Gọi yêu cầu giao dịch mua hàng url: " + responsexml);
                     YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                     var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
                     AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
@@ -865,7 +865,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                 // Gọi nền tảng mua hàng SunshineWebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
+                AppLogger.Info("Gọi yêu cầu giao dịch mua hàng url: " + responsexml);
                 YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                 var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
                 AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);

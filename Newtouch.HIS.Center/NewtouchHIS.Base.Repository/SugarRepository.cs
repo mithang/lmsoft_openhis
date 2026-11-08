@@ -11,7 +11,7 @@ namespace NewtouchHIS.Base.Repository
     /// </summary>
     public class SugarRepository<TEntity> : SimpleClient<TEntity> where TEntity : class, new()
     {
-        protected ITenant dbTran => SqlSugarDbContext.Db;//Transaction đa tenant,GetConnection,IsAnyConnectionvà các chức năng
+        protected ITenant dbTran => SqlSugarDbContext.Db;//Transaction đa tenant,GetConnection,IsAnyConnection và các chức năng
         public SugarRepository()
         {
             //Mẫu singleton
@@ -43,7 +43,7 @@ namespace NewtouchHIS.Base.Repository
         public async Task<long> Add<T>(T model) where T : class, new()
         {
             var i = await Task.Run(() => Context.Insertable<T>(model).ExecuteCommand());
-            //trả vềi Cólong Loại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
+            //trả vềi Có long Loại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
             return i;
         }
         /// <summary>
@@ -55,12 +55,12 @@ namespace NewtouchHIS.Base.Repository
         public async Task<long> Delete<T>(T model) where T : class, new()
         {
             var i = await Task.Run(() => Context.Deleteable<T>(model).ExecuteCommand());
-            //trả vềi Cólong Loại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
+            //trả vềi Có long Loại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
             return i;
         }
         public async Task<bool> Update<T>(T model) where T : class, new()
         {
-            //Cách này sẽ lấy Khóa chínhlàm điều kiện
+            //Cách này sẽ lấy Khóa chính làm điều kiện
             var i = await Task.Run(() => Context.Updateable<T>(model).ExecuteCommand());
             return i > 0;
         }
@@ -74,13 +74,13 @@ namespace NewtouchHIS.Base.Repository
         public async Task<long> Add(TEntity model)
         {
             var i = await Task.Run(() => Context.Insertable(model).ExecuteCommand());
-            //trả vềi Cólong Loại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
+            //trả vềi Có long Loại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
             return i;
         }
         public async Task<long> AddRange(List<TEntity> model)
         {
             var i = await Task.Run(() => Context.Insertable(model).ExecuteCommand());
-            //trả vềi Cólong Loại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
+            //trả vềi Có long Loại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
             return i;
         }
         /// <summary>
@@ -112,7 +112,7 @@ namespace NewtouchHIS.Base.Repository
         /// <returns></returns>
         public async Task<bool> Update(TEntity model)
         {
-            //Cách này sẽ lấy Khóa chínhlàm điều kiện
+            //Cách này sẽ lấy Khóa chính làm điều kiện
             var i = await Task.Run(() => Context.Updateable(model).ExecuteCommand());
             return i > 0;
         }
@@ -123,7 +123,7 @@ namespace NewtouchHIS.Base.Repository
         /// <returns></returns>
         public async Task<bool> UpdateRange(List<TEntity> model)
         {
-            //Cách này sẽ lấy Khóa chínhlàm điều kiện
+            //Cách này sẽ lấy Khóa chính làm điều kiện
             var i = await Task.Run(() => Context.Updateable(model).ExecuteCommand());
             return i > 0;
         }
@@ -200,13 +200,13 @@ namespace NewtouchHIS.Base.Repository
         /// <returns></returns>
         public async Task<TEntity> GetFirstOrDefault(Expression<Func<TEntity, bool>> where)
         {
-            return await Context.Queryable<TEntity>().FirstAsync(where);//Truy vấn một bản ghi, không có dữ liệu thì trả về NULL, Singlevượt quá1bản ghi sẽ báo lỗi,Firstsẽ không
+            return await Context.Queryable<TEntity>().FirstAsync(where);//Truy vấn một bản ghi, không có dữ liệu thì trả về NULL, Single vượt quá1bản ghi sẽ báo lỗi,First sẽ không
         }
 
         /// <summary>
         /// Theo Khóa chính In  Truy vấn
         /// </summary>
-        /// <typeparam name="S">Khóa chínhkiểu</typeparam>
+        /// <typeparam name="S">Khóa chính kiểu</typeparam>
         /// <param name="list">Khóa chính In Tập kết quả của thao tác</param>
         /// <returns></returns>
         public async Task<List<TEntity>> GetByIn<S>(List<S> list, bool isOrderBy = false, Expression<Func<TEntity, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
@@ -230,7 +230,7 @@ namespace NewtouchHIS.Base.Repository
         /// Theo cột chỉ định Not In (!Contain)Truy vấn
         /// </summary>
         /// <typeparam name="S">Kiểu cột chỉ định</typeparam>
-        /// <param name="list">Not Intập kết quả</param>
+        /// <param name="list">Not In tập kết quả</param>
         /// <param name="field">Cột chỉ định</param>
         /// <returns></returns>
         public async Task<List<TEntity>> GetByNotIn<S>(List<S> list, object field, bool isOrderBy = false, Expression<Func<TEntity, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
@@ -288,7 +288,7 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// Truy vấn Giá trị của cột chỉ định tại startđếnend dữ liệu trong khoảng
+        /// Truy vấn Giá trị của cột chỉ định tại start đến end dữ liệu trong khoảng
         /// </summary>
         /// <param name="value">Lớp chỉ định</param>
         /// <param name="start">Bắt đầu</param>
@@ -351,9 +351,9 @@ namespace NewtouchHIS.Base.Repository
        
 
         /// <summary>
-        /// Thực thi truy vấnsqlcâu lệnh ,Trả về tập dữ liệu
+        /// Thực thi truy vấn sql câu lệnh ,Trả về tập dữ liệu
         /// </summary>
-        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="sql">sql câu lệnh</param>
         /// <returns></returns>
         public async Task<List<TEntity>> GetListBySql(string sql)
         {
@@ -362,9 +362,9 @@ namespace NewtouchHIS.Base.Repository
 
         #region Ado 
         /// <summary>
-        /// Thực thi câu lệnh không truy vấnsqlcâu lệnh,trả về thao tác có thành công hay không
+        /// Thực thi câu lệnh không truy vấn sql câu lệnh,trả về thao tác có thành công hay không
         /// </summary>
-        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="sql">sql câu lệnh</param>
         /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public async Task<bool> ExecuteCommandSql(string sql, params SugarParameter[] parameters)
@@ -373,9 +373,9 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// Thực thi truy vấnsqlcâu lệnh,Trả về tập kết quả truy vấn
+        /// Thực thi truy vấn sql câu lệnh,Trả về tập kết quả truy vấn
         /// </summary>
-        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="sql">sql câu lệnh</param>
         /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public async Task<List<TEntity>> GetListBySqlQuery(string sql, params SugarParameter[] parameters)
@@ -384,9 +384,9 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// Thực thi truy vấnsqlcâu lệnh,Trả về Hàng đầu tiên, cột đầu tiên
+        /// Thực thi truy vấn sql câu lệnh,Trả về Hàng đầu tiên, cột đầu tiên
         /// </summary>
-        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="sql">sql câu lệnh</param>
         /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public async Task<object> GetScalar(string sql, params SugarParameter[] parameters)
@@ -410,7 +410,7 @@ namespace NewtouchHIS.Base.Repository
         public async Task<long> AddWithAttr<T>(T model) where T : class, new()
         {
             var i = await Task.Run(() => dbTran.GetConnectionScopeWithAttr<T>().Insertable(model).ExecuteCommand());
-            //trả vềi Cólong Loại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
+            //trả vềi Có long Loại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
             return i;
         }
 
@@ -421,7 +421,7 @@ namespace NewtouchHIS.Base.Repository
         /// <returns></returns>
         public async Task<bool> UpdateWithAttr<T>(T model) where T : class, new()
         {
-            //Cách này sẽ lấy Khóa chínhlàm điều kiện
+            //Cách này sẽ lấy Khóa chính làm điều kiện
             var i = await Task.Run(() => dbTran.GetConnectionScopeWithAttr<T>().Updateable(model).ExecuteCommand());
             return i > 0;
         }
@@ -483,7 +483,7 @@ namespace NewtouchHIS.Base.Repository
         /// <returns></returns>
         public async Task<T> GetFirstOrDefaultWithAttr<T>(Expression<Func<T, bool>> where)
         {
-            return await dbTran.GetConnectionScopeWithAttr<T>().Queryable<T>().Where(where).FirstAsync();//Truy vấn một bản ghi, không có dữ liệu thì trả về NULL, Singlevượt quá1bản ghi sẽ báo lỗi,Firstsẽ không
+            return await dbTran.GetConnectionScopeWithAttr<T>().Queryable<T>().Where(where).FirstAsync();//Truy vấn một bản ghi, không có dữ liệu thì trả về NULL, Single vượt quá1bản ghi sẽ báo lỗi,First sẽ không
         }
         /// <summary>
         ///  Theo điều kiện Truy vấn(Theo T của Db Truy vấn theo đặc tính)
@@ -552,9 +552,9 @@ namespace NewtouchHIS.Base.Repository
 
         #region Ado Không khuyên dùng
         /// <summary>
-        /// Thực thi câu lệnh không truy vấnsqlcâu lệnh,trả về thao tác có thành công hay không(choose db)
+        /// Thực thi câu lệnh không truy vấn sql câu lệnh,trả về thao tác có thành công hay không(choose db)
         /// </summary>
-        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="sql">sql câu lệnh</param>
         /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public async Task<bool> ExecuteCommandSql(string db, string sql, params SugarParameter[] parameters)
@@ -563,9 +563,9 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// Thực thi truy vấnsqlcâu lệnh,Trả về tập kết quả truy vấn(choose db)
+        /// Thực thi truy vấn sql câu lệnh,Trả về tập kết quả truy vấn(choose db)
         /// </summary>
-        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="sql">sql câu lệnh</param>
         /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public async Task<List<T>> GetListBySqlQuery<T>(string db, string sql, List<DbParameter> parameters)
@@ -579,9 +579,9 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// Thực thi truy vấnsqlcâu lệnh,Trả về Hàng đầu tiên, cột đầu tiên(choose db)
+        /// Thực thi truy vấn sql câu lệnh,Trả về Hàng đầu tiên, cột đầu tiên(choose db)
         /// </summary>
-        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="sql">sql câu lệnh</param>
         /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public async Task<object> GetScalar(string db, string sql, params SugarParameter[] parameters)

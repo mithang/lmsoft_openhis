@@ -2,18 +2,18 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO
 {
     /// <summary>
-    /// đầuvănmục
+    /// đầu văn mục
     /// </summary>
     public class Header
     {
         /// <summary>
-        /// gửiứngdùngtrìnhthứ tự,chỉđịnhlà:PLAT
+        /// gửi ứng dùng trình thứ tự,chỉ định là:PLAT
         /// bắt buộc
         /// </summary>
         public string sender { get; set; }
 
         /// <summary>
-        /// nhậnthuứngdùngtrìnhthứ tự,chỉđịnhlà:HIS,EMR,AE,HEAL,CBS,RC,RT,K
+        /// nhận thu ứng dùng trình thứ tự,chỉ định là:HIS,EMR,AE,HEAL,CBS,RC,RT,K
         /// bắt buộc
         /// </summary>
         public string receiver { get; set; }
@@ -25,13 +25,13 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO
         public string sendTime { get; set; }
 
         /// <summary>
-        /// hủytin Loại:TCM_ PLAT _06
+        /// hủy tin Loại:TCM_ PLAT _06
         /// bắt buộc
         /// </summary>
         public string msgType { get; set; }
 
         /// <summary>
-        /// hủytin ID(ứngdùngtrìnhthứ tự Mã+Thời gian gửi) ,nếu:PLAT20170606020202
+        /// hủy tin ID(ứng dùng trình thứ tự Mã+Thời gian gửi) ,nếu:PLAT20170606020202
         /// bắt buộc
         /// </summary>
         public string msgID { get; set; }

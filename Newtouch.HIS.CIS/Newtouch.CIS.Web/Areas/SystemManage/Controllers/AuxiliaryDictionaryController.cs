@@ -29,7 +29,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
         // GET: AuxiliaryDictionary
 
-        //Tổ chức(yviện) từ điển dướikéo Nguồn dữ liệu
+        //Tổ chức(y viện) từ điển dưới kéo Nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public IActionResult GetTreeSelectJson(string treeidFieldName = "Code")
@@ -60,7 +60,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lấytừ điểndanh sách
+        /// Lấy từ điển danh sách
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -89,7 +89,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Khi sửa thông tin,thông tinmangđếnmớitrangmặt
+        /// Khi sửa thông tin,thông tin mang đến mới trang mặt
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

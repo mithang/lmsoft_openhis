@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.CIS.APIRequest.Dto
 {
     /// <summary>
-    /// Ngoại trúđăng ký khám Xếp lịchyêu cầubáovăn
+    /// Ngoại trú đăng ký khám Xếp lịch yêu cầu báo văn
     /// </summary>
     public class SysBespeakRegisterQueryRequestDTO : RequestBase
     {
@@ -26,7 +26,7 @@ namespace Newtouch.CIS.APIRequest.Dto
         public DateTime regDate { get; set; }
 
         /// <summary>
-        /// gđăng ký khámkhiđoạn
+        /// gđăng ký khám khi đoạn
         /// </summary>
         public string regTime { get; set; }
     }

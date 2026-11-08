@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// Đăng nhập Người dùng,hiện tại Khoa dượcthông tin
+    /// Đăng nhập Người dùng,hiện tại Khoa dược thông tin
     /// </summary>
     public class LoginUserCurrentYfbmModel
     {
@@ -17,22 +17,22 @@ namespace Newtouch.Infrastructure
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// Khoa dượccấploại(1cấp Kho thuốc,2cấp Nhà thuốc)
+        /// Khoa dược cấp loại(1cấp Kho thuốc,2cấp Nhà thuốc)
         /// </summary>
         public string yfbmjb { get; set; }
 
         /// <summary>
-        /// hiện tại Đăng nhậpthânphần của Khoa dược:0Kho thuốc;1Ngoại trú Nhà thuốc;2Nhập viện Nhà thuốc   Kho thuốctrực tiếpthông quayjbmjbkiểm trathì có thểlấyđã
+        /// hiện tại Đăng nhập thân phần của Khoa dược:0Kho thuốc;1Ngoại trú Nhà thuốc;2Nhập viện Nhà thuốc   Kho thuốc trực tiếp thông qua yjbmjb kiểm tra thì có thể lấy đã
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// Cấp trên Kho thuốc Code List(Nhà thuốccó thểtới Mục tiêu Kho thuốcđăng kýlĩnh)
+        /// Cấp trên Kho thuốc Code List(Nhà thuốc có thể tới Mục tiêu Kho thuốc đăng ký lĩnh)
         /// </summary>
         public IList<string> TheUpperYfbmCodeList { get; set; }
 
         /// <summary>
-        /// dướicấp Nhà thuốc Code List(Kho thuốccó thểtới Mục tiêu Nhà thuốcphát thuốc)
+        /// dưới cấp Nhà thuốc Code List(Kho thuốc có thể tới Mục tiêu Nhà thuốc phát thuốc)
         /// </summary>
         public IList<string> TheLowerYfbmCodeList { get; set; }
 

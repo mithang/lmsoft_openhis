@@ -13,20 +13,20 @@ namespace Newtouch.Domain.IDomainServices
     public interface IInpatientPatientDmnService
     {
         /// <summary>
-        /// Lấyở Khu bệnhcủabệnh nhânđối tượngtậphợp
+        /// Lấy ở Khu bệnh của bệnh nhân đối tượng tập hợp
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         List<PatientzbqResponseDto> GetzbqPatientList(PatientzbqRequestDto req, string OrganizeId);
         /// <summary>
-        /// Lấyđãra khỏi khucủabệnh nhânđối tượngtậphợp
+        /// Lấy đã ra khỏi khu của bệnh nhân đối tượng tập hợp
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         List<PatientycqResponseDto> GetycqPatientList(PatientycqRequestDto req, string OrganizeId);
 
         /// <summary>
-        /// Nhập việnbệnh nhân Lọc
+        /// Nhập viện bệnh nhân Lọc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="bq"></param>
@@ -37,7 +37,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<InPatientPatientSearchVO> GetInPatSearchPaginationList(Pagination pagination, string orgId, string bq, string zyh, string xm, string ch, string bqCode,string zybz = null);
 
         /// <summary>
-        /// Số nhập viện,Họ tên,Số thẻ Lấybệnh nhân Thông tin cơ bản Họ tên,Giới tính,Tuổi,bệnh nhân Tính chất,Ngày nhập viện
+        /// Số nhập viện,Họ tên,Số thẻ Lấy bệnh nhân Thông tin cơ bản Họ tên,Giới tính,Tuổi,bệnh nhân Tính chất,Ngày nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -45,7 +45,7 @@ namespace Newtouch.Domain.IDomainServices
         List<patientInfoDto> GetInfoBykeyword(string keyword, string orgId);
 
         /// <summary>
-        /// Số nhập viện Lấybệnh nhân Thông tin cơ bản Họ tên,Giới tính,Tuổi,bệnh nhân Tính chất
+        /// Số nhập viện Lấy bệnh nhân Thông tin cơ bản Họ tên,Giới tính,Tuổi,bệnh nhân Tính chất
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -53,7 +53,7 @@ namespace Newtouch.Domain.IDomainServices
         patientInfoDto GetInfoByZyh(string zyh, string orgId);
 
         /// <summary>
-        /// Nhập việnbệnh nhân Lọc
+        /// Nhập viện bệnh nhân Lọc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="bq"></param>
@@ -64,7 +64,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<InPatientNursingInputVO> GetInPatSearchList(string orgId, string bq, DateTime rq, string sj, string zyh, string zybz = null);
         IList<InpWardPatTreeVO> GetPatTree(string orgId, string zyzt, string keyword);
         /// <summary>
-        /// Nhập việnnhiềubệnh nhânđiều dưỡngnhập
+        /// Nhập viện nhiều bệnh nhân điều dưỡng nhập
         /// </summary>
         /// <param name="entity"></param>
         void submitmutiple(List<InpatientVitalSignsEntity> entity, string orgId, int? sjd, DateTime rq,string flag);
@@ -73,7 +73,7 @@ namespace Newtouch.Domain.IDomainServices
         InpWardPatTreeVO GetPatList(string orgId, string zyh);
 
         /// <summary>
-        /// Y lệnh Quản lýtrongcủa Chi phí Nút Tra cứu
+        /// Y lệnh Quản lý trong của Chi phí Nút Tra cứu
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

@@ -2,7 +2,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO
 {
     /// <summary>
-    /// hưởngứngthểkếtnếu
+    /// hưởng ứng thể kết nếu
     /// </summary>
     public class Result
     {
@@ -13,7 +13,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO
         public string code { get; set; }
 
         /// <summary>
-        /// thành công;thất bại(Bổ sungthất bạinguyên nhân Mô tả)
+        /// thành công;thất bại(Bổ sung thất bại nguyên nhân Mô tả)
         /// bắt buộc
         /// </summary>
         public string desc  {get; set; }

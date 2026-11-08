@@ -281,7 +281,7 @@ namespace Newtouch.DomainServices.Inpatient
         /// <summary>
         /// phút trang Lấy thực thể nội dung Theo dòng mục Tra cứu
         /// </summary>
-        /// <param name="pagination">phúttrang</param>
+        /// <param name="pagination">phút trang</param>
         /// <param name="keyword">Từ khóa</param>
         /// <param name="ksrq">Ngày bắt đầu</param>
         /// <param name="jsrq">Ngày kết thúc</param>
@@ -471,7 +471,7 @@ FROM    dbo.zy_brxxk zyxx
 
         }
 
-        #region mượndùngthaygiao diện
+        #region mượn dùng thay giao diện
         public string ChangeBed(patBedRequestDto reqDto)
         {
             using (var db = new EFDbTransaction().BeginTrans())
@@ -579,7 +579,7 @@ FROM    dbo.zy_brxxk zyxx
             }
         }
         /// <summary>
-        /// vàokhu
+        /// vào khu
         /// </summary>
         /// <param name="inareaReq"></param>
         /// <returns></returns>
@@ -646,7 +646,7 @@ FROM    dbo.zy_brxxk zyxx
                         }
                         if (isNew)
                         {
-                            #region ChènThông tin bệnh nhânbảng
+                            #region ChènThông tin bệnh nhân bảng
 
                             var patInfoEntity = new InpatientPatientInfoEntity
                             {
@@ -731,7 +731,7 @@ FROM    dbo.zy_brxxk zyxx
                         }
                         #endregion
 
-                        #region Chèngiường ký tựsử dụngghi chépbảng
+                        #region Chèn giường ký tự sử dụng ghi chép bảng
                         var patBedSyInfo = GetBedInfo(inareaReq.cwCode, inareaReq.OrganizeId,inareaReq.bq);
                         var bedEntity = new InpatientBedUseRecordEntity
                         {
@@ -894,7 +894,7 @@ FROM    dbo.zy_brxxk zyxx
                     }
                     #endregion
 
-                    #region Chèngiường ký tựsử dụngghi chép
+                    #region Chèn giường ký tự sử dụng ghi chép
                     InpatientBedUseRecordEntity bedEntity = new InpatientBedUseRecordEntity();
                     bedEntity.Id = Guid.NewGuid().ToString();
                     bedEntity.OrganizeId = patBedSyInfo.OrganizeId;
@@ -1378,7 +1378,7 @@ FROM    dbo.zy_brxxk zyxx
                     }
                     #endregion
 
-                    #region Chèngiường ký tựsử dụngghi chép
+                    #region Chèn giường ký tự sử dụng ghi chép
                     InpatientBedUseRecordEntity bedEntity = new InpatientBedUseRecordEntity();
                     bedEntity.Id = Guid.NewGuid().ToString();
                     bedEntity.OrganizeId = patBedSyInfo.OrganizeId;
@@ -1490,7 +1490,7 @@ FROM    dbo.zy_brxxk zyxx
                         }
                         if (isNew)
                         {
-                            #region ChènThông tin bệnh nhânbảng
+                            #region ChènThông tin bệnh nhân bảng
 
                             var patInfoEntity = new InpatientPatientInfoEntity
                             {
@@ -1582,7 +1582,7 @@ FROM    dbo.zy_brxxk zyxx
                         }
                         #endregion
 
-                        #region Chèngiường ký tựsử dụngghi chépbảng
+                        #region Chèn giường ký tự sử dụng ghi chép bảng
                         var patBedSyInfo = GetBedInfo(inareaReq.cwCode, inareaReq.OrganizeId);
                         var bedEntity = new InpatientBedUseRecordEntity
                         {

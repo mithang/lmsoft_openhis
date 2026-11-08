@@ -7,13 +7,13 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.IRepository
 {
     /// <summary>
-    /// đặt hẹnđăng ký khám
+    /// đặt hẹn đăng ký khám
     /// </summary>
     public interface ISysBespeakRegisterRepo : IRepositoryBase<SysBespeakRegisterEntity>
     {
 
         /// <summary>
-        /// Lấykhiđoạn
+        /// Lấy khi đoạn
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="regDate"></param>

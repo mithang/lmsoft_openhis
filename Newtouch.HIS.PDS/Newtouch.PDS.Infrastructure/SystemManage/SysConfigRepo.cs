@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Đạtcodevà mã tổ chức lấy thông tin cấu hình
+        /// Đạt code và mã tổ chức lấy thông tin cấu hình
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Đạtcodevà mã tổ chức lấy thông tin cấu hình
+        /// Đạt code và mã tổ chức lấy thông tin cấu hình
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>

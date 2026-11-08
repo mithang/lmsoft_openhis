@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage
         //bool YibaoUpload(int ypId, out string error);
 
         /// <summary>
-        /// Gắn thuốclist Tập hợp
+        /// Gắn thuốc list Tập hợp
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="pagination"></param>

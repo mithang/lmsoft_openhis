@@ -38,7 +38,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         // GET: TemplateManage/MRecordTemplate
 
         /// <summary>
-        /// Hồ sơmẫucây
+        /// Hồ sơ mẫu cây
         /// </summary>
         /// <returns></returns>
         public IActionResult GetTreeList(int mblx)
@@ -64,7 +64,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// Tra cứumẫuchi tiết
+        /// Tra cứu mẫu chi tiết
         /// </summary>
         /// <param name="mbId"></param>
         /// <returns></returns>

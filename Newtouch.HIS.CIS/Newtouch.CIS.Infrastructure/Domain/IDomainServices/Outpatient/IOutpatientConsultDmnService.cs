@@ -22,7 +22,7 @@ namespace Newtouch.Domain.IDomainServices.Outpatient
 		OutpatientConsultVO GetConsultnext(string orgid,string ghnm,string mzh);
 		int UpdataZSinsert(string mzh,string rygh,string orgid);
         /// <summary>
-        /// gọisố Sửa Trạng thái
+        /// gọi số Sửa Trạng thái
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="calledstu"></param>
@@ -30,7 +30,7 @@ namespace Newtouch.Domain.IDomainServices.Outpatient
         /// <returns></returns>
 		int UpdatePatient(string mzh,int calledstu, string orgid);
         /// <summary>
-        /// kiểm tragọisố Trạng thái
+        /// kiểm tra gọi số Trạng thái
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgid"></param>

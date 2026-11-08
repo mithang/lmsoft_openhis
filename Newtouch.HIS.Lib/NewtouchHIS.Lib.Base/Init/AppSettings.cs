@@ -79,7 +79,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         }
 
         /// <summary>
-        /// Lấy giá trị cấu hình kiểu Boolean mặc địnhfalse
+        /// Lấy giá trị cấu hình kiểu Boolean mặc định false
         /// </summary>
         /// <param name="key"></param>
         /// <param name="defaultValue"></param>
@@ -106,7 +106,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
             return Configuration[key];
         }
         /// <summary>
-        /// Lấy giá trị cấu hình kiểu Boolean mặc địnhfalse
+        /// Lấy giá trị cấu hình kiểu Boolean mặc định false
         /// </summary>
         /// <param name="key"></param>
         /// <param name="defaultValue"></param>

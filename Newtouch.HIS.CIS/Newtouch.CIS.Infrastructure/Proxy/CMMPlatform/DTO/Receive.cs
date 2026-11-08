@@ -2,7 +2,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO
 {
     /// <summary>
-    /// nhậnthuthông tinyêu cầuthể
+    /// nhận thu thông tin yêu cầu thể
     /// </summary>
     public class Receive
     {
@@ -13,7 +13,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO
         public string orgCode { get; set; }
 
         /// <summary>
-        /// Khám bệnhdòngchảysố
+        /// Khám bệnh dòng chảy số
         /// bắt buộc
         /// </summary>
         public string serialNo { get; set; }

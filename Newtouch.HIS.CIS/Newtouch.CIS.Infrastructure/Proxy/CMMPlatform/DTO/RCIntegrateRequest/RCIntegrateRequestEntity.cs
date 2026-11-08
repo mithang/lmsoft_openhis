@@ -2,12 +2,12 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.RCIntegrateRequest
 {
     /// <summary>
-    /// xatrìnhsẽkhámtậpthànhyêu cầuthể
+    /// xa trình sẽ khám tập thành yêu cầu thể
     /// </summary>
     public class RCIntegrateRequestEntity
     {
         /// <summary>
-        /// bìnhbàn Người dùngduy nhấtmột:Bác sĩ Đăng nhập Hệ thốngcủa Người dùngtên
+        /// bình bàn Người dùng duy nhất một:Bác sĩ Đăng nhập Hệ thống của Người dùng tên
         /// bắt buộc
         /// </summary>
         public string openid { get; set; }
@@ -19,13 +19,13 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.RCIntegrateRequest
         public string userName { get; set; }
 
         /// <summary>
-        /// bìnhbànbệnh nhân id
+        /// bình bàn bệnh nhân id
         /// bắt buộc
         /// </summary>
         public string patientId { get; set; }
 
         /// <summary>
-        /// bệnh nhân Khám bệnhdòngchảysố
+        /// bệnh nhân Khám bệnh dòng chảy số
         /// </summary>
         public string series { get; set; }
 
@@ -65,7 +65,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.RCIntegrateRequest
         public string patientType { get; set; }
 
         /// <summary>
-        /// Bảo hiểm y tếthẻ Số thẻhoặc Khám bệnhthẻ Số thẻ
+        /// Bảo hiểm y tế thẻ Số thẻ hoặc Khám bệnh thẻ Số thẻ
         /// </summary>
         public string cardId { get; set; }
 
@@ -76,13 +76,13 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.RCIntegrateRequest
         public string organCode { get; set; }
 
         /// <summary>
-        /// gọi pc đầuchỉđịnhmẫukhối:test
+        /// gọi pc đầu chỉ định mẫu khối:test
         /// bắt buộc
         /// </summary>
         public string m { get; set; }
 
         /// <summary>
-        /// gọi pc đầuchỉđịnhmẫukhốicủanào đócái Phương pháp:/eh.bus.web.cloud.wizard.Wizard
+        /// gọi pc đầu chỉ định mẫu khối của nào đó cái Phương pháp:/eh.bus.web.cloud.wizard.Wizard
         /// bắt buộc
         /// </summary>
         public string clz { get; set; }

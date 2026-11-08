@@ -3,7 +3,7 @@
 namespace NewtouchHIS.WebAPI.Manage.Models
 {
     /// <summary>
-    /// Tham và Cuộc họpngười Đăng ký Cuộc họp
+    /// Tham và Cuộc họp người Đăng ký Cuộc họp
     /// </summary>
     public class TreatedUserRequest
     {

@@ -1,7 +1,7 @@
 namespace Newtouch.Domain.ValueObjects.Storage
 {
     /// <summary>
-    /// vàobántồn tại Thống kê
+    /// vào bán tồn tại Thống kê
     /// </summary>
     public class VPsiStatisticsEntity
     {
@@ -31,7 +31,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string bmdwmc { get; set; }
 
         /// <summary>
-        /// kỳban đầu Số lượng,mang Đơn vị
+        /// kỳ ban đầu Số lượng,mang Đơn vị
         /// </summary>
         public string qcsl { get; set; }
 
@@ -56,32 +56,32 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string qmsl { get; set; }
 
         /// <summary>
-        /// kỳban đầutổng bán lẻ
+        /// kỳ ban đầu tổng bán lẻ
         /// </summary>
         public decimal qclsze { get; set; }
 
         /// <summary>
-        /// Nhập khotổng bán lẻ
+        /// Nhập kho tổng bán lẻ
         /// </summary>
         public decimal rklsze { get; set; }
 
         /// <summary>
-        /// Xuất khotổng bán lẻ
+        /// Xuất kho tổng bán lẻ
         /// </summary>
         public decimal cklsze { get; set; }
 
         /// <summary>
-        /// lãi lỗtổng bán lẻ
+        /// lãi lỗ tổng bán lẻ
         /// </summary>
         public decimal sylsze { get; set; }
 
         /// <summary>
-        /// cuối kỳtổng bán lẻ
+        /// cuối kỳ tổng bán lẻ
         /// </summary>
         public decimal qmlsze { get; set; }
 
         /// <summary>
-        /// gọigiálãi lỗtổng bán lẻ
+        /// gọi giá lãi lỗ tổng bán lẻ
         /// </summary>
         public decimal tjsyze { get; set; }
     }

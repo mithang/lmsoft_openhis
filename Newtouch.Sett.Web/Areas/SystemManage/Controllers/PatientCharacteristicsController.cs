@@ -60,7 +60,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// bệnhngườitínhchấtdướikéocây
+        /// bệnh người tính chất dưới kéo cây
         /// </summary>
         /// <returns></returns>
         public IActionResult GetTreeSelectJson()
@@ -70,7 +70,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             foreach (SysPatientNatureEntity item in data)
             {
                 TreeSelectModel treeModel = new TreeSelectModel();
-                treeModel.id = item.brxzbh.ToString();  //chọncủalà Id
+                treeModel.id = item.brxzbh.ToString();  //chọn của là Id
                 treeModel.text = item.brxzmc;
                 treeModel.parentId = item.ParentId == null ? null : item.ParentId.ToString();
                 treeList.Add(treeModel);

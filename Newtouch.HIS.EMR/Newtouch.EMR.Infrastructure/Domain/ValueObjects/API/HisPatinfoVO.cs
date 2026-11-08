@@ -15,7 +15,7 @@ namespace Newtouch.EMR.Domain.ValueObjects
         /// </summary>
         public Pagination pagination { get; set; }
         /// <summary>
-        /// Đồng bộhis Danh sách thông tin bệnh nhân
+        /// Đồng bộ his Danh sách thông tin bệnh nhân
         /// </summary>
         public List<HisPatinfoDto> List { get; set; }
     }

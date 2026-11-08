@@ -63,7 +63,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         }
 
         /// <summary>
-        /// Hóa đơn ngoại trú chờ thanh toánby Số ngoại trú
+        /// Hóa đơn ngoại trú chờ thanh toán by Số ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -100,7 +100,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// Thanh toán hóa đơnstep1:Tạo đơn hàng thanh toán
+        /// Thanh toán hóa đơn step1:Tạo đơn hàng thanh toán
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -121,7 +121,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         }
 
         /// <summary>
-        /// Thanh toán hóa đơnstep2:Đăng ký Khóa đơn hàng
+        /// Thanh toán hóa đơn step2:Đăng ký Khóa đơn hàng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -141,7 +141,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// Thanh toán hóa đơnstep3:Quyết toán đơn hàng
+        /// Thanh toán hóa đơn step3:Quyết toán đơn hàng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -156,7 +156,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// Thanh toán hóa đơnsteptest:Đẩy kiểm thử
+        /// Thanh toán hóa đơn steptest:Đẩy kiểm thử
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

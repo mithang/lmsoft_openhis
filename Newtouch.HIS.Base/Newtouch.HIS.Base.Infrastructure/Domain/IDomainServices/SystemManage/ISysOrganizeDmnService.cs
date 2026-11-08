@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<SysApplicationEntity> GetAuthedAppListByTopOrgId(string topOrgId);
 
         /// <summary>
-        /// Có chứa tổ chức cấp dưới không,Có tổ chức cấp dưới thì trả vềtrue
+        /// Có chứa tổ chức cấp dưới không,Có tổ chức cấp dưới thì trả về true
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

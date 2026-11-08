@@ -29,7 +29,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
         }
 
         /// <summary>
-        /// treosốthuphítratra cứu
+        /// treo số thu phí tra tra cứu
         /// </summary>
         /// <returns></returns>
         public IActionResult OutPatientChargeQuery()
@@ -37,7 +37,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
             return View();
         }
         /// <summary>
-        /// treosốthuphídònghạngtratra cứu
+        /// treo số thu phí dòng hạng tra tra cứu
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="fph"></param>
@@ -52,7 +52,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
             return Content(chargeQueryList.ToJson());
         }
         /// <summary>
-        /// treosốthuphítratra cứurõchi tiết
+        /// treo số thu phí tra tra cứu rõ chi tiết
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>

@@ -340,7 +340,7 @@ FROM(
         }
 
         /// <summary>
-        /// Lấy phút trang Y lệnh danh sáchby Y lệnh Tính chất/Dài hạn hoặc Tạm thời tạm không dùng
+        /// Lấy phút trang Y lệnh danh sách by Y lệnh Tính chất/Dài hạn hoặc Tạm thời tạm không dùng
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
@@ -1135,7 +1135,7 @@ group by productCode";
         }
         #endregion
 
-        #region hủytinnhắcnhắc
+        #region hủy tin nhắc nhắc
         public IList<SysMSGQueryVO> MSGQuery(string gh,string orgId)
         {
             var sql = string.Format(@" exec [Newtouch_CIS].[dbo].[MessageQuery] @gh=@gh,@orgId=@orgId ");

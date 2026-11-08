@@ -15,7 +15,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.DomainServices.DeptStorageManage
 {
     /// <summary>
-    /// Tồn khokết chuyển
+    /// Tồn kho kết chuyển
     /// </summary>
     public class KcKcjzDmnService : DmnServiceBase, IKcKcjzDmnService
     {
@@ -24,7 +24,7 @@ namespace Newtouch.DomainServices.DeptStorageManage
         }
 
         /// <summary>
-        /// Lấykết chuyểnchi tiết
+        /// Lấy kết chuyển chi tiết
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="jzsj"></param>
@@ -136,7 +136,7 @@ END CATCH
         }
 
         /// <summary>
-        /// vàobántồn tại Thống kê
+        /// vào bán tồn tại Thống kê
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="searchParam"></param>
