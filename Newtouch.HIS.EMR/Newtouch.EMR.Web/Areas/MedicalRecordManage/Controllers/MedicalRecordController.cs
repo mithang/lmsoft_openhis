@@ -2477,7 +2477,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             {//Tạo thư mục
                 Directory.CreateDirectory(fileUrl);
             }
-            string saveUrl = fileUrl + "/" + zyh + "病程记录合并_.xml";
+            string saveUrl = fileUrl + "/" + zyh + "BenhAnHopNhat_.xml";
 
             // Tạo một tài liệu đã hợp nhất
             XmlDocument result = new XmlDocument();
