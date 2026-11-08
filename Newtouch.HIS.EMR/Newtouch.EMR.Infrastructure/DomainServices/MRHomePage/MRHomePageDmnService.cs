@@ -184,11 +184,11 @@ FROM [Newtouch_EMR].[dbo].[V_HIS_InpPatInfoForBA] a
 left join NewtouchHIS_Sett..zy_brjbxx br on a.zyh=br.zyh and br.zt=1 and br.OrganizeId=@orgId
 left join NewtouchHIS_Base..xt_bq bq on bq.bqmc=a.RYBF and bq.zt=1 and bq.OrganizeId=@orgId
 left join NewtouchHIS_Base..Sys_Staff staff on br.doctor=staff.gh and staff.OrganizeId=@orgId and staff.zt=1
-left join Newtouch_CIS..zy_PatDocInfo zrys on a.ZYH=zrys.zyh and zrys.OrganizeId=@orgId and zrys.zt=1 and zrys.TypeName='主任医生'
-left join Newtouch_CIS..zy_PatDocInfo zz on a.ZYH=zz.zyh and zz.OrganizeId=@orgId and zrys.zt=1 and zz.TypeName='主诊医生'
-left join Newtouch_CIS..zy_PatDocInfo zzys on a.ZYH=zzys.zyh and zzys.OrganizeId=@orgId and zzys.zt=1 and zzys.TypeName='主治医生'
-left join Newtouch_CIS..zy_PatDocInfo zrhs on a.ZYH=zrhs.zyh and zrhs.OrganizeId=@orgId and zrhs.zt=1 and zrhs.TypeName='责任护士'
-left join Newtouch_CIS..zy_PatDocInfo zyys on a.ZYH=zyys.zyh and zyys.OrganizeId=@orgId and zyys.zt=1 and zyys.TypeName='住院医生'
+left join Newtouch_CIS..zy_PatDocInfo zrys on a.ZYH=zrys.zyh and zrys.OrganizeId=@orgId and zrys.zt=1 and zrys.TypeName='Bac si truong khoa'
+left join Newtouch_CIS..zy_PatDocInfo zz on a.ZYH=zz.zyh and zz.OrganizeId=@orgId and zrys.zt=1 and zz.TypeName='Bac si chinh'
+left join Newtouch_CIS..zy_PatDocInfo zzys on a.ZYH=zzys.zyh and zzys.OrganizeId=@orgId and zzys.zt=1 and zzys.TypeName='Bac si dieu tri'
+left join Newtouch_CIS..zy_PatDocInfo zrhs on a.ZYH=zrhs.zyh and zrhs.OrganizeId=@orgId and zrhs.zt=1 and zrhs.TypeName='Dieu duong chiu trach nhiem'
+left join Newtouch_CIS..zy_PatDocInfo zyys on a.ZYH=zyys.zyh and zyys.OrganizeId=@orgId and zyys.zt=1 and zyys.TypeName='Bac si noi tru'
 where a.organizeid=@orgId  and a.zyh=@zyh";
 
             BasyVO vo = this.FindList<BasyVO>(sql, new SugarParameter[] {
