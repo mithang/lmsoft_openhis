@@ -1,0 +1,55 @@
+@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+
+    //A6-NX31-001: view mới cho PDS theo mẫu CIS (không dùng chung view CIS/Herp —
+    //Razor resolve theo portal, AppId/namespace khác nhau; PDS dùng
+    //Newtouch.HIS.Domain.Entity.SysOrganizeVEntity + Newtouch.Infrastructure.Constants.AppId).
+    //Layout _Index.cshtml render @Html.AntiForgeryToken() nên token có sẵn cho POST SwithOrg.
+    //Có phải khi tải trang là bắt buộc phải chọn không Org
+    var mediOrgList = ViewBag.MediOrgList as IList<Newtouch.HIS.Domain.Entity.SysOrganizeVEntity>;
+}
+
+<ul class="list-group">
+    @for (var i = 0; mediOrgList != null && i < mediOrgList.Count; i++)
+    {
+        <li class="list-group-item" style="text-align: center;">
+            <a data-id="@mediOrgList[i].Id" style="width: 100%;display: block;cursor: pointer;">@(mediOrgList[i].Name)</a>
+        </li>
+    }
+</ul>
+
+<script type="text/javascript">
+    $('li.list-group-item a').click(function () {
+        var orgId = $(this).attr('data-id');
+
+        SwithOrg(orgId);
+    });
+
+    function SwithOrg(dstnOrgId) {
+        $.najax({
+            url: "/Home/SwithOrg",
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), dstnOrgId: dstnOrgId },
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                cookieRemove(); //phải cần chọn y tế Cơ sở
+
+                top.top.location.href = top.top.location.href;
+            }
+        });
+    }
+
+    function cookieRemove() {
+        var chooseOrgKey = "CookieKey_ChooseOrg";
+        var appId = '@(Newtouch.Infrastructure.Constants.AppId)';
+        if (appId) {
+            chooseOrgKey = appId + "_" + chooseOrgKey;
+        }
+        var chooseOrgVal = top.$.cookie(chooseOrgKey);
+        if (chooseOrgVal != null) {
+            //dùng xong lập remove
+            top.$.cookie(chooseOrgKey, '', { path: "/", expires: -1 });
+        }
+    }
+
+</script>

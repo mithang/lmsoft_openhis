@@ -95,6 +95,67 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
+        /// A6-NX31-001 (QUYẾT ĐỊNH BA/PM): PDS là portal duy nhất thiếu UserOrgChoose/
+        /// SwithOrg — base Framework (NewtouchHIS.Framework.Web) không có 2 action này,
+        /// Views/Home cũng không có UserOrgChoose.cshtml, Index.cshtml gọi
+        /// showSwitchOrgPrompt() nhưng không định nghĩa hàm đó (7 portal còn lại đều có
+        /// đủ 3 thứ). KHÔNG dùng chung view CIS/Herp: Razor resolve view theo portal,
+        /// mỗi portal có AppId/namespace riêng (CIS dùng Newtouch.Domain.Entity.
+        /// SysOrganizeVEntity + CIS.Compat AppId; Herp dùng HerpOrgItem riêng).
+        /// Tạo mới cho PDS theo đúng mẫu CIS đơn-org (NX30-CSRF-001): list 1 org,
+        /// tên đọc trực tiếp từ BaseDb (PDS không có ISysOrganizeDmnService.
+        /// GetMedicalOrganizeListByUserId — xem ghi chú SHELL-C trong Index()).
+        /// SwithOrgSuccessOprBeforeSave KHÔNG gọi ở đây: nó là hook của base nhị phân
+        /// FrameworkBase.MultiOrg đã mất (không action nào gọi nó nữa); mẫu đơn-org
+        /// chỉ success khi đổi về đúng org hiện tại nên không đổi yfbm. Khi nào làm
+        /// đa-org thật thì SwithOrg phải gọi lại hook này trước khi trả success.
+        /// </summary>
+        public IActionResult UserOrgChoose()
+        {
+            var opr = OperatorProvider.GetCurrent();
+            if (opr == null)
+            {
+                return Redirect("/Login/Index");
+            }
+            string orgId = opr.OrganizeId ?? "";
+            ViewBag.MediOrgList = new List<SysOrganizeVEntity>
+            {
+                new SysOrganizeVEntity { Id = orgId, Name = GetOrgName(orgId) }
+            };
+            return View();
+        }
+
+        /// <summary>
+        /// Đổi cơ sở y tế hiện tại. Triển khai đơn cơ sở (mẫu CIS NX30-CSRF-001):
+        /// chỉ chấp nhận đổi về đúng org hiện tại; org khác trả lỗi rõ ràng.
+        /// </summary>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SwithOrg(string dstnOrgId)
+        {
+            var opr = OperatorProvider.GetCurrent();
+            if (opr != null && string.Equals(dstnOrgId, opr.OrganizeId, StringComparison.OrdinalIgnoreCase))
+            {
+                return Content(new { state = "success" }.ToJson());
+            }
+            return Content(new { state = "error", message = "Chuyển đổi cơ sở y tế khác không khả dụng trong triển khai đơn cơ sở này." }.ToJson());
+        }
+
+        private static string GetOrgName(string orgId)
+        {
+            string orgName = orgId;
+            try
+            {
+                var name = SqlSugarDbContext.Db.GetConnection("BaseDb").Ado.GetString(
+                    "select top 1 Name from [NewtouchHIS_Base].[dbo].[Sys_Organize] with(nolock) where Id = @id",
+                    new SugarParameter("@id", orgId));
+                if (!string.IsNullOrWhiteSpace(name)) orgName = name;
+            }
+            catch { /* fall back to org id */ }
+            return orgName;
+        }
+
+        /// <summary>
         /// Người dùng chuyển nhà thuốc
         /// </summary>
         /// <returns></returns>

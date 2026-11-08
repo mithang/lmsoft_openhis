@@ -1020,56 +1020,140 @@ ORDER BY sfdl.px,sfdl.dlCode
         /// Thống kê nhập xuất tồn
         /// </summary>
         /// <param name="pagination"></param>
-        /// <param name="kszq"></param>
-        /// <param name="jszq"></param>
+        /// <param name="kszq">Tên kỳ bắt đầu (chỉ để hiển thị, proc không có tham số này).</param>
+        /// <param name="jszq">Tên kỳ kết thúc (chỉ để hiển thị, proc không có tham số này).</param>
         /// <param name="jsjzsj"></param>
-        /// <param name="inputCode"></param>
-        /// <param name="deptCode"></param>
-        /// <param name="drugType"></param>
-        /// <param name="dosage"></param>
-        /// <param name="drugState"></param>
+        /// <param name="inputCode">Mã nhập/mã/tên thuốc → @srm của proc.</param>
+        /// <param name="deptCode">Không dùng (lấy kho hiện tại Constants.CurrentYfbm.yfbmCode như cũ) — giữ tham số để khỏi đổi controller.</param>
+        /// <param name="drugType">Loại thuốc → @dl của proc.</param>
+        /// <param name="dosage">Dạng bào chế → @jx của proc.</param>
+        /// <param name="drugState">Trạng thái thuốc → @ypzt của proc ("" = tất cả).</param>
         /// <param name="rate"></param>
         /// <param name="ksjzsj"></param>
         /// <returns></returns>
         public IList<PSIStatisticsVO> PsiStatisticsInfoList(Pagination pagination, string kszq, string jszq, DateTime ksjzsj, DateTime jsjzsj, string inputCode, string deptCode, string drugType, string dosage, string drugState, string rate)
         {
-            if (string.IsNullOrWhiteSpace(pagination.sidx))
-            {
-                throw new Exception("pagination.sidx is required");
-            }
-            var sortby = pagination.sidx;
-            if (!string.IsNullOrWhiteSpace(pagination.sord) && pagination.sord.ToUpper() != "ASC")
-            {
-                if (!sortby.Contains(",") && !sortby.Contains(" "))
-                {
-                    sortby += " " + pagination.sord;
-                }
-            }
-
+            // A6-NX31-003 (D-NX30-CARRY-005): lệnh exec cũ truyền 16 tham số cho proc
+            // vendor sp_yp_jxctj nhưng proc CHỈ CÓ 10 tham số ở cả 2 DB
+            // (NewtouchHIS_PDS và NewtouchHIS_PDS_STG, sys.parameters đã kiểm chứng):
+            // ksjzsj, jsjzsj, Organizeid, YfbmCode, ypzt, srm, dl, jx, rate, shzt
+            // → SQL Server báo "too many arguments specified", trang PSIStatistics
+            // của PharmacyDrugStorage chết hẳn. Proc là vendor nên KHÔNG ALTER —
+            // sửa call site cho khớp chữ ký thật (mẫu call site anh em đã chạy đúng:
+            // DrugStorageDmnService.GetPsiStatisticsVo → sp_yp_jxctj_01, cũng 10 tham số).
+            // Ánh xạ (theo WHERE trong thân proc): inputCode→@srm (LIKE ypCode/ypmc/py),
+            // drugType→@dl (yp.dlCode), dosage→@jx (yp.jx), drugState→@ypzt (yp.zt,
+            // "" = tất cả — code cũ đổi trống thành "-1" thì yp.zt='-1' → 0 dòng nên
+            // phải giữ ""), @deptCode (giá trị = yfbm hiện tại) → @YfbmCode,
+            // @shzt = Approved cố định như call site anh em (view không có ô nhập này).
+            // Bỏ: kszq/jszq (tên kỳ, proc không nhận), @sub, phân trang @currPageIndex/
+            // @perRows/@orderByParam/@records output (proc không phân trang — phân trang
+            // trong bộ nhớ như call site anh em). Vẫn gọi sp_yp_jxctj (không đổi sang
+            // _01): 2 proc cùng 10 tên tham số nhưng khác thân — _01 là biến thể cũ
+            // (varchar hẹp, INNER JOIN, tính cả mz_cfypczjl/zy_ypyzczjl), sp_yp_jxctj
+            // là biến thể mới/rộng hơn (nvarchar(4000), V_S views, LEFT JOIN).
             var paraList = new List<SugarParameter>
             {
-                new SugarParameter("@kszq", kszq),
-                new SugarParameter("@jszq", jszq),
-                new SugarParameter("@ksjzsj", ksjzsj),
-                new SugarParameter("@jsjzsj", jsjzsj),
-                new SugarParameter("@inputCode", inputCode.Trim()),
-                new SugarParameter("@deptCode", Constants.CurrentYfbm.yfbmCode),
-                new SugarParameter("@OrganizeId", OperatorProvider.GetCurrent().OrganizeId),
-                new SugarParameter("@drugType", string.IsNullOrWhiteSpace(drugType)?"-1" :drugType.Trim()),
-                new SugarParameter("@dosage", string.IsNullOrWhiteSpace(dosage)?"-1" :dosage.Trim()),
-                new SugarParameter("@sub", "1"),
-                new SugarParameter("@drugState", string.IsNullOrWhiteSpace(drugState)?"-1" :drugState.Trim()),
-                new SugarParameter("@rate", string.IsNullOrWhiteSpace(rate)?-1 :Convert.ToDecimal(rate.Trim())),
-                new SugarParameter("@currPageIndex", pagination.page),
-                new SugarParameter("@perRows", pagination.rows),
-                new SugarParameter("@orderByParam", sortby)
+                new SugarParameter("@ksjzsj", ksjzsj.ToString(Constants.DateTimeFormat)),
+                new SugarParameter("@jsjzsj", jsjzsj.ToString(Constants.DateTimeFormat)),
+                new SugarParameter("@Organizeid", OperatorProvider.GetCurrent().OrganizeId),
+                new SugarParameter("@YfbmCode", Constants.CurrentYfbm.yfbmCode),
+                new SugarParameter("@ypzt", string.IsNullOrWhiteSpace(drugState) ? "" : drugState.Trim()),
+                new SugarParameter("@srm", string.IsNullOrWhiteSpace(inputCode) ? "" : inputCode.Trim()),
+                new SugarParameter("@dl", string.IsNullOrWhiteSpace(drugType) ? "" : drugType.Trim()),
+                new SugarParameter("@jx", string.IsNullOrWhiteSpace(dosage) ? "" : dosage.Trim()),
+                new SugarParameter("@rate", string.IsNullOrWhiteSpace(rate) ? -1 : Convert.ToDecimal(rate.Trim())),
+                new SugarParameter("@shzt", (int)EnumDjShzt.Approved)
             };
-            //Cờ trúng thầu
-            var outParameter = new SugarParameter("@records", System.Data.DbType.Int32) { Direction = ParameterDirection.Output };
-            paraList.Add(outParameter);
-            var list = FindList<PSIStatisticsVO>("exec sp_yp_jxctj @kszq, @jszq,@ksjzsj,@jsjzsj,@inputCode, @deptCode, @OrganizeId, @drugType, @dosage,@sub ,@drugState,@rate, @currPageIndex, @perRows, @orderByParam, @records output", paraList.ToArray());
-            pagination.records = outParameter.Value.ToInt();
-            return list;
+            // Proc trả các cột Ypdm/ypmc/ypgg/dw/jj/lsj/qcsl/rksl/cksl/sysl/qmsl/qcpfze/
+            // rkpfze/ckpfze/sypfze/tjsyze/pysl/pksl/pyze/pkze/qmpfze (khớp VO anh em
+            // PsiStatisticsVo) — KHÔNG khớp thẳng PSIStatisticsVO của trang này
+            // (grid cần gg + các cột tiền *lsze/*jjze + tjze mà proc không trả).
+            // Nên đọc qua PsiStatisticsVo rồi chiếu sang PSIStatisticsVO; các cột tiền
+            // tính trong C#: *lsze = số lượng × lsj (giá bán lẻ), *jjze = số lượng × jj
+            // (giá nhập), tjze = tjsyze — cùng phép tính proc gốc 16 tham số (đã mất)
+            // từng làm trong SQL. CẦN VERIFY LIVE: đối chiếu 1-2 thuốc với số liệu
+            // tay trước khi coi các cột tiền là chuẩn (cơ số đơn vị của jj/lsj so với
+            // số lượng đã quy đổi theo đơn vị nhà thuốc).
+            var procRows = FindList<Newtouch.HIS.Domain.Entity.V.PsiStatisticsVo>(
+                "exec sp_yp_jxctj @ksjzsj=@ksjzsj,@jsjzsj=@jsjzsj,@Organizeid=@Organizeid,@YfbmCode=@YfbmCode,@ypzt=@ypzt,@srm=@srm,@dl=@dl,@jx=@jx,@rate=@rate,@shzt=@shzt",
+                paraList.ToArray());
+            var all = procRows.Select(r => new PSIStatisticsVO
+            {
+                ypdm = r.Ypdm,
+                ypmc = r.ypmc,
+                gg = r.ypgg,
+                dw = r.dw,
+                lsj = r.lsj,
+                qcsl = r.qcsl,
+                rksl = r.rksl,
+                cksl = r.cksl,
+                sysl = r.sysl,
+                qmsl = r.qmsl,
+                qclsze = r.qcsl * r.lsj,
+                rklsze = r.rksl * r.lsj,
+                cklsze = r.cksl * r.lsj,
+                sylsze = r.sysl * r.lsj,
+                qmlsze = r.qmsl * r.lsj,
+                qcjjze = r.qcsl * r.jj,
+                rkjjze = r.rksl * r.jj,
+                ckjjze = r.cksl * r.jj,
+                qmjjze = r.qmsl * r.jj,
+                syjjze = r.sysl * r.jj,
+                tjze = r.tjsyze
+            }).ToList();
+            // Sắp xếp trong bộ nhớ theo sidx/sord grid gửi (mặc định 'ypdm desc').
+            // sidx có thể đã kèm hướng ("ypdm desc", xem DbShims.PagedQuery) nên tách
+            // hướng ra trước; sidx lạ → mặc định ypdm. Không throw khi sidx trống nữa.
+            var sidxRaw = (pagination.sidx ?? "").Trim();
+            var desc = false;
+            var sidx = sidxRaw;
+            if (sidxRaw.EndsWith(" desc", StringComparison.OrdinalIgnoreCase))
+            {
+                desc = true;
+                sidx = sidxRaw.Substring(0, sidxRaw.Length - 5).Trim();
+            }
+            else if (sidxRaw.EndsWith(" asc", StringComparison.OrdinalIgnoreCase))
+            {
+                sidx = sidxRaw.Substring(0, sidxRaw.Length - 4).Trim();
+            }
+            else if (!string.IsNullOrWhiteSpace(pagination.sord))
+            {
+                desc = pagination.sord.Trim().Equals("desc", StringComparison.OrdinalIgnoreCase);
+            }
+            Func<PSIStatisticsVO, IComparable> sortKey;
+            switch ((sidx ?? "").Trim().ToLower())
+            {
+                case "ypmc": sortKey = v => v.ypmc; break;
+                case "gg": sortKey = v => v.gg; break;
+                case "dw": sortKey = v => v.dw; break;
+                case "lsj": sortKey = v => v.lsj; break;
+                case "qcsl": sortKey = v => v.qcsl; break;
+                case "rksl": sortKey = v => v.rksl; break;
+                case "cksl": sortKey = v => v.cksl; break;
+                case "sysl": sortKey = v => v.sysl; break;
+                case "qmsl": sortKey = v => v.qmsl; break;
+                case "qclsze": sortKey = v => v.qclsze; break;
+                case "rklsze": sortKey = v => v.rklsze; break;
+                case "cklsze": sortKey = v => v.cklsze; break;
+                case "sylsze": sortKey = v => v.sylsze; break;
+                case "qmlsze": sortKey = v => v.qmlsze; break;
+                case "qcjjze": sortKey = v => v.qcjjze; break;
+                case "rkjjze": sortKey = v => v.rkjjze; break;
+                case "ckjjze": sortKey = v => v.ckjjze; break;
+                case "qmjjze": sortKey = v => v.qmjjze; break;
+                case "syjjze": sortKey = v => v.syjjze; break;
+                case "tjze": sortKey = v => v.tjze; break;
+                default: sortKey = v => v.ypdm; break;
+            }
+            var sorted = desc ? all.OrderByDescending(sortKey).ToList() : all.OrderBy(sortKey).ToList();
+            // Phân trang trong bộ nhớ như call site anh em (proc không phân trang).
+            var page = pagination.page ?? 1;
+            if (page < 1) page = 1;
+            var rows = pagination.rows ?? 15;
+            if (rows < 1) rows = 15;
+            pagination.records = sorted.Count;
+            return sorted.Skip((page - 1) * rows).Take(rows).ToList();
         }
 
 

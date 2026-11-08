@@ -574,6 +574,28 @@
         }
 	</script>
     <script type="text/javascript">
+        // A6-NX31-001: showSwitchOrgPrompt (mẫu CIS Index.cshtml) — Index này gọi hàm
+        // ở onclick dòng 137 nhưng trước đây không định nghĩa (PDS là portal duy nhất
+        // thiếu; 7 portal còn lại đều định nghĩa trong Index của mình). Modal mở
+        // /Home/UserOrgChoose (action + view mới thêm cùng mục A6-001).
+        function showSwitchOrgPrompt(force) {
+            $.modalOpen({
+                id: "FormSwitchOrg",
+                title: "Chuyển cơ sở y tế",
+                url: "/Home/UserOrgChoose",
+                width: "400px",
+                height: "260px",
+                btn: null,
+                closeBtn: (!!force ? 0 : 1),
+            });
+        }
+
+        $(function () {
+            //Home/IndexKhi tải bắt buộc chọn cơ sở y tế
+            @Html.Raw(needChooseOrg ? "setTimeout('showSwitchOrgPrompt(true);', 1200)" : "")
+        });
+    </script>
+    <script type="text/javascript">
         // RS-PDS-M01: toggle drawer menu mobile (vanilla JS, không phụ thuộc jQuery).
         // Mở: thêm class body .pds-mobile-nav-open (CSS ở <head> biến sidebar
         // thành drawer fixed). Đóng: bấm lại nút, bấm backdrop, bấm link lá
