@@ -156,7 +156,15 @@ namespace Newtouch.Infrastructure
         /// <returns></returns>
         private static string GetPdsApiUrl(string url)
         {
-            return SitePdsApiDomain + url.Replace("~/", "");
+            // F15: cùng mẫu nối trần như SiteCisAPIHelper.GetCisApiUrl —
+            // SitePdsApiDomain luôn kết thúc bằng '/' (nhánh http trả nguyên
+            // host config, nhánh không-http thêm '/' cuối; config Base Web
+            // SitePdsAPIHost = "http://127.0.0.1:5337/"), nên call-site có
+            // slash đầu sẽ thành "//api/..." → 404. Các call-site hiện tại
+            // (SysPharmacyDepartmentApp :49/:119/:176) và GetTokenFromApi đều
+            // dùng "api/..." không slash đầu nên hôm nay chưa 404, nhưng join
+            // chuẩn hoá này sửa gốc và giữ nguyên kết quả cho chúng.
+            return SitePdsApiDomain.TrimEnd('/') + "/" + url.Replace("~/", "").TrimStart('/');
         }
 
         #endregion

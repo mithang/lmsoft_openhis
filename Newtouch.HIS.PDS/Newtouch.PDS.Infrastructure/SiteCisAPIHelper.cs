@@ -154,7 +154,16 @@ namespace Newtouch.Infrastructure
         /// <returns></returns>
         private static string GetCisApiUrl(string url)
         {
-            return SiteCisApiDomain + url.Replace("~/", "");
+            // F15: join chuẩn hoá — SiteCisApiDomain luôn kết thúc bằng '/'
+            // (nhánh http trả nguyên host config, nhánh không-http thêm '/'
+            // cuối; config PDS.Web SiteCisAPIHost = "http://127.0.0.1:5334/"),
+            // nên nối trần Domain + url sẽ thành "//api/..." khi call-site có
+            // slash đầu (HospitalizationPharmacyController :356/:404) → CIS.API
+            // trả 404 body rỗng → DeserializeObject("") null → NRE dòng 358
+            // (F14-PROBE §2.5). Trim 2 đầu để cả 2 dạng call-site đều ra đúng
+            // 1 slash: "/api/..." và "api/..." (HospitalizationPharmacyApp
+            // :182/:311, GetTokenFromApi) đều → ".../api/...".
+            return SiteCisApiDomain.TrimEnd('/') + "/" + url.Replace("~/", "").TrimStart('/');
         }
 
         #endregion
