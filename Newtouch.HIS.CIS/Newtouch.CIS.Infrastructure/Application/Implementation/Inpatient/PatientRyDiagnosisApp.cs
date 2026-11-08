@@ -76,7 +76,7 @@ namespace Newtouch.Application.Implementation
         /// <returns></returns>
         public string SavaInPatDiagnosis(PatInAreaVO patInAreaVo, string organizeId, string userCode)
         {
-            if (patInAreaVo == null) return "Chẩn đoánnội dung không thể để trống！";
+            if (patInAreaVo == null) return "Chẩn đoán nội dung không thể để trống！";
             if (string.IsNullOrWhiteSpace(patInAreaVo.zyh)) return "Số nhập viện không thể là trống！";
             if (string.IsNullOrWhiteSpace(patInAreaVo.ryzddm1) || string.IsNullOrWhiteSpace(patInAreaVo.ryzdmc1)) return "Chẩn đoán nhập viện1không thể là trống！";
 
@@ -104,7 +104,7 @@ namespace Newtouch.Application.Implementation
                     }
                     #endregion
 
-                    #region sửaNhập viện bệnh nhân Chẩn đoánthông tin
+                    #region sửaNhập viện bệnh nhân Chẩn đoán thông tin
                     if (patOutDiaList != null && patOutDiaList.Count > 0)
                     {
                         patOutDiaList.ForEach(p =>

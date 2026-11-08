@@ -25,7 +25,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public int zdlx { get; set; }
 
         /// <summary>
-        /// Liên kếtbase Cơ sở dữ liệu Bảng chẩn đoán hệ thống
+        /// Liên kết base Cơ sở dữ liệu Bảng chẩn đoán hệ thống
         /// </summary>
         public string zdCode { get; set; }
 

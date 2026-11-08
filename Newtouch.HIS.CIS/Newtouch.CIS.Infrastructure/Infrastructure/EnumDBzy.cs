@@ -331,7 +331,7 @@ namespace Newtouch.Infrastructure
         Nonfixed = 0
     }
     /// <summary>
-    /// nguytrọngcấploại
+    /// nguy trọng cấp loại
     /// </summary>
     public enum EnumWzjb
     {
@@ -346,7 +346,7 @@ namespace Newtouch.Infrastructure
         [Description("Bệnh nặng")]
         Serious =2,
         /// <summary>
-        /// bệnhnguy
+        /// bệnh nguy
         /// </summary>
         [Description("Nguy kịch")]
         Bedying =3

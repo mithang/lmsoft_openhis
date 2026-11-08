@@ -133,12 +133,12 @@ namespace Newtouch.Domain.Entity
         public DateTime? zljssj { get; set; }
 
         /// <summary>
-        /// liên kếtbasekho Khoa bảng
+        /// liên kết base kho Khoa bảng
         /// </summary>
         public string jzks { get; set; }
 
         /// <summary>
-        /// liên kếtbasekho  người viên bảng(cuối cùng xem khám Bác sĩ)
+        /// liên kết base kho  người viên bảng(cuối cùng xem khám Bác sĩ)
         /// </summary>
         public string jzys { get; set; }
 

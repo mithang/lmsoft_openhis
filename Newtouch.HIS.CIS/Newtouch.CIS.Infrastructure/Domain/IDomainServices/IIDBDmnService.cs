@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.IDomainServices
 {
     /// <summary>
-    /// tronggiữakholiên quan
+    /// trong giữa kho liên quan
     /// </summary>
     public interface IIDBDmnService
     {
@@ -23,7 +23,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<TreatmentEntity> GetRegistrationInfoList(Pagination pagination, string orgId, string ksCode, string ysgh, string mjzbz, int jiuzhenbz, string keyword);
 
         /// <summary>
-        /// sẽ mzh của Chưa thu phí Đơn thuốc+Khám bệnh Cờ đợi thông tin Đồng bộđếntronggiữakho
+        /// sẽ mzh của Chưa thu phí Đơn thuốc+Khám bệnh Cờ đợi thông tin Đồng bộ đến trong giữa kho
         /// (và Đồng bộ Đơn thuốc thành công sau cần về viết Đơn thuốc Trạng thái đồng bộ)
         /// </summary>
         /// <param name="orgId"></param>
@@ -63,7 +63,7 @@ namespace Newtouch.Domain.IDomainServices
          List<PrescriptionDto> GetCisPrescription(string Opt, string Brwym, string Zdlx, string Brxz, DateTime? startDate, DateTime? endDate);
 
         /// <summary>
-        /// tronggiữakho Đồng bộ Đơn thuốc Thu phí Trạng thái
+        /// trong giữa kho Đồng bộ Đơn thuốc Thu phí Trạng thái
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="orgId"></param>

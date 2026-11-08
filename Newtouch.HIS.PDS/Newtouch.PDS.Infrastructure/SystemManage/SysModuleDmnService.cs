@@ -230,7 +230,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SugarParam
 
                     if (!string.IsNullOrWhiteSpace(topOrgId))
                     {
-                        //Tự động chotopOrganizeId Phân bổ Modulequyền của
+                        //Tự động chotopOrganizeId Phân bổ Module quyền của
                         var authEntity = new SysOrganizeAuthorizeEntity()
                         {
                             TopOrganizeId = topOrgId,

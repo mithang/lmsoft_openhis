@@ -281,7 +281,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
-        /// <param name="gpyf">Còn lại tới khi hết hạnxtháng</param>
+        /// <param name="gpyf">Còn lại tới khi hết hạn x tháng</param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
         /// <returns></returns>

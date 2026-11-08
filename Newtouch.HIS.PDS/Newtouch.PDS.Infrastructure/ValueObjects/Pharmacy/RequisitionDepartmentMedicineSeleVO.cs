@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string ypdlmc { get; set; }
 
         /// <summary>
-        /// Số lượng có thể lĩnhand Đơn vị 5hộp6chi,Chỉ hiển thị để dùng
+        /// Số lượng có thể lĩnh and Đơn vị 5hộp6chi,Chỉ hiển thị để dùng
         /// </summary>
         public string Klslanddw { get; set; }
         

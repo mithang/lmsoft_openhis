@@ -28,7 +28,7 @@ namespace Newtouch.Domain.Entity
         public int mblx { get; set; }
 
         /// <summary>
-        /// liên kếtbasekhocủa Khoa bảng
+        /// liên kết base kho của Khoa bảng
         /// </summary>
         public string ksCode { get; set; }
 

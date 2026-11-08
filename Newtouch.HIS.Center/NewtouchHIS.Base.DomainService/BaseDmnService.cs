@@ -14,7 +14,7 @@ namespace NewtouchHIS.Base.DomainService
     /// Kế thừa DBContext,với service mở ISqlSugarClient Giao diện
     /// Hỗ trợ base.Context Đổi cơ sở dữ liệu
     /// Mặc định base.Context là TEntity đã gắn TenantAttr
-    /// Ghi chú:Thêm,Xóa,Sửa Cấm xuyên cơ sở dữ liệu,Cấm dùng sql câu lệnh,nếu cần thì thêm mới service,Đạtbase.Context Chỉ định cơ sở dữ liệu đích
+    /// Ghi chú:Thêm,Xóa,Sửa Cấm xuyên cơ sở dữ liệu,Cấm dùng sql câu lệnh,nếu cần thì thêm mới service,Đạt base.Context Chỉ định cơ sở dữ liệu đích
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     public class BaseDmnService<TEntity> : SugarRepository<TEntity> where TEntity : class, new()

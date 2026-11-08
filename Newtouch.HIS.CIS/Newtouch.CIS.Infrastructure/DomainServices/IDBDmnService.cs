@@ -17,7 +17,7 @@ using System.Text;
 namespace Newtouch.DomainServices
 {
     /// <summary>
-    /// tronggiữakholiên quan
+    /// trong giữa kho liên quan
     /// </summary>
     public class IDBDmnService : DmnServiceBase, IIDBDmnService
     {
@@ -42,7 +42,7 @@ namespace Newtouch.DomainServices
             }
             if (jiuzhenbz == (int)EnumJzzt.NotYetTreate)
             {
-                jiuzhenbz = 0;  //tương ứngtronggiữakhochờ Khám bệnh0
+                jiuzhenbz = 0;  //tương ứng trong giữa kho chờ Khám bệnh0
             }
 
             const  string sqlstr = @"
@@ -66,7 +66,7 @@ SELECT  --CAST(NEWID() AS VARCHAR(50)) jzId ,
 	zjk.DoctorName ghys ,
 	CONVERT(DATETIME, zjk.RegDateTime, 0) ghsj ,
 	CONVERT(DATETIME, zjk.InsertDateTime, 0) ghczsj ,
-	--Chờ khám tronggiữakhojzzt 0，CIS 1   --else bất thường
+	--Chờ khám trong giữa kho jzzt 0，CIS 1   --else bất thường
 	case zjk.jzzt when 0 then 1 else -1 end jzzt
 FROM NNHIS_INTERFACE_Basic.dbo.MZ_REGISTER_HIS(NOLOCK) zjk
      LEFT JOIN NNHIS_INTERFACE_Basic.dbo.ZY_BRXXK(NOLOCK) xxk ON zjk.PatID = xxk.patid
@@ -105,7 +105,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         }
 
         /// <summary>
-        /// sẽ mzh của Chưa thu phí Đơn thuốc đợi thông tin Đồng bộđếntronggiữakho   
+        /// sẽ mzh của Chưa thu phí Đơn thuốc đợi thông tin Đồng bộ đến trong giữa kho   
         /// (và Đồng bộ Đơn thuốc thành công sau cần về viết Đơn thuốc Trạng thái đồng bộ)
         /// </summary>
         /// <param name="orgId"></param>
@@ -198,7 +198,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
 
         }
         /// <summary>
-        /// tronggiữakho Đồng bộ Đơn thuốc Thu phí Trạng thái
+        /// trong giữa kho Đồng bộ Đơn thuốc Thu phí Trạng thái
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="orgId"></param>

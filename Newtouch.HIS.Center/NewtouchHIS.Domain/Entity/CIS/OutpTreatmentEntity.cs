@@ -127,12 +127,12 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public DateTime? zljssj { get; set; }
 
         /// <summary>
-        /// Liên kếtbase Cơ sở dữ liệu Bảng khoa
+        /// Liên kết base Cơ sở dữ liệu Bảng khoa
         /// </summary>
         public string jzks { get; set; }
 
         /// <summary>
-        /// Liên kếtbase Cơ sở dữ liệu Bảng nhân viên(Bác sĩ khám cuối cùng)
+        /// Liên kết base Cơ sở dữ liệu Bảng nhân viên(Bác sĩ khám cuối cùng)
         /// </summary>
         public string jzys { get; set; }
 

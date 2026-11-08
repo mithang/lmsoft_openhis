@@ -24,7 +24,7 @@ namespace Newtouch.Repository
         {
 
         }
-        //Lấy thường dùng Chẩn đoánthông tin--lớp nổi
+        //Lấy thường dùng Chẩn đoán thông tin--lớp nổi
         public IList<ComDiagnosisVO> GetComDiagnosis(string ys,string ks, string orgId, string type,string keyword,string lx)
         {
             try
@@ -58,7 +58,7 @@ namespace Newtouch.Repository
                 throw new FailedException("Lỗi thông tin："+ex.Message);
             }
         }
-        //Lấy thường dùng Chẩn đoánthông tin--Bảo trì
+        //Lấy thường dùng Chẩn đoán thông tin--Bảo trì
         public IList<ComDiagnosisVO> GetComDiagnosisAdmin(string ys, string ks, string orgId, string type, string keyword, string lx)
         {
             try
@@ -92,7 +92,7 @@ namespace Newtouch.Repository
                 throw new FailedException("Lỗi thông tin：" + ex.Message);
             }
         }
-        //Lấy Hồ sơ chẩn đoánthông tin
+        //Lấy Hồ sơ chẩn đoán thông tin
         public List<ComDiagnosisVO> GetDiagsLists(string orgId, string type, string mzh)
         {
             try

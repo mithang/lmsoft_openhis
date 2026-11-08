@@ -4,7 +4,7 @@ using Newtouch.HIS.API.Common;
 namespace Newtouch.HIS.Sett.Request
 {
     /// <summary>
-    /// Sửa vào khu Chẩn đoányêu cầu báo văn
+    /// Sửa vào khu Chẩn đoán yêu cầu báo văn
     /// </summary>
     public class ModifyRyDiagnosisRequestDTO : RequestBase
     {

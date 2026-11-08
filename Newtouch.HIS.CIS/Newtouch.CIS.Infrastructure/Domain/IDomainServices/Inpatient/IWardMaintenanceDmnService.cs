@@ -39,7 +39,7 @@ namespace Newtouch.Domain.IDomainServices.Inpatient
         void SaveBedDocs(List<BedDocsVO> mxList, patRequestDto req);
 
         /// <summary>
-        /// Lấy Bệnh nhân Chẩn đoánthông tin
+        /// Lấy Bệnh nhân Chẩn đoán thông tin
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -51,7 +51,7 @@ namespace Newtouch.Domain.IDomainServices.Inpatient
         /// <returns></returns>
         string GetPatIsOutArea(patBedFeeRequestDto req);
         /// <summary>
-        /// Lưu Bệnh nhân Chẩn đoánthông tin
+        /// Lưu Bệnh nhân Chẩn đoán thông tin
         /// </summary>
         /// <param name="patOutAreaVO"></param>
         /// <param name="req"></param>

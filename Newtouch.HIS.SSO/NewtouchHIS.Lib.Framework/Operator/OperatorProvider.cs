@@ -291,7 +291,7 @@ namespace NewtouchHIS.Lib.Framework.Operator
                         if (string.IsNullOrWhiteSpace(itemEncryptedResult))
                         {
                             existTokenList.RemoveAt(i); //đã thực hiện rồi thao tác thoát hoặc đã hết hạn rồi
-                            i--;    //lần tới vàoforvẫn phải lài
+                            i--;    //lần tới vào for vẫn phải lài
                             continue;
                         }
 
@@ -323,7 +323,7 @@ namespace NewtouchHIS.Lib.Framework.Operator
                 }
                 if (existTokenList != null && existTokenList.Count > 0)
                 {
-                    existTokenList.Reverse();   //đảo ngược lại,khiến người đăng nhập sau quay lạilistphía sau
+                    existTokenList.Reverse();   //đảo ngược lại,khiến người đăng nhập sau quay lại list phía sau
                     existTokenList.Add(token);
                     RedisHelper.SetList<string>(keyUserTokenList, existTokenList);
                 }

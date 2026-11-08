@@ -1109,7 +1109,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
 
         #region Tính chất bệnh nhân
         /// <summary>
-        /// căn dữ liệunguy hiểm loại loại loại được lấy bệnh người tính chất
+        /// căn dữ liệu nguy hiểm loại loại loại được lấy bệnh người tính chất
         /// </summary>
         /// <param name="xzlx"></param>
         /// <returns></returns>

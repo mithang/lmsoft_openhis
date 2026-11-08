@@ -48,7 +48,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
         public string Name { get; set; } // bệnh nhân Họ tên
         
         [XmlElement("diagnoseid")]
-        public string DiagnoseID { get; set; } // Chẩn đoánid
+        public string DiagnoseID { get; set; } // Chẩn đoán id
         
         [XmlElement("diagnose")]
         public string Diagnose { get; set; } // Chẩn đoán
@@ -84,7 +84,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
         public string NowMedicalHistory { get; set; } // hiện bệnh sử
         
         [XmlElement("ccr")]
-        public string Ccr { get; set; } // trongsinh Creatininxóatỷ lệ
+        public string Ccr { get; set; } // trongsinh Creatinin xóa tỷ lệ
         
         [XmlElement("anaphylactogen")]
         public string Anaphylactogen { get; set; } // qua Tiền sử dị ứng

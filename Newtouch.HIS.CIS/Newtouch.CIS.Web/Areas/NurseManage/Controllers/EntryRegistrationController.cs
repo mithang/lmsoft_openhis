@@ -171,7 +171,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Success();
         }
         /// <summary>
-        /// Cập nhậtnguytrọngcấploại
+        /// Cập nhật nguy trọng cấp loại
         /// </summary>
         /// <param name="enterArea"></param>
         /// <returns></returns>

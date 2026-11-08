@@ -48,7 +48,7 @@ namespace Newtouch.Domain.Entity
         public decimal zje { get; set; }
 
         /// <summary>
-        /// liên kếtbasekhocủa người viên Mã nhân viên
+        /// liên kết base kho của người viên Mã nhân viên
         /// </summary>
         public string ys { get; set; }
 

@@ -139,7 +139,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             #region Bổ sungNút cha start
             // by haijiang.mo sửa lại tìm tìm hai cấp bằng dưới của con bộ ngoại trú dùng hộ,vì không phương pháp cơ quan lập ra cây kết cơ quan,mà tìm tìm mất thất bại
             var parentDeptList = new HashSet<string>();
-            // điều khiển chế tổng tính tính sâu độ,phòng ngừa dừng vì là số dữ liệu sai sai,tìm không đến Nút chachếttuân theo vòng
+            // điều khiển chế tổng tính tính sâu độ,phòng ngừa dừng vì là số dữ liệu sai sai,tìm không đến Nút cha chết tuân theo vòng
             var totalReFindParent = 10;
             do
             {

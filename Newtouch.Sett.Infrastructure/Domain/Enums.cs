@@ -929,7 +929,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// nguynặngcấpkhác
+    /// nguy nặng cấp khác
     /// </summary>
     public enum EnumWzjb
     {
@@ -944,7 +944,7 @@ namespace Newtouch.Sett.Domain
         [Description("bệnh nặng")]
         Serious = 2,
         /// <summary>
-        /// bệnhnguy
+        /// bệnh nguy
         /// </summary>
         [Description("nguy kịch")]
         Bedying = 3

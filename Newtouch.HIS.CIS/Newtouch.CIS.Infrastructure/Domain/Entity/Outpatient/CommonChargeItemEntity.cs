@@ -23,12 +23,12 @@ namespace Newtouch.Domain.Entity
         public int type { get; set; }
 
         /// <summary>
-        /// liên kếtbasekhocủa Khoa bảng
+        /// liên kết base kho của Khoa bảng
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// liên kếtbasekhocủa người viên bảng
+        /// liên kết base kho của người viên bảng
         /// </summary>
         public string ysgh { get; set; }
 
@@ -38,7 +38,7 @@ namespace Newtouch.Domain.Entity
         public int xmlx { get; set; }
 
         /// <summary>
-        /// liên kếtbasekhocủa Mục thu phí bảng
+        /// liên kết base kho của Mục thu phí bảng
         /// </summary>
         public string xmCode { get; set; }
 

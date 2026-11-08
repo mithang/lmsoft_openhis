@@ -5,20 +5,20 @@ using System.Xml.Serialization;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
 {
     /// <summary>
-    /// nhắc lấy Chẩn đoánthông tin yêu cầu thể
+    /// nhắc lấy Chẩn đoán thông tin yêu cầu thể
     /// </summary>
     [XmlRoot("Request")]
     public class PullDiagInfoRequestEntity : RequestBase
     {
 
         /// <summary>
-        /// Chẩn đoánthông tin thể
+        /// Chẩn đoán thông tin thể
         /// </summary>
         public DiagInfo DiagInfo { get; set; }
     }
 
     /// <summary>
-    /// Chẩn đoánthông tin thể
+    /// Chẩn đoán thông tin thể
     /// </summary>
     public class DiagInfo
     {
@@ -35,7 +35,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
         public string orgCode { get; set; }
 
         /// <summary>
-        /// Chẩn đoánchi tiết tập hợp
+        /// Chẩn đoán chi tiết tập hợp
         /// </summary>
         public List<Diagnosis> diagnosislist { get; set; }
     }
@@ -75,7 +75,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
         public string type { get; set; }
 
         /// <summary>
-        ///Chẩn đoán YHCT phút nhóm này nhận dạng nhau cùng của bệnh bệnh và hội chứng Chẩn đoánlàmộtnhóm
+        ///Chẩn đoán YHCT phút nhóm này nhận dạng nhau cùng của bệnh bệnh và hội chứng Chẩn đoán là một nhóm
         /// </summary>
         public string group { get; set; }
 

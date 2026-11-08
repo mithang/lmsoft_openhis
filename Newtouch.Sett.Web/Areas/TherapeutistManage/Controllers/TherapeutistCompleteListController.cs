@@ -175,7 +175,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
             if (string.IsNullOrWhiteSpace(time) || string.IsNullOrWhiteSpace(type))
             {
                 return Content("");
-                //throw FailedException("loại loại hoặc thời giangiữalàrỗng!");
+                //throw FailedException("loại loại hoặc thời gian giữa là rỗng!");
             }
             if (!int.TryParse(time, out var timeVal))
             {

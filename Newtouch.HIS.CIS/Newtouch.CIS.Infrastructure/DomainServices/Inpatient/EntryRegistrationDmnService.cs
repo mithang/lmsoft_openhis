@@ -683,7 +683,7 @@ FROM    dbo.zy_brxxk zyxx
                             db.Insert(patInfoEntity);
                             #endregion
                         }
-                        #region Chẩn đoán nhập việnChènChẩn đoánbảng
+                        #region Chẩn đoán nhập việnChènChẩn đoán bảng
                         if (isNew && !string.IsNullOrWhiteSpace(patInfoRes.zzdCode))
                         {
                             var diaEntity = new InpatientPatientDiagnosisEntity
@@ -1534,7 +1534,7 @@ FROM    dbo.zy_brxxk zyxx
                             db.Insert(patInfoEntity);
                             #endregion
                         }
-                        #region Chẩn đoán nhập việnChènChẩn đoánbảng
+                        #region Chẩn đoán nhập việnChènChẩn đoán bảng
                         if (isNew && !string.IsNullOrWhiteSpace(patInfoRes.zzdCode))
                         {
                             var diaEntity = new InpatientPatientDiagnosisEntity

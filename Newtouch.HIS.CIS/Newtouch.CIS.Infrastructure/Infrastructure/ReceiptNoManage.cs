@@ -31,10 +31,10 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// ở chỉ định của chữ ký chuỗi danh sách CnStrtrong Tìm kiếm ký hợp Pinyintìmdẫnchữkýchuỗi
+        /// ở chỉ định của chữ ký chuỗi danh sách CnStrtrong Tìm kiếm ký hợp Pinyin tìm dẫn chữ ký chuỗi
         /// </summary>
         /// <param name="cnStr">Hán chữ chữ ký chuỗi</param>
-        /// <returns>nhau tương ứng của Hán ngữ Pinyinđầuchữcáichuỗi</returns>
+        /// <returns>nhau tương ứng của Hán ngữ Pinyin đầu chữ cái chuỗi</returns>
                 /// <summary>
         /// Receipt prefix from a Vietnamese description: first letter of each word,
         /// diacritics stripped, upper-case. Descriptions used to be Chinese, so this

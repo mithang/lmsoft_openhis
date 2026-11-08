@@ -71,8 +71,8 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         public IActionResult SelectTemplateDetailByMbId(string mbId)
         {
             var data = _mRecordTemplateDmnService.SelectTemplateDetailByMbId(mbId, this.OrganizeId);
-            data.xyzdList = data.xyzdList.OrderBy(a => a.zdlx).ToList();   //chính Chẩn đoánxếpởtrướcmặt
-            data.zyzdList = data.zyzdList.OrderBy(a => a.zdlx).ToList();   //chính Chẩn đoánxếpởtrướcmặt
+            data.xyzdList = data.xyzdList.OrderBy(a => a.zdlx).ToList();   //chính Chẩn đoán xếp ở trước mặt
+            data.zyzdList = data.zyzdList.OrderBy(a => a.zdlx).ToList();   //chính Chẩn đoán xếp ở trước mặt
             
 
             return Content(data.ToJson());

@@ -382,7 +382,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// khi trước nhóm tổ chức máy cơ quan khi trước thời giangiữalàkhôngđãlưutạiqua
+        /// khi trước nhóm tổ chức máy cơ quan khi trước thời gian giữa là không đã lưu tại qua
         /// </summary>
         /// <param name="siteId"></param>
         /// <param name="year"></param>

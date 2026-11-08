@@ -41,7 +41,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public decimal zje { get; set; }
 
         /// <summary>
-        /// Liên kếtbase Mã nhân viên của cơ sở dữ liệu
+        /// Liên kết base Mã nhân viên của cơ sở dữ liệu
         /// </summary>
         public string ys { get; set; }
 

@@ -13,7 +13,7 @@ namespace Newtouch.OR.ManageSystem.Domain
         /// </summary>
         public string order { get; set; }
         /// <summary>
-        /// Dòng bắt đầu,Ví dụ CSDL của bạn có100bản ghi,offsetbằng10nghĩa là máy chủ cần trả từ bản ghi thứ10bản ghi để trả kết quả
+        /// Dòng bắt đầu,Ví dụ CSDL của bạn có100bản ghi,offset bằng10nghĩa là máy chủ cần trả từ bản ghi thứ10bản ghi để trả kết quả
         /// </summary>
         public int offset { get; set; }
         /// <summary>

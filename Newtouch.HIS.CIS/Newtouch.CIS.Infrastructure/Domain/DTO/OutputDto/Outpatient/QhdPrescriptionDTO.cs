@@ -62,11 +62,11 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string AKC192 { get; set; }
         /// <summary>
-        /// Chẩn đoán nhập viện bệnh bệnh Mã/Ngoại trú Chẩn đoánbệnhbệnh Mã
+        /// Chẩn đoán nhập viện bệnh bệnh Mã/Ngoại trú Chẩn đoán bệnh bệnh Mã
         /// </summary>
         public string AKC193 { get; set; }
         /// <summary>
-        /// Chẩn đoán nhập viện bệnh bệnh Tên/Ngoại trú Chẩn đoánbệnhbệnh Tên
+        /// Chẩn đoán nhập viện bệnh bệnh Tên/Ngoại trú Chẩn đoán bệnh bệnh Tên
         /// </summary>
         public string ZKC274 { get; set; }
         /// <summary>
@@ -78,11 +78,11 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string AKC195 { get; set; }
         /// <summary>
-        /// Xuất viện Chẩn đoánbệnhbệnh Mã
+        /// Xuất viện Chẩn đoán bệnh bệnh Mã
         /// </summary>
         public string AKC196 { get; set; }
         /// <summary>
-        /// Xuất viện Chẩn đoánbệnhbệnh Tên
+        /// Xuất viện Chẩn đoán bệnh bệnh Tên
         /// </summary>
         public string ZKC275 { get; set; }
         /// <summary>
@@ -262,7 +262,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string AKC190 { get; set; }
         /// <summary>
-        /// Chẩn đoánthuậnthứ tự
+        /// Chẩn đoán thuận thứ tự
         /// </summary>
         public int BKE150 { get; set; }
         /// <summary>

@@ -34,7 +34,7 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public int? sycs { get; set; }
         /// <summary>
-        /// liên kếtbasekho Chẩn đoán hệ thống bảng
+        /// liên kết base kho Chẩn đoán hệ thống bảng
         /// </summary>
         public string zdCode { get; set; }
 

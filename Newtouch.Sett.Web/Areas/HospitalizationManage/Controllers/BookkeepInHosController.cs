@@ -371,7 +371,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         #endregion HIS ghi sổ nhập viện
 
-        #region ghi sổ nhập viện ghi sổ theo kế hoạch，viết jzjh，Thông qua thực hiện，Vàozy_xmjfb zy_ypjfbghi dữ liệu tính phí 2018.03Logic một phần kế hoạch ngoại trú cũng ở đây
+        #region ghi sổ nhập viện ghi sổ theo kế hoạch，viết jzjh，Thông qua thực hiện，Vào zy_xmjfb zy_ypjfbghi dữ liệu tính phí 2018.03Logic một phần kế hoạch ngoại trú cũng ở đây
 
         #region
 
@@ -778,7 +778,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         #endregion ghi sổ nhập viện Kế hoạch ghi sổ
 
-        #region ghi sổ nhập viện vàOptimaĐồng bộ dữ liệu，OptimaĐẩy bản ghi điều trị cho chúng tôi，Xác nhận của，Vàozy_xmjfb zy_ypjfbghi dữ liệu tính phí
+        #region ghi sổ nhập viện vàOptimaĐồng bộ dữ liệu，OptimaĐẩy bản ghi điều trị cho chúng tôi，Xác nhận của，Vào zy_xmjfb zy_ypjfbghi dữ liệu tính phí
 
         /// <summary>
         /// ghi sổ nhập viện Index
@@ -838,7 +838,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         #endregion ghi sổ nhập viện vàOptimaĐồng bộ dữ liệu
 
-        #region quyết toán phí quyết toán xuất viện（nó thực là phối hợp nhập viện ghi sổ theo kế hoạch thêm trên của，nhưng cảm cảm thấysokháthôngdùng）
+        #region quyết toán phí quyết toán xuất viện（nó thực là phối hợp nhập viện ghi sổ theo kế hoạch thêm trên của，nhưng cảm cảm thấy so khá thông dùng）
 
         /// <summary>
         /// quyết toán phí chưa quyết toán Index
@@ -1105,7 +1105,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// từ xml trong Trích xuấttableName của DataTable
+        /// từ xml trong Trích xuất tableName của DataTable
         /// </summary>
         /// <param name="xml"></param>
         /// <returns></returns>

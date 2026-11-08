@@ -12,7 +12,7 @@ namespace Newtouch.Domain.IRepository
     public interface IComDiagnosisRepo : IRepositoryBase<ComDiagnosisEntity>
     {
         /// <summary>
-        /// Lấy thường dùng Chẩn đoánthông tin
+        /// Lấy thường dùng Chẩn đoán thông tin
         /// </summary>
         /// <param name="ys"></param>
         /// <param name="orgId"></param>
@@ -32,7 +32,7 @@ namespace Newtouch.Domain.IRepository
         /// <returns></returns>
         List<ComDiagnosisVO> Getzdpy(string zdmc, string zdbm);
         /// <summary>
-        /// Lấy Hồ sơ chẩn đoánthông tin
+        /// Lấy Hồ sơ chẩn đoán thông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="type"></param>
@@ -41,7 +41,7 @@ namespace Newtouch.Domain.IRepository
         List<ComDiagnosisVO> GetDiagsLists(string orgId,string type, string mzh);
         void DelDiagnosticTemplate(string Id);
         /// <summary>
-        /// Lấy thường dùng Chẩn đoánthông tin-Quản lý giới mặt
+        /// Lấy thường dùng Chẩn đoán thông tin-Quản lý giới mặt
         /// </summary>
         /// <param name="ys"></param>
         /// <param name="orgId"></param>

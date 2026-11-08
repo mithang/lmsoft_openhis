@@ -163,7 +163,7 @@ namespace Newtouch.CIS.Web.Controllers
                     });
                 }
             }
-            //nhấtmớicủaxếpởphía trên
+            //nhất mới của xếp ở phía trên
             foreach (var rq in historyPartList.Select(p => p.CreateTime.ToString("yyyy-MM-dd")).Distinct().OrderByDescending(p => p))
             {
                 //Ngày dưới của tất cả Hồ sơ

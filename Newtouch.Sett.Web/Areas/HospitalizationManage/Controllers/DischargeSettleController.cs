@@ -658,7 +658,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// từ xml trong Trích xuấttableName của DataTable
+        /// từ xml trong Trích xuất tableName của DataTable
         /// </summary>
         /// <param name="xml"></param>
         /// <returns></returns>

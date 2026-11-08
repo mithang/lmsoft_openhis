@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects
 {
     /// <summary>
-    /// tronggiữakho Đồng bộ đến bản địa
+    /// trong giữa kho Đồng bộ đến bản địa
     /// </summary>
     public class SysIDBVO
     {

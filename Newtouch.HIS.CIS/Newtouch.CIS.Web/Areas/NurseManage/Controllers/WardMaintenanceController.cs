@@ -49,7 +49,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// phònggiữa Bảo trì
+        /// phòng giữa Bảo trì
         /// </summary>
         /// <returns></returns>
         public IActionResult RoomForm()

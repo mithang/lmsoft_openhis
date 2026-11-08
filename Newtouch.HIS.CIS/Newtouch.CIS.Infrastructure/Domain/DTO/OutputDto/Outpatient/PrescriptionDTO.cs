@@ -134,7 +134,7 @@ namespace Newtouch.Domain.DTO.OutputDto
 		public int? maxReptCnt { get; set; }
 
 		/// <summary>
-		/// Sử dụngnhấtnhỏgiữacách(Số ngày)
+		/// Sử dụng nhất nhỏ giữa cách(Số ngày)
 		/// </summary>
 		public int? minInrvDays { get; set; }
 

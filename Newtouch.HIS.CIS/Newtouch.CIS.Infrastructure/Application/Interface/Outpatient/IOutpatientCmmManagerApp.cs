@@ -78,7 +78,7 @@ namespace Newtouch.Application.Interface
         List<DrugDataEx> ExtractIntegrateRp(string mzh, string organizeId, string mzzybz);
 
         /// <summary>
-        /// nhắc lấy Chẩn đoánthông tin
+        /// nhắc lấy Chẩn đoán thông tin
         /// </summary>
         /// <param name="mzh">Số khám ngoại trú</param>
         /// <param name="organizeId"></param>

@@ -248,7 +248,7 @@ where czjl.createtime=@bysj
 			}
 		}
 		/// <summary>
-		/// Lấy Bệnh nhân Chẩn đoánthông tin
+		/// Lấy Bệnh nhân Chẩn đoán thông tin
 		/// </summary>
 		/// <param name="req"></param>
 		/// <returns></returns>

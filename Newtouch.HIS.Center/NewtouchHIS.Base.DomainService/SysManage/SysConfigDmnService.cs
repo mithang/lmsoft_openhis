@@ -122,7 +122,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
                     return null;
                 }
 
-                //Tớiorganizemở
+                //Tới organize mở
                 var orgAuthedModuleId = query.Select(p => p.Id).ToList();
                 //Tới Role mở                
                 List<SysModuleEntity> list = new List<SysModuleEntity>();
@@ -200,7 +200,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
                     return null;
                 }
 
-                //Tớiorganizemở
+                //Tới organize mở
                 var orgAuthedModuleId = query.Select(p => p.Id).ToList();
                 //Tới Role mở                
                 List<SysModuleEntity> list = new List<SysModuleEntity>();

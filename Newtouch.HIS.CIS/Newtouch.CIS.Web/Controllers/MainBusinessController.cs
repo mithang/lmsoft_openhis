@@ -234,7 +234,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// nhắc lấy Chẩn đoánthông tin
+        /// nhắc lấy Chẩn đoán thông tin
         /// </summary>
         /// <param name="mzh">Số khám ngoại trú</param>
         /// <returns></returns>

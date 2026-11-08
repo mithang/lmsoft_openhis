@@ -973,7 +973,7 @@ namespace Newtouch.CIS.Web.Controllers
             return Content(data.ToJson());
         }
 
-        #region LấyTrướcNhắc nhởjson
+        #region LấyTrướcNhắc nhở json
         public IActionResult GetPatJzJson(string mjzbz)
         {
             // Lấy khám bệnh loại tương ứng

@@ -290,7 +290,7 @@ namespace Newtouch.Sett.Domain
             public DateTime CreateTime { get; set; }
     
             /// <summary>
-            /// nhất sau sửa sửa thời giangiữa
+            /// nhất sau sửa sửa thời gian giữa
             /// </summary>
             public DateTime? LastModifyTime { get; set; }
     
