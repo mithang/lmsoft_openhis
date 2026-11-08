@@ -190,7 +190,7 @@ def translate_segment(seg, protected):
         # Boundary-space rule: two CJK runs abut in source with no separator,
         # but their Vietnamese translations are phrases that MUST be spaced
         # ("tải lên"+"trường hợp" -> "tải lên trường hợp", not
-        # "tải lêntrường hợp"). When a replacement directly follows a letter
+        # "tải lên trường hợp"). When a replacement directly follows a letter
         # in the output so far and starts with a letter, prepend one space.
         # (The old post-hoc pass only caught lower->Upper joins inside string
         # literals and missed HTML text nodes entirely.)

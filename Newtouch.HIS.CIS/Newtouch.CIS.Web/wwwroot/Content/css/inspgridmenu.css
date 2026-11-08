@@ -6,7 +6,7 @@
         border: solid 1px #ddd;
     }
 
-    /*Nội dung td đường phân cáchchống xê dịch*/
+    /*Nội dung td đường phân cách chống xê dịch*/
     #divGridjy .table > tbody > tr > td, #divGridjy .table > thead > tr > th {
         padding: 0px;
     }

@@ -6,7 +6,7 @@
 #linkzycf .ui-jqgrid .ui-jqgrid-bdiv table.table-bordered td{
     border: solid 1px #ddd;
 }
-/*Nội dung td đường phân cáchchống xê dịch*/
+/*Nội dung td đường phân cách chống xê dịch*/
 #linkzycf .table > tbody > tr > td, #linkzycf .table > tbody > tr > th, #linkzycf .table > tfoot > tr > td, #linkzycf .table > tfoot > tr > th, #linkzycf .table > thead > tr > td, #linkzycf .table > thead > tr > th{
     padding: 0px;
 }
