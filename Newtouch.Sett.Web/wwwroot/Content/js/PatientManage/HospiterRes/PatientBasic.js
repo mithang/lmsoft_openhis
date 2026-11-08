@@ -1,7 +1,7 @@
 ﻿var keyValue = $.request("keyValue");
 var fromly = $.request("fromly");
-var readbz = $.request("readbz");//读卡标识 读卡类取消身份证验证是否存在一卡通信息
-var cz = "";//确认操作
+var readbz = $.request("readbz");//Cờ đọc thẻ: khi đọc thẻ thì bỏ qua kiểm tra CMND/CCCD đã có thông tin thẻ khám hay chưa
+var cz = "";//Xác nhận thao tác
 var sfzh;
 var cityref;
 $(function () {
@@ -20,7 +20,7 @@ $(function () {
     initControl();
     gridInit();
     $('#myTab a:first').tab('show');
-    //根据姓名获得拼音
+    //Lấy phiên âm (pinyin) theo họ tên
     $('#xm').keyup(function () {
         $('#py').val($(this).toShouPin());
 
@@ -29,10 +29,10 @@ $(function () {
     $("#nlshow").keyup(function () {
         var nlshowText = $(this).val();
         if (!isNaN(nlshowText) && parseInt(nlshowText) > 0) {
-            //是数字
+            //Là số
             date = new Date();
             if ($('#nlshowdw').val() == '1') {
-                //年
+                //Năm
                 var tempGetYearDate = function (year) {
                     var time = new Date();
                     time.setYear(time.getFullYear() + year);
@@ -42,7 +42,7 @@ $(function () {
                 $("#csny").val(tempGetYearDate(age));
             }
             else if ($('#nlshowdw').val() == '2') {
-                //月
+                //Tháng
                 var tempGetMonthDate = function (month) {
                     var time = new Date();
                     time.setMonth(time.getMonth() + month);
@@ -52,17 +52,17 @@ $(function () {
                 $("#csny").val(tempGetMonthDate(age));
             }
             else if ($('#nlshowdw').val() == '3') {
-                //日
+                //Ngày
                 var tempGetDayDate = function (day) {
                     var time = new Date();
-                    time.setDate(time.getDate() + day);//获取Day天后的日期 
+                    time.setDate(time.getDate() + day);//Lấy ngày sau Day ngày 
                     return $('#csny').attr('data-dateFmt') == 'yyyy-MM-dd' ? $.getDate({ date: time }) : $.getTime({ date: time });
                 }
                 age = 0 - parseInt(nlshowText);
                 $("#csny").val(tempGetDayDate(age));
             }
             else if ($('#nlshowdw').val() == '4') {
-                //时
+                //Giờ
                 var tempGetHourDate = function (hour) {
                     var date1 = new Date().getTime();
                     var date2 = date1 + hour * 60 * 60 * 1000;
@@ -79,7 +79,7 @@ $(function () {
 
         function (e) {
             if (((e.keyCode === 13 && e.type === "keydown") || e.type === "blur") && $('#zjlx').val() === "1") {
-                //获取输入的身份证号
+                //Lấy số CMND/CCCD đã nhập
                 var sfzh = $(this).val();
                 var len = $(this).val().length;
                 //if (len == 18 || len == 15) {//checkCard()
@@ -88,7 +88,7 @@ $(function () {
                     csrq = sfzh.substr(6, 8);
                     if ((len === 15 && csrq) || len === 18) {
                         csrq = csrq.replace(/(.{4})(.{2})/, "$1-$2-");
-                        //获取性别
+                        //Lấy giới tính
                         var xb;
                         if (parseInt(sfzh.charAt(16) / 2) * 2 != sfzh.charAt(16))
                             xb = 1;
@@ -99,18 +99,18 @@ $(function () {
                         $("input[name=xb]").parent().removeClass('active');
                         $("input[name=xb]").removeAttr('checked');
                         if (xb == 0) {
-                            //$("input[name=xb]:eq(1)").attr("checked", 'checked'); //女
+                            //$("input[name=xb]:eq(1)").attr("checked", 'checked'); //Nữ
                             //$("input[name=xb]:eq(1)").parent().addClass('active');
                             //$('#xb').val("2");
-                            $("input[name=xb]:eq(1)").trigger('click'); //女
+                            $("input[name=xb]:eq(1)").trigger('click'); //Nữ
 
                         }
                         else {
-                            //$("input[name=xb]:eq(0)").attr("checked", 'checked'); //男
+                            //$("input[name=xb]:eq(0)").attr("checked", 'checked'); //Nam
                             //$("input[name=xb]:eq(0)").parent().addClass('active');
                             //$('#xb').val("1");
 
-                            $("input[name=xb]:eq(0)").trigger('click'); //男
+                            $("input[name=xb]:eq(0)").trigger('click'); //Nam
                         }
                         setAge($('#csny').val());
                     }
@@ -134,13 +134,13 @@ function setAge(strBirthday) {
 }
 
 function initControl() {
-    ///报销政策
+    ///Chính sách hoàn trả chi phí
     $("#brxzmc").newtouchBatchFloatingSelector({
         height: 200,
         width: 400,
         clickautotrigger: true,
         filter: function (keyword) {
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu, dùng keyword để lọc kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) ||
@@ -152,17 +152,17 @@ function initControl() {
             return resultObjArr;
 
         },
-        caption: "病人性质",
+        caption: "Tính chất bệnh nhân",
         colModel: [
-            { label: '编码', name: 'brxz', widthratio: 25 },
-            { label: '名称', name: 'brxzmc', widthratio: 25 },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: 'Mã', name: 'brxz', widthratio: 25 },
+            { label: 'Tên', name: 'brxzmc', widthratio: 25 },
+            { label: 'Phiên âm', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             if ($thistr.attr('data-brxz') === "8") {
-                //判断是否需要读卡
+                //Kiểm tra có cần đọc thẻ không
                 if ($("#xnhylzh").val() === "" || $("#xnhgrbm").val() === "") {
-                    $.modalAlert("新农合病人请先读卡！", 'error');
+                    $.modalAlert("Bệnh nhân hợp tác y tế nông thôn mới vui lòng đọc thẻ trước!", 'error');
                     return;
                 }
             }
@@ -180,7 +180,7 @@ function initControl() {
             return resultObjArr;
         }
     });
-    //最佳联系方式
+    //Cách liên hệ tốt nhất
     $("#zjlxfs").newtouchBindSelect({
         datasource: function () {
             var resultObjArr = new Array();
@@ -190,7 +190,7 @@ function initControl() {
             return resultObjArr;
         }
     });
-    //国籍
+    //Quốc tịch
     $("#gj2").newtouchBindSelect({
         //id: "gjCode",
         //text: "gjmc",
@@ -210,7 +210,7 @@ function initControl() {
             return resultObjArr;
         }
     });
-    //民族
+    //Dân tộc
     $("#mz2").newtouchBindSelect({
         //id: "mzCode",
         //text: "mzmc",
@@ -230,7 +230,7 @@ function initControl() {
             return resultObjArr;
         }
     });
-    //职业
+    //Nghề nghiệp
     $("#zy").newtouchBindSelect({
         datasource: function () {
             var resultObjArr = new Array();
@@ -240,7 +240,7 @@ function initControl() {
             return resultObjArr;
         }
     });
-    //病人来源
+    //Nguồn bệnh nhân
     $("#brly").newtouchBindSelect({
         datasource: function () {
             var resultObjArr = new Array();
@@ -250,7 +250,7 @@ function initControl() {
             return resultObjArr;
         }
     });
-    //婚姻
+    //Hôn nhân
     //$("#hf").newtouchBindSelect({
     //    datasource: function () {
     //        var resultObjArr = new Array();
@@ -260,7 +260,7 @@ function initControl() {
     //        return resultObjArr;
     //    }
     //});
-    //紧急联系人关系
+    //Quan hệ người liên hệ khẩn cấp
     $("#jjllrgx").newtouchBindSelect({
         datasource: function () {
             var resultObjArr = new Array();
@@ -339,7 +339,7 @@ function initControl() {
 
 function gridInit()
 {   
-    if (fromly) { //非门诊挂号住院登记新建弹出 ，取消就诊卡列表初始化
+    if (fromly) { //Không phải popup đăng ký nhập viện mới từ đăng ký khám ngoại trú, bỏ khởi tạo danh sách thẻ khám
         return;
     }
     var $gridList = $("#patGridList");
@@ -348,26 +348,26 @@ function gridInit()
         //postData: { zjh: $("#zjh").val(), },
         height: 100,
         //width: $("#divPatCard").width() - 10,
-        caption: '患者就诊卡列表',
+        caption: 'Danh sách thẻ khám của bệnh nhân',
         colModel: [
-                    { label: '主键', name: 'patid', hidden: true },
-                    { label: '病历号', name: 'blh', width: 80, align: 'left' },
-                    { label: '姓名', name: 'xm', width: 80, align: 'left' },
-                    { label: '出生年月', name: 'csny', hidden: true, width: 120, align: 'left' },
+                    { label: 'Khóa chính', name: 'patid', hidden: true },
+                    { label: 'Số bệnh án', name: 'blh', width: 80, align: 'left' },
+                    { label: 'Họ tên', name: 'xm', width: 80, align: 'left' },
+                    { label: 'Ngày tháng năm sinh', name: 'csny', hidden: true, width: 120, align: 'left' },
                     {
-                        label: '性别', name: 'xb', width: 80, align: 'left', formatter: function (cellvalue) {
+                        label: 'Giới tính', name: 'xb', width: 80, align: 'left', formatter: function (cellvalue) {
                             return $.getGender(cellvalue);
                         }
                     },
                     {
-                        label: '年龄', name: 'nlshow', width: 80, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        label: 'Tuổi', name: 'nlshow', width: 80, align: 'left', formatter: function (cellvalue, options, rowObject) {
                             return getAgeFromBirthTime({ begin: rowObject.csny }).text;
                         }
                     },
-                    { label: '证件号', name: 'zjh', width: 120, align: 'left' },
-                    { label: '卡号', name: 'kh', width: 80, align: 'left' },
-                    { label: '卡类型', name: 'CardTypeName', width: 80, align: 'left' },
-                    { label: '病人性质', name: 'brxzmc', width: 80, align: 'left' },
+                    { label: 'Số giấy tờ', name: 'zjh', width: 120, align: 'left' },
+                    { label: 'Số thẻ', name: 'kh', width: 80, align: 'left' },
+                    { label: 'Loại thẻ', name: 'CardTypeName', width: 80, align: 'left' },
+                    { label: 'Tính chất bệnh nhân', name: 'brxzmc', width: 80, align: 'left' },
                         { label: 'CardType', name: 'CardType', width: 80, align: 'left', hidden: true, },
                     { label: 'CardId', name: 'CardId', width: 80, align: 'left', hidden: true, },
                         { label: '', name: 'CreateTime', hidden: true }
@@ -381,7 +381,7 @@ function gridInit()
             if (rowIds.length > 0) {
                 $.each(rowIds, function (index, value) {
                     var cardtype = $gridList.jqGrid('getRowData', rowIds[index]).CardType;
-                    if (cardtype==="1")//是否已存在虚拟卡
+                    if (cardtype==="1")//Đã tồn tại thẻ ảo chưa
                     {
                         exsistzf = true;
                         return;
@@ -408,7 +408,7 @@ function gridInit()
                 });
                 if (exsistzf) {
                     $("#divPatCard").css('display', 'block');
-                    $.modalAlert("当前证件号已存在一卡通信息,请选中下方就诊卡号列表", "error");
+                    $.modalAlert("Số giấy tờ hiện tại đã có thông tin thẻ khám, vui lòng chọn số thẻ khám trong danh sách bên dưới", "error");
                 } else {
                     cz = "SaveFrom";
                     $('#kh').val(refkh);
@@ -417,9 +417,9 @@ function gridInit()
             }
             else {
                 $("#divPatCard").css('display', 'none');
-                //$("#form1")[0].reset();//初始化
+                //$("#form1")[0].reset();//Khởi tạo
                 $("#patid").val("");
-                //患者性质对照赋值
+                //Gán đối chiếu tính chất bệnh nhân
                 brxzinit();
                 $.ajax({
                     url: "/PatientManage/HospiterRes/GetNewCardNoAndBLH",
@@ -441,13 +441,13 @@ function gridInit()
 
 function brxzinit()
 {
-    //患者性质对照赋值
+    //Gán đối chiếu tính chất bệnh nhân
     var ybfyxzCompResult = {
         Code: '0',
-        Name: '自费'
+        Name: 'Tu chi tra'
     };
     $("#brxzmc").val(ybfyxzCompResult.Name).attr("data-label", ybfyxzCompResult.Code);
-    $('#cardtype').val(xnkCardType);//默认虚拟卡
+    $('#cardtype').val(xnkCardType);//Mặc định thẻ ảo
 }
 
 function submitForm(callback) {
@@ -457,23 +457,23 @@ function submitForm(callback) {
         var data = $("#form1").formSerialize();
         data = savecitycode(data);
         data.brxz = $("#brxzmc").attr("data-label");
-        data.yktbz = data.patid && !fromly ? "yktcardregister" : fromly; //yktregister 更新基本信息同时新增卡信息
+        data.yktbz = data.patid && !fromly ? "yktcardregister" : fromly; //yktregister: cập nhật thông tin cơ bản đồng thời thêm mới thông tin thẻ
         if (openYbSett == 'True') {
-            //开启了医保交易 判断‘非医保卡，不能选择医保费用性质’·
+            //Đã bật giao dịch BHYT: kiểm tra 'thẻ không phải BHYT thì không được chọn tính chất phí BHYT'
             if (data.cardtype !== ybkCardType
                 && ($("#brxzmc").val().indexOf('医保') != -1 || $("#brxzmc").val().indexOf('工伤') != -1 || $("#brxzmc").val().indexOf('生育') != -1)) {
-                $.modalAlert("非医保患者，不能选择医保费用性质", 'error');
+                $.modalAlert("Bệnh nhân không phải BHYT, không được chọn tính chất phí BHYT", 'error');
                 return false;
             }
-            //开启了医保交易 判断‘医保卡，只能选择医保费用性质’
+            //Đã bật giao dịch BHYT: kiểm tra 'thẻ BHYT thì chỉ được chọn tính chất phí BHYT'
             if (data.cardtype === ybkCardType
                 && ($("#brxzmc").val().indexOf('医保') == -1 && $("#brxzmc").val().indexOf('工伤') == -1 && $("#brxzmc").val().indexOf('生育') == -1)) {
-                $.modalAlert("医保患者，只能选择医保费用性质", 'error');
+                $.modalAlert("Bệnh nhân BHYT, chỉ được chọn tính chất phí BHYT", 'error');
                 return false;
             }
         }
         if (!data.xb) {
-            $.modalAlert("请选中性别！", 'warning');
+            $.modalAlert("Vui lòng chọn giới tính!", 'warning');
             return false;
         }
         $.submitForm({
@@ -483,22 +483,22 @@ function submitForm(callback) {
                 
                 var parent = $.request("parent");
                 if (parent && parent === 'patientlist') {
-                    //来自患者列表页面触发
+                    //Kích hoạt từ trang danh sách bệnh nhân
                     $.currentWindow().$("#gridList").resetSelection();
                     $.currentWindow().$("#gridList").trigger("reloadGrid");
                     return;
                 }
                 else if ((parent && parent === 'cisframe') || parent==="OutChargeRegister") {
-                    //来自CIS嵌套该修改页面
+                    //Từ trang sửa nhúng trong CIS
                     // return;
                     callback({ kh: data.kh, cardtype: data.cardtype,brxz:data.brxz,zjh:data.zjh});
                 }
                 else if (parent && parent === 'ZYZfToYb') {
-                    ///住院自费转医保
+                    ///Nhập viện chuyển từ tự phí sang BHYT
                     $.currentWindow().CallbackPatientQuery(ajaxref.data);
                 }
                 else {
-                    //来自登记页面触发
+                    //Kích hoạt từ trang đăng ký
                     
                     $.currentWindow().CallbackPatientQuery({ kh: data.kh, cardtype: data.cardtype });
                 }
@@ -511,7 +511,7 @@ function valiPatZjh()
 {   
     if ($("#zjh").val())
     {
-        if (fromly || readbz!=="1") { //患者一卡通页面及医保读卡取消就诊卡列表加载
+        if (fromly || readbz!=="1") { //Trang thẻ khám bệnh nhân và đọc thẻ BHYT: bỏ tải danh sách thẻ khám
             return;
         }
         var $gridList = $("#patGridList");
@@ -534,7 +534,7 @@ function AcceptClick(callBack) {
     else { 
     var blh = $gridList.jqGridRowValue().blh;
     if (!!!blh) {
-        $.modalAlert("尚未选择一条就诊卡记录", "error");
+        $.modalAlert("Chưa chọn bản ghi thẻ khám nào", "error");
         return;
     }
     var obj = new Object();
@@ -550,83 +550,83 @@ function AcceptClick(callBack) {
     }
 }
 
-//确定 主页面调用
+//Xác nhận, trang chính gọi
 function PatSearchConfirm() {
     AcceptClick();
 }
-//jqGrid 双击选中某行
+//jqGrid: double-click chọn một dòng
 function btn_edit() {
     PatSearchConfirm();
 }
 function checkNotNull() {
-    //卡号
+    //Số thẻ
     var kh = $("#kh").val();
     if (!kh && fromly != "yktmodify") {
-        $.modalAlert("请填写卡号！", 'warning');
+        $.modalAlert("Vui lòng nhập số thẻ!", 'warning');
         return false;
     }
-    //病历号
+    //Số bệnh án
     var blh = $("#blh").val();
     if (!blh && fromly != "yktmodify") {
-        $.modalAlert("请填写病历号！", 'warning');
+        $.modalAlert("Vui lòng nhập số bệnh án!", 'warning');
         return false;
     }
-    //姓名
+    //Họ tên
     var xm = $("#xm").val();
     if (!xm) {
-        $.modalAlert("请填写姓名！", 'warning');
+        $.modalAlert("Vui lòng nhập họ tên!", 'warning');
         return false;
     }
-    //身份证
+    //CMND/CCCD
     var zjh = $("#zjh").val();
     if (!zjh) {
-        $.modalAlert("请填写身份证号！", 'warning');
+        $.modalAlert("Vui lòng nhập số CMND/CCCD!", 'warning');
         return false;
     }
 
-    //病人性质
+    //Tính chất bệnh nhân
     var brxzmc = $("#brxzmc").val();
     if (!brxzmc && fromly != "yktmodify") {
-        $.modalAlert("请选择病人性质！", 'warning');
+        $.modalAlert("Vui lòng chọn tính chất bệnh nhân!", 'warning');
         return false;
     }
 
-    //证件类型
+    //Loại giấy tờ
     var zjlx = $("#zjlx").val();
     if ((zjlx === "" || !zjlx) && zjpz == 'ON') {
-        $.modalAlert("请选择证件类型！", 'warning');
+        $.modalAlert("Vui lòng chọn loại giấy tờ!", 'warning');
         return false;
     }
     var zjh = $("#zjh").val();
     if (!!!zjh && zjpz == 'ON') {
-        $.modalAlert("请填写证件号！", 'warning');
+        $.modalAlert("Vui lòng nhập số giấy tờ!", 'warning');
         return false;
     }
-    ////暂时去除身份验证----lixin 20190816
+    ////Tạm bỏ xác thực CMND/CCCD ----lixin 20190816
     //if (!checkCard()) {
     //    return false;
     //}
-    //出生年月
+    //Ngày tháng năm sinh
     var csny = $("#csny").val();
     if (csny == null || csny === "" || csny == undefined) {
-        $.modalAlert("请填写出生年月!", 'warning');
+        $.modalAlert("Vui lòng nhập ngày tháng năm sinh!", 'warning');
         return false;
     }
-    //拼音
+    //Phiên âm
     var py = $("#py").val();
     if (!py) {
         if (!!$("#xm").val()) {
             py = $("#xm").toShouPin();
         }
         if (!py) {
-            $.modalAlert("拼音为空！", 'warning');
+            $.modalAlert("Phiên âm trống!", 'warning');
             return false;
         }
         else {
             $("#py").val(py);
         }
     }
-    //性别
+    //Giới tính
     var xb = false;
     $('input[name="xb"]').each(function () {
         var $this = $(this);
@@ -636,31 +636,31 @@ function checkNotNull() {
         }
     });
     if (!xb) {
-        $.modalAlert("请选中性别！", 'warning');
+        $.modalAlert("Vui lòng chọn giới tính!", 'warning');
         return false;
     }
-    //职业
+    //Nghề nghiệp
     var zy = $("#zy").val();
     //if (zy === "" || !zy) {
-    //    $.modalAlert("请选择职业 ！", 'warning');
+    //    $.modalAlert("Vui lòng chọn nghề nghiệp!", 'warning');
     //    return false;
     //}
-    //地址
+    //Địa chỉ
     //if (!$('#xian_dz').val()) {
-    //    $.modalAlert("请填写现地址！", 'warning');
+    //    $.modalAlert("Vui lòng nhập địa chỉ hiện tại!", 'warning');
     //    return false;
     //}
 
-    //紧急联络人
+    //Người liên hệ khẩn cấp
     var nlshowdw = $('#nlshowdw option:selected').val();
     var nlshow = $('#nlshow').val();
     if (nlshowdw === '1' && nlshow < 14) {
         if (!$('#jjllr').val()) {
-            $.modalAlert("14岁以下请填写紧急联络人 ！", 'warning');
+            $.modalAlert("Dưới 14 tuổi vui lòng nhập người liên hệ khẩn cấp!", 'warning');
             return false;
         }
         if (!$('#jjlldh').val()) {
-            $.modalAlert("14岁以下请填写紧急联络电话 ！", 'warning');
+            $.modalAlert("Dưới 14 tuổi vui lòng nhập điện thoại liên hệ khẩn cấp!", 'warning');
             return false;
         }
     }
@@ -675,11 +675,11 @@ function checkNotNull() {
             jjlldh: { isPhone: true }
         },
         messages: {
-            //hf: { required: "请选择婚否！" },
-            dh: { isPhone: "电话格式不正确！" },
-            email: { email: "邮箱格式不正确！" },
-            phone: { isMobile: "手机格式不正确！" },
-            jjlldh: { isPhone: "电话格式不正确！" }
+            //hf: { required: "Vui lòng chọn tình trạng hôn nhân!" },
+            dh: { isPhone: "Định dạng điện thoại không đúng!" },
+            email: { email: "Định dạng email không đúng!" },
+            phone: { isMobile: "Định dạng điện thoại di động không đúng!" },
+            jjlldh: { isPhone: "Định dạng điện thoại không đúng!" }
         },
         showErrors: function (errorMap, errorList) {
             if (!$.isEmptyObject(errorList)) {
@@ -697,24 +697,24 @@ function checkNotNull() {
     return true;
 }
 var vcity = {
-    11: "北京", 12: "天津", 13: "河北", 14: "山西", 15: "内蒙古",
-    21: "辽宁", 22: "吉林", 23: "黑龙江", 31: "上海", 32: "江苏",
-    33: "浙江", 34: "安徽", 35: "福建", 36: "江西", 37: "山东", 41: "河南",
-    42: "湖北", 43: "湖南", 44: "广东", 45: "广西", 46: "海南", 50: "重庆",
-    51: "四川", 52: "贵州", 53: "云南", 54: "西藏", 61: "陕西", 62: "甘肃",
-    63: "青海", 64: "宁夏", 65: "新疆", 71: "台湾", 81: "香港", 82: "澳门", 91: "国外"
+    11: "Bắc Kinh", 12: "Thiên Tân", 13: "Hà Bắc", 14: "Sơn Tây", 15: "Nội Mông",
+    21: "Liêu Ninh", 22: "Cát Lâm", 23: "Hắc Long Giang", 31: "Thượng Hải", 32: "Giang Tô",
+    33: "Chiết Giang", 34: "An Huy", 35: "Phúc Kiến", 36: "Giang Tây", 37: "Sơn Đông", 41: "Hà Nam",
+    42: "Hồ Bắc", 43: "Hồ Nam", 44: "Quảng Đông", 45: "Quảng Tây", 46: "Hải Nam", 50: "Trùng Khánh",
+    51: "Tứ Xuyên", 52: "Quý Châu", 53: "Vân Nam", 54: "Tây Tạng", 61: "Thiểm Tây", 62: "Cam Túc",
+    63: "Thanh Hải", 64: "Ninh Hạ", 65: "Tân Cương", 71: "Đài Loan", 81: "Hồng Kông", 82: "Ma Cao", 91: "Nước ngoài"
 };
 
-//check身份证
+//check CMND/CCCD
 checkCard = function () {
     if ($('#zjlx').val() !== "1") {
-        //证件类型 非身份证
+        //Loại giấy tờ không phải CMND/CCCD
         return true;
     }
     var card = $("#zjh").val().toUpperCase();
     if (!!!card) {
         if (zjpz == 'ON') {
-            $.modalAlert("请填写证件号！", 'warning');
+            $.modalAlert("Vui lòng nhập số giấy tờ!", 'warning');
             return false;
         }
         else if (zjpz == 'OFF') {
@@ -722,33 +722,33 @@ checkCard = function () {
         }
     }
     $("#zjh").val(card);
-    //是否为空  
+    //Có trống không  
     if (!!!card) {
-        $.modalAlert('请输入身份证号，身份证号不能为空', 'warning');
+        $.modalAlert('Vui lòng nhập số CMND/CCCD, số CMND/CCCD không được để trống', 'warning');
         // $("#zjh").focus;
         return false;
     }
-    //校验长度，类型  
+    //Kiểm tra độ dài, loại  
     if (isCardNo(card) === false) {
-        $.modalAlert('您输入的身份证号码不正确，请重新输入', 'warning');
+        $.modalAlert('Số CMND/CCCD bạn nhập không đúng, vui lòng nhập lại', 'warning');
         //$("#zjh").focus;
         return false;
     }
-    //检查省份  
+    //Kiểm tra tỉnh  
     if (checkProvince(card) === false) {
-        $.modalAlert('您输入的身份证前两位不正确,请重新输入', 'warning');
+        $.modalAlert('2 ký tự đầu của số CMND/CCCD bạn nhập không đúng, vui lòng nhập lại', 'warning');
         //$("#zjh").focus;
         return false;
     }
-    //校验生日  
+    //Kiểm tra ngày sinh  
     if (checkBirthday(card) === false) {
-        $.modalAlert('您输入的身份证号码生日不正确,请重新输入', 'warning');
+        $.modalAlert('Ngày sinh trong số CMND/CCCD bạn nhập không đúng, vui lòng nhập lại', 'warning');
         //$("#zjh").focus();
         return false;
     }
-    //检验位的检测  
+    //Kiểm tra ký tự kiểm tra  
     if (checkParity(card) === false) {
-        $.modalAlert('您的身份证校验位不正确,请重新输入', 'warning');
+        $.modalAlert('Ký tự kiểm tra trong số CMND/CCCD của bạn không đúng, vui lòng nhập lại', 'warning');
         // $("#zjh").focus();
         return false;
     }
@@ -756,9 +756,9 @@ checkCard = function () {
 };
 
 
-//检查号码是否符合规范，包括长度，类型  
+//Kiểm tra số có đúng quy chuẩn không, gồm độ dài và loại  
 isCardNo = function (card) {
-    //身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X  
+    //Số CMND/CCCD 15 hoặc 18 ký tự; 15 ký tự thì toàn số, 18 ký tự thì 17 ký tự đầu là số, ký tự cuối là ký tự kiểm tra, có thể là số hoặc chữ X  
     var reg = /(^\d{15}$)|(^\d{17}(\d|X)$)/;
     if (reg.test(card) === false) {
         return false;
@@ -767,7 +767,7 @@ isCardNo = function (card) {
     return true;
 };
 
-//取身份证前两位,校验省份  
+//Lấy 2 ký tự đầu của CMND/CCCD, kiểm tra tỉnh  
 checkProvince = function (card) {
     var province = card.substr(0, 2);
     if (vcity[province] == undefined) {
@@ -776,10 +776,10 @@ checkProvince = function (card) {
     return true;
 };
 
-//检查生日是否正确  
+//Kiểm tra ngày sinh có đúng không  
 checkBirthday = function (card) {
     var len = card.length;
-    //身份证15位时，次序为省（3位）市（3位）年（2位）月（2位）日（2位）校验位（3位），皆为数字  
+    //CMND/CCCD 15 ký tự: thứ tự tỉnh (3) thành phố (3) năm (2) tháng (2) ngày (2) ký tự kiểm tra (3), đều là số  
     if (len == '15') {
         var re_fifteen = /^(\d{6})(\d{2})(\d{2})(\d{2})(\d{3})$/;
         var arr_data = card.match(re_fifteen);
@@ -789,7 +789,7 @@ checkBirthday = function (card) {
         var birthday = new Date('19' + year + '/' + month + '/' + day);
         return verifyBirthday('19' + year, month, day, birthday);
     }
-    //身份证18位时，次序为省（3位）市（3位）年（4位）月（2位）日（2位）校验位（4位），校验位末尾可能为X  
+    //CMND/CCCD 18 ký tự: thứ tự tỉnh (3) thành phố (3) năm (4) tháng (2) ngày (2) ký tự kiểm tra (4), ký tự kiểm tra cuối có thể là X  
     if (len == '18') {
         var re_eighteen = /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/;
         var arr_data = card.match(re_eighteen);
@@ -802,14 +802,14 @@ checkBirthday = function (card) {
     return false;
 };
 
-//校验日期  
+//Kiểm tra ngày  
 verifyBirthday = function (year, month, day, birthday) {
     var now = new Date();
     var now_year = now.getFullYear();
-    //年月日是否合理  
+    //Năm tháng ngày có hợp lý không  
     if (birthday.getFullYear() == year && (birthday.getMonth() + 1) == month && birthday.getDate() == day) {
-        //判断年份的范围（3岁到100岁之间)  
-        //判断年份的范围（1岁到150岁之间)  
+        //Xét phạm vi năm (từ 3 đến 100 tuổi)  
+        //Xét phạm vi năm (từ 1 đến 150 tuổi)  
         var time = now_year - year;
         //if (time >= 3 && time <= 100) {
         if (time >= 1 && time <= 150) {
@@ -820,10 +820,10 @@ verifyBirthday = function (year, month, day, birthday) {
     return false;
 };
 
-//校验位的检测  
+//Kiểm tra ký tự kiểm tra  
 checkParity = function (card) {
     return true;
-    //15位转18位  
+    //Chuyển 15 ký tự sang 18 ký tự  
     card = changeFivteenToEighteen(card);
     sfzh = card;
     var len = card.length;
@@ -844,7 +844,7 @@ checkParity = function (card) {
     return false;
 };
 
-//15位转18位身份证号  
+//Chuyển số CMND/CCCD 15 ký tự sang 18 ký tự  
 changeFivteenToEighteen = function (card) {
     if (card.length == '15') {
         var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
