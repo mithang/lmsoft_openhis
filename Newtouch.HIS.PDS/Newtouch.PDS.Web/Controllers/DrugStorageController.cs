@@ -59,7 +59,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// <returns></returns>
         public IActionResult initialRKDH()
         {
-            var rkdh = EFDBBaseFuncHelper.Instance.GetNewMedicineReceiptNo("药品入库单", Constants.CurrentYfbm.yfbmCode, this.OrganizeId);
+            var rkdh = EFDBBaseFuncHelper.Instance.GetNewMedicineReceiptNo("Nhap kho thuoc don", Constants.CurrentYfbm.yfbmCode, this.OrganizeId);
             return Content(rkdh);
         }
 
@@ -170,7 +170,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// <returns></returns>
         public IActionResult initialCKDH()
         {
-            var ckdh = EFDBBaseFuncHelper.Instance.GetNewMedicineReceiptNo("外部出库单", Constants.CurrentYfbm.yfbmCode, this.OrganizeId);
+            var ckdh = EFDBBaseFuncHelper.Instance.GetNewMedicineReceiptNo("Xuat kho ra ngoai don", Constants.CurrentYfbm.yfbmCode, this.OrganizeId);
             return Content(ckdh);
         }
 
@@ -603,7 +603,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// <returns></returns>
         public IActionResult ExecHandOutMedicineByReq(Dictionary<string, List<XT_YP_LS_NBFYMXK>> xtYpLsNbfymxk, string fyfs, int type)
         {
-            var fydh = EFDBBaseFuncHelper.Instance.GetNewMedicineReceiptNo("申领发药单", Constants.CurrentYfbm.yfbmCode, OrganizeId);
+            var fydh = EFDBBaseFuncHelper.Instance.GetNewMedicineReceiptNo("Linh Phat thuoc don", Constants.CurrentYfbm.yfbmCode, OrganizeId);
             var res = _handOutMedicineDmnService.HandOutMedicineByRequest(xtYpLsNbfymxk, fydh, fyfs, type);
             return string.IsNullOrWhiteSpace(res) ? Success() : Error(res);
         }

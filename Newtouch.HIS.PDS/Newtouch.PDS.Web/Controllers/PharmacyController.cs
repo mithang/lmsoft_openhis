@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// <returns></returns>
         public IActionResult RequisitionGetNewDjh()
         {
-            var data = EFDBBaseFuncHelper.Instance.GetNewMedicineReceiptNo("内部申领单", Constants.CurrentYfbm.yfbmCode, this.OrganizeId);
+            var data = EFDBBaseFuncHelper.Instance.GetNewMedicineReceiptNo("Linh thuoc noi bo don", Constants.CurrentYfbm.yfbmCode, this.OrganizeId);
             return Content(data);
         }
 

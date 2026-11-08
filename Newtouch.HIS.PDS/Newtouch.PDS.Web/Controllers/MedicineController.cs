@@ -208,7 +208,7 @@ namespace Newtouch.HIS.Web.Controllers
 		/// <returns></returns>
 		public IActionResult initialSYDH()
 		{
-			var sydh = EFDBBaseFuncHelper.Instance.GetNewMedicineReceiptNo("报损报溢单", Constants.CurrentYfbm.yfbmCode, this.OrganizeId);
+			var sydh = EFDBBaseFuncHelper.Instance.GetNewMedicineReceiptNo("Bao cao hong mat va thua don", Constants.CurrentYfbm.yfbmCode, this.OrganizeId);
 			return Content(sydh);
 		}
 

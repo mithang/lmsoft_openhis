@@ -338,7 +338,7 @@ SELECT @@ROWCOUNT;
                 djlx = (int)EnumDanJuLX.shenlingfayao,
                 Czsj = DateTime.Now,
                 crkId = Guid.NewGuid().ToString(),
-                Pdh = EFDBBaseFuncHelper.Instance.GetNewMedicineReceiptNo("内部申领出库", yfbmCode, organizeid),
+                Pdh = EFDBBaseFuncHelper.Instance.GetNewMedicineReceiptNo("Linh noi bo xuat kho don", yfbmCode, organizeid),
                 OrganizeId = organizeid,
                 Rkbm = rkbm,
                 Sqsj = DateTime.Now,

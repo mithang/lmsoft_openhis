@@ -552,7 +552,7 @@ BEGIN TRY
 			END		
 			
 			--Tạo Số đơn báo hỏng báo thừa
-			EXEC sp_yp_Getypdjh '报损报溢单', @OrganizeId, @yfbmCode, @djh output
+			EXEC sp_yp_Getypdjh 'Bao cao hong mat va thua don', @OrganizeId, @yfbmCode, @djh output
 			UPDATE xt_yp_kcxx Set Kcsl = Kcsl + @Sysl, LastModifierCode=@CreatorCode, LastModifyTime=GETDATE() Where yfbmCode = @yfbmCode And Ypdm = @Ypdm And Isnull(Ph,'') = @Ph AND Isnull(pc,'') = @pc And Isnull(Yxq,'1899-01-01') = Isnull(@Yxq,'1899-01-01') AND OrganizeId=@OrganizeId
 
 			SELECT @Sykc = ISNULL(@Kcsl,0) + @Sysl
