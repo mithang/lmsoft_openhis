@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Domain.Entity
         /// 
         /// </summary>
         [Key]
-        [SugarColumn(IsPrimaryKey = true)]
+        [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         public int dlId { get; set; }
 
         /// <summary>
