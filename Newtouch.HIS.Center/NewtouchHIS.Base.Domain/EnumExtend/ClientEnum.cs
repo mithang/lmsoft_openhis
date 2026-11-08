@@ -824,7 +824,7 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
             /// Nhắc nhở giới hạn số tiền
             /// </summary>
             [Description("Nhắc nhở giới hạn số tiền")]
-            金额上限提醒 = 1,    //Ví dụ: Nhà trị liệu trong một tháng thu phí không được vượt quá một trăm nghìn
+            TienTrenHanNhacNho = 1,    //Ví dụ: Nhà trị liệu trong một tháng thu phí không được vượt quá một trăm nghìn
         }
 
         /// <summary>

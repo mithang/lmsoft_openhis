@@ -201,19 +201,19 @@ namespace Newtouch.Infrastructure
     public enum EnumSffjdlmc
     {
         [Description("Phí thuốc")]
-        药品费 = 1001,
+        PhiThuoc = 1001,
         [Description("Phí khám")]
-        检查费,
+        PhiKham,
         [Description("Phí xét nghiệm")]
-        检验费,
+        PhiXetNghiem,
         [Description("Phí điều trị")]
-        治疗费,
+        PhiDieuTri,
         [Description("Phí giường bệnh")]
-        床位费,
+        PhiGiuongBenh,
         [Description("Phí vật tư")]
-        材料费,
+        PhiVatTu,
         [Description("Phí gây mê")]
-        麻醉费
+        PhiGayMe
     }
     /// <summary>
     /// Cờ đăng nhập
