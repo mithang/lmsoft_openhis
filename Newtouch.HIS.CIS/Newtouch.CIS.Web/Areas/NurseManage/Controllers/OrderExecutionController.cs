@@ -839,6 +839,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         public IActionResult DeleteBind(string zyh, string yzid, string yzxz)
         {
             var data = _doctorserviceDmnService.DeleteBind(zyh, yzid, yzxz, this.OrganizeId);
+            if (!string.IsNullOrEmpty(data))
+            {
+                return Error(data);
+            }
             return Success(data);
         }
         #endregion

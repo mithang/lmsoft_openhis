@@ -3554,12 +3554,20 @@ where id=@yzid");
                     if (yzxz == "1")//Y lệnh tạm thời
                     {
                         InpatientSTATOrderEntity lsyzdata = db.IQueryable<InpatientSTATOrderEntity>().Where(a => a.zyh == zyh && a.zt == "1" && a.Id == yzid && a.OrganizeId == orgId&&a.isfsyz != null).FirstOrDefault();
+                        if (lsyzdata == null)
+                        {
+                            return "Không tìm thấy y lệnh phụ cần hủy";
+                        }
                         lsyzdata.zt = "0";
                         _inpatientSTATOrderRepo.SubmitForm(lsyzdata, yzid);
                     }
                     else
                     {
                         InpatientLongTermOrderEntity cqyzdata = db.IQueryable<InpatientLongTermOrderEntity>().Where(a => a.zyh == zyh && a.zt == "1" && a.Id == yzid && a.OrganizeId == orgId && a.isfsyz != null).FirstOrDefault();
+                        if (cqyzdata == null)
+                        {
+                            return "Không tìm thấy y lệnh phụ cần hủy";
+                        }
                         cqyzdata.yzzt = Convert.ToInt32(EnumYzzt.TZ);
                         _InpatientLongTermOrderRepo.SubmitForm(cqyzdata, yzid);
                     }
