@@ -115,7 +115,7 @@ $.currentWindow = function (iframeId) {
         }
         catch (err) {
             //Khác miền v.v.
-            //Đảm bảocontinue
+            //Đảm bảo continue
         }
     }
     return null;
@@ -217,7 +217,7 @@ $.modalClose = function (iframeId) {
                 iframeId = window.name;
             }
         }
-        var index = top.layer.getFrameIndex(iframeId); //Lấy hiện tại trướciframechỉ Số của lớp
+        var index = top.layer.getFrameIndex(iframeId); //Lấy hiện tại trước iframe chỉ Số của lớp
         var $IsdialogClose = top.$("#layui-layer" + index).find('.layui-layer-btn').find("#IsdialogClose");
         var IsClose = $IsdialogClose.is(":checked");
         if ($IsdialogClose.length == 0) {
@@ -318,7 +318,7 @@ $.fn.formSerialize = function (formdate, forlabel) {
         var $this = $(this);
         var id = $this.attr('id');
         if (!!!id) {
-            return; //Không cóid Thuộc tính continue
+            return; //Không có id Thuộc tính continue
         }
         var type = $this.attr('type'); switch (type) {
             case "checkbox": postdata[id] = $this.is(":checked"); break; case 'radio': postdata[id] = element.find('input[name="' + id + '"]:checked').val(); break; default: var value = ($this.val() == null || $this.val() == "") ? "" : $this.val(); if (!$.request("keyValue")) { value = value.replace(/&nbsp;/g, ''); }
@@ -349,7 +349,7 @@ $.fn.bindSelect = function (options) {
         selectedValue: null,    //Mục đã chọn
         data: null,
         datasource: null,
-        minimumResultsForSearch: Infinity   //Không hiển thịsearch
+        minimumResultsForSearch: Infinity   //Không hiển thị search
     };
     var options = $.extend(defaults, options);
     var $element = $(this);
@@ -379,7 +379,7 @@ $.fn.bindSelect = function (options) {
         }
         else {
             if (options.pleaseselect !== true && options.handlenoresult === true) {
-                //Xử lýnoresult,lạiun pleaseselect
+                //Xử lý no result,lại un pleaseselect
                 $element.append($("<option value=''>No results found</option>"));
             }
         }
@@ -485,9 +485,9 @@ $.addNum = function (num1, num2) {
 }
 /**
  ** Hàm trừ,Dùng để có kết quả trừ chính xác
- ** Giải thích:javascriptkết quả trừ sẽ có sai Số,Khi hai Số thực trừ nhau sẽ rõ ràng hơn.Hàm này trả về kết quả trừ khá chính xác.
+ ** Giải thích:javascript kết quả trừ sẽ có sai Số,Khi hai Số thực trừ nhau sẽ rõ ràng hơn.Hàm này trả về kết quả trừ khá chính xác.
  ** Gọi:accSub(arg1,arg2)
- ** Giá trị trả về:arg1trừ điarg2kết quả chính xác của
+ ** Giá trị trả về:arg1trừ đi arg2kết quả chính xác của
  **/
 $.accSub = function (arg1, arg2) {
     if (!!!arg2) {
@@ -639,7 +639,7 @@ $(function () { $('select[data-ItemType]').each(function () { $(this).itemDetail
         return obj;
     }
 };
-//$('any').val() Trả vềundefined ,nval Trả về chuỗi rỗng
+//$('any').val() Trả về undefined ,nval Trả về chuỗi rỗng
 $.fn.nval = function () {
     var val = $(this).val();
     if (!!val || !isNaN(val)) {

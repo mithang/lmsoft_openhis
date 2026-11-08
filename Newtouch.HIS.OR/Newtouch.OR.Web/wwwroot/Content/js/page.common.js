@@ -88,7 +88,7 @@ $.fn.staffFloatingSelector = function (options) {
 
 //Khoản thu phí Lớp nổi(Bao gồm thuốc,Khoản,Cũng có thể là khoản không điều trị)
 $.fn.sfxmFloatingSelector = function (options) {
-    //Mặc địnhoptions
+    //Mặc định options
     var defaults = {
         width: 830,
         height: 200,
@@ -159,7 +159,7 @@ $.fn.sfxmFloatingSelector = function (options) {
             },
             {
                 label: 'Tồn kho', name: 'clkcsl', formatter: function (cellvalue, a, b) {
-                    //Đã chokcsllà đơn vị nhỏ nhất,Ở đây hiển thị đơn vị ngoại trú/số lượng đơn vị nội trú
+                    //Đã cho kcsl là đơn vị nhỏ nhất,Ở đây hiển thị đơn vị ngoại trú/số lượng đơn vị nội trú
                     return b.yzlx === '1' ? (!!b.kcsl && !!b.cls ? (parseInt(b.kcsl / b.cls)) : 'Không có') : '';
                 }, widthratio: 6, hidden: true
             },

@@ -8085,7 +8085,7 @@ function StartDCWriterClientControl(rootElement) {
 
    /**
     * @method Lấy nội dung ghi chú hoặc sửa nội dung ghi chú
-    * @param element ghi chúphần tử
+    * @param element ghi chú phần tử
     * @param changeOption tham số thứ hai, khi rỗng thì lấy nội dung ghi chú, khi có giá trị thì sửa nội dung ghi chú; 
     * @returns changeOptionkhi rỗng, giá trị trả về và định dạng tham số thứ hai đều như hiển thị dưới đây: 
     * {
@@ -8094,7 +8094,7 @@ function StartDCWriterClientControl(rootElement) {
         "CommentAuthor": "",//tác giả ghi chú
         "CommentCreationTime": "",//ghi chú Tạo thời gian
     * }
-    * @returns changeOptioncó giá trị, true: đã hoàn thành thao tác. false: chưa hoàn thành thao tác.
+    * @returns changeOption có giá trị, true: đã hoàn thành thao tác. false: chưa hoàn thành thao tác.
     */
     rootElement.CommentOption = function (element, changeOption) {
         var isComment = element && element.nodeName && element.nodeName == "SPAN" && element.getAttribute("dctype") == "DocumentComment";
@@ -8133,7 +8133,7 @@ function StartDCWriterClientControl(rootElement) {
 
     /**
     * @method Xóa ghi chú
-    * @param element ghi chúphần tử
+    * @param element ghi chú phần tử
     * @returns true: đã hoàn thành thao tác. false: chưa hoàn thành thao tác.
     */
     rootElement.DeleteComment = function (element) {

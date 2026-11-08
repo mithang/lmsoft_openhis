@@ -3,19 +3,19 @@
  *
  *
  * Phương pháp gọi khởi tạo: trong sự kiện onload của js hoặc $(document).ready() của jq, gọi stepBar.init(id, option) là được.
- * đầu tiêntham sốlàstepBardungdụng cụcủaid,bắt buộc,cho phéptruyềnvàocủa Giá trịgóigồmVDdưới:
- *     jQueryđối tượng
- *     javascriptđối tượng
+ * đầu tiên tham số là stepBar dung dụng cụ của id,bắt buộc,cho phép truyền vào của Giá trị gói gồmVDdưới:
+ *     jQuery đối tượng
+ *     javascript đối tượng
  *     Phần tử DOM (có thể chuyển hóa là ID của chuỗi ký tự, VD “stepBar” || “#stepBar”). Sửa sai: đối tượng jQuery sai viết “#” thành “.” cũng cùng dạng có thể nhận biết ra, nhưng phải cần bảo chứng tham số lần này có thể chuyển hóa thành ID của phần tử.
- * thứhaicáitham sốlàmộtđối tượngtrực tiếplượng,tùy chọn,góichứaVDdướicủakhôngcáihoặcnhiềucái
- *     step                string number   Mục tiêuvàođộ  Mặc địnhlà1(thứmộtbước),tùy chọn
- *     change              boolean    Cài đặtchènmục Có Khôngcó thểbị Thao tác,tùy chọn  Mặc địnhfalse
- *     animation           boolean    Cài đặtchènmục Có Khôngháidùngđộngvẽhìnhkiểu(điều kiện tiên quyếtstepBar.changelàtrue),tùy chọn  Mặc địnhfalse
- *     speed               number     độngvẽnhanhđộ(điều kiện tiên quyết,changevàanimationlàtrue) tùy chọn   Mặc định1000ms
- *     stepEasingForward   string     từhiện tạibướcsốtớitrướcquavượtđộngvẽ(điều kiện tiên quyết,changevàanimationlàtrue) tùy chọn  Mặc định "easeOutExpo"  Thêmtham sốvui lòngtham sốchiếu jquery.easing.js
- *     stepEasingBackward  string     từhiện tạibướcsốtớisauquavượtđộngvẽ(điều kiện tiên quyết,changevàanimationlàtrue) tùy chọn  Mặc định "easeOutElastic"  Thêmtham sốvui lòngtham sốchiếu jquery.easing.js
+ * thứ hai cái tham số là một đối tượng trực tiếp lượng,tùy chọn,gói chứaVDdướicủakhôngcáihoặcnhiềucái
+ *     step                string number   Mục tiêu vào độ  Mặc định là1(thứ một bước),tùy chọn
+ *     change              boolean    Cài đặt chèn mục Có Không có thể bị Thao tác,tùy chọn  Mặc định false
+ *     animation           boolean    Cài đặt chèn mục Có Không hái dùng động vẽ hình kiểu(điều kiện tiên quyết stepBar.change là true),tùy chọn  Mặc định false
+ *     speed               number     động vẽ nhanh độ(điều kiện tiên quyết,change và animation là true) tùy chọn   Mặc định1000ms
+ *     stepEasingForward   string     từ hiện tại bước số tới trước qua vượt động vẽ(điều kiện tiên quyết,change và animation là true) tùy chọn  Mặc định "easeOutExpo"  Thêm tham số vui lòng tham số chiếu jquery.easing.js
+ *     stepEasingBackward  string     từ hiện tại bước số tới sau qua vượt động vẽ(điều kiện tiên quyết,change và animation là true) tùy chọn  Mặc định "easeOutElastic"  Thêm tham số vui lòng tham số chiếu jquery.easing.js
  *
- *     PS:khônghợpphương phápcủatham sốsẽmạnhdòng Sử dụng Mặc định Giá trị
+ *     PS:không hợp phương pháp của tham số sẽ mạnh dòng Sử dụng Mặc định Giá trị
  */
 
 var stepBar = {
@@ -34,7 +34,7 @@ var stepBar = {
     speed : 1000,
     stepEasingForward : "easeOutCubic",
     stepEasingBackward: "easeOutElastic",
-    checkStepFunc: null,    //kiểm trastep Có Khôngcó thểlấyđiểmnhấp
+    checkStepFunc: null,    //kiểm trastep Có Không có thể lấy điểm nhấp
     itemClickFunc: null,
     
     init : function(id, option){

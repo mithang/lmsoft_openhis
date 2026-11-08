@@ -15,11 +15,11 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
         ajaxparameters: null,
         //function get
         isjsonp: false,
-        //Có sử dụng hay khôngjsonp
+        //Có sử dụng hay không jsonp
         isinputchangetriggered: true,
-        //Cóinput changeđược kích hoạt(ví dụ như nhấn nút để lớp nổi hiện ra,tức là truyềnfalse)
+        //Có input change được kích hoạt(ví dụ như nhấn nút để lớp nổi hiện ra,tức là truyền false)
         inputtextcheck: null,
-        //Bởiinput changekích hoạt,có thể kiểm tra trước văn bản đã nhập function
+        //Bởi input change kích hoạt,có thể kiểm tra trước văn bản đã nhập function
         mutiselect: false,
     };
     var options = $.extend(defaults, options);
@@ -34,7 +34,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
         }
     }
     if (!options.id) {
-        //Tạo ngẫu nhiênid
+        //Tạo ngẫu nhiên id
         var idtemp = Math.random().toString();
         var idtemp = idtemp.replace(/\./, "");
         options.id = "divfloat_" + idtemp;
@@ -77,13 +77,13 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
         }
 
     };
-    //Định vị lớp nổi(Theoelementvị trí)
+    //Định vị lớp nổi(Theo element vị trí)
     options.location = function () {
         if (options.X && options.Y) {
             options.container.css('left', options.X);
             options.container.css('top', options.Y);
         } else {
-            //Theooptions.$thisđịnh vị theo tọa độ
+            //Theooptions.$this định vị theo tọa độ
             var thisDomPoint = getDOMPositionPoint(options.$this[0]);
 
             if (options.width > ($(document).width() / 2 + $(document).width() / 4)) {
@@ -309,7 +309,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
             });
         }
 
-        options.$this.keyup(function (event) { //Phải làkeyup
+        options.$this.keyup(function (event) { //Phải là keyup
             event = event || window.event;
             if (event.keyCode == 38 || event.keyCode == 40 || event.keyCode == 13) {
                 return;
@@ -320,7 +320,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
 
             //Ẩn trước
             if (options.container) {
-                options.container.find('ul').html(''); //Xóaulnội dung
+                options.container.find('ul').html(''); //Xóa ul nội dung
             }
             $('body div.ui-nfs:visible').hide();
 
@@ -344,13 +344,13 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                 if ($trs.length == 0) {
                     return; //Không có dòng
                 }
-                var curActiveIndex = -1; //hiện tạiactivedòng
+                var curActiveIndex = -1; //hiện tại active dòng
                 for (iiiiii = 0; iiiiii < $trs.length; iiiiii++) {
                     if ($($trs[iiiiii]).hasClass('active')) {
                         curActiveIndex = iiiiii;
                     }
                 }
-                var dstnIndex = 0; //Đíchindex
+                var dstnIndex = 0; //Đích index
                 if (curActiveIndex == -1) {
                     dstnIndex = 0;
                 } else {
@@ -377,7 +377,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                     }
                 }
 
-                //Điều chỉnhsrollvị trí
+                //Điều chỉnh sroll vị trí
                 var scrollTop = $trs[dstnIndex].offsetTop;
                 $trs.parents('.ui-nfs tbody').scrollTop(scrollTop - 50);
 
@@ -408,7 +408,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
             }
         })
     } else {
-        //Bởiclickkích hoạt bằng sự kiện
+        //Bởi click kích hoạt bằng sự kiện
         options.$this.click(function () {
             if (options.container) {
                 options.container.find('ul li').html(''); //Xóa nội dung tbody
@@ -446,9 +446,9 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
         ajaxreqdata: null,  //function post hoặc jsonp 
         ajaxsync: false,
         ajaxparameters: null,    //function get
-        isjsonp: false,  //Có sử dụng hay khôngjsonp
-        isinputchangetriggered: true,    //Cóinput changeđược kích hoạt(ví dụ như nhấn nút để lớp nổi hiện ra,tức là truyềnfalse)
-        inputtextcheck: null,   //Bởiinput changekích hoạt,có thể kiểm tra trước văn bản đã nhập function
+        isjsonp: false,  //Có sử dụng hay không jsonp
+        isinputchangetriggered: true,    //Có input change được kích hoạt(ví dụ như nhấn nút để lớp nổi hiện ra,tức là truyền false)
+        inputtextcheck: null,   //Bởi input change kích hoạt,có thể kiểm tra trước văn bản đã nhập function
     };
     var options = $.extend(defaults, options);
     options.$this = $(this);
@@ -462,7 +462,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
         }
     }
     if (!options.id) {
-        //Tạo ngẫu nhiênid
+        //Tạo ngẫu nhiên id
         var idtemp = Math.random().toString();
         var idtemp = idtemp.replace(/\./, "");
         console.log(idtemp);
@@ -497,14 +497,14 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
         }
         options.container = $divContainer;
     };
-    //Định vị lớp nổi(Theoelementvị trí)
+    //Định vị lớp nổi(Theo element vị trí)
     options.location = function () {
         if (options.X && options.Y) {
             options.container.css('left', options.X);
             options.container.css('top', options.Y);
         }
         else {
-            //Theooptions.$thisđịnh vị theo tọa độ
+            //Theooptions.$this định vị theo tọa độ
             var thisDomPoint = getDOMPositionPoint(options.$this[0]);
 
             if (options.width > ($(document).width() / 2 + $(document).width() / 4)) {
@@ -705,7 +705,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
         else if (options.focusautotrigger === true) {
             options.$this.focus(function (event) {
                 if (options.focusfromdbclickitem === true) {
-                    options.focusfromdbclickitem = false;   //Không thể kích hoạt vòng lặpfocus
+                    options.focusfromdbclickitem = false;   //Không thể kích hoạt vòng lặp focus
                     return;
                 }
 
@@ -725,7 +725,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
             });
         }
 
-        options.$this.keyup(function (event) {   //Phải làkeyup
+        options.$this.keyup(function (event) {   //Phải là keyup
             event = event || window.event;
             if (event.keyCode == 38 || event.keyCode == 40 || event.keyCode == 13) {
                 return;
@@ -737,7 +737,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
 
             //Ẩn trước
             if (options.container) {
-                options.container.find('ul').html(''); //Xóaulnội dung
+                options.container.find('ul').html(''); //Xóa ul nội dung
             }
             $('body div.ui-nfs:visible').hide();
 
@@ -762,13 +762,13 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
                 if ($trs.length == 0) {
                     return; //Không có dòng
                 }
-                var curActiveIndex = -1;    //hiện tạiactivedòng
+                var curActiveIndex = -1;    //hiện tại active dòng
                 for (iiiiii = 0; iiiiii < $trs.length; iiiiii++) {
                     if ($($trs[iiiiii]).hasClass('active')) {
                         curActiveIndex = iiiiii;
                     }
                 }
-                var dstnIndex = 0;  //Đíchindex
+                var dstnIndex = 0;  //Đích index
                 if (curActiveIndex == -1) {
                     dstnIndex = 0;
                 }
@@ -797,7 +797,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
                     }
                 }
 
-                //Điều chỉnhsrollvị trí
+                //Điều chỉnh sroll vị trí
                 var scrollTop = $trs[dstnIndex].offsetTop;
                 $trs.parents('.ui-nfs tbody').scrollTop(scrollTop - 50);
 
@@ -830,7 +830,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
         })
     }
     else {
-        //Bởiclickkích hoạt bằng sự kiện
+        //Bởi click kích hoạt bằng sự kiện
         options.$this.click(function () {
             if (options.container) {
                 options.container.find('ul li').html(''); //Xóa nội dung tbody

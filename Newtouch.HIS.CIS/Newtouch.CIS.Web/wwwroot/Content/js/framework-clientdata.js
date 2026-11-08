@@ -3,20 +3,20 @@ $(function () {
 })
 $.clientsInit = function () {
     var extToClients = function (data) {
-        //duyệtdatacủa Thuộc tính mở rộngtriểnđếnwindow.clients
+        //duyệt data của Thuộc tính mở rộng triển đến window.clients
         if (!!!window.clients) {
             window.clients = {};
         }
         for (dataitemName in data) {
             var itemdata = data[dataitemName];
             if (typeof (itemdata) == typeof ('abc')) {
-                //chữkýchuỗithìcần Sử dụngeval Phương pháp
+                //chữ ký chuỗi thì cần Sử dụng eval Phương pháp
                 itemdata = eval(itemdata);
             }
             window.clients[dataitemName] = itemdata;
         }
     }
-    //phátajaxyêu cầu
+    //phát ajax yêu cầu
     var funcClientsAjax = function (url, async) {
         $.ajax({
             url: url,
@@ -30,7 +30,7 @@ $.clientsInit = function () {
         });
     };
 
-    //Đồng bộyêu cầu  //VDmenuphiếunội dungphảicầndùng Đồng bộphươngkiểu
+    //Đồng bộ yêu cầu  //VD menu phiếu nội dung phải cần dùng Đồng bộ phương kiểu
     funcClientsAjax("/ClientsData/GetClientsDataJson", false);
     //Yêu cầu không đồng bộ
     //funcClientsAjax("/NewtouchClientsData/GetClientsDataJson", true);

@@ -97,7 +97,7 @@ $.fn.opFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector(options);
 }
 
-//Vị tríngười Bộ chọn nhân viên
+//Vị trí người Bộ chọn nhân viên
 $.fn.dutyStaffFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector({
         url: '/SystemManage/Common/GetStaffListByDutyCode',

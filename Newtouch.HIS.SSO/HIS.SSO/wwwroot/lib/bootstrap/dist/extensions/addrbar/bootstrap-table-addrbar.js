@@ -2667,7 +2667,7 @@
     var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : window.location.search;
     /*
      * chú ý cách viết biểu thức chính quy ở đây
-     * (^|&)keykhớp: trực tiếp theokeybắt đầu hoặc theo&keychuỗi bắt đầu
+     * (^|&)key khớp: trực tiếp theo key bắt đầu hoặc theo&key chuỗi bắt đầu
      * tương tự(&|$)biểu thị theo&chuỗi kết thúc hoặc kết thúc trực tiếp
      * ...đương nhiên, tôi cũng không biết cách dùng này.
      */
@@ -2680,7 +2680,7 @@
   }
 
   /*
-   * function: tạo ra theo tham số đã chourlđịa chỉ
+   * function: tạo ra theo tham số đã cho url địa chỉ
    * var dic = {name: 'genreal', age: 24}
    * var url = 'https://www.baidu.com?age=22';
    * _buildUrl(dic, url);
@@ -2697,13 +2697,13 @@
       var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
         key = _Object$entries$_i[0],
         val = _Object$entries$_i[1];
-      // tìm kiếmname=generalchuỗi dạng này(&là ký tự phân tách)
+      // tìm kiếm name=general chuỗi dạng này(&là ký tự phân tách)
       var pattern = "".concat(key, "=([^&]*)");
       var targetStr = "".concat(key, "=").concat(val);
       if (val === undefined) continue;
 
       /*
-       * nếu mục tiêuurltrong có chứakeykhóa, chúng ta cần thay nó thành của chúng taval
+       * nếu mục tiêu url trong có chứa key khóa, chúng ta cần thay nó thành của chúng taval
        * nếu không thì cứ thêm trực tiếp là được.
        */
       if (url.match(pattern)) {

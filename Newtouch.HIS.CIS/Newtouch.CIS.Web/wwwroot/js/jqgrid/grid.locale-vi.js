@@ -14,7 +14,7 @@ $.extend($.jgrid,{
 		loadtext: "Đang tải...",
 		pgtext : "Trang {0} trên tổng số {1} trang",
 		// jqGrid core default for empty tree grids (not covered by the cn locale):
-		// without this, SysItem's tree shows the Chinese "Không cótìmđếnquý vịcầncủaliên quan Dữ liệu!".
+		// without this, SysItem's tree shows the Chinese "Không có tìm đến quý vị cần của liên quan Dữ liệu!".
 		unwrittentext: "Không tìm thấy dữ liệu liên quan!"
 	},
 	search : {
