@@ -186,25 +186,27 @@ namespace NewtouchHIS.Lib.Base.Utilities
         /// <param name="expiretime"></param>
         public static long SetList<T>(string key, IList<T> list, int expiretime = 0)
         {
-
+            // F5FIX: ghi từng item JSON bằng overload string PushKeyOfListLast(key, string).
+            // Trước đây code gom JSON vào RedisValue[] rồi gọi PushKeyOfListLast(key, lists);
+            // RedisCoreEx KHÔNG có overload (string, RedisValue[]) nên call bind sang generic
+            // PushKeyOfListLast<T>(T=RedisValue[]) → Serialize() nhị phân → throw vì
+            // runtimeconfig đã tắt serialize nhị phân. GetList đọc lại từng item bằng
+            // JsonConvert.DeserializeObject<T> nên định dạng lưu trữ (JSON) không đổi.
+            // KHÔNG bật lại serialize nhị phân bằng runtimeconfig.
             if (list != null && list.Count > 0)
             {
-                RedisValue[] lists = new RedisValue[list.Count];
-                if (list != null && list.Count > 0)
+                DeleteKey(key);
+                long result = 0;
+                for (int i = 0; i < list.Count; i++)
                 {
-                    for (int i = 0; i < list.Count; i++)
-                    {
-                        lists[i] = JsonConvert.SerializeObject(list[i]);
-                    }
-                    DeleteKey(key);
-                    var result = PushKeyOfListLast(key, lists);
-                    if (expiretime != 0)
-                    {
-                        TimeSpan span = DateTime.Now.AddSeconds(expiretime) - DateTime.Now;
-                        SetKeyExpire(key, span);
-                    }
-                    return result;
+                    result = PushKeyOfListLast(key, JsonConvert.SerializeObject(list[i]));
                 }
+                if (expiretime != 0)
+                {
+                    TimeSpan span = DateTime.Now.AddSeconds(expiretime) - DateTime.Now;
+                    SetKeyExpire(key, span);
+                }
+                return result;
             }
             return 0;
         }
