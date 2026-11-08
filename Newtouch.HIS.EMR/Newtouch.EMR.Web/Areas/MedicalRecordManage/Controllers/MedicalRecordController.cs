@@ -267,7 +267,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                             string path = BlFilePath + DateTime.Now.ToString("yyyy/MM/dd/") + ywid + "/";// Máy tính Win10 có vấn đề
                             path = $"{BlFilePath}{DateTime.Now.ToString("yyyy")}/{DateTime.Now.ToString("MM")}/{DateTime.Now.ToString("dd")}/{ywid}/";
                             IsExistDir(path);
-                            string BLMC = DateTime.Now.ToString("ddHHmm") + mb.mbmc.Replace("模板", "");
+                            string BLMC = DateTime.Now.ToString("ddHHmm") + mb.mbmc;
                             BLMC = BLMC.Trim();
                             byte[] decodedBytes = Convert.FromBase64String(submitXml);
                             string xmlConten = Encoding.UTF8.GetString(decodedBytes);
@@ -2472,7 +2472,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
             // Thiết lập đường dẫn xml
             string currentFileName = "";//Đường dẫn đọc bản ghi diễn biến bệnh đã hợp nhất
-            string fileUrl = WebPath.Map("~/file/住院病历/Merge/" + zyh);// Đường dẫn thư mục
+            string fileUrl = WebPath.Map("~/file/HoSoBenhAn/Merge/" + zyh);// Đường dẫn thư mục
             if (!Directory.Exists(fileUrl))
             {//Tạo thư mục
                 Directory.CreateDirectory(fileUrl);
@@ -2500,7 +2500,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     _month = _month.Substring(_month.Length - 2);
                     string _day = "00" + date.Day.ToString();
                     _day = _day.Substring(_day.Length - 2);
-                    var url = WebPath.Map("~/file/住院病历/" + date.Year + "/" + _month + "/" + _day + "/" + obj.zyh + "/" + obj.Name + ".xml");
+                    var url = WebPath.Map("~/file/HoSoBenhAn/" + date.Year + "/" + _month + "/" + _day + "/" + obj.zyh + "/" + obj.Name + ".xml");
                     urlList.Add(url);
                     XmlDocument doc = new XmlDocument();
                     doc.Load(url);
@@ -2724,7 +2724,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             string path = BlFilePath + DateTime.Now.ToString("yyyy/MM/dd/") + ywid + "/";// Máy tính Win10 có vấn đề
             path = $"{BlFilePath}{DateTime.Now.ToString("yyyy")}/{DateTime.Now.ToString("MM")}/{DateTime.Now.ToString("dd")}/{ywid}/";
             IsExistDir(path);
-            string BLMC = DateTime.Now.ToString("ddHHmm") + mbety.mbmc.Replace("模板", "").Trim();
+            string BLMC = DateTime.Now.ToString("ddHHmm") + mbety.mbmc.Trim();
             byte[] decodedBytes = Convert.FromBase64String(submitData);
             string xmlConten = Encoding.UTF8.GetString(decodedBytes);
             string currentFileName = WebPath.Map(path);

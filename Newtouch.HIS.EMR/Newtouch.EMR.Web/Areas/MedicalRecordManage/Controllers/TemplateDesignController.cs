@@ -95,7 +95,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
                         }
                         string ywid = zyh.Trim();
                         var mb = _bl_mblbRepo.GetTemplateById(mbbh);
-                        string BLMC = DateTime.Now.ToString("ddHHmm") + mb.mbmc.Replace("模板", "");
+                        string BLMC = DateTime.Now.ToString("ddHHmm") + mb.mbmc;
                         string path = BlFilePath + DateTime.Now.ToString("yyyy/MM/dd/") + ywid + "/";
                         var mbety = _bl_mblbRepo.FindEntity(mbbh);
                         if (mbety != null && mbety.EnableDataLoad == "1" && !string.IsNullOrWhiteSpace(mbety.DataSource))
