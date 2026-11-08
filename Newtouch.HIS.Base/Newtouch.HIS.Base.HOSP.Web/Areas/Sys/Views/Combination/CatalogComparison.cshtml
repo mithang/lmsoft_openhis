@@ -2,7 +2,7 @@
 @using Newtouch.Infrastructure;
 @using Newtouch.Tools;
 @{
-	ViewBag.Title = "CatalogComparison";
+	ViewBag.Title = "Đối chiếu danh mục";
 	Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -277,7 +277,7 @@
 			jyl: $("#gridJSMXList").jqGridRowValue().jyl,
 		};
 		var ypId = $("#gridList").jqGridRowValue().ypId;
-		var zfxz = ybxx.jyl == "甲" ? "4" : ybxx.jyl == "乙" ? "5" : ybxx.jyl == "丙" ? "6" : "1";
+		var zfxz = ybxx.jyl == "甲" || ybxx.jyl == "A" ? "4" : ybxx.jyl == "乙" || ybxx.jyl == "B" ? "5" : ybxx.jyl == "丙" || ybxx.jyl == "C" ? "6" : "1";
 		$.najax({
 			type: "POST",
 			url: "@Url.Action("SaveYpYb")",

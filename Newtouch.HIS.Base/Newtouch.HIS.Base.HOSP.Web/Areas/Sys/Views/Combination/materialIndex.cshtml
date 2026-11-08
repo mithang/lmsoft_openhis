@@ -277,7 +277,7 @@
 			ybxz: $("#gridJSMXList").jqGridRowValue().ybxz,
 		};
 		var ypId = $("#gridList").jqGridRowValue().sfxmId;
-		var ybxz = ybxx.ybxz == "甲" ? "4" : ybxx.ybxz == "乙" ? "5" : ybxx.ybxz == "丙" ? "6" : "1";
+		var ybxz = ybxx.ybxz == "甲" || ybxx.ybxz == "A" ? "4" : ybxx.ybxz == "乙" || ybxx.ybxz == "B" ? "5" : ybxx.ybxz == "丙" || ybxx.ybxz == "C" ? "6" : "1";
 		console.log(ypId);
 		$.najax({
 			type: "POST",

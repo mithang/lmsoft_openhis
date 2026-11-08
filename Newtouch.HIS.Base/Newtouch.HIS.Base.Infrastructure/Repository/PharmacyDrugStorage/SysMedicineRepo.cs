@@ -90,26 +90,29 @@ where 1=1 and cod.zt=1 and cod.OrganizeId=@orgId";
                 return null;
             }
 
-            var sql = @"select top 50 id,xmmc,pym,ybxj,dfybdm,gjybdm,lx,gg,dw,dj,pzwh,sccj,dfxmmc from Cqyb_ybxm where zt = '1' and  OrganizeId=@OrganizeId 
+            // Cqyb_ybxm chỉ có 12 cột (id, xmmc, pym, ybxj, dfybdm, gjybdm, OrganizeId, zt,
+            // CreateTime, CreatorCode, LastModifyTime, LastModifierCode) — KHÔNG có lx, gg, dw,
+            // dj, pzwh, sccj, dfxmmc nên câu SELECT cũ lỗi Msg 207. Chỉ SELECT cột đang có;
+            // lx không lọc được theo cột nên trả theo mapping từ tham số đầu vào (mã loại
+            // khoản thu sfdlCode: 126/00000015/00000016 → Vật tư, còn lại → Hạng mục);
+            // gg/dw/dj/pzwh/sccj/dfxmmc chỉ là cột hiển thị trên floating selector nên trả rỗng.
+            // organizeId="*" là quy ước "tất cả tổ chức" nên bỏ filter OrganizeId.
+            var lxLabel = (lx == "126" || lx == "00000015" || lx == "00000016") ? "Vật tư" : "Hạng mục";
+            var sql = @"select top 50 id,xmmc,pym,ybxj,dfybdm,gjybdm,@lxLabel as lx,'' as gg,'' as dw,'' as dj,'' as pzwh,'' as sccj,'' as dfxmmc from Cqyb_ybxm where zt = '1' 
                 and (id LIKE @searchKeyword or
                 xmmc like @searchKeyword or
                 pym like @searchKeyword  or
                 dfybdm like @searchKeyword or
-                gjybdm like @searchKeyword or
-                pzwh like @searchKeyword or
-                sccj like @searchKeyword) ";
-            if (lx == "126" || lx == "00000015" || lx == "00000016")
+                gjybdm like @searchKeyword) ";
+            if (OrganizeId != "*")
             {
-                sql += " and lx='Vật tư'";
-            }
-            else
-            {
-                sql += " and lx='Hạng mục'";
+                sql += " and OrganizeId=@OrganizeId ";
             }
             return this.FindList<GzybNameCodeVO>(sql, new SqlParameter[] {
                     
                     new SqlParameter("@searchKeyword", "%" + (keyword ?? "") + "%"),
-                new SqlParameter("@OrganizeId",OrganizeId)
+                new SqlParameter("@OrganizeId",OrganizeId),
+                new SqlParameter("@lxLabel", lxLabel)
                 });
         }
         /// <summary>
