@@ -23,6 +23,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Newtouch.PDS.Infrastructure\Newtouch.PDS.Infrastructure.csproj" />
+    <!-- F14: GetTokenbyProxy cần IAccessAuthDmnService/AccessAuthRepo/SysStaffRepo
+         từ Base.Infrastructure (mẫu HOSP.API). Aliases="BaseInfra" + extern alias
+         BaseInfra trong code: tránh xung đột tên type với Infra riêng của module
+         (vd PDS.Infrastructure cũng định nghĩa ISysStaffRepo cùng namespace). -->
+    <ProjectReference Include="..\..\Newtouch.HIS.Base\Newtouch.HIS.Base.Infrastructure\Newtouch.HIS.Base.Infrastructure.csproj" Aliases="BaseInfra" />
   </ItemGroup>
 
   <ItemGroup>

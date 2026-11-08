@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json.Linq;
 using Newtouch.Tools;
 
 using NewtouchHIS.Lib.Framework.Operator;
@@ -12,6 +13,11 @@ namespace Newtouch.Infrastructure
     /// </summary>
     public class SiteCisAPIHelper
     {
+        /// <summary>
+        /// Loại token API mà helper này mint/gắn (phải trùng nhau: Authorize ở
+        /// đích kiểm tra identity.TokenType == request.TokenType).
+        /// </summary>
+        private const string ApiTokenType = "PDS";
         /// <summary>
         /// Thanh toán API
         /// </summary>
@@ -79,7 +85,38 @@ namespace Newtouch.Infrastructure
             where T : new()
             where TV : class
         {
+            // F14 (phương án (c)): gắn token API vào mọi request — đích có
+            // [DefaultAuthorize] (CIS.API HospitalizedBusiness/PatInfo) sẽ trả
+            // TOKEN_IS_REQUIRED cho request trần không token.
+            var body = AttachToken(req, GetToken());
+            return PostRaw<JObject, T>(url, body, httpContext);
+        }
+
+        /// <summary>
+        /// POST thô không gắn token — CHỈ nhánh mint token (GetTokenFromApi)
+        /// dùng. Request() mà gọi GetToken() ở đây sẽ đệ quy vô hạn (GetToken
+        /// → GetTokenFromApi → Request → GetToken …) nên đường mint tách riêng
+        /// thành PostRaw, không đi qua Request().
+        /// </summary>
+        private static T PostRaw<TV, T>(string url, TV req, Microsoft.AspNetCore.Http.HttpContext httpContext = null)
+            where T : new()
+            where TV : class
+        {
             return HIS.API.Common.Helper.HttpClientHelper.HttpPostStringAndRead<TV, T>(GetCisApiUrl(url), req, httpContext: httpContext);
+        }
+
+        /// <summary>
+        /// Chèn Token/TokenType vào bản sao JSON của req (req là anonymous
+        /// type, không sửa trực tiếp được). Token null vẫn ghi rõ "Token":
+        /// null để server thấy đúng là request chưa xác thực.
+        /// </summary>
+        private static JObject AttachToken(object req, string token)
+        {
+            var jobj = req == null ? new JObject()
+                : req is JObject j ? new JObject(j) : JObject.FromObject(req);
+            jobj["Token"] = new JValue(token);
+            jobj["TokenType"] = new JValue(ApiTokenType);
+            return jobj;
         }
 
         #region private methods
@@ -139,10 +176,15 @@ namespace Newtouch.Infrastructure
                 TopOrganizeId = opr.TopOrganizeId,
                 AppId = opr.AppId,
                 Timestamp = DateTime.Now,
-                TokenType = "PDS"
+                TokenType = ApiTokenType
             };
-            var resp = Request<object, APIRequestHelper.DefaultResponse<GetTokenResponse>>("api/Auth/GetToken", req);
-            return resp.code == APIRequestHelper.ResponseResultCode.SUCCESS ? resp.data.Token : null;
+            // F14: mint qua GetTokenbyProxy (không cần Password — 7 field giữ
+            // nguyên, chỉ đổi URL). Đi đường POST thô PostRaw, không qua
+            // Request() (tránh đệ quy mint). Quirk proxy: code vẫn SUCCESS
+            // khi Authorized()=false, lúc đó data null → guard null (không
+            // thì resp.data.Token ném NRE lên caller).
+            var resp = PostRaw<object, APIRequestHelper.DefaultResponse<GetTokenResponse>>("api/Auth/GetTokenbyProxy", req);
+            return resp != null && resp.code == APIRequestHelper.ResponseResultCode.SUCCESS && resp.data != null ? resp.data.Token : null;
         }
 
         /// <summary>

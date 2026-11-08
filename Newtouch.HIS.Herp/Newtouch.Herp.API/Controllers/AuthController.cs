@@ -1,3 +1,5 @@
+extern alias BaseInfra;
+
 using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -33,14 +35,81 @@ namespace Newtouch.Herp.API.Controllers
         private readonly ITokenStore _tokenStore;
         private readonly IHttpClientHelper _http;
         private readonly IConfiguration _config;
+        private readonly BaseInfra::Newtouch.HIS.Domain.IDomainServices.IAccessAuthDmnService _accessAuthDmnService;
 
         public AuthController(IUserIdentityResolver<Identity> userIdentityResolver,
-            ITokenStore tokenStore, IHttpClientHelper http, IConfiguration config)
+            ITokenStore tokenStore, IHttpClientHelper http, IConfiguration config,
+            BaseInfra::Newtouch.HIS.Domain.IDomainServices.IAccessAuthDmnService accessAuthDmnService)
             : base(userIdentityResolver)
         {
             _tokenStore = tokenStore;
             _http = http;
             _config = config;
+            _accessAuthDmnService = accessAuthDmnService;
+        }
+
+        /// <summary>
+        /// Đổi thông tin chính lấy mã truy cập qua xác thực ủy quyền (port mẫu
+        /// HOSP AuthController.GetTokenbyProxy, phương án (c) F14): không cần
+        /// Password, bắt buộc UserId + AppId + OrganizeId, kiểm tra ủy quyền
+        /// app qua IAccessAuthDmnService.Authorized (bảng xt_accessregistor,
+        /// DB Base) rồi mint token bằng ITokenStore.SaveIdentity của Herp
+        /// (TTL 20 phút, giữ như GetToken — không đổi thành 120 phút của
+        /// HOSP). Identity lưu dạng UserIdentity như GetToken (có
+        /// OrganizeId/TopOrganizeId). AppId lấy từ request (khóa grant theo
+        /// AppId của app gọi), không lấy từ config như GetToken.
+        /// QUIRK GỐC (giữ nguyên như HOSP): code vẫn là SUCCESS ngay cả khi
+        /// Authorized() trả false (chỉ khác sub_msg) — client phải kiểm tra
+        /// data.token null, không chỉ kiểm tra code.
+        /// </summary>
+        [Route("GetTokenbyProxy")]
+        [HttpPost]
+        public IActionResult GetTokenbyProxy([FromBody] AuthGetTokenRequest request)
+        {
+            Action<AuthGetTokenRequest, DefaultResponse> action = (req, resp) =>
+            {
+                if (string.IsNullOrWhiteSpace(req.UserId)
+                    || string.IsNullOrWhiteSpace(req.AppId)
+                    || string.IsNullOrWhiteSpace(req.OrganizeId))
+                {
+                    resp.code = ResponseResultCode.FAIL;
+                    resp.sub_code = "AUTH_FAILED";
+                    resp.sub_msg = "UserId, AppId và OrganizeId không được để trống";
+                    return;
+                }
+                var ident = new BaseInfra::Newtouch.HIS.Domain.Entity.AccessIdentity();
+                ident.AppId = req.AppId;
+                ident.OrganizeId = req.OrganizeId;
+                ident.Account = req.Account;
+                string message = "";
+                bool authed = _accessAuthDmnService.Authorized(ident, out message);
+                if (authed)
+                {
+                    var identity = new UserIdentity
+                    {
+                        AppId = req.AppId,
+                        TokenType = req.TokenType,
+                        UserId = req.UserId,
+                        Account = req.Account,
+                        UserCode = req.Account,
+                        UserName = req.Account,
+                        OrganizeId = req.OrganizeId,
+                        TopOrganizeId = req.TopOrganizeId,
+                    };
+                    var token = _tokenStore.SaveIdentity(identity);
+                    resp.data = new { token = token };
+                }
+                else
+                {
+                    resp.sub_msg = message;
+                }
+                // QUIRK GỐC (giữ nguyên như HOSP): code vẫn là SUCCESS ngay cả
+                // khi Authorized() trả false (chỉ khác ở sub_msg).
+                resp.code = ResponseResultCode.SUCCESS;
+            };
+
+            var response = CommonExecute(action, request, nameof(GetTokenbyProxy));
+            return CreateResponse(response);
         }
 
         /// <summary>Cấp token sau khi kiểm tra credential thật qua BaseAPI CheckPwd.</summary>

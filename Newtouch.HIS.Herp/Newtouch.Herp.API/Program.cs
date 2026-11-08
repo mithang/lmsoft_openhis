@@ -1,3 +1,5 @@
+extern alias BaseInfra;
+
 using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -50,6 +52,14 @@ builder.Services.AddHerpServices();
 // Token store / identity resolver for the API base (Redis, 20-minute tokens).
 builder.Services.AddSingleton<ITokenStore, RedisTokenStore>();
 builder.Services.AddScoped<IUserIdentityResolver<Identity>, UserIdentityResolver>();
+
+// F14: GetTokenbyProxy cần 3 service Base.Infrastructure (mẫu HOSP.API —
+// HOSP đăng ký bằng scan toàn assembly; ở đây chỉ đăng ký đúng 3 service
+// Authorized() cần, tránh đổi hành vi resolve của controller hiện có).
+// BaseInfra:: = extern alias cho Newtouch.HIS.Base.Infrastructure (xem csproj).
+builder.Services.AddScoped<BaseInfra::Newtouch.HIS.Domain.IDomainServices.IAccessAuthDmnService, BaseInfra::Newtouch.HIS.DomainServices.AccessManage.AccessAuthDmnService>();
+builder.Services.AddScoped<BaseInfra::Newtouch.HIS.Domain.IRepository.IAccessAuthRepo, BaseInfra::Newtouch.HIS.Repository.AccessManage.AccessAuthRepo>();
+builder.Services.AddScoped<BaseInfra::Newtouch.HIS.Domain.IRepository.ISysStaffRepo, BaseInfra::Newtouch.HIS.Repository.SystemManage.SysStaffRepo>();
 
 // Static config used by Herp Constants (TopOrganizeId / AppId), set once here.
 Constants.Init(

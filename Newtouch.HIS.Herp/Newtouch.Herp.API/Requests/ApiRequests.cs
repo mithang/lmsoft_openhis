@@ -9,6 +9,9 @@ namespace Newtouch.Herp.API.Requests
     /// OrganizeId fields (unlike the Base.HOSP and PDS variants, which do).
     /// That is exactly why AuthController cannot verify anyone and must not
     /// mint a token here (see AuthController). Fields are NOT invented.
+    /// F14: GetTokenbyProxy CẦN UserId/OrganizeId/TopOrganizeId (hợp đồng proxy
+    /// kiểu HOSP) nên bổ sung đúng 3 trường này theo shape HOSP/CIS/PDS —
+    /// GetToken vẫn không dùng chúng (identity lấy từ CheckPwd).
     /// </summary>
     /// <summary>
     /// Request cấp token (shape thống nhất giai đoạn GetToken chạy thật):
@@ -18,7 +21,13 @@ namespace Newtouch.Herp.API.Requests
     /// </summary>
     public class AuthGetTokenRequest : RequestBase
     {
+        public string UserId { get; set; }
+
         public string Account { get; set; }
+
+        public string OrganizeId { get; set; }
+
+        public string TopOrganizeId { get; set; }
 
         /// <summary>Mật khẩu dạng md5 (như web login), KHÔNG BAO GIỜ log.</summary>
         public string Password { get; set; }

@@ -1,3 +1,5 @@
+extern alias BaseInfra;
+
 using System;
 using System.IO;
 using Microsoft.AspNetCore.Builder;
@@ -55,6 +57,14 @@ builder.Services.AddSingleton<IAuthCenterAppService, AuthCenterAppService>();
 builder.Services.AddWebServiceBase(builder.Configuration);
 
 builder.Services.AddSingleton<TokenStore>();
+
+// F14: GetTokenbyProxy cần 3 service Base.Infrastructure (mẫu HOSP.API —
+// HOSP đăng ký bằng scan toàn assembly; ở đây chỉ đăng ký đúng 3 service
+// Authorized() cần, tránh đổi hành vi resolve của controller hiện có).
+// BaseInfra:: = extern alias cho Newtouch.HIS.Base.Infrastructure (xem csproj).
+builder.Services.AddScoped<BaseInfra::Newtouch.HIS.Domain.IDomainServices.IAccessAuthDmnService, BaseInfra::Newtouch.HIS.DomainServices.AccessManage.AccessAuthDmnService>();
+builder.Services.AddScoped<BaseInfra::Newtouch.HIS.Domain.IRepository.IAccessAuthRepo, BaseInfra::Newtouch.HIS.Repository.AccessManage.AccessAuthRepo>();
+builder.Services.AddScoped<BaseInfra::Newtouch.HIS.Domain.IRepository.ISysStaffRepo, BaseInfra::Newtouch.HIS.Repository.SystemManage.SysStaffRepo>();
 builder.Services.AddScoped<ISysConfigRepo, SysConfigRepo>();
 
 builder.Services.AddCors(options =>
