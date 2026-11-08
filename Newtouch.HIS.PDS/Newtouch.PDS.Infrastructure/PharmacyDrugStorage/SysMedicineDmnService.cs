@@ -1223,7 +1223,7 @@ where 1=1 and cod.zt=1 and cod.OrganizeId=@orgId";
             // gg/dw/dj/pzwh/sccj/dfxmmc chỉ là cột hiển thị trên floating selector nên trả rỗng.
             // organizeId="*" là quy ước "tất cả tổ chức" nên bỏ filter OrganizeId.
             var lxLabel = (lx == "126" || lx == "00000015" || lx == "00000016") ? "Vật tư" : "Hạng mục";
-            var sql = @"select top 50 id,xmmc,pym,ybxj,dfybdm,gjybdm,@lxLabel as lx,'' as gg,'' as dw,'' as dj,'' as pzwh,'' as sccj,'' as dfxmmc from [NewtouchHIS_Base].dbo.Cqyb_ybxm where zt = '1' 
+            var sql = @"select top 50 id,xmmc,pym,ybxj,dfybdm,gjybdm,@lxLabel as lx,'' as gg,'' as dw,'' as dj,'' as pzwh,'' as sccj,'' as dfxmmc from " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.Cqyb_ybxm where zt = '1' 
                 and (id LIKE @searchKeyword or
                 xmmc like @searchKeyword or
                 pym like @searchKeyword  or
