@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtouch.HIS.Base.Web.Helpers;
 using NewtouchHIS.Framework.Web.Implementation;
 using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Lib.Base.Filter;
@@ -81,6 +82,8 @@ builder.Services.AddAntiforgery(options =>
 });
 builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 {
+    // F26: form-POST decimals bind CurrentCulture (vi-VN), where '.' is the group separator — accept dot-decimal and vi-VN comma-decimal (dot first), mirror Sett.Web cycle 56.
+    options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
     options.Filters.Add(typeof(LogTrackingAttribute));
     options.Filters.Add(typeof(FrameworkAuthorizationFilter));
 });

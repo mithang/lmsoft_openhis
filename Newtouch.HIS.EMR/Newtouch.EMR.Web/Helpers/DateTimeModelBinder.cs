@@ -39,7 +39,7 @@ namespace Newtouch.EMR.Web.Helpers
             "yyyy-MM-dd", "yyyy-M-d", "yyyy-MM", "yyyy", "yyyyMM",
             "yyyy-MM-dd HH:mm:ss", "yyyy-M-d H:mm:ss", "yyyy-MM-dd H:mm:ss", "yyyy-M-d HH:mm:ss",
             "yyyy-MM-dd HH:mm", "yyyy-M-d H:mm",
-            "yyyy-MM-ddTHH:mm:ss", "yyyy-MM-ddTHH:mm",
+            "yyyy-MM-ddTHH:mm:ss", "yyyy-MM-ddTHH:mm:ss.fff", "yyyy-MM-ddTHH:mm",
             "MM/dd/yyyy", "M/d/yyyy", "MM/d/yyyy", "M/dd/yyyy",
             "MM/dd/yyyy HH:mm:ss", "M/d/yyyy H:mm:ss", "MM/dd/yyyy H:mm:ss", "M/d/yyyy HH:mm:ss",
             "MM/dd/yyyy HH:mm", "M/d/yyyy H:mm",
