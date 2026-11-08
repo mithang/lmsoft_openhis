@@ -459,15 +459,16 @@ function submitForm(callback) {
         data.brxz = $("#brxzmc").attr("data-label");
         data.yktbz = data.patid && !fromly ? "yktcardregister" : fromly; //yktregister: cập nhật thông tin cơ bản đồng thời thêm mới thông tin thẻ
         if (openYbSett == 'True') {
-            //Đã bật giao dịch BHYT: kiểm tra 'thẻ không phải BHYT thì không được chọn tính chất phí BHYT'
+            // Đã bật giao dịch BHYT: kiểm tra 'thẻ không phải BHYT thì không được chọn tính chất phí BHYT'
+            // Song ngữ: DB xt_brxz đã dịch sang tiếng Việt ở Scope A nên check TQ cũ chết (luôn false/true) — giữ check TQ + thêm check Việt.
             if (data.cardtype !== ybkCardType
-                && ($("#brxzmc").val().indexOf('医保') != -1 || $("#brxzmc").val().indexOf('工伤') != -1 || $("#brxzmc").val().indexOf('生育') != -1)) {
+                && ($("#brxzmc").val().indexOf('医保') != -1 || $("#brxzmc").val().indexOf('Bao hiem y te') != -1 || $("#brxzmc").val().indexOf('工伤') != -1 || $("#brxzmc").val().indexOf('Tai nan lao dong') != -1 || $("#brxzmc").val().indexOf('生育') != -1)) {
                 $.modalAlert("Bệnh nhân không phải BHYT, không được chọn tính chất phí BHYT", 'error');
                 return false;
             }
             //Đã bật giao dịch BHYT: kiểm tra 'thẻ BHYT thì chỉ được chọn tính chất phí BHYT'
             if (data.cardtype === ybkCardType
-                && ($("#brxzmc").val().indexOf('医保') == -1 && $("#brxzmc").val().indexOf('工伤') == -1 && $("#brxzmc").val().indexOf('生育') == -1)) {
+                && ($("#brxzmc").val().indexOf('医保') == -1 && $("#brxzmc").val().indexOf('Bao hiem y te') == -1 && $("#brxzmc").val().indexOf('工伤') == -1 && $("#brxzmc").val().indexOf('Tai nan lao dong') == -1 && $("#brxzmc").val().indexOf('生育') == -1)) {
                 $.modalAlert("Bệnh nhân BHYT, chỉ được chọn tính chất phí BHYT", 'error');
                 return false;
             }
