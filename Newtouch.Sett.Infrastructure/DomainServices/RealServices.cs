@@ -1,4 +1,5 @@
 using Newtouch.Sett.Infrastructure;
+using NewtouchHIS.Lib.Base.Exceptions;
 using NewtouchHIS.Lib.Framework.Operator;
 using SqlSugar;
 using System;
@@ -283,7 +284,158 @@ namespace Newtouch.Sett.Domain
 
         public HosSettPatClassifyChargePreviewDto GetHospSettPatClassifyChargePreview(string zyh, DateTime expectedcyrq, decimal jsje)
         {
-            throw new NotSupportedException("Xem trước phân loại phí quyết toán nhập viện chưa được chuyển đổi trong giai đoạn này.");
+            // Port thật (NX31-A3), thay stub throw NotSupportedException.
+            // Nguồn số liệu: phí ghi sổ zy_xmjfb / zy_ypjfb + bệnh nhân zy_brjbxx,
+            // cùng cơ số với method anh em GetHospFeeClassifyWithDLBOList (đã port):
+            //   mục: je = (fwfdj + dj) * sl ; thuốc: je = dj * sl ; KHÔNG lọc zt (giống anh em).
+            // Phân loại tự trả theo zfxz (nhãn CASE đã có trong Sett.API OrderService):
+            //   4 = Loại A (BHYT chi trả hết) -> tự trả 0
+            //   5 = Loại B -> flzf += je * zfbl (zfbl đọc là tỉ lệ 0..1, kẹp [0,1])
+            //   1 = Tự chi trả, 6 = Loại C -> zifei += je (toàn bộ)
+            //   9 = mẫu gói (đã bung thành dòng con lúc ghi sổ, BookkeepInHosController) và mã lạ -> 0.
+            //   zifu = flzf + zifei ; jmje = tổng jmje từng dòng (không trừ vào je từng dòng).
+            // yingshoukuan = zifu - jmje ; ssk = zhye (tài khoản tạm ứng, khớp dòng mặc định
+            //   trên SettPreview.cshtml) ; zhaoling = ssk - yingshoukuan ; srce = 0 (không làm
+            //   tròn ở preview — không tìm thấy quy tắc làm tròn nào trong repo; srce thật do
+            //   SaveSett sinh, hiện vẫn là stub ngoài phạm vi).
+            // fph/fprq để trống: người dùng chọn số hóa đơn trên view. pzh để trống: chưa có
+            //   bản ghi quyết toán ở thời điểm xem trước. Không làm tròn tổng (giống anh em)
+            //   để jzfy khớp đúng jsje mà trang Index truyền vào làm expectedjsje; KHÔNG throw
+            //   khi jzfy != jsje — chốt chặn thay đổi phí thuộc về SaveSett, preview chỉ báo số live.
+            // Tài khoản tạm ứng: LEFT JOIN xt_brzh (khác với INNER JOIN của
+            //   PatientBasicInfoDmnService.GetSysBasicByZHY) vì bảng xt_brzh đang RỖNG ở cả 2 DB
+            //   Sett STG + demo (0 dòng) — INNER JOIN sẽ làm preview mất bệnh nhân.
+            if (string.IsNullOrWhiteSpace(zyh))
+            {
+                throw new FailedException("Thiếu mã nhập viện (zyh) để xem trước quyết toán.");
+            }
+            var orgId = OperatorProvider.GetCurrent()?.OrganizeId;
+            var pat = SettDb.GetConnection().SqlQueryable<SettPreviewPatRow>(
+                @"SELECT a.zyh, a.patid,
+                (CASE a.zybz WHEN 0 THEN 'Đăng ký nhập viện' WHEN 1 THEN 'Đang ở khoa'
+                    WHEN 2 THEN 'Ra khoa' WHEN 3 THEN 'Đã xuất viện' WHEN 9 THEN 'Hủy nhập viện' ELSE '' END) zybz,
+                a.ryrq, a.cyrq, a.kh, a.xm, CONVERT(VARCHAR(10), a.xb) xb, a.csny, a.blh, a.brxz,
+                c.brxzmc, c.ybjylx, a.ks ksCode, d.Name ksmc, a.OrganizeId,
+                g.zh zyyjjzh, g.zhbh zyyjjzhbh, CONVERT(VARCHAR(10), g.zhxz) zyyjjzhzhxz, g.zhye,
+                h.zdCode ryzdCode, h.icd10 ryzdicd10
+                FROM zy_brjbxx a
+                LEFT JOIN xt_brxz c ON a.brxz = c.brxz AND c.OrganizeId = @orgId
+                LEFT JOIN [NewtouchHIS_Base]..V_S_Sys_Department d ON a.ks = d.Code AND d.OrganizeId = @orgId
+                LEFT JOIN xt_brzh g ON a.zyh = g.zyh AND a.patid = g.patid AND g.zhxz = '3' AND g.zt = '1' AND g.OrganizeId = @orgId
+                LEFT JOIN [NewtouchHIS_Base]..V_S_xt_zd h ON a.ryzd = h.zdId AND (h.OrganizeId = @orgId OR h.OrganizeId = '*')
+                WHERE a.zyh = @zyh AND a.zybz NOT IN (0, 4)")
+                .AddParameters(new SugarParameter[]
+                {
+                    new SugarParameter("orgId", orgId),
+                    new SugarParameter("zyh", zyh),
+                })
+                .First();
+            if (pat == null)
+            {
+                throw new FailedException("Không tìm thấy bệnh nhân nhập viện " + zyh + " để xem trước quyết toán.");
+            }
+
+            var feeOrg = string.IsNullOrWhiteSpace(pat.OrganizeId) ? orgId : pat.OrganizeId;
+            var db = SettDb.GetConnection();
+            var items = db.Queryable<HospItemBillingEntity>()
+                .Where(a => a.zyh == zyh && (feeOrg == null || a.OrganizeId == feeOrg)).ToList();
+            var meds = db.Queryable<HospDrugBillingEntity>()
+                .Where(a => a.zyh == zyh && (feeOrg == null || a.OrganizeId == feeOrg)).ToList();
+
+            decimal jzfy = 0m, flzf = 0m, zifei = 0m, jmjeTotal = 0m;
+            foreach (var i in items)
+            {
+                var je = ((i.fwfdj ?? 0m) + i.dj) * i.sl;
+                jzfy += je;
+                jmjeTotal += i.jmje ?? 0m;
+                if (i.zfxz == "5")
+                {
+                    var zfbl = i.zfbl ?? 0m;
+                    if (zfbl < 0m) zfbl = 0m;
+                    if (zfbl > 1m) zfbl = 1m;
+                    flzf += je * zfbl;
+                }
+                else if (i.zfxz == "1" || i.zfxz == "6")
+                {
+                    zifei += je;
+                }
+            }
+            foreach (var m in meds)
+            {
+                var je = m.dj * m.sl;
+                jzfy += je;
+                jmjeTotal += m.jmje ?? 0m;
+                if (m.zfxz == "5")
+                {
+                    var zfbl = m.zfbl ?? 0m;
+                    if (zfbl < 0m) zfbl = 0m;
+                    if (zfbl > 1m) zfbl = 1m;
+                    flzf += je * zfbl;
+                }
+                else if (m.zfxz == "1" || m.zfxz == "6")
+                {
+                    zifei += je;
+                }
+            }
+
+            var zifu = flzf + zifei;
+            var yingshoukuan = zifu - jmjeTotal;
+            var zhye = pat.zhye ?? 0m;
+            var ssk = zhye;
+            var zhaoling = ssk - yingshoukuan;
+
+            var hasCyrq = expectedcyrq != default(DateTime);
+            var patCyrq = pat.cyrq ?? (hasCyrq ? (DateTime?)expectedcyrq : null);
+            decimal? zyts = null;
+            if (pat.ryrq.HasValue)
+            {
+                var end = patCyrq ?? DateTime.Now;
+                zyts = (end.Date - pat.ryrq.Value.Date).Days;
+            }
+
+            return new HosSettPatClassifyChargePreviewDto
+            {
+                zyh = zyh,
+                jzfy = jzfy,
+                flzf = flzf,
+                zifei = zifei,
+                zifu = zifu,
+                jmje = jmjeTotal,
+                yingshoukuan = yingshoukuan,
+                zhaoling = zhaoling,
+                srce = 0m,
+                ssk = ssk,
+                zhye = zhye,
+                fph = null,
+                fprq = null,
+                HospSettPatInfo = new HosSettPatInfoVO
+                {
+                    zyh = pat.zyh,
+                    kh = pat.kh,
+                    zybz = pat.zybz,
+                    xm = pat.xm,
+                    xb = pat.xb,
+                    brxz = pat.brxz,
+                    brxzmc = pat.brxzmc,
+                    ybjylx = pat.ybjylx,
+                    ryrq = pat.ryrq,
+                    cyrq = patCyrq,
+                    pzh = null,
+                    blh = pat.blh,
+                    patid = pat.patid,
+                    ksCode = pat.ksCode,
+                    ksmc = pat.ksmc,
+                    zyyjjzh = pat.zyyjjzh,
+                    zyyjjzhbh = pat.zyyjjzhbh,
+                    zyyjjzhzhxz = pat.zyyjjzhzhxz,
+                    ryzdCode = pat.ryzdCode,
+                    ryzdicd10 = pat.ryzdicd10,
+                    zyts = zyts,
+                    csny = pat.csny,
+                },
+                expectedjsje = jsje,
+                expectedcyrq = expectedcyrq,
+            };
         }
 
         public IList<HospFeeClassifyWithDLBO> GetHospFeeClassifyWithDLBOList(string zyh)
@@ -354,4 +506,30 @@ namespace Newtouch.Sett.Domain
     internal class CqrqRow
     {
         public DateTime? cqrq { get; set; }
+    }
+
+    internal class SettPreviewPatRow
+    {
+        public string zyh { get; set; }
+        public int patid { get; set; }
+        public string zybz { get; set; }
+        public DateTime? ryrq { get; set; }
+        public DateTime? cyrq { get; set; }
+        public string kh { get; set; }
+        public string xm { get; set; }
+        public string xb { get; set; }
+        public DateTime? csny { get; set; }
+        public string blh { get; set; }
+        public string brxz { get; set; }
+        public string brxzmc { get; set; }
+        public string ybjylx { get; set; }
+        public string ksCode { get; set; }
+        public string ksmc { get; set; }
+        public string OrganizeId { get; set; }
+        public int? zyyjjzh { get; set; }
+        public int? zyyjjzhbh { get; set; }
+        public string zyyjjzhzhxz { get; set; }
+        public decimal? zhye { get; set; }
+        public string ryzdCode { get; set; }
+        public string ryzdicd10 { get; set; }
     }
