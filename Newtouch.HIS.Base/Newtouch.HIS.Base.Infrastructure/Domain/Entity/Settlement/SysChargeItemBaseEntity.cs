@@ -14,7 +14,11 @@ namespace Newtouch.HIS.Domain.Entity
         /// <summary>
         /// 
         /// </summary>
-        [SugarColumn(IsPrimaryKey = true)]
+        // F17-FIX D2: sfxmId la cot IDENTITY tren DB (xt_sfxm_Base, ca STG va demo);
+        // thieu IsIdentity khien SqlSugar INSERT ca sfxmId=0 -> loi "Cannot insert
+        // explicit value for identity column". Khong inserter nao dat sfxmId co nghia
+        // truoc Insert (SubmitForm create: sfxmId=0 mac dinh; SyncCommonSfxm: sfxmId=0).
+        [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         public int sfxmId { get; set; }
 
         /// <summary>
