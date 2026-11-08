@@ -271,37 +271,37 @@ left join  xt_mldz mldz on xm.sfxmCode=mldz.code
         {
             string sql = @"select top 200 * from (
 select 
-药品代码 ypdm
-,数据来源 sjly
-,注册名称 zcmc
-,商品名称 spmc
-,注册剂型 zcjx
-,实际剂型 sjjx
-,注册规格 zcgg
-,实际规格 sjgg
-,包装材质 bzcz
-,最小包装数量 zxbzsl
-,最小制剂单位 zxzjdw
-,最小包装单位 zxbzdw
-,药品企业 ypqy
-,上市药品持有人 shypcyr
-,批准文号 pzwh
-,原批准文号 ypzwh
-,药品本位码 ypbwm
-,分包装企业名称 fbzqymc
-,生产企业 scqy
-,市场状态 sczt
-,医保药品名称 ybypmc
-,[2021版甲乙类] ybjyl
-,医保剂型 ybjx
-,编号 bh
-,备注 bz
-,甲乙类 jyl
-,备注1 bz1
-,[备注（特殊属性标识）] bztssxbs
-,医保支付标准 ybzfbz
+ypdm
+,sjly
+,zcmc
+,spmc
+,zcjx
+,sjjx
+,zcgg
+,sjgg
+,bzcz
+,zxbzsl
+,zxzjdw
+,zxbzdw
+,ypqy
+,shypcyr
+,pzwh
+,ypzwh
+,ypbwm
+,fbzqymc
+,scqy
+,sczt
+,ybypmc
+,ybjyl
+,ybjx
+,bh
+,bz
+,jyl
+,bz1
+,bztssxbs
+,ybzfbz
 ,pym
-from dbo.gb_ypxx 
+from dbo.vw_gb_ypxx 
 )a where 1=1 
 ";
             var pars = new List<SugarParameter>();
@@ -431,21 +431,21 @@ from dbo.gb_ypxx
         {
             string sql = @"select top 200 * from(
 select 
-耗材代码 hcdm
-,一级分类 yjfl
-,二级分类 ejfl
-,三级分类 sjfl
-,医保通用名 ybtym
-,材质 cz
-,特征 tz
-,注册备案号 zcbah
-,单件产品名称 djcpmc
-,耗材企业 hcqy
-,规格型号数 ggxhs
-,注册备案人 zcbar
+hcdm
+,yjfl
+,ejfl
+,sjfl
+,ybtym
+,cz
+,tz
+,zcbah
+,djcpmc
+,hcqy
+,ggxhs
+,zcbar
 ,ybxz
 ,pym
-from gb_clxx )a where 1=1 ";
+from vw_gb_clxx )a where 1=1 ";
             var pars = new List<SugarParameter>();
             if (!string.IsNullOrEmpty(gjybdm))
             {
@@ -571,18 +571,18 @@ from gb_clxx )a where 1=1 ";
         {
             string sql = @"select top 200 * from(
 select
-结算传输编码 jscsbm
-,国家项目代码 gjxmdm
-,国家项目名称 gjxmmc
-,编码 bm
-,项目名称 xmmc
-,项目内涵 xmnh
-,除外内容 cwnr
-,计价单位 jjdw
-,说明 sm
+jscsbm
+,gjxmdm
+,gjxmmc
+,bm
+,xmmc
+,xmnh
+,cwnr
+,jjdw
+,sm
 ,ybxz
 ,pym
-from gb_sfxm)a where 1=1 ";
+from vw_gb_sfxm)a where 1=1 ";
             var pars = new List<SugarParameter>();
             if (!string.IsNullOrEmpty(gjybdm))
             {
