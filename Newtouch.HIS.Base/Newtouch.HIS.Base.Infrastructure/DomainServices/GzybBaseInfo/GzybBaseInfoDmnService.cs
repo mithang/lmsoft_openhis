@@ -58,7 +58,7 @@ namespace Newtouch.HIS.DomainServices
                 default:
                     return null;
             }
-            var sql = "select   CASE when isnull(VER,'')  =''  or VER='无' then VER_NAME ELSE  VER END ver from " + tbname + " a with(nolock) order by a.VER DESC";
+            var sql = "select   CASE when isnull(VER,'')  =''  or VER='Không' then VER_NAME ELSE  VER END ver from " + tbname + " a with(nolock) order by a.VER DESC";
 
             return this.FirstOrDefault<string>(sql);
 

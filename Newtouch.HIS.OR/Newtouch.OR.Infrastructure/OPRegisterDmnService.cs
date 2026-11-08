@@ -22,7 +22,7 @@ namespace Newtouch.OR.ManageSystem.DomainServices
             string sql = "select b.OrganizeId,a.id,b.id as arrangeId,b.applyId,b.applyno,b.xm,c.xb,b.zyh,b.bq,b.ch,b.zd,a.sszd,a.sszdmc,a.shbq,a.memo,a.ssxh,";
             sql += "(case when datediff(yy,csrq,getdate())>=1 then convert(varchar(3),datediff(yy,csrq,getdate()))+' tuổi' else convert(varchar(2),datediff(mm,csrq,getdate()))+' tháng' end  )nl,";
             var para = new List<SugarParameter>();
-            if (sqzt == "4" || sqzt=="已登记")
+            if (sqzt == "4" || sqzt=="Đã đăng ký")
             { //Đã đăng ký
                 sql += "d.ssjb,a.ssmc as ssmc,d.ssdm,c.sssj as sssqsj,b.sssj as ssapsj,a.sskssj,a.ssjssj,a.oproom,a.oporder,a.AnesCode,a.ssbw,a.qkdj,a.isgl,a.isjun,a.shuxl,a.shixl,a.zrxl,a.zcxl,a.ryzd,a.ryzdmc,";
                 sql += "ysgh=(select rygh from [dbo].[OR_OpStaffRecord] where ssxh=a.ssxh and rylb='1' and px='1' and zt='1'),zlys1 = (select rygh from[dbo].[OR_OpStaffRecord] where ssxh = a.ssxh and rylb = '2' and px = '1' and zt='1'),zlys2=(select rygh from[dbo].[OR_OpStaffRecord] where ssxh = a.ssxh and rylb = '2' and px = '2' and zt='1'),xhhs=(select rygh from[dbo].[OR_OpStaffRecord] where ssxh = a.ssxh and rylb = '3' and px = '1' and zt='1'),xshs=(select rygh from[dbo].[OR_OpStaffRecord] where ssxh = a.ssxh and rylb = '4' and px = '1' and zt='1'),mzys=(select rygh from[dbo].[OR_OpStaffRecord] where ssxh = a.ssxh and rylb = '5' and px = '1' and zt='1')";
