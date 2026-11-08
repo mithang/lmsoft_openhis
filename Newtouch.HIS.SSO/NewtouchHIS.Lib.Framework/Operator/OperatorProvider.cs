@@ -321,12 +321,13 @@ namespace NewtouchHIS.Lib.Framework.Operator
                         existTokenList.RemoveRange(limitCount, 20 - 1);  //xóa những cái phía trước(lần đăng nhập mới nhất bị reverse đã lên phía trước)
                     }
                 }
-                if (existTokenList != null && existTokenList.Count > 0)
-                {
-                    existTokenList.Reverse();   //đảo ngược lại,khiến người đăng nhập sau quay lại list phía sau
-                    existTokenList.Add(token);
-                    RedisHelper.SetList<string>(keyUserTokenList, existTokenList);
-                }
+                //F4FIX: bỏ guard `Count > 0` — guard này khiến list token không bao giờ được tạo
+                // (lần login đầu list trống → Reverse/Add/SetList bị bỏ qua → key list không bao giờ
+                // tồn tại → giới hạn đa phiên không bao giờ chạy). existTokenList đã `?? new List<string>()`
+                // nên không null; Reverse/Add/SetList chạy luôn kể cả list trống.
+                existTokenList.Reverse();   //đảo ngược lại,khiến người đăng nhập sau quay lại list phía sau
+                existTokenList.Add(token);
+                RedisHelper.SetList<string>(keyUserTokenList, existTokenList);
 
                 if (httpContext != null)
                 {
