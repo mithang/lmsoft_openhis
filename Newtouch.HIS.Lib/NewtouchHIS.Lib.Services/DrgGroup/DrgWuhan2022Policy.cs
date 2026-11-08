@@ -63,6 +63,10 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
                         adrg = recordResult.adrg,
                         drg = recordResult.drg
                     };
+                    // R4-F10: dịch tầng hiển thị (status/messages) theo mã; engine/.dat không đổi.
+                    // Lưu ý: từ điển tên DRG/ICD hạt giống chỉ có cho chs_drg_11 nên ở
+                    // bản wuhan_2022 chỉ status + mẫu câu được dịch, tên theo mã giữ nguyên.
+                    result.Data = DrgDisplayTranslator.TranslateResult(result.Data, DrgDisplayTranslator.VersionWuhan2022);
                     result.code = ResponseResultCode.SUCCESS;
                 }
                 else
@@ -126,6 +130,9 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
                         drg = rArray[15],
                     });
                 }
+                // R4-F10: dịch tầng hiển thị (status/messages) từng dòng theo mã
+                // (bản wuhan: chỉ status + mẫu câu; tên DRG/ICD hạt giống chỉ có cho chs_drg_11).
+                csvRead.ForEach(r => DrgDisplayTranslator.TranslateFileRow(r, DrgDisplayTranslator.VersionWuhan2022));
                 result.code = ResponseResultCode.SUCCESS;
                 result.Data = new DrgGroupFileResult { rows = csvRead, file = Path.GetFileName(recordResult) };
             }

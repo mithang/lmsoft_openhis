@@ -60,6 +60,8 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
                         adrg = recordResult.adrg,
                         drg = recordResult.drg
                     };
+                    // R4-F10: dịch tầng hiển thị (status/messages) theo mã; engine/.dat không đổi.
+                    result.Data = DrgDisplayTranslator.TranslateResult(result.Data, DrgDisplayTranslator.VersionChsDrg11);
                     result.code = ResponseResultCode.SUCCESS;
                 }
                 else
@@ -123,6 +125,8 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
                         drg = rArray[15],
                     });
                 }
+                // R4-F10: dịch tầng hiển thị (status/messages) từng dòng theo mã.
+                csvRead.ForEach(r => DrgDisplayTranslator.TranslateFileRow(r, DrgDisplayTranslator.VersionChsDrg11));
                 result.code = ResponseResultCode.SUCCESS;
                 result.Data = new DrgGroupFileResult { rows = csvRead, file = Path.GetFileName(recordResult) };
             }
@@ -158,6 +162,8 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
                     adrg = p.adrg,
                     drg = p.drg
                 }).ToList();
+                // R4-F10: dịch tầng hiển thị (status/messages) theo mã; engine/.dat không đổi.
+                result.Data = result.Data.Select(r => DrgDisplayTranslator.TranslateResult(r, DrgDisplayTranslator.VersionChsDrg11)).ToList();
                 result.code = ResponseResultCode.SUCCESS;
             }
             else
