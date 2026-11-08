@@ -27,11 +27,12 @@
                 <th class="formTitle">Tính chất chi phí:</th>
                 <td class="formValue">
                     <select id="yblb" class="form-control">
-                        <option value="Tự chi trả">Tự chi trả</option>
+                        @* value là khóa param của proc RPT_SETT_医保业务报表 (自费/城保/居保/全部医保/全部) — KHÔNG dịch value, chỉ label tiếng Việt; dịch value sẽ làm báo cáo trả 0 dòng. *@
+                        <option value="自费">Tự chi trả</option>
                         <option value="城保">Bảo hiểm thành phố</option>
-                        <option value="BHYT dân cư">BHYT dân cư</option>
-                        <option value="Tất cả BHYT">Tất cả BHYT</option>
-                        <option value="Tất cả">Tất cả</option>
+                        <option value="居保">BHYT dân cư</option>
+                        <option value="全部医保">Tất cả BHYT</option>
+                        <option value="全部">Tất cả</option>
                     </select>
                 </td>
                 <th class="formTitle"></th>
