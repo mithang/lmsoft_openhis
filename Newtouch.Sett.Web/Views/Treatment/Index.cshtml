@@ -68,7 +68,7 @@
             viewrecords: true,
             sortname: 'zhcode',
             gridview: true,
-            grouping: true,// Có hay không Điểm Nhóm,mặc định làfalse
+            grouping: true,// Có hay không Điểm Nhóm,mặc định là false
             groupingView: {
                 groupField: ['zhmccode'], // Nhóm dòng theo cột nào
                 //groupText: ['<b>{0}</b>'],
@@ -117,7 +117,7 @@
     function btn_delete() {
 
         var rowKey = $("#gridList").jqGrid('getGridParam', "selrow");
-        var rowData = $("#gridList").jqGrid("getRowData", rowKey);//Theo phần trênrowKey Lấy tất cả dữ liệu của dòng này
+        var rowData = $("#gridList").jqGrid("getRowData", rowKey);//Theo phần trên rowKey Lấy tất cả dữ liệu của dòng này
         var zhcode = rowData.zhcode; //Lấy giá trị của cột đã chỉ định (ReservationTime là name của colModel)
 
 

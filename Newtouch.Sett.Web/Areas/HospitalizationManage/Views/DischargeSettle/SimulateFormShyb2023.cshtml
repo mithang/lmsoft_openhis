@@ -26,55 +26,55 @@
                 <td class="formValue">₫<label id="ZFJF">0.00</label></td>
                 <th class="formTitle">Số thanh toán tài khoản năm nay:</th>
                 <td class="formValue">₫<label id="curaccountpay">0.00</label></td>
-                <th class="formTitle">Số thanh toán tài khoảncác năm trước:</th>
+                <th class="formTitle">Số thanh toán tài khoản các năm trước:</th>
                 <td class="formValue">₫<label id="hisaccountpay">0.00</label></td>
             </tr>
             <tr>
                 <th class="formTitle">Số thanh toán tiền mặt đoạn tự trả:</th>
                 <td class="formValue">₫<label id="zfdxjzfs">0.00</label></td>
-                <th class="formTitle">Số thanh toáncác năm trước đoạn tự trả:</th>
+                <th class="formTitle">Số thanh toán các năm trước đoạn tự trả:</th>
                 <td class="formValue">₫<label id="zfdlnzhzfs">0.00</label></td>
 
-                <th class="formTitle">Số thanh toán tài khoản đoạnquỹ chung:</th>
+                <th class="formTitle">Số thanh toán tài khoản đoạn quỹ chung:</th>
                 <td class="formValue">₫<label id="tcdzhzfs">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Số thanh toán tiền mặt đoạnquỹ chung:</th>
+                <th class="formTitle">Số thanh toán tiền mặt đoạn quỹ chung:</th>
                 <td class="formValue">₫<label id="tcdxjzfs">0.00</label></td>
-                <th class="formTitle">Số thanh toánquỹ chung:</th>
+                <th class="formTitle">Số thanh toán quỹ chung:</th>
                 <td class="formValue">₫<label id="tczfs">0.00</label></td>
-                <th class="formTitle">Số thanh toán tài khoản đoạnbổ sung:</th>
+                <th class="formTitle">Số thanh toán tài khoản đoạn bổ sung:</th>
                 <td class="formValue">₫<label id="fjdzhzfs">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Số thanh toán tiền mặt đoạnbổ sung:</th>
+                <th class="formTitle">Số thanh toán tiền mặt đoạn bổ sung:</th>
                 <td class="formValue">₫<label id="fjdxjzfs">0.00</label></td>
-                <th class="formTitle">Số thanh toánbổ sung:</th>
+                <th class="formTitle">Số thanh toán bổ sung:</th>
                 <td class="formValue">₫<label id="fjzfs">0.00</label></td>
                 <th class="formTitle">Số dư tài khoản năm nay:</th>
                 <td class="formValue">₫<label id="curaccountamt">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Số dư tài khoảncác năm trước:</th>
+                <th class="formTitle">Số dư tài khoản các năm trước:</th>
                 <td class="formValue">₫<label id="hisaccountamt">0.00</label></td>
-                <th class="formTitle">Thanh toán tài khoảnđồng chi trả đoạnbổ sung:</th>
+                <th class="formTitle">Thanh toán tài khoản đồng chi trả đoạn bổ sung:</th>
                 <td class="formValue">₫<label id="fjdgjzhzfs">0.00</label></td>
-                <th class="formTitle">đoạn khởi trảđồng chi trảThanh toán tài khoản:</th>
+                <th class="formTitle">đoạn khởi trả đồng chi trảThanh toán tài khoản:</th>
                 <td class="formValue">₫<label id="qfdgjzhzfs">0.00</label></td>
                 @*
-                <th class="formTitle">quyết toán BHYTtổng số phạm vi:</th>
+                <th class="formTitle">quyết toán BHYT tổng số phạm vi:</th>
                 <td class="formValue">₫<label id="ybjsfwfyze">0.00</label></td>
-                <th class="formTitle">khôngquyết toán BHYTtổng số phạm vi:</th>
+                <th class="formTitle">không quyết toán BHYT tổng số phạm vi:</th>
                 <td class="formValue">₫<label id="fybjsfwfyze">0.00</label></td>*@
 
             </tr>
             <tr>
-                <th class="formTitle">Thanh toán tài khoảnđồng chi trả đoạnquỹ chung:</th>
+                <th class="formTitle">Thanh toán tài khoản đồng chi trả đoạn quỹ chung:</th>
                 <td class="formValue">₫<label id="tcdgjzhzfs">0.00</label></td>
-                <th class="formTitle">Số dư tài khoảnquyết toán trước:</th>
+                <th class="formTitle">Số dư tài khoản quyết toán trước:</th>
                 <td class="formValue">₫<label id="yjs">0.00</label></td>
                 @*
-                <th class="formTitle">Thanh toán tài khoảnđồng chi trả đoạn tự phí:</th>
+                <th class="formTitle">Thanh toán tài khoản đồng chi trả đoạn tự phí:</th>
                 <td class="formValue">₫<label id="zfdgjzhzfs">0.00</label></td>*@
 
             </tr>
@@ -100,7 +100,7 @@
 		if (!!ybjyFeeReturn) {
 		    var xjzfje = 0.000;//Số tiền thanh toán tiền mặt BHYT
 		    var zfxjzf = 0.000;//không Thanh toán tiền mặt BHYT Số tiền
-		    var yjs = 0.000;//Số dư tài khoản sautạm ứng
+		    var yjs = 0.000;//Số dư tài khoản sau tạm ứng
 		    //Số tiền thanh toán tiền mặt BHYT
 		    xjzfje = ovpraseFloat(ybjyFeeReturn.qfdxjzfs) + ovpraseFloat(ybjyFeeReturn.tcdxjzfs)
                 + ovpraseFloat(ybjyFeeReturn.fjdxjzfs);
@@ -115,7 +115,7 @@
 		    orglxjzfys = ovpraseFloat(ybjyFeeReturn.calc_xjzf);
 		    xjzfys = orglxjzfys;    //Khi có chiết khấu thì sẽ không bằng
 
-		    yjs = calc_xjzf - zhye;//Tính số dư tài khoản sautạm ứng
+		    yjs = calc_xjzf - zhye;//Tính số dư tài khoản sau tạm ứng
 
 		    !!hisfyze && $('#ZFY').html(ovpraseFloat(hisfyze).toFixed(2));
 		    !!ybjyFeeReturn.calc_xjzf && $('#XJZF').html(ovpraseFloat(ybjyFeeReturn.calc_xjzf).toFixed(2));//Tổng thanh toán tiền mặt
@@ -139,14 +139,14 @@
 		    !!ybjyFeeReturn.hisaccountamt && $('#hisaccountamt').html(ovpraseFloat(ybjyFeeReturn.hisaccountamt).toFixed(2));
 		    !!ybjyFeeReturn.ybjsfwfyze && $('#ybjsfwfyze').html(ovpraseFloat(ybjyFeeReturn.ybjsfwfyze).toFixed(2));
 		    !!ybjyFeeReturn.fybjsfwfyze && $('#fybjsfwfyze').html(ovpraseFloat(ybjyFeeReturn.fybjsfwfyze).toFixed(2));
-		    //Tài khoảnđồng chi trả
+		    //Tài khoản đồng chi trả
 		    !!ybjyFeeReturn.fjdgjzhzfs && $('#fjdgjzhzfs').html(ovpraseFloat(ybjyFeeReturn.fjdgjzhzfs).toFixed(2));
 		    //!!ybjyFeeReturn.zfdgjzhzfs && $('#zfdgjzhzfs').html(ovpraseFloat(ybjyFeeReturn.zfdgjzhzfs).toFixed(2));
 		    !!ybjyFeeReturn.qfdgjzhzfs && $('#qfdgjzhzfs').html(ovpraseFloat(ybjyFeeReturn.qfdgjzhzfs).toFixed(2));
 		    !!ybjyFeeReturn.tcdgjzhzfs && $('#tcdgjzhzfs').html(ovpraseFloat(ybjyFeeReturn.tcdgjzhzfs).toFixed(2));
 		}
 		else {
-			$.modalAlert("Hiển thị kết quảquyết toán trước bất thường,Vui lòng thử lại", "error");
+			$.modalAlert("Hiển thị kết quả quyết toán trước bất thường,Vui lòng thử lại", "error");
 		}
 	}
 	function ovpraseFloat(val) {

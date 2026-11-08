@@ -15,9 +15,9 @@
      var iframeinit = document.getElementById('iframezyjz');
      iframeinit.onload = function () {
          $('#iframezyjz').contents().find('#zy_btnsyy').hide();
-         // Lấyiframetố
+         // Lấy iframe tố
          var iframe = document.getElementById('iframezyjz');
-         // Truy cậpiframetrongcủawindowđối tượng
+         // Truy cập iframe trong của window đối tượng
          var iframeWindow = iframe.contentWindow;
          iframeWindow.getPatInfoAjax({ zyh: zyjzzyh });
          $("#PatTreeList_" + zyjzzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//Đã chọn
@@ -57,9 +57,9 @@
                  if (item.value && item.Ex1 == "c") {
                      debugger;
                      zyjzzyh = item.value;
-                     // Lấyiframetố
+                     // Lấy iframe tố
                      var iframe = document.getElementById('iframezyjz');
-                     // Truy cậpiframetrongcủawindowđối tượng
+                     // Truy cập iframe trong của window đối tượng
                      var iframeWindow = iframe.contentWindow;
                      iframeWindow.getPatInfoAjax({ zyh: item.value });
                      //$('#iframezyjz').contents().find('#pane1').hide();

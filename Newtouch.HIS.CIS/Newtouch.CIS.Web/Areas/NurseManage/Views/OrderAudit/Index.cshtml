@@ -87,7 +87,7 @@
                 @*<div class="toolbar" style="float:right;padding-right:10px;">
                     <div class="btn-group">
                         <a id="PSLR" class="btn btn-primary" style="float:right;padding-right:10px;" onclick="PSLR()">
-                            <i class="fa fa-pencil-square-o"></i>dathửnhập
+                            <i class="fa fa-pencil-square-o"></i>da thử nhập
                         </a>
                     </div>
                 </div>*@
@@ -110,7 +110,7 @@
 
     $(function () {
         var zyhtimes = $.request("data");
-        var currentobj = JSON.parse(sessionStorage.getItem('currentpatobj'));//Điều dưỡng Bệnh nhânmộtxem
+        var currentobj = JSON.parse(sessionStorage.getItem('currentpatobj'));//Điều dưỡng Bệnh nhân một xem
         if(currentobj)
         {
             zyhtimes = currentobj.zyh+',';
@@ -397,7 +397,7 @@
         getOrderAuditList(null, null);
     }
 
-    //Phê duyệthiện tại
+    //Phê duyệt hiện tại
     function AuditChecked() {
         var strYZID = [];
         var selRowIds = jQuery("#gridList").jqGrid("getGridParam", "selarrrow");
@@ -622,7 +622,7 @@
             height: "500px",
             //showleftlalbel: !!!smtzId,  //Thêm mới khi hiển thị 'xác nhận và đóng nút'
             leftlalbelchecked: true,
-            //leftlabeltext: "nốitiếpnhập",
+            //leftlabeltext: "nối tiếp nhập",
             leftlalbelcheckedasClose: false,
             callBack: function (iframeId, isClose) {
                 $("#gridList").trigger("reloadGrid");

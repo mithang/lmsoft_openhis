@@ -79,7 +79,7 @@
         });
     }
 
-    //vềxekích hoạt Tra cứusự kiện
+    //về xe kích hoạt Tra cứu sự kiện
     $("#txt_keyword").keydownEnterEvent(function() {
         $("#btn_search").trigger("click");
     });
@@ -95,7 +95,7 @@
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function() {
                     cleanSearchInput();
-                    $('#gridList').jqGrid("clearGridData"); //xóachi tiếtcủagrid
+                    $('#gridList').jqGrid("clearGridData"); //xóa chi tiết của grid
                     $("#gridList").resetSelection();
                     $("#gridList").trigger("reloadGrid");
                 });
@@ -124,7 +124,7 @@
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function() {
                     cleanSearchInput();
-                    $('#gridList').jqGrid("clearGridData"); //xóachi tiếtcủagrid
+                    $('#gridList').jqGrid("clearGridData"); //xóa chi tiết của grid
                     $("#gridList").resetSelection();
                     $("#gridList").trigger("reloadGrid");
                 });
@@ -149,7 +149,7 @@
             param: { keyValue: keyValue },
             success: function () {
                 cleanSearchInput();
-                $('#gridList').jqGrid("clearGridData"); //xóachi tiếtcủagrid
+                $('#gridList').jqGrid("clearGridData"); //xóa chi tiết của grid
                 $("#gridList").resetSelection();
                 $("#gridList").trigger("reloadGrid");
             }

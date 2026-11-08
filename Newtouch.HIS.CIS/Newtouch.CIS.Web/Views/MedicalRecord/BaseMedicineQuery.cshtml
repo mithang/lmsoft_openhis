@@ -56,7 +56,7 @@
 </form>
 <script>
     $(function () {
-        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lại jqGrid độ rộng
         $(window).resize(function () {
             initLayout("gridPanel");
         });
@@ -78,7 +78,7 @@
             postData: { zxdlb: $("#zxdlb").val(), xmbm: xmbm, xmmc: $("#xmmc").val(), ck_kc: ck_kc},
             url: "/MedicalRecord/GetBaseMedicinetList",
             height: $(window).height() - 130,
-            shrinkToFit: true,   //true:theo tỷ lệ VD khởi tạo độ rộng cột false:Sử dụngcolModelđộ rộng đã chỉ định
+            shrinkToFit: true,   //true:theo tỷ lệ VD khởi tạo độ rộng cột false:Sử dụng colModel độ rộng đã chỉ định
             autowidth: true,
             colModel: [
                 { label: "Mục Mã", name: "ypCode", width: 70, align: 'left' },

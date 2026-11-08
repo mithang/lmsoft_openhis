@@ -51,11 +51,11 @@
             success: function (data) {
                 var refdata=eval('(' + data + ')');
                 if (refdata.infcode === "0") {
-                    $.modalMsg('Hủy bỏthành công', 'success');
+                    $.modalMsg('Hủy bỏ thành công', 'success');
                     //callback();
                 } else {
                     $.loading(false);
-                    $.modalAlert('Hủy bỏ Điện tử Đơn thuốcthất bại:' + refdata.err_msg, 'error');
+                    $.modalAlert('Hủy bỏ Điện tử Đơn thuốc thất bại:' + refdata.err_msg, 'error');
                 }
 
             },

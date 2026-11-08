@@ -55,7 +55,7 @@
 
     initForm();
 
-    //Khởi tạobảngphiếu
+    //Khởi tạo bảng phiếu
     function initForm() {
         if (hisId != null && hisId != "") {
             $.ajax({
@@ -84,7 +84,7 @@
                         }
                     }
                     else {
-                        $.modalAlert("Điện tử Đơn thuốc Duyệt Kết quả Tra cứuthất bại:" + tfReturn.err_msg, 'error');
+                        $.modalAlert("Điện tử Đơn thuốc Duyệt Kết quả Tra cứu thất bại:" + tfReturn.err_msg, 'error');
                         return;
                     }
                 },

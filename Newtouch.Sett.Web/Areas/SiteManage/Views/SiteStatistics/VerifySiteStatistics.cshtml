@@ -110,7 +110,7 @@
             allSelectedText: "Chọn tất cả",
             nSelectedText:"Đã chọn",
             onBuiltAsyncOptions: function (res) {
-                // Mã ở đây làajax Tạo xongoptionssau đó thực hiện
+                // Mã ở đây là ajax Tạo xongoptionssau đó thực hiện
                 $("#siteId").trigger("change");
                 gridList();
             },
@@ -118,7 +118,7 @@
             $('#siteId,#year,#month,#shzt').change(function () {
                 $("#btn_search").trigger("click");
             });
-            //ẩngiấuchưanêunộpchọnhạng
+            //ẩn giấu chưa nêu nộp chọn hạng
             $("#shzt option[value='@Html.Raw(((int)EnumOrgshzt.WTJ).ToString())']").hide();
             $("#shzt").val('@Html.Raw(((int)EnumOrgshzt.DS).ToString())').trigger("change");
         });

@@ -65,7 +65,7 @@
 <script>
     $(function () {
         initControl();
-        //theohọ tênlấy phiên âm
+        //theo họ tên lấy phiên âm
         $('#xm').keyup(function () {
             $('#py').val($(this).toShouPin());
         });
@@ -81,7 +81,7 @@
             width: 400,
             clickautotrigger: true,
             filter: function (keyword) {
-                //duyệtdữ liệunguồn,dùngkeywordđể lọc rakết quả
+                //duyệt dữ liệu nguồn,dùng keyword để lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) ||
@@ -107,7 +107,7 @@
         });
 
 
-        //đăng ký khámlớp nổi lịch trực
+        //đăng ký khám lớp nổi lịch trực
         $("#txtghpbchoose").newtouchBatchFloatingSelector({
             height: 150,
             width: 400,

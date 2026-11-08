@@ -200,7 +200,7 @@
     function getHistory() {
         alert("Các lần nhập viện trước")
     }
-    //tabkhởi tạo
+    //tab khởi tạo
     function tabInit() {
         $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
             switch ($(this).attr('href')) {
@@ -308,7 +308,7 @@
                 }
             });
 
-            //quẹtmớiy tếbảo hiểmnộpdễtratra cứu
+            //quẹt mới y tế bảo hiểm nộp dễ tra tra cứu
             $("#gridListpresett").jqGrid('setGridParam', {
                 postData: { zyh: obj.zyh }
             }).trigger('reloadGrid');

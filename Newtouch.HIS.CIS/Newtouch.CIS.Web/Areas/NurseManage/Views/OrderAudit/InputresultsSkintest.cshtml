@@ -67,8 +67,8 @@
             </table>
             @*<label >Chẩn đoán:</label>
             <select id="zd" name="zd" class="form-control " style="width:70px;height:15px;">
-                <option value="0"> đãnhập </option>
-                <option value="1"> chưanhập </option>
+                <option value="0"> đã nhập </option>
+                <option value="1"> chưa nhập </option>
             </select>*@
         </div>
         <div class="dv-left-title">Danh sách bệnh nhân</div>
@@ -173,7 +173,7 @@
             single = 1;
         }
 
-        //Đã chọntiếtđiểm
+        //Đã chọn tiết điểm
         for (var i = 0; i < patlist.length; i++) {
             if (patlist[i].Ex1 == "c") {
                 patzyh += patlist[i].value + ",";
@@ -276,7 +276,7 @@
                 { label: 'Số nhóm', name: 'zh', align: 'center', width: 70, formatter: function (val) { if (val != null) return val; else return ""; } },
                 { label: 'Tính chất y lệnh', name: 'yzxzsm', align: 'center', width: 50 },
                 { label: 'Thời gian bắt đầu', name: 'kssj', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
-                //{ label: 'kếtnếu Giá trị', name: 'lrjg', align: 'center', width: 100, },
+                //{ label: 'kết nếu Giá trị', name: 'lrjg', align: 'center', width: 100, },
                 {
                     label: 'Nội dung y lệnh', name: 'yznr', align: 'center', width: 230, formatter: function (val) {
                         if (val != null) {
@@ -308,7 +308,7 @@
             //} 
         });
     }
-    //đãnhập
+    //đã nhập
     function gridListYl(patzyh, selectkey) {
         var $gridList = $("#gridListylr");
         $gridList.dataGrid({
@@ -423,7 +423,7 @@
             }
         });
     }
-    //Test dakếtnếunhập
+    //Test da kết nếu nhập
     function InputResult() {
         var selRowIds = jQuery("#gridList").jqGrid("getGridParam", "selarrrow");
         if (selRowIds.length==0) {

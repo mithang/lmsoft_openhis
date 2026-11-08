@@ -9,7 +9,7 @@
         gridList();
     });
 
-    ///lấydanh sách đơn thuốc
+    ///lấy danh sách đơn thuốc
     function GetPrescriptionInfo() {
         var PrescriptionInfo = sessionStorage.getItem("PrescriptionInfo");
         if (PrescriptionInfo) {
@@ -39,14 +39,14 @@
 
 
     function submitForm(callback) {
-        //lấydòng đã chọn Id
+        //lấy dòng đã chọn Id
         var selRowIds = $("#parentgridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds.length == 0) {
             $.modalAlert("Vui lòng chọn trước đơn thuốc", 'warning');
             return;
         }
         //cfnm
-        var cfnmList = [];//mã nội bộ đơn thuốc tra cứu chi tiết đơn thuốclist
+        var cfnmList = [];//mã nội bộ đơn thuốc tra cứu chi tiết đơn thuốc list
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#parentgridList").jqGrid('getRowData', selRowIds[i]);
             if (!rowData) {

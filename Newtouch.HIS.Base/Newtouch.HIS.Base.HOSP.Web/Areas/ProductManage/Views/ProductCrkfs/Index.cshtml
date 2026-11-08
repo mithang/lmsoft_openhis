@@ -96,7 +96,7 @@
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function() {
                     cleanSearchInput();
-                    $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết củagrid
+                    $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết của grid
                     $("#gridList").resetSelection();
                     $("#gridList").trigger("reloadGrid");
                 });
@@ -125,7 +125,7 @@
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function() {
                     cleanSearchInput();
-                    $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết củagrid
+                    $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết của grid
                     $("#gridList").resetSelection();
                     $("#gridList").trigger("reloadGrid");
                 });
@@ -150,7 +150,7 @@
             param: { keyValue: keyValue },
             success: function () {
                 cleanSearchInput();
-                $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết củagrid
+                $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết của grid
                 $("#gridList").resetSelection();
                 $("#gridList").trigger("reloadGrid");
             }

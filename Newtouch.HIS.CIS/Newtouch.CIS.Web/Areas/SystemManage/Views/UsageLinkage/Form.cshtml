@@ -50,7 +50,7 @@
                         }
                     }
                     else {
-                        $.modalAlert("Lấy Thông tinthất bại", 'error');
+                        $.modalAlert("Lấy Thông tin thất bại", 'error');
                     }
                 }
             });
@@ -67,7 +67,7 @@
 
     //Mục thu phí lớp nổi
     $('#selitem').sfxmFloatingSelector({
-        leftshift: 100, //chỉnhthểtráilệchchuyển
+        leftshift: 100, //chỉnh thể trái lệch chuyển
         width: 650,
         ajaxparameters: function ($thisinput) {
             return "keyword=" + $.trim($thisinput.val());
@@ -102,7 +102,7 @@
             type: "POST",
             success: function (res) {
                 if (res.state === "success") {
-                    $.modalMsg("Gửithành công", 'success');
+                    $.modalMsg("Gửi thành công", 'success');
                     callback();
                 } else {
                     $.modalAlert(res.message, "error");

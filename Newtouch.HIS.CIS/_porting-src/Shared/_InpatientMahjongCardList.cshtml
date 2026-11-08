@@ -227,9 +227,9 @@
 
     function initzbq() {
         $(".ul-zbq").children("li").remove();
-        //Khởi tạojqgrid
+        //Khởi tạo jq grid
         div_zbqList();
-        $('#gbox_div_zbqList').hide();//Ẩn mặc địnhjqgrid
+        $('#gbox_div_zbqList').hide();//Ẩn mặc định jq grid
         //Yêu cầu thông tin bệnh nhân trong khu bệnh
         //ajaxrequestzbq();
     }
@@ -248,7 +248,7 @@
                     $('#sp_1_gridPager').text(respdata.total);
                     $('.records').text(respdata.records);
                     $(".ul-zbq").children("li").remove();
-                    zbqPatientList = respdata.rows;//Tạo bệnh nhânli
+                    zbqPatientList = respdata.rows;//Tạo bệnh nhân li
                     $('#div_zbqList').jqGrid("clearGridData");
                     $('#div_zbqList').newtouchLocalDataGrid(null, zbqPatientList);
                     createli(respdata.rows);
@@ -257,7 +257,7 @@
         }
     }
     //<i class="fa fa-' + ($.getGender(v.sex) == 'Nam' ? " mars" : "venus") + '" style = "background-color:' + ($.getGender(v.sex) == 'Nam' ? " #00a0e9" : "pink") + '; border: 1px solid ' + ($.getGender(v.sex) == 'Nam' ? " #00a0e9" : "pink") +';" aria - hidden="true" ></i >
-    //Tạo bệnh nhânli
+    //Tạo bệnh nhân li
     function createli(respdata) {
         $.jsonWhere(respdata, function (v) {
             var li = '  <li>'

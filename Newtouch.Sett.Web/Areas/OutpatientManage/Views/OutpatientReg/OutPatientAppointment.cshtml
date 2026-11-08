@@ -21,7 +21,7 @@
     </div>
 </form>
 <script>
-    //cái trước đówindowđối tượng
+    //cái trước đó window đối tượng
     var prevWindow;
     if ('@(from)' !== '') {
         prevWindow = top.top.frames['@(from)'];
@@ -38,12 +38,12 @@
         //tổ hợp thu phí
         obj.isfeegroup = $.request("isfeegroup");
         var searInfo = new PatSearchInfo();
-        //tảidữ liệu
+        //tải dữ liệu
         searInfo.init(obj);
 
     });
     var PatSearchInfo = (function () {
-        //tảidanh sách
+        //tải danh sách
         var loadGrid = function (data) {
             var $gridList = $("#patGridList");
             $gridList.dataGrid({
@@ -81,14 +81,14 @@
 
         }
 
-        //tảisự kiện
+        //tải sự kiện
         myPatSearchInfo.prototype.init = function (data) {
             loadGrid(data);
         };
         return myPatSearchInfo;
     }());
 
-    //jqGrid nhấn đúpđã chọndòng nào đó
+    //jqGrid nhấn đúp đã chọn dòng nào đó
     function btn_edit() {
         PatSearchConfirm();
     }
@@ -120,7 +120,7 @@
         //đóng cửa sổ
         ReceiptCancle();
     }
-    //xác nhận trang chínhgọi
+    //xác nhận trang chính gọi
     function PatSearchConfirm() {
         PatDbGrid();
     }

@@ -121,14 +121,14 @@
 </form>
 <script>
     $(function () {
-        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lại jqGrid độ rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
         Initial();
     });
 
-    //Sự kiện Entergắn
+    //Sự kiện Enter gắn
     $(document).keyup(function (event) {
         if (event.keyCode == 13) {
             $("#btn_search").trigger("click");
@@ -152,7 +152,7 @@
         });
     }
 
-    //chínhbảngthông tin
+    //chính bảng thông tin
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -190,11 +190,11 @@
         });
     }
 
-    //Lấyurltrongcủatham số
+    //Lấy url trong của tham số
     function getQueryString(name) {
-        // khớpphối Mục tiêutham số
+        // khớp phối Mục tiêu tham số
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-        var result = window.location.search.substr(1).match(reg); // đốiquerystringkhớpphối Mục tiêutham số
+        var result = window.location.search.substr(1).match(reg); // đối querystring khớp phối Mục tiêu tham số
         if (result != null) {
             return decodeURIComponent(result[2]);
         } else {

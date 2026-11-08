@@ -106,7 +106,7 @@
                     var kcsl = $gridList.jqGrid('getRowData', rowid).kcsl;
                     var kzbz = $gridList.jqGrid('getRowData', rowid).kzbz;
                     if ((kcsl != "" && kzbz != "Vô hiệu hóa" && (tclx == yp || tclx == zyyz || tclx == cydy)) || (tclx != yp && tclx != cydy && tclx != zyyz)) {
-                        $gridList.jqGrid('setSelection', rowid); //Cài đặtjqGrid Đã chọn
+                        $gridList.jqGrid('setSelection', rowid); //Cài đặt jqGrid Đã chọn
                     }
                 });
                 $('#cb_gridList').prop('checked', true);//Chọn tất cả Nút
@@ -117,12 +117,12 @@
                     var kzbz = $gridList.jqGrid('getRowData', rowid).kzbz;
                     if (kcsl == "") {
                         $.modalAlert("Thuốc này không có tồn kho, không thể chọn", "warning");
-                        $gridList.jqGrid('setSelection', rowid, false); //Cài đặtjqGrid Đã chọn
+                        $gridList.jqGrid('setSelection', rowid, false); //Cài đặt jqGrid Đã chọn
                         return;
                     }
                     if (kzbz == "Vô hiệu hóa") {
                         $.modalAlert("Thuốc này ở trạng thái vô hiệu hóa, không thể chọn", "warning");
-                        $gridList.jqGrid('setSelection', rowid, false); //Cài đặtjqGrid Đã chọn
+                        $gridList.jqGrid('setSelection', rowid, false); //Cài đặt jqGrid Đã chọn
                         return;
                     }
                 }
@@ -146,7 +146,7 @@
             totalAmount += parseFloat(this.dj) * parseFloat(this.sl);
         });
         $("#gridList").jqGrid("setCaption", "Tổng cộng:" + "<label style='color:red;'>₫"
-            + totalAmount.toFixed(2) + "</label>");   //Đặt lạicaption Thuộc tính Giá trị
+            + totalAmount.toFixed(2) + "</label>");   //Đặt lại caption Thuộc tính Giá trị
     }
 
     function submitForm() {

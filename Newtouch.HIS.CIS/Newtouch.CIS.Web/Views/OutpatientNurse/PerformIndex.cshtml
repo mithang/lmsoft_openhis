@@ -71,7 +71,7 @@
                     </div>
                     @*<div class="btn-group">
                         <a id="btn_edit" class="btn btn-primary" onclick="editResult()" style="width:50px;">
-                            <i class="fa fa-pencil-square-o"></i>Hủynhập
+                            <i class="fa fa-pencil-square-o"></i>Hủy nhập
                         </a>
                     </div>*@
                 </div>
@@ -156,7 +156,7 @@
             single = 1;
         }
 
-        //Đã chọntiếtđiểm
+        //Đã chọn tiết điểm
         for (var i = 0; i < patlist.length; i++) {
             if (patlist[i].Ex1 == "c") {
                 patjzid += patlist[i].value + ",";
@@ -196,7 +196,7 @@
         }).trigger("reloadGrid");
 
     }
-    //liên cấp Đã chọntất cảcontiếtđiểm
+    //liên cấp Đã chọn tất cả con tiết điểm
     function checkAllSon(node) {
         $('#BqTreeList').treeview('checkNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -206,7 +206,7 @@
         }
     }
 
-    //liên cấp Hủytất cảcontiếtđiểm
+    //liên cấp Hủy tất cả con tiết điểm
     function uncheckAllSon(node) {
         $('#BqTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -223,7 +223,7 @@
             postData: { patList: patjzid },
             url: "/OutpatientNurse/Inputinformation",
             height: $(window).height() - 130,
-            shrinkToFit: true,   //true:theo tỷ lệ VD khởi tạo độ rộng cột false:Sử dụngcolModelđộ rộng đã chỉ định
+            shrinkToFit: true,   //true:theo tỷ lệ VD khởi tạo độ rộng cột false:Sử dụng colModel độ rộng đã chỉ định
             autowidth: true,
             colModel: [
                 { label: 'Đơn thuốc Chi tiết ID', name: 'cfmxId', align: 'center', hidden: true, width: 50,  key: true },
@@ -233,7 +233,7 @@
                 { label: 'Test da Mục', name: 'ypmc', align: 'left', width: 150 },
                 { label: 'Đơn thuốc Số nhóm', name: 'zh', align: 'center', width: 70, formatter: function (val) { if (val != null) return val; else return ""; } },
                 { label: 'Thời gian bắt đầu', name: 'kssj', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
-                //{ label: 'kếtnếu Giá trị', name: 'lrjg', align: 'center', width: 100, },
+                //{ label: 'kết nếu Giá trị', name: 'lrjg', align: 'center', width: 100, },
                 { label: 'Nội dung y lệnh', name: 'cfmxnr', align: 'center', width: 230},
                 { label: 'ypcode', name: 'ypcode', align: 'center', hidden: true },
                 { label: 'sex', name: 'sex', align: 'center', hidden: true }
@@ -283,7 +283,7 @@
                         success: function (data) {
                             RefreshOrder();
                             if (!!data && data.state == "success") {
-                                $.modalMsg('Test da Thực hiệnthành công', 'success');
+                                $.modalMsg('Test da Thực hiện thành công', 'success');
                             }
                             else if (!!data && data.state == "error") {
                                 $.modalMsg(data.message, 'error');

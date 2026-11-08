@@ -18,7 +18,7 @@
     var pageFlag = "";
     function SetCurrentPageyzlx(page) {
         pageFlag = page;
-        //mô phỏngđiểmnhấptab
+        //mô phỏng điểm nhấp tab
         //$("#beveltabs a:first").trigger('click');
         if ('@ViewBag.bhbq' == "False") {
             $('#floatLeftMostPartDiv div').css("height","33.33%");
@@ -32,7 +32,7 @@
     $("#floatLeftMostPartDiv div").on("click", function (e) {
         e.preventDefault();
         if ($(this).hasClass('activepart')) {
-            //lạiđiểmnhấp Ẩn
+            //lại điểm nhấp Ẩn
             $("#floatLeftMostPartDiv div").removeClass("activepart");
             $('#floatPreTemplateTree').hide();
         } else {
@@ -99,7 +99,7 @@
                                         var l = resp;
                                         for (var i = 0; i < l.length; i++) {
                                             l[i].Id = Math.random().toString() + new Date().getMilliseconds();
-                                            l[i].yzzt = 0;//Mặc địnhchưa duyệt
+                                            l[i].yzzt = 0;//Mặc định chưa duyệt
                                             l[i].action = getActionStr;
                                             l[i].zyh = currentobj.zyh;
                                             l[i].kssj = $.getTime();

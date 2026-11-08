@@ -59,22 +59,22 @@
 </form>
 <script>
     $(function () {
-        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lại jqGrid độ rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
-        GetlsjzSel();//Lấy Lịch sửkết chuyển Thời gian
-        gridDrugsList();//vật tưthông tin
+        GetlsjzSel();//Lấy Lịch sử kết chuyển Thời gian
+        gridDrugsList();//vật tư thông tin
     });
 
-    //Sự kiện Entergắn
+    //Sự kiện Enter gắn
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //Lấy Lịch sửkết chuyển Thời gian
+    //Lấy Lịch sử kết chuyển Thời gian
     function GetlsjzSel() {
         $("#lsjz").html("");
         $("#lsjz").bindSelect({
@@ -84,9 +84,9 @@
         });
     }
 
-    //Thực hiệnkết chuyểnhiện tại
+    //Thực hiện kết chuyển hiện tại
     function newtouch_event_f8() {
-        //Lấycuối cùngmột lầnkết chuyển Thời gian
+        //Lấy cuối cùng một lần kết chuyển Thời gian
         $.najax({
             type: "Get",
             url: "/NurseManage/StockCarryOver/QueryLastCarryTime?r=" + Math.random(),
@@ -105,12 +105,12 @@
                                         dataType: "json",
                                         success: function (ajaxresp) {
                                             if (ajaxresp.state === "success") {
-                                                $.modalMsg("Kết chuyểnthành công", 'success', 1500);
-                                                GetlsjzSel();//Làm mớikết chuyển Thời gian
+                                                $.modalMsg("Kết chuyển thành công", 'success', 1500);
+                                                GetlsjzSel();//Làm mới kết chuyển Thời gian
                                                 $("#btn_search").trigger("click");
                                             }
                                             else {
-                                                var msg = ajaxresp.message != null ? ajaxresp.message : "Kết chuyểnthất bại";
+                                                var msg = ajaxresp.message != null ? ajaxresp.message : "Kết chuyển thất bại";
                                                 $.modalMsg(msg, "error", 1500);
                                             }
                                         }
@@ -130,7 +130,7 @@
         });
     }
 
-    //vật tưthông tin
+    //vật tư thông tin
     function gridDrugsList() {
         var captionCon = "Tổng cộng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>Tổng tiền bán lẻ trang hiện tại: </span>";
         var $gridDrugsList = $("#gridDrugsList");
@@ -168,7 +168,7 @@
             sortname: 'wzmc',
             viewrecords: true,
             loadComplete: function (data) {
-                ComputePjzeAndLsze();//Tính toándấuđềcộttrongcủalôgiátổngmứcvàtổng bán lẻ
+                ComputePjzeAndLsze();//Tính toán dấu đề cột trong của lô giá tổng mức và tổng bán lẻ
             }
         });
         //Tra cứu
@@ -192,7 +192,7 @@
         return { jzsj: jzsj, keyWork: keyWork };
     };
 
-    //Tính toándấuđềcộttrongcủalôgiátổngmứcvàtổng bán lẻ
+    //Tính toán dấu đề cột trong của lô giá tổng mức và tổng bán lẻ
     function ComputePjzeAndLsze() {
         var titleLsze = 0;
         var count = $("#gridDrugsList").getGridParam('records');

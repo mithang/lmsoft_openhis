@@ -160,8 +160,8 @@
     });
 
     var yjjzhzhxz = '@Model.HospSettPatInfo.zyyjjzhzhxz';
-    var yjjzhzffs = "";//đối vớiphảicủaxjzffs
-    var yjjzhzffsmc = "";//đối vớiphảicủaxjzffs
+    var yjjzhzffs = "";//đối với phải của xjzffs
+    var yjjzhzffsmc = "";//đối với phải của xjzffs
 
     $("#ddlZYJSChargeType").newtouchBindSelect({
         id: "xjzffs",
@@ -219,7 +219,7 @@
     function btn_delete() {
         var rowid = jQuery("#tbZhszGridList").jqGrid("getGridParam", "selrow");
         if ($("#tbZhszGridList").jqGrid('getRowData', rowid)["zffs"] == yjjzhzffs) {
-            return; //Tài khoảntạm ứng Bản ghi không thể xóa
+            return; //Tài khoản tạm ứng Bản ghi không thể xóa
         }
         if (rowid) {
             $('#tbZhszGridList').jqGrid("delRowData", rowid);
@@ -266,14 +266,14 @@
         });
     }
 
-    //Gửiquyết toán
+    //Gửi quyết toán
     function submitSett() {
         var postData = {};
         postData['zyh'] = '@(Model.zyh)';
         postData['fph'] = $('#txtfph').val(); //'@(Model.fph)';
         postData['expectedcyrq'] = '@(Model.expectedcyrq)';  //
         postData['expectedyjjzhye'] = '@(Model.zhye)';  //
-        //Số tiềnquyết toán kỳ vọng Ngăn thay đổi trong quá trình
+        //Số tiền quyết toán kỳ vọng Ngăn thay đổi trong quá trình
         postData['expectedjsje'] = @(Model.expectedjsje.ToString(System.Globalization.CultureInfo.InvariantCulture));
         //Tiền thừa kỳ vọng Ngăn thay đổi trong quá trình
         postData['expectedzhaoling'] = $('#tdZhaoling span').text();
@@ -281,9 +281,9 @@
             $.modalAlert("Tiền thừa không được âm", 'error');
             return;
         }
-        //Số tiềnquyết toán kỳ vọng Ngăn thay đổi trong quá trình
+        //Số tiền quyết toán kỳ vọng Ngăn thay đổi trong quá trình
         postData['shishoukuan'] = $('#tdSsk span').text();
-        //Phương thức thanh toán jsonchuỗi
+        //Phương thức thanh toán json chuỗi
         var xjzfArr = new Array();
         var rowIds = $("#tbZhszGridList").getDataIDs();
         $.each(rowIds, function (idx, val) {
@@ -297,7 +297,7 @@
             param: postData,
             successwithtipmsg: false,
             success: function (data) {
-                //Bật một lớp khác Kết quảquyết toán phươngphương phápđịnhnghĩatại Indextrong
+                //Bật một lớp khác Kết quả quyết toán phương phương pháp định nghĩa tại Indextrong
                 $.currentWindow().window.showSettSuccessDialog(data.data.yingshoukuan, data.data.ssk, data.data.srce, data.data.zhaoling);
                 $.currentWindow().window.newtouch_globalevent_f4();
             }

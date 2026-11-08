@@ -82,13 +82,13 @@
 
         DefaultCheck();
     });
-    //Mặc định Đã chọngốctiếtđiểm.
+    //Mặc định Đã chọn gốc tiết điểm.
     function DefaultCheck() {
-        var firstid = $("div[id^='wardTree_']:first").attr("id").replace("wardTree_", "");//gốctiếtđiểm Khu bệnh Mã
+        var firstid = $("div[id^='wardTree_']:first").attr("id").replace("wardTree_", "");//gốc tiết điểm Khu bệnh Mã
         var addstyleid = 'wardTree_' + firstid;
         var item = new Object();
         item.id = firstid;
-        $("#" + addstyleid + "").addClass('bbit-tree-selected');//tăng thêm Đã chọnkiểu
+        $("#" + addstyleid + "").addClass('bbit-tree-selected');//tăng thêm Đã chọn kiểu
         wardTree_onnodeclick(item);
     }
     var bqdm = null;
@@ -102,7 +102,7 @@
         GetPatientList(bqdm);
         refleshPatientList();
     }
-    //Làm mớisự kiện
+    //Làm mới sự kiện
     function refleshPatientList() {
         $("#btn_search").trigger('click');
     }
@@ -114,7 +114,7 @@
         }
         $("#gridPatList").jqGrid('setGridParam', {
             postData: { keyword: $('#txt_name').val(), bqdm: bqdm },
-        }).trigger('reloadGrid'); //lạitảihiện tạibảngô
+        }).trigger('reloadGrid'); //lại tải hiện tại bảng ô
     });
     // Điều kiện tìm kiếm
     function getSearchPostData() {
@@ -131,14 +131,14 @@
         Querydata["bqdm"] = bqdm;
         //alert(bqdm);
         $gridList.dataGrid({
-            //Lấy Bệnh nhân đang nằm việnthông tin
+            //Lấy Bệnh nhân đang nằm viện thông tin
             url: "/EntryRegistration/GetINAreaPatlist",
             postData: Querydata,
             dataType: "json",
             height: $(window).height() - 155,
             //width: $(".Newtouch_iframe", parent.document).width() - $(".dv-left").width() - 5,
-            //autowidth: false,//Theochadungdụng cụđộ rộngđộtựđộngtrọngtính,Mặc địnhfalse khôngtrọngtính
-            //shrinkToFit: true,// thànhsoVDthu nhỏđặt Mặc địnhlàtrue
+            //autowidth: false,//Theo cha dung dụng cụ độ rộng độ tự động trọng tính,Mặc định false không trọng tính
+            //shrinkToFit: true,// thành soVDthu nhỏ đặt Mặc định là true
             //multiselect: true,
             //unwritten:false,
             colModel: [
@@ -169,7 +169,7 @@
             pager: "#gridPager",
             sortname: 'ryrq desc',
             viewrecords: true,
-            //loadComplete: function () { //Ẩngridthanh cuộn dưới cùng
+            //loadComplete: function () { //Ẩn grid thanh cuộn dưới cùng
             //    $("#gridPatList").closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
             //}
         });
@@ -178,7 +178,7 @@
     //Chẩn đoán nhập viện
     function recall1(zyh,brxz) {
         if (zyh == null || zyh === "") {
-            $.modalAlert("Vui lòng chọnmột Bệnh nhân", 'warning');
+            $.modalAlert("Vui lòng chọn một Bệnh nhân", 'warning');
             return;
         }
         $.modalOpen({
@@ -199,7 +199,7 @@
     //Xuất viện Chẩn đoán
     function recall2(zyh, brxz) {
         if (zyh == null || zyh === "") {
-            $.modalAlert("Vui lòng chọnmột Bệnh nhân", 'warning');
+            $.modalAlert("Vui lòng chọn một Bệnh nhân", 'warning');
             return;
         }
         var btn = ['Xác nhận', 'Đóng'];

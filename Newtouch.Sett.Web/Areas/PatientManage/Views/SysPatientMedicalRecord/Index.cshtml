@@ -148,7 +148,7 @@
             return;
         }
         if (!!!$("#gridList").jqGridRowValue().ParentId) {
-            //nàylàchacấp
+            //này là cha cấp
             $.deleteForm({
                 url: "/PatientManage/SysPatientMedicalRecord/DeleteForm",
                 param: { keyValue: keyValue },
@@ -159,7 +159,7 @@
             });
         }
         else {
-            //nàylàconcấp
+            //này là con cấp
 
         }
     }

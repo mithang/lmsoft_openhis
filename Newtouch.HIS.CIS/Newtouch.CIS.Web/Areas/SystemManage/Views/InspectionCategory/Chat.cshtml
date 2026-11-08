@@ -209,8 +209,8 @@
                 <input type="button" id="sendmessage" value="gửi" />
             </div>
     </div>*@
-<!--jQuerykhoCóphảicầncủa,Mặc địnhtình hìnhdướiở_Layout.cshtmldẫndùng. -->
-<!--dẫndùngSignalRkho. -->
+<!--jQuerykhoCó phải cần của,Mặc định tình hình dưới ở_Layout.cshtml dẫn dùng. -->
+<!--dẫn dùngSignalRkho. -->
 <!-- ASP.NET Core SignalR client (port of the old jquery.signalR 2.x proxy). Hub route: /signalr (ChatHub). -->
 <script src="/js/signalr.min.js"></script>
 <script>
@@ -218,7 +218,7 @@
         // ASP.NET Core SignalR: ChatHub at /signalr, server event addNewMessageToPage.
         var connection = new signalR.HubConnectionBuilder().withUrl("/signalr").build();
 
-        // địnhnghĩaphụcvụdụng cụđầugọicủakhách hàngđầuaddNewMessageToPageđếnchỗlýnhậnthuđếncủahủytin.
+        // định nghĩa phục vụ dụng cụ đầu gọi của khách hàng đầu addNewMessageToPage đến chỗ lý nhận thu đến của hủy tin.
         connection.on("addNewMessageToPage", function (name, message) {
             if (name == $('#displayname').val()) {
                 $('#discussion').append('<li class="msgright"><p class="touxiangright">' + htmlEncode(name)+'</p><p class="msgcardright">' + htmlEncode(message) + '</p></li >');
@@ -231,24 +231,24 @@
             //    + '</p></li>');
         };
 
-        // Lấy Người dùngtên.
+        // Lấy Người dùng tên.
         $('#displayname').val(prompt('Vui lòng nhập tên của bạn:', ''));
 
-        // Cài đặttiêu điểmđiểmđếnnhậpkhung.
+        // Cài đặt tiêu điểm điểm đến nhập khung.
         $('#message').focus();
 
-        // Bắt đầu Liên kếtphụcvụdụng cụ,Liên kếtthành côngsaulà Gửi Nút Lưu ýsáchclicksự kiện.
+        // Bắt đầu Liên kết phục vụ dụng cụ,Liên kết thành công sau là Gửi Nút Lưu ý sách click sự kiện.
         connection.start().then(function () {
             $('#sendbtn').click(function () {
-                // gọiphụcvụdụng cụđầutậpđườngdụng cụcủa Send Phương pháp.
+                // gọi phục vụ dụng cụ đầu tập đường dụng cụ của Send Phương pháp.
                 connection.invoke("Send", $('#displayname').val(), $('#message').val());
-                // Xóa trắngnhậpkhungthông tinvà Lấytiêu điểmđiểm.
+                // Xóa trắng nhập khung thông tin và Lấy tiêu điểm điểm.
                 $('#message').val('').focus();
             });
         });
     });
 
-    // nàycó thểchọncôngcó thểsẽhtml-encodeshủytin Hiển thịởtrangmặttrên.
+    // này có thể chọn công có thể sẽ html-encodes hủy tin Hiển thị ở trang mặt trên.
     function htmlEncode(value) {
         var encodedValue = $('<div />').text(value).html();
         return encodedValue;

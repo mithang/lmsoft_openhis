@@ -48,7 +48,7 @@
 		}
 		$("#gridList").jqGrid('setGridParam', {
 			postData: { mzzyh: mzzyh, type: type, ztmc: ztmc, ycbz: ycbz, sqdht: sqdht },
-		}).trigger('reloadGrid'); //lạitảihiện tạibảngô
+		}).trigger('reloadGrid'); //lại tải hiện tại bảng ô
 	});
 
 	function gridList() {
@@ -82,22 +82,22 @@
 			viewrecords: true,
 			unwritten: false,
 			loadComplete: function () {
-				var rowNum = $("#gridList").jqGrid('getGridParam', 'records'); //Lấy Dữ liệutổngdòng
+				var rowNum = $("#gridList").jqGrid('getGridParam', 'records'); //Lấy Dữ liệu tổng dòng
 				if (rowNum==0) {
 					if ($("#norecords").html() == null) {
 						$("#gridList").parent().append("<div id='norecords' style='margin:10px;color:red;font-size:16px;'>Không có mục giá trị bất thường!</div>");
 					}
-					$("#norecords").show();//Hiển thị Nhắc nhởthông tin
+					$("#norecords").show();//Hiển thị Nhắc nh ở thông tin
 				} else {
 					$("#norecords").remove();
-					$("#norecords").hide();//Ẩn Nhắc nhởthông tin
+					$("#norecords").hide();//Ẩn Nhắc nh ở thông tin
 				}
 			}
 		});
 	}
 
 	function addlistpubs() {
-        var selRowIds = $("#gridList").jqGrid("getGridParam", "selarrrow");//Đã chọncủaid
+        var selRowIds = $("#gridList").jqGrid("getGridParam", "selarrrow");//Đã chọn của id
 
         var rowids = $("#gridList").jqGrid("getDataIDs");
         var rowData = new Array();

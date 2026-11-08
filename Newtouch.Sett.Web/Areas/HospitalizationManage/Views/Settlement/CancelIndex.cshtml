@@ -129,7 +129,7 @@
                 <td class="formValue">
                     <input class="form-control" disabled readonly="readonly" type="text" value="" id="txtBCJE" />
                 </td>
-                <td class="formTitle">Số tiền đãquyết toán:</td>
+                <td class="formTitle">Số tiền đã quyết toán:</td>
                 <td class="formValue">
                     <input class="form-control" disabled readonly="readonly" type="text" value="" id="txtYJJE" />
                 </td>
@@ -137,7 +137,7 @@
                 <td class="formValue"></td>
             </tr>
             <tr>
-                <td class="formTitle">ghi sổthanh toán:</td>
+                <td class="formTitle">ghi sổ thanh toán:</td>
                 <td class="formValue">
                     <input class="form-control" disabled readonly="readonly" type="text" value="" id="txtJZZF" />
                 </td>
@@ -151,7 +151,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">Hủylý do:</td>
+                <td class="formTitle">Hủy lý do:</td>
                 <td class="formValue" colspan="5">
                     <input class="form-control" type="text" value="" id="txtCancelReason" />
                 </td>
@@ -251,7 +251,7 @@
         newtouch_globalevent_f4();
     };
 
-    //Hủyquyết toán
+    //Hủy quyết toán
     function newtouch_event_f8() {
         var zyh = $.trim($('#zyh').val());
         var jsnm = $.trim($('#hfJSNM').val());
@@ -266,7 +266,7 @@
         }
         postData = {};
         postData['zyh'] = zyh;
-        //Mãquyết toán kỳ vọng Ngăn thay đổi trong quá trình
+        //Mã quyết toán kỳ vọng Ngăn thay đổi trong quá trình
         postData['expectedjsnm'] = jsnm;
         postData['cancelReason'] = cancelReason;
         $.submitForm({

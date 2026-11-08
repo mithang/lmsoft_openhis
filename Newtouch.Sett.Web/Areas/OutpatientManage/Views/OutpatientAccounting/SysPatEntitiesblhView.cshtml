@@ -24,7 +24,7 @@
                 </td>
                 <th class="formTitle" style="width:50px">Họ tên:</th>
                 <td class="formValue">
-                    <input id="txt_xm" name="txt_xm" type="text" class="form-control form-an form-an-end" placeholder="Vui lòng nhập Họ tênhoặc phiên âm đầu" />
+                    <input id="txt_xm" name="txt_xm" type="text" class="form-control form-an form-an-end" placeholder="Vui lòng nhập Họ tên hoặc phiên âm đầu" />
                 </td>
                 <th class="formTitle" style="width:50px">Số giấy tờ:</th>
                 <td class="formValue" style="width:150px">
@@ -46,7 +46,7 @@
 </form>
 
 <script>
-    //cái trước đówindowđối tượng
+    //cái trước đó window đối tượng
     var prevWindow;
     if ('@(from)' !== '') {
         prevWindow = top.top.frames['@(from)'];
@@ -60,7 +60,7 @@
         var obj = new Object;
         obj.blh = $.request("blh");
         var searInfo = new PatSearchInfo();
-        //tảidữ liệu
+        //tải dữ liệu
         searInfo.init(obj);
 
         $('#txt_xm').keyupEnterEvent(function () {
@@ -79,7 +79,7 @@
         });
     });
     var PatSearchInfo = (function () {
-        //tảidanh sách
+        //tải danh sách
         var loadGrid = function (data) {
             var $gridList = $("#patGridList");
             $gridList.dataGrid({
@@ -122,7 +122,7 @@
 
         }
 
-        //tảisự kiện
+        //tải sự kiện
         myPatSearchInfo.prototype.init = function (data) {
             if (data.blh === "null") {
                 $("#txt_xm").val("");
@@ -134,7 +134,7 @@
         return myPatSearchInfo;
     }());
 
-    //jqGrid nhấn đúpđã chọndòng nào đó
+    //jqGrid nhấn đúp đã chọn dòng nào đó
     function btn_edit() {
         PatSearchConfirm();
     }
@@ -154,7 +154,7 @@
         //đóng cửa sổ
         ReceiptCancle();
     }
-    //xác nhận trang chínhgọi
+    //xác nhận trang chính gọi
     function PatSearchConfirm() {
         PatDbGrid();
     }

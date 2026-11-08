@@ -51,7 +51,7 @@
             <tr>
                 <th class="formTitle">Tính phí tiền mặt BHYT:</th>
                 <td class="formValue">₫<label id="yb_xjzf">0.00</label></td>
-                <th class="formTitle">Thanh toánquỹ chung:</th>
+                <th class="formTitle">Thanh toán quỹ chung:</th>
                 <td class="formValue">₫<label id="cq_tczf">0.00</label></td>
                 <th class="formTitle">Trợ cấp công chức:</th>
                 <td class="formValue">₫<label id="cq_gwybz">0.00</label></td>
@@ -74,7 +74,7 @@
                 <td class="formValue">₫<label id="cq_mzbz">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Thanh toánđồng chi trả tài khoản:</th>
+                <th class="formTitle">Thanh toán đồng chi trả tài khoản:</th>
                 <td class="formValue">₫<label id="cq_zhgjzf">0.00</label></td>
                 <th class="formTitle">Khác:</th>
                 <td class="formValue">₫<label id="cq_qt">0.00</label></td>
@@ -112,13 +112,13 @@
                     $.loading(true, 'Đang tải lên chi tiết,Vui lòng đợi...');
                     setTimeout(function() {
                             CQmxsc(function(mxxx) {
-                                $.loading(true, 'Đangquyết toán mô phỏng,Vui lòng đợi...');
+                                $.loading(true, 'Đang quyết toán mô phỏng,Vui lòng đợi...');
                                 setTimeout(function () {
                                     CQybjs(mxxx);
                                         //CQsppd(mxxx,
                                         //    function() {
                                         //        setTimeout(function() {
-                                        //                $.loading(true, 'Đangquyết toán mô phỏng,Vui lòng đợi...');
+                                        //                $.loading(true, 'Đang quyết toán mô phỏng,Vui lòng đợi...');
                                         //                CQybjs(mxxx);
                                         //            },
                                         //            50);
@@ -175,12 +175,12 @@
         if (!!spGsfReturn && !!spBdbReturn && spGsfReturn.Code === "1" && spBdbReturn.Code === "1") {
             if (!!spGsfReturn.Data && spGsfReturn.Data.cfmxlshList.length > 0) {
                 $.loading(false);
-                $.modalAlert("Bệnh nhân có mụcthu phí cao chưa phê duyệt,Vui lòng liên hệ phòng BHYT phê duyệt rồiquyết toán lại！", 'error');
+                $.modalAlert("Bệnh nhân có mục thu phí cao chưa phê duyệt,Vui lòng liên hệ phòng BHYT phê duyệt rồi quyết toán lại！", 'error');
                 return;
             }
             if (!!spGsfReturn.Data && spBdbReturn.Data.cfmxlshList.length > 0) {
                 $.loading(false);
-                $.modalAlert("Bệnh nhân có mục Albumin chưa phê duyệt,Vui lòng liên hệ phòng BHYT phê duyệt rồiquyết toán lại！", 'error');
+                $.modalAlert("Bệnh nhân có mục Albumin chưa phê duyệt,Vui lòng liên hệ phòng BHYT phê duyệt rồi quyết toán lại！", 'error');
                 return;
             }
         } else {
@@ -198,7 +198,7 @@
 <script type="text/javascript">
     //Logic BHYT
 
-    //Lấy bệnh nhânquyết toán Thông tin bệnh nhân
+    //Lấy bệnh nhân quyết toán Thông tin bệnh nhân
     function funcGetSettPatientInfo(funcSuccCallback) {
         $.najax({
             url: '/HospitalizationManage/DischargeSettle/GetInpatientSettYbPatInfo?zyh=' + zyh,
@@ -215,7 +215,7 @@
             }
         });
     }
-	//Logic BHYT Trùng Khánhliên quan
+	//Logic BHYT Trùng Khánh liên quan
     function CQmxsc(funcSuccCallback) {
 	    var n = 1;
 	    var ybzje = 0.00;
@@ -236,7 +236,7 @@
 	        async: false,
 	        success: function (payoptype) {
 	            if (payoptype) {
-	                //Mỗi lần tải lên lại,Trước tiên xử lý phần đã tải lên trước đây,nhưng Chưaquyết toáncủahoàn đơn thuốc
+	                //Mỗi lần tải lên lại,Trước tiên xử lý phần đã tải lên trước đây,nhưng Chưa quyết toán của hoàn đơn thuốc
 	                payoptype.feedetl_sn = "0000";
 	                $.ajax({
 	                    type: "POST",
@@ -262,7 +262,7 @@
 	                        if (xmmc) {
 	                            $.loading(false);
 	                            isuccer = false;
-	                            $.modalAlert(xmmc + "chưađối vớitheo quốc gia Mã BHYT!Vui lòng kiểm tra lại", 'error');
+	                            $.modalAlert(xmmc + "chưa đối với theo quốc gia Mã BHYT!Vui lòng kiểm tra lại", 'error');
 	                            return;
 	                        }
 	                        else {
@@ -397,7 +397,7 @@
 	            !!ybjyFeeReturn.inscp_scp_amt && $('#cq_hszjfw').html(ovpraseFloat(ybjyFeeReturn.inscp_scp_amt).toFixed(2));
                 !!ybjyFeeReturn.act_pay_dedc && $('#cq_zfqfx').html(ovpraseFloat(ybjyFeeReturn.act_pay_dedc).toFixed(2));
 
-                //Lưuquyết toán trước
+                //Lưu quyết toán trước
                 ybyjsxx.zyh = zyh;
                 YByjsld(ybyjsxx);
 		    } else {

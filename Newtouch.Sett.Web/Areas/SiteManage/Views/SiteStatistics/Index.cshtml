@@ -119,7 +119,7 @@
             nonSelectedText: "Chưa đã chọn",
             allSelectedText: "Chọn tất cả",
             onBuiltAsyncOptions: function (res) {
-                // Mã ở đây làajax Tạo xongoptionssau đó thực hiện
+                // Mã ở đây là ajax Tạo xongoptionssau đó thực hiện
                 $("#siteId").trigger("change");
                 gridList();
             },
@@ -250,7 +250,7 @@
             btn: null
         });
     }
-    //traxemchi tiếttình
+    //traxemchi tiết tình
     function btn_detail(keyValue) {
          if (!!!keyValue) {
             $.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
@@ -284,7 +284,7 @@
             param: { keyValue: keyValue },
             success: function () {
                 $.modalMsg("Xóa thành công","success");
-                $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết củagrid
+                $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết của grid
                 $("#btn_search").trigger("click");
             }
         });

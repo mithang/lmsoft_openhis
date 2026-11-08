@@ -168,7 +168,7 @@
             dataType: "json",
             success: function () {
                 $.modalMsg("Thao tác thành công", "success");
-                $.currentWindow().$('#gridList').jqGrid("clearGridData"); //Xóa chi tiết củagrid
+                $.currentWindow().$('#gridList').jqGrid("clearGridData"); //Xóa chi tiết của grid
                 $.currentWindow().$("#btn_search").trigger("click");
                 $.modalClose();
             }

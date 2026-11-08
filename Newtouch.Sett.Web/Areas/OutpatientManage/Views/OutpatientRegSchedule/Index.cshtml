@@ -11,7 +11,7 @@
             <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửathông tin</a>
+            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa thông tin</a>
         </div>
         @*<div class="btn-group">
                 <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa thông tin</a>
@@ -253,7 +253,7 @@
         var OrganizeId = $("#gridList").jqGridRowValue().OrganizeId;
         $.modalOpen({
             id: "FormFIEdit",
-            title: "Sửathông tin",
+            title: "Sửa thông tin",
             url: "/OutpatientManage/OutpatientRegSchedule/Form?ghpbId=" + ghpbId + "&orgId=" + OrganizeId,
             width: "700px",
             height: "500px",

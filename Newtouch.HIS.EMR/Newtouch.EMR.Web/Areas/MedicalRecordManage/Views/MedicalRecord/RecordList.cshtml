@@ -170,8 +170,8 @@
     });
 
 	function GetQueryValue(queryName) {
-		var query = decodeURI(window.location.search.substring(1));//chuyểnurl Chuyển mã, Nếu không phải liên kết địa chỉ hiện tại, Có thể điền liên kết cần thiết tại đây
-		var vars = query.split("&");//Tách chuỗi, chuyểnurl Cắt thành đối tượng dạng mảng
+		var query = decodeURI(window.location.search.substring(1));//chuyển url Chuyển mã, Nếu không phải liên kết địa chỉ hiện tại, Có thể điền liên kết cần thiết tại đây
+		var vars = query.split("&");//Tách chuỗi, chuyển url Cắt thành đối tượng dạng mảng
 		for (var i = 0; i < vars.length; i++) {
 			var pair = vars[i].split("=");//Tách lại thành mảng
 			if (pair[0] == queryName) { return pair[1]; }//Nếu khớp thì xuất kết quả

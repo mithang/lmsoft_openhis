@@ -190,7 +190,7 @@
 <script>
     var $gridList = $("#yyGridList");
     $(function () {
-        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lại jqGrid độ rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
@@ -237,7 +237,7 @@
         });
     }
 
-    //ghépnhậnngàylịchhtml
+    //ghép nhận ngày lịch html
     function BuildCalendar() {
         $("#zyys").html("");
         $("#td_regTime").html("");
@@ -252,7 +252,7 @@
     }
 
     window.init_bespeakRegister = function () {
-        //Ngoại trúđặt hẹnthông tin
+        //Ngoại trú đặt hẹn thông tin
         $gridList.dataGrid({
             height: $(window).height() - 165,
             url: "/SystemManage/BespeakRegisterManage/GetArrangedRegistersGridJson",
@@ -276,7 +276,7 @@
         BuildCalendar();
     };
 
-    //cắtđổi Ngày
+    //cắt đổi Ngày
     function changeDay(tdObj) {
         var sp = $(tdObj).children(".sp-regInfo");
         if (sp != null && sp.length > 0) {
@@ -285,7 +285,7 @@
         }
     }
 
-    //Lấychỉđịnh Ngàyđặt hẹn Xếp lịchthông tin
+    //Lấy chỉ định Ngày đặt hẹn Xếp lịch thông tin
     function GetRegTimes(ksCode, regDate, gh) {
         if (ksCode == null || regDate == null) return;
         $.najax({
@@ -298,7 +298,7 @@
         });
     }
 
-    //lắp rápđặt hẹn Ngàyvà Thời gian
+    //lắp ráp đặt hẹn Ngày và Thời gian
     function BuildRegTime(data, regDate) {
         $("#td_regTime").html("");
         if (data != null && data.length > 0) {
@@ -316,7 +316,7 @@
         if (regKs == undefined || regKs === "") return;
         var regDate = $(obj).attr("attr-regDate");
         if (regDate == undefined || regDate === "") return;
-        //Lấycó thểđặt hẹntổng ngườisốvàđãđặt hẹnsố
+        //Lấy có thể đặt hẹn tổng người số và đã đặt hẹn số
         $.najax({
             url: "/SystemManage/BespeakRegisterManage/GetBespeakMaxCount",
             data: { deptCode: regKs, regDate: regDate, regTime: regTime, gh: $("#sel_ys").val() },
@@ -332,7 +332,7 @@
         });
     }
 
-    //Lưuđặt hẹn
+    //Lưu đặt hẹn
     function SaveYy() {
         var chs = $(".td-choose");
         if (chs == null || chs.length === 0) {
@@ -355,7 +355,7 @@
             dataType: "json",
             success: function (data) {
                 if (data.state === 'success') {
-                    $.modalMsg("Gửi Đặt hẹnthành công", "success", 1000);
+                    $.modalMsg("Gửi Đặt hẹn thành công", "success", 1000);
                     RefreshJqgridData();
                     BuildCalendar();
                 }
@@ -366,7 +366,7 @@
         });
     }
 
-    //Làm mớijqgrid Dữ liệu
+    //Làm mới jq grid Dữ liệu
     function RefreshJqgridData() {
         $gridList.jqGrid('setGridParam', {
             url: "/SystemManage/BespeakRegisterManage/GetArrangedRegistersGridJson",
@@ -374,7 +374,7 @@
         }).trigger('reloadGrid');
     }
 
-    //Hủyđặt hẹn
+    //Hủy đặt hẹn
     function CancelYy() {
         var id = $gridList.jqGrid('getGridParam', 'selrow');
         if (id == null || id === "") {
@@ -391,7 +391,7 @@
                         dataType: "json",
                         success: function (data) {
                             if (data.state === 'success') {
-                                $.modalMsg("Hủy Đặt hẹnthành công", "success", 1000);
+                                $.modalMsg("Hủy Đặt hẹn thành công", "success", 1000);
                                 RefreshJqgridData();
                                 BuildCalendar();
                             } else {
@@ -403,7 +403,7 @@
             });
     }
 
-    //Làm mớiđãđặt hẹnsố
+    //Làm mới đã đặt hẹn số
     function Refreshyyys() {
         var chooseChk = $("input[name=rd_regTime]:checked");
         if (chooseChk != null && chooseChk.length > 0) {

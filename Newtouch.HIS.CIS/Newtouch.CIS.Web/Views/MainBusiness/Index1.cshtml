@@ -11,7 +11,7 @@
     var isOpenCgxmcf = (ViewBag.ISOpenCgxmcf as bool?);
 
     var iSOpenZycf = (ViewBag.ISOpenZycf as bool?);
-    //Công tắc:đặt hẹnđăng ký khám
+    //Công tắc:đặt hẹn đăng ký khám
     var isOpenBespeakRegister = (ViewBag.ISOpenBespeakRegister as bool?);
 }
 
@@ -107,9 +107,9 @@
 </div>
 
 <script>
-    //Công tắc:Có mở khôngdấu hiệu sinh tồn
+    //Công tắc:Có mở không dấu hiệu sinh tồn
     var IsVitalSignsSwitch = '@ViewBag.IsVitalSignsSwitch';
-    //Đăng nhập ngườicủavị trí ký tự
+    //Đăng nhập người của vị trí ký tự
     var IsNurse = '@ViewBag.IsNurse';
     if (IsVitalSignsSwitch == 'ON' && IsNurse == "True") {
         $("#myTab li:not(#librlb)").css('display', 'none');
@@ -118,11 +118,11 @@
     }
 
     $(function () {
-        //show:Có Khônghiển thịhiệntabnội dungcủasự kiện
+        //show:Có Không hiển thị hiện tab nội dung của sự kiện
         $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-            var targetHref = $(e.target).attr('href');    //e.target  kíchsốngcủanhãntrang
+            var targetHref = $(e.target).attr('href');    //e.target  kích số ng của nhãn trang
             if (targetHref && targetHref.indexOf('linkbrlb') == -1) {
-                //không Danh sách bệnh nhântrang
+                //không Danh sách bệnh nhân trang
                 if (!!!window.currPatientInfo || JSON.stringify(window.currPatientInfo) == '{}') {
                     $.modalAlert("Vui lòng chọn trước một Bệnh nhân", 'warning');
                     return false;
@@ -187,21 +187,21 @@
             }
         })
 
-        //shown:tabnội dunghiển thịhiệnsaucủasự kiện
+        //shown:tab nội dung hiển thị hiện sau của sự kiện
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             cfLeftFloatHide();
 
             var targetHref = $(e.target).attr('href');
-            if (targetHref.indexOf('linkkfcf') == -1 && targetHref.indexOf('linkcgxmcf') == -1 && targetHref.indexOf('linkxycf') == -1 && targetHref.indexOf('linkzycf') == -1) {     //không Đơn thuốctrang
+            if (targetHref.indexOf('linkkfcf') == -1 && targetHref.indexOf('linkcgxmcf') == -1 && targetHref.indexOf('linkxycf') == -1 && targetHref.indexOf('linkzycf') == -1) {     //không Đơn thuốc trang
                 $('#floatLeftMostPartDiv').hide();
             }
             else {
-                $('#floatLeftMostPartDiv').show();   //Hiển thị Đơn thuốc Lịch sửmẫucây
+                $('#floatLeftMostPartDiv').show();   //Hiển thị Đơn thuốc Lịch sử mẫu cây
             }
             if (targetHref.indexOf('linkjy') == -1 && targetHref.indexOf('linkjc') == -1) {     //Xét nghiệm Kiểm tratrang
                 $('#floatInspectTemplateTree').hide();
             } else {
-                $('#floatInspectTemplateTree').show();   //Hiển thị Xét nghiệm Kiểm tramẫucây
+                $('#floatInspectTemplateTree').show();   //Hiển thị Xét nghiệm Kiểm tra mẫu cây
             }
             switch ($(this).attr('href')) {
                 case "#linkbrlb":
@@ -237,11 +237,11 @@
             }
         })
 
-        $('#myTab a:first').trigger('click'); //Khởi tạo Hiển thịnàotab
+        $('#myTab a:first').trigger('click'); //Khởi tạo Hiển thị nào tab
 
     });
 
-    //Lấymớicủa Số đơn thuốc
+    //Lấy mới của Số đơn thuốc
     function GetNewPresNo() {
         var newPresNo;
         $.najax({
@@ -270,7 +270,7 @@
         { color: '#2d61d9', zhcolor: ['#17194c', '#002c8b', '#2d61db', '#6a8ee4', '#97b8e5'] }
     ];
 
-    //Lấy Đơn thuốchiển thịhiệnmàu sắc
+    //Lấy Đơn thuốc hiển thị hiện màu sắc
     function getCfColor(cflx, cfh) {
         var matched = $.jsonWhere(cfColorArr, function (v) {
             return v && v.cflx === cflx && v.cfh === cfh;
@@ -278,9 +278,9 @@
         if (matched && matched.length) {
             return matched[0].color;
         }
-        //cflx cfhcònchưachỉđịnhmàu sắc
+        //cflx cfh còn chưa chỉ định màu sắc
 
-        //nàycflxhiện tạiđãtương ứngcủamàu sắc
+        //này cflx hiện tại đã tương ứng của màu sắc
         var cflxmatched = $.jsonWhere(cfColorArr, function (v) {
             return v && v.cflx === cflx
         });
@@ -300,10 +300,10 @@
             cfColorArr.push({ cflx: cflx, cfh: cfh, color: thisColor });
             return thisColor;
         }
-        return '#ddd';  //màu sắcdùngxongđã Mặc địnhmột màu
+        return '#ddd';  //màu sắc dùng xong đã Mặc định một màu
     }
 
-    //giải thíchđặtchiếmdùng
+    //giải thích đặt chiếm dùng
     function releaseCfColor(cflx, cfh) {
         cfColorArr = $.jsonWhere(cfColorArr, function (v) {
             return !(v && v.cflx === cflx && v.cfh === cfh);
@@ -313,26 +313,26 @@
         });
     }
 
-    //Lấy Đơn thuốc Số nhómhiển thịhiệnmàu sắc
+    //Lấy Đơn thuốc Số nhóm hiển thị hiện màu sắc
     function getCfZhColor(cflx, cfh, zh) {
         var cfcolor = getCfColor(cflx, cfh);
         var matched = $.jsonWhere(cfSourceColorArr, function (v) {
             return v && v.color === cfcolor;
         });
         if (!matched || matched.length == 0) {
-            return '#ddd';  //chưachỉđịnh Mặc địnhmột màu
+            return '#ddd';  //chưa chỉ định Mặc định một màu
         }
-        var cfzhuseable = matched[0].zhcolor; //Số nhómmàu sắccó thểchọnphạm vi
-        //Bắt đầuđã
+        var cfzhuseable = matched[0].zhcolor; //Số nhóm màu sắc có thể chọn phạm vi
+        //Bắt đầu đã
         var matched = $.jsonWhere(cfzhColorArr, function (v) {
             return v && v.cflx === cflx && v.cfh === cfh && v.zh === zh;
         });
         if (matched && matched.length) {
             return matched[0].color;
         }
-        //cflx cfh zhcònchưachỉđịnhmàu sắc
+        //cflx cfh zh còn chưa chỉ định màu sắc
 
-        //nàycflx cfhhiện tạiđãtương ứngcủamàu sắc
+        //này cflx cfh hiện tại đã tương ứng của màu sắc
         var cflxmatched = $.jsonWhere(cfzhColorArr, function (v) {
             return v && v.cflx === cflx && v.cfh === cfh
         });
@@ -352,10 +352,10 @@
             cfzhColorArr.push({ cflx: cflx, cfh: cfh, zh: zh, color: thisColor });
             return thisColor;
         }
-        return '#ddd';  //màu sắcdùngxongđã Mặc địnhmột màu
+        return '#ddd';  //màu sắc dùng xong đã Mặc định một màu
     }
 
-    //giải thíchđặtchiếmdùng
+    //giải thích đặt chiếm dùng
     function releaseCfZhColor(cflx, cfh, zh) {
         cfzhColorArr = $.jsonWhere(cfzhColorArr, function (v) {
             return !(v && v.cflx === cflx && v.cfh === cfh && v.zh === zh);
@@ -384,7 +384,7 @@
     }
 
     function checkItemActivity($li, $thisinput) {
-        var selected = false;//Mặc định Không có Đã chọnhiện tại Giá trị
+        var selected = false;//Mặc định Không có Đã chọn hiện tại Giá trị
         var selectval = $thisinput.val();
         if (selectval) {
             selectval = selectval.split(',');
@@ -415,7 +415,7 @@
             if (ypkcArr[iIndex].yfbmCode == yfbmCode
                 && ypkcArr[iIndex].ypCode == ypCode) {
                 if (ypkcArr[iIndex].sl < sl) {
-                    return false;   //Tồn khokhôngđủ
+                    return false;   //Tồn kho không đủ
                 }
                 return true;
             }
@@ -434,7 +434,7 @@
     });
 </script>
 <script type="text/javascript">
-    //bậtkhung Sửa Bệnh nhân Thông tin cơ bản
+    //bật khung Sửa Bệnh nhân Thông tin cơ bản
     function PatientBasicInfoModify(mzh) {
         $.ajax({
             url: '/Login/GetUALoginAddres',

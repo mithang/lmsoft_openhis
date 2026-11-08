@@ -230,7 +230,7 @@
         $("#OrganizeId").bindSelect({
             url: "/SystemManage/Organize/GetChildTreeSelectJson",
         });
-        //tổ chức làkhôngcó thể chọn
+        //tổ chức là không có thể chọn
         if (type == "update") {//cập nhật không được sửa
             $('#OrganizeId').attr("disabled", true);
         } else {//thêm mới có thể sửa
@@ -240,7 +240,7 @@
 
     }
 
-    //lấythông tin lịch trực
+    //lấy thông tin lịch trực
     function getArrangeInfo(){
         if (!!ghpbId) {
             $.ajax({
@@ -268,7 +268,7 @@
             });
         }
     }
-    //lấysố nguồn khám mở mỗi ngày
+    //lấy số nguồn khám mở mỗi ngày
     function getDateInfo(pdsj) {
         if (!!ghpbId) {
             $.ajax({
@@ -324,7 +324,7 @@
             });
         }
     }
-    //lấysố nguồn khám mở mỗi ngày
+    //lấy số nguồn khám mở mỗi ngày
     function getDatemoren(pdsj) {
         if (!!ghpbId) {
             $.ajax({
@@ -538,11 +538,11 @@
         ]
     });
 
-    //chẩn trịkhoản mục
+    //chẩn trị khoản mục
     //$('#zlxmmc').newtouchFloatingSelector({
     //    width: 600,
     //    height: 180,
-    //    caption: "chẩn trịkhoản mục",
+    //    caption: "chẩn trị khoản mục",
     //    clickautotrigger: true,
     //    url: '/SystemManage/BaseData/SelectSfxmYp',
     //    ajaxparameters: function () {
@@ -596,7 +596,7 @@
                 .val($thistr.attr('data-Name'));
             $('#ks').attr('data-ks', $thistr.attr('data-code'))
                 .val($thistr.attr('data-code'));
-            ////theokhoamã sốlấybác sĩhọ tên
+            ////theo khoa mã số lấy bác sĩ họ tên
             //var ks = $thistr.attr('data-code');
 
             //$.ajax({
@@ -627,7 +627,7 @@
         width: 300,
         clickautotrigger: true,
         filter: function (keyword) {
-            //duyệtdữ liệunguồn,dùngkeywordđể lọc rakết quả
+            //duyệt dữ liệu nguồn,dùng keyword để lọc ra kết quả
             var resultObjArr = new Array();
 
             $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
@@ -658,7 +658,7 @@
             return;
         }
     });
-    //thêm mớichọn khung giờ
+    //thêm mới chọn khung giờ
     function btn_add(inttimede) {
         var sjd = $('#sjd').val();
         $.modalOpen({

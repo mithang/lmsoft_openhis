@@ -232,7 +232,7 @@
         }
     });
 
-    //phònggiữa 
+    //phòng giữa 
     $('#gridRoomList').newtouchLocalDataGrid({
         height: $(window).height() - 145,
         unwritten: false,
@@ -250,7 +250,7 @@
         }
     });
 
-    //giường ký tựthông tintriểnhiển thị
+    //giường ký tự thông tin triển hiển thị
     function ShowBedList() {
         $("#gridRoomList").setGridHeight(($(window).height() - 100) / 2 - 35);
         $("#dv_bed_grid").show(400);
@@ -278,10 +278,10 @@
         rownumbers: false
     });
 
-    //phònggiữadanh sáchmở rộnglớnthu nhỏnhỏ
+    //phòng giữa danh sách mở rộng lớn thu nhỏ nhỏ
     function roomShowOrClose(v) {
         switch (v) {
-        case 0: //thutừ
+        case 0: //thu từ
             if ($("#dv_room_grid").css('display') !== 'none') {
                 if ($("#dv_bed_grid").css('display') === 'none') {
                     $("#gridRoomList").setGridHeight(($(window).height() - 100) / 2 - 35);
@@ -300,7 +300,7 @@
                 }
             }
             break;
-        case 1: //triểnmở
+        case 1: //triển mở
             if ($("#dv_room_grid").css('display') === 'none') {
                 $("#dv_room_grid").show(400);
                 $('#gridRoomList').jqGrid("clearGridData");
@@ -355,7 +355,7 @@
         });
     }
 
-    //kèmthêm Thuộc tính
+    //kèm thêm Thuộc tính
     function AttributesPlusRoom() {
         var keyValue = $("#gridRoomList").jqGridRowValue().roomNo;
         if (!!!keyValue) {
@@ -418,7 +418,7 @@
         OpenBedForm(keyValue);
     }
 
-    //giường ký tựkèmthêm Thuộc tính
+    //giường ký tự kèm thêm Thuộc tính
     function AttributesPlusBed() {
         var keyValue = $("#gridBedList").jqGridRowValue().bedNo;
         if (!!!keyValue) {
@@ -455,7 +455,7 @@
         });
     }
 
-    //Làm mớigiường ký tự
+    //Làm mới giường ký tự
     function RefreshBed() {
         $('#gridBedList').jqGrid("clearGridData");
         $('#gridBedList').newtouchLocalDataGrid(null, bedList);

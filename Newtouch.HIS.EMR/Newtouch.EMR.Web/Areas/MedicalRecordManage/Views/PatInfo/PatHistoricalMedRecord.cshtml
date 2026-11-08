@@ -106,10 +106,10 @@
     var reportServerHOST = '@ViewBag.ReportServerHOST';
     var orgId = '@ViewBag.OrgId';
     debugger;
-    var ciszyh = $.request("zyh");//Danh sách bệnh nhân của trạm bác sĩzyh
+    var ciszyh = $.request("zyh");//Danh sách bệnh nhân của trạm bác sĩ zyh
     
     $(function () {
-        $(window).resize(function () {//Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGrid Chiều rộng của
+        $(window).resize(function () {//Tải lại khi thay đổi kích thước cửa sổ trình duyệt jqGrid Chiều rộng của
             window.initLayout("div_Patlist");
             window.initLayout("dv_Medlist");
         });

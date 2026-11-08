@@ -63,7 +63,7 @@
     var expandyzlx = null;
 
     $("#beveltabs a").on("click", function (e) {
-        var tempExpandyzlx = expandyzlx;    //Hạn hiệu lựclàmột lần
+        var tempExpandyzlx = expandyzlx;    //Hạn hiệu lực là một lần
         expandyzlx = null;
         $($(this).attr('name') + "Tree").treeview({
             height: $(window).height() - 100,
@@ -80,11 +80,11 @@
                     $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/DoctorServiceTemplate/WordForm?mbId=" + item.Ex1);
                 } else if (item.value == '@Html.Raw(((int)@EnumYzlx.sfxm).ToString())') {   //Mục
                     $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/DoctorServiceTemplate/ItemForm?mbId=" + item.Ex1);
-                } else if (item.value == '@Html.Raw(((int)@EnumYzlx.Cydy).ToString())') {   //Xuất việnmang thuốc
+                } else if (item.value == '@Html.Raw(((int)@EnumYzlx.Cydy).ToString())') {   //Xuất viện mang thuốc
                     $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/DoctorServiceTemplate/TakeMedicineForm?mbId=" + item.Ex1);
                 }else if (item.value == '@Html.Raw(((int)@EnumYzlx.ssyz).ToString())') {   //ăn uốngY lệnh
                     $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/DoctorServiceTemplate/FoodForm?mbId=" + item.Ex1);
-                }else if (item.value == '@Html.Raw(((int)@EnumYzlx.zcy).ToString())') {   //trongthảo dược
+                }else if (item.value == '@Html.Raw(((int)@EnumYzlx.zcy).ToString())') {   //trong thảo dược
                     $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/DoctorServiceTemplate/TCMmedicineForm?mbId=" + item.Ex1);
                 }else if(item.value == '@Html.Raw(((int)@EnumYzlx.rehab).ToString())'){    //Phục hồi chức năng
                     $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/DoctorServiceTemplate/RehabForm?mbId=" + item.Ex1);

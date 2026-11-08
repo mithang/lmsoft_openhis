@@ -58,7 +58,7 @@
     var xmmc = $.request("xmmc");
     $(function () {
         $("#form1 input[name='checkbox0']").bind('click', function () {
-            //hiện tạicủacheckbox Có Không Đã chọn
+            //hiện tại của checkbox Có Không Đã chọn
             if (this.checked) {
                 $("#form1 input[name='checkbox0']").not(this).attr("checked", false);
             } else {
@@ -94,7 +94,7 @@
         });
     });
 
-    //quamẫnthông tinxác nhận
+    //qua mẫn thông tin xác nhận
     function AcceptClick(callBack) {
         if (!!!$("#ypCode").val() && !!!$("#txt_remark").val()) {
             $.modalAlert("Vui lòng chọn thuốc dị ứng hoặc điền thông tin dị ứng!", 'warning');

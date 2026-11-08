@@ -57,7 +57,7 @@
                             caption: "quyết toán bảng Kiểm soát chất lượng Tra cứu",
                             colModel: colModel,
                         }, tfReturn.output.data);
-                        // điềudùnghiển thịhiển thịchi tiếttìnhthông tintinbảngđịnh dạngcủathưsố
+                        // điều dùng hiển thị hiển thị chi tiết tình thông tin tin bảng định dạng của thư số
                         displayDetailInfo(tfReturn.output.data[0].detailinfo);
                     }
                     else {
@@ -103,7 +103,7 @@
         });
     }
 
-    // hiển thịhiển thịchi tiếttìnhthông tintincủathưsố
+    // hiển thị hiển thị chi tiết tình thông tin tin của thư số
     function displayDetailInfo(detailData) {
         var $detailGrid = $("#detailGrid");
         var detailColModel = [
@@ -114,7 +114,7 @@
             { label: 'Cờ hoàn trả', name: 'retn_flag', align: 'center', width: 50 }
         ];
 
-        // tạolậpvàđiềnbổ sungdetailGrid Bảng
+        // tạo lập và điền bổ sungdetailGrid Bảng
         $detailGrid.newtouchLocalDataGrid({
             autowidth: true,
             unwritten: false,

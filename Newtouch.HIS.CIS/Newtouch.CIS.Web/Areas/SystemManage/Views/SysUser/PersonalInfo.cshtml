@@ -12,10 +12,10 @@
     <ul class="nav nav-tabs">
         <li class="active"><a href="#a1111" data-toggle="tab">SửaMật khẩu</a></li>
         @*<li class="active"><a href="#a" data-toggle="tab">Thông tin cơ bản</a></li>
-            <li><a href="#b" data-toggle="tab">Lưu ýsáchthông tin</a></li>
-            <li><a href="#c" data-toggle="tab">antoànkiểm tra</a></li>
-            <li><a href="#c" data-toggle="tab">Hệ thốngngàychí</a></li>
-            <li><a href="#c" data-toggle="tab">cáitínhhóaCài đặt</a></li>*@
+            <li><a href="#b" data-toggle="tab">Lưu ý sách thông tin</a></li>
+            <li><a href="#c" data-toggle="tab">an toàn kiểm tra</a></li>
+            <li><a href="#c" data-toggle="tab">Hệ thống ngày chí</a></li>
+            <li><a href="#c" data-toggle="tab">cái tính hóaCài đặt</a></li>*@
     </ul>
     <div class="tab-content" style="padding-top: 5px;">
         <div id="a1111" class="tab-pane active" style="padding: 15px;">
@@ -87,10 +87,10 @@
             dataType: "json",
             success: function (data) {
                 if (data.state == "success") {
-                    $.modalAlert("Đặt lại Mật khẩuthành công.", "success");
+                    $.modalAlert("Đặt lại Mật khẩu thành công.", "success");
                     location.href = location.href;
                 } else {
-                    $.modalAlert("Đặt lại Mật khẩuthất bại.", "error");
+                    $.modalAlert("Đặt lại Mật khẩu thất bại.", "error");
                     location.href = location.href;s
                 }
             }

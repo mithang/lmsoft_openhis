@@ -201,7 +201,7 @@
 
     //Lấy Kiểm kê Thời gian
     function GetPdsj() {
-        $("#ddlRQ").empty();//Xóa trắng trước,lạiđiền
+        $("#ddlRQ").empty();//Xóa trắng trước,lại điền
         $("#ddlRQ").bindSelect({
             url: "/NurseManage/StockInventory/GetPdsj",
             id: "pdId",
@@ -209,7 +209,7 @@
         });
     }
 
-    //Có Khôngtheo Lô
+    //Có Không theo Lô
     function accordingBatch(obj) {
         if ($(obj).hasClass("fa-toggle-off")) {
             $(obj).removeClass("fa-toggle-off");
@@ -225,11 +225,11 @@
         $("#btn_search").trigger("click");
     }
 
-    //Tồn khothông tin
+    //Tồn kho thông tin
     function gridKCInfo() {
         $gridKCInfo.dataGrid({
             height: $(window).height() - 280,
-            editurl: "clientArray",  //dòng Sửakhông gửi lên máy chủ Gửi Dữ liệu
+            editurl: "clientArray",  //dòng Sửa không gửi lên máy chủ Gửi Dữ liệu
             colModel: [
                 { label: 'Vật tư Tên', name: 'wzmc', width: 120, align: 'left' },
                 { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
@@ -277,11 +277,11 @@
         });
     }
 
-    //Tồn khothông tin
+    //Tồn kho thông tin
     function gridKCInfoNoPc() {
         $gridKCInfoNoPc.dataGrid({
             height: $(window).height() - 280,
-            editurl: "clientArray",  //dòng Sửakhông gửi lên máy chủ Gửi Dữ liệu
+            editurl: "clientArray",  //dòng Sửa không gửi lên máy chủ Gửi Dữ liệu
             colModel: [
                 { label: 'Vật tư Tên', name: 'wzmc', width: 120, align: 'left' },
                 { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
@@ -342,9 +342,9 @@
         return { pdsj: pdsj, pdId: pdId, keyWord: keyWord, wzzt: wzzt, lb: lb, kcxs: kcxs };
     };
 
-    //tảithứmột lần Tra cứu Dữ liệu
+    //tải thứ một lần Tra cứu Dữ liệu
     function afterCompleteFunction() {
-        var rowIds = $gridKCInfo.jqGrid('getDataIDs');//Gridtải Hoàn thànhbậtdòngtrong Sửa   1.trước Lấy tất cả các dòng Id  2.duyệt gọi editRow Phương pháp
+        var rowIds = $gridKCInfo.jqGrid('getDataIDs');//Grid tải Hoàn thành bật dòng trong Sửa   1.trước Lấy tất cả các dòng Id  2.duyệt gọi editRow Phương pháp
         ObjArr_Load = [];
         for (var i = 0; i < rowIds.length; i++) {
             ObjArr_Load.push($gridKCInfo.jqGrid('getRowData', rowIds[i]));
@@ -353,9 +353,9 @@
         }
     }
 
-    //tảithứmột lần Tra cứu Dữ liệu
+    //tải thứ một lần Tra cứu Dữ liệu
     function afterCompleteFunctionNoPc() {
-        var rowIds = $gridKCInfoNoPc.jqGrid('getDataIDs');//Gridtải Hoàn thànhbậtdòngtrong Sửa   1.trước Lấy tất cả các dòng Id  2.duyệt gọi editRow Phương pháp
+        var rowIds = $gridKCInfoNoPc.jqGrid('getDataIDs');//Grid tải Hoàn thành bật dòng trong Sửa   1.trước Lấy tất cả các dòng Id  2.duyệt gọi editRow Phương pháp
         ObjArr_LoadNoPc = [];
         for (var i = 0; i < rowIds.length; i++) {
             ObjArr_LoadNoPc.push($gridKCInfoNoPc.jqGrid('getRowData', rowIds[i]));
@@ -369,15 +369,15 @@
         var $targetJqg;
         var noPc = "0";
         if ($("#i-noPc").hasClass("fa-toggle-off")) {
-            $targetJqg = $gridKCInfoNoPc;//Lấy tất cả các dòng Id,duyệt để Sửakhung ở trạng thái Lưu Trạng thái
+            $targetJqg = $gridKCInfoNoPc;//Lấy tất cả các dòng Id,duyệt để Sửa khung ở trạng thái Lưu Trạng thái
             noPc = "1";
         } else {
-            $targetJqg = $gridKCInfo;//Lấy tất cả các dòng Id,duyệt để Sửakhung ở trạng thái Lưu Trạng thái
+            $targetJqg = $gridKCInfo;//Lấy tất cả các dòng Id,duyệt để Sửa khung ở trạng thái Lưu Trạng thái
             noPc = "0";
         }
-        var rowIds = $targetJqg.jqGrid('getDataIDs');//Lấy tất cả các dòng Id,duyệt để Sửakhung ở trạng thái Lưu Trạng thái
+        var rowIds = $targetJqg.jqGrid('getDataIDs');//Lấy tất cả các dòng Id,duyệt để Sửa khung ở trạng thái Lưu Trạng thái
 
-        //kiểm tratrả Số lượng
+        //kiểm tra trả Số lượng
         for (var i = 0; i < rowIds.length; i++) {
             $targetJqg.saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
             var rowData = $targetJqg.jqGrid('getRowData', rowIds[i]);
@@ -389,17 +389,17 @@
                 (isNaN(rowData.deptSjsl) && isNaN(rowData.minSjsl)) ||
                 (rowData.deptSjsl === "" && rowData.minSjsl === "")) {
                 $.modalAlert("Mục (" + rowData.ypmc + ") số lượng thực tế phải là số tự nhiên, vui lòng xác nhận.", "warning");
-                EnableInlineEditBox($targetJqg);//Bật sửa trong dòngkhung
+                EnableInlineEditBox($targetJqg);//Bật sửa trong dòng khung
                 return false;
             }
         }
         var kcInfoJsonSave = $targetJqg.jqGrid('getRowData_AllLine');
         var objArrSave = new Array();
-        $.each(kcInfoJsonSave, function () {//Lưukhisẽ Gridcủa Dữ liệudòngđặtởmớicủasốnhómtrong
+        $.each(kcInfoJsonSave, function () {//Lưu khi sẽ Grid của Dữ liệu dòng đặt ở mới của số nhóm trong
             objArrSave.push(this);
         });
 
-        //vàtrangmặttảicủasốnhómvàodòngsođối,sẽ Sửaquacủa Dữ liệudòngđặtởresultObjArrtrong,truyềnchomáy chủ
+        //và trang mặt tải của số nhóm vào dòng so đối,sẽ Sửa qua của Dữ liệu dòng đặt ở resultObjArrtrong,truyền cho máy chủ
         var resultObjArr = new Array();
         if ($("#i-noPc").hasClass("fa-toggle-off")) {
             for (var i = 0; i < objArrSave.length; i++) {
@@ -438,16 +438,16 @@
         });
     }
 
-    //Bật sửa trong dòngkhung
+    //Bật sửa trong dòng khung
     function EnableInlineEditBox($obj) {
-        var rowIds = $obj.jqGrid('getDataIDs');//Gridtải Hoàn thànhbậtdòngtrong Sửa   1.trước Lấy tất cả các dòng Id  2.duyệt gọi editRow Phương pháp
+        var rowIds = $obj.jqGrid('getDataIDs');//Grid tải Hoàn thành bật dòng trong Sửa   1.trước Lấy tất cả các dòng Id  2.duyệt gọi editRow Phương pháp
         for (var i = 0; i < rowIds.length; i++) {
             $obj.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
             });
         }
     }
 
-    //sẽ Tồn khođổitínhthành Đơn vị nhỏ nhấtsố  tháokhông
+    //sẽ Tồn kho đổi tính thành Đơn vị nhỏ nhất số  tháo không
     function CalculationMinUnitNum(deptNum, minNum, zhyz) {
         return parseInt(deptNum) * parseInt(zhyz) + parseInt(minNum);
     }
@@ -460,7 +460,7 @@
             dataType: "json",
             data: { pdId: $("#ddlRQ option:selected").val() },
             success: function (ajaxresp) {
-                $.modalMsg("Hủythành công", 'success', 1500);
+                $.modalMsg("Hủy thành công", 'success', 1500);
                 GetPdsj();
                 $("#btn_search").trigger("click");
             }
@@ -490,7 +490,7 @@
             data: { pdId: $("#ddlRQ option:selected").val(), autoCarryDown: $("#autoCarryDown").is(":checked") ? "1" : "0" },
             success: function (ajaxresp) {
                 $.modalMsg("Kiểm kê Hoàn thành", 'success');
-                GetPdsj();//Làm mới Kiểm kê Thời gianvà Thuốcthông tin
+                GetPdsj();//Làm mới Kiểm kê Thời gian và Thuốc thông tin
                 $.UpdateProgressbar.update(4);
                 $("#btn_search").trigger("click");
             },
@@ -502,7 +502,7 @@
 
     
 
-    //vàođộgọi Cập nhật
+    //vào độ gọi Cập nhật
     $.UpdateProgressbar = {
         startPd: function () {
             if (!$("#dv_startPd").hasClass("completeLi")) {
@@ -558,7 +558,7 @@
                     break;
             }
         },
-        clean: function () {//Khởi tạovàođộdòng vềkhông
+        clean: function () {//Khởi tạo vào độ dòng về không
             $("li").removeClass("completeLi");
             $("i").removeClass("completePoint");
         }

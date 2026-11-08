@@ -33,7 +33,7 @@
 
         });
     });
-    //gắngrid
+    //gắn grid
     function gridList(mydata) {
         var $gridList = $("#gridList");
         var lastRowId;
@@ -54,14 +54,14 @@
                 }
             ],
             onSelectRow_page: function (rowid, status) {
-                if (rowid && lastRowId && rowid !== lastRowId) {   //&&: tương đươngtrue/fase(Xét có giá trị không)
+                if (rowid && lastRowId && rowid !== lastRowId) {   //&&: tương đương true/fase(Xét có giá trị không)
                     $gridList.saveRow(lastRowId, function (result) {
-                        // return false;   //Kiểm tra nội dung nhập có hợp lệ không,Hủy lưu và quay lạifalse    //không hợp lệ v.v. cần sửa
+                        // return false;   //Kiểm tra nội dung nhập có hợp lệ không,Hủy lưu và quay lại false    //không hợp lệ v.v. cần sửa
                     }); //Lưu trước dòng đang ở trạng thái soạn thảo    //function checksave
                 }
                 lastRowId = rowid;
                 $gridList.jqGrid('editRow', rowid, true, null, function (result) {
-                    return false;   //Kiểm tra nội dung nhập có hợp lệ không,Hủy lưu và quay lạifalse    //không hợp lệ v.v. cần sửa
+                    return false;   //Kiểm tra nội dung nhập có hợp lệ không,Hủy lưu và quay lại false    //không hợp lệ v.v. cần sửa
                 }, null, null, function () {
                 });
 
@@ -84,7 +84,7 @@
 
     //bật khung sửa trong dòng
     function EnableInlineEditBox() {
-        //Grid Nạp xong thì bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trước Id  2.Duyệt và gọieditRowphương thức
+        //Grid Nạp xong thì bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trước Id  2.Duyệt và gọi editRow phương thức
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
 

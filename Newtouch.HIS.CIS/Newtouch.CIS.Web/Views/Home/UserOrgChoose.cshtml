@@ -28,7 +28,7 @@
             type: "post",
             dataType: "json",
             success: function (data) {
-                cookieRemove(); //phảicầnchọny tế Cơ sở
+                cookieRemove(); //phải cần chọn y tế Cơ sở
 
                 top.top.location.href = top.top.location.href;
             }
@@ -43,7 +43,7 @@
         }
         var chooseOrgVal = top.$.cookie(chooseOrgKey);
         if (chooseOrgVal != null) {
-            //dùngxonglậpremove
+            //dùng xong lập remove
             top.$.cookie(chooseOrgKey, '', { path: "/", expires: -1 });
         }
     }

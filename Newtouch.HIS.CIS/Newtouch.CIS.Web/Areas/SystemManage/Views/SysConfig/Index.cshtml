@@ -45,7 +45,7 @@
         </table>
     </div>
     @*<div style="float:right;padding-right:100px;">
-        <a title="Xemtất cảcấu hình mục" onclick="btn_ShowAllConfig()" style="cursor:pointer;color:blue;text-decoration:underline;">Xemtất cảcấu hình mục</a>
+        <a title="Xem tất cả cấu hình mục" onclick="btn_ShowAllConfig()" style="cursor:pointer;color:blue;text-decoration:underline;">Xem tất cả cấu hình mục</a>
     </div>*@
 </div>
 <div class="gridPanel">
@@ -137,7 +137,7 @@
         {
             if ($("#gridList").jqGridRowValue().Value == "")
             {
-                // == ""? khôngtốt
+                // == ""? không tốt
                 $.modalAlert("Mẫu cấu hình này không thể xóa", 'warning');
                 return;
             }
@@ -162,7 +162,7 @@
                     dataType: "json",
                     async: false,
                     success: function (data) {
-                        $.modalAlert("Đồng bộthành công", data.state);
+                        $.modalAlert("Đồng bộ thành công", data.state);
                         $('#btn_search').trigger('click');
                         $.loading(false);
                     }

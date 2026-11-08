@@ -7,7 +7,7 @@
     var discharge = [];
     var visitper = [];
     $(function () {
-        //Nạp lại khi thay đổi kích thước cửa sổ trình duyệtjqGrid Chiều rộng
+        //Nạp lại khi thay đổi kích thước cửa sổ trình duyệt jqGrid Chiều rộng
         $(window).resize(function () {
             initLayout("tabGrid");
         });
@@ -52,7 +52,7 @@
     }
 
     function Merger(gridName, CellName) {
-        //lấy được để hiển thị lên giao diệnid Tập hợp
+        //lấy được để hiển thị lên giao diện id Tập hợp
         var mya = $("#" + gridName + "").getDataIDs();
         //Hiện đang hiển thị bao nhiêu dòng
         var length = mya.length;
@@ -62,7 +62,7 @@
             //Định nghĩa số dòng gộp
             var rowSpanTaxCount = 1;
             for (j = i + 1; j <= length; j++) {
-                //so sánh với thông tin ở trên Nếu giá trị giống nhau thì gộp dòng+1 sau đó đặtrowspan Để ô hiện tại ẩn
+                //so sánh với thông tin ở trên Nếu giá trị giống nhau thì gộp dòng+1 sau đó đặt row span Để ô hiện tại ẩn
                 var end = $("#" + gridName + "").jqGrid('getRowData', mya[j]);
                 if (before[CellName] == end[CellName]) {
                     rowSpanTaxCount++;
@@ -419,7 +419,7 @@
         var d = new Date(year, month, 0);
         var d = d.getDate();
         var currentdate = year + '-' + (month < 10 ? ('0' + month) : month);
-        //Lặp lấy tất cả biểu đồseries chính là tất cả trị liệu sư
+        //Lặp lấy tất cả biểu đồ series chính là tất cả trị liệu sư
         $.each(data.discharge, function (i, v) {
             if (seriesgh.indexOf(v.gh) > -1) {
                 return;
@@ -467,7 +467,7 @@
         var d = new Date(year, month, 0);
         var d = d.getDate();
         var currentdate = year + '-' + (month < 10 ? ('0' + month) : month);
-        //Lặp lấy tất cả biểu đồseries chính là tất cả trị liệu sư
+        //Lặp lấy tất cả biểu đồ series chính là tất cả trị liệu sư
         $.each(data.visitper, function (i, v) {
             if (seriesgh.indexOf(v.gh) > -1) {
                 return;

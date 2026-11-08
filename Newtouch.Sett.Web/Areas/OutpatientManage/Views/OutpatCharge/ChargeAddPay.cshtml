@@ -40,13 +40,13 @@
 
 <script>
     $(function () {
-        //tảiphương thức thanh toán
+        //tải phương thức thanh toán
         $("#ddlzffs").newtouchBindSelect({ 
             id: "xjzffs", ////id: "xjzffsbh",
             text: "xjzffsmc",
             attdata: "xjzffsbh",
             datasource: function () {
-                //duyệtdữ liệunguồn
+                //duyệt dữ liệu nguồn
                 var resultObjArr = new Array();
                 // QA-phase2 (SETT-05): the standalone _Index bootstrap only
                 // sets clients = {enums, itemDetails}; SysForCashPayList is
@@ -60,7 +60,7 @@
                 return resultObjArr; 
             }
         });
-        //thanh toánngàykỳ 
+        //thanh toán ngày kỳ 
         $("#txtzfrq").val($.getDate); 
     })
 

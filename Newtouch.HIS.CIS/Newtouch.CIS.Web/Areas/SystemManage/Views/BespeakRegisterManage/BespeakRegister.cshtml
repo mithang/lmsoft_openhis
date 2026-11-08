@@ -221,7 +221,7 @@
                 { label: 'Tên khoa', name: 'Name', width: 150, align: 'left' }
             ],
             onSelectRow: function (rowid) {
-                //dấughi Khoa
+                //dấu ghi Khoa
                 var rowData = $('#deptGridList').jqGrid('getRowData', rowid);
                 $("#sp_deptName").html("/ " + rowData.Name);
                 $("#sp_zjName").html("");
@@ -379,7 +379,7 @@
         if (!rowid) {
             return;
         }
-        //dấughi Khoa
+        //dấu ghi Khoa
         var rowData = $('#deptGridList').jqGrid('getRowData', rowid);
         $("#sp_deptName").html("/ " + rowData.Name);
         $("#sp_zjName").html("");
@@ -390,7 +390,7 @@
         getDeptRegData(rowData.Code);
     }
 
-    //Thêmcột
+    //Thêm cột
     function addColumn() {
         var alltr = $("#tbd_content").find("tr");
         if (alltr.length != undefined && alltr.length != null && alltr.length > 0) {
@@ -410,7 +410,7 @@
         }
     }
 
-    //Thêmcột
+    //Thêm cột
     function buildColHtml(guids) {
         var firstColId = guids[0];
         for (var i = 0; i < guids.length; i++) {

@@ -40,7 +40,7 @@
 
     function SetCurrentPageCflx(page) {
         pageFlag = page;
-        //mô phỏngđiểmnhấptab   $($(this).attr('name') + "Tree").treeview({
+        //mô phỏng điểm nhấp tab   $($(this).attr('name') + "Tree").treeview({
         $("#beveltabs a:first").trigger('click');
     }
     var presTempClieckHandling = false;
@@ -203,7 +203,7 @@
             data.mbmxList[i].cfh = newCfh;
             data.mbmxList[i].action = getActionStr;
             if (pageFlag == '@Html.Raw(((int)EnumCflx.TCMPres).ToString())') {
-                var tieshu = $.undefinedwith0($('#tieshu').val());    //dánsố
+                var tieshu = $.undefinedwith0($('#tieshu').val());    //dán số
                 if (tieshu) {
                     data.mbmxList[i].sl = roundingBy4she6ru5chengshuang((parseFloat(tieshu) * parseFloat($.undefinedwith0(data.mbmxList[i].mcjl))), 0);
                     data.mbmxList[i].je = roundingBy4she6ru5chengshuang(parseFloat(data.mbmxList[i].dj) * parseFloat(data.mbmxList[i].sl), 2);
@@ -229,13 +229,13 @@
                         });
                     }
                     if (iscfcf) {
-                        $.modalAlert("Đơn lẻ Đơn thuốcchi tiết trong không được trùng lặp", 'warning');
+                        $.modalAlert("Đơn lẻ Đơn thuốc chi tiết trong không được trùng lặp", 'warning');
                         return;
                     } else {
                         $("#" + grid).jqGrid("addRowData", undefined, data.mbmxList[i], "last");
                     }
                 } else {
-                    //không Đơn thuốc mớikhikiểm tratrùng lặp
+                    //không Đơn thuốc mới khi kiểm tra trùng lặp
                 var isRepeatedAdd = false;
                 var addypCode = data.mbmxList[i].ypCode;
                 var existRowIds = $("#" + grid).getDataIDs();
@@ -250,7 +250,7 @@
                     });
                 }
                 if (isRepeatedAdd) {
-                    $.modalAlert("Đơn lẻ Đơn thuốcchi tiết trong không được trùng lặp", 'warning');
+                    $.modalAlert("Đơn lẻ Đơn thuốc chi tiết trong không được trùng lặp", 'warning');
                     return;
                 }
                 else {

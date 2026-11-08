@@ -117,7 +117,7 @@
 <script>
     var $gridMxList = $("#gridMxInfo");
     $(function () {
-        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lại jqGrid độ rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
@@ -134,7 +134,7 @@
         Initial();
     });
 
-    //Sự kiện Entergắn
+    //Sự kiện Enter gắn
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
@@ -165,7 +165,7 @@
         })
     }
 
-    //Ẩntìm kiếmkhungvà Hiển thịmũi tên
+    //Ẩn tìm kiếm khung và Hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -184,7 +184,7 @@
         });
     }
 
-    //chínhbảngthông tin
+    //chính bảng thông tin
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -252,7 +252,7 @@
                 dataType: "json",
                 success: function (data) {
                     if (data.state === 'success') {
-                        $.modalMsg("Vật tư tiêu hao Đồng bộthành công!", "success", 1000);
+                        $.modalMsg("Vật tư tiêu hao Đồng bộ thành công!", "success", 1000);
                     }
                     else {
                         $.modalMsg(data, "error", 1000);
@@ -262,7 +262,7 @@
         })
     }
 
-    //chi tiếtthông tin
+    //chi tiết thông tin
     function gridMxInfo() {
         $gridMxList.dataGrid({
             url: "",
@@ -305,7 +305,7 @@
         });
     }
 
-    //Cài đặt Tồn kho Hiệu lựcvà Không
+    //Cài đặt Tồn kho Hiệu lực và Không
     function operateZt(obj) {
         var zt = "1";
         var mxId = $gridMxList.getRowData($(obj).attr("rowId")).Id;
@@ -324,7 +324,7 @@
             dataType: "json",
             success: function (data) {
                 if (data.state === 'success') {
-                    //$.modalMsg("Sửa Tồn kho Trạng tháithành công", "success", 1000);
+                    //$.modalMsg("Sửa Tồn kho Trạng thái thành công", "success", 1000);
                 }
                 else {
                     $.modalMsg(data, "error", 1000);
@@ -333,11 +333,11 @@
         });
     }
 
-    //Lấyurltrongcủatham số
+    //Lấy url trong của tham số
     function getQueryString(name) {
-        // khớpphối Mục tiêutham số
+        // khớp phối Mục tiêu tham số
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-        var result = window.location.search.substr(1).match(reg); // đốiquerystringkhớpphối Mục tiêutham số
+        var result = window.location.search.substr(1).match(reg); // đối querystring khớp phối Mục tiêu tham số
         if (result != null) {
             return decodeURIComponent(result[2]);
         } else {

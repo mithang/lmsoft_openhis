@@ -16,9 +16,9 @@
      iframezytfinit.onload = function () {
          //$('#iframezytf').contents().find('#pane1').hide();
          $('#iframezytf').contents().find('#btnsyy').hide();
-         // Lấyiframetố
+         // Lấy iframe tố
          var iframe = document.getElementById('iframezytf');
-         // Truy cậpiframetrongcủawindowđối tượng
+         // Truy cập iframe trong của window đối tượng
          var iframeWindow = iframe.contentWindow;
          if (zytfzyh)
              iframeWindow.getPatInfoAjax({ zyh: zytfzyh });
@@ -48,9 +48,9 @@
          //    $('#iframezytf').attr("src", tfdataUrl);
          //    fisttfload = false;
          //} else {
-         //    // Lấyiframetố
+         //    // Lấy iframe tố
          //    var iframe = document.getElementById('iframezytf');
-         //    // Truy cậpiframetrongcủawindowđối tượng
+         //    // Truy cập iframe trong của window đối tượng
          //    var iframeWindow = iframe.contentWindow;
          //    iframeWindow.$("#btn_search").trigger('click');
          //}
@@ -66,9 +66,9 @@
                  if (item.value && item.Ex1 == "c") {
                      debugger;
                      zytfzyh = item.value;
-                     // Lấyiframetố
+                     // Lấy iframe tố
                      var iframe = document.getElementById('iframezytf');
-                     // Truy cậpiframetrongcủawindowđối tượng
+                     // Truy cập iframe trong của window đối tượng
                      var iframeWindow = iframe.contentWindow;
                      iframeWindow.getPatInfoAjax({ zyh: item.value });
                      //$('#iframezytf').contents().find('#pane1').hide();

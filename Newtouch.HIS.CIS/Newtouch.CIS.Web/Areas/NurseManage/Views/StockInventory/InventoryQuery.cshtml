@@ -128,7 +128,7 @@
 
     //Lấy Kiểm kê Thời gian
     function GetPdsj() {
-        $("#ddlRQ").empty();//Xóa trắng trước,lạiđiền
+        $("#ddlRQ").empty();//Xóa trắng trước,lại điền
         $("#ddlRQ").bindSelect({
             url: "/NurseManage/StockInventory/GetPdsj",
             id: "pdId",
@@ -136,7 +136,7 @@
         });
     }
 
-    //Có Khôngtheo Lô
+    //Có Không theo Lô
     function accordingBatch(obj) {
         if ($(obj).hasClass("fa-toggle-off")) {
             $(obj).removeClass("fa-toggle-off");
@@ -152,11 +152,11 @@
         $("#btn_search").trigger("click");
     }
 
-    //Tồn khothông tin
+    //Tồn kho thông tin
     function gridKCInfo() {
         $gridKCInfo.dataGrid({
             height: $(window).height() - 225,
-            editurl: "clientArray",  //dòng Sửakhông gửi lên máy chủ Gửi Dữ liệu
+            editurl: "clientArray",  //dòng Sửa không gửi lên máy chủ Gửi Dữ liệu
             colModel: [
                 { label: 'Vật tư Tên', name: 'wzmc', width: 120, align: 'left' },
                 { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
@@ -183,7 +183,7 @@
         });
     }
 
-    //Tồn khothông tin
+    //Tồn kho thông tin
     function gridKCInfoNoPc() {
         $gridKCInfoNoPc.dataGrid({
             height: $(window).height() - 225,

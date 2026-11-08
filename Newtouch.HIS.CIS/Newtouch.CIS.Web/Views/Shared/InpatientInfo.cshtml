@@ -71,7 +71,7 @@
         
         //alert($(".dv-home-patInfo").offset().right);
         if ($("#tcbeveltabs li").hasClass('activepart')) {
-            //lạiđiểmnhấp Ẩn
+            //lại điểm nhấp Ẩn
             $("#tcbeveltabs li").removeClass("activepart");
             $(".dv-home-patInfo").animate({ right: '-160px' }, "slow");
         }
@@ -82,7 +82,7 @@
 
         $("#tcbeveltabs li").on("click", function (e) {
             if ($(this).hasClass('activepart')) {
-                //lạiđiểmnhấp Ẩn
+                //lại điểm nhấp Ẩn
                 $("#tcbeveltabs li").removeClass("activepart");
                 $(".dv-home-patInfo").animate({ right: '-160px' }, "slow");
                 //$('#treeContent').hide();
@@ -157,7 +157,7 @@
                                                 debugger;
                                                 for (var i = 0; i < l.length; i++) {
                                                     l[i].Id = Math.random().toString() + new Date().getMilliseconds();
-                                                    l[i].yzzt = 0;//Mặc địnhchưa duyệt
+                                                    l[i].yzzt = 0;//Mặc định chưa duyệt
                                                     l[i].action = getActionStr;
                                                     l[i].zyh = currentobj.zyh;
                                                     l[i].kssj = $.getTime();
