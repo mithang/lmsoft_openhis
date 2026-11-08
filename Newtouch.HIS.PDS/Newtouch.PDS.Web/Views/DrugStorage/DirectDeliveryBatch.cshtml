@@ -75,7 +75,7 @@
         $.ajax({
             type: "Get",
             url: "/DrugStorage/InitDjh",
-            data: { djmc: '内部发药单' /* djmc là key của proc sp_yp_Getypdjh, KHÔNG dịch */, r: Math.random() },
+            data: { djmc: 'Noi bo Phat thuoc don', r: Math.random() },
             dataType: "json",
             success: function (res) {
                 if (res.state === "success") {
