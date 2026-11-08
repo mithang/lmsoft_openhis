@@ -1,0 +1,384 @@
+<XTextDocument xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EditorVersionString="1.2023.2.14">
+   <XElements>
+      <Element xsi:type="XTextHeader">
+         <InnerID>1</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XString" StyleIndex="1">
+               <InnerID>2254</InnerID>
+               <Text>新致开源医疗医院</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0">
+               <InnerID>42</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>2255</InnerID>
+               <Text>Hồ sơ bệnh án</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0">
+               <InnerID>54</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2256</InnerID>
+               <Text>Họ tên:	</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <InnerID>60</InnerID>
+               <ID>555B0059-D165-46B3-9F88-9720672296AF</ID>
+               <ToolTip>Vui lòng nhập họ tên</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/xm</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>xm</Name>
+               <BackgroundText>Họ tên</BackgroundText>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2257</InnerID>
+               <Text>                Số giường:</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <InnerID>80</InnerID>
+               <ID>92555c17-aa50-4dd2-983e-c5b48613855c</ID>
+               <ToolTip>Vui lòng nhập mã giường bệnh</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/BedCode</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>BedCode</Name>
+               <BackgroundText>Mã giường bệnh</BackgroundText>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2258</InnerID>
+               <Text>	         Số nhập viện:</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <InnerID>95</InnerID>
+               <ID>6C1F42F9-EB78-43E1-AF32-18795C4E2303</ID>
+               <ToolTip>Vui lòng nhập số nhập viện</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/zyh</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>zyh</Name>
+               <BackgroundText>Số nhập viện</BackgroundText>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0">
+               <InnerID>96</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextBody">
+         <InnerID>2</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XInputField">
+               <InnerID>100</InnerID>
+               <ID>txtDate</ID>
+               <ToolTip>Vui lòng nhập ngày</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ContentReadonly>False</ContentReadonly>
+               <XElements>
+                  <Element xsi:type="XString">
+                     <InnerID>2276</InnerID>
+                     <Text>2024-05-27 15:02:46</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <Name>日期</Name>
+               <InnerValue>2024-05-27 15:02:46</InnerValue>
+               <BackgroundText>Ngày</BackgroundText>
+               <EditorActiveMode>MouseClick</EditorActiveMode>
+               <FieldSettings>
+                  <EditStyle>DateTime</EditStyle>
+               </FieldSettings>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="3">
+               <InnerID>2259</InnerID>
+               <Text>         </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="3">
+               <InnerID>129</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2260</InnerID>
+               <Text>Hồ sơ đi buồng của bác sĩ điều trị chính</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="5">
+               <InnerID>139</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2261</InnerID>
+               <Text>Hôm nay đi buồng cùng bác sĩ điều trị chính 庞金芳, Bệnh nhân ho, Đau họng giảm, Thỉnh thoảng ho khạc ít đờm dính, Không có tiếng thở rít trong họng, Thở khò khè, Không ớn lạnh, Sốt, Không rét run, Co giật, Không khàn tiếng, Không co giật, Hôn mê, Không khó thở, Không đổ mồ hôi trộm, Không hồi hộp, Đau ngực, Không nôn, Đau bụng, Tiêu chảy, Không đau lưng, Đau khớp gối, Tinh thần, Giấc ngủ, Ăn uống tốt hơn trước, Đại tiểu tiện bình thường. Khám thực thể: T37.0℃, BP140/88 mmHg, Tỉnh táo, tay, chân, Mông không có mụn nước, Họng đỏ, Sung huyết, Hai bên amidan không sưng to, Không có điểm mủ. Âm thở hai phổi thô, Không nghe thấy ran khô, ran ẩm rõ, Không nghe thấy ran ẩm và tiếng rít; Gõ bờ tim không lớn, HR92 lần/phút, Nhịp đều, Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý; Bụng phẳng, mềm, Không đau khi ấn, Đau dội ngược, Đau khi gõ vùng gan thận âm tính, Tiếng đục di động âm tính, Âm ruột bình thường; Hai chi dưới không phù; Kết quả cận lâm sàng: Phim X-quang ngực: Vân phổi hai bên tăng đậm, nhiều, Đề nghị kết hợp lâm sàng. Sau khi đi buồng, bác sĩ điều trị chính 庞金芳指出: Theo bệnh sử của bệnh nhân, Biểu hiện lâm sàng và kết quả cận lâm sàng, Đồng ý với chẩn đoán và phác đồ điều trị hiện tại, Cần chẩn đoán phân biệt với lao phổi, chẩn đoán phân biệt với hen phế quản; Bệnh nhân ho được điều trị y học cổ truyền bằng đắp huyệt, Sơ phong, giải biểu, Chủ yếu tuyên phế, giảm ho. Chọn huyệt: Thiên đột, Đản trung, Đại chùy, Phế du, Hợp cốc, Liệt khuyết và các huyệt khác. Đắp huyệt điều trị viêm họng, Thanh nhiệt, lợi họng, Chủ yếu tiêu sưng, giảm đau, Chọn huyệt: Liêm tuyền, Xích trạch, Thiếu thương, Quan xung, Nội đình, Phong trì, Nội quan và các huyệt khác. Bệnh nhân được điều trị kháng nhiễm khuẩn, Giảm ho, tiêu đờm, Thanh nhiệt, giải độc, Đắp huyệt, Sau khi bù dịch và điều trị hỗ trợ theo triệu chứng, Hiện triệu chứng của bệnh nhân đã đỡ hơn, Không sốt, Điều trị có hiệu quả, Theo dõi huyết áp cơ bản bình thường; Tiếp tục điều trị theo phác đồ ban đầu đủ liệu trình, Chú ý theo dõi diễn biến bệnh, Thực hiện theo y lệnh.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>690</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2262</InnerID>
+               <Text>Bác sĩ điều trị chính ký tên:</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="3">
+               <InnerID>2263</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="7">
+               <InnerID>700</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2264</InnerID>
+               <Text>Bác sĩ điều trị ký tên:</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="3">
+               <InnerID>2265</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="7">
+               <InnerID>710</InnerID>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="8">
+               <InnerID>712</InnerID>
+            </Element>
+            <Element xsi:type="XInputField">
+               <InnerID>714</InnerID>
+               <ID>txtDate</ID>
+               <ToolTip>Vui lòng nhập ngày</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ContentReadonly>False</ContentReadonly>
+               <XElements>
+                  <Element xsi:type="XString">
+                     <InnerID>2277</InnerID>
+                     <Text>2024-05-27 15:02:49</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <Name>日期</Name>
+               <InnerValue>2024-05-27 15:02:49</InnerValue>
+               <BackgroundText>Ngày</BackgroundText>
+               <EditorActiveMode>MouseClick</EditorActiveMode>
+               <FieldSettings>
+                  <EditStyle>DateTime</EditStyle>
+               </FieldSettings>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="3">
+               <InnerID>734</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2266</InnerID>
+               <Text>Hồ sơ đi buồng của bác sĩ chủ nhiệm</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="5">
+               <InnerID>744</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2267</InnerID>
+               <Text>Hôm nay đi buồng cùng bác sĩ chủ nhiệm khoa 黄纯民, Bệnh nhân ho, Đau họng đỡ hơn trước, Thỉnh thoảng ho khạc ít đờm dính, Không thở khò khè, Không ớn lạnh, Sốt, Không khàn tiếng, Không co giật, Hôn mê, Không tím tái, Khó thở, Không ho ra máu, Sốt nhẹ, Đổ mồ hôi trộm, Không hồi hộp, Đau ngực, Không buồn nôn, Nôn, Không đau bụng, Tiêu chảy, Không đau lưng, Đau khớp gối, Tinh thần, Ăn uống, Giấc ngủ tạm ổn, Đại tiểu tiện không thấy bất thường. Khám thực thể: T36.5℃, P90 lần/phút, BP140/91 mmHg, R20 lần/phút. Tỉnh táo, Họng đỏ, Hai bên amidan không sưng to, Không có điểm mủ. Âm thở hai phổi thô, Không nghe thấy ran khô, ran ẩm; Bờ tim không lớn, HR90 lần/phút, Nhịp đều, Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý. Bụng phẳng, mềm, Không đau khi ấn, Đau dội ngược, Đau khi gõ vùng gan thận âm tính, Tiếng di động âm tính, Âm ruột bình thường; Hai chi dưới không phù. Kết quả cận lâm sàng: Xét nghiệm nước tiểu thường quy: Máu ẩn+1, MA&lt;=10 mg/L, Ca 2.5 mmol/L, CR8.8 mmol/L ; Xét nghiệm máu thường quy: WBC7.58×109/L, Neu 5.21×109/L, N68.8％, L25.9％, RBC4.65×1012/L, HGB146 g/L, PLT 276×109/L. hs-CRP&gt;5.0 mg/L↑; CRP25.4 mg/L↑. Đường huyết ngẫu nhiên: 9.10 mmol/L; Điện giải, Men tim: Không thấy bất thường; Chức năng gan: ALT 46.2 U/L↑, AST31.6 U/L↑, ALT/AST 1.5↑, r-GT 56.1 U/L↑, Các hạng mục còn lại bình thường; Chức năng thận: CREA86.6 umol/L↑, UA 394.0 umol/L↑, Các hạng mục còn lại bình thường; Mỡ máu: TC5.75 mmol/L↑, Các hạng mục còn lại bình thường; Mycoplasma và Chlamydia gây viêm phổi IgM, IgG: Đều âm tính; Adenovirus IgM, IgG: Đều âm tính; ASO: Âm tính; Điện tâm đồ: 1, Nhịp xoang 2, ST-T Thay đổi; Bụng Siêu âm B: Gan, mật, tụy, lách, Hai thận không thấy bất thường rõ; Sau khi đi buồng, bác sĩ chủ nhiệm khoa 黄纯民指出: Theo bệnh sử của bệnh nhân, Biểu hiện lâm sàng và kết quả cận lâm sàng, Chẩn đoán nhập viện là 1, Viêm phế quản cấp 2, Viêm họng cấp 3, Tăng huyết áp nguyên phát Đã rõ, Cần chẩn đoán phân biệt với lao phổi, Hen phế quản, chẩn đoán phân biệt với bạch hầu họng; Triệu chứng bệnh nhân đỡ hơn, Không sốt, Tình trạng bệnh tiếp tục tốt lên; Theo dõi huyết áp cơ bản bình thường; Tiếp tục điều trị theo phác đồ ban đầu đủ liệu trình; Chú ý theo dõi diễn biến bệnh, Thực hiện theo y lệnh.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="3">
+               <InnerID>1556</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2268</InnerID>
+               <Text>                                                    </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="8">
+               <InnerID>1610</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2269</InnerID>
+               <Text>Bác sĩ chủ nhiệm khoa ký tên:</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="7">
+               <InnerID>1620</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2270</InnerID>
+               <Text>Bác sĩ điều trị ký tên:</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="7">
+               <InnerID>1629</InnerID>
+            </Element>
+            <Element xsi:type="XInputField">
+               <InnerID>1631</InnerID>
+               <ID>txtDate</ID>
+               <ToolTip>Vui lòng nhập ngày</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ContentReadonly>False</ContentReadonly>
+               <XElements>
+                  <Element xsi:type="XString">
+                     <InnerID>2278</InnerID>
+                     <Text>2024-05-27 15:02:52</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <Name>日期</Name>
+               <InnerValue>2024-05-27 15:02:52</InnerValue>
+               <BackgroundText>Ngày</BackgroundText>
+               <EditorActiveMode>MouseClick</EditorActiveMode>
+               <FieldSettings>
+                  <EditStyle>DateTime</EditStyle>
+               </FieldSettings>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2271</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="3">
+               <InnerID>1652</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2272</InnerID>
+               <Text>Hồ sơ đi buồng hằng ngày</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="5">
+               <InnerID>1660</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2273</InnerID>
+               <Text>Hôm nay đi buồng cùng bác sĩ chủ nhiệm khoa 黄纯民, Bệnh nhân không ớn lạnh, Sốt, Không nghẹt mũi, Chảy nước mũi, Không đau họng, Khàn tiếng, Không ho, Ho có đờm, Không có tiếng thở rít trong họng, Không thở khò khè, Khó thở, Không buồn nôn, Nôn, Không đau bụng, Tiêu chảy, Tinh thần, Ăn uống, Giấc ngủ tốt, Đại tiểu tiện không thấy bất thường. Khám thực thể: T36.7℃, P88 lần/phút, BP135/91 mmHg, R20 lần/phút. Tỉnh táo, Họng không đỏ, Hai bên amidan không sưng to, Không có điểm mủ và rêu mủ bám; Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm, Không nghe thấy tiếng thở rít; Bờ tim không lớn, HR88 lần/phút, Nhịp đều, Các vùng nghe van tim không nghe thấy tiếng thổi tim. Bụng phẳng, mềm, Toàn bụng không đau khi ấn, Không đau dội ngược, Âm ruột bình thường; Hai chi dưới không phù; Sau khi đi buồng, bác sĩ chủ nhiệm khoa 黄纯民指出: Chẩn đoán nhập viện của bệnh nhân 1, Viêm phế quản cấp 2, Viêm họng cấp 3, Tăng huyết áp nguyên phát Đã rõ, Sau điều trị, bệnh nhân không ớn lạnh, Sốt, Không nghẹt mũi, Chảy nước mũi, Không đau họng, Khàn tiếng, Không ho, Ho có đờm, Không thở khò khè, Khó thở, Không buồn nôn, Nôn, Không đau bụng, Tiêu chảy, Không co giật, Hôn mê, Không có khó chịu khác. Tinh thần, Giấc ngủ, Ăn uống tốt, Đại tiểu tiện bình thường. Khám thực thể: Sinh hiệu bình thường, Tỉnh táo, Họng không đỏ, Hai bên amidan không sưng to, Không có điểm mủ. Hai phổi không nghe thấy ran khô, ran ẩm; Nhịp tim đều, Không có tiếng thổi; Khám bụng không thấy bất thường, Hai chi dưới không phù; Theo dõi huyết áp cơ bản bình thường; Triệu chứng cơ bản đã hết, Yêu cầu xuất viện, Cho làm thủ tục xuất viện. Cẩn thận trong sinh hoạt, Phòng cảm mạo, Ăn nhạt, ít mỡ, ít purin, Uống nhiều nước; Theo dõi huyết áp định kỳ và uống thuốc hạ huyết áp tùy theo huyết áp; Tái khám mỡ máu định kỳ, Chức năng thận, Điện tâm đồ; Kết hợp lao động và nghỉ ngơi, Nếu có khó chịu, xin đi khám ngay. Thực hiện theo y lệnh.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="3">
+               <InnerID>2203</InnerID>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="9">
+               <InnerID>2205</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2274</InnerID>
+               <Text>Bác sĩ chủ nhiệm khoa ký tên:</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="9">
+               <InnerID>2215</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2275</InnerID>
+               <Text>Bác sĩ điều trị ký tên:</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="7">
+               <InnerID>2224</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextFooter">
+         <InnerID>3</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>98</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+   </XElements>
+   <SerializeParameterValue>true</SerializeParameterValue>
+   <FileName>\File\Template\HoSoNhapVien\BenhAnKhamPhong.xml</FileName>
+   <FileFormat>xml</FileFormat>
+   <ContentStyles>
+      <Default xsi:type="DocumentContentStyle">
+         <FontName>宋体</FontName>
+         <FontSize>12</FontSize>
+      </Default>
+      <Styles>
+         <Style Index="0">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <Align>Center</Align>
+         </Style>
+         <Style Index="1">
+            <FontName>宋体</FontName>
+            <FontSize>24</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="2">
+            <FontName>宋体</FontName>
+            <FontSize>18</FontSize>
+         </Style>
+         <Style Index="3">
+            <FontName>宋体</FontName>
+            <FontSize>24</FontSize>
+         </Style>
+         <Style Index="4">
+            <FontName>宋体</FontName>
+            <FontSize>18</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="5">
+            <FontName>宋体</FontName>
+            <FontSize>24</FontSize>
+            <LineSpacingStyle>SpaceDouble</LineSpacingStyle>
+            <Align>Center</Align>
+         </Style>
+         <Style Index="6">
+            <FontName>宋体</FontName>
+            <FontSize>24</FontSize>
+            <SpacingBeforeParagraph>15.625</SpacingBeforeParagraph>
+            <FirstLineIndent>100</FirstLineIndent>
+         </Style>
+         <Style Index="7">
+            <FontName>宋体</FontName>
+            <FontSize>24</FontSize>
+            <Align>Right</Align>
+            <FirstLineIndent>100</FirstLineIndent>
+         </Style>
+         <Style Index="8">
+            <FontName>宋体</FontName>
+            <FontSize>24</FontSize>
+            <Align>Center</Align>
+         </Style>
+         <Style Index="9">
+            <FontName>宋体</FontName>
+            <FontSize>24</FontSize>
+            <Align>Right</Align>
+         </Style>
+      </Styles>
+   </ContentStyles>
+   <Info>
+      <LicenseText>未注册|Unregister</LicenseText>
+      <CreationTime>1980-01-01T00:00:00</CreationTime>
+      <LastModifiedTime>2024-05-27T15:02:54.2086822+08:00</LastModifiedTime>
+      <LastPrintTime>1980-01-01T00:00:00</LastPrintTime>
+      <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
+      <NumOfPage>2</NumOfPage>
+   </Info>
+   <BodyText>2024-05-27 15:02:46         
+Hồ sơ đi buồng của bác sĩ điều trị chính
+Hôm nay đi buồng cùng bác sĩ điều trị chính 庞金芳, Bệnh nhân ho, Đau họng giảm, Thỉnh thoảng ho khạc ít đờm dính, Không có tiếng thở rít trong họng, Thở khò khè, Không ớn lạnh, Sốt, Không rét run, Co giật, Không khàn tiếng, Không co giật, Hôn mê, Không khó thở, Không đổ mồ hôi trộm, Không hồi hộp, Đau ngực, Không nôn, Đau bụng, Tiêu chảy, Không đau lưng, Đau khớp gối, Tinh thần, Giấc ngủ, Ăn uống tốt hơn trước, Đại tiểu tiện bình thường. Khám thực thể: T37.0℃, BP140/88 mmHg, Tỉnh táo, tay, chân, Mông không có mụn nước, Họng đỏ, Sung huyết, Hai bên amidan không sưng to, Không có điểm mủ. Âm thở hai phổi thô, Không nghe thấy ran khô, ran ẩm rõ, Không nghe thấy ran ẩm và tiếng rít; Gõ bờ tim không lớn, HR92 lần/phút, Nhịp đều, Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý; Bụng phẳng, mềm, Không đau khi ấn, Đau dội ngược, Đau khi gõ vùng gan thận âm tính, Tiếng đục di động âm tính, Âm ruột bình thường; Hai chi dưới không phù; Kết quả cận lâm sàng: Phim X-quang ngực: Vân phổi hai bên tăng đậm, nhiều, Đề nghị kết hợp lâm sàng. Sau khi đi buồng, bác sĩ điều trị chính 庞金芳指出: Theo bệnh sử của bệnh nhân, Biểu hiện lâm sàng và kết quả cận lâm sàng, Đồng ý với chẩn đoán và phác đồ điều trị hiện tại, Cần chẩn đoán phân biệt với lao phổi, chẩn đoán phân biệt với hen phế quản; Bệnh nhân ho được điều trị y học cổ truyền bằng đắp huyệt, Sơ phong, giải biểu, Chủ yếu tuyên phế, giảm ho. Chọn huyệt: Thiên đột, Đản trung, Đại chùy, Phế du, Hợp cốc, Liệt khuyết và các huyệt khác. Đắp huyệt điều trị viêm họng, Thanh nhiệt, lợi họng, Chủ yếu tiêu sưng, giảm đau, Chọn huyệt: Liêm tuyền, Xích trạch, Thiếu thương, Quan xung, Nội đình, Phong trì, Nội quan và các huyệt khác. Bệnh nhân được điều trị kháng nhiễm khuẩn, Giảm ho, tiêu đờm, Thanh nhiệt, giải độc, Đắp huyệt, Sau khi bù dịch và điều trị hỗ trợ theo triệu chứng, Hiện triệu chứng của bệnh nhân đã đỡ hơn, Không sốt, Điều trị có hiệu quả, Theo dõi huyết áp cơ bản bình thường; Tiếp tục điều trị theo phác đồ ban đầu đủ liệu trình, Chú ý theo dõi diễn biến bệnh, Thực hiện theo y lệnh.
+Bác sĩ điều trị chính ký tên: 
+Bác sĩ điều trị ký tên: 
+
+2024-05-27 15:02:49
+Hồ sơ đi buồng của bác sĩ chủ nhiệm
+Hôm nay đi buồng cùng bác sĩ chủ nhiệm khoa 黄纯民, Bệnh nhân ho, Đau họng đỡ hơn trước, Thỉnh thoảng ho khạc ít đờm dính, Không thở khò khè, Không ớn lạnh, Sốt, Không khàn tiếng, Không co giật, Hôn mê, Không tím tái, Khó thở, Không ho ra máu, Sốt nhẹ, Đổ mồ hôi trộm, Không hồi hộp, Đau ngực, Không buồn nôn, Nôn, Không đau bụng, Tiêu chảy, Không đau lưng, Đau khớp gối, Tinh thần, Ăn uống, Giấc ngủ tạm ổn, Đại tiểu tiện không thấy bất thường. Khám thực thể: T36.5℃, P90 lần/phút, BP140/91 mmHg, R20 lần/phút. Tỉnh táo, Họng đỏ, Hai bên amidan không sưng to, Không có điểm mủ. Âm thở hai phổi thô, Không nghe thấy ran khô, ran ẩm; Bờ tim không lớn, HR90 lần/phút, Nhịp đều, Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý. Bụng phẳng, mềm, Không đau khi ấn, Đau dội ngược, Đau khi gõ vùng gan thận âm tính, Tiếng di động âm tính, Âm ruột bình thường; Hai chi dưới không phù. Kết quả cận lâm sàng: Xét nghiệm nước tiểu thường quy: Máu ẩn+1, MA&lt;=10 mg/L, Ca 2.5 mmol/L, CR8.8 mmol/L ; Xét nghiệm máu thường quy: WBC7.58×109/L, Neu 5.21×109/L, N68.8％, L25.9％, RBC4.65×1012/L, HGB146 g/L, PLT 276×109/L. hs-CRP&gt;5.0 mg/L↑; CRP25.4 mg/L↑. Đường huyết ngẫu nhiên: 9.10 mmol/L; Điện giải, Men tim: Không thấy bất thường; Chức năng gan: ALT 46.2 U/L↑, AST31.6 U/L↑, ALT/AST 1.5↑, r-GT 56.1 U/L↑, Các hạng mục còn lại bình thường; Chức năng thận: CREA86.6 umol/L↑, UA 394.0 umol/L↑, Các hạng mục còn lại bình thường; Mỡ máu: TC5.75 mmol/L↑, Các hạng mục còn lại bình thường; Mycoplasma và Chlamydia gây viêm phổi IgM, IgG: Đều âm tính; Adenovirus IgM, IgG: Đều âm tính; ASO: Âm tính; Điện tâm đồ: 1, Nhịp xoang 2, ST-T Thay đổi; Bụng Siêu âm B: Gan, mật, tụy, lách, Hai thận không thấy bất thường rõ; Sau khi đi buồng, bác sĩ chủ nhiệm khoa 黄纯民指出: Theo bệnh sử của bệnh nhân, Biểu hiện lâm sàng và kết quả cận lâm sàng, Chẩn đoán nhập viện là 1, Viêm phế quản cấp 2, Viêm họng cấp 3, Tăng huyết áp nguyên phát Đã rõ, Cần chẩn đoán phân biệt với lao phổi, Hen phế quản, chẩn đoán phân biệt với bạch hầu họng; Triệu chứng bệnh nhân đỡ hơn, Không sốt, Tình trạng bệnh tiếp tục tốt lên; Theo dõi huyết áp cơ bản bình thường; Tiếp tục điều trị theo phác đồ ban đầu đủ liệu trình; Chú ý theo dõi diễn biến bệnh, Thực hiện theo y lệnh.
+                                                    
+Bác sĩ chủ nhiệm khoa ký tên:
+Bác sĩ điều trị ký tên:
+2024-05-27 15:02:52 
+Hồ sơ đi buồng hằng ngày
+Hôm nay đi buồng cùng bác sĩ chủ nhiệm khoa 黄纯民, Bệnh nhân không ớn lạnh, Sốt, Không nghẹt mũi, Chảy nước mũi, Không đau họng, Khàn tiếng, Không ho, Ho có đờm, Không có tiếng thở rít trong họng, Không thở khò khè, Khó thở, Không buồn nôn, Nôn, Không đau bụng, Tiêu chảy, Tinh thần, Ăn uống, Giấc ngủ tốt, Đại tiểu tiện không thấy bất thường. Khám thực thể: T36.7℃, P88 lần/phút, BP135/91 mmHg, R20 lần/phút. Tỉnh táo, Họng không đỏ, Hai bên amidan không sưng to, Không có điểm mủ và rêu mủ bám; Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm, Không nghe thấy tiếng thở rít; Bờ tim không lớn, HR88 lần/phút, Nhịp đều, Các vùng nghe van tim không nghe thấy tiếng thổi tim. Bụng phẳng, mềm, Toàn bụng không đau khi ấn, Không đau dội ngược, Âm ruột bình thường; Hai chi dưới không phù; Sau khi đi buồng, bác sĩ chủ nhiệm khoa 黄纯民指出: Chẩn đoán nhập viện của bệnh nhân 1, Viêm phế quản cấp 2, Viêm họng cấp 3, Tăng huyết áp nguyên phát Đã rõ, Sau điều trị, bệnh nhân không ớn lạnh, Sốt, Không nghẹt mũi, Chảy nước mũi, Không đau họng, Khàn tiếng, Không ho, Ho có đờm, Không thở khò khè, Khó thở, Không buồn nôn, Nôn, Không đau bụng, Tiêu chảy, Không co giật, Hôn mê, Không có khó chịu khác. Tinh thần, Giấc ngủ, Ăn uống tốt, Đại tiểu tiện bình thường. Khám thực thể: Sinh hiệu bình thường, Tỉnh táo, Họng không đỏ, Hai bên amidan không sưng to, Không có điểm mủ. Hai phổi không nghe thấy ran khô, ran ẩm; Nhịp tim đều, Không có tiếng thổi; Khám bụng không thấy bất thường, Hai chi dưới không phù; Theo dõi huyết áp cơ bản bình thường; Triệu chứng cơ bản đã hết, Yêu cầu xuất viện, Cho làm thủ tục xuất viện. Cẩn thận trong sinh hoạt, Phòng cảm mạo, Ăn nhạt, ít mỡ, ít purin, Uống nhiều nước; Theo dõi huyết áp định kỳ và uống thuốc hạ huyết áp tùy theo huyết áp; Tái khám mỡ máu định kỳ, Chức năng thận, Điện tâm đồ; Kết hợp lao động và nghỉ ngơi, Nếu có khó chịu, xin đi khám ngay. Thực hiện theo y lệnh.
+
+Bác sĩ chủ nhiệm khoa ký tên:
+Bác sĩ điều trị ký tên:</BodyText>
+   <LocalConfig />
+   <PageSettings>
+      <PaperKind>Custom</PaperKind>
+      <LeftMargin>79</LeftMargin>
+      <TopMargin>47</TopMargin>
+      <RightMargin>79</RightMargin>
+      <BottomMargin>39</BottomMargin>
+      <StrictUsePageSize>false</StrictUsePageSize>
+   </PageSettings>
+</XTextDocument>

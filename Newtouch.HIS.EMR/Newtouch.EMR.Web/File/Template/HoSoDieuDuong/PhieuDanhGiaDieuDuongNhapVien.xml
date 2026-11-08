@@ -1,0 +1,2865 @@
+<XTextDocument xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EditorVersionString="1.2023.2.14">
+   <Attributes>
+      <Attribute>
+         <Name>DCLocalDataSource</Name>
+         <Value>&lt;DataSourceDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="DataSource" Name="DataSource" Guid="eb1656e2-9291-4387-9eb9-a1209c9411fc" Title=""&gt;&lt;Parameters /&gt;&lt;Nodes /&gt;&lt;/DataSourceDocument&gt;</Value>
+      </Attribute>
+   </Attributes>
+   <InnerID>892</InnerID>
+   <XElements>
+      <Element xsi:type="XTextHeader">
+         <InnerID>6</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XString">
+               <InnerID>2132</InnerID>
+               <Text>                       </Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="1">
+               <InnerID>938</InnerID>
+               <ID>B0EADC5F-D1A7-4C1D-8BFF-C30B4AB96B89</ID>
+               <ToolTip>Vui lòng nhập tên bệnh viện</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/yymc</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>yymc</Name>
+               <BackgroundText>Tên bệnh viện</BackgroundText>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>939</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>2133</InnerID>
+               <Text>                   </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="3">
+               <InnerID>2134</InnerID>
+               <Text>Phiếu đánh giá điều dưỡng</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>965</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextBody">
+         <InnerID>14</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2135</InnerID>
+               <Text>Họ tên:</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="4">
+               <InnerID>972</InnerID>
+               <ID>field11</ID>
+               <ToolTip>Họ tên</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/xm</BindingPath>
+                  <AutoUpdate>true</AutoUpdate>
+               </ValueBinding>
+               <BorderElementColor />
+               <BackgroundText>Họ tên</BackgroundText>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2136</InnerID>
+               <Text>Giới tính:</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="5">
+               <InnerID>976</InnerID>
+               <ID>F8D8D127-729E-4113-9BD4-A0C7918C331D</ID>
+               <ToolTip>Vui lòng nhập giới tính</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/sex</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>sex</Name>
+               <BackgroundText>Giới tính</BackgroundText>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2137</InnerID>
+               <Text> Tuổi:</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="5">
+               <InnerID>981</InnerID>
+               <ID>294E8883-886E-4F41-B60C-AA5FCA5DC21E</ID>
+               <ToolTip>Vui lòng nhập tuổi</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/nl</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>nl</Name>
+               <BackgroundText>Tuổi</BackgroundText>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2138</InnerID>
+               <Text> Khoa:</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="5">
+               <InnerID>986</InnerID>
+               <ID>D725DEFE-CAF7-4ED4-98AD-A870B4A09F74</ID>
+               <ToolTip>Vui lòng nhập khoa</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/DeptName</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>DeptName</Name>
+               <BackgroundText>Khoa</BackgroundText>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2139</InnerID>
+               <Text> Số giường:</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="4">
+               <InnerID>991</InnerID>
+               <ID>47C322C6-9098-4D54-9F8A-C726F1BE8CC1</ID>
+               <ToolTip>Vui lòng nhập số giường</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/BedName</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>BedName</Name>
+               <BackgroundText>Số giường</BackgroundText>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2140</InnerID>
+               <Text>Số bệnh án:</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="5">
+               <InnerID>996</InnerID>
+               <ID>2F9B99E2-B9CC-43C7-9D16-4901E629942A</ID>
+               <ToolTip>Vui lòng nhập số bệnh án</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/blh</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>blh</Name>
+               <BackgroundText>Số bệnh án</BackgroundText>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2141</InnerID>
+               <Text> Dân tộc:</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="5">
+               <InnerID>1001</InnerID>
+               <ID>7154762a-e06e-46a5-83f6-53138cac66e5</ID>
+               <ToolTip>Vui lòng nhập dân tộc</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/mz</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>mz</Name>
+               <BackgroundText>Dân tộc</BackgroundText>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1002</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2142</InnerID>
+               <Text>Nghề nghiệp:</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="5">
+               <InnerID>1007</InnerID>
+               <ID>fa891797-ee53-411d-9834-4f0b49e31dfd</ID>
+               <ToolTip>Vui lòng nhập nghề nghiệp</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/zy</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>zy</Name>
+               <BackgroundText>Nghề nghiệp</BackgroundText>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2143</InnerID>
+               <Text> Trình độ văn hóa:</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2144</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2145</InnerID>
+               <Text>Chẩn đoán nhập viện:</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="4">
+               <InnerID>1026</InnerID>
+               <ID>C2F93F70-B187-4748-8F02-4164208C5697</ID>
+               <ToolTip>Vui lòng nhập chẩn đoán nhập viện</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/zdmc</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>zdmc</Name>
+               <BackgroundText>Chẩn đoán nhập viện</BackgroundText>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1027</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2146</InnerID>
+               <Text>Thời gian nhập viện, Thời gian:</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="5">
+               <InnerID>1037</InnerID>
+               <ID>712DBF5F-E853-4459-851B-30C61A6F1AD1</ID>
+               <ToolTip>Vui lòng nhập ngày nhập viện</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/ryrq</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>ryrq</Name>
+               <BackgroundText>Ngày nhập viện</BackgroundText>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2147</InnerID>
+               <Text> Cách thức nhập viện của bệnh nhân: </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1047</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Đi bộ</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2148</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1049</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Dìu đi</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2149</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1051</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Xe lăn</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2150</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1053</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Xe cáng</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2151</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1055</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Xe cứu thương</Caption>
+               <Width>184.500015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2152</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1057</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2153</InnerID>
+               <Text>Lý do nhập viện chính:</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="4">
+               <InnerID>1064</InnerID>
+               <ID>55247c72-1105-4ffb-bfdb-4b5843027882</ID>
+               <ToolTip>Vui lòng nhập triệu chứng chính</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/zs</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>zs</Name>
+               <BackgroundText>Triệu chứng chính</BackgroundText>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1065</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2154</InnerID>
+               <Text>Thân nhiệt</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2155</InnerID>
+               <Text>    </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2156</InnerID>
+               <Text>℃ Mạch</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2157</InnerID>
+               <Text>    </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2158</InnerID>
+               <Text>lần/phút Hô hấp</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2159</InnerID>
+               <Text>    </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2160</InnerID>
+               <Text>lần/phút Huyết áp</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2161</InnerID>
+               <Text>     </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2162</InnerID>
+               <Text>㎜Kg Cân nặng</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2163</InnerID>
+               <Text>    </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2164</InnerID>
+               <Text>㎏ Chiều cao</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2165</InnerID>
+               <Text>    </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2166</InnerID>
+               <Text>m</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1121</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2167</InnerID>
+               <Text>Ý thức: </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1128</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Tỉnh táo</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2168</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1130</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Buồn ngủ nhiều</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2169</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1132</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Ý thức mơ hồ</Caption>
+               <Width>222.000015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2170</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1134</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Ngủ lịm</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2171</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1136</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Hôn mê</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2172</InnerID>
+               <Text>  </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1139</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2173</InnerID>
+               <Text>Biểu cảm khuôn mặt: </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1147</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Bình thường</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2174</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1149</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Thờ ơ</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2175</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1151</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Vẻ mặt đau đớn</Caption>
+               <Width>222.000015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2176</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1153</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Vẻ mặt bệnh mạn tính</Caption>
+               <Width>259.5</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2177</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1155</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2178</InnerID>
+               <Text>Trạng thái tinh thần: </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1163</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Tốt</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2179</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1165</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Trầm cảm</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2180</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1167</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Lo âu</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2181</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1169</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Ảo giác</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2182</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1171</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Hoang tưởng</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2183</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1173</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Kích động</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2184</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1175</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2185</InnerID>
+               <Text>Giao tiếp ngôn ngữ: </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1183</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Bình thường</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2186</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1185</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Nói không rõ</Caption>
+               <Width>222.000015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2187</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1187</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Khó khăn ngôn ngữ</Caption>
+               <Width>222.000015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2188</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1189</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Mất ngôn ngữ</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2189</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1191</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Tiếng phổ thông</Caption>
+               <Width>184.500015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2190</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1193</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Phương ngữ</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2191</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1195</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2192</InnerID>
+               <Text>Tiền sử:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1201</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Không</Caption>
+               <Width>109.500008</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2193</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1203</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Có</Caption>
+               <Width>109.500008</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2194</InnerID>
+               <Text> /</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2195</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2196</InnerID>
+               <Text>Tiền sử dị ứng thuốc: </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1220</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Không</Caption>
+               <Width>109.500008</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2197</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1222</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Có</Caption>
+               <Width>109.500008</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2198</InnerID>
+               <Text> /</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2199</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1232</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2200</InnerID>
+               <Text>Chất gây dị ứng:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1240</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Không</Caption>
+               <Width>109.500008</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2201</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1242</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Có</Caption>
+               <Width>109.500008</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2202</InnerID>
+               <Text>/</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1244</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>碘前</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2203</InnerID>
+               <Text>;</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1246</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Cồn</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2204</InnerID>
+               <Text>;</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1248</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Hải sản</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2205</InnerID>
+               <Text>;</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1250</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Cao su</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2206</InnerID>
+               <Text>;</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1252</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Khác</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2207</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1260</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2208</InnerID>
+               <Text>Tiền sử uống rượu:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1266</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Không</Caption>
+               <Width>109.500008</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2209</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1268</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Thỉnh thoảng</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2210</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1270</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Thường xuyên</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2211</InnerID>
+               <Text>/</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2212</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2213</InnerID>
+               <Text>2 lần/ngày  Liên tục</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2214</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2215</InnerID>
+               <Text>năm</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1294</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2216</InnerID>
+               <Text>Tiền sử hút thuốc:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1300</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Không</Caption>
+               <Width>109.500008</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2217</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1302</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Thỉnh thoảng</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2218</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1304</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Thường xuyên</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2219</InnerID>
+               <Text>/</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2220</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2221</InnerID>
+               <Text>支/ngày  Liên tục</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2222</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2223</InnerID>
+               <Text>năm    Có sống trong môi trường khói thuốc không:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1343</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Có</Caption>
+               <Width>109.500008</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2224</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1345</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Không</Caption>
+               <Width>109.500008</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1346</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2225</InnerID>
+               <Text>Ăn uống:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1352</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Bình thường</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2226</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1354</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Bất thường</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2227</InnerID>
+               <Text>/</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1356</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Thức ăn lỏng</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1357</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Thức ăn nửa lỏng</Caption>
+               <Width>184.500015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>半流质</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2228</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1359</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Nhịn ăn</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1360</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Nuôi ăn qua ống thông mũi</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2229</InnerID>
+               <Text>  Sở thích:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1366</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Không</Caption>
+               <Width>109.500008</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2230</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1368</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Đồ ngọt</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>半流质</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2231</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1370</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Đồ mặn</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2232</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1372</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Khác</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2233</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XLineBreak">
+               <InnerID>1374</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2234</InnerID>
+               <Text>Dinh dưỡng:</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="7">
+               <InnerID>2235</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1380</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Bình thường</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2236</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1382</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Trung bình</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2237</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1384</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Suy kiệt</Caption>
+               <Width>184.500015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2238</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="7">
+               <InnerID>2239</InnerID>
+               <Text>   Niêm mạc miệng:  </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1396</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Nguyên vẹn</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2240</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1398</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Hư hỏng</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2241</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1400</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Chảy máu đang hoạt động</Caption>
+               <Width>259.5</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2242</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1402</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Khác</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2243</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1404</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2244</InnerID>
+               <Text>Ăn uống:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1410</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Bình thường</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2245</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1412</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Tăng</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2246</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1414</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Giảm</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2247</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1416</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Chán ăn</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2248</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1418</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Buồn nôn</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2249</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1420</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Khó nuốt</Caption>
+               <Width>222.000015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2250</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1422</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Khác</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2251</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1424</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2252</InnerID>
+               <Text>Giấc ngủ:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1430</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Bình thường</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2253</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1432</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Khó ngủ</Caption>
+               <Width>222.000015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2254</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1434</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Hay mơ, dễ tỉnh giấc</Caption>
+               <Width>222.000015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2255</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1436</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Khác</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2256</InnerID>
+               <Text>  Hỗ trợ giấc ngủ: </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1445</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Không</Caption>
+               <Width>109.500008</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2257</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1447</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Có</Caption>
+               <Width>109.500008</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2258</InnerID>
+               <Text> Thuốc</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2259</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1458</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2260</InnerID>
+               <Text>Mức độ tự chăm sóc:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1465</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Tự chăm sóc</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2261</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1467</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Cần hỗ trợ</Caption>
+               <Width>184.500015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2262</InnerID>
+               <Text>/</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1469</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Ăn uống</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2263</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1471</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Vệ sinh cá nhân</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2264</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1473</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Bài tiết</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2265</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1475</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Hoàn toàn phụ thuộc</Caption>
+               <Width>222.000015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2266</InnerID>
+               <Text>/</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1477</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Liệt</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2267</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1479</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Dị dạng</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2268</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1481</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Khác</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2269</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1489</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2270</InnerID>
+               <Text>Vận động:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1495</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Tự nhiên</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2271</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1497</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Hạn chế</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2272</InnerID>
+               <Text>/</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2273</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2274</InnerID>
+               <Text> Tư thế: </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1511</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Tư thế tự chủ</Caption>
+               <Width>222.000015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2275</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1513</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Tư thế bắt buộc</Caption>
+               <Width>222.000015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2276</InnerID>
+               <Text>/</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1515</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Tư thế ngồi</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2277</InnerID>
+               <Text>,</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1517</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Tư thế nửa nằm</Caption>
+               <Width>184.500015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1518</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2278</InnerID>
+               <Text>Da và niêm mạc: Màu sắc: </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1530</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Bình thường</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2279</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1532</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Nhợt nhạt</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2280</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1534</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Đỏ bừng</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2281</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1536</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Vàng da</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2282</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1538</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Tím tái</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1539</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2283</InnerID>
+               <Text>          Độ đàn hồi: </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1555</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Bình thường</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2284</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1557</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Vỡ</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2285</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1559</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Ban đỏ</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2286</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1561</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Mỏng như giấy</Caption>
+               <Width>184.500015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2287</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1563</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Phù</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2288</InnerID>
+               <Text> Vị trí:</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2289</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2290</InnerID>
+               <Text>Mức độ:</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2291</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1585</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2292</InnerID>
+               <Text>          Tính nguyên vẹn: </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1602</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Nguyên vẹn</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2293</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1604</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Ban da</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2294</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1606</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Điểm xuất huyết</Caption>
+               <Width>184.500015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2295</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1608</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Hư hỏng</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2296</InnerID>
+               <Text> Vị trí:</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2297</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2298</InnerID>
+               <Text>_Kích thước</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2299</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1630</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2300</InnerID>
+               <Text>Tiểu tiện:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1636</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Bình thường</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2301</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1638</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Ứ đọng</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2302</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1640</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Không tự chủ</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2303</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1642</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Tiểu nhiều lần</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1643</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Tiểu gấp</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>半流质</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2304</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1645</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Tiểu ít</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1646</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Đặt ống thông tiểu lưu</Caption>
+               <Width>259.5</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2305</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1648</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Ngày thay ống thông tiểu</Caption>
+               <Width>297</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2306</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1656</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2307</InnerID>
+               <Text>Đại tiện: </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1663</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Bình thường</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2308</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1665</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Táo bón</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2309</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2310</InnerID>
+               <Text>ngày/lần, Thời gian đại tiện lần cuối</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2311</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2312</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1693</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Tiêu chảy</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2313</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2314</InnerID>
+               <Text>lần/ngày</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1704</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Không tự chủ</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1705</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2315</InnerID>
+               <Text>Vị trí lỗ thông</Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <InnerID>2316</InnerID>
+               <Text>             </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1724</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2317</InnerID>
+               <Text>Nhận thức về bệnh:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1733</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Nhận thức</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2318</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1735</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Không hiểu</Caption>
+               <Width>184.500015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2319</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1737</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Không thể đối diện</Caption>
+               <Width>222.000015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2320</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1739</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Che giấu</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1740</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2321</InnerID>
+               <Text>Nhận thức của người chăm sóc về bệnh:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1752</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Hiểu rõ</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2322</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1754</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Hiểu lơ mơ</Caption>
+               <Width>222.000015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2323</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1756</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Không hiểu</Caption>
+               <Width>184.500015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2324</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1758</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Hiểu cơ bản</Caption>
+               <Width>222.000015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1759</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2325</InnerID>
+               <Text>Giáo dục sức khỏe lúc nhập viện:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1766</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Đã hoàn thành</Caption>
+               <Width>184.500015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2326</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1768</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Chưa hoàn thành</Caption>
+               <Width>184.500015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2327</InnerID>
+               <Text>      Phương pháp:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1778</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Giải thích</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2328</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1780</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Làm mẫu</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2329</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1782</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Video</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2330</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1784</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Tài liệu miễn phí</Caption>
+               <Width>222.000015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2331</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1786</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Thảo luận</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1787</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2332</InnerID>
+               <Text>Đối tượng giáo dục:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1794</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Con gái</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2333</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1796</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Con trai</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2334</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1798</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Cha</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2335</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1800</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Mẹ</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2336</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1802</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Vợ/chồng</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1803</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Bạn bè</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2337</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1805</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Bệnh nhân</Caption>
+               <Width>147</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1806</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2338</InnerID>
+               <Text>Khả năng tiếp thu:</Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1813</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Có thể tiếp thu</Caption>
+               <Width>184.500015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2339</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1815</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Không thể tiếp thu</Caption>
+               <Width>222.000015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2340</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1817</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Rối loạn ngôn ngữ</Caption>
+               <Width>222.000015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2341</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1819</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Khác biệt văn hóa</Caption>
+               <Width>222.000015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1820</InnerID>
+               <ID>name001-3</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Trình độ học vấn thấp</Caption>
+               <Width>259.5</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值3</CheckedValue>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2342</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XTextCheckBox" StyleIndex="4">
+               <InnerID>1822</InnerID>
+               <ID>name001-2</ID>
+               <ToolTip>Thông tin gợi ý</ToolTip>
+               <Name>name001</Name>
+               <Caption>Rối loạn thính lực</Caption>
+               <Width>222.000015</Width>
+               <Height>50</Height>
+               <GroupName>name001</GroupName>
+               <CheckedValue>值2</CheckedValue>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1823</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2343</InnerID>
+               <Text>Biện pháp chăm sóc chính:</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1832</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="4">
+               <InnerID>2344</InnerID>
+               <Text>                                                      năm    tháng    ngày  Người đánh giá:</Text>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2345</InnerID>
+               <Text>        </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="8">
+               <InnerID>1913</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextFooter">
+         <InnerID>413</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>967</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+   </XElements>
+   <SerializeParameterValue>true</SerializeParameterValue>
+   <FileName>\File\Template\HoSoDieuDuong\DanhGiaDieuDuongNhapVien\PhieuDanhGiaDieuDuongNhapVien.xml</FileName>
+   <FileFormat>xml</FileFormat>
+   <ContentStyles>
+      <Default xsi:type="DocumentContentStyle">
+         <FontName>宋体</FontName>
+         <FontSize>12</FontSize>
+      </Default>
+      <Styles>
+         <Style Index="0">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <Align>Center</Align>
+         </Style>
+         <Style Index="1">
+            <FontName>宋体</FontName>
+            <FontSize>18</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="2">
+            <FontName>宋体</FontName>
+            <FontSize>21.75</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="3">
+            <FontName>宋体</FontName>
+            <FontSize>15</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="4">
+            <FontName>宋体</FontName>
+            <FontSize>9</FontSize>
+         </Style>
+         <Style Index="5">
+            <FontName>宋体</FontName>
+            <FontSize>9</FontSize>
+            <Underline>true</Underline>
+         </Style>
+         <Style Index="6">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <LineSpacingStyle>SpaceDouble</LineSpacingStyle>
+         </Style>
+         <Style Index="7">
+            <BackgroundColor>#FFFFFF</BackgroundColor>
+            <FontName>宋体</FontName>
+            <FontSize>9</FontSize>
+         </Style>
+         <Style Index="8">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <LineSpacingStyle>SpaceDouble</LineSpacingStyle>
+            <Align>Right</Align>
+         </Style>
+      </Styles>
+   </ContentStyles>
+   <Info>
+      <LicenseText>未注册|Unregister</LicenseText>
+      <CreationTime>1980-01-01T00:00:00</CreationTime>
+      <LastModifiedTime>2025-02-13T11:27:14.2825996+08:00</LastModifiedTime>
+      <LastPrintTime>1980-01-01T00:00:00</LastPrintTime>
+      <Operator>DCSoft.Writer Version:1.2015.12.23</Operator>
+      <NumOfPage>2</NumOfPage>
+   </Info>
+   <BodyText>Họ tên: Giới tính:[] Tuổi:[] Khoa:[] Số giường:[]Số bệnh án:[] Dân tộc:[]
+Nghề nghiệp:[] Trình độ văn hóa:       Chẩn đoán nhập viện:[]
+Thời gian nhập viện, Thời gian:[] Cách thức nhập viện của bệnh nhân: □Đi bộ □Dìu đi □Xe lăn □Xe cáng □Xe cứu thương 
+Lý do nhập viện chính:[]
+Thân nhiệt    ℃ Mạch (lần)/phút Hô hấp (lần)/phút Huyết áp     ㎜Kg Cân nặng    ㎏ Chiều cao    m
+Ý thức: □Tỉnh táo □Buồn ngủ nhiều □Ý thức mơ hồ □Ngủ lịm □Hôn mê  
+Biểu cảm khuôn mặt: □Bình thường □Thờ ơ □Vẻ mặt đau đớn □Vẻ mặt bệnh mạn tính 
+Trạng thái tinh thần: □Tốt □Trầm cảm □Lo âu □Ảo giác □Hoang tưởng □Kích động 
+Giao tiếp ngôn ngữ: □Bình thường □Nói không rõ □Khó khăn ngôn ngữ □Mất ngôn ngữ □Tiếng phổ thông □Phương ngữ 
+Tiền sử:□Không □Có /       Tiền sử dị ứng thuốc: □Không □Có /       
+Chất gây dị ứng:□Không □Có/□碘前;□Cồn;□Hải sản;□Cao su;□Khác       
+Tiền sử uống rượu:□Không □Thỉnh thoảng □Thường xuyên/       2 lần/ngày  Liên tục       năm
+Tiền sử hút thuốc:□Không □Thỉnh thoảng □Thường xuyên/       支/ngày  Liên tục       năm    Có sống trong môi trường khói thuốc không:□Có □Không
+Ăn uống:□Bình thường □Bất thường/□Thức ăn lỏng□Thức ăn nửa lỏng □Nhịn ăn□Nuôi ăn qua ống thông mũi  Sở thích:□Không □Đồ ngọt □Đồ mặn □Khác 
+Dinh dưỡng: □Bình thường □Trung bình □Suy kiệt    Niêm mạc miệng:  □Nguyên vẹn □Hư hỏng □Chảy máu đang hoạt động □Khác 
+Ăn uống:□Bình thường □Tăng □Giảm □Chán ăn □Buồn nôn □Khó nuốt □Khác 
+Giấc ngủ:□Bình thường □Khó ngủ □Hay mơ, dễ tỉnh giấc □Khác  Hỗ trợ giấc ngủ: □Không □Có Thuốc       
+Mức độ tự chăm sóc:□Tự chăm sóc □Cần hỗ trợ/□Ăn uống □Vệ sinh cá nhân □Bài tiết □Hoàn toàn phụ thuộc/□Liệt □Dị dạng □Khác       
+Vận động:□Tự nhiên □Hạn chế/        Tư thế: □Tư thế tự chủ □Tư thế bắt buộc/□Tư thế ngồi,□Tư thế nửa nằm
+Da và niêm mạc: Màu sắc: □Bình thường □Nhợt nhạt □Đỏ bừng □Vàng da □Tím tái
+          Độ đàn hồi: □Bình thường □Vỡ □Ban đỏ □Mỏng như giấy □Phù Vị trí:       Mức độ:       
+          Tính nguyên vẹn: □Nguyên vẹn □Ban da □Điểm xuất huyết □Hư hỏng Vị trí:       _Kích thước       
+Tiểu tiện:□Bình thường □Ứ đọng □Không tự chủ □Tiểu nhiều lần□Tiểu gấp □Tiểu ít□Đặt ống thông tiểu lưu □Ngày thay ống thông tiểu       
+Đại tiện: □Bình thường □Táo bón       ngày/lần, Thời gian đại tiện lần cuối        □Tiêu chảy       lần/ngày□Không tự chủ
+Vị trí lỗ thông             
+Nhận thức về bệnh:□Nhận thức □Không hiểu □Không thể đối diện □Che giấu
+Nhận thức của người chăm sóc về bệnh:□Hiểu rõ □Hiểu lơ mơ □Không hiểu □Hiểu cơ bản
+Giáo dục sức khỏe lúc nhập viện:□Đã hoàn thành □Chưa hoàn thành      Phương pháp:□Giải thích □Làm mẫu □Video □Tài liệu miễn phí □Thảo luận
+Đối tượng giáo dục:□Con gái □Con trai □Cha □Mẹ □Vợ/chồng□Bạn bè □Bệnh nhân
+Khả năng tiếp thu:□Có thể tiếp thu □Không thể tiếp thu □Rối loạn ngôn ngữ □Khác biệt văn hóa□Trình độ học vấn thấp □Rối loạn thính lực
+Biện pháp chăm sóc chính:
+                                                      năm    tháng    ngày  Người đánh giá:        </BodyText>
+   <LocalConfig />
+   <PageSettings>
+      <LeftMargin>71</LeftMargin>
+      <RightMargin>56</RightMargin>
+      <StrictUsePageSize>false</StrictUsePageSize>
+   </PageSettings>
+</XTextDocument>

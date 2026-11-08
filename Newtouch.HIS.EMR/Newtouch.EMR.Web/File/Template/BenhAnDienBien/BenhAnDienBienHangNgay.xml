@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XTextDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" EditorVersionString="1.2015.12.23">
+   <Attributes />
+   <XElements>
+      <Element xsi:type="XTextHeader">
+         <Attributes />
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XString">
+               <XElements xsi:nil="true" />
+               <Text>                   </Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="1">
+               <Attributes />
+               <ID>B0EADC5F-D1A7-4C1D-8BFF-C30B4AB96B89</ID>
+               <ToolTip>Vui lòng nhập tên bệnh viện</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/yymc</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <XElements />
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <EventExpressions />
+               <Name>yymc</Name>
+               <BackgroundText>Tên bệnh viện</BackgroundText>
+               <LastSelectedListItems />
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="2" />
+            <Element xsi:type="XString" StyleIndex="1">
+               <XElements xsi:nil="true" />
+               <Text>Hồ sơ bệnh án</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0" />
+            <Element xsi:type="XString">
+               <XElements xsi:nil="true" />
+               <Text>Họ tên:</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <Attributes />
+               <ID>555B0059-D165-46B3-9F88-9720672296AF</ID>
+               <ToolTip>Vui lòng nhập họ tên</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/xm</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <XElements />
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <EventExpressions />
+               <Name>xm1</Name>
+               <BackgroundText>Họ tên</BackgroundText>
+               <LastSelectedListItems />
+            </Element>
+            <Element xsi:type="XString">
+               <XElements xsi:nil="true" />
+               <Text>             Số giường:</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <Attributes />
+               <ID>92555c17-aa50-4dd2-983e-c5b48613855c</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/BedName</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <XElements />
+               <BorderElementColor />
+               <EventExpressions />
+               <Name>BedName</Name>
+               <BackgroundText>Mã giường bệnh</BackgroundText>
+               <EditorActiveMode>None</EditorActiveMode>
+               <LastSelectedListItems />
+            </Element>
+            <Element xsi:type="XString">
+               <XElements xsi:nil="true" />
+               <Text>	          Số nhập viện:</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <Attributes />
+               <ID>6C1F42F9-EB78-43E1-AF32-18795C4E2303</ID>
+               <ToolTip>Vui lòng nhập số nhập viện</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/zyh</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <XElements />
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <EventExpressions />
+               <Name>zyh</Name>
+               <BackgroundText>Số nhập viện</BackgroundText>
+               <LastSelectedListItems />
+            </Element>
+            <Element xsi:type="XParagraphFlag" />
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextBody">
+         <Attributes />
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XString" StyleIndex="1">
+               <XElements xsi:nil="true" />
+               <Text>Hồ sơ đi buồng hằng ngày</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0" />
+            <Element xsi:type="XInputField">
+               <Attributes />
+               <ID>txtDate</ID>
+               <ToolTip>Vui lòng nhập ngày</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ContentReadonly>False</ContentReadonly>
+               <XElements />
+               <BorderElementColor />
+               <EventExpressions />
+               <Name>日期</Name>
+               <BackgroundText>Ngày</BackgroundText>
+               <EditorActiveMode>MouseClick</EditorActiveMode>
+               <LastSelectedListItems />
+               <FieldSettings>
+                  <EditStyle>DateTime</EditStyle>
+               </FieldSettings>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="3" />
+            <Element xsi:type="XString" StyleIndex="1">
+               <XElements xsi:nil="true" />
+               <Text>Hồ sơ đi buồng của bác sĩ điều trị chính</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="4" />
+            <Element xsi:type="XString">
+               <XElements xsi:nil="true" />
+               <Text>Hôm nay đi buồng cùng bác sĩ điều trị chính 包连胜, Bệnh nhân ho, Đau họng giảm, Thỉnh thoảng ho khạc ít đờm dính, Không có tiếng thở rít trong họng, Thở khò khè, Không ớn lạnh, Sốt, Không rét run, Co giật, Không khàn tiếng, Không co giật, Hôn mê, Không khó thở, Không đổ mồ hôi trộm, Không hồi hộp, Đau ngực, Không nôn, Đau bụng, Tiêu chảy, Không đau lưng, Đau khớp gối, Tinh thần, Giấc ngủ, Ăn uống tốt hơn trước, Đại tiểu tiện bình thường. Khám thực thể: T37.0℃, BP140/88 mmHg, Tỉnh táo, tay, chân, Mông, Không có mụn nước, Họng đỏ, Sung huyết, Hai bên amidan không sưng to, Không có điểm mủ. Âm thở hai phổi thô, Không nghe thấy ran khô, ran ẩm rõ, Không nghe thấy ran ẩm và tiếng rít; Gõ bờ tim không lớn, HR92 lần/phút, Nhịp đều, Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý; Bụng phẳng, mềm, Không đau khi ấn, Đau dội ngược, Đau khi gõ vùng gan thận âm tính, Tiếng đục di động âm tính, Âm ruột bình thường; Hai chi dưới không phù; Kết quả cận lâm sàng: Phim X-quang ngực: Vân phổi hai bên tăng đậm, nhiều, Đề nghị kết hợp lâm sàng. Sau khi đi buồng, bác sĩ điều trị chính 庞金芳指出: Theo bệnh sử của bệnh nhân, Biểu hiện lâm sàng và kết quả cận lâm sàng, Đồng ý với chẩn đoán và phác đồ điều trị hiện tại, Cần chẩn đoán phân biệt với lao phổi, chẩn đoán phân biệt với hen phế quản; Bệnh nhân ho được điều trị y học cổ truyền bằng đắp huyệt, Sơ phong, giải biểu, Tuyên phế, Chủ yếu giảm ho. Chọn huyệt: Thiên đột, Đản trung, Đại chùy, Phế du, Hợp cốc, Liệt khuyết và các huyệt khác. Đắp huyệt điều trị viêm họng, Thanh nhiệt, lợi họng, Chủ yếu tiêu sưng, giảm đau, Chọn huyệt: Liêm tuyền, Xích trạch, Thiếu thương, Quan xung, Nội đình, Phong trì, Nội quan và các huyệt khác. Bệnh nhân được điều trị kháng nhiễm khuẩn, Giảm ho, tiêu đờm, Thanh nhiệt, giải độc, Đắp huyệt, Sau khi bù dịch và điều trị hỗ trợ theo triệu chứng, Hiện triệu chứng của bệnh nhân đã đỡ hơn, Không sốt, Điều trị có hiệu quả, Theo dõi huyết áp cơ bản bình thường; Tiếp tục điều trị theo phác đồ ban đầu đủ liệu trình, Chú ý theo dõi diễn biến bệnh, Thực hiện theo y lệnh.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+            <Element xsi:type="XParagraphFlag" StyleIndex="3" />
+            <Element xsi:type="XString">
+               <XElements xsi:nil="true" />
+               <Text>Bác sĩ ký tên:</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <Attributes />
+               <ID>field18</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <XElements />
+               <BorderElementColor />
+               <EventExpressions />
+               <Name>ysqm1</Name>
+               <BackgroundText>Bác sĩ ký tên</BackgroundText>
+               <LastSelectedListItems />
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6" />
+            <Element xsi:type="XParagraphFlag" />
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextFooter">
+         <Attributes />
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XPageInfo" StyleIndex="7">
+               <ID>pageinfo1</ID>
+               <PropertyExpressions />
+               <Width>400</Width>
+               <AutoHeight>true</AutoHeight>
+               <Height>62.73438</Height>
+               <FormatString>Trang [%PageIndex%] trên tổng số [%NumOfPages%] trang</FormatString>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0" />
+         </XElements>
+      </Element>
+   </XElements>
+   <RepeatedImages />
+   <GlobalJavaScriptReferences />
+   <Info>
+      <LicenseText>本软件未注册。</LicenseText>
+      <CreationTime>1980-01-01T00:00:00</CreationTime>
+      <LastModifiedTime>2025-10-27T11:33:02.0840405+08:00</LastModifiedTime>
+      <LastPrintTime>1980-01-01T00:00:00</LastPrintTime>
+      <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
+      <NumOfPage>1</NumOfPage>
+   </Info>
+   <BodyText>Hồ sơ đi buồng hằng ngày
+
+Hồ sơ đi buồng của bác sĩ điều trị chính
+Hôm nay đi buồng cùng bác sĩ điều trị chính 包连胜, Bệnh nhân ho, Đau họng giảm, Thỉnh thoảng ho khạc ít đờm dính, Không có tiếng thở rít trong họng, Thở khò khè, Không ớn lạnh, Sốt, Không rét run, Co giật, Không khàn tiếng, Không co giật, Hôn mê, Không khó thở, Không đổ mồ hôi trộm, Không hồi hộp, Đau ngực, Không nôn, Đau bụng, Tiêu chảy, Không đau lưng, Đau khớp gối, Tinh thần, Giấc ngủ, Ăn uống tốt hơn trước, Đại tiểu tiện bình thường. Khám thực thể: T37.0℃, BP140/88 mmHg, Tỉnh táo, tay, chân, Mông, Không có mụn nước, Họng đỏ, Sung huyết, Hai bên amidan không sưng to, Không có điểm mủ. Âm thở hai phổi thô, Không nghe thấy ran khô, ran ẩm rõ, Không nghe thấy ran ẩm và tiếng rít; Gõ bờ tim không lớn, HR92 lần/phút, Nhịp đều, Các vùng nghe van tim không nghe thấy tiếng thổi bệnh lý; Bụng phẳng, mềm, Không đau khi ấn, Đau dội ngược, Đau khi gõ vùng gan thận âm tính, Tiếng đục di động âm tính, Âm ruột bình thường; Hai chi dưới không phù; Kết quả cận lâm sàng: Phim X-quang ngực: Vân phổi hai bên tăng đậm, nhiều, Đề nghị kết hợp lâm sàng. Sau khi đi buồng, bác sĩ điều trị chính 庞金芳指出: Theo bệnh sử của bệnh nhân, Biểu hiện lâm sàng và kết quả cận lâm sàng, Đồng ý với chẩn đoán và phác đồ điều trị hiện tại, Cần chẩn đoán phân biệt với lao phổi, chẩn đoán phân biệt với hen phế quản; Bệnh nhân ho được điều trị y học cổ truyền bằng đắp huyệt, Sơ phong, giải biểu, Tuyên phế, Chủ yếu giảm ho. Chọn huyệt: Thiên đột, Đản trung, Đại chùy, Phế du, Hợp cốc, Liệt khuyết và các huyệt khác. Đắp huyệt điều trị viêm họng, Thanh nhiệt, lợi họng, Chủ yếu tiêu sưng, giảm đau, Chọn huyệt: Liêm tuyền, Xích trạch, Thiếu thương, Quan xung, Nội đình, Phong trì, Nội quan và các huyệt khác. Bệnh nhân được điều trị kháng nhiễm khuẩn, Giảm ho, tiêu đờm, Thanh nhiệt, giải độc, Đắp huyệt, Sau khi bù dịch và điều trị hỗ trợ theo triệu chứng, Hiện triệu chứng của bệnh nhân đã đỡ hơn, Không sốt, Điều trị có hiệu quả, Theo dõi huyết áp cơ bản bình thường; Tiếp tục điều trị theo phác đồ ban đầu đủ liệu trình, Chú ý theo dõi diễn biến bệnh, Thực hiện theo y lệnh.
+
+Bác sĩ ký tên:
+</BodyText>
+   <Comments />
+   <LocalConfig />
+   <PageSettings>
+      <PaperKind>Custom</PaperKind>
+      <LeftMargin>47</LeftMargin>
+      <TopMargin>8</TopMargin>
+      <RightMargin>47</RightMargin>
+      <BottomMargin>8</BottomMargin>
+   </PageSettings>
+   <UserHistories />
+   <SerializeParameterValue>true</SerializeParameterValue>
+   <Parameters>
+      <Parameter Name="当前时间">
+         <SerializeValue TypeName="System.String,mscorlib" AutoConvertToXMLElement="true">2025-10-27 11:32:54</SerializeValue>
+      </Parameter>
+   </Parameters>
+   <ContentStyles>
+      <Default xsi:type="DocumentContentStyle">
+         <FontName>宋体</FontName>
+         <FontSize>12</FontSize>
+      </Default>
+      <Styles>
+         <Style Index="0">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <Align>Center</Align>
+         </Style>
+         <Style Index="1">
+            <FontName>宋体</FontName>
+            <FontSize>18</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="2">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <FirstLineIndent>100</FirstLineIndent>
+         </Style>
+         <Style Index="3">
+            <FontName>宋体</FontName>
+            <FontSize>24</FontSize>
+         </Style>
+         <Style Index="4">
+            <FontName>宋体</FontName>
+            <FontSize>24</FontSize>
+            <LineSpacingStyle>SpaceDouble</LineSpacingStyle>
+            <Align>Center</Align>
+         </Style>
+         <Style Index="5">
+            <FontName>宋体</FontName>
+            <FontSize>24</FontSize>
+            <FirstLineIndent>100</FirstLineIndent>
+         </Style>
+         <Style Index="6">
+            <FontName>宋体</FontName>
+            <FontSize>24</FontSize>
+            <Align>Right</Align>
+         </Style>
+         <Style Index="7">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+         </Style>
+      </Styles>
+   </ContentStyles>
+   <FileName>C:\Users\lf_20\Desktop\Template\BenhAnDienBien\BenhAnDienBienHangNgay.xml</FileName>
+   <FileFormat>XML</FileFormat>
+</XTextDocument>

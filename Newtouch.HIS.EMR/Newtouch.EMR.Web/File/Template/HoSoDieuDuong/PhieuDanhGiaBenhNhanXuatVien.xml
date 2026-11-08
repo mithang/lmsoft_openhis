@@ -1,0 +1,903 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XTextDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" EditorVersionString="1.2015.12.23">
+   <Attributes />
+   <XElements>
+      <Element xsi:type="XTextHeader">
+         <Attributes />
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XInputField" StyleIndex="1">
+               <Attributes />
+               <ID>B0EADC5F-D1A7-4C1D-8BFF-C30B4AB96B89</ID>
+               <ToolTip>Vui lòng nhập tên bệnh viện</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/yymc</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <XElements />
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <EventExpressions />
+               <Name>yymc</Name>
+               <BackgroundText>Tên bệnh viện</BackgroundText>
+               <LastSelectedListItems />
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0" />
+            <Element xsi:type="XString" StyleIndex="2">
+               <XElements xsi:nil="true" />
+               <Text>Phiếu đánh giá bệnh nhân xuất viện</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0" />
+            <Element xsi:type="XString">
+               <XElements xsi:nil="true" />
+               <Text>Họ tên:</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <Attributes />
+               <ID>555B0059-D165-46B3-9F88-9720672296AF</ID>
+               <ToolTip>Vui lòng nhập họ tên</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/xm</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <XElements />
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <EventExpressions />
+               <Name>xm</Name>
+               <BackgroundText>Họ tên</BackgroundText>
+               <LastSelectedListItems />
+            </Element>
+            <Element xsi:type="XString">
+               <XElements xsi:nil="true" />
+               <Text>     Khoa:</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <Attributes />
+               <ID>05851fea-e7a2-4ada-969c-76b7d0403c10</ID>
+               <ToolTip>Vui lòng nhập tên khoa</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/DeptName</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <XElements />
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <EventExpressions />
+               <Name>DeptName</Name>
+               <BackgroundText>Tên khoa</BackgroundText>
+               <LastSelectedListItems />
+            </Element>
+            <Element xsi:type="XString">
+               <XElements xsi:nil="true" />
+               <Text>      Số giường:</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <Attributes />
+               <ID>47C322C6-9098-4D54-9F8A-C726F1BE8CC1</ID>
+               <ToolTip>Vui lòng nhập số giường</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/BedName</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <XElements />
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <EventExpressions />
+               <Name>BedName</Name>
+               <BackgroundText>Số giường</BackgroundText>
+               <LastSelectedListItems />
+            </Element>
+            <Element xsi:type="XString">
+               <XElements xsi:nil="true" />
+               <Text>      Số nhập viện:</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <Attributes />
+               <ID>6C1F42F9-EB78-43E1-AF32-18795C4E2303</ID>
+               <ToolTip>Vui lòng nhập số nhập viện</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/zyh</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <XElements />
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <EventExpressions />
+               <Name>zyh</Name>
+               <BackgroundText>Số nhập viện</BackgroundText>
+               <LastSelectedListItems />
+            </Element>
+            <Element xsi:type="XString">
+               <XElements xsi:nil="true" />
+               <Text>  </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0" />
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextBody">
+         <Attributes />
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XTextTable" NumOfRows="3" NumOfColumns="2">
+               <Attributes />
+               <ID>table46</ID>
+               <Expressions />
+               <XElements>
+                  <Element xsi:type="XTextTableRow">
+                     <Attributes />
+                     <Expressions />
+                     <XElements>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <Attributes />
+                           <XElements>
+                              <Element xsi:type="XString">
+                                 <XElements xsi:nil="true" />
+                                 <Text>     Đánh giá trước xuất viện</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <Attributes />
+                           <XElements>
+                              <Element xsi:type="XString">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Lúc xuất việndTình trạng bệnh nhân:</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" />
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Trạng thái ý thức:</Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-1</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Rõ ràng</Caption>
+                                 <Width>159.5</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值1</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>  </Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-2</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Buồn ngủ nhiều</Caption>
+                                 <Width>159.5</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值2</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>   </Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-1</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Bồn chồn</Caption>
+                                 <Width>159.5</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值1</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>   </Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-2</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Hôn mê</Caption>
+                                 <Width>159.5</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <Checked>true</Checked>
+                                 <CheckedValue>值2</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>     </Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-2</ID>
+                                 <PropertyExpressions />
+                                 <Name>name0021</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Khác</Caption>
+                                 <Width>159.5</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name0021</GroupName>
+                                 <CheckedValue>qt</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="6">
+                                 <XElements xsi:nil="true" />
+                                 <Text> </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="7">
+                                 <XElements xsi:nil="true" />
+                                 <Text> </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="8">
+                                 <XElements xsi:nil="true" />
+                                 <Text>       </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="6">
+                                 <XElements xsi:nil="true" />
+                                 <Text> </Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" />
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Khả năng tự chủ:</Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-2</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Bình thường</Caption>
+                                 <Width>159.5</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值2</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text> 公 </Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-1</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Liệt toàn thân</Caption>
+                                 <Width>159.5</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值1</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>   </Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-2</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Liệt hai chi dưới</Caption>
+                                 <Width>159.5</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值2</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>   </Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-2</ID>
+                                 <PropertyExpressions />
+                                 <Name>name0021</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Khác</Caption>
+                                 <Width>159.5</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name0021</GroupName>
+                                 <CheckedValue>qt</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="6">
+                                 <XElements xsi:nil="true" />
+                                 <Text> </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="7">
+                                 <XElements xsi:nil="true" />
+                                 <Text> </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="8">
+                                 <XElements xsi:nil="true" />
+                                 <Text>       </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="6">
+                                 <XElements xsi:nil="true" />
+                                 <Text> </Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" />
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Đặc điểm dương tính:</Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-1</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Không</Caption>
+                                 <Width>115.75</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值1</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>  </Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-2</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Có</Caption>
+                                 <Width>115.75</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值2</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="7">
+                                 <XElements xsi:nil="true" />
+                                 <Text>               s                    </Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" />
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Dấu hiệu âm tính đặc biệt:</Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-1</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Không</Caption>
+                                 <Width>115.75</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值1</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>  </Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-2</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Có</Caption>
+                                 <Width>115.75</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值2</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="7">
+                                 <XElements xsi:nil="true" />
+                                 <Text>         Có                          </Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" />
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Cận lâm sàng quan trọng:</Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-1</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Không</Caption>
+                                 <Width>115.75</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值1</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>  </Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-2</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Có</Caption>
+                                 <Width>115.75</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值2</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="7">
+                                 <XElements xsi:nil="true" />
+                                 <Text>   I                                </Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" />
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Chẩn đoán xuất viện:</Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-1</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Phù hợp</Caption>
+                                 <Width>159.5</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值1</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="6">
+                                 <XElements xsi:nil="true" />
+                                 <Text>  </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>科  </Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-2</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Không phù hợp</Caption>
+                                 <Width>203.250015</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值2</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" />
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Tiêu chuẩn xuất viện:</Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-1</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Phù hợp</Caption>
+                                 <Width>159.5</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值1</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>      </Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-2</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Không phù hợp</Caption>
+                                 <Width>203.250015</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值2</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" />
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Đánh giá hiệu quả điều trị lúc xuất viện:</Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-1</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Khỏi hẳn</Caption>
+                                 <Width>159.5</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值1</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>   </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <XElements xsi:nil="true" />
+                                 <Text>        </Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-2</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Đỡ hơn</Caption>
+                                 <Width>159.5</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值2</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>       t   </Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-3</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Chuyển viện</Caption>
+                                 <Width>159.5</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值3</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XLineBreak" />
+                              <Element xsi:type="XParagraphFlag" />
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>             </Text>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <XElements xsi:nil="true" />
+                                 <Text> </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>  </Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-1</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Tự xuất viện</Caption>
+                                 <Width>247.000015</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值1</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <XElements xsi:nil="true" />
+                                 <Text>      </Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-2</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Tử vong</Caption>
+                                 <Width>159.5</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值2</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <XElements xsi:nil="true" />
+                                 <Text>         </Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox" StyleIndex="5">
+                                 <ID>name001-3</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Khác</Caption>
+                                 <Width>159.5</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值3</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text> </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="8">
+                                 <XElements xsi:nil="true" />
+                                 <Text>    信      </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>  </Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" />
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Việc tái khám theo dõi sau xuất viện đã được dặn dò đầy đủ và rõ ràng cho bệnh nhân hoặc gia đình:</Text>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox">
+                                 <ID>name001-1</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Có</Caption>
+                                 <Width>122.000008</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值1</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XTextCheckBox">
+                                 <ID>name001-2</ID>
+                                 <PropertyExpressions />
+                                 <Name>name001</Name>
+                                 <ToolTip>Thông tin gợi ý</ToolTip>
+                                 <Caption>Không</Caption>
+                                 <Width>122.000008</Width>
+                                 <Height>62</Height>
+                                 <GroupName>name001</GroupName>
+                                 <CheckedValue>值2</CheckedValue>
+                                 <EventExpressions />
+                                 <RuntimeVisible>true</RuntimeVisible>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <XElements xsi:nil="true" />
+                                 <Text>, Nguyên nhân:</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="9">
+                                 <XElements xsi:nil="true" />
+                                 <Text>         </Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" />
+                           </XElements>
+                        </Element>
+                     </XElements>
+                  </Element>
+                  <Element xsi:type="XTextTableRow">
+                     <Attributes />
+                     <Expressions />
+                     <XElements>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <Attributes />
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Bác sĩ đánh giá ký tên:     </Text>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <XElements xsi:nil="true" />
+                                 <Text>                       都    </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text> Bác sĩ cấp trên ký tên:</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" />
+                           </XElements>
+                           <ColSpan>2</ColSpan>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <Attributes />
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" />
+                           </XElements>
+                        </Element>
+                     </XElements>
+                  </Element>
+                  <Element xsi:type="XTextTableRow">
+                     <Attributes />
+                     <Expressions />
+                     <XElements>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <Attributes />
+                           <XElements>
+                              <Element xsi:type="XString">
+                                 <XElements xsi:nil="true" />
+                                 <Text>                           C                   Thời gian đánh giá: 2024-06-04 14:30</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" />
+                           </XElements>
+                           <ColSpan>2</ColSpan>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <Attributes />
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" />
+                           </XElements>
+                        </Element>
+                     </XElements>
+                  </Element>
+               </XElements>
+               <Columns>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>90.625</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>1790.625</Width>
+                  </Element>
+               </Columns>
+            </Element>
+            <Element xsi:type="XParagraphFlag" />
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextFooter">
+         <Attributes />
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XPageInfo" StyleIndex="10">
+               <ID>pageinfo1</ID>
+               <PropertyExpressions />
+               <Width>400</Width>
+               <AutoHeight>true</AutoHeight>
+               <Height>62.73438</Height>
+               <FormatString>Trang [%PageIndex%] trên tổng số [%NumOfPages%] trang</FormatString>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0" />
+         </XElements>
+      </Element>
+   </XElements>
+   <RepeatedImages />
+   <GlobalJavaScriptReferences />
+   <Info>
+      <LicenseText>本软件未注册。</LicenseText>
+      <CreationTime>1980-01-01T00:00:00</CreationTime>
+      <LastModifiedTime>2025-10-27T11:36:45.7972239+08:00</LastModifiedTime>
+      <LastPrintTime>1980-01-01T00:00:00</LastPrintTime>
+      <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
+      <NumOfPage>1</NumOfPage>
+   </Info>
+   <BodyText>     Đánh giá trước xuất viện Lúc xuất việndTình trạng bệnh nhân:
+Trạng thái ý thức:□Rõ ràng  □Buồn ngủ nhiều   □Bồn chồn   ■Hôn mê     □Khác          
+Khả năng tự chủ:□Bình thường 公 □Liệt toàn thân   □Liệt hai chi dưới   □Khác          
+Đặc điểm dương tính:□Không  □Có               s                    
+Dấu hiệu âm tính đặc biệt:□Không  □Có         Có                          
+Cận lâm sàng quan trọng:□Không  □Có   I                                
+Chẩn đoán xuất viện:□Phù hợp  科  □Không phù hợp
+Tiêu chuẩn xuất viện:□Phù hợp      □Không phù hợp
+Đánh giá hiệu quả điều trị lúc xuất viện:□Khỏi hẳn           □Đỡ hơn       t   □Chuyển viện
+
+                □Tự xuất viện      □Tử vong         □Khác     信        
+Việc tái khám theo dõi sau xuất viện đã được dặn dò đầy đủ và rõ ràng cho bệnh nhân hoặc gia đình:□Có□Không, Nguyên nhân:          
+Bác sĩ đánh giá ký tên:                            都     Bác sĩ cấp trên ký tên: 
+                           C                   Thời gian đánh giá: 2024-06-04 14:30 </BodyText>
+   <Comments />
+   <LocalConfig />
+   <PageSettings />
+   <UserHistories />
+   <SerializeParameterValue>true</SerializeParameterValue>
+   <Parameters />
+   <ContentStyles>
+      <Default xsi:type="DocumentContentStyle">
+         <FontName>宋体</FontName>
+         <FontSize>12</FontSize>
+      </Default>
+      <Styles>
+         <Style Index="0">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <Align>Center</Align>
+         </Style>
+         <Style Index="1">
+            <FontName>宋体</FontName>
+            <FontSize>18</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="2">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="3">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <BorderWidth>1</BorderWidth>
+            <BorderLeft>true</BorderLeft>
+            <BorderBottom>true</BorderBottom>
+            <BorderTop>true</BorderTop>
+            <BorderRight>true</BorderRight>
+            <PaddingLeft>12.5</PaddingLeft>
+            <PaddingTop>9.375</PaddingTop>
+            <PaddingRight>12.5</PaddingRight>
+            <PaddingBottom>9.375</PaddingBottom>
+         </Style>
+         <Style Index="4">
+            <BackgroundColor>#F5F5F5</BackgroundColor>
+            <Color>#242424</Color>
+            <FontName>宋体</FontName>
+            <FontSize>10.5</FontSize>
+         </Style>
+         <Style Index="5">
+            <Color>#242424</Color>
+            <FontName>宋体</FontName>
+            <FontSize>10.5</FontSize>
+         </Style>
+         <Style Index="6">
+            <FontName>宋体</FontName>
+            <FontSize>10.5</FontSize>
+         </Style>
+         <Style Index="7">
+            <Color>#242424</Color>
+            <FontName>宋体</FontName>
+            <FontSize>10.5</FontSize>
+            <Underline>true</Underline>
+         </Style>
+         <Style Index="8">
+            <FontName>宋体</FontName>
+            <FontSize>10.5</FontSize>
+            <Underline>true</Underline>
+         </Style>
+         <Style Index="9">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <Underline>true</Underline>
+         </Style>
+         <Style Index="10">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+         </Style>
+      </Styles>
+   </ContentStyles>
+   <FileName>C:\Users\lf_20\Desktop\Template\HoSoDieuDuong\出院病人病情评估表\PhieuDanhGiaBenhNhanXuatVien.xml</FileName>
+   <FileFormat>XML</FileFormat>
+</XTextDocument>

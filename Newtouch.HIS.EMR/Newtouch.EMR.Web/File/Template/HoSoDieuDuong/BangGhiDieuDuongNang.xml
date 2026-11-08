@@ -1,0 +1,1794 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XTextDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" EditorVersionString="1.2015.12.23">
+   <Attributes>
+      <Attribute>
+         <Name>DCLocalDataSource</Name>
+         <Value>&lt;DataSourceDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="DataSource" Name="DataSource" Guid="f4f9a558-0ded-46f9-a6ec-7e941d267104" Title=""&gt;&lt;Parameters /&gt;&lt;Nodes /&gt;&lt;/DataSourceDocument&gt;</Value>
+      </Attribute>
+   </Attributes>
+   <XElements>
+      <Element xsi:type="XTextHeader">
+         <Attributes />
+         <AcceptTab>true</AcceptTab>
+         <EnableValueValidate>true</EnableValueValidate>
+         <XElements>
+            <Element xsi:type="XString">
+               <XElements xsi:nil="true" />
+               <Text>                                </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="1">
+               <XElements xsi:nil="true" />
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XString">
+               <XElements xsi:nil="true" />
+               <Text>        </Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="2">
+               <Attributes />
+               <ID>B0EADC5F-D1A7-4C1D-8BFF-C30B4AB96B89</ID>
+               <ToolTip>Vui lòng nhập tên bệnh viện</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/yymc</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <XElements />
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <EventExpressions />
+               <Name>yymc</Name>
+               <BackgroundText>Tên bệnh viện</BackgroundText>
+               <LastSelectedListItems />
+            </Element>
+            <Element xsi:type="XParagraphFlag" />
+            <Element xsi:type="XString" StyleIndex="3">
+               <XElements xsi:nil="true" />
+               <Text>Phiếu ghi chép điều dưỡng bệnh nặng</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="4" />
+            <Element xsi:type="XString" StyleIndex="5">
+               <XElements xsi:nil="true" />
+               <Text> Khoa:</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="5">
+               <Attributes />
+               <ID>field10</ID>
+               <ToolTip>Mã khoa</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/DeptName</BindingPath>
+               </ValueBinding>
+               <XElements />
+               <BorderElementColor />
+               <EventExpressions />
+               <BackgroundText>Mã khoa</BackgroundText>
+               <LastSelectedListItems />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <XElements xsi:nil="true" />
+               <Text>  Họ tên:</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="5">
+               <Attributes />
+               <ID>field3</ID>
+               <ToolTip>Họ tên</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/xm</BindingPath>
+               </ValueBinding>
+               <XElements />
+               <BorderElementColor />
+               <EventExpressions />
+               <BackgroundText>Họ tên</BackgroundText>
+               <LastSelectedListItems />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <XElements xsi:nil="true" />
+               <Text>  Giới tính:</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="5">
+               <Attributes />
+               <ID>field6</ID>
+               <ToolTip>Giới tính</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/sex</BindingPath>
+                  <AutoUpdate>true</AutoUpdate>
+               </ValueBinding>
+               <XElements />
+               <BorderElementColor />
+               <EventExpressions />
+               <UserEditable>false</UserEditable>
+               <BackgroundText>Giới tính</BackgroundText>
+               <LastSelectedListItems />
+               <FieldSettings>
+                  <EditStyle>DropdownList</EditStyle>
+                  <ListSource>
+                     <Items>
+                        <Item>
+                           <Text>Nam</Text>
+                           <Value>男</Value>
+                        </Item>
+                        <Item>
+                           <Text>Nữ</Text>
+                           <Value>女</Value>
+                        </Item>
+                        <Item>
+                           <Text>Khác</Text>
+                           <Value>其他</Value>
+                        </Item>
+                     </Items>
+                  </ListSource>
+               </FieldSettings>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <XElements xsi:nil="true" />
+               <Text>  Số giường:</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="5">
+               <Attributes />
+               <ID>field9</ID>
+               <ToolTip>Tên giường bệnh</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/BedName</BindingPath>
+                  <AutoUpdate>true</AutoUpdate>
+               </ValueBinding>
+               <XElements />
+               <BorderElementColor />
+               <EventExpressions />
+               <BackgroundText>Tên giường bệnh</BackgroundText>
+               <LastSelectedListItems />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <XElements xsi:nil="true" />
+               <Text>  Số nhập viện: </Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="5">
+               <Attributes />
+               <ID>field5</ID>
+               <ToolTip>Số nhập viện</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/zyh</BindingPath>
+               </ValueBinding>
+               <XElements />
+               <BorderElementColor />
+               <EventExpressions />
+               <BackgroundText>Số nhập viện</BackgroundText>
+               <LastSelectedListItems />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <XElements xsi:nil="true" />
+               <Text>   Chẩn đoán:</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="5">
+               <Attributes />
+               <ID>field8</ID>
+               <ToolTip>Tên chẩn đoán nhập viện</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/zdmc</BindingPath>
+                  <AutoUpdate>true</AutoUpdate>
+               </ValueBinding>
+               <XElements />
+               <BorderElementColor />
+               <EventExpressions />
+               <BackgroundText>Tên chẩn đoán nhập viện</BackgroundText>
+               <LastSelectedListItems />
+            </Element>
+            <Element xsi:type="XString" StyleIndex="5">
+               <XElements xsi:nil="true" />
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" />
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextBody">
+         <Attributes />
+         <AcceptTab>true</AcceptTab>
+         <EnableValueValidate>true</EnableValueValidate>
+         <XElements>
+            <Element xsi:type="XTextTable" NumOfRows="6" NumOfColumns="21">
+               <Attributes />
+               <ID>table1</ID>
+               <EnableValueValidate>true</EnableValueValidate>
+               <Expressions />
+               <XElements>
+                  <Element xsi:type="XTextTableRow">
+                     <Attributes />
+                     <EnableValueValidate>true</EnableValueValidate>
+                     <Expressions />
+                     <XElements>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>      Thời gian</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Thân nhiệt</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text></Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>℃</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Mạch (lần)/phút</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Hô hấp (lần)/phút</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Huyết áp</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>mmHg</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Độ bão hòa oxy</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>%</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Theo dõi điện tim liên tục</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Thở oxy</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>L/phút</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Cấp độ chăm sóc cơ bản</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Hỗ trợ ăn uống</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>/</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Nước</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Vỗ lưng và ho khạc đờm hiệu quả</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Phòng loét do tì đè</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Phòng ngã</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Chăm sóc cơ bản khác</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Chăm sóc chuyên khoa</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Loại ống thông</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>/</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Biện pháp</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Hướng dẫn chăm sóc</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Lượng nước tiểu</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>ml</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Dịch dạ dày</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text></Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>ml</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Theo dõi tình trạng bệnh/Hiệu quả biện pháp chăm sóc</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <XElements xsi:nil="true" />
+                                 <Text>Ký tên</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                        </Element>
+                     </XElements>
+                     <AcceptChildElementTypes2>TableCell</AcceptChildElementTypes2>
+                  </Element>
+                  <Element xsi:type="XTextTableRow">
+                     <Attributes />
+                     <EnableValueValidate>true</EnableValueValidate>
+                     <Expressions />
+                     <XElements>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                     </XElements>
+                     <AcceptChildElementTypes2>TableCell</AcceptChildElementTypes2>
+                  </Element>
+                  <Element xsi:type="XTextTableRow">
+                     <Attributes />
+                     <EnableValueValidate>true</EnableValueValidate>
+                     <Expressions />
+                     <XElements>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                     </XElements>
+                     <AcceptChildElementTypes2>TableCell</AcceptChildElementTypes2>
+                  </Element>
+                  <Element xsi:type="XTextTableRow">
+                     <Attributes />
+                     <EnableValueValidate>true</EnableValueValidate>
+                     <Expressions />
+                     <XElements>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                     </XElements>
+                     <AcceptChildElementTypes2>TableCell</AcceptChildElementTypes2>
+                  </Element>
+                  <Element xsi:type="XTextTableRow">
+                     <Attributes />
+                     <EnableValueValidate>true</EnableValueValidate>
+                     <Expressions />
+                     <XElements>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                     </XElements>
+                     <AcceptChildElementTypes2>TableCell</AcceptChildElementTypes2>
+                  </Element>
+                  <Element xsi:type="XTextTableRow">
+                     <Attributes />
+                     <EnableValueValidate>true</EnableValueValidate>
+                     <Expressions />
+                     <XElements>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="7">
+                           <Attributes />
+                           <EnableValueValidate>true</EnableValueValidate>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="5" />
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>0.1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                     </XElements>
+                     <AcceptChildElementTypes2>TableCell</AcceptChildElementTypes2>
+                  </Element>
+               </XElements>
+               <AcceptChildElementTypes2>TableRow TableColumn</AcceptChildElementTypes2>
+               <Columns>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>403.115784</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>130.885635</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>107.359741</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>109.342857</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>171.810989</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>108.351295</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>91.4948349</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>94.4695053</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>98.43576</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>94.4695053</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>97.4442</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>98.43576</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>87.5286</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>104.385071</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>116.28376</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>116.28376</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>169.827881</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>116.28376</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>91.4948349</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>296.747284</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <Attributes />
+                     <Width>202.5493</Width>
+                  </Element>
+               </Columns>
+            </Element>
+            <Element xsi:type="XParagraphFlag" />
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextFooter">
+         <Attributes />
+         <AcceptTab>true</AcceptTab>
+         <EnableValueValidate>true</EnableValueValidate>
+         <XElements>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6" />
+         </XElements>
+      </Element>
+   </XElements>
+   <RepeatedImages />
+   <GlobalJavaScriptReferences />
+   <Info>
+      <LicenseText>本软件未注册。</LicenseText>
+      <CreationTime>1980-01-01T00:00:00+08:00</CreationTime>
+      <LastModifiedTime>2025-10-27T11:34:19.6783656+08:00</LastModifiedTime>
+      <LastPrintTime>1980-01-01T00:00:00+08:00</LastPrintTime>
+      <Operator>DCSoft.Writer Version:1.2015.12.23</Operator>
+      <NumOfPage>1</NumOfPage>
+   </Info>
+   <BodyText>      Thời gian Thân nhiệt
+℃ Mạch (lần)/phút Hô hấp (lần)/phút Huyết áp
+mmHg Độ bão hòa oxy
+% Theo dõi điện tim liên tục Thở oxy
+L/phút Cấp độ chăm sóc cơ bản
+ Hỗ trợ ăn uống
+/
+Nước Vỗ lưng và ho khạc đờm hiệu quả Phòng loét do tì đè Phòng ngã Chăm sóc cơ bản khác Chăm sóc chuyên khoa Loại ống thông
+/
+Biện pháp Hướng dẫn chăm sóc Lượng nước tiểu
+ml Dịch dạ dày
+ml Theo dõi tình trạng bệnh/Hiệu quả biện pháp chăm sóc Ký tên 
+                                          
+                                          
+                                          
+                                          
+                                          </BodyText>
+   <Comments />
+   <LocalConfig />
+   <PageSettings>
+      <Landscape>true</Landscape>
+   </PageSettings>
+   <UserHistories />
+   <SerializeParameterValue>true</SerializeParameterValue>
+   <Parameters>
+      <Parameter Name="当前时间">
+         <SerializeValue TypeName="System.String,mscorlib" AutoConvertToXMLElement="true">2025-10-27 11:34:12</SerializeValue>
+      </Parameter>
+   </Parameters>
+   <ContentStyles>
+      <Default xsi:type="DocumentContentStyle">
+         <FontName>宋体</FontName>
+         <FontSize>12</FontSize>
+      </Default>
+      <Styles>
+         <Style Index="0">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <Align>Center</Align>
+         </Style>
+         <Style Index="1">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="2">
+            <FontName>宋体</FontName>
+            <FontSize>18</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="3">
+            <FontName>宋体</FontName>
+            <FontSize>14.25</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="4">
+            <FontName>宋体</FontName>
+            <FontSize>14.25</FontSize>
+            <Align>Center</Align>
+         </Style>
+         <Style Index="5">
+            <FontName>宋体</FontName>
+            <FontSize>10.5</FontSize>
+         </Style>
+         <Style Index="6">
+            <FontName>宋体</FontName>
+            <FontSize>7.5</FontSize>
+         </Style>
+         <Style Index="7">
+            <FontName>宋体</FontName>
+            <FontSize>10.5</FontSize>
+            <Bold>true</Bold>
+            <BorderWidth>1</BorderWidth>
+            <BorderLeft>true</BorderLeft>
+            <BorderBottom>true</BorderBottom>
+            <BorderTop>true</BorderTop>
+            <BorderRight>true</BorderRight>
+            <PaddingLeft>15</PaddingLeft>
+            <PaddingTop>10</PaddingTop>
+            <PaddingRight>12.5</PaddingRight>
+            <PaddingBottom>10</PaddingBottom>
+         </Style>
+      </Styles>
+   </ContentStyles>
+   <FileName>C:\Users\lf_20\Desktop\Template\HoSoDieuDuong\BangGhiDieuDuongNang.xml</FileName>
+   <FileFormat>XML</FileFormat>
+</XTextDocument>

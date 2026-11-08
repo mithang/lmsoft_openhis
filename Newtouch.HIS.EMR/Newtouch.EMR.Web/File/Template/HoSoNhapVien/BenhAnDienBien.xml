@@ -1,0 +1,456 @@
+<XTextDocument xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EditorVersionString="1.2023.2.14">
+   <XElements>
+      <Element xsi:type="XTextHeader">
+         <InnerID>1</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XString" StyleIndex="1">
+               <InnerID>1989</InnerID>
+               <Text>新致开源医疗医院</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0">
+               <InnerID>32</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>1990</InnerID>
+               <Text>Hồ sơ bệnh trình</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0">
+               <InnerID>38</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextBody">
+         <InnerID>2</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XInputField">
+               <InnerID>42</InnerID>
+               <ID>txtDate</ID>
+               <ToolTip>Vui lòng nhập ngày</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ContentReadonly>False</ContentReadonly>
+               <XElements>
+                  <Element xsi:type="XString">
+                     <InnerID>2022</InnerID>
+                     <Text>2024-04-08 15:02:57</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <Name>日期</Name>
+               <InnerValue>2024-04-08 15:02:57</InnerValue>
+               <BackgroundText>Ngày</BackgroundText>
+               <EditorActiveMode>MouseClick</EditorActiveMode>
+               <FieldSettings>
+                  <EditStyle>DateTime</EditStyle>
+               </FieldSettings>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>62</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>1991</InnerID>
+               <Text>Bệnh nhân,</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <InnerID>67</InnerID>
+               <ID>555B0059-D165-46B3-9F88-9720672296AF</ID>
+               <ToolTip>Vui lòng nhập họ tên</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/xm</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>xm</Name>
+               <BackgroundText>Họ tên</BackgroundText>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>1992</InnerID>
+               <Text>,</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <InnerID>69</InnerID>
+               <ID>F8D8D127-729E-4113-9BD4-A0C7918C331D</ID>
+               <ToolTip>Vui lòng nhập giới tính</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/sex</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>sex</Name>
+               <BackgroundText>Giới tính</BackgroundText>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>1993</InnerID>
+               <Text>,</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <InnerID>71</InnerID>
+               <ID>ae9f6aa7-e177-414b-8512-6543170291dd</ID>
+               <ToolTip>Vui lòng nhập tuổi</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/nl</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>nl</Name>
+               <BackgroundText>Tuổi</BackgroundText>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>1994</InnerID>
+               <Text>Đau thắt lưng 2 Hơn một tháng.”Vào</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <InnerID>82</InnerID>
+               <ID>712DBF5F-E853-4459-851B-30C61A6F1AD1</ID>
+               <ToolTip>Vui lòng nhập ngày nhập viện</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/ryrq</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>ryrq</Name>
+               <BackgroundText>Ngày nhập viện</BackgroundText>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>1995</InnerID>
+               <Text>Nhập viện.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>86</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>1996</InnerID>
+               <Text>Bệnh nhân kể 2 Hơn một tháng trước, không có nguyên nhân rõ ràng, bắt đầu đau thắt lưng, Chủ yếu đau mỏi, Cơn đau lan dọc từ mông trái xuống mặt sau cẳng chân, Có cảm giác tê lan xuống lòng bàn chân, Khi đi lại, Rõ hơn khi đứng, Không có hiện tượng co giật, Không tiểu nhiều lần, Tiểu gấp, Hiện tượng tiểu buốt và tiểu máu đại thể, Không sốt, Ớn lạnh, Không ho, Ho có đờm, Cũng không tức ngực, Hồi hộp, Đau ngực, Sau khi mắc bệnh, Chưa xử lý đặc biệt, Hôm nay đến khám ngoại trú tại bệnh viện chúng tôi, Phòng khám ngoại trú dự kiến“Thoát vị đĩa đệm thắt lưng” Nhập viện để chẩn đoán và điều trị thêm, Sau khi mắc bệnh, Ăn uống, Giấc ngủ bình thường, Không són đại tiểu tiện, Không có hiện tượng bốc nóng buổi chiều. Trước đây có bệnh cột sống cổ, Tiền sử bệnh cột sống thắt lưng, Thỉnh thoảng đau, Có tiền sử viêm dạ dày, Hiện vẫn đang uống thuốc điều trị. Khám thực thể: T 36.5℃, P 66 lần/phút, R 20 lần/phút, BP 124/80 mmHg. Tỉnh táo, Tinh thần khá, Vẻ mặt bệnh cấp tính, Nói rõ ràng, Hợp tác khi khám, Tư thế tự chủ. Đầu và ngũ quan ngay ngắn, Hai mí mắt không phù, Họng sung huyết（-）, Hai bên amidan không sưng to. Cổ mềm, Không kháng cự, Khí quản ở giữa. Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm. Nhịp tim 66 lần/phút, Nhịp đều, Không nghe thấy tiếng thổi bệnh lý. Bụng mềm, Dưới mũi ức không đau khi ấn và không đau dội ngược, Không sờ thấy gan lách dưới bờ sườn, Vùng gan, Vùng hai thận không đau khi gõ, Âm ruột bình thường. Hai chi dưới không phù. Vận động thắt lưng hạn chế, Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái, Đau khi ấn mông trái, Cơn đau lan xuống mặt sau cẳng chân, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường. Phản xạ sinh lý còn, Không gợi được phản xạ bệnh lý. Sức cơ và trương lực cơ tứ chi bình thường. Cận lâm sàng: Tạm thời chưa có.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="3">
+               <InnerID>620</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>1997</InnerID>
+               <Text>Chẩn đoán sơ bộ</Text>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>1998</InnerID>
+               <Text>: Thoát vị đĩa đệm thắt lưng</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>633</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>1999</InnerID>
+               <Text>Căn cứ chẩn đoán</Text>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2000</InnerID>
+               <Text>: 1, Bệnh nhân trước đây có bệnh cột sống cổ, Tiền sử bệnh cột sống thắt lưng, Thỉnh thoảng đau, Có tiền sử viêm dạ dày, Hiện vẫn đang uống thuốc điều trị. 2 Hơn một tháng trước bắt đầu đau thắt lưng, Chủ yếu đau mỏi, Cơn đau lan dọc từ mông trái xuống mặt sau cẳng chân, Có cảm giác tê lan xuống lòng bàn chân, Khi đi lại, Rõ hơn khi đứng, Không có hiện tượng co giật, Không tiểu nhiều lần, Tiểu gấp, Hiện tượng tiểu buốt và tiểu máu đại thể.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>754</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2001</InnerID>
+               <Text>2, Khám thực thể: T 36.5℃, P 66 lần/phút, R 20 lần/phút, BP 124/80 mmHg. Tỉnh táo, Tinh thần khá, Vẻ mặt bệnh cấp tính, Nói rõ ràng, Hợp tác khi khám, Tư thế tự chủ. Hai mí mắt không phù, Họng sung huyết（-）, Hai bên amidan không sưng to. Cổ mềm, Không kháng cự, Khí quản ở giữa. Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm. Nhịp tim 66 lần/phút, Nhịp đều, Không nghe thấy tiếng thổi bệnh lý. Bụng mềm, Dưới mũi ức không đau khi ấn và không đau dội ngược, Không sờ thấy gan lách dưới bờ sườn, Vùng gan, Vùng hai thận không đau khi gõ, Âm ruột bình thường. Hai chi dưới không phù. Vận động thắt lưng hạn chế, Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái, Đau khi ấn mông trái, Cơn đau lan xuống mặt sau cẳng chân, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="3">
+               <InnerID>1038</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>2002</InnerID>
+               <Text>Chẩn đoán phân biệt</Text>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2003</InnerID>
+               <Text>: 1, Rối loạn khớp sau cột sống thắt lưng: Các mỏm khớp trên-dưới của đốt sống kề nhau tạo thành khớp sau cột sống thắt lưng, Là khớp hoạt dịch, Có thần kinh phân bố. Khi khớp sau, Mối quan hệ giữa mỏm khớp trên và dưới không bình thường, Giai đoạn cấp có thể đau do màng hoạt dịch bị kẹt, Trường hợp mạn tính có thể gây viêm khớp chấn thương khớp sau, Xuất hiện đau thắt lưng. Cơn đau này thường xuất hiện cạnh gai đốt sống 1.5 cm, Có thể đau lan xuống mông cùng bên hoặc mặt sau đùi, Dễ nhầm với thoát vị đĩa đệm thắt lưng. Đau lan của bệnh này thường không vượt quá khớp gối, Và không kèm rối loạn cảm giác, Dấu hiệu tổn thương rễ thần kinh như giảm sức cơ, mất phản xạ.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="3">
+               <InnerID>1225</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2004</InnerID>
+               <Text>2, Hẹp ống sống thắt lưng: Đi khập khiễng cách hồi là triệu chứng nổi bật nhất, Bệnh nhân tự kể sau khi đi bộ một đoạn, Chân mỏi rã rời, Tê, Yếu, Phải ngồi xổm nghỉ rồi mới đi tiếp được. Đạp xe đạp có thể không có triệu chứng. Bệnh nhân kể nhiều triệu chứng nhưng thể trạng ít dấu hiệu, Cũng là đặc điểm quan trọng. Một số ít bệnh nhân có biểu hiện tổn thương thần kinh rễ. Hẹp trung tâm nặng có thể gây són đại tiểu tiện, Chụp tủy sống cản quang dầu iod và CT Chụp cắt lớp và các kiểm tra đặc biệt khác có thể chẩn đoán xác định thêm.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="3">
+               <InnerID>1367</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2005</InnerID>
+               <Text>3, Lao cột sống thắt lưng: Lao cột sống thắt lưng khu trú sớm có thể kích thích rễ thần kinh lân cận, Gây đau thắt lưng và đau lan xuống chi dưới. Lao cột sống thắt lưng có phản ứng toàn thân của bệnh lao, Đau thắt lưng khá dữ dội, Trên phim X-quang thấy hủy đốt sống hoặc cuống đốt sống. CT Chụp cắt lớp đối với Ổ lao khu trú sớm ở đốt sống mà phim X-quang không hiển thị có tác dụng đặc biệt.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="3">
+               <InnerID>1472</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2006</InnerID>
+               <Text>4, U di căn đốt sống : Đau tăng thêm, Nặng hơn vào ban đêm, Thể trạng bệnh nhân suy yếu, Có thể tìm thấy u nguyên phát. Trên phim X-quang thường thấy hủy xương do tiêu xương ở đốt sống.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="3">
+               <InnerID>1522</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2007</InnerID>
+               <Text>5, U màng tủy và u đuôi ngựa: Là bệnh mạn tính tiến triển, Không có hiện tượng đỡ từng đợt hay tự khỏi, Thường són đại tiểu tiện. Protein dịch não tủy tăng, Nghiệm pháp Queckenstedt cho thấy tắc nghẽn. Chụp tủy sống có thể chẩn đoán xác định.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="3">
+               <InnerID>1594</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2008</InnerID>
+               <Text>6, Trên gai, Tổn thương dây chằng liên gai: Thường không có tiền sử chấn thương, Đau thắt lưng lâu ngày không khỏi, Rõ hơn khi cúi lưng, Đôi khi lan xuống vùng cùng cụt hoặc mông, Khi khám, tại chỗ dây chằng tổn thương, gai đốt sống hoặc giữa các gai có đau khi ấn, Nhưng không đỏ, sưng, Có thể thông qua Siêu âm B hoặc MRI Xác nhận.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="4">
+               <InnerID>1675</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>2009</InnerID>
+               <Text>Kế hoạch chẩn đoán và điều trị</Text>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2010</InnerID>
+               <Text>: 1, Hoàn thiện thêm các xét nghiệm liên quan, Như cột sống thắt lưng DR Chụp phim kiểm tra, Như ổ bụng, Hệ tiết niệu, Siêu âm màu phụ khoa, ASO, RF v.v., Để loại trừ và chẩn đoán xác định các bệnh liên quan, Cân nhắc điều trị y học cổ truyền như châm cứu và các điều trị xâm lấn khác, Do đó làm xét nghiệm sàng lọc bệnh lây qua máu 3 hạng mục, Xét nghiệm hai cặp rưỡi viêm gan B;</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="4">
+               <InnerID>1765</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2011</InnerID>
+               <Text>2, Cho thuốc giảm đau, Nuôi dưỡng thần kinh, Châm cứu, Chườm nóng và điều trị hỗ trợ theo triệu chứng;</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="4">
+               <InnerID>1792</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2012</InnerID>
+               <Text>3, Dặn bệnh nhân theo dõi sức khỏe cá nhân và phòng hộ;</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="4">
+               <InnerID>1811</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2013</InnerID>
+               <Text>4, Điều chỉnh phác đồ điều trị theo tình trạng bệnh.                 </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="4">
+               <InnerID>1845</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2014</InnerID>
+               <Text>Phó bác sĩ chủ nhiệm:</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="5">
+               <InnerID>1853</InnerID>
+            </Element>
+            <Element xsi:type="XInputField">
+               <InnerID>1855</InnerID>
+               <ID>txtDate</ID>
+               <ToolTip>Vui lòng nhập ngày</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ContentReadonly>False</ContentReadonly>
+               <XElements>
+                  <Element xsi:type="XString">
+                     <InnerID>2023</InnerID>
+                     <Text>2024-05-27 15:00:55</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <Name>日期</Name>
+               <InnerValue>2024-05-27 15:00:55</InnerValue>
+               <BackgroundText>Ngày</BackgroundText>
+               <EditorActiveMode>MouseClick</EditorActiveMode>
+               <FieldSettings>
+                  <EditStyle>DateTime</EditStyle>
+               </FieldSettings>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2015</InnerID>
+               <Text>            </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>2016</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1888</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="7">
+               <InnerID>2017</InnerID>
+               <Text>Bác sĩ điều trị chính đi buồng</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="8">
+               <InnerID>1896</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2018</InnerID>
+               <Text>Phó bác sĩ chủ nhiệm:</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="5">
+               <InnerID>1904</InnerID>
+            </Element>
+            <Element xsi:type="XInputField">
+               <InnerID>1906</InnerID>
+               <ID>txtDate</ID>
+               <ToolTip>Vui lòng nhập ngày</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ContentReadonly>False</ContentReadonly>
+               <XElements>
+                  <Element xsi:type="XString">
+                     <InnerID>2024</InnerID>
+                     <Text>2024-05-27 15:00:58</Text>
+                  </Element>
+               </XElements>
+               <BorderElementColor />
+               <Name>日期</Name>
+               <InnerValue>2024-05-27 15:00:58</InnerValue>
+               <BackgroundText>Ngày</BackgroundText>
+               <EditorActiveMode>MouseClick</EditorActiveMode>
+               <FieldSettings>
+                  <EditStyle>DateTime</EditStyle>
+               </FieldSettings>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>2019</InnerID>
+               <Text>            </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="7">
+               <InnerID>2020</InnerID>
+               <Text> </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="6">
+               <InnerID>1939</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="7">
+               <InnerID>2021</InnerID>
+               <Text>Phó bác sĩ chủ nhiệm đi buồng</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="8">
+               <InnerID>1948</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextFooter">
+         <InnerID>3</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>40</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+   </XElements>
+   <SerializeParameterValue>true</SerializeParameterValue>
+   <FileName>\File\Template\HoSoNhapVien\BenhAnDienBien.xml</FileName>
+   <FileFormat>xml</FileFormat>
+   <ContentStyles>
+      <Default xsi:type="DocumentContentStyle">
+         <FontName>宋体</FontName>
+         <FontSize>12</FontSize>
+      </Default>
+      <Styles>
+         <Style Index="0">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <Align>Center</Align>
+         </Style>
+         <Style Index="1">
+            <FontName>宋体</FontName>
+            <FontSize>18</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="2">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="3">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <LineSpacingStyle>Space1pt5</LineSpacingStyle>
+            <FirstLineIndent>100</FirstLineIndent>
+         </Style>
+         <Style Index="4">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <LineSpacingStyle>Space1pt5</LineSpacingStyle>
+            <FirstLineIndent>125</FirstLineIndent>
+         </Style>
+         <Style Index="5">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <LineSpacingStyle>Space1pt5</LineSpacingStyle>
+            <FirstLineIndent>1550</FirstLineIndent>
+         </Style>
+         <Style Index="6">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <LineSpacingStyle>Space1pt5</LineSpacingStyle>
+         </Style>
+         <Style Index="7">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <Bold>true</Bold>
+            <Align>Center</Align>
+         </Style>
+         <Style Index="8">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <LineSpacingStyle>Space1pt5</LineSpacingStyle>
+            <Align>Center</Align>
+         </Style>
+      </Styles>
+   </ContentStyles>
+   <Info>
+      <LicenseText>未注册|Unregister</LicenseText>
+      <CreationTime>1980-01-01T00:00:00</CreationTime>
+      <LastModifiedTime>2024-05-27T15:01:53.8028276+08:00</LastModifiedTime>
+      <LastPrintTime>1980-01-01T00:00:00</LastPrintTime>
+      <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
+      <NumOfPage>2</NumOfPage>
+   </Info>
+   <BodyText>2024-04-08 15:02:57
+Bệnh nhân,[],[],[]Đau thắt lưng 2 Hơn một tháng.”Vào[]Nhập viện.
+Bệnh nhân kể 2 Hơn một tháng trước, không có nguyên nhân rõ ràng, bắt đầu đau thắt lưng, Chủ yếu đau mỏi, Cơn đau lan dọc từ mông trái xuống mặt sau cẳng chân, Có cảm giác tê lan xuống lòng bàn chân, Khi đi lại, Rõ hơn khi đứng, Không có hiện tượng co giật, Không tiểu nhiều lần, Tiểu gấp, Hiện tượng tiểu buốt và tiểu máu đại thể, Không sốt, Ớn lạnh, Không ho, Ho có đờm, Cũng không tức ngực, Hồi hộp, Đau ngực, Sau khi mắc bệnh, Chưa xử lý đặc biệt, Hôm nay đến khám ngoại trú tại bệnh viện chúng tôi, Phòng khám ngoại trú dự kiến“Thoát vị đĩa đệm thắt lưng” Nhập viện để chẩn đoán và điều trị thêm, Sau khi mắc bệnh, Ăn uống, Giấc ngủ bình thường, Không són đại tiểu tiện, Không có hiện tượng bốc nóng buổi chiều. Trước đây có bệnh cột sống cổ, Tiền sử bệnh cột sống thắt lưng, Thỉnh thoảng đau, Có tiền sử viêm dạ dày, Hiện vẫn đang uống thuốc điều trị. Khám thực thể: T 36.5℃, P 66 lần/phút, R 20 lần/phút, BP 124/80 mmHg. Tỉnh táo, Tinh thần khá, Vẻ mặt bệnh cấp tính, Nói rõ ràng, Hợp tác khi khám, Tư thế tự chủ. Đầu và ngũ quan ngay ngắn, Hai mí mắt không phù, Họng sung huyết（-）, Hai bên amidan không sưng to. Cổ mềm, Không kháng cự, Khí quản ở giữa. Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm. Nhịp tim 66 lần/phút, Nhịp đều, Không nghe thấy tiếng thổi bệnh lý. Bụng mềm, Dưới mũi ức không đau khi ấn và không đau dội ngược, Không sờ thấy gan lách dưới bờ sườn, Vùng gan, Vùng hai thận không đau khi gõ, Âm ruột bình thường. Hai chi dưới không phù. Vận động thắt lưng hạn chế, Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái, Đau khi ấn mông trái, Cơn đau lan xuống mặt sau cẳng chân, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường. Phản xạ sinh lý còn, Không gợi được phản xạ bệnh lý. Sức cơ và trương lực cơ tứ chi bình thường. Cận lâm sàng: Tạm thời chưa có.
+Chẩn đoán sơ bộ: Thoát vị đĩa đệm thắt lưng
+Căn cứ chẩn đoán: 1, Bệnh nhân trước đây có bệnh cột sống cổ, Tiền sử bệnh cột sống thắt lưng, Thỉnh thoảng đau, Có tiền sử viêm dạ dày, Hiện vẫn đang uống thuốc điều trị. 2 Hơn một tháng trước bắt đầu đau thắt lưng, Chủ yếu đau mỏi, Cơn đau lan dọc từ mông trái xuống mặt sau cẳng chân, Có cảm giác tê lan xuống lòng bàn chân, Khi đi lại, Rõ hơn khi đứng, Không có hiện tượng co giật, Không tiểu nhiều lần, Tiểu gấp, Hiện tượng tiểu buốt và tiểu máu đại thể.
+2, Khám thực thể: T 36.5℃, P 66 lần/phút, R 20 lần/phút, BP 124/80 mmHg. Tỉnh táo, Tinh thần khá, Vẻ mặt bệnh cấp tính, Nói rõ ràng, Hợp tác khi khám, Tư thế tự chủ. Hai mí mắt không phù, Họng sung huyết（-）, Hai bên amidan không sưng to. Cổ mềm, Không kháng cự, Khí quản ở giữa. Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm. Nhịp tim 66 lần/phút, Nhịp đều, Không nghe thấy tiếng thổi bệnh lý. Bụng mềm, Dưới mũi ức không đau khi ấn và không đau dội ngược, Không sờ thấy gan lách dưới bờ sườn, Vùng gan, Vùng hai thận không đau khi gõ, Âm ruột bình thường. Hai chi dưới không phù. Vận động thắt lưng hạn chế, Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái, Đau khi ấn mông trái, Cơn đau lan xuống mặt sau cẳng chân, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường.
+Chẩn đoán phân biệt: 1, Rối loạn khớp sau cột sống thắt lưng: Các mỏm khớp trên-dưới của đốt sống kề nhau tạo thành khớp sau cột sống thắt lưng, Là khớp hoạt dịch, Có thần kinh phân bố. Khi khớp sau, Mối quan hệ giữa mỏm khớp trên và dưới không bình thường, Giai đoạn cấp có thể đau do màng hoạt dịch bị kẹt, Trường hợp mạn tính có thể gây viêm khớp chấn thương khớp sau, Xuất hiện đau thắt lưng. Cơn đau này thường xuất hiện cạnh gai đốt sống 1.5 cm, Có thể đau lan xuống mông cùng bên hoặc mặt sau đùi, Dễ nhầm với thoát vị đĩa đệm thắt lưng. Đau lan của bệnh này thường không vượt quá khớp gối, Và không kèm rối loạn cảm giác, Dấu hiệu tổn thương rễ thần kinh như giảm sức cơ, mất phản xạ.
+2, Hẹp ống sống thắt lưng: Đi khập khiễng cách hồi là triệu chứng nổi bật nhất, Bệnh nhân tự kể sau khi đi bộ một đoạn, Chân mỏi rã rời, Tê, Yếu, Phải ngồi xổm nghỉ rồi mới đi tiếp được. Đạp xe đạp có thể không có triệu chứng. Bệnh nhân kể nhiều triệu chứng nhưng thể trạng ít dấu hiệu, Cũng là đặc điểm quan trọng. Một số ít bệnh nhân có biểu hiện tổn thương thần kinh rễ. Hẹp trung tâm nặng có thể gây són đại tiểu tiện, Chụp tủy sống cản quang dầu iod và CT Chụp cắt lớp và các kiểm tra đặc biệt khác có thể chẩn đoán xác định thêm.
+3, Lao cột sống thắt lưng: Lao cột sống thắt lưng khu trú sớm có thể kích thích rễ thần kinh lân cận, Gây đau thắt lưng và đau lan xuống chi dưới. Lao cột sống thắt lưng có phản ứng toàn thân của bệnh lao, Đau thắt lưng khá dữ dội, Trên phim X-quang thấy hủy đốt sống hoặc cuống đốt sống. CT Chụp cắt lớp đối với Ổ lao khu trú sớm ở đốt sống mà phim X-quang không hiển thị có tác dụng đặc biệt.
+4, U di căn đốt sống : Đau tăng thêm, Nặng hơn vào ban đêm, Thể trạng bệnh nhân suy yếu, Có thể tìm thấy u nguyên phát. Trên phim X-quang thường thấy hủy xương do tiêu xương ở đốt sống.
+5, U màng tủy và u đuôi ngựa: Là bệnh mạn tính tiến triển, Không có hiện tượng đỡ từng đợt hay tự khỏi, Thường són đại tiểu tiện. Protein dịch não tủy tăng, Nghiệm pháp Queckenstedt cho thấy tắc nghẽn. Chụp tủy sống có thể chẩn đoán xác định.
+6, Trên gai, Tổn thương dây chằng liên gai: Thường không có tiền sử chấn thương, Đau thắt lưng lâu ngày không khỏi, Rõ hơn khi cúi lưng, Đôi khi lan xuống vùng cùng cụt hoặc mông, Khi khám, tại chỗ dây chằng tổn thương, gai đốt sống hoặc giữa các gai có đau khi ấn, Nhưng không đỏ, sưng, Có thể thông qua Siêu âm B hoặc MRI Xác nhận.
+Kế hoạch chẩn đoán và điều trị: 1, Hoàn thiện thêm các xét nghiệm liên quan, Như cột sống thắt lưng DR Chụp phim kiểm tra, Như ổ bụng, Hệ tiết niệu, Siêu âm màu phụ khoa, ASO, RF v.v., Để loại trừ và chẩn đoán xác định các bệnh liên quan, Cân nhắc điều trị y học cổ truyền như châm cứu và các điều trị xâm lấn khác, Do đó làm xét nghiệm sàng lọc bệnh lây qua máu 3 hạng mục, Xét nghiệm hai cặp rưỡi viêm gan B;
+2, Cho thuốc giảm đau, Nuôi dưỡng thần kinh, Châm cứu, Chườm nóng và điều trị hỗ trợ theo triệu chứng;
+3, Dặn bệnh nhân theo dõi sức khỏe cá nhân và phòng hộ;
+4, Điều chỉnh phác đồ điều trị theo tình trạng bệnh.                 
+Phó bác sĩ chủ nhiệm:
+2024-05-27 15:00:55             
+Bác sĩ điều trị chính đi buồng
+Phó bác sĩ chủ nhiệm:
+2024-05-27 15:00:58             
+Phó bác sĩ chủ nhiệm đi buồng</BodyText>
+   <LocalConfig />
+   <PageSettings>
+      <PaperKind>Custom</PaperKind>
+      <LeftMargin>47</LeftMargin>
+      <TopMargin>8</TopMargin>
+      <RightMargin>47</RightMargin>
+      <BottomMargin>8</BottomMargin>
+      <StrictUsePageSize>false</StrictUsePageSize>
+   </PageSettings>
+</XTextDocument>

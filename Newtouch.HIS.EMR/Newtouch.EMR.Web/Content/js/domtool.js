@@ -302,7 +302,7 @@ function BuildDCWriterControlFrame() {
                 this.serverPerformances.clientTicks + "ms.";
         }
         //firstFile Tải tài liệu lần đầu
-        AjaxLoad("入院记录.xml");
+        AjaxLoad("NhapVien.xml");
     };
     ctl.ondocumentdblclick = function (eventObject) {
         var input = this.CurrentInputField();

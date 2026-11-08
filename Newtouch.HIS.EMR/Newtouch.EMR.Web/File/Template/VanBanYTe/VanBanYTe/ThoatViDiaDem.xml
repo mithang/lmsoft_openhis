@@ -1,0 +1,911 @@
+<XTextDocument xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EditorVersionString="1.2023.2.14">
+   <InnerID>411</InnerID>
+   <XElements>
+      <Element xsi:type="XTextHeader">
+         <InnerID>1</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XInputField" StyleIndex="1">
+               <InnerID>434</InnerID>
+               <ID>B0EADC5F-D1A7-4C1D-8BFF-C30B4AB96B89</ID>
+               <ToolTip>Vui lòng nhập tên bệnh viện</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/yymc</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>yymc</Name>
+               <BackgroundText>Tên bệnh viện</BackgroundText>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0">
+               <InnerID>435</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>1885</InnerID>
+               <Text>Thoát vị đĩa đệm thắt lưng</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0">
+               <InnerID>442</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextBody">
+         <InnerID>2</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XTextTable" NumOfRows="7" NumOfColumns="2">
+               <InnerID>446</InnerID>
+               <ID>table96</ID>
+               <XElements>
+                  <Element xsi:type="XTextTableRow">
+                     <InnerID>449</InnerID>
+                     <XElements>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1886</InnerID>
+                                 <Text>Họ tên:</Text>
+                              </Element>
+                              <Element xsi:type="XInputField" StyleIndex="4">
+                                 <InnerID>455</InnerID>
+                                 <ID>555B0059-D165-46B3-9F88-9720672296AF</ID>
+                                 <ToolTip>Vui lòng nhập họ tên</ToolTip>
+                                 <EnableValueValidate>true</EnableValueValidate>
+                                 <ValueBinding>
+                                    <DataSource>zy_brjbxx</DataSource>
+                                    <BindingPath>zy_brjbxx/xm</BindingPath>
+                                 </ValueBinding>
+                                 <ContentReadonly>False</ContentReadonly>
+                                 <StartBorderText>[</StartBorderText>
+                                 <EndBorderText>]</EndBorderText>
+                                 <BorderElementColor />
+                                 <Name>xm</Name>
+                                 <BackgroundText>Họ tên</BackgroundText>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1887</InnerID>
+                                 <Text>  Giới tính:</Text>
+                              </Element>
+                              <Element xsi:type="XInputField" StyleIndex="4">
+                                 <InnerID>461</InnerID>
+                                 <ID>F8D8D127-729E-4113-9BD4-A0C7918C331D</ID>
+                                 <ToolTip>Vui lòng nhập giới tính</ToolTip>
+                                 <EnableValueValidate>true</EnableValueValidate>
+                                 <ValueBinding>
+                                    <DataSource>zy_brjbxx</DataSource>
+                                    <BindingPath>zy_brjbxx/sex</BindingPath>
+                                 </ValueBinding>
+                                 <ContentReadonly>False</ContentReadonly>
+                                 <StartBorderText>[</StartBorderText>
+                                 <EndBorderText>]</EndBorderText>
+                                 <BorderElementColor />
+                                 <Name>sex</Name>
+                                 <BackgroundText>Giới tính</BackgroundText>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1888</InnerID>
+                                 <Text>Tuổi:</Text>
+                              </Element>
+                              <Element xsi:type="XInputField" StyleIndex="4">
+                                 <InnerID>465</InnerID>
+                                 <ID>294E8883-886E-4F41-B60C-AA5FCA5DC21E</ID>
+                                 <ToolTip>Vui lòng nhập tuổi</ToolTip>
+                                 <EnableValueValidate>true</EnableValueValidate>
+                                 <ValueBinding>
+                                    <DataSource>zy_brjbxx</DataSource>
+                                    <BindingPath>zy_brjbxx/nl</BindingPath>
+                                 </ValueBinding>
+                                 <ContentReadonly>False</ContentReadonly>
+                                 <StartBorderText>[</StartBorderText>
+                                 <EndBorderText>]</EndBorderText>
+                                 <BorderElementColor />
+                                 <Name>nl</Name>
+                                 <BackgroundText>Tuổi</BackgroundText>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1889</InnerID>
+                                 <Text>Hôn nhân:</Text>
+                              </Element>
+                              <Element xsi:type="XInputField" StyleIndex="4">
+                                 <InnerID>469</InnerID>
+                                 <ID>C563AD89-7F13-4A03-93C1-7CE6E8A55828</ID>
+                                 <ToolTip>Vui lòng nhập tình trạng hôn nhân</ToolTip>
+                                 <EnableValueValidate>true</EnableValueValidate>
+                                 <ValueBinding>
+                                    <DataSource>zy_brjbxx</DataSource>
+                                    <BindingPath>zy_brjbxx/hfzk</BindingPath>
+                                 </ValueBinding>
+                                 <ContentReadonly>False</ContentReadonly>
+                                 <StartBorderText>[</StartBorderText>
+                                 <EndBorderText>]</EndBorderText>
+                                 <BorderElementColor />
+                                 <Name>hfzk</Name>
+                                 <BackgroundText>Tình trạng hôn nhân</BackgroundText>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1890</InnerID>
+                                 <Text>Dân tộc:</Text>
+                              </Element>
+                              <Element xsi:type="XInputField" StyleIndex="4">
+                                 <InnerID>473</InnerID>
+                                 <ID>7154762a-e06e-46a5-83f6-53138cac66e5</ID>
+                                 <ToolTip>Vui lòng nhập dân tộc</ToolTip>
+                                 <EnableValueValidate>true</EnableValueValidate>
+                                 <ValueBinding>
+                                    <DataSource>zy_brjbxx</DataSource>
+                                    <BindingPath>zy_brjbxx/mz</BindingPath>
+                                 </ValueBinding>
+                                 <ContentReadonly>False</ContentReadonly>
+                                 <StartBorderText>[</StartBorderText>
+                                 <EndBorderText>]</EndBorderText>
+                                 <BorderElementColor />
+                                 <Name>mz</Name>
+                                 <BackgroundText>Dân tộc</BackgroundText>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1891</InnerID>
+                                 <Text> Quê quán:</Text>
+                              </Element>
+                              <Element xsi:type="XInputField" StyleIndex="4">
+                                 <InnerID>478</InnerID>
+                                 <ID>5FEBF1BA-577A-410A-B5AF-DDD7080C3B5D</ID>
+                                 <ToolTip>Vui lòng nhập quê quán</ToolTip>
+                                 <EnableValueValidate>true</EnableValueValidate>
+                                 <ValueBinding>
+                                    <DataSource>zy_brjbxx</DataSource>
+                                    <BindingPath>zy_brjbxx/jg</BindingPath>
+                                 </ValueBinding>
+                                 <ContentReadonly>False</ContentReadonly>
+                                 <StartBorderText>[</StartBorderText>
+                                 <EndBorderText>]</EndBorderText>
+                                 <BorderElementColor />
+                                 <Name>jg</Name>
+                                 <BackgroundText>Quê quán</BackgroundText>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>479</InnerID>
+                              </Element>
+                           </XElements>
+                           <ColSpan>2</ColSpan>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <InnerID>1793</InnerID>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1878</InnerID>
+                                 <AutoCreate>true</AutoCreate>
+                              </Element>
+                           </XElements>
+                        </Element>
+                     </XElements>
+                  </Element>
+                  <Element xsi:type="XTextTableRow">
+                     <InnerID>480</InnerID>
+                     <XElements>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <InnerID>1</InnerID>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1892</InnerID>
+                                 <Text>Nơi sinh: </Text>
+                              </Element>
+                              <Element xsi:type="XInputField" StyleIndex="4">
+                                 <InnerID>488</InnerID>
+                                 <ID>A7DB5475-9569-4B25-B786-F34CE41931B1</ID>
+                                 <ToolTip>Vui lòng nhập nơi sinh</ToolTip>
+                                 <EnableValueValidate>true</EnableValueValidate>
+                                 <ValueBinding>
+                                    <DataSource>zy_brjbxx</DataSource>
+                                    <BindingPath>zy_brjbxx/cs_dz</BindingPath>
+                                 </ValueBinding>
+                                 <ContentReadonly>False</ContentReadonly>
+                                 <StartBorderText>[</StartBorderText>
+                                 <EndBorderText>]</EndBorderText>
+                                 <BorderElementColor />
+                                 <Name>cs_dz</Name>
+                                 <BackgroundText>Nơi sinh</BackgroundText>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1893</InnerID>
+                                 <Text>                   Nơi đăng ký hộ khẩu:</Text>
+                              </Element>
+                              <Element xsi:type="XInputField" StyleIndex="4">
+                                 <InnerID>514</InnerID>
+                                 <ID>C455D928-0AB2-4619-BF7E-C2F6FB3CDA05</ID>
+                                 <ToolTip>Vui lòng nhập địa chỉ hộ khẩu</ToolTip>
+                                 <EnableValueValidate>true</EnableValueValidate>
+                                 <ValueBinding>
+                                    <DataSource>zy_brjbxx</DataSource>
+                                    <BindingPath>zy_brjbxx/hu_dz</BindingPath>
+                                 </ValueBinding>
+                                 <ContentReadonly>False</ContentReadonly>
+                                 <StartBorderText>[</StartBorderText>
+                                 <EndBorderText>]</EndBorderText>
+                                 <BorderElementColor />
+                                 <Name>hu_dz</Name>
+                                 <BackgroundText>Địa chỉ hộ khẩu</BackgroundText>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>515</InnerID>
+                              </Element>
+                           </XElements>
+                           <ColSpan>2</ColSpan>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <InnerID>1794</InnerID>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1879</InnerID>
+                                 <AutoCreate>true</AutoCreate>
+                              </Element>
+                           </XElements>
+                        </Element>
+                     </XElements>
+                  </Element>
+                  <Element xsi:type="XTextTableRow">
+                     <InnerID>516</InnerID>
+                     <XElements>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <InnerID>2</InnerID>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1894</InnerID>
+                                 <Text>Nghề nghiệp:</Text>
+                              </Element>
+                              <Element xsi:type="XInputField" StyleIndex="4">
+                                 <InnerID>522</InnerID>
+                                 <ID>2643AA52-0024-459E-950E-AFA6903F2F26</ID>
+                                 <ToolTip>Vui lòng nhập nghề nghiệp</ToolTip>
+                                 <EnableValueValidate>true</EnableValueValidate>
+                                 <ValueBinding>
+                                    <DataSource>zy_brjbxx</DataSource>
+                                    <BindingPath>zy_brjbxx/zy</BindingPath>
+                                 </ValueBinding>
+                                 <ContentReadonly>False</ContentReadonly>
+                                 <StartBorderText>[</StartBorderText>
+                                 <EndBorderText>]</EndBorderText>
+                                 <BorderElementColor />
+                                 <Name>zy</Name>
+                                 <BackgroundText>Nghề nghiệp</BackgroundText>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1895</InnerID>
+                                 <Text>                        Đơn vị:</Text>
+                              </Element>
+                              <Element xsi:type="XInputField" StyleIndex="4">
+                                 <InnerID>550</InnerID>
+                                 <ID>16C4857E-FABD-4088-B917-8A0652E6F282</ID>
+                                 <ToolTip>Vui lòng nhập nơi làm việc và địa chỉ</ToolTip>
+                                 <EnableValueValidate>true</EnableValueValidate>
+                                 <ValueBinding>
+                                    <DataSource>zy_brjbxx</DataSource>
+                                    <BindingPath>zy_brjbxx/dwmc</BindingPath>
+                                 </ValueBinding>
+                                 <ContentReadonly>False</ContentReadonly>
+                                 <StartBorderText>[</StartBorderText>
+                                 <EndBorderText>]</EndBorderText>
+                                 <BorderElementColor />
+                                 <Name>dwmc</Name>
+                                 <BackgroundText>Nơi làm việc và địa chỉ</BackgroundText>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>551</InnerID>
+                              </Element>
+                           </XElements>
+                           <ColSpan>2</ColSpan>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <InnerID>1795</InnerID>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1880</InnerID>
+                                 <AutoCreate>true</AutoCreate>
+                              </Element>
+                           </XElements>
+                        </Element>
+                     </XElements>
+                  </Element>
+                  <Element xsi:type="XTextTableRow">
+                     <InnerID>552</InnerID>
+                     <XElements>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <InnerID>3</InnerID>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1896</InnerID>
+                                 <Text>Điện thoại:</Text>
+                              </Element>
+                              <Element xsi:type="XInputField" StyleIndex="4">
+                                 <InnerID>558</InnerID>
+                                 <ID>7D5FA4FF-6B7E-4A59-BC32-63E30BEF69DA</ID>
+                                 <ToolTip>Vui lòng nhập số điện thoại liên hệ</ToolTip>
+                                 <EnableValueValidate>true</EnableValueValidate>
+                                 <ValueBinding>
+                                    <DataSource>zy_brjbxx</DataSource>
+                                    <BindingPath>zy_brjbxx/phone</BindingPath>
+                                 </ValueBinding>
+                                 <ContentReadonly>False</ContentReadonly>
+                                 <StartBorderText>[</StartBorderText>
+                                 <EndBorderText>]</EndBorderText>
+                                 <BorderElementColor />
+                                 <Name>phone</Name>
+                                 <BackgroundText>Số điện thoại liên hệ</BackgroundText>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1897</InnerID>
+                                 <Text>                    Số chứng minh nhân dân:</Text>
+                              </Element>
+                              <Element xsi:type="XInputField" StyleIndex="4">
+                                 <InnerID>585</InnerID>
+                                 <ID>136BF164-1893-4DB6-8F4A-3AF2A965681E</ID>
+                                 <ToolTip>Vui lòng nhập số chứng minh nhân dân</ToolTip>
+                                 <EnableValueValidate>true</EnableValueValidate>
+                                 <ValueBinding>
+                                    <DataSource>zy_brjbxx</DataSource>
+                                    <BindingPath>zy_brjbxx/sfzh</BindingPath>
+                                 </ValueBinding>
+                                 <ContentReadonly>False</ContentReadonly>
+                                 <StartBorderText>[</StartBorderText>
+                                 <EndBorderText>]</EndBorderText>
+                                 <BorderElementColor />
+                                 <Name>sfzh</Name>
+                                 <BackgroundText>Số chứng minh nhân dân</BackgroundText>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>586</InnerID>
+                              </Element>
+                           </XElements>
+                           <ColSpan>2</ColSpan>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <InnerID>1796</InnerID>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1881</InnerID>
+                                 <AutoCreate>true</AutoCreate>
+                              </Element>
+                           </XElements>
+                        </Element>
+                     </XElements>
+                  </Element>
+                  <Element xsi:type="XTextTableRow">
+                     <InnerID>587</InnerID>
+                     <XElements>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <InnerID>4</InnerID>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1898</InnerID>
+                                 <Text>Địa chỉ chi tiết:</Text>
+                              </Element>
+                              <Element xsi:type="XInputField" StyleIndex="4">
+                                 <InnerID>595</InnerID>
+                                 <ID>6DD143BF-A26A-4487-A264-2F4D1370789C</ID>
+                                 <ToolTip>Vui lòng nhập địa chỉ hiện tại</ToolTip>
+                                 <EnableValueValidate>true</EnableValueValidate>
+                                 <ValueBinding>
+                                    <DataSource>zy_brjbxx</DataSource>
+                                    <BindingPath>zy_brjbxx/xian_dz</BindingPath>
+                                 </ValueBinding>
+                                 <ContentReadonly>False</ContentReadonly>
+                                 <StartBorderText>[</StartBorderText>
+                                 <EndBorderText>]</EndBorderText>
+                                 <BorderElementColor />
+                                 <Name>xian_dz</Name>
+                                 <BackgroundText>Địa chỉ hiện tại</BackgroundText>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>596</InnerID>
+                              </Element>
+                           </XElements>
+                           <ColSpan>2</ColSpan>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <InnerID>1797</InnerID>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1882</InnerID>
+                                 <AutoCreate>true</AutoCreate>
+                              </Element>
+                           </XElements>
+                        </Element>
+                     </XElements>
+                  </Element>
+                  <Element xsi:type="XTextTableRow">
+                     <InnerID>597</InnerID>
+                     <XElements>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <InnerID>5</InnerID>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1899</InnerID>
+                                 <Text>Ngày nhập viện:</Text>
+                              </Element>
+                              <Element xsi:type="XInputField" StyleIndex="4">
+                                 <InnerID>605</InnerID>
+                                 <ID>712DBF5F-E853-4459-851B-30C61A6F1AD1</ID>
+                                 <ToolTip>Vui lòng nhập ngày nhập viện</ToolTip>
+                                 <EnableValueValidate>true</EnableValueValidate>
+                                 <ValueBinding>
+                                    <DataSource>zy_brjbxx</DataSource>
+                                    <BindingPath>zy_brjbxx/ryrq</BindingPath>
+                                 </ValueBinding>
+                                 <ContentReadonly>False</ContentReadonly>
+                                 <StartBorderText>[</StartBorderText>
+                                 <EndBorderText>]</EndBorderText>
+                                 <BorderElementColor />
+                                 <Name>ryrq</Name>
+                                 <BackgroundText>Ngày nhập viện</BackgroundText>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1900</InnerID>
+                                 <Text>                Người trình bày bệnh sử:</Text>
+                              </Element>
+                              <Element xsi:type="XInputField" StyleIndex="4">
+                                 <InnerID>628</InnerID>
+                                 <ID>2000002104</ID>
+                                 <ToolTip>Vui lòng nhập tên người trình bày bệnh sử</ToolTip>
+                                 <EnableValueValidate>true</EnableValueValidate>
+                                 <ValueBinding>
+                                    <DataSource>-</DataSource>
+                                    <BindingPath>-/emr_2000002104</BindingPath>
+                                 </ValueBinding>
+                                 <ContentReadonly>False</ContentReadonly>
+                                 <StartBorderText>[</StartBorderText>
+                                 <EndBorderText>]</EndBorderText>
+                                 <BorderElementColor />
+                                 <Name>emr_2000002104</Name>
+                                 <BackgroundText>Tên người trình bày bệnh sử</BackgroundText>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>629</InnerID>
+                              </Element>
+                           </XElements>
+                           <ColSpan>2</ColSpan>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <InnerID>1798</InnerID>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1883</InnerID>
+                                 <AutoCreate>true</AutoCreate>
+                              </Element>
+                           </XElements>
+                        </Element>
+                     </XElements>
+                  </Element>
+                  <Element xsi:type="XTextTableRow">
+                     <InnerID>630</InnerID>
+                     <XElements>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <InnerID>6</InnerID>
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <InnerID>1901</InnerID>
+                                 <Text>Triệu chứng chính:</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1902</InnerID>
+                                 <Text>Đau thắt lưng 2 Hơn một tháng.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="6">
+                                 <InnerID>644</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <InnerID>1903</InnerID>
+                                 <Text>Bệnh sử hiện tại:</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1904</InnerID>
+                                 <Text>Bệnh nhân kể</Text>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1905</InnerID>
+                                 <Text>2 Hơn một tháng trước, không có nguyên nhân rõ ràng, bắt đầu xuất hiện</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1906</InnerID>
+                                 <Text>Không có nước tiểu “Thoát vị đĩa đệm thắt lưng” Nhập viện để chẩn đoán và điều trị thêm, Sau khi mắc bệnh, Ăn uống, Giấc ngủ bình thường, Không són đại tiểu tiện, Không có hiện tượng bốc nóng buổi chiều.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="7">
+                                 <InnerID>710</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <InnerID>1907</InnerID>
+                                 <Text>Tiền sử:</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1908</InnerID>
+                                 <Text>Trước đây có bệnh cột sống cổ, Tiền sử bệnh cột sống thắt lưng, Thỉnh thoảng đau, Có tiền sử viêm dạ dày, Hiện vẫn đang uống thuốc điều trị. Phủ nhận có tăng huyết áp, Bệnh mạch vành, Tiền sử bệnh tim, Phủ nhận có viêm gan, Tiền sử lao và các bệnh truyền nhiễm khác. Không có thuốc, Tiền sử dị ứng thức ăn. Tiền sử tiêm chủng chưa rõ.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="7">
+                                 <InnerID>796</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <InnerID>1909</InnerID>
+                                 <Text>Tiền sử cá nhân</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1910</InnerID>
+                                 <Text>: Sinh ra và lớn lên tại quê quán, Không có tiền sử cư trú dài hạn ở nơi khác. Luôn làm nông ở nhà, Phủ nhận từng đến vùng dịch, Không có thói quen hút thuốc, uống rượu. Phủ nhận có tiền sử quan hệ tình dục không an toàn. Đã tiêm tại điểm tiêm chủng lớn ở thị trấn Thành Sương 3 liều vắc-xin COVID-19.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="7">
+                                 <InnerID>868</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <InnerID>1911</InnerID>
+                                 <Text>Tiền sử kinh nguyệt và sinh đẻ:</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1912</InnerID>
+                                 <Text>14 ngày, Đã mãn kinh, Không có tiền sử đau bụng kinh. Đã kết hôn, Vợ/chồng, Con cái đều khỏe mạnh.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="7">
+                                 <InnerID>902</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <InnerID>1913</InnerID>
+                                 <Text>Tiền sử gia đình:</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1914</InnerID>
+                                 <Text>Cha mẹ còn sống, Không phải kết hôn cận huyết, Trong gia đình không có tiền sử bệnh di truyền.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="7">
+                                 <InnerID>928</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1915</InnerID>
+                                 <Text>                             </Text>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1916</InnerID>
+                                 <Text>   </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="8">
+                                 <InnerID>1917</InnerID>
+                                 <Text>Khám thực thể</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="7">
+                                 <InnerID>966</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1918</InnerID>
+                                 <Text>     T 36.5℃, P 66 lần/phút, R 20 lần/phút, BP 124/80 mmHg. Cân nặng 37 kg, Chiều cao 152 cm.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="7">
+                                 <InnerID>1028</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1919</InnerID>
+                                 <Text>一</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="2">
+                                 <InnerID>1920</InnerID>
+                                 <Text>Tình trạng chung:</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1921</InnerID>
+                                 <Text>Phát triển bình thường, Dinh dưỡng trung bình. Tỉnh táo, Tinh thần khá, Vẻ mặt bệnh cấp tính, Nói rõ ràng, Tư thế tự chủ, Hợp tác khi khám.</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="2">
+                                 <InnerID>1922</InnerID>
+                                 <Text>Da và niêm mạc</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1923</InnerID>
+                                 <Text>: Da đàn hồi tốt, Khô. Da và niêm mạc toàn thân không vàng, Không có nốt dưới da và ban da, Không có điểm xuất huyết dưới da, Không có nốt ruồi nhện,</Text>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1924</InnerID>
+                                 <Text>Sẹo, Loét.</Text>
+                              </Element>
+                              <Element xsi:type="XLineBreak">
+                                 <InnerID>1123</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="2">
+                                 <InnerID>1925</InnerID>
+                                 <Text>Hạch bạch huyết:</Text>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1926</InnerID>
+                                 <Text>Không sờ thấy hạch bạch huyết nông toàn thân sưng to.</Text>
+                              </Element>
+                              <Element xsi:type="XLineBreak">
+                                 <InnerID>1141</InnerID>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1927</InnerID>
+                                 <Text>Đầu và các cơ quan vùng đầu: 3.0 mm, Với ánh sáng</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1928</InnerID>
+                                 <Text>Họng sung huyết（</Text>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1929</InnerID>
+                                 <Text>-）, Thành sau họng không sung huyết, không có nang, Hai bên amidan không sưng to.</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="2">
+                                 <InnerID>1930</InnerID>
+                                 <Text>Cổ</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1931</InnerID>
+                                 <Text>: Hai bên đối xứng, Mềm, Không kháng cự. Khí quản ở giữa, Tuyến giáp không to. Không nghe thấy tiếng thổi mạch máu. Không có tĩnh mạch cổ nổi căng.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1224</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="2">
+                                 <InnerID>1932</InnerID>
+                                 <Text>Ngực</Text>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1933</InnerID>
+                                 <Text>: Lồng ngực: Hai bên đối xứng, không dị dạng, Không có ngực hình thùng. Không</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1934</InnerID>
+                                 <Text>               Phổi: Tần số hô hấp 20 lần/phút, Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1290</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="2">
+                                 <InnerID>1935</InnerID>
+                                 <Text>Tim:</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1936</InnerID>
+                                 <Text>Vùng trước tim không nhô lên, nhịp tim 66 lần/phút, Nhịp đều, Không nghe thấy tiếng thổi bệnh lý.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1321</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="2">
+                                 <InnerID>1937</InnerID>
+                                 <Text>Mạch máu ngoại vi:</Text>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1938</InnerID>
+                                 <Text>Không phát hiện đập bất thường của mao mạch, Không có tiếng thổi mạch máu.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1346</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="2">
+                                 <InnerID>1939</InnerID>
+                                 <Text>Bụng:</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1940</InnerID>
+                                 <Text>Bụng mềm, Không đau khi ấn và không đau dội ngược, Không sờ thấy gan lách dưới bờ sườn, Vùng gan, Vùng hai thận không đau khi gõ, Âm ruột bình thường. Cơ quan sinh dục ngoài, Hậu môn, Tầng sinh môn: Chưa khám.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1400</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="2">
+                                 <InnerID>1941</InnerID>
+                                 <Text>Cột sống và tứ chi</Text>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1942</InnerID>
+                                 <Text>:</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="4">
+                                 <InnerID>1943</InnerID>
+                                 <Text>Cột sống và tứ chi không dị dạng, Hai chi dưới không phù. Vận động thắt lưng hạn chế, Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái, Đau khi ấn mông trái, Cơn đau lan xuống mặt sau cẳng chân, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường. Hệ thần kinh: Phản xạ sinh lý còn, Không gợi được phản xạ bệnh lý. Sức cơ và trương lực cơ tứ chi bình thường. Tình trạng chuyên khoa: Vận động thắt lưng hạn chế, Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái, Đau khi ấn mông trái, Cơn đau lan xuống mặt sau cẳng chân, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1647</InnerID>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1944</InnerID>
+                                 <Text>                             </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="2">
+                                 <InnerID>1945</InnerID>
+                                 <Text>Cận lâm sàng</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1682</InnerID>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1946</InnerID>
+                                 <Text>Tạm thời chưa có.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="7">
+                                 <InnerID>1687</InnerID>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1947</InnerID>
+                                 <Text>Chẩn đoán sơ bộ: Thoát vị đĩa đệm thắt lưng</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="9">
+                                 <InnerID>1700</InnerID>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1948</InnerID>
+                                 <Text>Phân loại ca bệnh lúc nhập viện:              </Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="6">
+                                 <InnerID>1724</InnerID>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1949</InnerID>
+                                 <Text>                        Bác sĩ điều trị chính:</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="6">
+                                 <InnerID>1755</InnerID>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1950</InnerID>
+                                 <Text>                  2024 năm 03 tháng 19 ngày  8 PM</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag" StyleIndex="10">
+                                 <InnerID>1791</InnerID>
+                              </Element>
+                           </XElements>
+                           <ColSpan>2</ColSpan>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="3">
+                           <InnerID>1799</InnerID>
+                           <XElements>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1884</InnerID>
+                                 <AutoCreate>true</AutoCreate>
+                              </Element>
+                           </XElements>
+                        </Element>
+                     </XElements>
+                  </Element>
+               </XElements>
+               <Columns>
+                  <Element xsi:type="XTextTableColumn">
+                     <InnerID>447</InnerID>
+                     <Width>940.625</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <InnerID>448</InnerID>
+                     <Width>940.625</Width>
+                  </Element>
+               </Columns>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>1800</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextFooter">
+         <InnerID>3</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>444</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+   </XElements>
+   <SerializeParameterValue>true</SerializeParameterValue>
+   <FileName>\File\Template\VanBanYTe\VanBanYTe\ThoatViDiaDem.xml</FileName>
+   <FileFormat>xml</FileFormat>
+   <ContentStyles>
+      <Default xsi:type="DocumentContentStyle">
+         <FontName>宋体</FontName>
+         <FontSize>12</FontSize>
+      </Default>
+      <Styles>
+         <Style Index="0">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <Align>Center</Align>
+         </Style>
+         <Style Index="1">
+            <FontName>宋体</FontName>
+            <FontSize>18</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="2">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="3">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <BorderWidth>1</BorderWidth>
+            <BorderLeft>true</BorderLeft>
+            <BorderBottom>true</BorderBottom>
+            <BorderTop>true</BorderTop>
+            <BorderRight>true</BorderRight>
+            <PaddingLeft>12.5</PaddingLeft>
+            <PaddingTop>9.375</PaddingTop>
+            <PaddingRight>12.5</PaddingRight>
+            <PaddingBottom>9.375</PaddingBottom>
+         </Style>
+         <Style Index="4">
+            <FontName>宋体</FontName>
+            <FontSize>10.5</FontSize>
+         </Style>
+         <Style Index="5">
+            <FontName>宋体</FontName>
+            <FontSize>10.5</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="6">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <LineSpacingStyle>Space1pt5</LineSpacingStyle>
+         </Style>
+         <Style Index="7">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <LineSpacingStyle>Space1pt5</LineSpacingStyle>
+            <FirstLineIndent>-100</FirstLineIndent>
+            <LeftIndent>100</LeftIndent>
+         </Style>
+         <Style Index="8">
+            <FontName>黑体</FontName>
+            <FontSize>12</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="9">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <LineSpacingStyle>Space1pt5</LineSpacingStyle>
+            <FirstLineIndent>100</FirstLineIndent>
+         </Style>
+         <Style Index="10">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <LineSpacingStyle>Space1pt5</LineSpacingStyle>
+            <FirstLineIndent>125</FirstLineIndent>
+         </Style>
+      </Styles>
+   </ContentStyles>
+   <Info>
+      <LicenseText>未注册|Unregister</LicenseText>
+      <CreationTime>1980-01-01T00:00:00</CreationTime>
+      <LastModifiedTime>2025-02-13T11:22:05.7045129+08:00</LastModifiedTime>
+      <LastPrintTime>1980-01-01T00:00:00</LastPrintTime>
+      <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
+      <NumOfPage>2</NumOfPage>
+   </Info>
+   <BodyText>Họ tên:[]  Giới tính:[]Tuổi:[]Hôn nhân:[]Dân tộc:[] Quê quán:[] 
+Nơi sinh: []                   Nơi đăng ký hộ khẩu:[] 
+Nghề nghiệp:[]                        Đơn vị:[] 
+Điện thoại:[]                    Số chứng minh nhân dân:[] 
+Địa chỉ chi tiết:[] 
+Ngày nhập viện:[]                Người trình bày bệnh sử:[] 
+Triệu chứng chính: Đau thắt lưng 2 Hơn một tháng.
+Bệnh sử hiện tại: Bệnh nhân kể 2个多月前无明显诱因下开无尿“Thoát vị đĩa đệm thắt lưng” Nhập viện để chẩn đoán và điều trị thêm, Sau khi mắc bệnh, Ăn uống, Giấc ngủ bình thường, Không són đại tiểu tiện, Không có hiện tượng bốc nóng buổi chiều.
+Tiền sử: Trước đây có bệnh cột sống cổ, Tiền sử bệnh cột sống thắt lưng, Thỉnh thoảng đau, Có tiền sử viêm dạ dày, Hiện vẫn đang uống thuốc điều trị. Phủ nhận có tăng huyết áp, Bệnh mạch vành, Tiền sử bệnh tim, Phủ nhận có viêm gan, Tiền sử lao và các bệnh truyền nhiễm khác. Không có thuốc, Tiền sử dị ứng thức ăn. Tiền sử tiêm chủng chưa rõ.
+Tiền sử cá nhân: Sinh ra và lớn lên tại quê quán, Không có tiền sử cư trú dài hạn ở nơi khác. Luôn làm nông ở nhà, Phủ nhận từng đến vùng dịch, Không có thói quen hút thuốc, uống rượu. Phủ nhận có tiền sử quan hệ tình dục không an toàn. Đã tiêm tại điểm tiêm chủng lớn ở thị trấn Thành Sương 3 liều vắc-xin COVID-19.
+Tiền sử kinh nguyệt và sinh đẻ: 14 ngày, Đã mãn kinh, Không có tiền sử đau bụng kinh. Đã kết hôn, Vợ/chồng, Con cái đều khỏe mạnh.
+Tiền sử gia đình: Cha mẹ còn sống, Không phải kết hôn cận huyết, Trong gia đình không có tiền sử bệnh di truyền.
+                                Khám thực thể
+     T 36.5℃, P 66 lần/phút, R 20 lần/phút, BP 124/80 mmHg. Cân nặng 37 kg, Chiều cao 152 cm.
+Tình trạng chung: Phát triển bình thường, Dinh dưỡng trung bình. Tỉnh táo, Tinh thần khá, Vẻ mặt bệnh cấp tính, Nói rõ ràng, Tư thế tự chủ, Hợp tác khi khám. Da và niêm mạc: Da đàn hồi tốt, Khô. Da và niêm mạc toàn thân không vàng, Không có nốt dưới da và ban da, Không có điểm xuất huyết dưới da, Không có nốt ruồi nhện, Sẹo, Loét.
+Hạch bạch huyết: Không sờ thấy hạch bạch huyết nông toàn thân sưng to.
+Đầu và các cơ quan vùng đầu: 3.0 mm,对光咽充血（-）, Thành sau họng không sung huyết, không có nang, Hai bên amidan không sưng to. Cổ: Hai bên đối xứng, Mềm, Không kháng cự. Khí quản ở giữa, Tuyến giáp không to. Không nghe thấy tiếng thổi mạch máu. Không có tĩnh mạch cổ nổi căng.
+Ngực: Lồng ngực: Hai bên đối xứng, không dị dạng, Không có ngực hình thùng. Không               Phổi: Tần số hô hấp 20 lần/phút, Âm thở hai phổi trong, Không nghe thấy ran khô, ran ẩm.
+Tim: Vùng trước tim không nhô lên, nhịp tim 66 lần/phút, Nhịp đều, Không nghe thấy tiếng thổi bệnh lý.
+Mạch máu ngoại vi: Không phát hiện đập bất thường của mao mạch, Không có tiếng thổi mạch máu.
+Bụng: Bụng mềm, Không đau khi ấn và không đau dội ngược, Không sờ thấy gan lách dưới bờ sườn, Vùng gan, Vùng hai thận không đau khi gõ, Âm ruột bình thường. Cơ quan sinh dục ngoài, Hậu môn, Tầng sinh môn: Chưa khám.
+Cột sống và tứ chi: Cột sống và tứ chi không dị dạng, Hai chi dưới không phù. Vận động thắt lưng hạn chế, Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái, Đau khi ấn mông trái, Cơn đau lan xuống mặt sau cẳng chân, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường. Hệ thần kinh: Phản xạ sinh lý còn, Không gợi được phản xạ bệnh lý. Sức cơ và trương lực cơ tứ chi bình thường. Tình trạng chuyên khoa: Vận động thắt lưng hạn chế, Thân đốt sống thắt lưng, Đau khi ấn khe liên đốt sống（-）, Đau khi ấn cơ cạnh cột sống bên trái, Đau khi ấn mông trái, Cơn đau lan xuống mặt sau cẳng chân, Nghiệm pháp nâng thẳng hai chân（Bên trái 70°, Bên phải 70°）và nghiệm pháp tăng cường（-）,“4”字征（-）, Phản xạ gân gối, gân gót bình thường.
+                             Cận lâm sàng
+Tạm thời chưa có.
+Chẩn đoán sơ bộ: Thoát vị đĩa đệm thắt lưng
+Phân loại ca bệnh lúc nhập viện:              
+                        Bác sĩ điều trị chính:
+                  2024 năm 03 tháng 19 ngày  8 PM </BodyText>
+   <LocalConfig />
+   <PageSettings>
+      <StrictUsePageSize>false</StrictUsePageSize>
+   </PageSettings>
+</XTextDocument>

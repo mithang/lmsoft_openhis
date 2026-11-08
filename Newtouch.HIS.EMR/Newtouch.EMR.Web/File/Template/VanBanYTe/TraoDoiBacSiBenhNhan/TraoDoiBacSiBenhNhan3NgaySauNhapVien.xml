@@ -1,0 +1,295 @@
+<XTextDocument xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EditorVersionString="1.2023.2.14">
+   <InnerID>648</InnerID>
+   <XElements>
+      <Element xsi:type="XTextHeader">
+         <InnerID>649</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XInputField" StyleIndex="1">
+               <InnerID>671</InnerID>
+               <ID>B0EADC5F-D1A7-4C1D-8BFF-C30B4AB96B89</ID>
+               <ToolTip>Vui lòng nhập tên bệnh viện</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/yymc</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>yymc</Name>
+               <BackgroundText>Tên bệnh viện</BackgroundText>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0">
+               <InnerID>672</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>1335</InnerID>
+               <Text>Trao đổi giữa bác sĩ và bệnh nhân sau 3 ngày nhập viện</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0">
+               <InnerID>682</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>1336</InnerID>
+               <Text>Họ tên:</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <InnerID>687</InnerID>
+               <ID>555B0059-D165-46B3-9F88-9720672296AF</ID>
+               <ToolTip>Vui lòng nhập họ tên</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/xm</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>xm</Name>
+               <BackgroundText>Họ tên</BackgroundText>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>1337</InnerID>
+               <Text>     Khoa:</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <InnerID>696</InnerID>
+               <ID>05851fea-e7a2-4ada-969c-76b7d0403c10</ID>
+               <ToolTip>Vui lòng nhập tên khoa</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/DeptName</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>DeptName</Name>
+               <BackgroundText>Tên khoa</BackgroundText>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>1338</InnerID>
+               <Text>      Số giường:</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <InnerID>706</InnerID>
+               <ID>47C322C6-9098-4D54-9F8A-C726F1BE8CC1</ID>
+               <ToolTip>Vui lòng nhập số giường</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/BedName</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>BedName</Name>
+               <BackgroundText>Số giường</BackgroundText>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>1339</InnerID>
+               <Text>      Số nhập viện:</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <InnerID>717</InnerID>
+               <ID>6C1F42F9-EB78-43E1-AF32-18795C4E2303</ID>
+               <ToolTip>Vui lòng nhập số nhập viện</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/zyh</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>zyh</Name>
+               <BackgroundText>Số nhập viện</BackgroundText>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>1340</InnerID>
+               <Text>  </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0">
+               <InnerID>720</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextBody">
+         <InnerID>650</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XString" StyleIndex="3">
+               <InnerID>1341</InnerID>
+               <Text>Kết quả chẩn đoán xác định: 1. Thoát vị đĩa đệm cột sống cổ kèm bệnh lý rễ thần kinh 2. Đau thắt ngực ổn định&amp;心功龍口级玄冠状动腺粥桦硬化性心脏病5,2 Đái tháo đường tuýp 6,髙齟固薛血症</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>785</InnerID>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>788</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="3">
+               <InnerID>1342</InnerID>
+               <Text>Phương án kiểm tra thêm và điều trị:患眷入随后完善相关检査，頸檢间盘 CT cho thấy; C3/4 C4/5 C3/5 Thoát vị đĩa đệm 2. Gai xương cột sống cổ 3,脚椎骨園増生。脚部 DR cho thấy: Vân phổi hai bên tăng đậm,姑合临床.Siêu âm tim cho thấy: Chức năng tâm trương thất trái giảm. Điện tâm đồ cho thấy: Nhịp tim chậm xoang, Điện tâm đồ gần như bình thường. Xét nghiệm nước tiểu thường quy! Glucose 2+tnwl/L,生化苗葡糖10,47 mdo 1/L,低密度脂蚩白胆阖薛4,94 minol/L, Tỉ lệ albumin/globulin 2.&amp;Cholesterol toàn phần 7,92 wnnol/L. Theo tình trạng bệnh, cho thuốc cải thiện tuần hoàn, Chống ngưng tập tiểu cầu, Ổn định mảng xơ vữa, Hạ đường huyết, Hạ mỡ máu và điều trị triệu chứng chóng mặt, Triệu chứng đau mỏi cổ vai đỡ hơn,雄牍当前治疗.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>1037</InnerID>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>1040</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="3">
+               <InnerID>1343</InnerID>
+               <Text>Những việc cần bệnh nhân và gia đình phối hợp và các lưu ý:</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>1061</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="3">
+               <InnerID>1344</InnerID>
+               <Text>1. Chế độ ăn cho người đái tháo đường, Nên ăn thức ăn dễ tiêu, Giữ đại tiện thông thoáng.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>1090</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="3">
+               <InnerID>1345</InnerID>
+               <Text>2. Nếu có triệu chứng khó chịu, báo ngay cho bác sĩ trực.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>1111</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="3">
+               <InnerID>1346</InnerID>
+               <Text>3. Phối hợp điều trị, Uống thuốc đúng giờ theo y lệnh, Tăng cường chăm sóc, Tránh ngã gây thương tích, Ngã khỏi giường và các tai nạn khác.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>1149</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="3">
+               <InnerID>1347</InnerID>
+               <Text>4. Phải tuân thủ quy định quản lý của bệnh viện, không được tự ý rời viện, Tự ý rời viện gây hậu quả xấu thì bệnh nhân và gia đình tự chịu trách nhiệm.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>1192</InnerID>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>1195</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="3">
+               <InnerID>1348</InnerID>
+               <Text>Khác（Tác dụng không mong muốn của thuốc, v.v.）: Tất cả các thuốc đều có thể gây tác dụng không mong muốn ở các mức độ khác nhau, Và có thể có những tác dụng không mong muốn chưa được phát hiện, Bệnh nhân và gia đình cần nhận thức đúng về điều này.</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>1256</InnerID>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>1259</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="3">
+               <InnerID>1349</InnerID>
+               <Text>Bệnh nhân（Hoặc người đại diện của họ）Ký tên:</Text>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>1350</InnerID>
+               <Text>                           </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="3">
+               <InnerID>1351</InnerID>
+               <Text>Bác sĩ trao đổi ký tên:</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>1307</InnerID>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>1310</InnerID>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>1313</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextFooter">
+         <InnerID>651</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XPageInfo">
+               <InnerID>722</InnerID>
+               <ID>pageinfo1</ID>
+               <Width>400</Width>
+               <AutoHeight>true</AutoHeight>
+               <Height>65</Height>
+               <FormatString>Trang [%PageIndex%] trên tổng số [%NumOfPages%] trang</FormatString>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0">
+               <InnerID>723</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+   </XElements>
+   <SerializeParameterValue>true</SerializeParameterValue>
+   <FileName>\File\Template\VanBanYTe\TraoDoiBacSiBenhNhan\TraoDoiBacSiBenhNhan3NgaySauNhapVien.xml</FileName>
+   <FileFormat>xml</FileFormat>
+   <ContentStyles>
+      <Default xsi:type="DocumentContentStyle">
+         <FontName>宋体</FontName>
+         <FontSize>12</FontSize>
+      </Default>
+      <Styles>
+         <Style Index="0">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <Align>Center</Align>
+         </Style>
+         <Style Index="1">
+            <FontName>宋体</FontName>
+            <FontSize>18</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="2">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="3">
+            <BackgroundColor>#F5F5F5</BackgroundColor>
+            <Color>#242424</Color>
+            <FontName>宋体</FontName>
+            <FontSize>11.0000257</FontSize>
+         </Style>
+      </Styles>
+   </ContentStyles>
+   <Info>
+      <LicenseText>未注册|Unregister</LicenseText>
+      <CreationTime>1980-01-01T00:00:00</CreationTime>
+      <LastModifiedTime>2025-02-12T14:27:34.4719149+08:00</LastModifiedTime>
+      <LastPrintTime>1980-01-01T00:00:00</LastPrintTime>
+      <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
+      <NumOfPage>1</NumOfPage>
+   </Info>
+   <BodyText>Kết quả chẩn đoán xác định: 1. Thoát vị đĩa đệm cột sống cổ kèm bệnh lý rễ thần kinh 2. Đau thắt ngực ổn định&amp;心功龍口级玄冠状动腺粥桦硬化性心脏病5,2 Đái tháo đường tuýp 6,髙齟固薛血症
+
+Phương án kiểm tra thêm và điều trị:患眷入随后完善相关检査，頸檢间盘 CT cho thấy; C3/4 C4/5 C3/5 Thoát vị đĩa đệm 2. Gai xương cột sống cổ 3,脚椎骨園増生。脚部 DR cho thấy: Vân phổi hai bên tăng đậm,姑合临床.Siêu âm tim cho thấy: Chức năng tâm trương thất trái giảm. Điện tâm đồ cho thấy: Nhịp tim chậm xoang, Điện tâm đồ gần như bình thường. Xét nghiệm nước tiểu thường quy! Glucose 2+tnwl/L,生化苗葡糖10,47 mdo 1/L,低密度脂蚩白胆阖薛4,94 minol/L, Tỉ lệ albumin/globulin 2.&amp;Cholesterol toàn phần 7,92 wnnol/L. Theo tình trạng bệnh, cho thuốc cải thiện tuần hoàn, Chống ngưng tập tiểu cầu, Ổn định mảng xơ vữa, Hạ đường huyết, Hạ mỡ máu và điều trị triệu chứng chóng mặt, Triệu chứng đau mỏi cổ vai đỡ hơn,雄牍当前治疗.
+
+Những việc cần bệnh nhân và gia đình phối hợp và các lưu ý:
+1. Chế độ ăn cho người đái tháo đường, Nên ăn thức ăn dễ tiêu, Giữ đại tiện thông thoáng.
+2. Nếu có triệu chứng khó chịu, báo ngay cho bác sĩ trực.
+3. Phối hợp điều trị, Uống thuốc đúng giờ theo y lệnh, Tăng cường chăm sóc, Tránh ngã gây thương tích, Ngã khỏi giường và các tai nạn khác.
+4. Phải tuân thủ quy định quản lý của bệnh viện, không được tự ý rời viện, Tự ý rời viện gây hậu quả xấu thì bệnh nhân và gia đình tự chịu trách nhiệm.
+
+Khác（Tác dụng không mong muốn của thuốc, v.v.）: Tất cả các thuốc đều có thể gây tác dụng không mong muốn ở các mức độ khác nhau, Và có thể có những tác dụng không mong muốn chưa được phát hiện, Bệnh nhân và gia đình cần nhận thức đúng về điều này.
+
+Bệnh nhân（Hoặc người đại diện của họ）Ký tên:                           Bác sĩ trao đổi ký tên:
+
+</BodyText>
+   <LocalConfig />
+   <PageSettings>
+      <StrictUsePageSize>false</StrictUsePageSize>
+   </PageSettings>
+</XTextDocument>

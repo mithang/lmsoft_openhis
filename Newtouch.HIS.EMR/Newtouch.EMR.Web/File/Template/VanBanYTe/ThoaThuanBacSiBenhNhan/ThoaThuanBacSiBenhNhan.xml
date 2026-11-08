@@ -1,0 +1,521 @@
+<XTextDocument xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EditorVersionString="1.2023.2.14">
+   <InnerID>868</InnerID>
+   <XElements>
+      <Element xsi:type="XTextHeader">
+         <InnerID>905</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XInputField" StyleIndex="1">
+               <InnerID>891</InnerID>
+               <ID>B0EADC5F-D1A7-4C1D-8BFF-C30B4AB96B89</ID>
+               <ToolTip>Vui lòng nhập tên bệnh viện</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/yymc</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>yymc</Name>
+               <BackgroundText>Tên bệnh viện</BackgroundText>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0">
+               <InnerID>892</InnerID>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="2">
+               <InnerID>1548</InnerID>
+               <Text>Hai bên bác sĩ và bệnh nhân không nhận và không đưa "phong bì" Bản thỏa thuận</Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0">
+               <InnerID>912</InnerID>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>1549</InnerID>
+               <Text>Họ tên:</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <InnerID>917</InnerID>
+               <ID>555B0059-D165-46B3-9F88-9720672296AF</ID>
+               <ToolTip>Vui lòng nhập họ tên</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/xm</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>xm</Name>
+               <BackgroundText>Họ tên</BackgroundText>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>1550</InnerID>
+               <Text>       </Text>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="3">
+               <InnerID>1551</InnerID>
+               <Text>  Số nhập viện:</Text>
+            </Element>
+            <Element xsi:type="XInputField" StyleIndex="3">
+               <InnerID>931</InnerID>
+               <ID>6C1F42F9-EB78-43E1-AF32-18795C4E2303</ID>
+               <ToolTip>Vui lòng nhập số nhập viện</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/zyh</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>zyh</Name>
+               <BackgroundText>Số nhập viện</BackgroundText>
+            </Element>
+            <Element xsi:type="XString" StyleIndex="3">
+               <InnerID>1552</InnerID>
+               <Text>  </Text>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>1553</InnerID>
+               <Text>       Khoa:</Text>
+            </Element>
+            <Element xsi:type="XInputField">
+               <InnerID>944</InnerID>
+               <ID>05851fea-e7a2-4ada-969c-76b7d0403c10</ID>
+               <ToolTip>Vui lòng nhập tên khoa</ToolTip>
+               <EnableValueValidate>true</EnableValueValidate>
+               <ValueBinding>
+                  <DataSource>zy_brjbxx</DataSource>
+                  <BindingPath>zy_brjbxx/DeptName</BindingPath>
+               </ValueBinding>
+               <ContentReadonly>False</ContentReadonly>
+               <StartBorderText>[</StartBorderText>
+               <EndBorderText>]</EndBorderText>
+               <BorderElementColor />
+               <Name>DeptName</Name>
+               <BackgroundText>Tên khoa</BackgroundText>
+            </Element>
+            <Element xsi:type="XString">
+               <InnerID>1554</InnerID>
+               <Text>               </Text>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0">
+               <InnerID>960</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextBody">
+         <InnerID>906</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XTextTable" NumOfRows="1" NumOfColumns="2">
+               <InnerID>965</InnerID>
+               <ID>table98</ID>
+               <XElements>
+                  <Element xsi:type="XTextTableRow">
+                     <InnerID>968</InnerID>
+                     <XElements>
+                        <Element xsi:type="XTextTableCell" StyleIndex="4">
+                           <XElements>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <InnerID>1555</InnerID>
+                                 <Text>Kính thưa bệnh nhân và gia đình:</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>980</InnerID>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1556</InnerID>
+                                 <Text>    </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <InnerID>1557</InnerID>
+                                 <Text>Chân thành cảm ơn sự tin tưởng của quý vị, Đã chọn đến với chúng tôi</Text>
+                              </Element>
+                              <Element xsi:type="XInputField" StyleIndex="6">
+                                 <InnerID>1001</InnerID>
+                                 <ID>file22</ID>
+                                 <EnableValueValidate>true</EnableValueValidate>
+                                 <ValueBinding>
+                                    <DataSource>zy_brjbxx</DataSource>
+                                    <BindingPath>zy_brjbxx/yymc</BindingPath>
+                                 </ValueBinding>
+                                 <ContentReadonly>False</ContentReadonly>
+                                 <BorderElementColor />
+                                 <Name>yymc</Name>
+                                 <BackgroundText>Tên bệnh viện</BackgroundText>
+                                 <EditorActiveMode>None</EditorActiveMode>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <InnerID>1558</InnerID>
+                                 <Text>Khám chữa bệnh. Trong thời gian tới, Chúng ta sẽ cùng đối mặt với thử thách của bệnh tật. Tại đây, Chúng tôi trịnh trọng cam kết:</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1039</InnerID>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1559</InnerID>
+                                 <Text>    </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <InnerID>1560</InnerID>
+                                 <Text>一, Giữ vững sự bình đẳng, Nhân ái, Tinh thần nghề nghiệp trung thực, Lấy bệnh nhân làm trung tâm, Tận tâm, tận trách điều trị bệnh cho bệnh nhân.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1083</InnerID>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1561</InnerID>
+                                 <Text>    </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <InnerID>1562</InnerID>
+                                 <Text>二, Thực hiện đầy đủ nghĩa vụ thông báo, Tôn trọng quyền được biết và đồng ý của bệnh nhân, Quyền riêng tư và các quyền khác</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1120</InnerID>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1563</InnerID>
+                                 <Text>    </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <InnerID>1564</InnerID>
+                                 <Text>三, Hành nghề liêm khiết, Không nhận của bệnh nhân và gia đình“phong bì”, Quà tặng quý giá.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1154</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <InnerID>1565</InnerID>
+                                 <Text>Chân thành chúc quý vị sớm bình phục!</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1165</InnerID>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1168</InnerID>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1566</InnerID>
+                                 <Text> </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="6">
+                                 <InnerID>1567</InnerID>
+                                 <Text>   Bác sĩ phụ trách:</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1179</InnerID>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1182</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="6">
+                                 <InnerID>1568</InnerID>
+                                 <Text>                  </Text>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1569</InnerID>
+                                 <Text>   </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="6">
+                                 <InnerID>1570</InnerID>
+                                 <Text> năm    tháng   ngày</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1216</InnerID>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1219</InnerID>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1222</InnerID>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1225</InnerID>
+                              </Element>
+                           </XElements>
+                           <GridLine>
+                              <GridSpanInCM>1</GridSpanInCM>
+                           </GridLine>
+                        </Element>
+                        <Element xsi:type="XTextTableCell" StyleIndex="4">
+                           <InnerID>1</InnerID>
+                           <XElements>
+                              <Element xsi:type="XInputField" StyleIndex="6">
+                                 <InnerID>1228</InnerID>
+                                 <ID>file21</ID>
+                                 <EnableValueValidate>true</EnableValueValidate>
+                                 <ValueBinding>
+                                    <DataSource>zy_brjbxx</DataSource>
+                                    <BindingPath>zy_brjbxx/yymc</BindingPath>
+                                 </ValueBinding>
+                                 <ContentReadonly>False</ContentReadonly>
+                                 <BorderElementColor />
+                                 <Name>yymc</Name>
+                                 <BackgroundText>Tên bệnh viện</BackgroundText>
+                                 <EditorActiveMode>None</EditorActiveMode>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="7">
+                                 <InnerID>1571</InnerID>
+                                 <Text>:</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1230</InnerID>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1572</InnerID>
+                                 <Text>     </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="5">
+                                 <InnerID>1573</InnerID>
+                                 <Text>Chúng tôi đã nhận được bản cam kết của quý đơn vị, Đã đọc kỹ và hiểu rõ nội dung liên quan. Tại đây, Chúng tôi cũng trịnh trọng cam</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="8">
+                                 <InnerID>1574</InnerID>
+                                 <Text>kết:</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1274</InnerID>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1575</InnerID>
+                                 <Text>     </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="8">
+                                 <InnerID>1576</InnerID>
+                                 <Text>一, Tích cực phối hợp hoạt động chẩn đoán và điều trị, Cung cấp trung thực bệnh</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="9">
+                                 <InnerID>1577</InnerID>
+                                 <Text>sử và các thông tin khác, Tôn trọng khoa học, Đối với nguy cơ khách quan tồn tại trong chẩn đoán và điều trị bệnh</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="8">
+                                 <InnerID>1578</InnerID>
+                                 <Text>Đưa ra quyết định thận trọng</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="9">
+                                 <InnerID>1579</InnerID>
+                                 <Text>và lý trí.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1333</InnerID>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1580</InnerID>
+                                 <Text>     </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="6">
+                                 <InnerID>1581</InnerID>
+                                 <Text>二, Tôn trọng nhân viên y tế, Giữ gìn cơ sở vật chất công</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="9">
+                                 <InnerID>1582</InnerID>
+                                 <Text>cộng, Tuân theo quản lý và sắp xếp. Bệnh nhân hoặc người đại diện cần giao tiếp, phối hợp tốt với người của phía mình, Cùng thực hiện tốt bản cam kết này.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1397</InnerID>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1583</InnerID>
+                                 <Text>     </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="6">
+                                 <InnerID>1584</InnerID>
+                                 <Text>三, Không đưa cho nhân viên y tế“phong bì”,</Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="9">
+                                 <InnerID>1585</InnerID>
+                                 <Text>Quà tặng quý giá, Cùng tạo môi trường y tế liêm khiết, hài hòa.</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1436</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="9">
+                                 <InnerID>1586</InnerID>
+                                 <Text>Bệnh nhân hoặc người đại diện:</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1446</InnerID>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1449</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="8">
+                                 <InnerID>1587</InnerID>
+                                 <Text>Bệnh nhân hoặc người đại diện:</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1459</InnerID>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1462</InnerID>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="8">
+                                 <InnerID>1588</InnerID>
+                                 <Text>                       </Text>
+                              </Element>
+                              <Element xsi:type="XString">
+                                 <InnerID>1589</InnerID>
+                                 <Text> </Text>
+                              </Element>
+                              <Element xsi:type="XString" StyleIndex="6">
+                                 <InnerID>1590</InnerID>
+                                 <Text>năm    tháng   ngày</Text>
+                              </Element>
+                              <Element xsi:type="XParagraphFlag">
+                                 <InnerID>1498</InnerID>
+                              </Element>
+                           </XElements>
+                        </Element>
+                     </XElements>
+                  </Element>
+               </XElements>
+               <Columns>
+                  <Element xsi:type="XTextTableColumn">
+                     <InnerID>966</InnerID>
+                     <Width>940.625</Width>
+                  </Element>
+                  <Element xsi:type="XTextTableColumn">
+                     <InnerID>967</InnerID>
+                     <Width>940.625</Width>
+                  </Element>
+               </Columns>
+            </Element>
+            <Element xsi:type="XParagraphFlag">
+               <InnerID>1500</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+      <Element xsi:type="XTextFooter">
+         <InnerID>907</InnerID>
+         <AcceptTab>true</AcceptTab>
+         <XElements>
+            <Element xsi:type="XPageInfo" StyleIndex="10">
+               <InnerID>962</InnerID>
+               <ID>pageinfo1</ID>
+               <Width>400</Width>
+               <AutoHeight>true</AutoHeight>
+               <Height>62.73437</Height>
+               <FormatString>Trang [%PageIndex%] trên tổng số [%NumOfPages%] trang</FormatString>
+            </Element>
+            <Element xsi:type="XParagraphFlag" StyleIndex="0">
+               <InnerID>963</InnerID>
+            </Element>
+         </XElements>
+      </Element>
+   </XElements>
+   <SerializeParameterValue>true</SerializeParameterValue>
+   <FileName>\File\Template\VanBanYTe\ThoaThuanBacSiBenhNhan\ThoaThuanBacSiBenhNhan.xml</FileName>
+   <FileFormat>xml</FileFormat>
+   <ContentStyles>
+      <Default xsi:type="DocumentContentStyle">
+         <FontName>宋体</FontName>
+         <FontSize>12</FontSize>
+      </Default>
+      <Styles>
+         <Style Index="0">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <Align>Center</Align>
+         </Style>
+         <Style Index="1">
+            <FontName>宋体</FontName>
+            <FontSize>18</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="2">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <Bold>true</Bold>
+         </Style>
+         <Style Index="3">
+            <BackgroundColor>#FFFFFF</BackgroundColor>
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+         </Style>
+         <Style Index="4">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+            <BorderWidth>1</BorderWidth>
+            <BorderLeft>true</BorderLeft>
+            <BorderBottom>true</BorderBottom>
+            <BorderTop>true</BorderTop>
+            <BorderRight>true</BorderRight>
+            <PaddingLeft>12.5</PaddingLeft>
+            <PaddingTop>9.375</PaddingTop>
+            <PaddingRight>12.5</PaddingRight>
+            <PaddingBottom>9.375</PaddingBottom>
+         </Style>
+         <Style Index="5">
+            <BackgroundColor>#F5F5F5</BackgroundColor>
+            <Color>#242424</Color>
+            <FontName>宋体</FontName>
+            <FontSize>11.00003</FontSize>
+         </Style>
+         <Style Index="6">
+            <FontName>宋体</FontName>
+            <FontSize>10.5</FontSize>
+         </Style>
+         <Style Index="7">
+            <BackgroundColor>#F5F5F5</BackgroundColor>
+            <Color>#242424</Color>
+            <FontName>宋体</FontName>
+            <FontSize>11</FontSize>
+         </Style>
+         <Style Index="8">
+            <Color>#242424</Color>
+            <FontName>宋体</FontName>
+            <FontSize>10.5</FontSize>
+         </Style>
+         <Style Index="9">
+            <BackgroundColor>#F5F5F5</BackgroundColor>
+            <Color>#242424</Color>
+            <FontName>宋体</FontName>
+            <FontSize>10.5</FontSize>
+         </Style>
+         <Style Index="10">
+            <FontName>宋体</FontName>
+            <FontSize>12</FontSize>
+         </Style>
+      </Styles>
+   </ContentStyles>
+   <Info>
+      <LicenseText>未注册|Unregister</LicenseText>
+      <CreationTime>1980-01-01T00:00:00</CreationTime>
+      <LastModifiedTime>2025-02-13T16:07:08.4233662+08:00</LastModifiedTime>
+      <LastPrintTime>1980-01-01T00:00:00</LastPrintTime>
+      <Operator>DCSoft.Writer Version:1.2023.2.14</Operator>
+      <NumOfPage>1</NumOfPage>
+   </Info>
+   <BodyText>Kính thưa bệnh nhân và gia đình:
+    Chân thành cảm ơn sự tin tưởng của quý vị, Đã chọn đến với chúng tôi để khám chữa bệnh. Trong thời gian tới, Chúng ta sẽ cùng đối mặt với thử thách của bệnh tật. Tại đây, Chúng tôi trịnh trọng cam kết:
+    一, Giữ vững sự bình đẳng, Nhân ái, Tinh thần nghề nghiệp trung thực, Lấy bệnh nhân làm trung tâm, Tận tâm, tận trách điều trị bệnh cho bệnh nhân.
+    二, Thực hiện đầy đủ nghĩa vụ thông báo, Tôn trọng quyền được biết và đồng ý của bệnh nhân, Quyền riêng tư và các quyền khác
+    三, Hành nghề liêm khiết, Không nhận của bệnh nhân và gia đình“phong bì”, Quà tặng quý giá.
+Chân thành chúc quý vị sớm bình phục!
+
+    Bác sĩ phụ trách:
+
+                      năm    tháng   ngày
+
+
+ :
+     Chúng tôi đã nhận được bản cam kết của quý đơn vị, Đã đọc kỹ và hiểu rõ nội dung liên quan. Tại đây, Chúng tôi cũng trịnh trọng cam kết:
+     一, Tích cực phối hợp hoạt động chẩn đoán và điều trị, Cung cấp trung thực bệnh sử và các thông tin khác, Tôn trọng khoa học, Đưa ra quyết định thận trọng và lý trí đối với nguy cơ khách quan tồn tại trong chẩn đoán và điều trị bệnh.
+     二, Tôn trọng nhân viên y tế, Giữ gìn cơ sở vật chất công cộng, Tuân theo quản lý và sắp xếp. Bệnh nhân hoặc người đại diện cần giao tiếp, phối hợp tốt với người của phía mình, Cùng thực hiện tốt bản cam kết này.
+     三, Không đưa cho nhân viên y tế“phong bì”, Quà tặng quý giá, Cùng tạo môi trường y tế liêm khiết, hài hòa.
+Bệnh nhân hoặc người đại diện:
+
+Bệnh nhân hoặc người đại diện:
+
+                        năm    tháng   ngày </BodyText>
+   <LocalConfig />
+   <PageSettings>
+      <StrictUsePageSize>false</StrictUsePageSize>
+   </PageSettings>
+</XTextDocument>
