@@ -14,7 +14,7 @@
     var defaultPayMethod = SysConfigReader.String("Sett_PayMethod_Inp_Default");
     //Có cho phép nhiều phương thức thanh toán hay không
     var sfyxdzzf = SysConfigReader.Bool("Intpatient_Sett_Open_Dzzf", false);
-    //Nơi quản lý BHYT，phân biệt hệ thốngsẽthực hiệnở đâuLogic BHYT
+    //Nơi quản lý BHYT，phân biệt hệ thống sẽ thực hiện ở đâuLogic BHYT
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
     //Kiểm soát sai số xu của số tiền quyết toán
     var SettPayBalance = SysConfigReader.Bool("SettPayBalance", false);
@@ -81,7 +81,7 @@
             <tr>
                 <th class="formTitle">Tính phí tiền mặt BHYT：</th>
                 <td class="formValue">￥<label id="yb_xjzf">0.00</label></td>
-                <th class="formTitle">Thanh toánquỹ chung：</th>
+                <th class="formTitle">Thanh toán quỹ chung：</th>
                 <td class="formValue">￥<label id="cq_tczf">0.00</label></td>
                 <th class="formTitle">Trợ cấp công chức：</th>
                 <td class="formValue">￥<label id="cq_gwybz">0.00</label></td>
@@ -106,7 +106,7 @@
                 <td class="formValue">￥<label id="cq_mzbz">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Thanh toánđồng chi trả tài khoản：</th>
+                <th class="formTitle">Thanh toán đồng chi trả tài khoản：</th>
                 <td class="formValue">￥<label id="cq_zhgjzf">0.00</label></td>
                 <th class="formTitle">Khác：</th>
                 <td class="formValue">￥<label id="cq_qt">0.00</label></td>
@@ -135,55 +135,55 @@
                 <td class="formValue">￥<label id="ZFJF">0.00</label></td>
                 <th class="formTitle">Số thanh toán tài khoản năm nay：</th>
                 <td class="formValue">￥<label id="curaccountpay">0.00</label></td>
-                <th class="formTitle">Số thanh toán tài khoảncác năm trước：</th>
+                <th class="formTitle">Số thanh toán tài khoản các năm trước：</th>
                 <td class="formValue">￥<label id="hisaccountpay">0.00</label></td>
             </tr>
             <tr>
                 <th class="formTitle">Số thanh toán tiền mặt đoạn tự trả：</th>
                 <td class="formValue">￥<label id="zfdxjzfs">0.00</label></td>
-                <th class="formTitle">Số thanh toáncác năm trước đoạn tự trả：</th>
+                <th class="formTitle">Số thanh toán các năm trước đoạn tự trả：</th>
                 <td class="formValue">￥<label id="zfdlnzhzfs">0.00</label></td>
 
-                <th class="formTitle">Số thanh toán tài khoản đoạnquỹ chung：</th>
+                <th class="formTitle">Số thanh toán tài khoản đoạn quỹ chung：</th>
                 <td class="formValue">￥<label id="tcdzhzfs">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Số thanh toán tiền mặt đoạnquỹ chung：</th>
+                <th class="formTitle">Số thanh toán tiền mặt đoạn quỹ chung：</th>
                 <td class="formValue">￥<label id="tcdxjzfs">0.00</label></td>
-                <th class="formTitle">Số thanh toánquỹ chung：</th>
+                <th class="formTitle">Số thanh toán quỹ chung：</th>
                 <td class="formValue">￥<label id="tczfs">0.00</label></td>
-                <th class="formTitle">Số thanh toán tài khoản đoạnbổ sung：</th>
+                <th class="formTitle">Số thanh toán tài khoản đoạn bổ sung：</th>
                 <td class="formValue">￥<label id="fjdzhzfs">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Số thanh toán tiền mặt đoạnbổ sung：</th>
+                <th class="formTitle">Số thanh toán tiền mặt đoạn bổ sung：</th>
                 <td class="formValue">￥<label id="fjdxjzfs">0.00</label></td>
-                <th class="formTitle">Số thanh toánbổ sung：</th>
+                <th class="formTitle">Số thanh toán bổ sung：</th>
                 <td class="formValue">￥<label id="fjzfs">0.00</label></td>
                 <th class="formTitle">Số dư tài khoản năm nay：</th>
                 <td class="formValue">￥<label id="curaccountamt">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Số dư tài khoảncác năm trước：</th>
+                <th class="formTitle">Số dư tài khoản các năm trước：</th>
                 <td class="formValue">￥<label id="hisaccountamt">0.00</label></td>
-                <th class="formTitle">Thanh toán tài khoảnđồng chi trả đoạnbổ sung：</th>
+                <th class="formTitle">Thanh toán tài khoản đồng chi trả đoạn bổ sung：</th>
                 <td class="formValue">￥<label id="fjdgjzhzfs">0.00</label></td>
-                <th class="formTitle">đoạn khởi trảđồng chi trảThanh toán tài khoản：</th>
+                <th class="formTitle">đoạn khởi trả đồng chi trảThanh toán tài khoản：</th>
                 <td class="formValue">￥<label id="qfdgjzhzfs">0.00</label></td>
                 @*
-                    <th class="formTitle">quyết toán BHYTtổng số phạm vi：</th>
+                    <th class="formTitle">quyết toán BHYT tổng số phạm vi：</th>
                     <td class="formValue">￥<label id="ybjsfwfyze">0.00</label></td>
-                    <th class="formTitle">khôngquyết toán BHYTtổng số phạm vi：</th>
+                    <th class="formTitle">không quyết toán BHYT tổng số phạm vi：</th>
                     <td class="formValue">￥<label id="fybjsfwfyze">0.00</label></td>*@
 
             </tr>
             <tr>
-                <th class="formTitle">Thanh toán tài khoảnđồng chi trả đoạnquỹ chung：</th>
+                <th class="formTitle">Thanh toán tài khoản đồng chi trả đoạn quỹ chung：</th>
                 <td class="formValue">￥<label id="tcdgjzhzfs">0.00</label></td>
-                <th class="formTitle">Số dư tài khoảnquyết toán trước：</th>
+                <th class="formTitle">Số dư tài khoản quyết toán trước：</th>
                 <td class="formValue">￥<label id="yjs">0.00</label></td>
                 @*
-                    <th class="formTitle">Thanh toán tài khoảnđồng chi trả đoạn tự phí：</th>
+                    <th class="formTitle">Thanh toán tài khoản đồng chi trả đoạn tự phí：</th>
                     <td class="formValue">￥<label id="zfdgjzhzfs">0.00</label></td>*@
 
             </tr>
@@ -236,13 +236,13 @@
             </tr>
 
             <tr id="trYjjzf" style="display:none;">
-                <th class="formTitle">Số dưtạm ứng：</th>
+                <th class="formTitle">Số dư tạm ứng：</th>
                 <td class="formValue">
                     ￥<label id="yjjye"></label>
                 </td>
                 <td class="formValue" colspan="4">
                     <div class="ckbox ztjsyc">
-                        <input id="ckyjjzfuse" type="checkbox"><label for="ckyjjzfuse">Thanh toántạm ứng</label>
+                        <input id="ckyjjzfuse" type="checkbox"><label for="ckyjjzfuse">Thanh toán tạm ứng</label>
                     </div>
                     <div id="dv_yjjtye">
                         <div class="ckbox ztjsyc">
@@ -252,7 +252,7 @@
                     </div>
                 </td>
                 @*<td class="formValue" id="td_accountcharge">
-                <input type="button" class="btn btn-default" id="btn_czyjj" style="color: red;" value="Số dư không đủ，trướcVàonạp tiền" onclick="InpAccountDeposit();"  />
+                <input type="button" class="btn btn-default" id="btn_czyjj" style="color: red;" value="Số dư không đủ，trướcVào nạp tiền" onclick="InpAccountDeposit();"  />
             </td>*@
             </tr>
             <tr style="display:none;">
@@ -281,11 +281,11 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle ztjsyc" style="color:red;">Khấu trừtạm ứng：</th>
+                <th class="formTitle ztjsyc" style="color:red;">Khấu trừ tạm ứng：</th>
                 <td class="formValue ztjsyc" style="font-size:large" colspan="2">￥<label id="yjjzfje">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle ztjsyc" style="color:red;">ChờnộpSố tiền：</th>
+                <th class="formTitle ztjsyc" style="color:red;">Chờ nộpSố tiền：</th>
                 <td class="formValue ztjsyc" style="font-size:large" colspan="2">￥<label id="djje">0.00</label></td>
             </tr>
             <tr class="trUseZk" style="display:none;">
@@ -352,7 +352,7 @@
             <tr id="tr_yjjtye" hidden>
                 <th></th>
                 <td colspan="2"></td>
-                <th class="formTitle ztjsyc" style="color:red;font-weight:bold;">Trong đó：bao gồmtạm ứnghoànSố dư</th>
+                <th class="formTitle ztjsyc" style="color:red;font-weight:bold;">Trong đó：bao gồm tạm ứng hoànSố dư</th>
                 <td class="formValue ztjsyc" style="font-weight:bold;">（ ￥<label id="yjjtye">0.00</label> ）</td>
             </tr>
         </table>
@@ -379,11 +379,11 @@
 
     }
     var interfaceWithCPOE = '@(interfaceWithCPOE)';
-    //Số dưtạm ứng
+    //Số dư tạm ứng
     var yjjye = 0;
     var withYjj = '@(withYjj)';
     var yjjzffs = "";
-    //Tổng số tiềnquyết toán
+    //Tổng số tiền quyết toán
     var zje = ovpraseFloat($.request("zje"));
     //Thanh toán phải thu, số phải thu khi quyết toán (zje = được báo + số phải thu khi quyết toán + v.v.)
     var orglxjzfys = ovpraseFloat($.request("xjzfys"));
@@ -453,7 +453,7 @@
                 $('#divShYbV5Fee').show();
                 var xjzfje = 0.000;//Số tiền thanh toán tiền mặt BHYT
                 var zfxjzf = 0.000;//khôngThanh toán tiền mặt BHYTSố tiền
-                var yjs = 0.000;//Số dư tài khoản sautạm ứng
+                var yjs = 0.000;//Số dư tài khoản sau tạm ứng
                 //Số tiền thanh toán tiền mặt BHYT
                 xjzfje = ovpraseFloat(ybjyFeeReturn.qfdxjzfs) + ovpraseFloat(ybjyFeeReturn.tcdxjzfs)
                     + ovpraseFloat(ybjyFeeReturn.fjdxjzfs);
@@ -468,7 +468,7 @@
                 orglxjzfys = ovpraseFloat(ybjyFeeReturn.calc_xjzf);
                 xjzfys = orglxjzfys;    //Khi có chiết khấu thì sẽ không bằng
 
-                //yjs = calc_xjzf - zhye;//Tính số dư tài khoản sautạm ứng
+                //yjs = calc_xjzf - zhye;//Tính số dư tài khoản sau tạm ứng
 
                 !!ybjyFeeReturn.his_hisfyze && $('#ZFY').html(ovpraseFloat(ybjyFeeReturn.his_hisfyze).toFixed(2));
                 !!ybjyFeeReturn.calc_xjzf && $('#XJZF').html(ovpraseFloat(ybjyFeeReturn.calc_xjzf).toFixed(2));//Tổng thanh toán tiền mặt
@@ -492,7 +492,7 @@
                 !!ybjyFeeReturn.hisaccountamt && $('#hisaccountamt').html(ovpraseFloat(ybjyFeeReturn.hisaccountamt).toFixed(2));
                 !!ybjyFeeReturn.ybjsfwfyze && $('#ybjsfwfyze').html(ovpraseFloat(ybjyFeeReturn.ybjsfwfyze).toFixed(2));
                 !!ybjyFeeReturn.fybjsfwfyze && $('#fybjsfwfyze').html(ovpraseFloat(ybjyFeeReturn.fybjsfwfyze).toFixed(2));
-                //Tài khoảnđồng chi trả
+                //Tài khoản đồng chi trả
                 !!ybjyFeeReturn.fjdgjzhzfs && $('#fjdgjzhzfs').html(ovpraseFloat(ybjyFeeReturn.fjdgjzhzfs).toFixed(2));
                 //!!ybjyFeeReturn.zfdgjzhzfs && $('#zfdgjzhzfs').html(ovpraseFloat(ybjyFeeReturn.zfdgjzhzfs).toFixed(2));
                 !!ybjyFeeReturn.qfdgjzhzfs && $('#qfdgjzhzfs').html(ovpraseFloat(ybjyFeeReturn.qfdgjzhzfs).toFixed(2));
@@ -614,7 +614,7 @@
             hjsskZhaolingCalNew();
         }
 
-        //Khi hủy thanh toántạm ứng Đồng thờiHủyHoàn toàn bộ số dư
+        //Khi hủy thanh toán tạm ứng Đồng thờiHủyHoàn toàn bộ số dư
         $("#ckyjjzfuse").click(function () {
             czzfje();
             if ($('#ckyjjzfuse').is(':checked')) {
@@ -639,7 +639,7 @@
         });
        
 
-        //Phương thức thanh toánnộp phí tại cửa sổ hiện trường-excepttạm ứng
+        //Phương thức thanh toán nộp phí tại cửa sổ hiện trường-except tạm ứng
         $("#djjesszffs").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -671,7 +671,7 @@
                 $("#ckyjjzfuse").trigger('click');
             }
             $("#tr_yjjtye").show();
-            //Phương thức thanh toántạm ứng，‘Hoàn toàn bộ số dư’
+            //Phương thức thanh toán tạm ứng，‘Hoàn toàn bộ số dư’
             if (!!yjjye && yjjye >= xjzfys) {
                 $('#yeqtje').html((yjjye - xjzfys).toFixed(2));
                 $('#yjjtye').html((yjjye - xjzfys).toFixed(2));
@@ -709,7 +709,7 @@
     function AcceptClick(callBack) {
         theAcceptClickCallBack = callBack;
 
-        //Ngàythu phí đã điền v.v.
+        //Ngày thu phí đã điền v.v.
         var obj = getPostData();
         if (obj) {
             //190328addThanh toán di động
@@ -732,7 +732,7 @@
             return false;
         }
         if (cyrq < ryrq) {
-            $.modalAlert("Ngày xuất việnnhỏ hơnNgày nhập viện,Vui lòng xác nhận。", 'warning');
+            $.modalAlert("Ngày xuất viện nhỏ hơnNgày nhập viện,Vui lòng xác nhận。", 'warning');
             return;
         }
         if ($.getDate() < cyrq) {
@@ -799,7 +799,7 @@
             return false;
         }
         if (cyrq < ryrq) {
-            $.modalAlert("Ngày xuất việnnhỏ hơnNgày nhập viện,Vui lòng xác nhận。", 'warning');
+            $.modalAlert("Ngày xuất viện nhỏ hơnNgày nhập viện,Vui lòng xác nhận。", 'warning');
             return;
         }
         if ($.getDate() < cyrq) {
@@ -813,7 +813,7 @@
         zfje1 = (!!zffs1 || zffs1 == '0') && !!ovpraseFloat(zfje1) ? ovpraseFloat(zfje1) : 0;
         if (zffs1 == '3' && yjjye) {
             if (!(parseFloat(zfje1) <= parseFloat(yjjye) || parseFloat(zfje1) <= parseFloat(xjzfys))) {
-                $.modalAlert("Không đủtạm ứng，Không thể tiến hànhquyết toán，Vui lòngnạp tiềntạm ứnghoặcChọnnónóPhương thức thanh toán", "error");
+                $.modalAlert("Không đủ tạm ứng，Không thể tiến hành quyết toán，Vui lòng nạp tiền tạm ứng hoặcChọn nó nóPhương thức thanh toán", "error");
                 return false;
             }
         }
@@ -1033,7 +1033,7 @@
         if (djje < 0) {
             djje = 0.00;
         }
-        $('#djje').html(ovpraseFloat(djje).toFixed(2));  //Chờnộp
+        $('#djje').html(ovpraseFloat(djje).toFixed(2));  //Chờ nộp
         $('#hjssk').html(hjssk + ovpraseFloat(djje));
         var zhaoling = ovpraseFloat(hjssk - xjzfys);
         if (zhaoling < 0) {
@@ -1043,7 +1043,7 @@
     }
 
     function hjsskZhaolingCalNew() {
-        var yjjzf = ovpraseFloat($("#yjjzfje").text().trim()).toFixed(2);//Khấu trừtạm ứng
+        var yjjzf = ovpraseFloat($("#yjjzfje").text().trim()).toFixed(2);//Khấu trừ tạm ứng
         var djje = 0.00; //Số tiền nộp thay
         //var djjess = ovpraseFloat($("#djjess").val());  //Thực thu tại cửa sổ
         var djjess=CalculatedAmount();//Tổng thực thu tại cửa sổ
@@ -1094,7 +1094,7 @@
 </script>
 <script type="text/javascript">
     //Thanh toán di động
-    var payingOrFailed = null;  //trueĐang thanh toánhoặcThanh toán thất bại
+    var payingOrFailed = null;  //trueĐang thanh toán hoặcThanh toán thất bại
     function CheckPayOK(settInfo) {
         //&&Cần thanh toán
         var needPay = '@(needPay)' == 'True';
@@ -1157,7 +1157,7 @@
             return false;    //Phương thức thanh toánChọnLỗi
         }
         if (payMoney > 0 && settInfo.zhaoling != 0) {
-            $.modalAlert('Thanh toán di độngKhông thểcóTiền thừa', 'error');
+            $.modalAlert('Thanh toán di độngKhông thể cóTiền thừa', 'error');
             return false;
         }
         if ((payingOrFailed === null || payingOrFailed === true) && needPay && payMoney > 0) {
@@ -1166,7 +1166,7 @@
             ToPay(out_trade_no, 'quyết toán xuất viện', payMoney, djjesszffs);
             payingOrFailed = true;
         }
-        return !(payingOrFailed === true); //Đang thanh toán Trả vềtrue，Ngược lại trả vềfalse
+        return !(payingOrFailed === true); //Đang thanh toán Trả về true，Ngược lại trả về false
     }
     //Khởi tạo thanh toán
     function ToPay(out_trade_no, subject, total_amount, djjesszffs) {
@@ -1207,25 +1207,25 @@
         AcceptClick(theAcceptClickCallBack);
     }
 
-    //Kênh nạptạm ứng
+    //Kênh nạp tạm ứng
     function InpAccountDeposit() {
         var czje = (ovpraseFloat(xjzfys) - ovpraseFloat(yjjye)).toFixed(2);
         $.modalOpen({
             id: "YjjDeposit",
-            title: "Giá trị bổ sungtạm ứng",
+            title: "Giá trị bổ sung tạm ứng",
             url: "/HospitalizationManage/DischargeSettle/HosAccountDeposit?je="+czje,
             width: "350px",
             height: "240px",
             callBack: function (iframeId) {
                 var xz = '@((int)EnumXTZHXZ.ZYYJKZH)';
-                top.frames[iframeId].SubmitAccountDeposit(patid, xz); //tạiBật lênsự kiện cửa sổ
+                top.frames[iframeId].SubmitAccountDeposit(patid, xz); //tạiBật lên sự kiện cửa sổ
                 $.reload();
             }
         });
     }
 
     function yjjRefresh() {
-        //Xử lýtạm ứng
+        //Xử lý tạm ứng
         if (!!yjjye && yjjye >= xjzfys && $("#zffs1 option:selected").val() == "3") {
             //$("#td_accountcharge").hide();
             if ($('#ckyjjzfyeqt').is(':checked')) {
@@ -1253,7 +1253,7 @@
         }
         return xjzfys;
     }
-    //Thanh toántạm ứng
+    //Thanh toán tạm ứng
     function yjjReset() {
         xjzfys=sswrjeCz();
         if (ovpraseFloat(yjjye) > xjzfys) {
@@ -1291,7 +1291,7 @@
         var isAdd=verifyZfje();
         if(isAdd==false)
         {
-            $.modalAlert("Tổng thực thu tại cửa sổ hiện tại lớn hơn hoặc bằng số tiền chờ nộp，không thểThêmmớiPhương thức thanh toán", 'error');
+            $.modalAlert("Tổng thực thu tại cửa sổ hiện tại lớn hơn hoặc bằng số tiền chờ nộp，không thểThêm mớiPhương thức thanh toán", 'error');
             return;
         }
         var vcn = 0;
@@ -1336,7 +1336,7 @@
         }
         return true;
     }
-    //Xóaicon
+    //Xóa icon
     $('#tablezf').on('click', '.minusToggleCircle', function (e) {
         
         var number = $('#tablezf .zffsinput').length;

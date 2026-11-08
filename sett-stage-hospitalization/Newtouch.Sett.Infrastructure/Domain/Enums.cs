@@ -18,7 +18,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// Đang ở việncờ
+    /// Đang ở viện cờ
     /// </summary>
     public enum EnumZYBZ
     {
@@ -384,12 +384,12 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// Trạng tháiquyết toán
+    /// Trạng thái quyết toán
     /// </summary>
     public enum EnumJieSuanZT
     {
         /// <summary>
-        /// Đãquyết toán（chưahoàn）
+        /// Đã quyết toán（chưa hoàn）
         /// </summary>
         [Description("Đã quyết toán")]
         YJ = 1,
@@ -401,7 +401,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// y lệnhtính chất
+    /// y lệnh tính chất
     /// </summary>
     public enum EnumYiZhuXZ
     {
@@ -431,12 +431,12 @@ namespace Newtouch.Sett.Domain
         YTY = 1,
     }
     /// <summary>
-    /// đăng ký khámtính chất 
-    /// 0-thông thườngđăng ký khám
-    /// 1-trốngđăng ký khám
+    /// đăng ký khám tính chất 
+    /// 0-thông thường đăng ký khám
+    /// 1-trống đăng ký khám
     /// 2 - Đăng ký khám giường bệnh tại nhà
     /// 3-Tự phíChuyểnBHYTđăng ký khám
-    /// 4-ghi sổ ngoại trúđăng ký khám
+    /// 4-ghi sổ ngoại trú đăng ký khám
     /// </summary>
     public enum EnumGhxz
     {
@@ -447,7 +447,7 @@ namespace Newtouch.Sett.Domain
         MZJZGH = 4
     }
     /// <summary>
-    /// Loạiquyết toán
+    /// Loại quyết toán
     /// </summary>
     public enum EnumJslx
     {
@@ -479,20 +479,20 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    ///y lệnhtính chất 1 Tạm thờiy lệnh   2 Dài hạny lệnh   3 Xuất việny lệnh
+    ///y lệnh tính chất 1 Tạm thời y lệnh   2 Dài hạn y lệnh   3 Xuất viện y lệnh
     /// </summary>
     public enum EnumYZXZ
     {
         /// <summary>
-        /// Tạm thờiy lệnh
+        /// Tạm thời y lệnh
         /// </summary>
         LSYZ = 1,
         /// <summary>
-        /// Dài hạny lệnh
+        /// Dài hạn y lệnh
         /// </summary>
         CQYZ = 2,
         /// <summary>
-        /// Xuất việny lệnh
+        /// Xuất viện y lệnh
         /// </summary>
         CYYZ = 3
     }
@@ -514,7 +514,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// ghi sổ nhập việnMụcthu phíLoại
+    /// ghi sổ nhập việnMục thu phíLoại
     /// </summary>
     public enum EnumxmType
     {
@@ -567,9 +567,9 @@ namespace Newtouch.Sett.Domain
     public enum EnumSXBZ
     {
         /// <summary>
-        /// tức làlúc có hiệu lực
+        /// tức là lúc có hiệu lực
         /// </summary>
-        [Description("tức làlúc có hiệu lực")]
+        [Description("tức là lúc có hiệu lực")]
         Jssx = 0,
         /// <summary>
         /// Chỉ định có hiệu lực
@@ -598,7 +598,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// hôn nhânkhông
+    /// hôn nhân không
     /// </summary>
     public enum EnumHF
     {
@@ -793,7 +793,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// Thực hiện kế hoạchghi sổTrạng thái
+    /// Thực hiện kế hoạch ghi sổTrạng thái
     /// </summary>
     public enum EnumJzjhZXZT
     {
@@ -1047,7 +1047,7 @@ namespace Newtouch.Sett.Domain
         Hour = 4,
     }
     /// <summary>
-    /// Ngoại trúđặt hẹnTrạng thái
+    /// Ngoại trú đặt hẹnTrạng thái
     /// </summary>
     public enum EnumMzyyzt
     {
@@ -1125,7 +1125,7 @@ namespace Newtouch.Sett.Domain
         Tj = 6,
     }
     /// <summary>
-    /// BHYTthuộc tính
+    /// BHYT thuộc tính
     /// </summary>
     public enum EnumCblb
     {
@@ -1167,11 +1167,11 @@ namespace Newtouch.Sett.Domain
     /// </summary>
     public enum EnumRylb
     {
-        [Description("người lao độngtại chức")]
+        [Description("người lao động tại chức")]
         zgzz = 1101,
-        [Description("công chứctại chức")]
+        [Description("công chức tại chức")]
         gwyzz = 1102,
-        [Description("nghề tự do nhân viêntại chức")]
+        [Description("nghề tự do nhân viên tại chức")]
         lhjyryzz = 1103,
         [Description("Nhân viên mở rộng khác địa phương")]
         qtdfkzry = 1160,
@@ -1286,7 +1286,7 @@ namespace Newtouch.Sett.Domain
         qtjc = 99
     }
     /// <summary>
-    /// quỹthanh toánLoại
+    /// quỹ thanh toánLoại
     /// </summary>
     public enum Enumjjzflx
     {
@@ -1658,14 +1658,14 @@ namespace Newtouch.Sett.Domain
     public enum EnumOrderStatus
     {
         /// <summary>
-        /// Chờthanh toán
+        /// Chờ thanh toán
         /// </summary>
-        [Description("Chờthanh toán")]
+        [Description("Chờ thanh toán")]
         dzf = 0,
         /// <summary>
-        /// đãthanh toán
+        /// đã thanh toán
         /// </summary>
-        [Description("đãthanh toán")]
+        [Description("đã thanh toán")]
         yzf = 1,
         /// <summary>
         /// Đã hoàn khoản

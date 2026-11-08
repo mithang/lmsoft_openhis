@@ -16,7 +16,7 @@
                         <input type="text" class="form-control" id="zyh" style="width:49%;float:left;" />
                         &nbsp;&nbsp;<input type="button" class="btn btn-default btn-md btn-default-color" title="Chọn bệnh nhân nhập viện" style="width: 25%;" id="btnsyy" value="Truy vấn" onclick="GetPatSerarchView($('#zyh').val());">
                     </td>
-                    <th class="formTitle">Ngàyghi sổ：</th>
+                    <th class="formTitle">Ngày ghi sổ：</th>
                     <td class="formValue" colspan="3">
                         <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:29%; float:left;" value="@DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         <span style="margin-left:5%;float:left;">—</span>
@@ -149,7 +149,7 @@
             width: "700px",
             height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //tạiBật lênsự kiện cửa sổ
+                top.frames[iframeId].PatDbGrid(); //tạiBật lên sự kiện cửa sổ
             }//Hàm gọi lại khi nhấn xác nhận tại cửa sổ
         });
     }
@@ -274,7 +274,7 @@
             { label: "Số hiệu bộ", name: "ztbh", width: 25, align: "left", hidden: true },
             { label: "ztsl", name: "ztsl", width: 25, align: "left", hidden: true },
             {
-                label: "Ngàyghi sổ", name: "tdrq", width: 100, align: "left",
+                label: "Ngày ghi sổ", name: "tdrq", width: 100, align: "left",
                 formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
             }
         ],
@@ -333,7 +333,7 @@
                 return;
             }
             if (parseFloat(rowData.tsl) > parseFloat(rowData.sl)) {
-                $.modalAlert("Mục（" + rowData.sfxmmc + "）Số lượng hoàn lớn hơn số lượngghi sổ，Vui lòng xác nhận。", 'warning');
+                $.modalAlert("Mục（" + rowData.sfxmmc + "）Số lượng hoàn lớn hơn số lượng ghi sổ，Vui lòng xác nhận。", 'warning');
                 //Bật hộp chỉnh sửa trong dòng
                 EnableInlineEditBox();
                 return;
@@ -354,7 +354,7 @@
             callBack: function (iframeId) {
                 RefundMethod();
             },
-            //Điểm cửa sổ bật lên“X”sự kiệnvà'Nút đóng'sự kiện
+            //Điểm cửa sổ bật lên“X”sự kiện và'Nút đóng'sự kiện
             cancelCallBack: function (iframeId) {
 
                 //Bật hộp chỉnh sửa trong dòng

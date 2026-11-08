@@ -24,12 +24,12 @@
                     </td>
                     @if (!(reqFrom == "mz"))
                     {
-                        <th class="formTitle">Trạng tháithu phí：</th>
+                        <th class="formTitle">Trạng thái thu phí：</th>
                         <td class="formValue">
                             <select id="sfzt" name="sfzt" class="form-control">
                                 <option value="">==Tất cả==</option>
-                                <option value="0">Chưathu phí</option>
-                                <option value="1">Đãthu phí</option>
+                                <option value="0">Chưa thu phí</option>
+                                <option value="1">Đã thu phí</option>
                             </select>
                         </td>
                     }
@@ -107,7 +107,7 @@
             $('#btn_search').trigger('click');
         });
 
-        //Trạng tháithu phí tự độngKích hoạtTruy vấn
+        //Trạng thái thu phí tự độngKích hoạtTruy vấn
         $('#sfzt').change(function () {
             $('#btn_search').trigger('click');
         });
@@ -140,14 +140,14 @@
             }
         },
         {
-            label: "Trạng tháithu phí", name: "sfzt", width: 60, align: "left",
+            label: "Trạng thái thu phí", name: "sfzt", width: 60, align: "left",
             hidden: (from == "mz" ? true : undefined),
             formatter: function (cellvalue) {
                 if (cellvalue == '1') {
-                    return "Đãthu phí"
+                    return "Đã thu phí"
                 }
                 else if (cellvalue == '0') {
-                    return "Chưathu phí";
+                    return "Chưa thu phí";
                 }
                 return "";
             }
@@ -161,7 +161,7 @@
                 return $.itemDetails.getNameByCode("RehabTreatmentMethod", cellvalue);
             }
         },
-        { label: "Mụcthu phí", name: "sfxmmc", width: 180, align: "left" },
+        { label: "Mục thu phí", name: "sfxmmc", width: 180, align: "left" },
         { label: "Lượng điều trị", name: "zll", width: 40, align: "left" },
         { label: "Đơn vị", name: "dw", width: 40, align: "left" },
         { label: "Số lượng", name: "sl", width: 50, align: "left" },
@@ -220,7 +220,7 @@
                 }).trigger('reloadGrid');
         });
     }
-    //Truy vấnđiều kiện
+    //Truy vấn điều kiện
     function getSearchPostData() {
         var keyword = $("#keyword").val();
         var kssj = $("#kssj").val();

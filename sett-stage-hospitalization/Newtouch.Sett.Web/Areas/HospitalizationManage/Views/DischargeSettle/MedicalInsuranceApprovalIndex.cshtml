@@ -80,7 +80,7 @@
             sortable: false,
             colModel: [
                 { label: "jfbbh", name: "jfbbh", hidden: true, key: true },
-                { label: "Mụcthu phí", name: "sfxmmc", width: 180 },
+                { label: "Mục thu phí", name: "sfxmmc", width: 180 },
                 { label: "Nhóm phí", name: "dlmc", width: 80 },
                 { label: "Mã BHYT", name: "ybbm", width: 80 },
                 {
@@ -117,7 +117,7 @@
             btn: ['Phê duyệt', 'Đóng'],
             callBack: function (iframeId) {
                 top.frames[iframeId].submitform();
-                //top.frames[iframeId].$.modalClose(); //tạiBật lênsự kiện cửa sổ
+                //top.frames[iframeId].$.modalClose(); //tạiBật lên sự kiện cửa sổ
             }
         });
     }
@@ -130,7 +130,7 @@
             width: "700px",
             height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //tạiBật lênsự kiện cửa sổ
+                top.frames[iframeId].PatDbGrid(); //tạiBật lên sự kiện cửa sổ
                 //Gọi truy vấn số thẻ và mã nhập viện
             }//Hàm gọi lại khi nhấn xác nhận tại cửa sổ
         })

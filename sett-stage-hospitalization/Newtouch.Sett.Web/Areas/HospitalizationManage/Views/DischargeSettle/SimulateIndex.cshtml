@@ -2,7 +2,7 @@
 @{
 	ViewBag.Title = "Index";
 	Layout = "~/Views/Shared/_Index.cshtml";
-	//Có thểquyết toán hay không Bệnh nhân đang ở khoa bệnh
+	//Có thể quyết toán hay không Bệnh nhân đang ở khoa bệnh
 	var isSettContainsBQZ = SysConfigReader.Bool("HOSP_Sett_Contains_BQZ", false).Value;
 	var brzybzType = ((int)EnumZYBZ.Djz).ToString();
 	//if (isSettContainsBQZ)
@@ -16,7 +16,7 @@
 	var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
 	//Có giao dịch với nông thôn mới hay không
 	var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
-	//Nơi quản lý BHYT，phân biệt hệ thốngsẽthực hiệnở đâuLogic BHYT
+	//Nơi quản lý BHYT，phân biệt hệ thống sẽ thực hiện ở đâuLogic BHYT
 	var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
 
 	var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
@@ -130,7 +130,7 @@
 
 <script>
     var openYbSett = '@openYbSett' === 'True'; //Cấu hình công tắc：Bệnh nhân BHYT có sử dụng quy trình giao dịch BHYT hay không
-    var openXnhSett = '@openXnhSett' === 'True'; //Cấu hình công tắc：Bệnh nhân nông thôn mớilàkhôngsử dụngNông thôn mớiGiao dịch BHYTquy trình
+    var openXnhSett = '@openXnhSett' === 'True'; //Cấu hình công tắc：Bệnh nhân nông thôn mới là không sử dụngNông thôn mớiGiao dịch BHYTquy trình
     var isYbjyjz; //Lần khám hiện tại có giao dịch BHYT hay không
     var isXnhjyjz;
     var medicalInsurance = '@medicalInsurance';
@@ -160,7 +160,7 @@
             width: "700px",
             height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //tạiBật lênsự kiện cửa sổ
+                top.frames[iframeId].PatDbGrid(); //tạiBật lên sự kiện cửa sổ
                 //Gọi truy vấn số thẻ và mã nhập viện
             }//Hàm gọi lại khi nhấn xác nhận tại cửa sổ
         });
@@ -245,7 +245,7 @@
                     loadJfmxByZyh(zyh, null);
                 }
                 else {
-                    $.modalAlert("cònchưaphát sinh phí，Không thểquyết toán", 'warning');
+                    $.modalAlert("còn chưa phát sinh phí，Không thể quyết toán", 'warning');
                     return false;
                 }
             },
@@ -285,7 +285,7 @@
                     loadJfmxByZyh2(ajaxresp.data.GroupFeeVOList);
                 }
                 else {
-                    $.modalAlert("cònchưaphát sinh phí，Không thểquyết toán", 'warning');
+                    $.modalAlert("còn chưa phát sinh phí，Không thể quyết toán", 'warning');
                     return false;
                 }
             },
@@ -332,7 +332,7 @@
     //quyết toán trước
     $('#zy_btyjs').click(function () {
         setTimeout(function () {
-            $.loading(true, 'Đangquyết toán trước，Vui lòng đợi...');
+            $.loading(true, 'Đang quyết toán trước，Vui lòng đợi...');
             setTimeout(function () {
                 ybpreeSettCall();
             }, 50);
@@ -341,7 +341,7 @@
 
     $('#zy_szsh').click(function () {
         if (!patModel || !patModel.zyh) {
-            $.modalAlert("Mã nhập việnlàtrống", 'warning');
+            $.modalAlert("Mã nhập viện là trống", 'warning');
             return;
         }
         var rcszsh = { "zyh": patModel.zyh, "operatorId": '@(opr.UserCode)', "operatorName": '@(opr.UserName)',"orgId":'@opr.OrganizeId' }
@@ -362,7 +362,7 @@
                             }
                         }
                         if (error != "") {
-                            $.modalAlert("Phê duyệt trong quá trìnhvi phạmthông tin：" + error, 'error');
+                            $.modalAlert("Phê duyệt trong quá trình vi phạm thông tin：" + error, 'error');
                         }
                         else {
                             $.modalAlert("Xét duyệt đã hoàn thành，Không có thông tin vi phạm!", 'success');
@@ -381,7 +381,7 @@
         });
     })
 
-    //Hủyquyết toán xuất viện
+    //Hủy quyết toán xuất viện
     $('#zy_cyjscx').click(function () {
         if (patModel.zyh == null || patModel.zyh=="") {
             $.modalAlert("Vui lòng chọn mã nhập viện！", 'error');
@@ -406,7 +406,7 @@
                 mdid = payoptype.mdtrt_id;
                 var payoptype = { hisId: patModel.zyh, 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'mdtrt_id': mdid, 'psn_no': cqPatInfo.grbh, "insuplc_admdvs": cqPatInfo.insuplc_admdvs };
                 UpOutMdtrtinfo(payoptype);
-                $.modalAlert("Hủyquyết toán xuất viện thành công！", 'warning');
+                $.modalAlert("Hủy quyết toán xuất viện thành công！", 'warning');
 		    }
 	    });
     })
@@ -529,7 +529,7 @@
                        });
                    }
                    else {
-                       cqPatInfo.feedetl_sn = "0000";//Tạm thời không xét hoàn toàn bộquyết toán giữa kỳ
+                       cqPatInfo.feedetl_sn = "0000";//Tạm thời không xét hoàn toàn bộ quyết toán giữa kỳ
                        $.ajax({
                            type: "POST",
                            url: "http://127.0.0.1:33333/api/YiBao/HospitaUpDscginfo_2302V2",
@@ -599,7 +599,7 @@
                     orgId: '@(opr.OrganizeId)',
                     hisId: patModel.zyh,//Mã nhập viện
                     cyjsbz: "0",
-                    personspectag: 0,//0：thông thường 1：Nghỉ hưunghỉ hưu 2：Thương tật 3：Chăm sóc sức khỏe cán bộchỉ định,
+                    personspectag: 0,//0：thông thường 1：Nghỉ hưu nghỉ hưu 2：Thương tật 3：Chăm sóc sức khỏe cán bộ chỉ định,
                     yllb: "S21",
                     persontype: "0",
                     gsrdh: "",
@@ -625,7 +625,7 @@
                 if (ybjsSettReturn.xxfhm === "P001") {
 
                     ///var ybyjsxx = ybjsSettReturn.output.setlinfo;
-                    //Lưuquyết toán trước
+                    //Lưu quyết toán trước
                     ///ybyjsxx.zyh = patModel.zyh;
                     //YByjsld(ybyjsxx);
                     sessionStorage.setItem('ybjyPreFeeReturn', JSON.stringify(ybjsSettReturn));
@@ -652,7 +652,7 @@
             }
             else {
                 $.loading(false);
-                $.modalAlert("Gọiquyết toán trước BHYT【SI51】Giao diện thất bại,Vui lòng thử lại", 'error');
+                $.modalAlert("Gọi quyết toán trước BHYT【SI51】Giao diện thất bại,Vui lòng thử lại", 'error');
             }
         } else {
             var acct_used_flag = "";
@@ -666,7 +666,7 @@
             presett.mdtrt_cert_type = "03";
             presett.orgId = '@(opr.OrganizeId)';
             var ybjsSettReturn;
-            //Làm thủ tục xuất viện，Tiến hànhquyết toán trước tiếp Sau khi hoàn thànhquyết toán trước mới tiến hành hủy
+            //Làm thủ tục xuất viện，Tiến hành quyết toán trước tiếp Sau khi hoàn thành quyết toán trước mới tiến hành hủy
             @*$.ajax({
 		    type: "POST",
 		    url: "/PatientManage/HospiterRes/GetCQjzdjInfo",
@@ -730,7 +730,7 @@
                 if (ybjsSettReturn.infcode == "0") {
 
                     var ybyjsxx = ybjsSettReturn.output.setlinfo;
-                    //Lưuquyết toán trước
+                    //Lưu quyết toán trước
                     ybyjsxx.zyh = patModel.zyh;
                     YByjsld(ybyjsxx);
                     sessionStorage.setItem('ybjyPreFeeReturn', JSON.stringify(ybjsSettReturn));
@@ -759,7 +759,7 @@
             }
             else {
                 $.loading(false);
-                $.modalAlert("Gọiquyết toán trước BHYT【2303】Giao diện thất bại,Vui lòng thử lại", 'error');
+                $.modalAlert("Gọi quyết toán trước BHYT【2303】Giao diện thất bại,Vui lòng thử lại", 'error');
             }
         }
     }
@@ -904,7 +904,7 @@
                     //        if (xmmc) {
                     //            $.loading(false);
                     //            isuccer = false;
-                    //            $.modalAlert(xmmc + "chưađối vớitheo quốc giaMã BHYT!Vui lòng kiểm tra lại", 'error');
+                    //            $.modalAlert(xmmc + "chưa đối với theo quốc giaMã BHYT!Vui lòng kiểm tra lại", 'error');
                     //            return;
                     //        }
                            // else {
@@ -983,7 +983,7 @@
                             if (xmmc) {
                                 $.loading(false);
                                 isuccer = false;
-                                $.modalAlert(xmmc + "chưađối vớitheo quốc giaMã BHYT!Vui lòng kiểm tra lại", 'error');
+                                $.modalAlert(xmmc + "chưa đối với theo quốc giaMã BHYT!Vui lòng kiểm tra lại", 'error');
                                 return;
                             }
                             else {
@@ -1062,7 +1062,7 @@
                 { label: 'Bác sĩ', name: 'ysmc', align: 'center', width: 50 },
                 { label: 'Số hiệu hủy', name: 'cxzyjfbbh', align: 'center', width: 50 },
 
-                 { label: 'Đã tải lênjfbbh', name: 'feedetl_sn', align: 'center', width: 50, hidden: true },
+                 { label: 'Đã tải lên jfbbh', name: 'feedetl_sn', align: 'center', width: 50, hidden: true },
             ],
             pager: "#gridPager",
             sortname: 'tdrq',

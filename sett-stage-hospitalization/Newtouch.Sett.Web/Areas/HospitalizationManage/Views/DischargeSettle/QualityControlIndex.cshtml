@@ -56,7 +56,7 @@
             width: "700px",
             height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //tạiBật lênsự kiện cửa sổ
+                top.frames[iframeId].PatDbGrid(); //tạiBật lên sự kiện cửa sổ
                 //Gọi truy vấn số thẻ và mã nhập viện
             }//Hàm gọi lại khi nhấn xác nhận tại cửa sổ
         });
@@ -131,7 +131,7 @@
                     bindGridList();
                 }
                 else {
-                    $.modalAlert("cònchưaphát sinh phí，Không thểquyết toán", 'warning');
+                    $.modalAlert("còn chưa phát sinh phí，Không thể quyết toán", 'warning');
                     return false;
                 }
             },
@@ -159,9 +159,9 @@
             unwritten: false,
             colModel: [
                 {
-                    label: 'Số hiệu cơ sở y tếchỉ định', name: 'fixmedins_code', align: 'center', width: 50, key: true },
-                {label: 'Tên cơ sở y tếchỉ định', name: 'fixmedins_name', align: 'center', width: 50 },
-                { label: 'Năm-thángquyết toán', name: 'setl_ym', align: 'center', width: 150 },
+                    label: 'Số hiệu cơ sở y tế chỉ định', name: 'fixmedins_code', align: 'center', width: 50, key: true },
+                {label: 'Tên cơ sở y tế chỉ định', name: 'fixmedins_name', align: 'center', width: 50 },
+                { label: 'Năm-tháng quyết toán', name: 'setl_ym', align: 'center', width: 150 },
                 { label: 'quyết toán ID', name: 'setl_id', align: 'left', width: 60 },
                 { label: 'Số hiệu nhân viên', name: 'psn_no', align: 'left', width: 170 },
                 { label: 'Tên nhân viên', name: 'psn_name', align: 'center', width: 30 },
@@ -171,7 +171,7 @@
                 { label: 'Số phiên bản kiểm soát chất lượng', name: 'qltctrl_ver', align: 'center', width: 50},
                 { label: 'Loại giấy tờ nhân viên', name: 'psn_cert_type', align: 'center', width: 50 },
                 { label: 'Số giấy tờ', name: 'cert_no', align: 'center', width: 50 },
-                //{ label: 'Kiểm soát chất lượngquyết toánbảngKết quảChi tiếtthông tin', name: 'detailinfo', align: 'center', width: 50 },
+                //{ label: 'Kiểm soát chất lượng quyết toán bảngKết quảChi tiết thông tin', name: 'detailinfo', align: 'center', width: 50 },
                
             ],
             pager: "#gridPager",

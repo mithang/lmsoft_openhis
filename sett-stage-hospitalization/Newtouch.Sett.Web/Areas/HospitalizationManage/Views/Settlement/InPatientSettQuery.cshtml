@@ -22,7 +22,7 @@
                 <td class="formValue">
                     <input id="txt_keyword" type="text" class="form-control form-an" placeholder="Họ tên/Số bệnh án/Mã nhập viện">
                 </td>
-                <th class="formTitle">Ngày bắt đầuquyết toán：</th>
+                <th class="formTitle">Ngày bắt đầu quyết toán：</th>
                 <td class="formValue" colspan="2">
                     <input id="jsksrq" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-6).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left">—</span>
@@ -67,7 +67,7 @@
                 { label: 'Tổng phí', name: 'zje', width: 60, align: 'left'},
                 { label: 'Tiền mặt', name: 'xj', width: 60, align: 'left' },
                 { label: 'ghi sổ', name: 'jz', width: 60, align: 'left' },
-                { label: 'Loạiquyết toán', name: 'jslx', width: 60, align: 'left' },
+                { label: 'Loại quyết toán', name: 'jslx', width: 60, align: 'left' },
                 { label: 'Nhân viên thao tác', name: 'czy', width: 60, align: 'left' },
                 //{
                 //    label: 'Đang ở việnTrạng thái', name: 'zybz', width: 60, align: 'left', formatter: function (cellvalue) {
@@ -90,15 +90,15 @@
                 //        }
                 //    }
                 //},
-                //{ label: 'Ngày bắt đầuquyết toán', name: 'jsksrq', width: 140, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                //{ label: 'Ngày kết thúcquyết toán', name: 'jsjsrq', width: 140, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                //{ label: 'Ngày bắt đầu quyết toán', name: 'jsksrq', width: 140, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                //{ label: 'Ngày kết thúc quyết toán', name: 'jsjsrq', width: 140, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
                 //{ label: 'Tổng số tiền', name: 'zje', width: 80, align: 'left', formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 } },
-                //{ label: 'Thời gianquyết toán', name: 'CreateTime', width: 150, align: 'left' },
-                //{ label: 'Nhân viênquyết toán', name: 'CreatorCode', width: 100, align: 'left' },
+                //{ label: 'Thời gian quyết toán', name: 'CreateTime', width: 150, align: 'left' },
+                //{ label: 'Nhân viên quyết toán', name: 'CreatorCode', width: 100, align: 'left' },
                 //{
-                //    label: 'Trạng tháiquyết toán', name: 'jszt', width: 80, align: 'left', formatter: function (cellvalue) {
+                //    label: 'Trạng thái quyết toán', name: 'jszt', width: 80, align: 'left', formatter: function (cellvalue) {
                 //        if (cellvalue == "1") {
-                //            return "Đãquyết toán";
+                //            return "Đã quyết toán";
                 //        }
                 //        if (cellvalue == "2") {
                 //            return "Đã hoàn";
@@ -107,7 +107,7 @@
                 //    }
                 //},
                 //{
-                //    label: 'Tính chấtquyết toán', name: 'jsxz', width: 80, align: 'left', formatter: function (cellvalue) {
+                //    label: 'Tính chất quyết toán', name: 'jsxz', width: 80, align: 'left', formatter: function (cellvalue) {
                 //        if (cellvalue == "1") {
                 //            return "quyết toán xuất viện";
                 //        }

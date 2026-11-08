@@ -220,7 +220,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         }
         /// <summary>
-        /// Lấy thông tin hoàn trảquyết toán
+        /// Lấy thông tin hoàn trả quyết toán
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
@@ -232,7 +232,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Lấy thông tinquyết toán
+        /// Lấy thông tin quyết toán
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
@@ -266,7 +266,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Hủyquyết toán xuất viện
+        /// Hủy quyết toán xuất viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -313,7 +313,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         #region Quyết toán xuất viện // (Không có thuật toán BHYT) // 20190408 sửa thành có thuật toán BHYT
 
         /// <summary>
-        /// Dữ liệu truy vấn mã nhập viện（bao gồmBệnh nhânthông tinvàChi tiết tính phí） zyh hoặc kh +cardType hoặc sfz +cardType
+        /// Dữ liệu truy vấn mã nhập viện（bao gồmBệnh nhân thông tin vàChi tiết tính phí） zyh hoặc kh +cardType hoặc sfz +cardType
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="sfz"></param>
@@ -460,7 +460,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Lưuquyết toán
+        /// Lưu quyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="expectedcyrq"></param>
@@ -529,7 +529,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         #region Hủy quyết toán xuất viện // (Không có thuật toán BHYT) // 20190408 sửa thành có thuật toán BHYT
 
         /// <summary>
-        /// Truy vấn hủyquyết toán
+        /// Truy vấn hủy quyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -542,7 +542,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Hủyquyết toán
+        /// Hủy quyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="expectedjsnm"></param>
@@ -558,7 +558,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
             if (_sysConfigRepo.GetBoolValueByCode("HOSP_INTERFACE_WITH_CPOE", this.OrganizeId) == true)
             {
-                //Đồng bộzybz Chờquyết toán choCIS
+                //Đồng bộ zybz Chờ quyết toán choCIS
                 SiteCISAPIHelper.UpdateInpatientBasicInfo(new InpatientPatientInfoDTO()
                 {
                     zyh = zyh,
@@ -574,7 +574,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
                 isTradeRefundError = refundReuslt == (int)EnumRefundStatus.Failed || refundReuslt == (int)EnumRefundStatus.UnKnown;    //Thất bại hoặc chưa rõ
             }
             _hospdrugbillingRepo.Updatezy_brxxexpand(this.OrganizeId, zyh);
-            var msg = "Hủyquyết toán thành công";  
+            var msg = "Hủy quyết toán thành công";  
             if (isTradeRefundError.HasValue)
             {
                 if (!isTradeRefundError.Value)
@@ -715,7 +715,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
             if (string.IsNullOrEmpty(jslx))
             {
-                return Error("Loạiquyết toán không được để trống, vui lòng liên hệ vận hành HIS！");
+                return Error("Loại quyết toán không được để trống, vui lòng liên hệ vận hành HIS！");
             }
 
 
@@ -729,7 +729,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             return Success(null, res);
         }
         /// <summary>
-        /// Sauquyết toán giữa kỳ cần xử lý bản ghi chi tiết đã tải lên Tránh việc BHYT lấy số liệu không chính xác khi xuất viện
+        /// Sau quyết toán giữa kỳ cần xử lý bản ghi chi tiết đã tải lên Tránh việc BHYT lấy số liệu không chính xác khi xuất viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -739,7 +739,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             return Success();
         }
         /// <summary>
-        /// Dữ liệu truy vấn mã nhập viện（bao gồmBệnh nhânthông tinvàChi tiết tính phí） zyh hoặc kh +cardType hoặc sfz +cardType
+        /// Dữ liệu truy vấn mã nhập viện（bao gồmBệnh nhân thông tin vàChi tiết tính phí） zyh hoặc kh +cardType hoặc sfz +cardType
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="sfz"></param>
@@ -759,7 +759,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Chuyểnquyết toán xuất viện
+        /// Chuyển quyết toán xuất viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -781,7 +781,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         {
             if (jsnm == 0)
             {
-                throw new FailedException("Thiếu mãquyết toán");
+                throw new FailedException("Thiếu mã quyết toán");
             }
             var jsentity = _hospSettlementRepo.IQueryable(p => p.jsnm == jsnm && p.OrganizeId == OrganizeId && p.zt == "1" && p.jszt == "1").ToList().FirstOrDefault();
             return Success("", jsentity.xjzf);
@@ -789,7 +789,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
         #endregion
 
-        #region Hủyquyết toán xuất viện
+        #region Hủy quyết toán xuất viện
         public IActionResult GetCQLastjsnm(string zyh)
         {
             var data = _dischargeSettleDmnService.GetCQLastJsnm(zyh, this.OrganizeId);
@@ -853,7 +853,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
         #endregion
 
-        #region BHYTLưuquyết toán trước
+        #region BHYTLưu quyết toán trước
         public IActionResult subybyjsld(CqybSett2303Entity YuJieSuan)
         {
             DateTime dateTime = DateTime.Now;

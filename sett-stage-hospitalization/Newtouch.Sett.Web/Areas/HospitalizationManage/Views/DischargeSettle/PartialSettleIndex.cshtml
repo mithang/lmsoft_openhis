@@ -6,12 +6,12 @@
 
     //Có giao dịch với BHYT hay không
     var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
-    //Nơi quản lý BHYT，phân biệt hệ thốngsẽthực hiệnở đâuLogic BHYT
+    //Nơi quản lý BHYT，phân biệt hệ thống sẽ thực hiện ở đâuLogic BHYT
     var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
 
-    //thu phí thành côngSaulàkhôngTrực tiếpInBiên lai
+    //thu phí thành côngSau là khôngTrực tiếpInBiên lai
     var autoPrintFP = SysConfigReader.Bool("Inpatient_Sett_AutoPrint");
-    //Báo cáo biên lailiên kết
+    //Báo cáo biên lai liên kết
     var invoiceReportUrl = SysConfigReader.OrgReportLink("NewInpatientSetts");
 
     var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
@@ -86,8 +86,8 @@
     </div>
 </div>
 <ul id="myTab" class="nav nav-tabs">
-    <li class="active"><a href="#wj" data-toggle="tab">Phí chưaquyết toán</a></li>
-    <li><a href="#yj" data-toggle="tab">Lịch sử đãquyết toán</a></li>
+    <li class="active"><a href="#wj" data-toggle="tab">Phí chưa quyết toán</a></li>
+    <li><a href="#yj" data-toggle="tab">Lịch sử đã quyết toán</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade in active" id="wj">
@@ -100,7 +100,7 @@
             <table id="gridList2"></table>
         </div>
         <div style="margin:3px 0;">
-            <span style="color:red;font-weight:bold;">*.Giới hạn chức năng hủylàHủy bỏDanh sáchtrongquyết toán gần nhất</span>
+            <span style="color:red;font-weight:bold;">*.Giới hạn chức năng hủy làHủy bỏDanh sách trong quyết toán gần nhất</span>
         </div>
     </div>
 </div>
@@ -110,11 +110,11 @@
         <table class="form" style="width:96%;">
             <tbody>
                 <tr>
-                    <th class="formTitle">Phí chưaquyết toán：</th>
+                    <th class="formTitle">Phí chưa quyết toán：</th>
                     <td class="formValue" style="width:100px;">
                         <label id="lblSumje" style="color:red;font-weight: bold;font-size: large;"></label>
                     </td>
-                    <th class="formTitle" style="width:105px;">Thời gian kết thúcquyết toán lần trước：</th>
+                    <th class="formTitle" style="width:105px;">Thời gian kết thúc quyết toán lần trước：</th>
                     <td class="formValue">
                         <label id="lastValidMidwaySettTime"></label>
                     </td>
@@ -126,9 +126,9 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 6,7, 8 },
-    F8Text = "Xác nhậnthu phí",
-    F6Text = "Hủyquyết toán",
-    F7Text = "Chuyểnquyết toán xuất viện",
+    F8Text = "Xác nhận thu phí",
+    F6Text = "Hủy quyết toán",
+    F7Text = "Chuyển quyết toán xuất viện",
     F6Hidden = true,
     F7Hidden = true,
     F8Hidden = true,
@@ -141,11 +141,11 @@
 
     var ybkCardType = "@((int)EnumCardType.YBJYK)";//Loại thẻ BHYT
     var xnkCardType = "@((int)EnumCardType.XNK)";//Loại thẻ ảo
-    var ybCommonBackReturnData;//Hủy kết quảquyết toán gần nhất BHYT
+    var ybCommonBackReturnData;//Hủy kết quả quyết toán gần nhất BHYT
     var ybIsReadCard = false;
     var zyh;
 
-    //Thông qualsMã nhập việnchuyển qua
+    //Thông qualsMã nhập viện chuyển qua
     var fromzyh = sessionStorage.getItem('zyh');
     var defaultShow = sessionStorage.getItem('defaultShow');
     $("#readCard").show();
@@ -164,7 +164,7 @@
         $('#myTab li:eq(1) a').tab('show'); //Sẽ kích hoạt kiểu hiển thị nạp của grid2
 
         if (!(defaultShow === 'yj')) {
-            setTimeout("$('#myTab li:eq(0) a').tab('show');", 200); //Hiển thị phí chưaquyết toán
+            setTimeout("$('#myTab li:eq(0) a').tab('show');", 200); //Hiển thị phí chưa quyết toán
         }
     });
 
@@ -180,7 +180,7 @@
             height: $(window).height() - 320,
             sortable: false,
             colModel: [
-                { label: "Tên mụcthu phí", name: "sfxmmc", width: 180, align: "left" },
+                { label: "Tên mục thu phí", name: "sfxmmc", width: 180, align: "left" },
                 {
                     label: "Số lượng", name: "sl", width: 80, align: "left", formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
@@ -233,20 +233,20 @@
                 { label: "jsnm", name: "jsnm", align: "left", hidden: true },
                 { label: "Mã nhập viện", name: "zyh", align: "left", hidden: true },
                 {
-                    label: "Số tiềnquyết toán", name: "zje", width: 180, align: "left", formatter: "number"
+                    label: "Số tiền quyết toán", name: "zje", width: 180, align: "left", formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
                 {
-                    label: "Thời gian bắt đầuquyết toán", name: "jsksrq", width: 240, align: "left",
+                    label: "Thời gian bắt đầu quyết toán", name: "jsksrq", width: 240, align: "left",
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
                 {
-                    label: "Thời gian kết thúcquyết toán", name: "jsjsrq", width: 240, align: "left",
+                    label: "Thời gian kết thúc quyết toán", name: "jsjsrq", width: 240, align: "left",
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: "Nhân viênquyết toán", name: "CreatorCode", width: 140, align: "left" },
+                { label: "Nhân viên quyết toán", name: "CreatorCode", width: 140, align: "left" },
                 {
-                    label: "Thời gianquyết toán", name: "CreateTime", width: 240, align: "left",
+                    label: "Thời gian quyết toán", name: "CreateTime", width: 240, align: "left",
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 }
             ],
@@ -254,13 +254,13 @@
     }
 
     function thenreload() {
-        //Nạp phí chưaquyết toán
+        //Nạp phí chưa quyết toán
         reloadGrid();
         reloadLastValidMidwaySettTime();
 
         var targetHref = $('#myTab li.active a').attr('href');
         if (targetHref && targetHref.indexOf('yj') != -1) {
-            reloadGrid2();  //Hiện tại đãquyết toán
+            reloadGrid2();  //Hiện tại đã quyết toán
         }
     }
 
@@ -284,7 +284,7 @@
     }
 
     function reloadLastValidMidwaySettTime() {
-        //cập nhật‘Thời gian kết thúcquyết toán cuối cùng’
+        //cập nhật‘Thời gian kết thúc quyết toán cuối cùng’
         $('#lastValidMidwaySettTime').html('');
         if (!!zyh) {
             $.najax({
@@ -308,7 +308,7 @@
             width: "700px",
             height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //tạiBật lênsự kiện cửa sổ
+                top.frames[iframeId].PatDbGrid(); //tạiBật lên sự kiện cửa sổ
                 //Gọi truy vấn số thẻ và mã nhập viện
             }//Hàm gọi lại khi nhấn xác nhận tại cửa sổ
         });
@@ -421,7 +421,7 @@
                     top.frames[iframeId].AcceptClick(function (feeRelated, outTradeNo) {
                         var startTime = $('#startTime').html();
                         if (!!!startTime) {
-                            $.modalAlert("chưachỉ địnhThời gian bắt đầuquyết toán", 'error');
+                            $.modalAlert("chưa chỉ địnhThời gian bắt đầu quyết toán", 'error');
                             return;
                         }
                         if (!!!zyh) {
@@ -430,7 +430,7 @@
                         }
                         var thisSettEndTime = $('#endTime').val();
                         if (!!!thisSettEndTime) {
-                            $.modalAlert("chưachỉ địnhThời gian kết thúcquyết toán", 'error');
+                            $.modalAlert("chưa chỉ địnhThời gian kết thúc quyết toán", 'error');
                             return;
                         }
 
@@ -441,7 +441,7 @@
 
                         var allLine = $("#gridList").jqGrid('getRowData_AllLine', null, true);
                         if (!!!allLine || allLine.length == 0) {
-                            $.modalAlert("Không có phí chưaquyết toán", 'error');
+                            $.modalAlert("Không có phí chưa quyết toán", 'error');
                             return;
                         }
                        
@@ -490,7 +490,7 @@
                     });
                 },
                 cancelCallBack: function (iframeId) {
-                    //Hủyquyết toán xuất viện，Làm thủ tục xuất việnhoàn trả
+                    //Hủy quyết toán xuất viện，Làm thủ tục xuất viện hoàn trả
                     if (isYbjyjz) {
                             var cqybjyDenySettleReturn;
                             var payoptype = { hisId:zyh,'setl_id': ybjyFeeReturn.setl_id, 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'mdtrt_id': ybjyFeeReturn.mdtrt_id, 'psn_no': cqPatInfo.grbh, "insuplc_admdvs": cqPatInfo.xzqh };
@@ -537,10 +537,10 @@
     }
 
 
-    //Hủyquyết toán
+    //Hủy quyết toán
     function newtouch_event_f6() {
         if (!zyh) {
-            $.modalAlert("Mã nhập việnlàtrống，Vui lòng xác nhận", 'warning');
+            $.modalAlert("Mã nhập viện là trống，Vui lòng xác nhận", 'warning');
             return;
         }
         $.ajax({
@@ -551,7 +551,7 @@
             success: function (jsnm) {
                 if (isYbjyjz) {
                     if (!ybIsReadCard) {
-                        $.modalAlert("Hủyquyết toán bệnh nhân BHYT，Vui lòng đọc thẻ trước！", 'warning');
+                        $.modalAlert("Hủy quyết toán bệnh nhân BHYT，Vui lòng đọc thẻ trước！", 'warning');
                         return;
                     }
                         var cqybjyDenySettleReturn;
@@ -589,7 +589,7 @@
                                         return;
                                     }
                                 } else {
-                                    $.modalAlert('Hủyquyết toán thất bại，Bảngquyết toáncqyb_OutPut05trongkhông cóLầnquyết toánBHYTlưuDữ liệu：Mãquyết toán' + jsnm, 'warning');
+                                    $.modalAlert('Hủy quyết toán thất bại，Bảng quyết toán cqyb_OutPut05trong không cóLần quyết toánBHYT lưuDữ liệu：Mã quyết toán' + jsnm, 'warning');
                                     return;
                                 }
                                 $.loading(false);
@@ -602,7 +602,7 @@
         });
     }
 
-    //Chuyểnquyết toán xuất viện
+    //Chuyển quyết toán xuất viện
     function newtouch_event_f7() {
         $.najax({
             url: "/HospitalizationManage/DischargeSettle/TransfertoCYsettle?zyh=" + zyh,
@@ -643,7 +643,7 @@
 
         var startTime = $('#startTime').html();
         if (!!!startTime) {
-            $.modalAlert("chưachỉ địnhThời gian bắt đầuquyết toán", 'error');
+            $.modalAlert("chưa chỉ địnhThời gian bắt đầu quyết toán", 'error');
             return;
         }
         if (!!!zyh) {
@@ -652,7 +652,7 @@
         }
         var thisSettEndTime = $('#endTime').val();
         if (!!!thisSettEndTime) {
-            $.modalAlert("chưachỉ địnhThời gian kết thúcquyết toán", 'error');
+            $.modalAlert("chưa chỉ địnhThời gian kết thúc quyết toán", 'error');
             return;
         }
 
@@ -662,7 +662,7 @@
         }
         var allLine = $("#gridList").jqGrid('getRowData_AllLine', null, true);
         if (!!!allLine || allLine.length == 0) {
-            $.modalAlert("Không có phí chưaquyết toán", 'error');
+            $.modalAlert("Không có phí chưa quyết toán", 'error');
             return;
         }
 
@@ -683,7 +683,7 @@
                             setTimeout(function() {
                                 CQmxsc(jzxx,
                                         function (mxxx) {
-                                            $.loading(true, 'Đangquyết toán BHYT，Vui lòng đợi...');
+                                            $.loading(true, 'Đang quyết toán BHYT，Vui lòng đợi...');
                                             setTimeout(function() {
                                                 CQybjs(jzxx, mxxx);
                                                 });
@@ -705,7 +705,7 @@
     {
         var allLine = $("#gridList2").jqGrid('getRowData_AllLine', null, true);
         if (!!!allLine || allLine.length == 0) {
-            $.modalAlert("Không có lịch sử đãquyết toán", 'error');
+            $.modalAlert("Không có lịch sử đã quyết toán", 'error');
             return;
         }
         ybCommonBackReturnData = ybBackReturnData;
@@ -716,7 +716,7 @@
             width: "300px",
             height: "350px",
             callBack: function (iframeId) {
-                top.frames[iframeId].submitform(); //tạiBật lênsự kiện cửa sổ
+                top.frames[iframeId].submitform(); //tạiBật lên sự kiện cửa sổ
             }
         });
     }
@@ -822,14 +822,14 @@
 	            if (jfbh) {
 	                $.loading(false);
 	                isuccer = false;
-	                $.modalAlert(jfbh + "Chưa tải lên BHYT,Vui lòng truy vấn và tải lên tại trangquyết toán trước!", 'error');
+	                $.modalAlert(jfbh + "Chưa tải lên BHYT,Vui lòng truy vấn và tải lên tại trang quyết toán trước!", 'error');
 	                return;
 	            }
 	            else if (zjjfbh)
 	            {
 	                $.loading(false);
 	                isuccer = false;
-	                $.modalAlert("quyết toán giữa kỳ chỉ được tải lên chi tiết phí trước thời gianquyết toán đã chọn,Vui lòng chọn thời gian cầnquyết toán giữa kỳ tại trangquyết toán trước và tải lên!,Số hiệu tính phí:"+zjjfbh , 'error');
+	                $.modalAlert("quyết toán giữa kỳ chỉ được tải lên chi tiết phí trước thời gian quyết toán đã chọn,Vui lòng chọn thời gian cần quyết toán giữa kỳ tại trang quyết toán trước và tải lên!,Số hiệu tính phí:"+zjjfbh , 'error');
 	                return;
 	            }
 	            else {
@@ -911,9 +911,9 @@
                     $.loading(false);
                     if (ybjsSettReturn.infcode == "0") {
                         var ybjyCqFeeReturn = ybjsSettReturn.output.setlinfo;
-                        //hisXác nhậnquyết toán（bao gồmBHYTXác nhậnquyết toán）
-                        //Theo kết quả truy vấn từ máy chủ，Nếu bệnh nhân này có mục tự lập đã mở（khôngcóMã BHYT），Thì tổng số tiền khiquyết toán，Điền tổng số tiền tổng hợp
-                        //Nếu chỉ có mục BHYT，Thìquyết toán theo kết quả trả về BHYT củaquyết toán BHYT
+                        //hisXác nhận quyết toán（bao gồmBHYTXác nhận quyết toán）
+                        //Theo kết quả truy vấn từ máy chủ，Nếu bệnh nhân này có mục tự lập đã mở（không cóMã BHYT），Thì tổng số tiền khi quyết toán，Điền tổng số tiền tổng hợp
+                        //Nếu chỉ có mục BHYT，Thì quyết toán theo kết quả trả về BHYT của quyết toán BHYT
                         ybjyCqFeeReturn.his_hisfyze = jszje;
                         ybjyCqFeeReturn.ybzje = mxxx.ybzje;
                         ybjyCqFeeReturn.jzid = jzxx.mdtrt_id;
@@ -955,18 +955,18 @@
             async: false,
             success: function (data) {
                 if (!!!data) {
-                    msg = "HISdịch vụ(lấySố hóa đơn)Thông tin trả về trống";
+                    msg = "HIS dịch vụ(lấySố hóa đơn)Thông tin trả về trống";
                     return;
                 }
                 if (data.indexOf("{") >= 0 || data.indexOf("<") >= 0) {
-                    msg = "HISdịch vụ(lấySố hóa đơn)Nội dung trả về lỗi：" + data;
+                    msg = "HIS dịch vụ(lấySố hóa đơn)Nội dung trả về lỗi：" + data;
                     return;
                 }
                 rs = true;
                 fph = data;
             },
             error: function (request, error, ex) {
-                msg = "HISdịch vụ(lấySố hóa đơn)không thể truy cập：[" + ex + "]";
+                msg = "HIS dịch vụ(lấySố hóa đơn)không thể truy cập：[" + ex + "]";
             }
         });
 
@@ -982,7 +982,7 @@
             }
         });
     }
-    //Truy vấnđiều kiện
+    //Truy vấn điều kiện
     function getSearchPostData(n) {
         var zyh = patModel.zyh;
         var pagination = {
@@ -993,7 +993,7 @@
         return { pagination: pagination, zyh: zyh };
 
     }
-    //Truy vấnđiều kiện
+    //Truy vấn điều kiện
     function getSearchCQPostData(n) {
 	    var zyh = patModel.zyh;
 	    var pagination = {
@@ -1011,7 +1011,7 @@
         }
         return parseFloat(val);
     }
-    //Lấy bệnh nhânquyết toán Thông tin bệnh nhân
+    //Lấy bệnh nhân quyết toán Thông tin bệnh nhân
     function funcGetSettPatientInfo(funcSuccCallback) {
         $.najax({
             url: '/HospitalizationManage/DischargeSettle/GetInpatientSettYbPatInfo?zyh=' + patModel.zyh,

@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Index.cshtml";
-    //Có thểquyết toán hay không Bệnh nhân đang ở khoa bệnh
+    //Có thể quyết toán hay không Bệnh nhân đang ở khoa bệnh
     var isSettContainsBQZ = SysConfigReader.Bool("HOSP_Sett_Contains_BQZ", false).Value;
     var brzybzType = ((int)EnumZYBZ.Djz).ToString();
     //if (isSettContainsBQZ)
@@ -16,7 +16,7 @@
     var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
     //Có giao dịch với nông thôn mới hay không
     var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
-    //Nơi quản lý BHYT，phân biệt hệ thốngsẽthực hiệnở đâuLogic BHYT
+    //Nơi quản lý BHYT，phân biệt hệ thống sẽ thực hiện ở đâuLogic BHYT
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
 
     var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
@@ -96,7 +96,7 @@
 
 <script>
     var openYbSett = '@openYbSett' === 'True'; //Cấu hình công tắc：Bệnh nhân BHYT có sử dụng quy trình giao dịch BHYT hay không
-    var openXnhSett = '@openXnhSett' === 'True'; //Cấu hình công tắc：Bệnh nhân nông thôn mớilàkhôngsử dụngNông thôn mớiGiao dịch BHYTquy trình
+    var openXnhSett = '@openXnhSett' === 'True'; //Cấu hình công tắc：Bệnh nhân nông thôn mới là không sử dụngNông thôn mớiGiao dịch BHYTquy trình
     var isYbjyjz; //Lần khám hiện tại có giao dịch BHYT hay không
     var isXnhjyjz;
     var medicalInsurance = '@medicalInsurance';
@@ -114,7 +114,7 @@
             width: "700px",
             height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //tạiBật lênsự kiện cửa sổ
+                top.frames[iframeId].PatDbGrid(); //tạiBật lên sự kiện cửa sổ
                 //Gọi truy vấn số thẻ và mã nhập viện
             }//Hàm gọi lại khi nhấn xác nhận tại cửa sổ
         });
@@ -170,7 +170,7 @@
                     loadJfmxByZyh(ajaxresp.data.GroupFeeVOList);
                 }
                 else {
-                    $.modalAlert("cònchưaphát sinh phí，Không thểquyết toán", 'warning');
+                    $.modalAlert("còn chưa phát sinh phí，Không thể quyết toán", 'warning');
                     return false;
                 }
             },
@@ -215,7 +215,7 @@
         $('#gridList').jqGrid("clearGridData");
     }
 
-    //Liên kếtgrid
+    //Liên kết grid
     function gridListData() {
         var captionCon = "Chi tiết tính phí&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền：<label style='color:red;'>￥</label></span>&nbsp;<span id='yeCon' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>đồng";
         var $gridList = $("#gridList");
@@ -237,23 +237,23 @@
         });
     }
 
-    //Lưuquyết toán
+    //Lưu quyết toán
     function newtouch_event_f8() {
         //if (isXnhjyjz) {
-        //    $.modalAlert("Bệnh nhân nông thôn mớiKhông thểquyết toán mô phỏng！", 'warning');
+        //    $.modalAlert("Bệnh nhân nông thôn mớiKhông thể quyết toán mô phỏng！", 'warning');
         //    return;
         //}
         if (!patModel || !patModel.zyh) {
-            $.modalAlert("Mã nhập việnlàtrống", 'warning');
+            $.modalAlert("Mã nhập viện là trống", 'warning');
             return;
         }
         var data = $("#gridList").jqGrid('getRowData_AllLine');
         if (!(data && data.length)) {
-            $.modalAlert("cònchưaphát sinh phí，Không thểquyết toán.", 'warning')
+            $.modalAlert("còn chưa phát sinh phí，Không thể quyết toán.", 'warning')
             return;
         }
         if (!patModel.ryrq) {
-            $.modalAlert("Ngày nhập việnlàtrống", 'warning');
+            $.modalAlert("Ngày nhập viện là trống", 'warning');
             return;
         }
 

@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Index.cshtml";
-    //Có thểquyết toán hay không Bệnh nhân đang ở khoa bệnh
+    //Có thể quyết toán hay không Bệnh nhân đang ở khoa bệnh
     var isSettContainsBQZ = SysConfigReader.Bool("HOSP_Sett_Contains_BQZ", false).Value;
     var brzybzType = ((int)EnumZYBZ.Djz).ToString();
     if (isSettContainsBQZ)
@@ -18,11 +18,11 @@
     //Có giao dịch với nông thôn mới hay không
     var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
 
-    //thu phí thành côngSaulàkhôngTrực tiếpInBiên lai
+    //thu phí thành côngSau là khôngTrực tiếpInBiên lai
     var autoPrintFP = SysConfigReader.Bool("Inpatient_Sett_AutoPrint");
     //Phương thức in chứng từ thu phí
     var invoicePrintMethod = SysConfigReader.String("Inpatient_Sett_Invoice_PrintMethod");
-    //Báo cáo biên lailiên kết
+    //Báo cáo biên lai liên kết
     var invoiceReportUrl = SysConfigReader.OrgReportLink("NewInpatientSetts");
 
     var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
@@ -108,13 +108,13 @@
 {
     ShowKeyList = new int[] { 4, 8 },
     F8Text = "quyết toán",
-    //F9Text = "Chuyểnthu phí tự phí",
+    //F9Text = "Chuyển thu phí tự phí",
     //F9ExtInlineStyle = "color:black;"
 })
 
 <script>
     var openYbSett = '@openYbSett' === 'True'; //Cấu hình công tắc：Bệnh nhân BHYT có sử dụng quy trình giao dịch BHYT hay không
-    var openXnhSett = '@openXnhSett' === 'True'; //Cấu hình công tắc：Bệnh nhân nông thôn mớilàkhôngsử dụngNông thôn mớiGiao dịch BHYTquy trình
+    var openXnhSett = '@openXnhSett' === 'True'; //Cấu hình công tắc：Bệnh nhân nông thôn mới là không sử dụngNông thôn mớiGiao dịch BHYTquy trình
     var isYbjyjz; //Lần khám hiện tại có giao dịch BHYT hay không
     var isXnhjyjz;//Lần khám hiện tại có giao dịch nông thôn mới hay không
     var curTime = '@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")';//Thời gian hiện tại
@@ -141,7 +141,7 @@
             width: "700px",
             height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //tạiBật lênsự kiện cửa sổ
+                top.frames[iframeId].PatDbGrid(); //tạiBật lên sự kiện cửa sổ
                 //Gọi truy vấn số thẻ và mã nhập viện
             }//Hàm gọi lại khi nhấn xác nhận tại cửa sổ
         });
@@ -215,7 +215,7 @@
                     loadJfmxByZyh(ajaxresp.data.GroupFeeVOList);
                 }
                 else {
-                    $.modalAlert("cònchưaphát sinh phí，Không thểquyết toán", 'warning');
+                    $.modalAlert("còn chưa phát sinh phí，Không thể quyết toán", 'warning');
                     return false;
                 }
             },
@@ -261,7 +261,7 @@
         $('#gridList').jqGrid("clearGridData");
     }
 
-    //Liên kếtgrid
+    //Liên kết grid
     function gridListData() {
         var captionCon = "Chi tiết tính phí&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền：<label style='color:red;'>￥</label></span>&nbsp;<span id='yeCon' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>đồng";
         var $gridList = $("#gridList");
@@ -279,33 +279,33 @@
         });
     }
 
-    //Lưuquyết toán
+    //Lưu quyết toán
     function newtouch_event_f8() {
         if (!patModel || !patModel.zyh) {
-            $.modalAlert("Mã nhập việnlàtrống", 'warning');
+            $.modalAlert("Mã nhập viện là trống", 'warning');
             return;
         }
         var data = $("#gridList").jqGrid('getRowData_AllLine');
         if (!(data && data.length)) {
-            $.modalAlert("cònchưaphát sinh phí，Không thểquyết toán.", 'warning')
+            $.modalAlert("còn chưa phát sinh phí，Không thể quyết toán.", 'warning')
             return;
         }
         if (!patModel.ryrq) {
-            $.modalAlert("Ngày nhập việnlàtrống", 'warning');
+            $.modalAlert("Ngày nhập viện là trống", 'warning');
             return;
         }
 
-        //LIS PACS Sau khi trả về trạng thái báo cáo mới đượcthu phí
+        //LIS PACS Sau khi trả về trạng thái báo cáo mới được thu phí
          $.ajax({
             type: "POST",
-            dataType: "json", //Trả vềjsonDữ liệu định dạng
+            dataType: "json", //Trả về jsonDữ liệu định dạng
              url: "/DischargeSettle/CountLisIncompletezy",
              data: { "zyh": patModel.zyh },
             async: false,
             success: function (data) {
                 var num = data.num;
                 if (num > 0) {
-                    //$.modalAlert("Tồn tại báo cáo chưa hoàn thành,Không thểquyết toán", 'warning');
+                    //$.modalAlert("Tồn tại báo cáo chưa hoàn thành,Không thể quyết toán", 'warning');
                     //return;
                 }
             }
@@ -320,7 +320,7 @@
                 setTimeout(function () {
                     shybmxsc(
                         function (mxxx) {
-                            $.loading(true, 'Đangquyết toán BHYT，Vui lòng đợi...');
+                            $.loading(true, 'Đang quyết toán BHYT，Vui lòng đợi...');
                             setTimeout(function () {
                                 shybjs(mxxx);
                             });
@@ -336,7 +336,7 @@
                         setTimeout(function () {
                             CQmxsc(jzxx,
                                 function (mxxx) {
-                                    $.loading(true, 'Đangquyết toán BHYT，Vui lòng đợi...');
+                                    $.loading(true, 'Đang quyết toán BHYT，Vui lòng đợi...');
                                     setTimeout(function () {
                                         CQybjs(jzxx, mxxx);
                                     });
@@ -354,24 +354,24 @@
     }
     function newtouch_event_f9() {
         if (!patModel || !patModel.zyh) {
-            $.modalAlert("Mã nhập việnlàtrống", 'warning');
+            $.modalAlert("Mã nhập viện là trống", 'warning');
             return;
         }
         var data = $("#gridList").jqGrid('getRowData_AllLine');
         if (!(data && data.length)) {
-            $.modalAlert("cònchưaphát sinh phí，Không thểquyết toán.", 'warning')
+            $.modalAlert("còn chưa phát sinh phí，Không thể quyết toán.", 'warning')
             return;
         }
         if (!patModel.ryrq) {
-            $.modalAlert("Ngày nhập việnlàtrống", 'warning');
+            $.modalAlert("Ngày nhập viện là trống", 'warning');
             return;
         }
         if (!isYbjyjz) {
-            $.modalAlert("Bệnh nhân này không phải bệnh nhân BHYT，Không cần chuyển tự phí，Vui lòngthu phí trực tiếp", 'warning');
+            $.modalAlert("Bệnh nhân này không phải bệnh nhân BHYT，Không cần chuyển tự phí，Vui lòng thu phí trực tiếp", 'warning');
             return;
         }
         var xmzje = waitSubmitItems();
-        $.modalConfirm("sẽChuyển thànhquyết toán tự phí，Có xác nhậnquyết toán tự phí hay không？",
+        $.modalConfirm("sẽChuyển thành quyết toán tự phí，Có xác nhận quyết toán tự phí hay không？",
             function (flag) {
                 if (!flag) {
                     return;
@@ -449,7 +449,7 @@
                 return;
             },
             cancelCallBack: function (iframeId) {
-                //Hủyquyết toán xuất viện，Làm thủ tục xuất việnhoàn trả
+                //Hủy quyết toán xuất viện，Làm thủ tục xuất viện hoàn trả
                 if (isYbjyjz) {
                     var cqybjyDenySettleReturn;
                     var payoptype = {
@@ -553,7 +553,7 @@
                 return;
             },
             cancelCallBack: function (iframeId) {
-                //Hủyquyết toán xuất viện，Làm thủ tục xuất việnhoàn trả
+                //Hủy quyết toán xuất viện，Làm thủ tục xuất viện hoàn trả
                 if (isYbjyjz) {
                         var cqybjyDenySettleReturn;
                         var payoptype = { hisId:zyh,'setl_id': ybjyFeeReturn.setl_id, 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'mdtrt_id': ybjyFeeReturn.mdtrt_id, 'psn_no': cqPatInfo.grbh, "insuplc_admdvs": cqPatInfo.xzqh };
@@ -613,7 +613,7 @@
     }
     //In hóa đơn
     function printFp(jsnm) {
-        var requestJson = { "BusinessName": "Xemhóa đơn", "paySettlementNo": jsnm}
+        var requestJson = { "BusinessName": "Xem hóa đơn", "paySettlementNo": jsnm}
         $.ajax({
             type: "POST",
             url: "http://127.0.0.1:33333/api/YiBao/InvoicePost",
@@ -629,14 +629,14 @@
                 else {
                     $.loading(false);
                     isuccer = false;
-                    $.modalAlert("Không truy vấn được thông tin hóa đơn điện tửnộp phí nhập viện[" +data.mes + "]", 'error');
+                    $.modalAlert("Không truy vấn được thông tin hóa đơn điện tử nộp phí nhập viện[" +data.mes + "]", 'error');
                     return;
                 }
             },
             error: function (request, error, ex) {
                 $.loading(false);
                 isuccer = false;
-                $.modalAlert('Không truy vấn được thông tin hóa đơn điện tửnộp phí nhập viện[' + ex + ']', 'error');
+                $.modalAlert('Không truy vấn được thông tin hóa đơn điện tử nộp phí nhập viện[' + ex + ']', 'error');
                 return;
             }
         });
@@ -712,7 +712,7 @@
                 if (jfbh) {
                     $.loading(false);
                     isuccer = false;
-                    $.modalAlert(jfbh + "Chưa tải lên BHYT,Vui lòng truy vấn và tải lên tại trangquyết toán trước!", 'error');
+                    $.modalAlert(jfbh + "Chưa tải lên BHYT,Vui lòng truy vấn và tải lên tại trang quyết toán trước!", 'error');
                     return;
                 }
                 else {
@@ -765,7 +765,7 @@
 	            if (jfbh) {
 	                $.loading(false);
 	                isuccer = false;
-	                $.modalAlert(jfbh + "Chưa tải lên BHYT,Vui lòng truy vấn và tải lên tại trangquyết toán trước!", 'error');
+	                $.modalAlert(jfbh + "Chưa tải lên BHYT,Vui lòng truy vấn và tải lên tại trang quyết toán trước!", 'error');
 	                return;
 	            }
 	            else {
@@ -827,7 +827,7 @@
                     insuplc_admdvs: cqPatInfo.insuplc_admdvs,
                     orgId: '@(opr.OrganizeId)',
                     hisId: patModel.zyh,//Mã nhập viện
-                    personspectag: cqPatInfo.accountattr.substr(3, 1),//0：thông thường 1：Nghỉ hưunghỉ hưu 2：Thương tật 3：Chăm sóc sức khỏe cán bộchỉ định,
+                    personspectag: cqPatInfo.accountattr.substr(3, 1),//0：thông thường 1：Nghỉ hưu nghỉ hưu 2：Thương tật 3：Chăm sóc sức khỏe cán bộ chỉ định,
                     yllb: "S21",
                     persontype: "0",
                     gsrdh: "",
@@ -868,9 +868,9 @@
                     $.loading(false);
                     if (ybjsSettReturn.xxfhm === "P001") {
                         var ybjyCqFeeReturn = ybjsSettReturn.xxnr;
-                        //hisXác nhậnquyết toán（bao gồmBHYTXác nhậnquyết toán）
-                        //Theo kết quả truy vấn từ máy chủ，Nếu bệnh nhân này có mục tự lập đã mở（khôngcóMã BHYT），Thì tổng số tiền khiquyết toán，Điền tổng số tiền tổng hợp
-                        //Nếu chỉ có mục BHYT，Thìquyết toán theo kết quả trả về BHYT củaquyết toán BHYT
+                        //hisXác nhận quyết toán（bao gồmBHYTXác nhận quyết toán）
+                        //Theo kết quả truy vấn từ máy chủ，Nếu bệnh nhân này có mục tự lập đã mở（không cóMã BHYT），Thì tổng số tiền khi quyết toán，Điền tổng số tiền tổng hợp
+                        //Nếu chỉ có mục BHYT，Thì quyết toán theo kết quả trả về BHYT của quyết toán BHYT
                         ybjyCqFeeReturn.his_hisfyze = jszje;
                         ybjyCqFeeReturn.ybzje = mxxx.ybzje;
                         //ybjyCqFeeReturn.jzid = jzxx.mdtrt_id;
@@ -960,9 +960,9 @@
                     $.loading(false);
                     if (ybjsSettReturn.infcode == "0" || ybjsSettReturn.infcode == 0) {
                         var ybjyCqFeeReturn = ybjsSettReturn.output.setlinfo;
-                        //hisXác nhậnquyết toán（bao gồmBHYTXác nhậnquyết toán）
-                        //Theo kết quả truy vấn từ máy chủ，Nếu bệnh nhân này có mục tự lập đã mở（khôngcóMã BHYT），Thì tổng số tiền khiquyết toán，Điền tổng số tiền tổng hợp
-                        //Nếu chỉ có mục BHYT，Thìquyết toán theo kết quả trả về BHYT củaquyết toán BHYT
+                        //hisXác nhận quyết toán（bao gồmBHYTXác nhận quyết toán）
+                        //Theo kết quả truy vấn từ máy chủ，Nếu bệnh nhân này có mục tự lập đã mở（không cóMã BHYT），Thì tổng số tiền khi quyết toán，Điền tổng số tiền tổng hợp
+                        //Nếu chỉ có mục BHYT，Thì quyết toán theo kết quả trả về BHYT của quyết toán BHYT
                         ybjyCqFeeReturn.his_hisfyze = jszje;
                         ybjyCqFeeReturn.ybzje = mxxx.ybzje;
                         ybjyCqFeeReturn.jzid = jzxx.mdtrt_id;
@@ -1025,18 +1025,18 @@
             async: false,
             success: function (data) {
                 if (!!!data) {
-                    msg = "HISdịch vụ(lấySố hóa đơn)Thông tin trả về trống";
+                    msg = "HIS dịch vụ(lấySố hóa đơn)Thông tin trả về trống";
                     return;
                 }
                 if (data.indexOf("{") >= 0 || data.indexOf("<") >= 0) {
-                    msg = "HISdịch vụ(lấySố hóa đơn)Nội dung trả về lỗi：" + data;
+                    msg = "HIS dịch vụ(lấySố hóa đơn)Nội dung trả về lỗi：" + data;
                     return;
                 }
                 rs = true;
                 fph = data;
             },
             error: function (request, error, ex) {
-                msg = "HISdịch vụ(lấySố hóa đơn)không thể truy cập：[" + ex + "]";
+                msg = "HIS dịch vụ(lấySố hóa đơn)không thể truy cập：[" + ex + "]";
             }
         });
 
@@ -1053,7 +1053,7 @@
             }
         });
     }
-    //Truy vấnđiều kiện
+    //Truy vấn điều kiện
     function getSearchPostData(n) {
         var zyh = patModel.zyh;
         var pagination = {
@@ -1064,7 +1064,7 @@
         return { pagination: pagination, zyh: zyh };
 
     }
-    //Truy vấnđiều kiện
+    //Truy vấn điều kiện
     function getSearchCQPostData(n) {
 	    var zyh = patModel.zyh;
 	    var pagination = {
@@ -1082,7 +1082,7 @@
         }
         return parseFloat(val);
     }
-    //Lấy bệnh nhânquyết toán Thông tin bệnh nhân
+    //Lấy bệnh nhân quyết toán Thông tin bệnh nhân
     function funcGetSettPatientInfo(funcSuccCallback) {
         $.najax({
             url: '/HospitalizationManage/DischargeSettle/GetInpatientSettYbPatInfo?zyh=' + patModel.zyh,
@@ -1118,7 +1118,7 @@
             var ybReturnData = ybjyPreSettReturn.Data;
             ybReturnData.astr_jylsh = ybjyPreSettReturn.jylsh;
             ybReturnData.astr_jyyzm = ybjyPreSettReturn.jyyzm;
-            //hisXác nhậnquyết toán（bao gồmBHYTXác nhậnquyết toán）
+            //hisXác nhận quyết toán（bao gồmBHYTXác nhận quyết toán）
             //Lắp ráp tham số yêu cầu
             ybReturnData.prm_akc190 = ybRealSettleReq.prm_akc190,
                 ybReturnData.prm_yab003 = ybRealSettleReq.prm_yab003,
@@ -1214,7 +1214,7 @@
     function gzyb_Cybl(funcSuccCallback) {
         if (!patModel.cyrq) {
             $.loading(false);
-            $.modalAlert("Ngày xuất việnlàtrống", 'error');
+            $.modalAlert("Ngày xuất viện là trống", 'error');
             return;
         }
         var isSuccess = false;
@@ -1230,7 +1230,7 @@
                     gzyb_Cybl.prm_akc190 = rep.prm_akc190; //Số hiệu khám
                     gzyb_Cybl.prm_aac001 = rep.prm_aac001; //Số thẻ
                     gzyb_Cybl.prm_aka130 = rep.prm_aka130; //Loại thanh toán
-                    gzyb_Cybl.prm_akc195 = "9"; //Lý do xuất viện (1、Khỏi bệnh；2、Đỡ hơn；3、Tử vong；4Chuyển viện;5quyết toán giữa kỳ bệnh tâm thần(Chỉquyết toán giữa kỳ khoán ngày bệnh tâm thần sử dụng);9 Khác)
+                    gzyb_Cybl.prm_akc195 = "9"; //Lý do xuất viện (1、Khỏi bệnh；2、Đỡ hơn；3、Tử vong；4Chuyển viện;5quyết toán giữa kỳ bệnh tâm thần(Chỉ quyết toán giữa kỳ khoán ngày bệnh tâm thần sử dụng);9 Khác)
                     gzyb_Cybl.prm_akc194 = patModel.cyrq.replace('T', ' '); //Ngày xuất viện
                     gzyb_Cybl.prm_akc196 = patModel.cyzdicd10; //Chẩn đoán xuất viện
                     gzyb_Cybl.prm_ykc015 = patModel.ksmc; //Khoa xuất viện (khoa là tiếng Trung, không thể làm mã)
@@ -1257,7 +1257,7 @@
                     gzyb_Cybl.prm_ykd023 = ""; //Mã chẩn đoán bệnh xuất viện thứ sáu
                     gzyb_Cybl.prm_ykd024 = ""; //Mã chẩn đoán bệnh xuất viện thứ bảy
                     gzyb_Cybl.prm_ykd025 = ""; //Mã chẩn đoán bệnh xuất viện thứ tám
-                    gzyb_Cybl.prm_ykb065 = rep.prm_ykb065; //Bảo hiểm xã hộiphương pháp
+                    gzyb_Cybl.prm_ykb065 = rep.prm_ykb065; //Bảo hiểm xã hội phương pháp
                    // var gzyb_CyblOut;// = $.guianyibao.ZyCybl(JSON.stringify(gzyb_Cybl)); //Gọi giao diện làm thủ tục xuất viện
                     $.ajax({
                         type: "POST",
@@ -1326,7 +1326,7 @@
                         ajaxLoadDataResult({ zyh: resp.data });
                     }
                     else {
-                        $.modalAlert("Mã cá nhân nông thôn mới【" + obj.xnhgrbm + "】khôngcóTruy vấntớiđãRa khoa、Bệnh nhân nhập viện chờquyết toán,Vui lòng xác nhận bệnh nhân này đã ra khoa！", 'warning');
+                        $.modalAlert("Mã cá nhân nông thôn mới【" + obj.xnhgrbm + "】không cóTruy vấn tới đãRa khoa、Bệnh nhân nhập viện chờ quyết toán,Vui lòng xác nhận bệnh nhân này đã ra khoa！", 'warning');
                         return;
                     }
                 }

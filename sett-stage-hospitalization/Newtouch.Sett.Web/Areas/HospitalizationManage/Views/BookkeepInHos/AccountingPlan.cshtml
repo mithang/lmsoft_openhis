@@ -88,15 +88,15 @@
                     </td>
                 </tr>
                 <tr class="mzrow">
-                    <th class="formTitle">Trạng tháithu phí：</th>
+                    <th class="formTitle">Trạng thái thu phí：</th>
                     <td class="formValue">
                         <select id="sfzt" name="sfzt" class="form-control" data-EnumType="">
                             <option value="">==Tất cả==</option>
-                            <option value="1">Đãthu phí</option>
-                            <option value="2">Chưathu phí</option>
+                            <option value="1">Đã thu phí</option>
+                            <option value="2">Chưa thu phí</option>
                         </select>
                     </td>
-                    <th class="formTitle">Nhắcthu phí tiếp：</th>
+                    <th class="formTitle">Nhắc thu phí tiếp：</th>
                     <td class="formValue">
                         <div class="gw_num">
                             <em class="jian">-</em>
@@ -154,15 +154,15 @@
 
     $(function () {
 
-        //Trạng thái thực hiệnchuyển đổi tự độngKích hoạtTruy vấn
+        //Trạng thái thực hiện chuyển đổi tự độngKích hoạtTruy vấn
         $('#yzxz').change(function () {
             $('.btn_search').trigger('click');
         });
-        //Trạng thái thực hiệnchuyển đổi tự độngKích hoạtTruy vấn
+        //Trạng thái thực hiện chuyển đổi tự độngKích hoạtTruy vấn
         $('#zxzt').change(function () {
             $('.btn_search').trigger('click');
         });
-        //Trạng tháithu phí thực hiện tự độngKích hoạtTruy vấn
+        //Trạng thái thu phí thực hiện tự độngKích hoạtTruy vấn
         $('#sfzt').change(function () {
             $('.btn_search').trigger('click');
         });
@@ -209,7 +209,7 @@
         { label: "Tên bệnh nhân", name: "xm", width: 80, align: "left" },
         { label: "Số bệnh án", name: "blh", width: 80, align: "left" },
         { label: (from == "mz" ? "Số ngoại trú" : "Mã nhập viện"), name: "mzzyh", width: (from == "mz" ? 100 : 70), align: "left" },
-        { label: "Mụcthu phí", name: "sfxmmc", width: 180, align: "left" },
+        { label: "Mục thu phí", name: "sfxmmc", width: 180, align: "left" },
         { label: "Lượng điều trị mỗi lần", name: "zll", width: 75, align: "left" },
         { label: "Đơn vị", name: "dw", width: 40, align: "left" },
         { label: "Số lượng mỗi lần", name: "sl", width: 60, align: "left" },
@@ -221,7 +221,7 @@
             formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
         },
             {
-                label: "Ngàythu phí", name: "sfrq", width: 100, align: "left", hidden: from == "mz" ? undefined : true,
+                label: "Ngày thu phí", name: "sfrq", width: 100, align: "left", hidden: from == "mz" ? undefined : true,
                 formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
             },
         {
@@ -275,7 +275,7 @@
                 }).trigger('reloadGrid');
         });
     }
-    //Truy vấnđiều kiện
+    //Truy vấn điều kiện
     function getSearchPostData() {
         var keyword = $("#keyword").val();
         var kssj = $("#kssj").val();
@@ -420,7 +420,7 @@
         $(".add").click(function () {
             var n = $(this).prev().val();
             if (isNaN(parseInt(n))) {
-                num = 1;    //addtừ1Bắt đầu
+                num = 1;    //add từ1Bắt đầu
             } else {
                 var num = parseInt(n) + 1;
             }

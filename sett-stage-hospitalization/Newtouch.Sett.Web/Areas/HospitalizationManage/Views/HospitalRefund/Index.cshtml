@@ -80,7 +80,7 @@
 })
 <script>
     $(function () {
-        //Nạp lại khi thay đổi kích thước cửa sổ trình duyệtjqGridChiều rộng
+        //Nạp lại khi thay đổi kích thước cửa sổ trình duyệt jqGridChiều rộng
         $(window).resize(function () {
             initLayout("tabGrid");
         });
@@ -234,7 +234,7 @@
             return true;
 
         }
-        //Nạp dữ liệu chi tiếtthu phí đang chọn
+        //Nạp dữ liệu chi tiết thu phí đang chọn
 
         function GetDetail() {
             $.loading(true, "Đang yêu cầu dữ liệu...");
@@ -269,7 +269,7 @@
             });
         }
 
-        //Danh sáchthu phíSự kiện nhấp chuột
+        //Danh sách thu phíSự kiện nhấp chuột
         function btn_selectrow() {
             $.loading(true, "Đang yêu cầu dữ liệu...");
             var data = $("#refundGridList").jqGridRowValue();
@@ -335,7 +335,7 @@
                 height: 100,
                 autowidth: false,
                 width: $("#tabGrid").width() - 20,
-                caption: "Danh sáchthu phí",
+                caption: "Danh sách thu phí",
                 colModel: [
                     { label: 'ZYH', name: 'ZYH', hidden: true, key: true },
                     { label: 'XSEBH', name: 'XSEBH', hidden: true, key: true },
@@ -364,7 +364,7 @@
 
         //Nạp mục thu phí, giá trị của hộp thả xuống dưới bác sĩ
         function initControl() {
-            ///Mụcthu phí
+            ///Mục thu phí
             $("#sfxm").sfxmFloatingSelector({
                 djDecimalPlaces: 4,
                 ajaxparameters: function ($thisinput) {

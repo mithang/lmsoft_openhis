@@ -65,7 +65,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             }
             var dto = _inpatientRefundApp.InpatientRefundQuery(zyh, kssj, jssj, ks, xmlb, xmmc);
             var ztlist = dto.InpatientSettleItemBO.TreatmentItemList.Where(p => p.ztbh != null).ToList();
-            //Mẫuthu phíDữ liệuXử lý
+            //Mẫu thu phíDữ liệuXử lý
             if (ztlist.Count()>0)
             {
                 ztlist = ztlist.GroupBy(m => new { m.isYP, m.sfmbmc, m.tdrq, m.ztbh, m.ztsl,m.ztylsl, m.dcztbs }).Select(p =>

@@ -66,16 +66,16 @@
 <div class="rows" style="margin-bottom: 1%;">
     <div class="panel panel-default" style="margin-bottom:0;">
         <div class="panel-heading navb-bg">
-            Mụcghi sổ
+            Mục ghi sổ
         </div>
         <div id="divSLMX" style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>Mụcthu phí：</th>
+                    <th class="formTitle"><span class="required">*</span>Mục thu phí：</th>
                     <td class="formValue">
                         <input id="sfxmmc" type="text" class="form-control  form-an" />
                         <input id="sfxmCode" type="text" style="display:none;" class="form-control" />
-                        <!-- y lệnhLoại 1Thuốc 2Mụcthu phí -->
+                        <!-- y lệnhLoại 1Thuốc 2Mục thu phí -->
                         <input id="yzlx" type="text" style="display:none;" class="form-control" />
 
                         <input id="sfdlCode" type="text" style="display:none;" class="form-control" />
@@ -103,7 +103,7 @@
                     <th class="formTitle"></th>
                     <td class="formValue" style="padding-top: 1px;">
                         <div class="ckbox">
-                            <input id="ttbz" name="ttbz" type="checkbox"><label for="ttbz">Điều trịtập thể</label>
+                            <input id="ttbz" name="ttbz" type="checkbox"><label for="ttbz">Điều trị tập thể</label>
                         </div>
                     </td>
                 </tr>
@@ -122,7 +122,7 @@
                             <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <th class="formTitle"><span class="required">*</span>Ngàyghi sổ：</th>
+                    <th class="formTitle"><span class="required">*</span>Ngày ghi sổ：</th>
                     <td class="formValue">
                         <input id="tdrq" type="text" class="form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@(System.DateTime.Now.ToString("yyyy-MM-dd"))" />
                     </td>
@@ -177,11 +177,11 @@
             { label: "newid", name: "newid", width: 80, align: "left", hidden: true },
             { label: "outerId", name: "outerId", width: 80, align: "left", hidden: true },
             {
-                label: "Ngàyghi sổ", name: "tdrq", width: 80, align: "left",
+                label: "Ngày ghi sổ", name: "tdrq", width: 80, align: "left",
                 formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
             },
-            { label: "Mụcthu phí", name: "sfxmCode", width: 150, align: "left", hidden: true },
-            { label: "Mụcthu phí", name: "sfxmmc", width: 200, align: "left" },
+            { label: "Mục thu phí", name: "sfxmCode", width: 150, align: "left", hidden: true },
+            { label: "Mục thu phí", name: "sfxmmc", width: 200, align: "left" },
             { label: "y lệnhLoại", name: "yzlx", width: 150, align: "left", hidden: true },
             { label: "Loại", name: "sfdlCode", width: 50, align: "left", hidden: true },
             { label: "Loại", name: "sfdlmc", width: 50, align: "left" },
@@ -204,7 +204,7 @@
                 }
             },
             { label: "Ghi chú", name: "bz", width: 160, align: "left" },
-            { label: "Cờtập thể", name: "ttbz", width: 50, align: "left", hidden: true },
+            { label: "Cờ tập thể", name: "ttbz", width: 50, align: "left", hidden: true },
             { label: "Loại phục hồi", name: "kflb", width: 50, align: "left", hidden: true },
         ],
         ondblClickRow: function (rowid) {
@@ -364,16 +364,16 @@
             $.modalAlert("Vui lòng chọn trị liệu sư", 'warning');
         }
         if (!rowData.tdrq) {
-            $.modalAlert("Vui lòng chọn ngàyghi sổ", 'warning');
+            $.modalAlert("Vui lòng chọn ngày ghi sổ", 'warning');
         }
         else if (!rowData.sfxmCode || !rowData.sfxmmc || !rowData.yzlx || !rowData.sfdlCode || !rowData.sfdlmc) {
-            $.modalAlert("Vui lòng chọn mụcthu phí", 'warning');
+            $.modalAlert("Vui lòng chọn mục thu phí", 'warning');
         }
         else if (rowData.dw == "") {
             $.modalAlert("Thiếu thông tin đơn vị mục", 'warning');
         }
         else if (rowData.yzlx == '2' && (rowData.duration == "" || isNaN(rowData.duration))) {
-            //Mục điều trị mớicần Thời lượng
+            //Mục điều trị mới cần Thời lượng
             $.modalAlert("Vui lòng điền thời lượng đơn vị mục", 'warning');
         }
         else if (rowData.dj == "" || isNaN(rowData.dj)) {
@@ -464,7 +464,7 @@
             width: "700px",
             height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //tạiBật lênsự kiện cửa sổ
+                top.frames[iframeId].PatDbGrid(); //tạiBật lên sự kiện cửa sổ
                 //Gọi truy vấn số thẻ và mã nhập viện
             }//Hàm gọi lại khi nhấn xác nhận tại cửa sổ
         });
@@ -508,8 +508,8 @@
         return data;
     }
 
-    var editingNewid = null;    //Đang sửa đổicủaDòng
-    var editingOuterId = null;    //Đang sửa đổicủaDòng
+    var editingNewid = null;    //Đang sửa đổi củaDòng
+    var editingOuterId = null;    //Đang sửa đổi củaDòng
 
     //Yêu cầu Chỉnh sửa Dòng
     function gridEditRow(rowid) {
@@ -517,22 +517,22 @@
             var rowData = $("#gridMX").jqGrid('getRowData', rowid);
             if (rowData) {
                 if (rowData.newid) {
-                    //nênlàthuộc vềnewxmList start
+                    //nên là thuộc về new xmList start
                     rowDataArr = $.jsonWhere(newxmList, function (v) {
                         return v && v.newid == rowData.newid;
                     });
                     if (!rowDataArr || rowDataArr.length == 0) {
-                        return; //làkhông tìm thấy gìtới
+                        return; //là không tìm thấy gì tới
                     }
-                    rowData = rowDataArr[0];  //Thông quarowData.newidtừLấy dữ liệu dòng đó từ mảng đối tượng
+                    rowData = rowDataArr[0];  //Thông quarowData.new id từLấy dữ liệu dòng đó từ mảng đối tượng
                     if (true) { //&&Có thể chỉnh sửa
-                        editingNewid = rowData.newid;    //Đang sửa đổicủaDòng
-                        editingOuterId = rowData.outerId;   //Đang sửa đổicủaDòng
+                        editingNewid = rowData.newid;    //Đang sửa đổi củaDòng
+                        editingOuterId = rowData.outerId;   //Đang sửa đổi củaDòng
                     }
                     else {
                         return;
                     }
-                    //nênlàthuộc vềnewxmList end
+                    //nên là thuộc về new xmList end
                 }
                 else {
                     //Không thể chỉnh sửa
@@ -583,7 +583,7 @@
 
         newxmList.unshift(data);   //Thêm làm mục mới // "Phía trước nhất của mảng"
 
-        //Liên kết lạixmTrình bày mảng tớigrid
+        //Liên kết lại xmTrình bày mảng tới grid
         fillDataToGrid();
 
         $('#sfxmmc').val('');
@@ -620,7 +620,7 @@
 
             //Kiểm tra mục trùng lặp
 
-            //Trước tiên tạixmTìm trong mảng
+            //Trước tiên tại xmTìm trong mảng
             var matchedIndex = -1;
             for (var ii = 0; ii < newxmList.length; ii++) {
                 if (newxmList[ii].newid == data.newid) {
@@ -629,12 +629,12 @@
                 }
             }
             if (matchedIndex == -1) {
-                return; //nênlàBất thường
+                return; //nên làBất thường
             }
             newxmList.remove(matchedIndex);   //Loại bỏ mục này
             newxmList.unshift(data);   //Thêm làm mục mới // "Phía trước nhất của mảng"
 
-            //Liên kết lạixmTrình bày mảng tớigrid
+            //Liên kết lại xmTrình bày mảng tới grid
             fillDataToGrid();
 
             $('#sfxmmc').val('');
@@ -651,15 +651,15 @@
             //$('#kflb').val('').trigger('change');
             $('#sl').val('');
 
-            editingNewid = null;    //Đang sửa đổicủaDòng
-            editingOuterId = null;    //Đang sửa đổicủaDòng
+            editingNewid = null;    //Đang sửa đổi củaDòng
+            editingOuterId = null;    //Đang sửa đổi củaDòng
 
             bottomButtonsReset();
 
             $('#sfxmmc').trigger('focus');
         }
         else {
-            //lấygridDòng đang chọn hiện tại
+            //lấy gridDòng đang chọn hiện tại
             var seleId = $('#gridMX').jqGrid('getGridParam', 'selrow');
             if (seleId) {
                 //Yêu cầu sửa dòng này
@@ -675,8 +675,8 @@
         oldxmList = [];   //Mục lịch sử đã gửiList
         newxmList = [];   //Mục mớiList
         Editing_ysList = [];
-        editingNewid = null;    //Đang sửa đổicủaDòng
-        editingOuterId = null;  //Đang sửa đổicủaDòng
+        editingNewid = null;    //Đang sửa đổi củaDòng
+        editingOuterId = null;  //Đang sửa đổi củaDòng
 
         bottomButtonsReset();
 
@@ -693,7 +693,7 @@
             ksList = ksList.substring(0, ksList.length - 1);
             $.modalOpen({
                 id: "Form",
-                title: "Mẫu mụcthu phícửa sổ",
+                title: "Mẫu mục thu phí cửa sổ",
                 url: "/HospitalizationManage/BookkeepInHos/ChargeItemTemplate?keyValue=" + ksList,
                 width: "700px",
                 height: "530px",
@@ -751,7 +751,7 @@
             return;
         }
         if (!paramData.xmList || paramData.xmList.length == 0) {
-            $.modalAlert("Thiếu mụcghi sổ", 'warning');
+            $.modalAlert("Thiếu mục ghi sổ", 'warning');
             return;
         }
 
@@ -776,7 +776,7 @@
 
     //F6Xóa khỏi danh sách
     function newtouch_event_f6() {
-        //lấygridDòng đang chọn hiện tại
+        //lấy gridDòng đang chọn hiện tại
         var rowid = $('#gridMX').jqGrid('getGridParam', 'selrow');
         if (rowid) {
             //Yêu cầu xóa dòng này
@@ -801,12 +801,12 @@
                     }
 
                     if (matchedIndex == -1) {
-                        return; //nênlàBất thường
+                        return; //nên làBất thường
                     }
 
                     newxmList.remove(matchedIndex);   //Loại bỏ mục này
 
-                    //Liên kết lạixmTrình bày mảng tớigrid
+                    //Liên kết lại xmTrình bày mảng tới grid
                     fillDataToGrid();
 
                     //Đối với các trường hợp khác đều không phát sinh ảnh hưởng
@@ -833,8 +833,8 @@
         $('#sl').val('');
         //$('#bz').val('');
 
-        editingNewid = null;    //Đang sửa đổicủaDòng
-        editingOuterId = null;    //Đang sửa đổicủaDòng
+        editingNewid = null;    //Đang sửa đổi củaDòng
+        editingOuterId = null;    //Đang sửa đổi củaDòng
 
         $("#gridMX").resetSelection();
 

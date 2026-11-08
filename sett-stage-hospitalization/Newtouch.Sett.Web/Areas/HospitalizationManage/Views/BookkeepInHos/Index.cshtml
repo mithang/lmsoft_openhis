@@ -93,7 +93,7 @@
         <table class="form">
             <tr>
                 <td class="formTitle">
-                    <span class="napan">*</span>Ngàyghi sổ：
+                    <span class="napan">*</span>Ngày ghi sổ：
                 </td>
                 <td class="formValue">
                     <input id="jzrq" type="text" class="form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss' })" />
@@ -119,7 +119,7 @@
             </tr>
             <tr>
                 <td class="formTitle">
-                    <span class="napan">*</span>Mụcthu phí：
+                    <span class="napan">*</span>Mục thu phí：
                 </td>
                 <td class="formValue">
                     <input id="sfxmmc" type="text" class="form-control form-an" autocomplete="off" />
@@ -198,7 +198,7 @@
             width: "700px",
             height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //tạiBật lênsự kiện cửa sổ
+                top.frames[iframeId].PatDbGrid(); //tạiBật lên sự kiện cửa sổ
                 //Gọi truy vấn số thẻ và mã nhập viện
             }//Hàm gọi lại khi nhấn xác nhận tại cửa sổ
         });
@@ -243,9 +243,9 @@
                 }
             }
             if (matchedIndex === -1) {
-                return; //nênlàBất thường
+                return; //nên làBất thường
             }
-            xmjf.remove(matchedIndex);   //Loại bỏghi sổ mới
+            xmjf.remove(matchedIndex);   //Loại bỏ ghi sổ mới
             fillDataToGrid();
         }
         else {
@@ -253,13 +253,13 @@
         }
     }
 
-    //Liên kết lạigrid
+    //Liên kết lại grid
     function fillDataToGrid() {
         $('#gridList').jqGrid("clearGridData");
         $("#gridList").newtouchLocalDataGrid(null, xmjf);
     }
 
-    //Liên kếtgrid
+    //Liên kết grid
     function gridListData() {
         var $gridList = $("#gridList");
         $gridList.newtouchLocalDataGrid({
@@ -268,7 +268,7 @@
             colModel: [
                 { label: "khóa chính", name: "newid", hidden: true, key: true },
                 { label: 'Mã', name: 'sfxm', width: 70, align: 'left', editor: "text" },
-                { label: 'Mụcthu phí', name: 'sfxmmc', width: 250, align: 'left', editor: "text" },
+                { label: 'Mục thu phí', name: 'sfxmmc', width: 250, align: 'left', editor: "text" },
                 { label: 'Loại phí', name: 'dlmc', width: 100, align: 'left', editor: "text" },
                 { label: 'Đơn vị', name: 'dw', width: 100, align: 'left', editor: "text" },
                 {
@@ -332,7 +332,7 @@
 
     //Nạp mục thu phí, giá trị của hộp thả xuống dưới bác sĩ
     function initControl() {
-        //Mụcthu phí Lớp nổi
+        //Mục thu phí Lớp nổi
         @*var searchType = "sfxm";
         var dllb = '2';
         if ('@(isacountingPageMayMedicine ? "true" : "")' == 'true') {
@@ -354,7 +354,7 @@
             },
             itemdbclickhandler: function ($thistr) {
                 if (!selectedZyh) {
-                    $.modalAlert("Thông tin cơ bản bệnh nhânKhông thểlàtrống", 'warning');
+                    $.modalAlert("Thông tin cơ bản bệnh nhânKhông thể là trống", 'warning');
                     return;
                 }
                 $("#sfxmmc").val($thistr.attr('data-sfxmmc'));
@@ -407,7 +407,7 @@
             focusautotrigger: true,
             filter: function (keyword) {
                 if (!selectedZyh) {
-                    $.modalAlert("Thông tin cơ bản bệnh nhânKhông thểlàtrống", 'warning');
+                    $.modalAlert("Thông tin cơ bản bệnh nhânKhông thể là trống", 'warning');
                     return;
                 }
                 //Duyệt nguồn dữ liệu, dùng keyword để lọc ra kết quả
@@ -483,7 +483,7 @@
     function btn_Save() {
         debugger
         if (!selectedZyh) {
-            $.modalAlert("Thông tin cơ bản bệnh nhânKhông thểlàtrống", 'warning');
+            $.modalAlert("Thông tin cơ bản bệnh nhânKhông thể là trống", 'warning');
             return;
         }
         $.najax({
@@ -511,7 +511,7 @@
     //Chọn mẫu
     function GetTemplate() {
         if (!selectedZyh) {
-            $.modalAlert("Thông tin cơ bản bệnh nhânKhông thểlàtrống", 'warning');
+            $.modalAlert("Thông tin cơ bản bệnh nhânKhông thể là trống", 'warning');
             return;
         }
         var ys = $("#doctor").val();
@@ -525,7 +525,7 @@
         if (ys && ks && $('#doctor').attr("data-label") && $('#jzks').attr("data-label")) {
             $.modalOpen({
                 id: "Form",
-                title: "Mẫu mụcthu phícửa sổ",
+                title: "Mẫu mục thu phí cửa sổ",
                 url: url,
                 width: "700px",
                 height: "530px",
@@ -561,7 +561,7 @@
                         };
                         xmjf.unshift(newRowData);   //Thêm làm mục mới // "Phía trước nhất của mảng"
                     });
-                    //Liên kết lạixmTrình bày mảng tớigrid
+                    //Liên kết lại xmTrình bày mảng tới grid
                     fillDataToGrid();
                 }
             });
@@ -631,10 +631,10 @@
                     return v && v.newid == rowData.newid;
                 });
                 if (!rowDataArr || rowDataArr.length == 0) {
-                    return; //làkhông tìm thấy gìtới
+                    return; //là không tìm thấy gì tới
                 }
-                rowData = rowDataArr[0];  //Thông quarowData.newidtừLấy dữ liệu dòng đó từ mảng đối tượng
-                editingNewid = rowData.newid;    //Đang sửa đổicủaDòng
+                rowData = rowDataArr[0];  //Thông quarowData.new id từLấy dữ liệu dòng đó từ mảng đối tượng
+                editingNewid = rowData.newid;    //Đang sửa đổi củaDòng
                 //Tuần tự hóa vào vùng chỉnh sửa
                 $('#sl').val(rowData.sl);
                 $('#jzks').val(rowData.ksmc);
@@ -679,7 +679,7 @@
                 data.newid = editingNewid;
                 //Kiểm tra mục trùng lặp
 
-                //Trước tiên tạixmTìm trong mảng
+                //Trước tiên tại xmTìm trong mảng
                 var matchedIndex = -1;
                 for (var ii = 0; ii < xmjf.length; ii++) {
                     if (xmjf[ii].newid == data.newid) {
@@ -688,17 +688,17 @@
                     }
                 }
                 if (matchedIndex == -1) {
-                    return; //nênlàBất thường
+                    return; //nên làBất thường
                 }
                 xmjf.remove(matchedIndex);   //Loại bỏ mục này
                 xmjf.unshift(data);   //Thêm làm mục mới // "Phía trước nhất của mảng"
 
-                //Liên kết lạixmTrình bày mảng tớigrid
+                //Liên kết lại xmTrình bày mảng tới grid
                 fillDataToGrid();
 
                 clearJZInfo();
 
-                editingNewid = null;    //Đang sửa đổicủaDòng
+                editingNewid = null;    //Đang sửa đổi củaDòng
 
                 bottomButtonsReset();
 
@@ -767,23 +767,23 @@
         var cqrq = $('#cqrq').html();
         var ztjsrq = new Date($('#ztjsrq').html());
         if (!rowData.tdrq) {
-            $.modalAlert("Vui lòng chọn ngàyghi sổ", 'warning');
+            $.modalAlert("Vui lòng chọn ngày ghi sổ", 'warning');
         } else if (ryrq > new Date(rowData.tdrq)) {
-            $.modalAlert("Ngàyghi sổ không nằm trong thời gian nằm viện<br/>Ngày nhập viện：" + $('#ryrq').html(), 'warning');
+            $.modalAlert("Ngày ghi sổ không nằm trong thời gian nằm viện<br/>Ngày nhập viện：" + $('#ryrq').html(), 'warning');
         } else if (!!cyrq && cyrq < new Date(rowData.tdrq) && ryrq) {
-            $.modalAlert("Ngàyghi sổ không nằm trong thời gian nằm viện<br/>Ngày xuất viện：" + $('#cyrq').html(), 'warning');
+            $.modalAlert("Ngày ghi sổ không nằm trong thời gian nằm viện<br/>Ngày xuất viện：" + $('#cyrq').html(), 'warning');
         } else if (!!cqrq && cqrq < new Date(rowData.tdrq)) {
-            $.modalAlert("Ngàyghi sổKhông thểmuộn hơnNgày ra khoa<br/>Ngày ra khoa：" + $('#cqrq').html(), 'warning');
+            $.modalAlert("Ngày ghi sổKhông thể muộn hơnNgày ra khoa<br/>Ngày ra khoa：" + $('#cqrq').html(), 'warning');
         }
         else if (!!ztjsrq && ztjsrq < new Date(rowData.tdrq)) {
-            $.modalAlert("Ngàyghi sổ không được muộn hơn ngàyquyết toán giữa kỳ<br/>Ngàyquyết toán giữa kỳ：" + $('#ztjsrq').html(), 'warning');
+            $.modalAlert("Ngày ghi sổ không được muộn hơn ngày quyết toán giữa kỳ<br/>Ngày quyết toán giữa kỳ：" + $('#ztjsrq').html(), 'warning');
         }
         else if (!rowData.ksmc || !rowData.ysmc || !rowData.ys || !rowData.ks) {
             $.modalAlert("Vui lòng chọn bác sĩ", 'warning');
         }
         else if (!rowData.dl || !rowData.dlmc || !rowData.sfxm || !rowData.sfxmmc
             || !rowData.dw) {
-            $.modalAlert("Vui lòng chọn mụcthu phí", 'warning');
+            $.modalAlert("Vui lòng chọn mục thu phí", 'warning');
         }
         else if (!rowData.dj) {
             $.modalAlert("Thiếu thông tin đơn giá mục", 'warning');
@@ -826,7 +826,7 @@
     function newtouch_event_f9() {
         clearJZInfo();
 
-        editingNewid = null;    //Đang sửa đổicủaDòng
+        editingNewid = null;    //Đang sửa đổi củaDòng
 
         $("#gridList").resetSelection();
 

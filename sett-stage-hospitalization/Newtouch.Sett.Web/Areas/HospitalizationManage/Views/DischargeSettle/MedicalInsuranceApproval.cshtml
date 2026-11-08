@@ -71,7 +71,7 @@
         var ybzje = 0.00;
         var succTimes = 0;
         var mxnum = 0;
-        //Mỗi lần tải lên lại，Trước tiên xử lý phần đã tải lên trước đây，nhưngChưaquyết toáncủahoàn đơn thuốc，Ngược lại sẽ tải lên trùng lặp
+        //Mỗi lần tải lên lại，Trước tiên xử lý phần đã tải lên trước đây，nhưngChưa quyết toán của hoàn đơn thuốc，Ngược lại sẽ tải lên trùng lặp
         $.ajax({
             type: "POST",
             url: "/OutpatientManage/OutpatCharge/GetCqyb10Data",
@@ -102,7 +102,7 @@
                                         }
                                     });
                                 } else {
-                                    $.modalAlert("Truyền lại đơn thuốc，Hoàn đơn thuốc đã tải lên thất bại：" + tfReturn.ErrorMsg + "nàyLỗicó thể tạm thời bỏ qua", 'error');
+                                    $.modalAlert("Truyền lại đơn thuốc，Hoàn đơn thuốc đã tải lên thất bại：" + tfReturn.ErrorMsg + "nàyLỗi có thể tạm thời bỏ qua", 'error');
                                 }
                             }
                         });
@@ -124,8 +124,8 @@
                             n = ajaxResp.total;
                             mxnum = ajaxResp.records;
                             // zfzje = ajaxResp.zfzje;
-                            ///Thứ nhấtLầnlúc，Xóa chi tiết trước，Đồng thờilấytớiTổng số lần（Tổng số dòng/10），Gọi tải lên theo vòng lặp
-                            ////Mỗi lần tải lên lại，Trước tiên xử lý phần đã tải lên trước đây，nhưngChưaquyết toáncủahoàn đơn thuốc，Ngược lại sẽ tải lên trùng lặp
+                            ///Thứ nhấtLần lúc，Xóa chi tiết trước，Đồng thời lấy tớiTổng số lần（Tổng số dòng/10），Gọi tải lên theo vòng lặp
+                            ////Mỗi lần tải lên lại，Trước tiên xử lý phần đã tải lên trước đây，nhưngChưa quyết toán của hoàn đơn thuốc，Ngược lại sẽ tải lên trùng lặp
                             //$.ajax({
                             //    type: "POST",
                             //    url: "/OutpatientManage/OutpatCharge/GetCqyb10Data",
@@ -156,7 +156,7 @@
                             //                                }
                             //                            });
                             //                        } else {
-                            //                            $.modalAlert("Truyền lại đơn thuốc，Hoàn đơn thuốc đã tải lên thất bại：" + tfReturn.ErrorMsg + "nàyLỗicó thể tạm thời bỏ qua", 'error');
+                            //                            $.modalAlert("Truyền lại đơn thuốc，Hoàn đơn thuốc đã tải lên thất bại：" + tfReturn.ErrorMsg + "nàyLỗi có thể tạm thời bỏ qua", 'error');
                             //                        }
                             //                    }
                             //                });
@@ -250,7 +250,7 @@
         }
     }
 
-    //Truy vấnđiều kiện
+    //Truy vấn điều kiện
     function getSearchCQPostData(n) {
         var pagination = {
             rows: 10,
@@ -338,7 +338,7 @@
 
             if (!saveResult) {
                 EnableInlineEditBox();    //Khởi động lại để bật chỉnh sửa, ngược lại lần sau khi lưu sẽ trả về false
-                return;   //Lưu thất bại，thìreturn
+                return;   //Lưu thất bại，thì return
             }
         }
 
@@ -355,7 +355,7 @@
             return;
         }
         var cfhlist = [];
-        $.each(gridListData, function () {    //Loại bỏaction
+        $.each(gridListData, function () {    //Loại bỏ action
             for (var i = 0; i < $(this).length; i++) {
                 if (this.spbj == undefined || this.spbj == "" || this.spbj == "Vui lòng chọn") {
                     $.modalAlert("Dấu hiệu phê duyệtChưa chọn", "warning");
@@ -377,7 +377,7 @@
                         if (tfReturn && tfReturn.Code === "1") {
                             cfhlist.push(cfh);
                         } else {
-                            $.modalAlert("thu phí cao BHYT(Protein cao)Phê duyệt phíThất bại：" + tfReturn.ErrorMsg + "nàyLỗicó thể tạm thời bỏ qua", 'error');
+                            $.modalAlert("thu phí cao BHYT(Protein cao)Phê duyệt phíThất bại：" + tfReturn.ErrorMsg + "nàyLỗi có thể tạm thời bỏ qua", 'error');
                         }
                     }
                 });
@@ -399,7 +399,7 @@
                     $.modalClose();
                     //GetApprovalXm();
                 } else {
-                    $.modalAlert("cqyb_OutPutInPar04cập nhậtPhê duyệtcờThất bại：" + tfReturn.ErrorMsg, 'error');
+                    $.modalAlert("cqyb_OutPutInPar04cập nhậtPhê duyệt cờThất bại：" + tfReturn.ErrorMsg, 'error');
                 }
             }
         });

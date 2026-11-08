@@ -74,11 +74,11 @@
         <table class="form" style="width:96%;">
             <tbody>
                 <tr>
-                    <th class="formTitle">Phí đãquyết toán：</th>
+                    <th class="formTitle">Phí đã quyết toán：</th>
                     <td class="formValue" style="width:100px;">
                         <label id="lblSumje" style="color:red;font-weight: bold;font-size: large;"></label>
                     </td>
-                    <th class="formTitle" style="width:125px;">Có tồn tại bản ghi phí chưaquyết toán hay không：</th>
+                    <th class="formTitle" style="width:125px;">Có tồn tại bản ghi phí chưa quyết toán hay không：</th>
                     <td class="formValue">
                         <label id="isExistUnSetted"></label>
                     </td>
@@ -97,9 +97,9 @@
     $(function () {
         gridList();
 
-        //điquyết toán
+        //đi quyết toán
         $('#isExistUnSetted').parent('td').on('click', 'a', function () {
-            //Thông qualsMã nhập việnchuyển qua
+            //Thông qualsMã nhập viện chuyển qua
             sessionStorage.setItem('zyh', $('#zyh').val());
             top.top.$.Newtouchtab.triggerMenuItemClick({ m1: "Quản lý nhập viện", m2: "quyết toán phí" });
         });
@@ -108,7 +108,7 @@
 
     function gridList() {
         $('#gridList').dataGrid({
-            caption: "Danh sách phí đãquyết toán",
+            caption: "Danh sách phí đã quyết toán",
             unwritten: false,
             url: "/HospitalizationManage/BookkeepInHos/GetMidwaySettedListJson",
             postData: {},
@@ -118,20 +118,20 @@
                 { label: "jsnm", name: "jsnm", width: 140, align: "left", hidden: true },
                 { label: "Mã nhập viện", name: "zyh", width: 140, align: "left", hidden: true },
                 {
-                    label: "Số tiềnquyết toán", name: "zje", width: 80, align: "left", formatter: "number"
+                    label: "Số tiền quyết toán", name: "zje", width: 80, align: "left", formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
                 {
-                    label: "Thời gian bắt đầuquyết toán", name: "jsksrq", width: 140, align: "left",
+                    label: "Thời gian bắt đầu quyết toán", name: "jsksrq", width: 140, align: "left",
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
                 {
-                    label: "Thời gian kết thúcquyết toán", name: "jsjsrq", width: 140, align: "left",
+                    label: "Thời gian kết thúc quyết toán", name: "jsjsrq", width: 140, align: "left",
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: "Nhân viênquyết toán", name: "CreatorCode", width: 100, align: "left" },
+                { label: "Nhân viên quyết toán", name: "CreatorCode", width: 100, align: "left" },
                 {
-                    label: "Thời gianquyết toán", name: "CreateTime", width: 140, align: "left",
+                    label: "Thời gian quyết toán", name: "CreateTime", width: 140, align: "left",
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 }
             ],
@@ -156,13 +156,13 @@
             postData: { zyh: $("#zyh").val() },
         }).trigger('reloadGrid');
 
-        //Có tồn tại bản ghi chưaquyết toán hay không
+        //Có tồn tại bản ghi chưa quyết toán hay không
         $('#isExistUnSetted').html('');
         $.najax({
             url: "/HospitalizationManage/BookkeepInHos/CheckIsExistUnSetted?zyh=" + $("#zyh").val(),
             success: function (ajaxresp) {
                 if (ajaxresp.data === true) {
-                    $('#isExistUnSetted').html('<a title="Nhấn vào tôi đểquyết toán" style="color:red;cursor:pointer;">là</a>');
+                    $('#isExistUnSetted').html('<a title="Nhấn vào tôi để quyết toán" style="color:red;cursor:pointer;">là</a>');
                 }
                 else if (ajaxresp.data === false) {
                     $('#isExistUnSetted').html('không');
@@ -185,7 +185,7 @@
             width: "700px",
             height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //tạiBật lênsự kiện cửa sổ
+                top.frames[iframeId].PatDbGrid(); //tạiBật lên sự kiện cửa sổ
                 //Gọi truy vấn số thẻ và mã nhập viện
             }//Hàm gọi lại khi nhấn xác nhận tại cửa sổ
         });
@@ -243,7 +243,7 @@
         }
         var isExistUnSetted = $('#isExistUnSetted').html();
         if (isExistUnSetted.indexOf('là') != -1) {
-            $.modalConfirm("Tồn tại phí chưaquyết toán，trướcđiquyết toán", function (flag) {
+            $.modalConfirm("Tồn tại phí chưa quyết toán，trước đi quyết toán", function (flag) {
                 if (flag) {
                     $('#isExistUnSetted a').trigger('click');
                 }

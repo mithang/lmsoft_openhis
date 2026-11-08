@@ -1,7 +1,7 @@
 @{
     Layout = "~/Views/Shared/_Index.cshtml";
 
-    //Báo cáo biên lailiên kết
+    //Báo cáo biên lai liên kết
     var invoiceReportUrl = SysConfigReader.OrgReportLink("NewInpatientSett");
     var invoiceReportUrls = SysConfigReader.OrgReportLink("NewInpatientSetts");
     var reportUrl = "";
@@ -24,7 +24,7 @@
                 <td class="formValue">
                     <input type="text" class="form-control" id="searchFPH" name="searchFPH" />
                 </td>
-                <th class="formTitle">Ngàyquyết toán：</th>
+                <th class="formTitle">Ngày quyết toán：</th>
                 <td class="formValue" colspan="2">
                     <input id="jsksrq" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left">—</span>
@@ -47,7 +47,7 @@
     </div>
     <div style="background-color: #fff; margin-top:5px; ">
         <input type="button" id="HZQD" class="btn btn-primary" style="width:60px;float:right;margin-right:10px;" value="Bảng tổng hợp" />
-        <input type="button" id="btn_cyjsd_print" class="btn btn-primary" style="width:60px;float:right;margin-right:10px;" value="Phiếuquyết toán BHYT" />
+        <input type="button" id="btn_cyjsd_print" class="btn btn-primary" style="width:60px;float:right;margin-right:10px;" value="Phiếu quyết toán BHYT" />
     </div>
 </form>
 
@@ -103,9 +103,9 @@
                 { label: 'Số hóa đơn', name: 'fph', width: 60, align: 'left' },
                 { label: 'Tổng số tiền', name: 'zje', width: 80, align: 'left', formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 } },
                 { label: 'Thanh toán tiền mặt', name: 'xjzf', width: 80, align: 'left', formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 } },
-                { label: 'Nhân viênquyết toán', name: 'CreatorCode', width: 60, align: 'left' },
-                { label: 'Sốquyết toán BHYT', name: 'zxlsh', width: 120, align: 'left' },
-                { label: 'Thời gianquyết toán', name: 'CreateTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }    },
+                { label: 'Nhân viên quyết toán', name: 'CreatorCode', width: 60, align: 'left' },
+                { label: 'Số quyết toán BHYT', name: 'zxlsh', width: 120, align: 'left' },
+                { label: 'Thời gian quyết toán', name: 'CreateTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }    },
 
             ],
             pager: "#gridPager",
@@ -159,10 +159,10 @@
         });
     }
 
-    //Chi tiếtquyết toán jGridkhai báo
+    //Chi tiết quyết toán jGridkhai báo
     $('#gridJSMXList').newtouchLocalDataGrid({
         height: $(window).height() - 400,
-        caption: "Chi tiếtquyết toán",
+        caption: "Chi tiết quyết toán",
         unwritten: false,
         colModel: [
             { label: 'Mã phân loại', name: 'dlcode', hidden: true },
@@ -202,7 +202,7 @@
 
         var srcUrl = '@reportUrl' + "?tempCode=96" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&hospitalCode=" + orgId + "&zyh=" + zyhs + "&jsnm=" + jsnms;
 
-        //var urldy = "/ReportServer/Pages/ReportViewer.aspx?%2fHIS.Report.1%2ftổng hợpbảng统计表&rs:Command=Render&rc:Stylesheet=MyStyleSheet&orgId=" + orgId + "&CZY=" + curUserCode + "&zyh=" + zyhs + "&jsnm=" + jsnms;
+        //var urldy = "/ReportServer/Pages/ReportViewer.aspx?%2fHIS.Report.1%2ftổng hợp bảng统计表&rs:Command=Render&rc:Stylesheet=MyStyleSheet&orgId=" + orgId + "&CZY=" + curUserCode + "&zyh=" + zyhs + "&jsnm=" + jsnms;
         //if (urldy.StartWith('/')) {
         //    urldy = urldy.substr(1);
         //}
@@ -211,7 +211,7 @@
         window.open(srcUrl);
     })
 
-    //Phiếuquyết toán xuất viện BHYT
+    //Phiếu quyết toán xuất viện BHYT
     $("#btn_cyjsd_print").click(function () {
         var zyh = $("#gridList").jqGridRowValue().zyh;
         var brxzmc = $("#gridList").jqGridRowValue().brxzmc;
@@ -220,14 +220,14 @@
             if (brxzmc != "Tự phí") {
                 var srcUrl = '@reportUrl' + "?tempCode=1268" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&hospitalCode=" + orgId + "&jsnm=" + jsnms;
                 window.open(srcUrl);
-                //var jsdurl = reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fHIS.Report.1%2fChongqingPhiếuquyết toán xuất viện BHYT&rs:Command=Render&rc:Stylesheet=MyStyleSheet&orgId=" + orgId + "&zyh=" + zyh;
+                //var jsdurl = reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fHIS.Report.1%2fChongqingPhiếu quyết toán xuất viện BHYT&rs:Command=Render&rc:Stylesheet=MyStyleSheet&orgId=" + orgId + "&zyh=" + zyh;
                 //window.open(jsdurl);
             } else {
                 $.modalAlert("Vui lòng chọnBệnh nhân BHYT", "warning");
             }
         }
             else {
-                $.modalAlert("Vui lòng chọn một bản ghiquyết toán", "warning");
+                $.modalAlert("Vui lòng chọn một bản ghi quyết toán", "warning");
             }
     });
 </script>
@@ -238,7 +238,7 @@
         var uri = '@Html.Raw(reportUrl)' + "?tempCode=05" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&jsnm=" + jsnm + "&hospitalCode=" + orgId + "&zyh=" + zyh;
         window.open(uri, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
         //In hóa đơn Quảng Tây
-        //var requestJson = { "BusinessName": "Xemhóa đơn", "paySettlementNo": jsnm }
+        //var requestJson = { "BusinessName": "Xem hóa đơn", "paySettlementNo": jsnm }
         //$.ajax({
         //    type: "POST",
         //    url: "http://127.0.0.1:33333/api/YiBao/InvoicePost",
@@ -346,7 +346,7 @@
     var tempJSNM;
     //In bù, đã chọn số hóa đơn mới
     function chooseFPHSuccessCallback(fph) {
-        //cập nhậtquyết toánBản ghicủaSố hóa đơnlàmớiSố hóa đơn
+        //cập nhật quyết toánBản ghi củaSố hóa đơn là mớiSố hóa đơn
         $.najax({
             type: "POST",
             url: "/HospitalizationManage/Settlement/UpdateSettInvoiceNo",
@@ -360,7 +360,7 @@
     }
 
     function printybjsd(setlId) {
-    $.loading(true, 'Đang truy vấn chứng từquyết toán BHYT nhập viện，Vui lòng đợi...');
+    $.loading(true, 'Đang truy vấn chứng từ quyết toán BHYT nhập viện，Vui lòng đợi...');
 
     var inputp0001 = { "mzzy_lx": "2", "setlId": setlId, "operatorId": '@curOpr.UserCode', "operatorName": '@curOpr.UserName'  };
    //  var inputp0001 = { "mzzy_lx": "2", "setlId": setlId, "operatorId": "000000", "operatorName": "admin" };
@@ -375,7 +375,7 @@
             else {
                 $.loading(false);
                 isuccer = false;
-                $.modalAlert('mởPhiếuquyết toán BHYTThất bại[' + data.mes + ']', 'error');
+                $.modalAlert('mởPhiếu quyết toán BHYTThất bại[' + data.mes + ']', 'error');
                 return;
             }
         },
