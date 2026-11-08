@@ -144,7 +144,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     //var sXxlx = "";
                     //var sSign = "";
                     //var xmlData = responsexml;
-                    //var responseXML = "<?xml version=\"1.0\" encoding=\"utf - 8\"?><XMLDATA><HEAD><JSSJ>接收时间</JSSJ><ZTCLJG>消息主体处理结果</ZTCLJG><CWXX>错误提示内容</CWXX><BZXX>备注信息</BZXX></HEAD><MAIN><DDBH>订单编号</DDBH></MAIN><DETAIL><OutputDetailYY009><DDMXBH>订单明细编号</DDMXBH><SXH>顺序号</SXH><SPLX>商品类型</SPLX><ZXSPBM>商品统编代码</ZXSPBM><CLJG>处理结果</CLJG><CLQKMS>处理情况描述</CLQKMS></OutputDetailYY009></DETAIL></XMLDATA>";
+                    //var responseXML = "<?xml version=\"1.0\" encoding=\"utf - 8\"?><XMLDATA><HEAD><JSSJ>Thời gian nhận</JSSJ><ZTCLJG>Kết quả xử lý nội dung thông báo</ZTCLJG><CWXX>Nội dung thông báo lỗi</CWXX><BZXX>Thông tin ghi chú</BZXX></HEAD><MAIN><DDBH>Mã đơn hàng</DDBH></MAIN><DETAIL><OutputDetailYY009><DDMXBH>Mã chi tiết đơn hàng</DDMXBH><SXH>Số thứ tự</SXH><SPLX>Loại hàng hóa</SPLX><ZXSPBM>Mã thống nhất hàng hóa</ZXSPBM><CLJG>Kết quả xử lý</CLJG><CLQKMS>Mô tả tình hình xử lý</CLQKMS></OutputDetailYY009></DETAIL></XMLDATA>";
 
                     //responsexml = responsexml.XmlSerialize().Replace("\r\n", "").Replace(" ", "");
                     //responsexml = responsexml.Replace("<?xmlversion=\"1.0\"?>", "<?xml version=\"1.0\" encoding=\"utf-8\"?>");
