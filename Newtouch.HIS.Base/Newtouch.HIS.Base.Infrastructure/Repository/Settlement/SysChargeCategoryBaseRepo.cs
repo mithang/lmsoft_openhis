@@ -72,6 +72,16 @@ namespace Newtouch.HIS.Repository
 
                 entity.Modify();
                 entity.dlId = keyValue.Value;
+                // F2-FIX D1: nhu SysChargeCategoryRepo — form khong post
+                // CreatorCode/CreateTime; this.Update(entity) 1 tham so bind vao overload
+                // generic RepositoryBase.Update<T> (khong ignore) thay vi overload virtual
+                // co ignore (RepositoryBase.cs:123 vs :331) -> UPDATE gan NULL vao cot
+                // CreatorCode NOT NULL. Khoi phuc 2 cot tu dong dang luu truoc khi update.
+                if (oldEntity != null)
+                {
+                    entity.CreatorCode = oldEntity.CreatorCode;
+                    entity.CreateTime = oldEntity.CreateTime;
+                }
                 this.Update(entity);
 
                 if (oldEntity != null)

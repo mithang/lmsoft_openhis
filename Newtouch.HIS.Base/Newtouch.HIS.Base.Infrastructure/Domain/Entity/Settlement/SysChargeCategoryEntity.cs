@@ -14,7 +14,11 @@ namespace Newtouch.HIS.Domain.Entity
         /// <summary>
         /// 
         /// </summary>
-        [SugarColumn(IsPrimaryKey = true)]
+        // F2-FIX D2: dlId la cot IDENTITY tren DB (xt_sfdl, ca STG va demo);
+        // thieu IsIdentity khien SqlSugar INSERT ca dlId=0 -> loi "Cannot insert
+        // explicit value for identity column". Khong inserter nao dat dlId co nghia
+        // truoc Insert (SubmitForm create: dlId=0 mac dinh; SyncCommonSfdl: dlId=0).
+        [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         public int dlId { get; set; }
 
         /// <summary>

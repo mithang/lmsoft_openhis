@@ -14,7 +14,10 @@ namespace Newtouch.HIS.Domain.Entity
         /// <summary>
         /// 
         /// </summary>
-        [SugarColumn(IsPrimaryKey = true)]
+        // F2-FIX D2: nhu SysChargeCategoryEntity — dlId la cot IDENTITY tren DB
+        // (xt_sfdl_base, ca STG va demo); thieu IsIdentity khien SqlSugar INSERT
+        // ca dlId=0 -> loi identity. Khong inserter nao dat dlId co nghia truoc Insert.
+        [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         public int dlId { get; set; }
 
         /// <summary>
