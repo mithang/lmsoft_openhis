@@ -90,7 +90,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         #endregion
 
         /// <summary>
-        /// phân trangdữ liệutải
+        /// phân trang dữ liệu tải
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
@@ -112,7 +112,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// tra cứuquyết toánthông tin
+        /// tra cứu quyết toán thông tin
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="startTime"></param>
@@ -125,9 +125,9 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// theoquyết toántra theo mã nội bộngoại trúkhámkhoản mục
+        /// theo quyết toán tra theo mã nội bộ ngoại trú khám khoản mục
         /// </summary>
-        /// <param name="jsnm">quyết toánmã nội bộ</param>
+        /// <param name="jsnm">quyết toán mã nội bộ</param>
         /// <returns></returns>
         public IActionResult GetGridViewMxByJsnm(int jsnm)
         {
@@ -162,7 +162,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// ngoại trúhoàn phí khám bản ghi chính Query
+        /// ngoại trú hoàn phí khám bản ghi chính Query
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>
@@ -190,7 +190,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// ngoại trúhoàn phí khám Query
+        /// ngoại trú hoàn phí khám Query
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>
@@ -213,7 +213,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             }
             if (flag)
             {
-                //khoản thu phígộp bộ
+                //khoản thu phí gộp bộ
                 if (ztlist.Count() > 0)
                 {
                     ztlist = list.Where(p => p.ztId != null && p.ztId != "").ToList()
@@ -264,7 +264,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// ngoại trútrang xác nhận hoàn phí khám
+        /// ngoại trú trang xác nhận hoàn phí khám
         /// </summary>
         /// <returns></returns>
         public IActionResult DetailConfirmForm()
@@ -281,7 +281,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         /// <param name="jsnm"></param>
         /// <param name="tjsxmDict"></param>
         /// <param name="expectedTmxZje"></param>
-        /// <param name="newfph">mớiquyết toánsố hóa đơn</param>
+        /// <param name="newfph">mới quyết toán số hóa đơn</param>
         /// <returns></returns>
         public IActionResult RefundSettlement(string mzh, int jsnm
             , Dictionary<string, decimal> tjsxmDict, decimal expectedTmxZje
@@ -306,7 +306,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// khung nhìn-chọnquyết toán
+        /// khung nhìn-chọn quyết toán
         /// </summary>
         /// <returns></returns>
         public IActionResult QueJsList2018()
@@ -319,11 +319,11 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         #region
 
         /// <summary>
-        /// quy trình hoàn phí.mớicủachi tiết chưa quyết toántải lên
+        /// quy trình hoàn phí.mới của chi tiết chưa quyết toán tải lên
         /// </summary>
         /// <param name="oldjsnm"></param>
         /// <param name="tjsxmDict"></param>
-        /// <param name="newwjybjsh">mớicủachưa quyết toánBHYTsố quyết toán</param>
+        /// <param name="newwjybjsh">mới của chưa quyết toánBHYTsố quyết toán</param>
         /// <returns></returns>
         public IActionResult DetailsUploadYb(int oldjsnm
             , Dictionary<string, decimal> tjsxmDict, string newwjybjsh)
@@ -348,8 +348,8 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         /// <param name="expectedTmxZje"></param>
         /// <param name="hcybjsh"></param>
         /// <param name="newwjybjsh"></param>
-        /// <param name="hcybfeeRelated">đảo đỏquyết toán của quyết toánBHYTliên quan số tiền</param>
-        /// <param name="newybfeeRelated">mớicủaquyết toán（không hoàn toàn bộ） của quyết toánBHYTliên quan số tiền</param>
+        /// <param name="hcybfeeRelated">đảo đỏ quyết toán của quyết toánBHYTliên quan số tiền</param>
+        /// <param name="newybfeeRelated">mới của quyết toán（không hoàn toàn bộ） của quyết toánBHYTliên quan số tiền</param>
         /// <returns></returns>
         public IActionResult YbRefundSettlement(string mzh, int jsnm
             , Dictionary<string, decimal> tjsxmDict, decimal expectedTmxZje, string hcybjsh, string newwjybjsh
@@ -373,9 +373,9 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         /// hoàn phí hợp tác nông thôn mới
         /// </summary>
         /// <param name="jsnm"></param>
-        /// <param name="tjsxmDict">hoànquyết toánchi tiết</param>
+        /// <param name="tjsxmDict">hoàn quyết toán chi tiết</param>
         /// <param name="mzh"></param>
-        /// <param name="outpId">ngoại trúkhámbồi thườngsố thứ tự</param>
+        /// <param name="outpId">ngoại trú khám bồi thường số thứ tự</param>
         /// <returns></returns>
         public IActionResult XnhTuiFei(string jsnm, Dictionary<string, decimal> tjsxmDict, string mzh, string outpId)
         {
@@ -389,7 +389,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         #region private methods
 
         /// <summary>
-        /// （đã thu phí chưaphát thuốc）đã thu phí chưaphát thuốctrạng thái sự kiện thông báo thay đổi đơn thuốc
+        /// （đã thu phí chưa phát thuốc）đã thu phí chưa phát thuốc trạng thái sự kiện thông báo thay đổi đơn thuốc
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="refundDict">jsmx tsl</param>
@@ -401,7 +401,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                 if (ypCfhList.Count <= 0) return;
                 var orgId = this.OrganizeId;
                 var operatorCode = this.UserIdentity.UserCode;
-                //lấytoken
+                //lấy token
                 var token = SitePDSAPIHelper.GetToken();
                 var obj = ypCfhList.Select(p => new
                 {
@@ -421,7 +421,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// （đã thu phí chưaphát thuốc）thuốcđơn thuốcthông báo thay đổiPDS
+        /// （đã thu phí chưa phát thuốc）thuốc đơn thuốc thông báo thay đổiPDS
         /// </summary>
         /// <param name="tmxList"></param>
         /// <param name="orgId"></param>
@@ -446,7 +446,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// HIShoàn phí（BHYT、không phảiBHYTdùng chung）
+        /// HIShoàn phí（BHYT、không phảiBHYT dùng chung）
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="jsnm"></param>
@@ -482,7 +482,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                 {
                     foreach (var m in tmzxmlist)
                     {
-                        if (items.Key == m.ztId) //còn cần cộng thêmcfnm nhiều đơn thuốc có thể có cùng bộ
+                        if (items.Key == m.ztId) //còn cần cộng thêm cfnm nhiều đơn thuốc có thể có cùng bộ
                         {
                             newDict.Add(m.jsmxnm, Math.Round(items.Value * m.sl, 2, MidpointRounding.AwayFromZero));
                         }
@@ -518,7 +518,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
 
         /// <summary>
-        /// cập nhậtCIShoàndấu hiệuvàhoàn trảnhà thuốcđóng băng tồn kho
+        /// cập nhậtCIS hoàn dấu hiệu và hoàn trả nhà thuốc đóng băng tồn kho
         /// </summary>
         /// <param name="tcfh"></param>
         public void UpdateChargeTbz(List<string> tcfh, List<string> typcfh)

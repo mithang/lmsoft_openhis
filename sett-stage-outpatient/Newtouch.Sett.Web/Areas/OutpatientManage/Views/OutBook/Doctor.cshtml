@@ -24,7 +24,7 @@
                 html += "<p style='font-size:18px;margin-left:50px;'><input name='Staff' style='width:20px;height:20px;' type='checkbox' value='" + data[i].gh + "' /><a style='margin-left:15px'>" + data[i].Name + " </a> </p>";
             }
             $("#form1").html(html);
-            //mặc địnhtảiđã chọn
+            //mặc định tải đã chọn
             if (ys != null) {
                 if (ys.indexOf(",") == -1) {
                     $(":checkbox[value='" + ys + "']").prop("checked", true);

@@ -37,7 +37,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// thu phí ngoại trútra cứu
+        /// thu phí ngoại trú tra cứu
         /// </summary>
         /// <returns></returns>
         public IActionResult OutpatientChargeQuery()
@@ -59,7 +59,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// thu phí đăng ký khámtra cứu theo điều kiện
+        /// thu phí đăng ký khám tra cứu theo điều kiện
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="fph"></param>
@@ -94,7 +94,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// chờtải lêncủangoại trúbệnh nhân tự chi trả khámquyết toánthông tin
+        /// chờ tải lên của ngoại trú bệnh nhân tự chi trả khám quyết toán thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="xm"></param>
@@ -126,7 +126,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// thu phí đăng ký khámtra cứu chi tiết
+        /// thu phí đăng ký khám tra cứu chi tiết
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
@@ -189,7 +189,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// kiểm tralàkhôngcócó thể incủadữ liệu
+        /// kiểm tra là không có có thể in của dữ liệu
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>

@@ -57,7 +57,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// lấykhoa
+        /// lấy khoa
         /// </summary>
         /// <returns></returns>
         public IActionResult GetSysDepartmentList()
@@ -67,7 +67,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// lấybác sĩ
+        /// lấy bác sĩ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="dutyCode"></param>
@@ -79,7 +79,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// lấyđăng ký khámbệnh chuyên khoa
+        /// lấy đăng ký khám bệnh chuyên khoa
         /// </summary>
         /// <returns></returns>
         public IActionResult SelectSysChargeItemByghzbList()
@@ -102,7 +102,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// lấycódanh sách hiệu lực
+        /// lấy có danh sách hiệu lực
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
@@ -113,7 +113,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// thêm mớihoặcsửaForm
+        /// thêm mới hoặc sửaForm
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>

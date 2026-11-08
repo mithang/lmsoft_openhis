@@ -399,7 +399,7 @@
                 let month = now.getMonth() + 1
                 let year = now.getFullYear()
 
-                //lấy mỗithángbao nhiêu ngày
+                //lấy mỗi tháng bao nhiêu ngày
                 switch (month) {
                     case 1:
                     case 3:
@@ -417,7 +417,7 @@
                         allDays = 30
                         break;
                     default:
-                        //xác định nhuậnnăm lấy tháng haithángphầncủasố ngày
+                        //xác định nhuận năm lấy tháng hai tháng phần của số ngày
                         if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
                             allDays = 29
                         } else {
@@ -426,7 +426,7 @@
 
                         break;
                 }
-                //lấyhiện tạithángphầncóbao nhiêu ngày tạo số lượng tương ứngcủali
+                //lấy hiện tại tháng phần có bao nhiêu ngày tạo số lượng tương ứng của li
                 for (let i = 1; i <= allDays; i++) {
                     var shijianstr = '';
                     var pthyzs = 0;
@@ -527,7 +527,7 @@
                         shijianstr += '<div class="syhys" style="top:' + topheight + 'px"><div   class="progress-qt" style="width:' + ((qtsyhys / qthyzs) * 100) + '%"></div><div class="xszdc"  onclick="xzsjlx(\'' + (year + "-" + ((month < 10) ? '0' + month : month) + "-" + ((i < 10) ? '0' + i : i)) + '\',\'qt\')"><span style="padding:2px 5px;">Khác</span>còn lại:<span  class="ztsz" >' + qtsyhys + '</span></div></div>';
                     }
                     let li = $('<li />').html(shijianstr)
-                    //cho ngày hôm nay tương ứngcủalithêm hiệu ứng nổi bật
+                    //cho ngày hôm nay tương ứng của li thêm hiệu ứng nổi bật
                     if (i === today && year === global_year && month === global_month) {
                         li.addClass('active')
                     } else { li.addClass('btnli' + i) }
@@ -544,7 +544,7 @@
                     })
 
                 }
-                //hướng suy nghĩ：mỗithángtrước ngày mùng 1 trống mấy ô trốngcủasố lượnglàthứ mấy thì trống mấy ô
+                //hướng suy nghĩ：mỗi tháng trước ngày mùng 1 trống mấy ô trống của số lượng là thứ mấy thì trống mấy ô
                 now.setDate(1) //đặt thời gian thành ngày mùng 1 tháng này
                 let firstDay = now.getDay() // lấy ngày mùng 1 là thứ mấy
                 for (let i = 0; i < firstDay; i++) { // số lần lặp tương ứng với thứ mấy
@@ -554,7 +554,7 @@
                 }
                 now.setDate(now.getDate() + firstDay) //đặt thời gian về thời gian hiện tại nếu không sẽ ảnh hưởng việc lấy thời gian phía sau
                 now.setDate(allDays)
-                //hướng suy nghĩ：mỗithángnhấtsaumột ngàysaumặt trống mấy ô trốngcủasố lượnglà6trừ thứ mấy thì trống mấy ô
+                //hướng suy nghĩ：mỗi tháng nhất sau một ngày sau mặt trống mấy ô trống của số lượng là6trừ thứ mấy thì trống mấy ô
                 now.setDate(allDays) //đặt thời gian thành ngày cuối cùng mỗi tháng
                 let lastDay = 6 - now.getDay() //số ô trống cuối cùng
                 for (let i = 0; i < lastDay; i++) {
@@ -589,24 +589,24 @@
             });
         }
         function zhrllist() {
-            //lấynơicódòngId，duyệt để khung sửa ở trạng thái lưutrạng thái
+            //lấy nơi có dòngId，duyệt để khung sửa ở trạng thái lưu trạng thái
 
             var rowIds = $("#gridList").jqGrid('getDataIDs');
             for (var i = 0; i < rowIds.length; i++) {
                 var saveResult = $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
                 if (!saveResult) {
-                    EnableInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
-                    return;   //lưu thất bại，thìreturn
+                    EnableInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSave sẽ trả về false
+                    return;   //lưu thất bại，thì return
                 }
             }
             var gridzljyData = $("#gridList").jqGrid('getRowData');
             gridzljyData.push($("#gridList").jqGrid('getRowData', rowIds[rowIds.length - 1]));
             if (!gridzljyData || gridzljyData.length == 0) {
-                EnableRehabInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
+                EnableRehabInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSave sẽ trả về false
                 $.modalAlert("Vui lòng chọn thông tin lịch trực cần sửa", 'warning');
                 return;
             }
-            $.each(gridzljyData, function () {    //bỏ điaction
+            $.each(gridzljyData, function () {    //bỏ đi action
                 for (var i = 0; i < $(this).length; i++) {
                     delete $(this)[i].action;
                 }
@@ -700,7 +700,7 @@
                 $.modalAlert("Vui lòng chọn thông tin lịch trực cần sửa", 'warning');
                 return;
             }
-            //lấynơicódòngId，duyệt để khung sửa ở trạng thái lưutrạng thái
+            //lấy nơi có dòngId，duyệt để khung sửa ở trạng thái lưu trạng thái
             var rowIds = $("#gridList").jqGrid('getDataIDs');
             if (rowIds.length == 0) {
                 $.modalAlert("Vui lòng chọn thông tin lịch trực cần sửa", 'warning');
@@ -710,18 +710,18 @@
                 var saveResult = $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
                 if (!saveResult) {
-                    EnableInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
-                    return;   //lưu thất bại，thìreturn
+                    EnableInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSave sẽ trả về false
+                    return;   //lưu thất bại，thì return
                 }
             }
             var gridzljyData = $("#gridList").jqGrid('getRowData');
             gridzljyData.push($("#gridList").jqGrid('getRowData', rowIds[rowIds.length - 1]));
             if (!gridzljyData || gridzljyData.length == 0) {
-                EnableRehabInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
+                EnableRehabInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSave sẽ trả về false
                 $.modalAlert("Vui lòng chọn thông tin lịch trực cần sửa", 'warning');
                 return;
             }
-            $.each(gridzljyData, function () {    //bỏ điaction
+            $.each(gridzljyData, function () {    //bỏ đi action
                 for (var i = 0; i < $(this).length; i++) {
                     delete $(this)[i].action;
                 }
@@ -736,7 +736,7 @@
                     $.modalAlert("Lưu thành công", 'warning');
                 },
                 complete: function () {
-                    EnableRehabInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
+                    EnableRehabInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSave sẽ trả về false
                 }
             });
         }
@@ -754,7 +754,7 @@
             width: 480,
             clickautotrigger: true,
             filter: function (keyword) {
-                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                //duyệt dữ liệu nguồn，dùng keyword để lọc ra kết quả
                 var resultObjArr = new Array();
 
                 $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
@@ -815,7 +815,7 @@
                     .val($thistr.attr('data-Name'));
                 $('#ks').attr('data-ks', $thistr.attr('data-code'))
                     .val($thistr.attr('data-code'));
-                ////theokhoamã sốlấybác sĩhọ tên
+                ////theo khoa mã số lấy bác sĩ họ tên
                 //var ks = $thistr.attr('data-code');
 
                 //$.ajax({
@@ -845,7 +845,7 @@
             width: 480,
             clickautotrigger: true,
             filter: function (keyword) {
-                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                //duyệt dữ liệu nguồn，dùng keyword để lọc ra kết quả
                 var resultObjArr = new Array();
 
                 $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
@@ -1071,7 +1071,7 @@
         }
         //bật khung sửa trong dòng
         function EnableInlineEditBox() {
-            //Gridtảihoàn thành bật sửa trong dòng   1.trướclấynơicódòngId  2.duyệt gọi editRow phương thức
+            //Grid tải hoàn thành bật sửa trong dòng   1.trước lấy nơi có dòngId  2.duyệt gọi editRow phương thức
             var rowIds = $("#gridList").jqGrid('getDataIDs');
             for (var i = 0; i < rowIds.length; i++) {
                 $("#gridList").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
@@ -1084,23 +1084,23 @@
         function istz(ScheduId, czzt) {
             var tzyystr = "";
             if (czzt == "1") {
-                //lấynơicódòngId，duyệt để khung sửa ở trạng thái lưutrạng thái
+                //lấy nơi có dòngId，duyệt để khung sửa ở trạng thái lưu trạng thái
                 var rowIds = $("#gridList").jqGrid('getDataIDs');
                 for (var i = 0; i < rowIds.length; i++) {
                     var saveResult = $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
                     if (!saveResult) {
-                        EnableInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
-                        return;   //lưu thất bại，thìreturn
+                        EnableInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSave sẽ trả về false
+                        return;   //lưu thất bại，thì return
                     }
                 }
                 var gridzljyData = $("#gridList").jqGrid('getRowData');
                 gridzljyData.push($("#gridList").jqGrid('getRowData', rowIds[rowIds.length - 1]));
                 if (!gridzljyData || gridzljyData.length == 0) {
-                    EnableRehabInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
+                    EnableRehabInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSave sẽ trả về false
                     $.modalAlert("Vui lòng chọn thông tin lịch trực cần sửa", 'warning');
                     return;
                 }
-                $.each(gridzljyData, function () {    //bỏ điaction
+                $.each(gridzljyData, function () {    //bỏ đi action
                     for (var i = 0; i < $(this).length; i++) {
                         delete $(this)[i].action;
                     }
@@ -1152,7 +1152,7 @@
             });
         }
 
-        //thêm mớilịch trực
+        //thêm mới lịch trực
         function btn_add() {
             var ghpbId = 0;
             var OrganizeId = $("#gridList").jqGridRowValue().OrganizeId;

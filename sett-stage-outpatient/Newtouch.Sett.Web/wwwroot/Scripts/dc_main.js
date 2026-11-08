@@ -8094,7 +8094,7 @@ function StartDCWriterClientControl(rootElement) {
         "CommentAuthor": "",//tác giả ghi chú
         "CommentCreationTime": "",//ghi chú Tạo thời gian
     * }
-    * @returns changeOptioncó giá trị, true: đã hoàn thành thao tác. false: chưa hoàn thành thao tác.
+    * @returns changeOption có giá trị, true: đã hoàn thành thao tác. false: chưa hoàn thành thao tác.
     */
     rootElement.CommentOption = function (element, changeOption) {
         var isComment = element && element.nodeName && element.nodeName == "SPAN" && element.getAttribute("dctype") == "DocumentComment";

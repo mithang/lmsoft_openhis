@@ -88,7 +88,7 @@
     var blh = $.request("blh");
     var fyyGhpbId = null;//đăng ký khám không hẹn trước
 
-    //theosố hồ sơ bệnh ántìm kiếmtrả vềthông tin cơ bản
+    //theo số hồ sơ bệnh án tìm kiếm trả về thông tin cơ bản
     function GetOutpatientBasicInfo() {
         $.najax({
             url: "/PatientManage/HospiterRes/GetOutpatientBasicInfo",
@@ -111,7 +111,7 @@
 
     $('#sel_mzlx').bindSelect();
 
-    //khởi tạo hộp thả xuống lý do khám mặc địnhthườngđã chọntrạng thái
+    //khởi tạo hộp thả xuống lý do khám mặc định thường đã chọn trạng thái
     $('#jzyy').itemDetailsBindSelect({ itemtype: 'MedicalVisitReason' });
     var jzyydefaultSelVal = null;
     $.each($('#jzyy option'), function () {
@@ -129,7 +129,7 @@
         width: 300,
         clickautotrigger: true,
         filter: function (keyword) {
-            //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+            //duyệt dữ liệu nguồn，dùng keyword để lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysDepartList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -191,7 +191,7 @@
         }
     }
 
-    //đăng ký khámlớp nổi lịch trực
+    //đăng ký khám lớp nổi lịch trực
     $("#txtghpbchoose").newtouchBatchFloatingSelector({
         height: 230,
         width: 700,
@@ -228,7 +228,7 @@
         //khoản mục đăng ký khámCode
         $("#txtghfxm").val($thistr.attr('data-ghlx'));
         $("#txtghpbId").val('');
-        //chẩn trịkhoản mụcCode
+        //chẩn trị khoản mụcCode
         $("#txtzlxm").val($thistr.attr('data-zlxm'));
         $("#txtghks").val($thistr.attr('data-ks'));
         $("#txtghksmc").html($thistr.attr('data-ksmc'));
@@ -238,7 +238,7 @@
         $("#newghf").html('');
         $("#newzlf").html('');
         $("#newtotalfees").html('');
-        //lấyđăng ký khámphí phí chẩn trị phí thẻ từ phí làm thẻ
+        //lấy đăng ký khám phí phí chẩn trị phí thẻ từ phí làm thẻ
         if ('@zlxmzhconf' == 1) {
             GHFeesGroup(function (feesList) {
                 $("#txtghpbId").val($thistr.attr('data-ghpbId'));   //đặt ở đây，phía sau dùng để xác định đã chọn lịch trực thành công chưa
@@ -257,7 +257,7 @@
         }
     }
 
-    //lấyđăng ký khámchi phí tổ hợp
+    //lấy đăng ký khám chi phí tổ hợp
     function GHFeesGroup(funcSuccCallback) {
         $.najax({
             url: "/OutpatientManage/OutpatientReg/GetOutpatientFeesbyGroup",
@@ -276,7 +276,7 @@
         });
     }
 
-    //lấyđăng ký khámchi phí
+    //lấy đăng ký khám chi phí
     function GHFees(funcSuccCallback) {
         $.najax({
             url: "/OutpatientManage/OutpatientReg/GetOutpatientFees",
@@ -428,7 +428,7 @@
                 return;
             }
         });
-        //bệnh nhân tự chi trảquyết toán
+        //bệnh nhân tự chi trả quyết toán
         /* khởi tạo đối tượng ngữ cảnh */
         return SaveMethod({ qzjzxh: MZJS.qzjzxh, qzmzh: MZJS.qzmzh });
     }
@@ -511,7 +511,7 @@
 
         //xác định chọn tính chất chi phí
         //tự chi trả không điBHYT
-        //BHYTtự chi trả điBHYT  //BHYTbệnh nhân có thẻ cũng có thể chọn‘tự chi trả’
+        //BHYTtự chi trả điBHYT  //BHYT bệnh nhân có thẻ cũng có thể chọn‘tự chi trả’
         if (patModel.brxz !== regInfo.brxz && regInfo.brxzmc != 'Tự chi trả') {
             if (patModel.brxzmc == 'Tự chi trả' || patModel.brxzmc == 'BHYT tự chi trả') {
                 $.modalAlert("Chỉ được chọn" + patModel.brxzmc + "Tính chất", 'warning');

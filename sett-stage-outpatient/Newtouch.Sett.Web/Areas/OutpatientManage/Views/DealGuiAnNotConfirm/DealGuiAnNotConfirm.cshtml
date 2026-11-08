@@ -165,7 +165,7 @@
     }
 
 
-    //ajaxtảidữ liệu
+    //ajax tải dữ liệu
     function loadDataResult() {
         //xóaGrid
         $('#gridList').jqGrid("clearGridData");
@@ -230,7 +230,7 @@
     });
 
     function confirm_yb() {
-        //lấydòng đã chọnId
+        //lấy dòng đã chọnId
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds.length == 0) {
             $.modalAlert("Vui lòng chọn trước thông tin cần xử lý", 'warning');
@@ -240,7 +240,7 @@
             return;
         }
         var IsSuccess = true;
-        //xác định hoànsố lượng
+        //xác định hoàn số lượng
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
             if (!rowData) {
@@ -291,7 +291,7 @@
     }
 
     function cancel_yb() {
-        //lấydòng đã chọnId
+        //lấy dòng đã chọnId
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds.length == 0) {
             $.modalAlert("Vui lòng chọn trước thông tin cần xử lý", 'warning');
@@ -301,7 +301,7 @@
             return;
         }
 
-        //xác định hoànsố lượng
+        //xác định hoàn số lượng
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
             if (!rowData) {

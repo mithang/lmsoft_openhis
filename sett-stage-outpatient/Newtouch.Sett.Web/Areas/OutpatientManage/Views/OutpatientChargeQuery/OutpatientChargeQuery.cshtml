@@ -11,7 +11,7 @@
     string OutpatientChargeDetail = "";
     if (SysConfigReader.Bool("Outpatient_Register_PrintAble") == true)
     {
-        //đăng ký khámliên kết báo cáo hóa đơn
+        //đăng ký khám liên kết báo cáo hóa đơn
         regReportUrl = SysConfigReader.OrgReportLink("NewOutpatientRegister");
         OutpatientChargeDetail = SysConfigReader.OrgReportLink("OutpatientChargeDetail");
         invoicePrintMethod = invoicePrintMethod ?? SysConfigReader.String("Outpatient_ChargeFeeInvoice_PrintMethod");
@@ -65,7 +65,7 @@
                 <td class="formValue">
                     <input type="text" class="form-control" id="txtzxlsh" value="" />
                 </td>
-                <th class="formTitle">Thu phínhân viên：</th>
+                <th class="formTitle">Thu phí nhân viên：</th>
                 <td class="formValue">
                     <div class="row">
                         <div class="col-md-9">
@@ -142,11 +142,11 @@
 
 <script>
     $(function () {
-        //khi cửa sổ trình duyệt đổi kích thước thì tải lạitảijqGridcủarộng
+        //khi cửa sổ trình duyệt đổi kích thước thì tải lại tải jqGrid của rộng
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
-        //quyết toánbản ghi chính
+        //quyết toán bản ghi chính
         gridJSListData();
     });
 
@@ -157,9 +157,9 @@
     }
 
     var medicalInsurance = '@(medicalInsurance)';
-    //cấu hình：ngàylọc kỳ là theo thu phíngàykỳ，hay thời gian thao tác thu phí
+    //cấu hình：ngày lọc kỳ là theo thu phí ngày kỳ，hay thời gian thao tác thu phí
     var useSfrqFilter = '@(useSfrqFilter)' == 'True';
-    //đăng ký khám ngoại trúquyết toántra cứu
+    //đăng ký khám ngoại trú quyết toán tra cứu
     function gridJSListData() {
         var gridSort = 'CreateTime asc';
         if (useSfrqFilter) {
@@ -204,7 +204,7 @@
                 {
                     label: 'Thời gian thao tác', name: 'CreateTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: 'Hoàn phínhân viên', name: 'tCreatorCode', align: 'left', hidden: true },
+                { label: 'Hoàn phí nhân viên', name: 'tCreatorCode', align: 'left', hidden: true },
                 {
                     label: "Thao tác", name: "", width: 90, align: 'left',
                     formatter: function (cellvalue, options, rowobject) {
@@ -222,10 +222,10 @@
 
                                 }
                                 else {
-                                    //khôngthìkhông in
+                                    //không thì không in
                                 }
                                 //if (rowobject.zxlsh != null ) {
-                                //    str += '<a class="btn btn-default" title="inBHYTquyết toánđơn" style="width: 22%;" onclick="printybjsd(\'' + rowobject.zxlsh + '\')">BHYTquyết toánđơn</a>';
+                                //    str += '<a class="btn btn-default" title="inBHYT quyết toán đơn" style="width: 22%;" onclick="printybjsd(\'' + rowobject.zxlsh + '\')">BHYT quyết toán đơn</a>';
                                 //}
                                 if (!!!rowobject.fph) {
                                     //tài vụ có thể in bổ sung
@@ -239,7 +239,7 @@
                             return str;
                         }
                         else {
-                            //khôngthìkhông in
+                            //không thì không in
                             return '';
                         }
                     }
@@ -305,7 +305,7 @@
     //sự kiện nhấn
     var jsmxarrlist;
     function btn_selectrow() {
-        //mỗi lần nhấn，xóa chi tiết dòng trước trước vàtổng cộng
+        //mỗi lần nhấn，xóa chi tiết dòng trước trước và tổng cộng
         $('#gridleftList').jqGrid("clearGridData");
         $('#gridJSMXList').jqGrid("clearGridData");
         $('#gridrightList').jqGrid("clearGridData");
@@ -322,11 +322,11 @@
                 jsmxarrlist = ajaxresp.data.ghRecordsDetails;
                 var fldata = uniq(ajaxresp.data.ghRecordsDetails,"dlmc");
                 $('#gridleftList').newtouchLocalDataGrid(null, fldata);
-                //độngtảithông tin tổng cộng
+                //động tải thông tin tổng cộng
                 afterCompleteFunction();
                 //$("#HjDiv").append("<table class='form' id='table_HJ'>");
                 $("#table_HJ").append(" <tr>");
-                //tảiphía dưới trangcủatổng cộng nhóm chi phí lớn
+                //tải phía dưới trang của tổng cộng nhóm chi phí lớn
                 //for (i = 0; i < ajaxresp.data.dlhj.length; i++) {
                 //    $("#table_HJ").append("<th class='formTitle'>" + ajaxresp.data.dlhj[i].dlmc + "</th>");
                 //    $("#table_HJ").append("<td class='formValue'><label>" + ajaxresp.data.dlhj[i].jehj.toFixed(2) + "</label></td>");
@@ -386,10 +386,10 @@
         ]
     })
 
-    //ngoại trúkhámquyết toánchi tiết jGridkhai báo
+    //ngoại trú khám quyết toán chi tiết jGridkhai báo
     $('#gridJSMXList').newtouchLocalDataGrid({
         height: $(window).height() - 370,
-        //caption: "ngoại trúkhámquyết toánchi tiết",
+        //caption: "ngoại trú khám quyết toán chi tiết",
         unwritten: false,
         colModel: [
             { label: 'jsmxnm', name: 'jsmxnm', hidden: true, key: true },
@@ -433,7 +433,7 @@
 
     });
 
-    //đã hoàn/in lại màu nềnlàmàu đỏ
+    //đã hoàn/in lại màu nền là màu đỏ
     function afterCompleteFunction() {
         var ids = $("#gridJSMXList").getDataIDs();
         for (i = 0; i < ids.length; i++) {
@@ -449,7 +449,7 @@
     $("#btnsyy").click(function () {
         $.modalOpen({
             id: "FormOutpatSFCZYUsers",
-            title: "ChọnThao tácnhân viên",
+            title: "ChọnThao tác nhân viên",
             url: "/SystemManage/User/Selector?from=mzshoufeicaozuoyuan&organizeId=" + '@curOpr.OrganizeId' + "&isExpand=true&callbackType=json&single=true",
             width: "300px",
             height: "400px",
@@ -620,7 +620,7 @@
             }
         });
     }
-    //inBHYTquyết toánđơn Grk 20240606
+    //inBHYT quyết toán đơn Grk 20240606
     function printybjsd(setlId) {
         $.loading(true, 'Đang tra cứu chứng từ quyết toán BHYT ngoại trú，Vui lòng chờ...');
 
@@ -720,7 +720,7 @@
             }
         }
 
-        //theoquyết toánin thông tinAXhóa đơn
+        //theo quyết toán in thông tinAX hóa đơn
         //var newTempPatModel = { xm: null, mzh: null, ksmc: null, ysmc: null};
         //var newJszbInfo = { jsnm: null, ybjsh: null, jszje: null, jsxjzf: null, YBZHZC: null, JBYE: null, GBYE: null };
         function axPrintInvoiceBySettInfo(paramNewTempPatModel, paramNewJszbInfo) {
@@ -810,19 +810,19 @@
                         }
                     });
                 }
-                //else phảinàyđã ở bên ngoàixử lý inRSbáo cáo
+                //else phải này đã ở bên ngoài xử lý inRS báo cáo
             }
-            //elsekhông cầncầnin hóa đơn mới
+            //else không cần cần in hóa đơn mới
         }
 
         //AXin hóa đơn
         function axPrintInvoice(jsnm, axFpInitJson, axFpInvoiceItemJson) {
             var printInvoiceReturn = $.printAX.PrintInvoice(JSON.stringify(axFpInitJson), JSON.stringify(axFpInvoiceItemJson));
             if (printInvoiceReturn && printInvoiceReturn.Code == 0) {
-                //in hóa đơn，trả vềđã thành công
+                //in hóa đơn，trả về đã thành công
                 var axFpInfo = printInvoiceReturn.Data;
                 if (axFpInfo.InfoNumber) {
-                    //cập nhậtquyết toánbảng chínhcủafphtrường
+                    //cập nhật quyết toán bảng chính của fph trường
                     $.najax({
                         type: "POST",
                         data: {

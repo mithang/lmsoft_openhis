@@ -56,7 +56,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         #region Khởi tạo trang
 
         /// <summary>
-        /// thêm mớiđăng ký
+        /// thêm mới đăng ký
         /// </summary>
         /// <returns></returns>
 
@@ -91,7 +91,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// ghi sổkhoản mụctrang chi tiết
+        /// ghi sổ khoản mục trang chi tiết
         /// </summary>
         /// <returns></returns>
         public IActionResult OutpatientAccountingDetail()
@@ -139,7 +139,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
         #region Ghi sổ ngoại trú Vision-1.1 phiên bản đầu tiên của ghi sổ ngoại trú
         /// <summary>
-        /// tảithông tin cơ bản bệnh nhân
+        /// tải thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="blh">số hồ sơ bệnh án</param>
         /// <returns></returns>
@@ -159,7 +159,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// lưungoại trúghi sổ khám
+        /// lưu ngoại trú ghi sổ khám
         /// </summary>
         /// <param name="bacDto"></param>
         /// <param name="xmList"></param>
@@ -186,7 +186,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
         #region OptimaGhi sổ Vision-1.2 phiên bản thứ hai của ghi sổ ngoại trú（bao gồm ghi sổ ngoại trú và ghi sổ nhập viện）
         /// <summary>
-        /// lấynơicóbản ghi trị liệu bệnh nhân
+        /// lấy nơi có bản ghi trị liệu bệnh nhân
         /// </summary>
         /// <param name="begindate"></param>
         /// <param name="enddate"></param>
@@ -204,7 +204,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// tảithông tin cơ bản bệnh nhân
+        /// tải thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="mzh">số khám ngoại trú</param>
         /// <returns></returns>
@@ -230,7 +230,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// tra cứuđồng bộbản ghi trị liệu
+        /// tra cứu đồng bộ bản ghi trị liệu
         /// </summary>
         /// <returns></returns>
         public IActionResult GetUnConfirmedSyncedTreatmentRecord(string zyh, string mzh)
@@ -262,7 +262,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
         #region Thu phí ngoại trú Vision-1.3 phiên bản thứ ba của ghi sổ ngoại trú
         /// <summary>
-        /// lấynơicóbệnh nhânđăng ký khámthông tin
+        /// lấy nơi có bệnh nhân đăng ký khám thông tin
         /// </summary>
         /// <param name="begindate"></param>
         /// <param name="enddate"></param>
@@ -275,7 +275,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// lấybản ghi lịch sử ghi sổ
+        /// lấy bản ghi lịch sử ghi sổ
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -306,7 +306,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
 
         /// <summary>
-        /// lưungoại trúghi sổ khám
+        /// lưu ngoại trú ghi sổ khám
         /// </summary>
         /// <param name="bacDto"></param>
         /// <param name="xmList"></param>
@@ -320,7 +320,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
         #region Ghi sổ ngoại trú，phiên bản thứ tư
         /// <summary>
-        /// lấybản ghi lịch sử ghi sổ
+        /// lấy bản ghi lịch sử ghi sổ
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>

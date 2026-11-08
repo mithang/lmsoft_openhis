@@ -40,13 +40,13 @@
 
 <script>
     $(function () {
-        //tảiphương thức thanh toán
+        //tải phương thức thanh toán
         $("#ddlzffs").newtouchBindSelect({ 
             id: "xjzffs", ////id: "xjzffsbh",
             text: "xjzffsmc",
             attdata: "xjzffsbh",
             datasource: function () {
-                //duyệtdữ liệunguồn
+                //duyệt dữ liệu nguồn
                 var resultObjArr = new Array(); 
                 $.each(top.clients.SysForCashPayList, function (idx, val) {
                     if (val.zhxz == 'a') {
@@ -56,7 +56,7 @@
                 return resultObjArr; 
             }
         });
-        //thanh toánngàykỳ 
+        //thanh toán ngày kỳ 
         $("#txtzfrq").val($.getDate); 
     })
 

@@ -107,7 +107,7 @@
 			clickautotrigger: true,
 			//url: '/OutpatientManage/OutpatientReg/GetCurrentDayRegListJson',
 			filter: function (keyword) {
-				//duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+				//duyệt dữ liệu nguồn，dùng keyword để lọc ra kết quả
 				var resultObjArr = new Array();
 				$.each(kszdlist, function (idx, val) {
 					if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -138,7 +138,7 @@
 		    clickautotrigger: true,
 		    //url: '/OutpatientManage/OutpatientReg/GetCurrentDayRegListJson',
 		    filter: function (keyword) {
-		        //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+		        //duyệt dữ liệu nguồn，dùng keyword để lọc ra kết quả
 		        var resultObjArr = new Array();
 		        $.each(kszdlist, function (idx, val) {
 		            if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)

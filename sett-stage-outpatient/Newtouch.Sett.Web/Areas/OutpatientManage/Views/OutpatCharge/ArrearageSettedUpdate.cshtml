@@ -127,11 +127,11 @@
     //số dư tạm ứng
     var yjjye = 0;
     var withYjj = '@(withYjj)';
-    //quyết toántổng số tiền
+    //quyết toán tổng số tiền
     var zje = 0;
-    //thanh toán phải thu quyết toánlúc đó phải thu（zje = có thể báo + quyết toánlúc đó phải thu + v.v.）
+    //thanh toán phải thu quyết toán lúc đó phải thu（zje = có thể báo + quyết toán lúc đó phải thu + v.v.）
     var orglxjzfys = 0;
-    //cókhi chiết khấu thì không bằng original
+    //có khi chiết khấu thì không bằng original
     var xjzfys = orglxjzfys;    //khi có chiết khấu sẽ không bằng nhau
 
     $(function () {
@@ -301,7 +301,7 @@
             updateDto.jsnm = jsnm;
             updateDto.sfrq = feeRelated.sfrq;
             updateDto.fph = feeRelated.fph;
-            //gửi đếnsaumáy
+            //gửi đến sau máy
             $.submitForm({
                 url: "@Url.Action("SubmitArrearageSettedUpdate")",
                 param: { updateDto: updateDto, feeRelated: feeRelated },
@@ -379,7 +379,7 @@
 
     //common start
 
-    //vào trang，tảisố hóa đơn
+    //vào trang，tải số hóa đơn
     function initFPH() {
         if (!($("#txtfph").length == 1)) {
             return;
@@ -394,7 +394,7 @@
         });
     }
 
-    //bật lênsố hóa đơncủacửa sổ
+    //bật lên số hóa đơn của cửa sổ
     function ShowInvoicePanel() {
         $.modalOpen({
             id: "InvoiceNoPanel",
@@ -422,10 +422,10 @@
         }
     });
 
-    //tính theo thanh toán phải thu、phương thức thanh toán tính tổng thựcthu tiền、tiền thừa
+    //tính theo thanh toán phải thu、phương thức thanh toán tính tổng thực thu tiền、tiền thừa
     function hjsskZhaolingCal() {
         if (!$('#zffs1').val() && $('#zfje1').val() != 0) {
-            //chưa chọn phương thức thanh toán，số tiền tương ứngcầnđặtlà0.00
+            //chưa chọn phương thức thanh toán，số tiền tương ứng cần đặt là0.00
             $('#zfje1').val('0.00');
         }
         var zfje1 = $('#zfje1').val();
@@ -433,7 +433,7 @@
             zfje1 = '0.00';
         }
         if (!$('#zffs2').val() && $('#zfje2').val() != 0) {
-            //chưa chọn phương thức thanh toán，số tiền tương ứngcầnđặtlà0.00
+            //chưa chọn phương thức thanh toán，số tiền tương ứng cần đặt là0.00
             $('#zfje2').val('0.00');
         }
         var zfje2 = $('#zfje2').val();
@@ -445,7 +445,7 @@
         $('#zhaoling').html(parseFloat(hjssk - xjzfys).toFixed(2));
     }
 
-    //nếucóchức năng chiết khấustart
+    //nếu có chức năng chiết khấu start
 
     //
     $('#zkje,#zkbl').keyup(function () {
@@ -458,7 +458,7 @@
         var zkbl = $('#zkbl').val();
         var je = calZkhMoney(orglxjzfys.toFixed(2), zkje, zkbl);
         if (je === false) {
-            //tính chiết khấuthất bại chỉ được đặt lại chiết khấu
+            //tính chiết khấu thất bại chỉ được đặt lại chiết khấu
             $('#zkje').val('');
             $('#zkbl').val('');
             xjzfys = orglxjzfys;
@@ -479,7 +479,7 @@
         hjsskZhaolingCal();
     }
 
-    //theo tỷ lệ chiết khấuvàtính số tiền chiết khấu chiết khấusausố tiền
+    //theo tỷ lệ chiết khấu và tính số tiền chiết khấu chiết khấu sau số tiền
     function calZkhMoney(je, zkje, zkbl) {
         if (je == 0) {
             return 0;
@@ -505,7 +505,7 @@
         }
     }
 
-    //xác thực định dạng số tiền làkhôngđúng
+    //xác thực định dạng số tiền là không đúng
     function validMoney(zqje, zkje, zkbl) {
         if (zqje == '' || zqje == '0.00') {
             $.modalAlert('Chi phí không hợp lệ', 'warning');
@@ -540,7 +540,7 @@
         return true;
     }
 
-    //nếucóchức năng chiết khấuend
+    //nếu có chức năng chiết khấu end
 
     //common end
 

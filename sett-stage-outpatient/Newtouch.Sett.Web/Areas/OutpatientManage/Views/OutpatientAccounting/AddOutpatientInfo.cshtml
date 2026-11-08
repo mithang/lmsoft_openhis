@@ -59,13 +59,13 @@
                         csrq = sfzh.substr(6, 8);
                         if ((len === 15 && csrq) || len === 18) {
                             csrq = csrq.replace(/(.{4})(.{2})/, "$1-$2-");
-                            //lấygiới tính
+                            //lấy giới tính
                             var xb;
                             if (parseInt(sfzh.charAt(16) / 2) * 2 != sfzh.charAt(16))
                                 xb = 1;
                             else
                                 xb = 0;
-                            //lấynămtuổi
+                            //lấy năm tuổi
                             var myDate = new Date();
                             var month = myDate.getMonth() + 1;
                             var day = myDate.getDate();
@@ -94,7 +94,7 @@
                 }
             });
 
-        //theohọ tênlấy phiên âm
+        //theo họ tên lấy phiên âm
         $('#xm').blur(function () {
             $('#py').val($(this).toPinyin());
 
@@ -132,7 +132,7 @@
                 success: function () {
                     $.loading(false);
                     if ($.currentWindow().$("#blh").length === 1) {
-                        //đăng ký khám ngoại trúđăng ký miễn thẻ
+                        //đăng ký khám ngoại trú đăng ký miễn thẻ
                         $.currentWindow().searchPatInfo(data.blh);
                         $.modalClose();
                     }
@@ -152,7 +152,7 @@
             return true;
         }
 
-        //làkhônglàtrống
+        //là không là trống
         if (card === '') {
             $.modalAlert('Vui lòng nhập số CMND/CCCD，Số CMND/CCCD không được trống', 'warning');
             // $("#zjh").focus;
@@ -164,19 +164,19 @@
             //$("#zjh").focus;
             return false;
         }
-        //kiểm tratỉnh
+        //kiểm tra tỉnh
         if (checkProvince(card) === false) {
             $.modalAlert('Hai ký tự đầu CMND/CCCD bạn nhập không đúng,Vui lòng nhập lại', 'warning');
             //$("#zjh").focus;
             return false;
         }
-        //kiểm tra sinhngày
+        //kiểm tra sinh ngày
         if (checkBirthday(card) === false) {
             $.modalAlert('Ngày sinh trong số CMND/CCCD bạn nhập không đúng,Vui lòng nhập lại', 'warning');
             //$("#zjh").focus();
             return false;
         }
-        //xét nghiệmvị trícủakiểm tra
+        //xét nghiệm vị trí của kiểm tra
         if (checkParity(card) === false) {
             $.modalAlert('Ký tự kiểm tra CMND/CCCD của bạn không đúng,Vui lòng nhập lại', 'warning');
             // $("#zjh").focus();
@@ -186,9 +186,9 @@
     };
 
 
-    //kiểm trasố làkhôngphù hợp quy chuẩn，bao gồm độ dài，loại
+    //kiểm tra số là không phù hợp quy chuẩn，bao gồm độ dài，loại
     isCardNo = function (card) {
-        //CMND/CCCDsốlà15vị tríhoặcngười18vị trí，15khi ở vị trí đầy đủlàchữ số，18trước vị trí17vị trílàchữ số，nhấtsaumột vị trí là vị trí kiểm tra，có thểlàchữ sốhoặcký tựX
+        //CMND/CCCDsốlà15vị trí hoặc người18vị trí，15khi ở vị trí đầy đủ là chữ số，18trước vị trí17vị trí là chữ số，nhất sau một vị trí là vị trí kiểm tra，có thể là chữ số hoặc ký tựX
         var reg = /(^\d{15}$)|(^\d{17}(\d|X)$)/;
         if (reg.test(card) === false) {
             return false;
@@ -206,10 +206,10 @@
         return true;
     };
 
-    //kiểm trasinhngàylàkhôngđúng
+    //kiểm tra sinh ngày là không đúng
     checkBirthday = function (card) {
         var len = card.length;
-        //CMND/CCCD15khi ở vị trí，thứ tựlàtỉnh（3vị trí）thành phố（3vị trí）năm（2vị trí）tháng（2vị trí）ngày（2vị trí）vị trí kiểm tra（3vị trí），đềulàchữ số
+        //CMND/CCCD15khi ở vị trí，thứ tự là tỉnh（3vị trí）thành phố（3vị trí）năm（2vị trí）tháng（2vị trí）ngày（2vị trí）vị trí kiểm tra（3vị trí），đều là chữ số
         if (len == '15') {
             var re_fifteen = /^(\d{6})(\d{2})(\d{2})(\d{2})(\d{3})$/;
             var arr_data = card.match(re_fifteen);
@@ -219,7 +219,7 @@
             var birthday = new Date('19' + year + '/' + month + '/' + day);
             return verifyBirthday('19' + year, month, day, birthday);
         }
-        //CMND/CCCD18khi ở vị trí，thứ tựlàtỉnh（3vị trí）thành phố（3vị trí）năm（4vị trí）tháng（2vị trí）ngày（2vị trí）vị trí kiểm tra（4vị trí），vị trí kiểm tra cuối có thểlàX
+        //CMND/CCCD18khi ở vị trí，thứ tự là tỉnh（3vị trí）thành phố（3vị trí）năm（4vị trí）tháng（2vị trí）ngày（2vị trí）vị trí kiểm tra（4vị trí），vị trí kiểm tra cuối có thể làX
         if (len == '18') {
             var re_eighteen = /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/;
             var arr_data = card.match(re_eighteen);
@@ -232,13 +232,13 @@
         return false;
     };
 
-    //kiểm trangàykỳ
+    //kiểm tra ngày kỳ
     verifyBirthday = function (year, month, day, birthday) {
         var now = new Date();
         var now_year = now.getFullYear();
-        //nămthángngàylàkhônghợp lý
+        //năm tháng ngày là không hợp lý
         if (birthday.getFullYear() == year && (birthday.getMonth() + 1) == month && birthday.getDate() == day) {
-            //xác địnhnămphầncủaphạm vi（3tuổiđến100tuổigiữa)
+            //xác định năm phần của phạm vi（3tuổi đến100tuổi giữa)
             var time = now_year - year;
             if (time >= 3 && time <= 100) {
                 return true;
@@ -248,7 +248,7 @@
         return false;
     };
 
-    //vị trí kiểm tracủakiểm tra
+    //vị trí kiểm tra của kiểm tra
     checkParity = function (card) {
         //15chuyển vị trí18vị trí
         card = changeFivteenToEighteen(card);

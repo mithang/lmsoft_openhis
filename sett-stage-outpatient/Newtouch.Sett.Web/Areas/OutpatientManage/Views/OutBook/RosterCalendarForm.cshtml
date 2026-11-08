@@ -133,36 +133,36 @@
                     label: "Loại đăng ký khám", name: "RegType", width: 90, align: 'left', formatter: function (val) {
                         return $.enum.getDescByValue("EnumOutPatientType", val);
                         //if (val == "1") {
-                        //    return "thườngngoại trúkhám";
+                        //    return "thường ngoại trú khám";
                         //}
                         //else if (val == "2") {
-                        //    return "cấp cứukhám";
+                        //    return "cấp cứu khám";
                         //} else if (val == "3") {
-                        //    return "chuyên giangoại trúkhám";
+                        //    return "chuyên gia ngoại trú khám";
                         //}
                         //else if (val == "4") {
-                        //    return "bệnh đặc biệtngoại trúkhám";
+                        //    return "bệnh đặc biệt ngoại trú khám";
                         //}
                         //else if (val == "5") {
-                        //    return "bệnh hiểm nghèongoại trúkhám";
+                        //    return "bệnh hiểm nghèo ngoại trú khám";
                         //}
                         //else if (val == "6") {
-                        //    return "bệnh mạn tínhngoại trúkhám";
+                        //    return "bệnh mạn tính ngoại trú khám";
                         //}
                         //else if (val == "7") {
                         //    return "hai bệnh dân cư";
                         //}
                         //else if (val == "8") {
-                        //    return "tai nạn thương tíchngoại trúkhám";
+                        //    return "tai nạn thương tích ngoại trú khám";
                         //}
                         //else if (val == "9") {
-                        //    return "sinh sảnngoại trúkhám";
+                        //    return "sinh sản ngoại trú khám";
                         //}
                         //else if (val == "10") {
-                        //    return "lao đa kháng thuốcngoại trúkhám";
+                        //    return "lao đa kháng thuốc ngoại trú khám";
                         //}
                         //else if (val == "11") {
-                        //    return "hai bệnh trẻ emngoại trúkhám";
+                        //    return "hai bệnh trẻ em ngoại trú khám";
                         //}
                     }
                 },
@@ -216,7 +216,7 @@
         width: 260,
         clickautotrigger: true,
         filter: function (keyword) {
-            //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+            //duyệt dữ liệu nguồn，dùng keyword để lọc ra kết quả
             var resultObjArr = new Array();
 
             $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
@@ -264,7 +264,7 @@
                 .val($thistr.attr('data-Name'));
             $('#ks').attr('data-ks', $thistr.attr('data-code'))
                 .val($thistr.attr('data-code'));
-            ////theokhoamã sốlấybác sĩhọ tên
+            ////theo khoa mã số lấy bác sĩ họ tên
             //var ks = $thistr.attr('data-code');
 
             //$.ajax({
@@ -373,7 +373,7 @@
                 return;
             }
 
-            //xác định trong hộp văn bảncủamãvàtrong bảng chi tiếtcủamã làkhôngnhất quán
+            //xác định trong hộp văn bản của mã và trong bảng chi tiết của mã là không nhất quán
             var jjzhcode = $("#MXTable").getCol("zhcode", false);
             
             var jjzhcodelie = $("#zhcode").val();
@@ -401,12 +401,12 @@
 
             var zhcodetj = $("#zhcode").val();
             
-            //var id = $("#MXTable").jqGrid('getGridParam', 'selrow');//lấy dòng đã nhấn theo dòng đã nhấncủaid（idlàjsonReader: {id: "id" },）
-            //var rowData = $("#MXTable").jqGrid("getRowData", id);//theo ở trênidlấy tất cả dữ liệu của dòng này
-            //var zhcodetj2 = rowData.zhcode; //lấy cột đã chỉ địnhcủagiá trị （auditStatus làcolModelcủaname）
+            //var id = $("#MXTable").jqGrid('getGridParam', 'selrow');//lấy dòng đã nhấn theo dòng đã nhấn của id（id là jsonReader: {id: "id" },）
+            //var rowData = $("#MXTable").jqGrid("getRowData", id);//theo ở trên id lấy tất cả dữ liệu của dòng này
+            //var zhcodetj2 = rowData.zhcode; //lấy cột đã chỉ định của giá trị （auditStatus là colModel của name）
             //var zlxmmccx = rowData.zlxmmc;
 
-            //lấycột nào đódữ liệu
+            //lấy cột nào đó dữ liệu
             var chkzhcode = $("#MXTable").getCol("zhcode", false);
             var inzhcode = $.inArray(zhcodetj, chkzhcode);
             var chkzlxmmc = $("#MXTable").getCol("zlxmmc", false);
@@ -416,8 +416,8 @@
 
             if (inzhcode = -1 && inzlxmmc == -1) {
                 $.ajax({
-                    url: "/Treatment/Tjchaxun",  //được yêu cầuurlđịa chỉ
-                    dataType: "json",   //định dạng trả về làjson
+                    url: "/Treatment/Tjchaxun",  //được yêu cầu url địa chỉ
+                    dataType: "json",   //định dạng trả về là json
                     async: true,
                     data: { zhcodetj: zhcodetj, sfxmmc123: sfxmmc123 },  //giá trị tham số
                     type: "POST",   //phương thức yêu cầu
@@ -432,10 +432,10 @@
                         }
 
                         // $("#MXTable").addRowData(rowid, data, "last");
-                        //khi yêu cầu thành côngxử lý
+                        //khi yêu cầu thành công xử lý
                     },
                     error: function () {
-                        //yêu cầu lỗixử lý
+                        //yêu cầu lỗi xử lý
                     }
                 });
             }
@@ -471,12 +471,12 @@
             
             var zhcodetj = $("#zhcode").val();
 
-            //var id = $("#MXTable").jqGrid('getGridParam', 'selrow');//lấy dòng đã nhấn theo dòng đã nhấncủaid（idlàjsonReader: {id: "id" },）
-            //var rowData = $("#MXTable").jqGrid("getRowData", id);//theo ở trênidlấy tất cả dữ liệu của dòng này
-            //var zhcodetj2 = rowData.zhcode; //lấy cột đã chỉ địnhcủagiá trị （auditStatus làcolModelcủaname）
+            //var id = $("#MXTable").jqGrid('getGridParam', 'selrow');//lấy dòng đã nhấn theo dòng đã nhấn của id（id là jsonReader: {id: "id" },）
+            //var rowData = $("#MXTable").jqGrid("getRowData", id);//theo ở trên id lấy tất cả dữ liệu của dòng này
+            //var zhcodetj2 = rowData.zhcode; //lấy cột đã chỉ định của giá trị （auditStatus là colModel của name）
             //var zlxmmccx = rowData.zlxmmc;
 
-            //lấycột nào đódữ liệu
+            //lấy cột nào đó dữ liệu
             var chkzhcode = $("#MXTable").getCol("zhcode", false);
             var inzhcode = $.inArray(zhcodetj, chkzhcode);
             var chkzlxmmc = $("#MXTable").getCol("zlxmmc", false);
@@ -484,8 +484,8 @@
             
             if (inzhcode = -1 && inzlxmmc == -1) {
                 $.ajax({
-                    url: "/Treatment/Tjchaxun",  //được yêu cầuurlđịa chỉ
-                    dataType: "json",   //định dạng trả về làjson
+                    url: "/Treatment/Tjchaxun",  //được yêu cầu url địa chỉ
+                    dataType: "json",   //định dạng trả về là json
                     async: true,
                     data: { zhcodetj: zhcodetj, sfxmmc123: sfxmmc123 },  //giá trị tham số
                     type: "POST",   //phương thức yêu cầu
@@ -500,10 +500,10 @@
                         }
 
                         // $("#MXTable").addRowData(rowid, data, "last");
-                        //khi yêu cầu thành côngxử lý
+                        //khi yêu cầu thành công xử lý
                     },
                     error: function () {
-                        //yêu cầu lỗixử lý
+                        //yêu cầu lỗi xử lý
                     }
                 });
             }
@@ -520,7 +520,7 @@
     
     function deleteMX() {
         var keyValue = $.request("keyValue");
-        console.info("LấykeyvalueGiá trị"+keyValue)
+        console.info("Lấy key valueGiá trị"+keyValue)
         if (!keyValue) {
             var rowKey = $("#MXTable").jqGrid('getGridParam', "selrow");
             var rowid = $("#MXTable").getGridParam("selrow");
@@ -593,8 +593,8 @@
         var rowData = $('#MXTable').jqGrid('getRowData');
 
         //var needRefundData = $("#gridList").jqGrid('getRowData_AllLine', true);
-        //xử lýthiếu một dòngbug 
-        var allOrgId = $('#MXTable').jqGrid('getDataIDs'); //ở đây lấy tất cả các dòng khóa chínhid là đầy đủ
+        //xử lý thiếu một dòng bug 
+        var allOrgId = $('#MXTable').jqGrid('getDataIDs'); //ở đây lấy tất cả các dòng khóa chính id là đầy đủ
         rowData.push($('#MXTable').jqGrid('getRowData', allOrgId[allOrgId.length - 1]));
         
         

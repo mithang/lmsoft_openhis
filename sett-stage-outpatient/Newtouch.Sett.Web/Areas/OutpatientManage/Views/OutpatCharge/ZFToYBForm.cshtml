@@ -4,15 +4,15 @@
 
 	var isZFtoYB = SysConfigReader.Bool("Inpatient_Open_ZF_to_YB", false).Value;
 
-	//làkhôngvàBHYTgiao dịch
+	//là không vàBHYTgiao dịch
 	var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
 	//BHYTđịa phương trực thuộc，phân biệt hệ thống sẽ thực hiện ở đâuBHYTlogic
 	var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
-	//HISnhà sản xuấtmã số
+	//HIS nhà sản xuất mã số
 	var his_manufacturerID = SysConfigReader.String("HIS_ManufacturerID");
 
 	var opr = OperatorProvider.GetCurrent();
-	//loại chứng từ khám làkhôngtừBHYTphíalấy  
+	//loại chứng từ khám là không từBHYT phía lấy  
 	var YB_Jzpzl = SysConfigReader.String("YB_Jzpzl");
 }
 
@@ -55,7 +55,7 @@
 
 	});
 
-	//đệ quygọieach step
+	//đệ quy gọi each step
 	function go(stepFuncName) {
 		if (!!!stepFuncName) {
 			stepFuncName = "funcStep" + 1;
@@ -74,7 +74,7 @@
 				$iTemp.remove();
 				if (isStepSuccess === true) {
 					$('ol li:eq(' + (indx - 1) + ')').append('<i class="fa fa-check passing"></i>');
-					//tiếp tụcgọitiếp theostep function
+					//tiếp tục gọi tiếp theostep function
 					if ($('ol li').length > indx) {
 						go("funcStep" + (indx + 1));
 					}
@@ -85,7 +85,7 @@
 			};
 			var flag = func(callback);
 			if (flag === true || flag === false) {
-				//đồng bộtrả vềchế độ
+				//đồng bộ trả về chế độ
 				callback(flag);
 			}
 			else {
@@ -111,9 +111,9 @@
     var khxx = $.request('khxx');
     var patName = $.request('patName');
     var patsfz = $.request('patsfz');
-	//BHYTthông tin thẻ
+	//BHYT thông tin thẻ
 	var cardInfo;
-	//bệnh nhân hệ thốngkhóa chính
+	//bệnh nhân hệ thống khóa chính
 	var patid;
 	var accountInfo;
 	var cqcardInfo;
@@ -130,7 +130,7 @@
 	var yibaoCardInfo;
 	var brxzobj = { brxz: "1", brxzmc: "BHYT thường" };
 	var cqPatInfo = {};//thông tin đọc thẻ bệnh nhân
-	//thông tin làm thủ tục nhập viện（BHYTgiao diệntrả về）
+	//thông tin làm thủ tục nhập viện（BHYTgiao diện trả về）
 	var ryblInfo;
 	var jzid;
 	var errmsg = "";

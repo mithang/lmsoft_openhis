@@ -14,7 +14,7 @@
     function selectGridAll()
     {
         var jqGrid = $("#chooseMzhGrid");
-        // lấy đượccódòngid
+        // lấy được có dòng id
         var jqGridIDs = jqGrid.getDataIDs();
         for (var i = 0; i < jqGridIDs.length; i++) {
             jqGrid.setSelection(jqGridIDs[i], true);

@@ -27,7 +27,7 @@
                 </td>
                 <th class="formTitle" style="width:60px;">Họ tên：</th>
                 <td class="formValue">
-                    <input id="txt_xm" name="txt_xm" type="text" class="form-control form-an form-an-end" placeholder="Vui lòng nhậpHọ tênhoặc phiên âm đầu" />
+                    <input id="txt_xm" name="txt_xm" type="text" class="form-control form-an form-an-end" placeholder="Vui lòng nhậpHọ tên hoặc phiên âm đầu" />
                 </td>
 
             </tr>
@@ -55,7 +55,7 @@
 </form>
 
 <script>
-    //cái trước đówindowđối tượng
+    //cái trước đó window đối tượng
     var prevWindow;
     if ('@(from)' !== '') {
         prevWindow = top.top.frames['@(from)'];
@@ -72,7 +72,7 @@
         obj.mzh = $.request("mzh");
         obj.blh = $.request("blh");
         var searInfo = new PatSearchInfo();
-        //tảidữ liệu
+        //tải dữ liệu
         searInfo.init(obj);
 
         $('#txt_xm').keyupEnterEvent(function () {
@@ -92,7 +92,7 @@
         });
     });
     var PatSearchInfo = (function () {
-        //tảidanh sách
+        //tải danh sách
         var loadGrid = function (data) {
             var $gridList = $("#patGridList");
             $gridList.dataGrid({
@@ -136,7 +136,7 @@
 
         }
 
-        //tảisự kiện
+        //tải sự kiện
         myPatSearchInfo.prototype.init = function (data) {
             if (data.blh === "null") {
                 $("#txt_blh").val("");
@@ -153,7 +153,7 @@
         return myPatSearchInfo;
     }());
 
-    //jqGrid nhấn đúpđã chọndòng nào đó
+    //jqGrid nhấn đúp đã chọn dòng nào đó
     function btn_edit() {
         PatSearchConfirm();
     }
@@ -179,7 +179,7 @@
             $.modalAlert("Vui lòng chọn bệnh nhân", 'warning');
         }
     }
-    //xác nhận trang chínhgọi
+    //xác nhận trang chính gọi
     function PatSearchConfirm() {
         PatDbGrid();
     }

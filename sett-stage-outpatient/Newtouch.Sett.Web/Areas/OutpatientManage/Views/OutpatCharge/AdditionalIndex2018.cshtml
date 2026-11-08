@@ -2,9 +2,9 @@
 @{
     ViewBag.Title = "Ghi bổ sung phí ngoại trú";
     Layout = "~/Views/Shared/_Index.cshtml";
-    //thuốctra cứu，thuốclàkhôngliên kếtnhà thuốctồn kho
+    //thuốc tra cứu，thuốc là không liên kết nhà thuốc tồn kho
     var isMedicineSearchRelatedKC = (ViewBag.ISMedicineSearchRelatedKC as bool?) ?? false;
-    //làkhôngvàBHYTgiao dịch
+    //là không vàBHYTgiao dịch
     var openYbSett = SysConfigReader.Bool("Outpatient_ChargeFee_OpenYbSett");
     var opr = OperatorProvider.GetCurrent();
 }
@@ -152,7 +152,7 @@
     var leftdata = [];//nguồn dữ liệu bên trái
     var respmzh; //xác thực số khám ngoại trú（chưa đổi）
     var editingNewid = null; //dòng đang sửa
-    var patInfoPostObj = {}; //thông tin cá nhânObjectđối tượng cần gửi lên máy chủ
+    var patInfoPostObj = {}; //thông tin cá nhânObject đối tượng cần gửi lên máy chủ
     var lastcfh; //số đơn thuốc dùng ở dòng trước（khoản mở ở giữa không tính là lần trước）
     var currentNewPreNo;
     $(function () {
@@ -172,11 +172,11 @@
         $('#expandIcon:visible').trigger('click');
         //
         initGridPatList();
-        //khôngthìkhông nhìn thấyloadinghiệu quả
+        //không thì không nhìn thấy loading hiệu quả
         setTimeout("gridPatList()", 50);
     });
 
-    //phần tử trong trang，tínhtổng số tiền số lượngphiên bản
+    //phần tử trong trang，tính tổng số tiền số lượng phiên bản
     function reCalcZjeFromsl() {
         var resultZje = "0.00";
         var txtDj = '@(ViewBag.sfxm_dj)' === 'ON' ? $("#dj").val() : $("#dj").html();
@@ -200,7 +200,7 @@
         $('#btn_bottombutton_f2,#btn_bottombutton_f3,#btn_bottombutton_f6').show();
     }
 
-    //mở rộngkhoản mụcbảng nhập tính phí
+    //mở rộng khoản mục bảng nhập tính phí
     $('#expandIcon').click(function () {
         $(this).hide();
         $('#singleItemDiv').show();
@@ -209,7 +209,7 @@
         $("#gridFeeList").setGridHeight($(window).height() - $("#dv_baseInfoAndItem").outerHeight(true) - 89);
     });
 
-    //ẩnkhoản mụcbảng nhập tính phí
+    //ẩn khoản mục bảng nhập tính phí
     $('#singleItemIcon').click(function () {
         $('#singleItemDiv').hide();
         $('#form1').show().hide();
@@ -218,7 +218,7 @@
         $("#gridFeeList").setGridHeight($(window).height() - $("#dv_baseInfoAndItem").outerHeight(true) - 89);
     });
 
-    //gridPatListcấu trúc
+    //gridPatList cấu trúc
     function initGridPatList() {
         $("#gridPatList").newtouchLocalDataGrid({
             height: $(window).height() - 125,
@@ -260,7 +260,7 @@
         });
     }
 
-    //tảitất cảchưa thu phí
+    //tải tất cả chưa thu phí
     function loadAllUnsetted(mzh) {
         $.najax({
             type: "POST",
@@ -323,7 +323,7 @@
             sfxmgridDbclickRow(rowData);
         }
     });
-    //trị liệukhoản mục lớp nổi
+    //trị liệu khoản mục lớp nổi
     var searchTypePart1 = "yp";
     var searchTypePart2 = "sfxm";
     if ('@(isMedicineSearchRelatedKC ? "true" : "")' == 'true') {
@@ -370,7 +370,7 @@
     //thêm
     function newtouch_event_f2() {
         if (editingNewid) {
-            return; //đang ở trạng thái sửa，không được nhấn nút thêm   cầndisablexử lý
+            return; //đang ở trạng thái sửa，không được nhấn nút thêm   cần disable xử lý
         }
 
         if (!patInfoPostObj.mzh) {
@@ -387,7 +387,7 @@
             return;
         }
         var addgoon = function () {
-            //kiểm trakhoản trùng
+            //kiểm tra khoản trùng
 
             if (!(CheckreAdddata(data) && checkEditingRowData(data))) {    //dữ liệu có đầy đủ không，kiểm tra các mục bắt buộc
                 return;
@@ -397,7 +397,7 @@
             data.newid = Math.random().toString() + new Date().getMilliseconds();   //newid()
             gridMxList.unshift(data);   //thêm dưới dạng khoản mới //”đầu mảng“
 
-            //đưa lạixmmảng hiển thị vàogrid
+            //đưa lại xm mảng hiển thị vào grid
             fillDataToGrid();
             Clearjzxm();
         }
@@ -434,9 +434,9 @@
             updategoon = function () {
 
                 data.newid = editingNewid;
-                //kiểm trakhoản trùng
+                //kiểm tra khoản trùng
 
-                //trước tiên tạixmtìm trong mảng
+                //trước tiên tại xm tìm trong mảng
                 if (editingNewid) {
                     var matchedIndex = -1;
                     for (var ii = 0; ii < gridMxList.length; ii++) {
@@ -452,7 +452,7 @@
                     gridMxList.unshift(data);   //thêm dưới dạng khoản mới    //”đầu mảng“
                 }
 
-                //đưa lạixmmảng hiển thị vàogrid
+                //đưa lại xm mảng hiển thị vào grid
                 fillDataToGrid();
                 Clearjzxm();
 
@@ -480,10 +480,10 @@
         }
         else {
             $('#btn_bottombutton_f2').attr('disabled', 'disabled');
-            //lấygridhiện tạiđã chọncủadòng đó
+            //lấy grid hiện tại đã chọn của dòng đó
             var seleId = $('#gridFeeList').jqGrid('getGridParam', 'selrow');
             if (seleId) {
-                //yêu cầusửanàydòng
+                //yêu cầu sửa này dòng
                 gridEditRow(seleId);
             }
             else {
@@ -496,7 +496,7 @@
     function newtouch_event_f4() {
         isYbjyjz = null;
         gridMxList = [];
-        patInfoPostObj = {};    //thông tin cá nhânObjectđối tượng cần gửi lên máy chủ
+        patInfoPostObj = {};    //thông tin cá nhânObject đối tượng cần gửi lên máy chủ
         editingNewid = null;    //dòng đang sửa
         patModel = null;
         lastcfh = "";//số đơn thuốc sửa lần cuối
@@ -513,14 +513,14 @@
 
     //xóa
     function newtouch_event_f6() {
-        //lấygridhiện tạiđã chọncủadòng đó
+        //lấy grid hiện tại đã chọn của dòng đó
         var rowid = $('#gridFeeList').jqGrid('getGridParam', 'selrow');
-        //yêu cầu xóanàydòng
+        //yêu cầu xóa này dòng
         if (rowid) {
             var rowData = $("#gridFeeList").jqGrid('getRowData', rowid);
             if (rowData) {
                 if (!!rowData.newid) {
-                    //xóa chưa gửicủadữ liệu
+                    //xóa chưa gửi của dữ liệu
                     if (gridMxList.length > 0) {
                         for (var jj = (gridMxList.length - 1) ; jj >= 0 ; jj--) {
                             if (gridMxList[jj].newid == rowData.newid) {
@@ -530,17 +530,17 @@
                     }
                 }
                 else {
-                    //khoản mụccó thể xóa？
+                    //khoản mục có thể xóa？
                     $.modalAlert('Không thể sửa hoặc xóa chi tiết này', 'warning');
                     return;
                 }
             }
-            //đưa lạixmmảng hiển thị vàogrid
+            //đưa lại xm mảng hiển thị vào grid
             fillDataToGrid();
         }
     }
 
-    //lấychi tiết
+    //lấy chi tiết
     function getEditRowData() {
         var tempCfh = "";
         if ($('#yzlx').val() == "1") {
@@ -549,18 +549,18 @@
             if (rowid) {
                 var rowData = $("#gridFeeList").jqGrid('getRowData', rowid);
                 if (!rowData.newid || !rowData.cfh) {
-                    //chọncủađơn thuốc không được thêm chi tiết,đơn thuốc mới
+                    //chọn của đơn thuốc không được thêm chi tiết,đơn thuốc mới
                     $("[id ='newPre']:checkbox").prop("checked", "checked");
                     $('#newPre').trigger("change");
                     tempCfh = currentNewPreNo;
                 }
                 else {
-                    //dùngđã chọnbản ghi đócủasố đơn thuốc
+                    //dùng đã chọn bản ghi đó của số đơn thuốc
                     tempCfh = rowData.cfh;
                 }
             }
             else {
-                //xác định làkhôngsố đơn thuốc mới
+                //xác định là không số đơn thuốc mới
                 if ($('#newPre').is(':checked')) {
                     //đơn thuốc mới
                     tempCfh = currentNewPreNo
@@ -568,7 +568,7 @@
                 else {
                     //đơn thuốc cũ
                     if ($('#cfh').val()) {
-                        //bản ghi vùng sửa hiện tại đãcósố đơn thuốc
+                        //bản ghi vùng sửa hiện tại đã có số đơn thuốc
                         tempCfh = $('#cfh').val();
                     }
                     else if (lastcfh) {
@@ -606,7 +606,7 @@
         return data;
     }
 
-    //nhấn đúpkhoản thu phí
+    //nhấn đúp khoản thu phí
     function sfxmgridDbclickRow(rowData) {
         if (!!rowData.newid) {
             if (rowData.yzlx == "Thuốc") {
@@ -718,7 +718,7 @@
         return xmzje;
     }
 
-    //F9hủysửa
+    //F9hủy sửa
     function newtouch_event_f9() {
         Clearjzxm();
         editingNewid = null;    //dòng đang sửa
@@ -728,7 +728,7 @@
         middleButtonsReset();
     }
 
-    //nhập taythẻ BHXHsố
+    //nhập tay thẻ BHXHsố
     function GetPatSbkh() {
         $.modalOpen({
             id: "sbkhInput",
@@ -782,11 +782,11 @@
                     }
                     //gán thông tin cơ bản cá nhân
                     patModel = ajaxresp.data.OutpatAccInfoDto;
-                    //đặt lại làkhôngphải quyết toán toàn bộ
+                    //đặt lại là không phải quyết toán toàn bộ
                     isYbjyjz = openYbSett && (patModel.brxz != '0' && patModel.brxz != 'yb3' && patModel.brxz != 'yb6' && patModel.brxz != 'yb25');
                     setPatInfoModel(ajaxresp.data.OutpatAccInfoDto);
                     respmzh = patModel.mzh;
-                    //liệt kê trực tiếptất cảchưa thu phí
+                    //liệt kê trực tiếp tất cả chưa thu phí
                     setTimeout('loadAllUnsetted("' + patModel.mzh + '")', 50);
                 }
                 else if (ajaxresp.state === 'error') {
@@ -812,7 +812,7 @@
         $("#phone").html(patModel.phone);
         $("#brxzmc").html(patModel.brxzmc);
         $("#jiuzhenbiaozhi").html($.enum.getDescByValue('EnumOutpatientJzbz', patModel.jiuzhenbiaozhi));
-        //tảithông tin bệnh nhân
+        //tải thông tin bệnh nhân
         patInfoPostObj.xm = patModel.xm; //họ tên
         patInfoPostObj.xb = patModel.xb; //giới tính
         patInfoPostObj.csny = patModel.csny;
@@ -827,7 +827,7 @@
         patInfoPostObj.ys = patModel.ys;//bác sĩ
     }
 
-    //kiểm trađang sửacủadữ liệu（chờ gửi）củatính đầy đủ
+    //kiểm tra đang sửa của dữ liệu（chờ gửi）của tính đầy đủ
     function checkEditingRowData(rowData) {
         if (true) {
             //thông thường，số lượng
@@ -864,21 +864,21 @@
             var rowData = $("#gridFeeList").jqGrid('getRowData', rowid);
             if (rowData) {
                 if (!!rowData.newid) {
-                    //tạigridMxListtìm start
+                    //tại gridMxList tìm start
                     rowDataArr = $.jsonWhere(gridMxList, function (v) {
                         return v && v.newid == rowData.newid;
                     });
                     if (!rowDataArr || rowDataArr.length == 0) {
                         return; //tại sao không tìm thấy
                     }
-                    rowData = rowDataArr[0];  //thông quarowData.newidlấy dữ liệu dòng đó từ mảng đối tượng
+                    rowData = rowDataArr[0];  //thông quarowData.new id lấy dữ liệu dòng đó từ mảng đối tượng
                     if (true) { //&&có thể sửa
                         editingNewid = rowData.newid;    //dòng đang sửa
                     }
                     else {
                         return;
                     }
-                    //tạigridMxListtìm end
+                    //tại gridMxList tìm end
                 }
                 else {
                     $('#btn_bottombutton_f2').removeAttr('disabled');
@@ -908,7 +908,7 @@
         }
     }
     var gridMxList = [];
-    //hướng tớigridFeeList gridđiền vào trongdữ liệu
+    //hướng tới gridFeeList grid điền vào trong dữ liệu
     function fillDataToGrid() {
         $("#gridFeeList").resetSelection();
         $("#gridFeeList").clearGridData();
@@ -917,7 +917,7 @@
         }
     }
 
-    //xóa ghi sổkhoản mục
+    //xóa ghi sổ khoản mục
     function Clearjzxm() {
         $('#cfh').val('');
         $('#zfbl').val('');
@@ -934,11 +934,11 @@
         $('#sl').val('');
         $('#jl').val('');
         $('#jldw').html('');
-        //chỉ hủyđã chọn
+        //chỉ hủy đã chọn
         $('#newPre').removeAttr('checked');
     }
 
-    //xác định cùng một đơn thuốccủathuốclàkhôngtrùng lặp
+    //xác định cùng một đơn thuốc của thuốc là không trùng lặp
     function CheckreAdddata(data) {
         for (var ii = 0; ii < gridMxList.length; ii++) {
             if (gridMxList[ii].yzlx == "1") {
@@ -975,7 +975,7 @@
         Clearjzxm();
     }
 
-    //thêm đơn thuốc mớichữ số
+    //thêm đơn thuốc mới chữ số
     $("#newPre").change(function () {
         if ($("#newPre").is(':checked') && $('#yzlx').val() == "1") {
             $.ajax({
@@ -1032,7 +1032,7 @@
     });
 
 
-    //trì hoãngọihàm trợ giúp
+    //trì hoãn gọi hàm trợ giúp
     var timeoutFunc = null;
     var timeoutFuncParam1 = null;
     var timeoutFuncParam2 = null;
@@ -1071,7 +1071,7 @@
             if (yibaoCardInfo && yibaoCardInfo.Code == 0) {
                 //thẻ đã đọc được
                 var cardInfo = yibaoCardInfo.Data;
-                //số BHXH tạm làmlàhệ thốngsố thẻ
+                //số BHXH tạm làm là hệ thống số thẻ
                 GetQueryFphAjax({ kh: cardInfo.DAC001, cardType: ybkCardType });
             }
             else {

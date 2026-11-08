@@ -21,7 +21,7 @@
         gridListFPH(JSON.parse(jsdata));
     });
 
-    //tảiquyết toándanh sách
+    //tải quyết toán danh sách
     function gridListFPH(mydata) {
         var $gridList = $("#gridList");
         $gridList.dataNewGrid({
@@ -57,7 +57,7 @@
     //function submitForm() {
     //    btn_edit();
     //}
-    //quyết toánsự kiện nhấn danh sách
+    //quyết toán sự kiện nhấn danh sách
     function btn_edit() {
         var data = $("#gridList").jqGridRowValue();
         if (data) {
@@ -75,7 +75,7 @@
 
     }
 
-    //xác nhận trang chínhgọi
+    //xác nhận trang chính gọi
     function PatSearchConfirm() {
         var $gridList = $("#gridList");
         var blh = $gridList.jqGridRowValue().blh;

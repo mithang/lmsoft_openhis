@@ -1,5 +1,5 @@
 @{
-    ViewBag.Title = "Ngoại trúghi sổ";
+    ViewBag.Title = "Ngoại trú ghi sổ";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
@@ -208,7 +208,7 @@
             <td>
                 <label style="height:7px;width:25px;background-color:#6ff3ad; border:1px solid #ddd"></label>
             </td>
-            <td>Biểu thịSửaghi sổ lịch sử</td>
+            <td>Biểu thịSửa ghi sổ lịch sử</td>
             <td>
                 <label style="height:7px;width:25px;background-color:white;  border:1px solid #ddd"></label>
             </td>
@@ -219,11 +219,11 @@
 <script type="text/javascript">
     var patientType;
     var clzt;
-    var Del_xmlist = [];//đã xóalist
+    var Del_xmlist = [];//đã xóa list
     var editingNewid = null;    //dòng đang sửa
     var ksrq = "";
     var jsrq = "";
-    var ymzje = "0.00";//khoản thu phílisttổng số tiền
+    var ymzje = "0.00";//khoản thu phí list tổng số tiền
     var wqrje = "0.00";//tổng số tiền khoản thu phí chưa lưu
     $('#wqrje').html(wqrje);
     $("#btn_search").click(function () {
@@ -263,13 +263,13 @@
             postData: { type: $(this).val() || "1", kssj: $("#kssj").val(), jssj: $("#jssj").val() },
         }).trigger('reloadGrid');
     });
-    //tảiloại phục hồi chức năng
+    //tải loại phục hồi chức năng
     $("#kflb").bindSelect({
         url: "/Com/GetSelectItemsDetailListByItemCode?code=RehabTreatmentMethod",
     });
 
     var Editing_ysList = [];
-    //mặc địnhlàhiện tại
+    //mặc định là hiện tại
     var default_Editing_ysList = [{ id: '@(ViewBag.CurYsStaffId)', gh: '@(ViewBag.CurYs)', Name: '@(ViewBag.CurYsmc)', ks: '@(ViewBag.CurKs)', ksmc: '@(ViewBag.CurKsmc)' }]; //kỹ thuật viên trị liệu trong vùng sửa
     $("#input1").html('@(ViewBag.sfxm_dj)' === 'ON' ? " <input id='dj' type='text' class='form-control form-an' />" : " <label id='dj'></label>");
     $('#btn_bottombutton_f3').attr('disabled', 'disabled');
@@ -277,12 +277,12 @@
     $("#jzsj").val($.getDate());
 
 
-    patInfoObj = {}, //thông tin cá nhânObjectđối tượng
+    patInfoObj = {}, //thông tin cá nhânObject đối tượng
 
     setDefaultYsList();
 
     var respblh;
-    //theosố hồ sơ bệnh ánlấythông tin cơ bản bệnh nhân
+    //theo số hồ sơ bệnh án lấy thông tin cơ bản bệnh nhân
     function searchPatInfo(admsnum, type) {
         $.loading(true, "Đang yêu cầu dữ liệu...");
         if ($('#status input:radio:checked').val() == "2") {//đã xác nhận
@@ -337,7 +337,7 @@
         $("#jzsj").val($.getDate());
     }
 
-    //thêm mớibệnh nhân
+    //thêm mới bệnh nhân
     function FreeCardReg() {
         $.modalOpen({
             id: "Form",
@@ -370,7 +370,7 @@
         }
         $("brxz").val(patModel.brxz);
         $("#mzh").html(patModel.mzh);
-        //tảithông tin bệnh nhân
+        //tải thông tin bệnh nhân
         patInfoObj.xm = patModel.xm; //họ tên
         patInfoObj.xb = patModel.xb; //giới tính
         patInfoObj.csny = patModel.csny;
@@ -399,7 +399,7 @@
         patInfoObj.zjlx = patModel.zjlx; //loại giấy tờ
     }
 
-    //khai báo khoản mụcchi tiết grid
+    //khai báo khoản mục chi tiết grid
     $("#gridMX").newtouchLocalDataGrid({
         height: $(window).height() - 363,
         unwritten: false,
@@ -468,7 +468,7 @@
         }
     });
 
-    //kỹ thuật viên trị liệu nàytháng ghi sổ giới hạn trên nhắc nhở
+    //kỹ thuật viên trị liệu này tháng ghi sổ giới hạn trên nhắc nhở
     function refreshZlsJzjeInfo() {
         var gh = null;
         var ks = null;
@@ -505,7 +505,7 @@
     }
 
 
-    //gắn kỹ thuật viên trị liệuchọn cây
+    //gắn kỹ thuật viên trị liệu chọn cây
     $('#zlsList').focus(function () {
         if ($(this).hasClass('form-an-cur') && Editing_ysList.length > 0) {
             return; //vừa tự động nhảy từ nút trước đó sang
@@ -530,7 +530,7 @@
         });
     });
 
-    //kỹ thuật viên trị liệucây chọn gọi lại
+    //kỹ thuật viên trị liệu cây chọn gọi lại
     function staffTreeCallback(treeSeleData) {
         var zlsNames = "";
         Editing_ysList = [];
@@ -548,7 +548,7 @@
         $('#zlsList').val(zlsNames);
     }
 
-    //trị liệukhoản mụcgắn lớp nổi chọn
+    //trị liệu khoản mục gắn lớp nổi chọn
     $('#sfxmmc').newtouchBatchFloatingSelector({
         width: 650,
         height: 280,
@@ -604,11 +604,11 @@
     var oldxmList = [];   //khoản đã gửi trước đâyList
     var newxmList = [];   //khoản mớiList
 
-    //tínhkhoản mụctổng số tiền
+    //tính khoản mục tổng số tiền
     function reCalcZje(xm) {
         if (xm) {
             if (xm.tdxmList && xm.tdxmList.length > 0) {
-                //cóthay thếkhoản mục，dùng nó để tínhtổng số tiền
+                //có thay thế khoản mục，dùng nó để tính tổng số tiền
                 xm.zje = 0;
                 $.each(xm.tdxmList, function () {
                     xm.zje += this.dj * this.sl;
@@ -621,7 +621,7 @@
         }
     }
 
-    //tính lạikhoản mụctổng số tiền
+    //tính lại khoản mục tổng số tiền
     function reCalcEachZje(xmArr) {
         ymzje = "0.00";
         $('#ymzje').html(ymzje);
@@ -630,7 +630,7 @@
         });
     }
 
-    //hướng tớigridMX gridđiền vào trongdữ liệu
+    //hướng tới gridMX grid điền vào trong dữ liệu
     function fillDataToGrid() {
         $("#gridMX").resetSelection();
         $("#gridMX").clearGridData();
@@ -653,7 +653,7 @@
     }
 
     var editingJzjhmxId = null;    //dòng đang sửa
-    //lấyvùng sửacủađối tượngdữ liệu
+    //lấy vùng sửa của đối tượng dữ liệu
     function getEditRowData() {
         var dj = '@(ViewBag.sfxm_dj)' === 'ON' ? $("#dj").val() : $("#dj").html();
         var data = {
@@ -692,7 +692,7 @@
                 if (!rowDataArr || rowDataArr.length === 0) {
                     return; //tại sao không tìm thấy
                 }
-                rowData = rowDataArr[0];  //thông quarowData.newidlấy dữ liệu dòng đó từ mảng đối tượng
+                rowData = rowDataArr[0];  //thông quarowData.new id lấy dữ liệu dòng đó từ mảng đối tượng
                 if (true) { //&&có thể sửa
                     //tuần tự hóa vào vùng sửa
                     //kỹ thuật viên trị liệu
@@ -737,7 +737,7 @@
             return;
         }
 
-        //kiểm trakhoản trùng
+        //kiểm tra khoản trùng
 
         data.newid = Math.random().toString() + new Date().getMilliseconds();   //newid()
         //data.clzt = '';
@@ -747,7 +747,7 @@
         newxmList.push(data);
         wqrje = roundingBy4she6ru5chengshuang(parseFloat(wqrje) + parseFloat(data.dj) * parseFloat(data.sl), 2);
         $('#wqrje').html(wqrje);
-        //đưa lạixmmảng hiển thị vàogrid
+        //đưa lại xm mảng hiển thị vào grid
         fillDataToGrid();
         bottomButtonsReset();
         $('#sfxmmc').val('');
@@ -774,7 +774,7 @@
     }
 
 
-    //sửanút
+    //sửa nút
     function newtouch_event_f3() {
         if (editingNewid && editingJzjhmxId) {
             $.modalConfirm("Chương trình bất thường，Trang sẽ tự động làm mới", function (flag) {
@@ -784,7 +784,7 @@
         }
 
         if (editingNewid || editingJzjhmxId) {
-            //gửisửa
+            //gửi sửa
             var data = getEditRowData();
             if (!(checkEditingRowData(data))) {    //dữ liệu có đầy đủ không，kiểm tra các mục bắt buộc
                 return;
@@ -795,9 +795,9 @@
             if (!!data.jfbId) {//xác định có dữ liệu mới thêm không
                 data.czlx = "1";//sửa
             }
-            //kiểm trakhoản trùng
+            //kiểm tra khoản trùng
 
-            //trước tiên tạixmtìm trong mảng
+            //trước tiên tại xm tìm trong mảng
             var matchedIndex;
             if (editingNewid) {
                 matchedIndex = -1;
@@ -816,7 +816,7 @@
                 newxmList.remove(matchedIndex);   //gỡ khoản này
 
                 if (!data.czlx == "1" || data.czlx == "0") {//dữ liệu mới thêm và dữ liệu đã sửa trực tuyến nhưng chưa lưu，cần trừ số tiền trước
-                    //thêm mớidữ liệu，tạm thời chưa lưu vàodữ liệukho，cầncầntrừ trướcsửatrướctổng số tiền，sau đócộng tổng số tiền sau khi sửa
+                    //thêm mới dữ liệu，tạm thời chưa lưu vào dữ liệu kho，cần cần trừ trước sửa trước tổng số tiền，sau đó cộng tổng số tiền sau khi sửa
                     wqrje = (parseFloat(wqrje) - (parseFloat(dj) * parseFloat(sl))).toFixed(2);//trừ số tiền trước khi sửa
                 }
                 //newxmList.unshift(data);   //thêm dưới dạng khoản mới    //”đầu mảng“
@@ -839,7 +839,7 @@
                 oldxmList.push(data);
             }
 
-            //đưa lạixmmảng hiển thị vàogrid
+            //đưa lại xm mảng hiển thị vào grid
             fillDataToGrid();
             $('#sfxmmc').val('');
             $('#sfxmCode').val('');
@@ -867,10 +867,10 @@
             $('#sfxmmc').trigger('focus');
         }
         else {
-            //lấygridhiện tạiđã chọncủadòng đó
+            //lấy grid hiện tại đã chọn của dòng đó
             var seleId = $('#gridMX').jqGrid('getGridParam', 'selrow');
             if (seleId) {
-                //yêu cầusửanàydòng
+                //yêu cầu sửa này dòng
                 gridEditRow(seleId);
             }
         }
@@ -888,7 +888,7 @@
         newxmList = [];   //khoản mớiList
         var Editing_ysList = [];
         editingNewid = null;    //dòng đang sửa
-        var Del_xmlist = [];//đã xóalist
+        var Del_xmlist = [];//đã xóa list
         patInfoObj = {};
         bottomButtonsReset();
 
@@ -901,10 +901,10 @@
 
     //F6xóa khỏi danh sách
     function newtouch_event_f6() {
-        //lấygridhiện tạiđã chọncủadòng đó
+        //lấy grid hiện tại đã chọn của dòng đó
         var rowid = $('#gridMX').jqGrid('getGridParam', 'selrow');
         if (rowid) {
-            //yêu cầu xóanàydòng
+            //yêu cầu xóa này dòng
             if (rowid) {
                 var rowData = $("#gridMX").jqGrid('getRowData', rowid);
                 if (rowData) {
@@ -941,7 +941,7 @@
 
                     newxmList.remove(matchedIndex);   //gỡ khoản này
 
-                    //đưa lạixmmảng hiển thị vàogrid
+                    //đưa lại xm mảng hiển thị vào grid
                     fillDataToGrid();
                     bottomButtonsReset();
                     //không ảnh hưởng đến các cái khác
@@ -988,7 +988,7 @@
 
     }
 
-    //F9hủysửa
+    //F9hủy sửa
     function newtouch_event_f9() {
         $('#sfxmmc').val('');
         $('#sfxmCode').val('');
@@ -1026,10 +1026,10 @@
         window.open("/ReportManage/Report/OutpatientFeeStatistics", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
     }
 
-    //phân tíchbác sĩmảng，lấybác sĩchuỗi tên
+    //phân tích bác sĩ mảng，lấy bác sĩ chuỗi tên
     function getYsNamesByList(ysList) {
         if (ysList) {
-            //phân tíchkỹ thuật viên trị liệu[{},{}]lấychuỗi
+            //phân tích kỹ thuật viên trị liệu[{},{}]lấy chuỗi
             var str = "";
             $.each(ysList, function () {
                 str += this.Name + ',';
@@ -1042,7 +1042,7 @@
         return "";
     }
 
-    //phần tử trong trang，tínhtổng số tiền
+    //phần tử trong trang，tính tổng số tiền
     function reCalcZjeFromTxt() {
         var resultZje = "0.00";
         var txtDj = $('#dj').html();
@@ -1056,7 +1056,7 @@
     }
 
 
-    //kiểm trađang sửacủadữ liệu（chờ gửi）củatính đầy đủ
+    //kiểm tra đang sửa của dữ liệu（chờ gửi）của tính đầy đủ
     function checkEditingRowData(rowData) {
         if (!rowData.ysList || rowData.ysList.length === 0) {
             $.modalAlert("Vui lòng chọn kỹ thuật viên trị liệu", 'warning');
@@ -1147,7 +1147,7 @@
                     });
                     $('#wqrje').html(wqrje);
                     editingNewid = null;    //?vào trạng thái sửa，sau đó nhấn thêm？
-                    //đưa lạixmmảng hiển thị vàogrid
+                    //đưa lại xm mảng hiển thị vào grid
                     fillDataToGrid();
                     top.top.window.frames['Form'].$.modalClose();   //đóng nó
                 }
@@ -1174,13 +1174,13 @@
             height: "600px",
             callBack: function (iframeId) {
                 top.frames[iframeId].PatDbGrid(); //trong sự kiện cửa sổ bật lên
-                //gọitra cứusố thẻvàsố nhập viện
+                //gọi tra cứu số thẻ và số nhập viện
                 //getPatInfoAjax(result);
             }
         });
     }
 
-    //tảiđồng bộbản ghi trị liệu
+    //tải đồng bộ bản ghi trị liệu
     function loadSyncedTreatmentRecord(admnsnum, type) {
         if (admnsnum && type) {
             var mzh = "";
@@ -1250,7 +1250,7 @@
         var $gridList = $("#gridList");
         $gridList.dataGrid({
             url: '@Url.Action("GetIssueGridJson")',
-            //caption: "đồng bộthông tin",
+            //caption: "đồng bộ thông tin",
             postData: { type: $('#status input:radio:checked').val() || "1" },
             height: $(window).height() - 135,
 
@@ -1295,7 +1295,7 @@
             }
         });
     }
-    //nhấn đúp bên tráilist
+    //nhấn đúp bên trái list
     function gridEditRegisterRow() {
         var keyValue = $("#gridList").jqGridRowValue().admsNum;
         var type = $("#gridList").jqGridRowValue().patientType;
@@ -1306,7 +1306,7 @@
     }
 
 
-    //làm mới thông tin cơ bản bệnh nhânvàđang ghicủaghi sổ，ghi sổ lịch sử
+    //làm mới thông tin cơ bản bệnh nhân và đang ghi của ghi sổ，ghi sổ lịch sử
     function addpatientmzh() {
         $("#gridMX").clearGridData();
         $('#xm,#xb,#nlshow,#jsr,#zjlx,#zjh,#csny,#sycs,#mzh').html('');
@@ -1341,10 +1341,10 @@
         oldxmList = [];   //khoản đã gửi trước đâyList
         newxmList = [];   //khoản mớiList
         var Editing_ysList = [];
-        var Del_xmlist = [];//đã xóalist
+        var Del_xmlist = [];//đã xóa list
         clzt = null;
         editingNewid = null;    //dòng đang sửa
-        patInfoObj = {};//thông tin cá nhânObjectđối tượng
+        patInfoObj = {};//thông tin cá nhânObject đối tượng
         bottomButtonsReset();
     }
 

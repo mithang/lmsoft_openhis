@@ -15,7 +15,7 @@
         gridList(jsondata);
     });
 
-    //tảiquyết toándanh sách
+    //tải quyết toán danh sách
     function gridList(mydata) {
         var $gridList = $("#gridList");
         $gridList.newtouchLocalDataGrid({
@@ -80,7 +80,7 @@
             }
         }
         if (!(!!rowData.jszje && parseFloat(rowData.jszje) != 0)) {
-            $.modalAlert('ĐãKhông cócó thểSố tiền hoàn', 'warning');
+            $.modalAlert('ĐãKhông có có thểSố tiền hoàn', 'warning');
             return;
         }
         callBack(rowData.jsnm);

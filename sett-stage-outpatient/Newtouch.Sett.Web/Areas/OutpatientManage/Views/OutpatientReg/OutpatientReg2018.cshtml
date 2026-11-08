@@ -2,34 +2,34 @@
 @{
     ViewBag.Title = "OutpatientReg2018";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //làkhôngvàgiao dịch hợp tác nông thôn mới
+    //là không và giao dịch hợp tác nông thôn mới
     var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
     //liên kết báo cáo phiếu thu phí
     var invoiceReportUrl = SysConfigReader.OrgReportLink("NewOutpatientRegister");
     //liên kết báo cáo phiếu thu phí(tự chi trả)
     var ZFinvoiceReportUrl = SysConfigReader.OrgReportLink("ZFOutpatientRegister");
-    //đăng ký khám ngoại trúthành công làkhôngin trực tiếp phiếu thu phí
+    //đăng ký khám ngoại trú thành công là không in trực tiếp phiếu thu phí
     var autoPrintFP = SysConfigReader.Bool("Outpatient_Register_AutoPrint");
     //cách in phiếu thu phí
     var invoicePrintMethod = SysConfigReader.String("Outpatient_ChargeFeeInvoice_PrintMethod");
-    //đăng ký khámđơn（không phải biên lai hình thức hướng dẫn khámcủa）
+    //đăng ký khám đơn（không phải biên lai hình thức hướng dẫn khám của）
     var formReportUrl = SysConfigReader.OrgReportLink("OutpatientRegisterForm");
-    //làkhôngvàBHYTgiao dịch
+    //là không vàBHYTgiao dịch
     var openYbSett = SysConfigReader.Bool("Outpatient_ChargeFee_OpenYbSett");
-    //BHYTbệnh nhân phải quyết toán một lần hết
+    //BHYT bệnh nhân phải quyết toán một lần hết
     bool? ybSettOnce = (openYbSett ?? false) && (SysConfigReader.Bool("Outpatient_ChargeFee_yb_SettOnce") ?? false);
     var opr = OperatorProvider.GetCurrent();
     //bậtCSin phiếu thu phí
     var openCSReport = SysConfigReader.Bool("Outpatient_ChargeFee_openCSReport");
     //bật tổ hợp khoản trị liệu
     var zlxmzhconf = SysConfigReader.String("EnableZlxmGroup");
-    //bậtBHYTcho phépCMND/CCCDkhám
+    //bậtBHYTcho phépCMND/CCCD khám
     var IsOpenSfzYbJz = SysConfigReader.String("IsOpenSfzYbJz");
-    //làkhôngbật xếp hàng gọi sốnewzlf
+    //là không bật xếp hàng gọi số newzlf
     var IsOpenPdjhxt = SysConfigReader.Bool("IsOpenPdjhxt");
-    //BHYTđăng ký khámsaulàkhôngtiến hànhsautiếpBHYTgiao dịch
+    //BHYTđăng ký khám sau là không tiến hành sau tiếpBHYTgiao dịch
     var IsOpenybghjs= SysConfigReader.Bool("Outpatient_Mzghjsopen");
-    //đăng ký khámlúc làkhôngtiến hànhBHYTgiao dịch đăng ký
+    //đăng ký khám lúc là không tiến hànhBHYTgiao dịch đăng ký
     var IsOpenYbgh= SysConfigReader.Bool("Outpatient_Mzghopen");
 
     var reportUrl = "";
@@ -200,7 +200,7 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
 {
     ShowKeyList = new[] { 4, 8 },
-    //F2Text = "sửamật khẩu",
+    //F2Text = "sửa mật khẩu",
     F4Text = "Xóa trống",
     F8Text = "Xác nhận đăng ký khám",
     WapperInlineStyle = "float:right;width:80%;margin:0px 30px 0px;text-align:right;"
@@ -281,7 +281,7 @@
             clickautotrigger: true,
             filter: function (keyword) {
                 debugger
-                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                //duyệt dữ liệu nguồn，dùng keyword để lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                     resultObjArr.push(val);
@@ -302,7 +302,7 @@
                         .attr("data-brxz", $thistr.attr('data-brxz')).attr("data-brxzlb", $thistr.attr('data-brxzlb'));
                     $("#brxzmc").val($thistr.attr('data-brxzmc'));
 
-                    //hss 2019.7.19 khi cùng một bệnh nhân tồn tại nhiều loại giao dịch，theo chính sách hoàn trảtảisố thẻ
+                    //hss 2019.7.19 khi cùng một bệnh nhân tồn tại nhiều loại giao dịch，theo chính sách hoàn trả tải số thẻ
                     $.ajax({
                         type: "POST",
                         url: "/PatientManage/HospiterRes/GetkhInfoBybrxz",
@@ -328,7 +328,7 @@
 
         $('#sel_mzlx').bindSelect();
 
-        //khởi tạo hộp thả xuống lý do khám mặc địnhthườngđã chọntrạng thái
+        //khởi tạo hộp thả xuống lý do khám mặc định thường đã chọn trạng thái
         $('#jzyy').itemDetailsBindSelect({ itemtype: 'MedicalVisitReason' });
         var jzyydefaultSelVal = null;
         $.each($('#jzyy option'), function () {
@@ -346,7 +346,7 @@
             width: 300,
             clickautotrigger: true,
             filter: function (keyword) {
-                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                //duyệt dữ liệu nguồn，dùng keyword để lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysDepartList, function (idx, val) {
                     if (((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -464,7 +464,7 @@
                             $.modalClose("Form");
                             return;
                         }
-                        //CMND/CCCDgọiBHYTgiao diện
+                        //CMND/CCCD gọiBHYTgiao diện
                         //...
                     }
                     GetQueryFphAjax(obj);
@@ -514,7 +514,7 @@
     function CallbackPatientQuery(obj) {
         GetQueryFphAjax(obj);
     }
-    //hẹn đăng ký khámkhoagiá trị mặc địnhthiết lập
+    //hẹn đăng ký khám khoa giá trị mặc định thiết lập
     function GetQueryghyy(obj,onceObj){
         yyghModel= obj;
         if(onceObj)
@@ -549,7 +549,7 @@
             $("#txtghfxm").val(yyghModel.ghlx);
             //
             $("#txtghpbId").val('');
-            //chẩn trịkhoản mụcCode
+            //chẩn trị khoản mụcCode
             $("#txtzlxm").val(yyghModel.zlxm);
             $("#txtghks").val(yyghModel.ks);
             $("#txtghksmc").html(yyghModel.ksmc);
@@ -580,7 +580,7 @@
         //newtouch_event_yygh();//khởi tạo
     }
 
-    //theosố hồ sơ bệnh ántìm kiếmtrả vềthông tin cơ bản
+    //theo số hồ sơ bệnh án tìm kiếm trả về thông tin cơ bản
     function GetQueryFphAjax(obj, funcSuccCallback) {
 
         //xóa
@@ -638,7 +638,7 @@
                 }
                 if("true" === "@ViewBag.ISOpenBespeakRegister")//công tắc hẹn đăng ký khám
                 {
-                    //làkhôngđãhẹn đăng ký khám
+                    //là không đã hẹn đăng ký khám
                     $.najax({
                         url: "/OutpatientManage/OutpatientReg/GetIsMzghBook",
                         dataType: "json",
@@ -669,7 +669,7 @@
             alertbierror: false,
             errorCallback: function (rep) {
                 if (rep.code === 'OUTPAT_REGIST_ISINVALID') {
-                    //làBHYTthẻ đọc thẻ，chưa từng đăng ký
+                    //làBHYT thẻ đọc thẻ，chưa từng đăng ký
                     $.modalConfirm("Thẻ chưa đăng ký，Có tạo đăng ký mới không", function (flag) {
                         if (flag) {
                             btn_NocardRes();
@@ -719,7 +719,7 @@
 
     }
 
-    //đăng ký khámlớp nổi lịch trực
+    //đăng ký khám lớp nổi lịch trực
     $("#txtghpbchoose").newtouchBatchFloatingSelector({
         height: 250,
         width: 650,
@@ -766,11 +766,11 @@
     {
 
         if (false) {
-            //hạng hai Ấtđăng ký khámphí logic chọn lịch trực
-            //chỉ được chọn hạng hai Ấtđăng ký khámphí
+            //hạng hai Ất đăng ký khám phí logic chọn lịch trực
+            //chỉ được chọn hạng hai Ất đăng ký khám phí
         }
             //if ($("#sel_mzlx").val() === "1" || $("#sel_mzlx").val() === "2") {
-            //    //ngoại trúkhám/cấp cứukhám  chỉ hiển thịkhoa
+            //    //ngoại trú khám/cấp cứu khám  chỉ hiển thị khoa
             //    $("#txtghpbchoose").val($thistr.attr('data-ksmc'));
             //}
         if ($("#sel_mzlx").val() === "") {
@@ -786,7 +786,7 @@
             $("#txtghfxm").val($thistr.attr('data-ghlx'));
             //
             $("#txtghpbId").val('');
-            //chẩn trịkhoản mụcCode
+            //chẩn trị khoản mụcCode
             $("#txtzlxm").val($thistr.attr('data-zlxm'));
             $("#txtghks").val($thistr.attr('data-ks'));
             $("#txtghksmc").html($thistr.attr('data-ksmc'));
@@ -796,7 +796,7 @@
             $("#newghf").html('');
             $("#newzlf").html('');
             $("#newtotalfees").html('');
-            //lấyđăng ký khámphí phí chẩn trị phí thẻ từ phí làm thẻ
+            //lấy đăng ký khám phí phí chẩn trị phí thẻ từ phí làm thẻ
         if ('@zlxmzhconf' == 1) {
             GHFeesGroup(function (feesList) {
                 $("#txtghpbId").val($thistr.attr('data-ghpbId'));   //đặt ở đây，phía sau dùng để xác định đã chọn lịch trực thành công chưa
@@ -814,7 +814,7 @@
             });
         }
     }
-    //lấyđăng ký khámchi phí tổ hợp
+    //lấy đăng ký khám chi phí tổ hợp
     function GHFeesGroup(funcSuccCallback) {
         $.najax({
             url: "/OutpatientManage/OutpatientReg/GetOutpatientFeesbyGroup",
@@ -833,7 +833,7 @@
         });
     }
 
-    //lấyđăng ký khámchi phí
+    //lấy đăng ký khám chi phí
     function GHFees(funcSuccCallback) {
         $.najax({
             url: "/OutpatientManage/OutpatientReg/GetOutpatientFees",
@@ -875,14 +875,14 @@
 		    }
     }
 
-    //gửiđăng ký khám
+    //gửi đăng ký khám
     function newtouch_event_f8() {
         mzyyghId = "";
         var regInfo = getRegInfo();
         if (!!!regInfo) {
             return;
         }
-        //xác định làkhônglàBHYTkhám brxzlbBHYTgiao dịchdấu hiệu 0 tự chi trả 1BHYT
+        //xác định là không làBHYT khám brxzlbBHYTgiao dịch dấu hiệu 0 tự chi trả 1BHYT
         isYbjyjz = openYbSett && regInfo.brxzlb!='0';//&& regInfo.brxz != '0';//&& patModel.CardType == "@((int)EnumCardType.YBJYK)";
         if('@IsOpenYbgh' !== 'True')
             isYbjyjz=false;
@@ -959,7 +959,7 @@
              }
         }
         else {
-             //bệnh nhân tự chi trảquyết toán
+             //bệnh nhân tự chi trả quyết toán
              /* khởi tạo đối tượng ngữ cảnh */
              HisSubmit(regInfo,false,null);
         }
@@ -1033,8 +1033,8 @@
             }
         });
     }
-    //************ lấyHISBHYTdùng chungdữ liệu star*************************//
-    //BHYTtải lênchi tiết cần thiếtHISthông tin
+    //************ lấyHISBHYT dùng chung dữ liệu star*************************//
+    //BHYT tải lên chi tiết cần thiếtHIS thông tin
     function MxscHisData()
     {
         $.najax({
@@ -1061,7 +1061,7 @@
         }
         return MZJS.msg.length > 0 ? false : true;
     }
-    //************ lấyHISBHYTdùng chungdữ liệu END*************************//
+    //************ lấyHISBHYT dùng chung dữ liệu END*************************//
 
     //***********shanghaiBHYT giai đoạn năm*****************//
     function histoshanghaiybjzlx(jzpzlx)
@@ -1103,7 +1103,7 @@
                     return;
                 }
                 $.loading(false);
-                /* xác nhận thu phí vàHIScổng vào quyết toán */
+                /* xác nhận thu phí vàHIS cổng vào quyết toán */
                 ybjs_confirm(regInfo);
             },50);
 
@@ -1147,7 +1147,7 @@
         };
         var ybjsSettReturn1;
         var ybjsSettReturn;
-        //tiến hành trướcquyết toán，khôngcóbáo lỗi rồi tiến hànhquyết toán
+        //tiến hành trước quyết toán，không có báo lỗi rồi tiến hành quyết toán
         $.ajax({
             type: "POST",
             url: "http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_SH01",
@@ -1222,7 +1222,7 @@
             if('@IsOpenybghjs' !== 'True')
             {
                 $.loading(false);
-                /* xác nhận thu phí vàHIScổng vào quyết toán */
+                /* xác nhận thu phí vàHIS cổng vào quyết toán */
                 ybjs_confirm(regInfo);
             }else{
                 $.loading(true, 'Đang quyết toán BHYT，Vui lòng chờ...');
@@ -1248,14 +1248,14 @@
                         return;
                     }
                     $.loading(false);
-                    /* xác nhận thu phí vàHIScổng vào quyết toán */
+                    /* xác nhận thu phí vàHIS cổng vào quyết toán */
                     ybjs_confirm(regInfo);
                 },50);
             }
         },50);
     }
 
-	//khámđăng ký kháms
+	//khám đăng ký khám s
     function YbJzdj(regInfo) {
         debugger;
         var rs = false;
@@ -1323,7 +1323,7 @@
         if (cqPatInfo.xzqh.slice(0, 4) !=OrgXzhq.slice(0,4))
         {
             jylsh = "0000";
-            //khu vực Nội Mông khác địa phươngđăng ký khámphải truyền chẩn đoán
+            //khu vực Nội Mông khác địa phương đăng ký khám phải truyền chẩn đoán
             var ref=true;
             var payoptype={operatorId:'@(opr.rygh)',operatorName:'@(opr.UserName)',orgId:'@(opr.OrganizeId)',hisId:MZJS.qzmzh,
                 begntime:$.getDate(),insuplc_admdvs:cqPatInfo.xzqh,med_type:"12",mdtrt_id:MZJS.ghdata.jzid,psn_no:cqPatInfo.grbh,
@@ -1435,7 +1435,7 @@
         };
 		var ybjsSettReturn1;
 		var ybjsSettReturn;
-		//tiến hành trướcquyết toán，khôngcóbáo lỗi rồi tiến hànhquyết toán
+		//tiến hành trước quyết toán，không có báo lỗi rồi tiến hành quyết toán
 		$.ajax({
 			type: "POST",
 			url: "http://127.0.0.1:33333/api/YiBao/AccounSettlement_2206",
@@ -1605,7 +1605,7 @@
         }
         //xác định chọn tính chất chi phí
         //tự chi trả không điBHYT
-        //BHYTtự chi trả điBHYT  //BHYTbệnh nhân có thẻ cũng có thể chọn‘tự chi trả’
+        //BHYTtự chi trả điBHYT  //BHYT bệnh nhân có thẻ cũng có thể chọn‘tự chi trả’
         if (patModel.brxz !== regInfo.brxz && regInfo.brxzlb != '0' && '@IsOpenYbgh' === 'True') {
             if (patModel.brxzmc == 'Tự chi trả' || patModel.brxzmc == 'BHYT tự chi trả') {
                 $.modalAlert("Chỉ được chọn" + patModel.brxzmc + "Tính chất", 'warning');
@@ -1730,7 +1730,7 @@
                         }
                     });
 				}
-				//đăng ký khámhoàn thành đồng thời phân chẩn hoàn thành
+				//đăng ký khám hoàn thành đồng thời phân chẩn hoàn thành
 				$.ajax({
 					type: "POST",
 					url: "/OutpatientManage/OutpatientReg/FZsjTB",
@@ -2030,7 +2030,7 @@
         window.reloadGrid();
     }
 
-    //jqgrid khingàyđã đăng ký
+    //jqgrid khi ngày đã đăng ký
 
 
 </script>
@@ -2092,12 +2092,12 @@
         });
     }
 
-        //đã chọnthành viên nào đó
+        //đã chọn thành viên nào đó
         function GetSelectedpatient(obj) {
             if (!!obj) {
                 obj.readCardCardType = $('#readCardCardType').val();
 
-                //1.xác định làkhônglần khám đầu tiên（tạo mới khám lần đầu，còn lạitảithông tin bệnh nhân）
+                //1.xác định là không lần khám đầu tiên（tạo mới khám lần đầu，còn lại tải thông tin bệnh nhân）
                 //cách xác thực khám lần đầu：1.CMND/CCCDsố+họ tên，2：mã cá nhân hợp tác nông thôn mới
                 $.loading("Đang tải dữ liệu，Vui lòng chờ một chút");
                 $.ajax({
@@ -2117,7 +2117,7 @@
                                     cardType: @Html.Raw(((int)EnumCardType.XNHJYK).ToString())
                                 });
                             } else {
-                                //khám lần đầu（dữ liệukho đã tồn tại thông tin bệnh nhân）obj.blh = resp.data.blh;
+                                //khám lần đầu（dữ liệu kho đã tồn tại thông tin bệnh nhân）obj.blh = resp.data.blh;
                                 obj.zy = resp.data.zy;
                                 obj.zjlxfs = resp.data.zjlxfs;
                                 obj.hf = resp.data.hf;
@@ -2191,7 +2191,7 @@
 		        return value;
 	        }
         }
-        //giao dịchsố giao dịch
+        //giao dịch số giao dịch
         const tradeNo = function () {
             const now = new Date()
             const year = now.getFullYear();
@@ -2213,7 +2213,7 @@
 @if (invoicePrintMethod == "ActiveX")
 {
     <script type="text/javascript">
-        //theoquyết toánin thông tinAXhóa đơn
+        //theo quyết toán in thông tinAX hóa đơn
         //var newTempPatModel = { xm: null, mzh: null, ksmc: null, ysmc: null};
         //var newJszbInfo = { jsnm: null, ybjsh: null, jszje: null, jsxjzf: null, YBZHZC: null, JBYE: null, GBYE: null };
         function axPrintInvoiceBySettInfo(paramNewTempPatModel, paramNewJszbInfo) {
@@ -2303,19 +2303,19 @@
                         }
                     });
                 }
-                //else phảinàyđã ở bên ngoàixử lý inRSbáo cáo
+                //else phải này đã ở bên ngoài xử lý inRS báo cáo
             }
-            //elsekhông cầncầnin hóa đơn mới
+            //else không cần cần in hóa đơn mới
         }
 
         //AXin hóa đơn
         function axPrintInvoice(jsnm, axFpInitJson, axFpInvoiceItemJson) {
             var printInvoiceReturn = $.printAX.PrintInvoice(JSON.stringify(axFpInitJson), JSON.stringify(axFpInvoiceItemJson));
             if (printInvoiceReturn && printInvoiceReturn.Code == 0) {
-                //in hóa đơn，trả vềđã thành công
+                //in hóa đơn，trả về đã thành công
                 var axFpInfo = printInvoiceReturn.Data;
                 if (axFpInfo.InfoNumber) {
-                    //cập nhậtquyết toánbảng chínhcủafphtrường
+                    //cập nhật quyết toán bảng chính của fph trường
                     $.najax({
                         type: "POST",
                         data: {

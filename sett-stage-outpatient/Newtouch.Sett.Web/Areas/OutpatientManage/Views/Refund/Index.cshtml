@@ -124,7 +124,7 @@
 <script>
 
     $(function() {
-        //khi cửa sổ trình duyệt đổi kích thước thì tải lạitảijqGridcủarộng
+        //khi cửa sổ trình duyệt đổi kích thước thì tải lại tải jqGrid của rộng
         $(window).resize(function() {
             initLayout("tabGrid");
         });
@@ -142,7 +142,7 @@
         //xóa
         newtouch_event_f4();
 
-        $("#brlx").html("<font color='red'>TạmKhông cóthông tin</font>");
+        $("#brlx").html("<font color='red'>TạmKhông có thông tin</font>");
         gridListTuifei([]); //danh sách hoàn phí
 
 
@@ -160,9 +160,9 @@
 
     var jsnm; //lấy mã nội bộ quyết toán nhận được từ cửa sổ bật lên
 
-    //xóa hóa đơnbác sĩthông tin
+    //xóa hóa đơn bác sĩ thông tin
     function clearFPYSInfo() {
-        $("#brlx").html("<font color='red'>TạmKhông cóthông tin</font>");
+        $("#brlx").html("<font color='red'>TạmKhông có thông tin</font>");
         $("#ghks").html("");
         $("#ys").html("");
         $("#fph").html("");
@@ -202,7 +202,7 @@
                 height: "600px",
                 callBack: function (iframeId) {
                     top.frames[iframeId].PatSearchConfirm(); //trong sự kiện cửa sổ bật lên
-                    //gọitra cứu hóa đơnquyết toánthông tin
+                    //gọi tra cứu hóa đơn quyết toán thông tin
 
                 }//hàm gọi lại khi nhấn xác nhận trên cửa sổ
             });
@@ -350,7 +350,7 @@
         if (flag) {
             var kh = $("#kh").val();
             var refundData = JSON.stringify(tuifei).toString();
-            $.modalConfirm("Bạn có chắc muốnHoàn phíkhông？", function (flag) {
+            $.modalConfirm("Bạn có chắc muốnHoàn phí không？", function (flag) {
                 if (flag) {
                     $.loading(true, "Đang yêu cầu dữ liệu...");
 
@@ -383,7 +383,7 @@
                             }
                         });
                     } else {
-                        $.modalAlert("Dữ liệu chưa đầy đủ，Vui lòng kiểm traSố thẻhoặc liên hệ quản trị viên！", "error");
+                        $.modalAlert("Dữ liệu chưa đầy đủ，Vui lòng kiểm traSố thẻ hoặc liên hệ quản trị viên！", "error");
                     }
                 }
             }, false);
@@ -392,7 +392,7 @@
     }
 
 
-    //tra cứuquyết toánbản ghi
+    //tra cứu quyết toán bản ghi
     function chajilu(jsnm) {
         $.loading(true, "Đang yêu cầu dữ liệu...");
         $.najax({
@@ -420,7 +420,7 @@
         });
     }
 
-    ///tảihóa đơnvàthông tin chi phí khác
+    ///tải hóa đơn và thông tin chi phí khác
     function loadFpData(data) {
         jsnm = data.jsnm;
         $("#fph").html(data.fph);

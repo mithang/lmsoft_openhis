@@ -64,7 +64,7 @@
             type: "post",
             loadingtext: "Đang thu tiền...",
             success: function (ajaxResp) {
-                //thu tiềnthành công
+                //thu tiền thành công
                 $.modalMsg('Thu tiền thành công', 'success', 800);
                 //
                 func = function () {
@@ -75,7 +75,7 @@
                 setTimeout('func();', 1000);
             },
             errorCallback: function () {
-                //thu tiềnthất bại
+                //thu tiền thất bại
 
             }
         });

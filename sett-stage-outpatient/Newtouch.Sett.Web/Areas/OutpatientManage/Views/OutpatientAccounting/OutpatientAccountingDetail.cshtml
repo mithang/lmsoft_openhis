@@ -19,7 +19,7 @@
         }
         init();
         AddHtmlTDXM(); //thêm dòng trống thay khoản
-        //theosố lượngvàđơn giátính tổng giá
+        //theo số lượng và đơn giá tính tổng giá
         $("#tblTDXM").on('input', '.txt-num', function () {
             var idx = $(this).index();
             var dj = $("#tdxmdj" + idx).val();
@@ -31,7 +31,7 @@
     });
 
     function init() {
-        //trị liệukhoản mụcgắn lớp nổi chọn
+        //trị liệu khoản mục gắn lớp nổi chọn
         $('#zlxmName, #tdxmName').newtouchBatchFloatingSelector({
             width: 600,
             height: 280,
@@ -81,7 +81,7 @@
     //thêm dòng trống thay khoản
     function AddHtmlTDXM() {
         $("#addIcon").click(function () {
-            //thêm thay thếkhoản mục
+            //thêm thay thế khoản mục
             var tdxmHeight = parseInt($("#divTDXM").height());
             var trlen = parseInt($("#tblTDXM tr").length) + 1;
             if (tdxmHeight < 288) {
@@ -126,7 +126,7 @@
         $("#divTDXM,#tblTDXM").height(parseInt(tdxmHeight) - parseInt(36));
     }
 
-    //đóng trang con，lưukhoản mụcthông tin đến trang chaGrid
+    //đóng trang con，lưu khoản mục thông tin đến trang chaGrid
     function SubmitForm() {
         var data = [];
         data[0] = $("#form1").formSerialize();

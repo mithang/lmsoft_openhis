@@ -81,13 +81,13 @@
 
 <script>
     $(function () {
-        //khi cửa sổ trình duyệt đổi kích thước thì tải lạitảijqGridcủarộng
+        //khi cửa sổ trình duyệt đổi kích thước thì tải lại tải jqGrid của rộng
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
-        //quyết toánbản ghi chính
+        //quyết toán bản ghi chính
         gridMzjsRecordsData();
-        //chọn tất cả/không chọn gì cả：tìm thấyGridtrong titlecủacheckbox，đăng ký mộtonclicksự kiện，khiclicklúc，tảichi tiết
+        //chọn tất cả/không chọn gì cả：tìm thấyGridtrong title của checkbox，đăng ký một onclick sự kiện，khi click lúc，tải chi tiết
         $("table input[type=checkbox]:eq(0)").bind("click", function () {
            
             btn_selectrow();
@@ -101,7 +101,7 @@
         return false;
     }
 
-    //ngoại trúthông tin hóa đơn khámList
+    //ngoại trú thông tin hóa đơn khámList
     function gridMzjsRecordsData() {
         var $gridMzjsRecords = $("#gridMzjsRecords");
         $gridMzjsRecords.dataGrid({
@@ -114,7 +114,7 @@
                 { label: 'Họ tên', name: 'xm', width: 120, align: 'left' },
                 { label: 'Số thẻ', name: 'kh', width: 120, align: 'left' },
                 { label: 'Số hóa đơn', name: 'xfph', width: 120, align: 'left' },
-                { label: 'Thu phínhân viên', name: 'rymc', width: 120, align: 'left' },
+                { label: 'Thu phí nhân viên', name: 'rymc', width: 120, align: 'left' },
                 { label: 'Ngày quyết toán', name: 'CreateTime', width: 130, align: 'left' },
                 {
                     label: 'Tổng số tiền', name: 'zje', width: 120, align: 'left', formatter: function (cellvalue) {
@@ -152,7 +152,7 @@
     //sự kiện nhấn
     function btn_selectrow()
     {
-        //mỗi lần nhấn，xóa chi tiết trước làm lạitảinơicódòng đã chọnchi tiết
+        //mỗi lần nhấn，xóa chi tiết trước làm lại tải nơi có dòng đã chọn chi tiết
         $('#gridMzjsMXInfo').jqGrid("clearGridData");
         var rowsData = $("#gridMzjsRecords").jqGrid("getRowData_AllLine", true);
         var rowsDataArray = JSON.parse(rowsData)
@@ -246,7 +246,7 @@
         $('#gridMzjsMXInfo').newtouchLocalDataGrid(null, MXInfoList);
     }
 
-    //ngoại trúchi tiết hóa đơn khám jGridkhai báo
+    //ngoại trú chi tiết hóa đơn khám jGridkhai báo
     $('#gridMzjsMXInfo').newtouchLocalDataGrid({
         height: 110,
         caption: "Chi tiết quyết toán",
@@ -319,7 +319,7 @@
 
         } else
         {
-            //tích chọncủadòng
+            //tích chọn của dòng
             var rowsData = $("#gridMzjsRecords").jqGrid("getRowData_AllLine", true);
             var rowsDataArray = JSON.parse(rowsData);
             var jsnm = rowsDataArray[0].jsnm;
@@ -337,7 +337,7 @@
         });
     }
 
-    //bật lênsố hóa đơncủacửa sổ
+    //bật lên số hóa đơn của cửa sổ
     function ShowInvoicePanel() {
         $.modalOpen({
             id: "InvoiceNoChoosePanel",
@@ -376,10 +376,10 @@
             $.modalAlert("Vui lòng chọn thông tin quyết toán", 'warning');
             return;
         } else if (reccount > 1) {
-            $.modalAlert("Chỉ đượcIn lạimộtThông tin quyết toán", 'warning');
+            $.modalAlert("Chỉ đượcIn lại mộtThông tin quyết toán", 'warning');
             return;
         } else {
-            //tích chọncủadòng
+            //tích chọn của dòng
             var rowsData = $("#gridMzjsRecords").jqGrid("getRowData_AllLine", true);
             var rowsDataArray = JSON.parse(rowsData);
             var jsnm = rowsDataArray[0].jsnm;
@@ -423,11 +423,11 @@
             return;
         }
         if (reccount > 1) {
-            $.modalAlert("Chỉ đượcIn lạimộtThông tin quyết toán", 'warning');
+            $.modalAlert("Chỉ đượcIn lại mộtThông tin quyết toán", 'warning');
             return;
         } else
         {
-            //tích chọncủadòng
+            //tích chọn của dòng
             var rowsData = $("#gridMzjsRecords").jqGrid("getRowData_AllLine", true);
             var rowsDataArray = JSON.parse(rowsData);
             var jsnm = rowsDataArray[0].jsnm;
@@ -438,15 +438,15 @@
             data: { jsnm: jsnm },
             dataType: "json",
             success: function (ajaxresp) {
-                //bật lênsố hóa đơncửa sổ
+                //bật lên số hóa đơn cửa sổ
                 ShowInvoicePanel();
             }
         });
     }
 
-    //số hóa đơnnhấn xác nhận trên cửa sổ
+    //số hóa đơn nhấn xác nhận trên cửa sổ
     function chooseFPHSuccessCallback() {
-        //tích chọncủadòng
+        //tích chọn của dòng
         var rowsData = $("#gridMzjsRecords").jqGrid("getRowData_AllLine", true);
         var rowsDataArray = JSON.parse(rowsData);
         var jsnm = rowsDataArray[0].jsnm;

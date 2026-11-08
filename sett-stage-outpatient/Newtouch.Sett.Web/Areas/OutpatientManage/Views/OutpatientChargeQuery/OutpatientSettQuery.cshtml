@@ -15,7 +15,7 @@
                 <td class="formValue">
                     <input type="text" class="form-control" id="txtxm" name="txtxm" />
                 </td>
-                <th class="formTitle">Thao tácnhân viên：</th>
+                <th class="formTitle">Thao tác nhân viên：</th>
                 <td class="formValue">
                     <div class="row">
                         <div class="col-md-9">
@@ -50,14 +50,14 @@
 
 <script>
     $(function () {
-        //khi cửa sổ trình duyệt đổi kích thước thì tải lạitảijqGridcủarộng
+        //khi cửa sổ trình duyệt đổi kích thước thì tải lại tải jqGrid của rộng
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
-        //quyết toánbản ghi chính
+        //quyết toán bản ghi chính
         gridJSListData();
     });
-    //đăng ký khám ngoại trúquyết toántra cứu
+    //đăng ký khám ngoại trú quyết toán tra cứu
     function gridJSListData() {
         var gridSort = 'CreateTime asc';
 
@@ -113,9 +113,9 @@
                         return $.enum.getDescByValue("EnumJslx", val);
                     }
                 },
-                { label: 'Thao tácnhân viên', name: 'CreatorName', width: 80, align: 'center' },
+                { label: 'Thao tác nhân viên', name: 'CreatorName', width: 80, align: 'center' },
                
-                { label: 'Hoàn phínhân viên', name: 'tCreatorCode', align: 'center', hidden: true },
+                { label: 'Hoàn phí nhân viên', name: 'tCreatorCode', align: 'center', hidden: true },
             ],
             pager: "#gridPager",
             sortname: gridSort,
@@ -158,7 +158,7 @@
     $("#btnsyy").click(function () {
         $.modalOpen({
             id: "FormOutpatSFCZYUsers",
-            title: "ChọnThao tácnhân viên",
+            title: "ChọnThao tác nhân viên",
             url: "/SystemManage/User/Selector?from=mzshoufeicaozuoyuan&organizeId=" + '@curOpr.OrganizeId' + "&isExpand=true&callbackType=json&single=true",
             width: "300px",
             height: "400px",

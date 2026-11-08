@@ -23,7 +23,7 @@
         gridListFPH(JSON.parse(fapiaodata));
     });
 
-    //tảidanh sách hóa đơn
+    //tải danh sách hóa đơn
     function gridListFPH(mydata) {
         var $gridList = $("#gridListFPH");
         $gridList.dataNewGrid({
@@ -58,7 +58,7 @@
     function btn_edit() {
         var data = $("#gridListFPH").jqGridRowValue();
         if (data) {
-            //inputđiều khiển đã hủy，đặt tạitdtrong
+            //input điều khiển đã hủy，đặt tại td trong
             $.currentWindow().loadFpData(data); //phương thức trong trang chính
             PatSearchConfirm();
           
@@ -68,7 +68,7 @@
 
     }
 
-    //xác nhận trang chínhgọi
+    //xác nhận trang chính gọi
     function PatSearchConfirm() {
         var $gridList = $("#gridListFPH");
         var kh = $gridList.jqGridRowValue().kh;

@@ -41,7 +41,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
 
         /// <summary>
-        /// trasố hóa đơn
+        /// tra số hóa đơn
         /// </summary>
         /// <param name="kh"></param>
         /// <returns></returns>
@@ -53,9 +53,9 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
    
         }
         /// <summary>
-        /// theo hóa đơncủaquyết toántra cứu theo mã nội bộđăng ký khám ngoại trúkhoản mục
+        /// theo hóa đơn của quyết toán tra cứu theo mã nội bộ đăng ký khám ngoại trú khoản mục
         /// </summary>
-        /// <param name="jsnm">quyết toánmã nội bộ</param>
+        /// <param name="jsnm">quyết toán mã nội bộ</param>
         /// <returns></returns>
         public IActionResult GetMZJSByJsnm(int jsnm)
         {
@@ -64,9 +64,9 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             return Success("", data);
         }
         /// <summary>
-        /// theoquyết toántra theo mã nội bộngoại trúkhámkhoản mục
+        /// theo quyết toán tra theo mã nội bộ ngoại trú khám khoản mục
         /// </summary>
-        /// <param name="jsnm">quyết toánmã nội bộ</param>
+        /// <param name="jsnm">quyết toán mã nội bộ</param>
         /// <returns></returns>
         public IActionResult GetGridViewMxByJsnm(int jsnm)
         {
@@ -92,7 +92,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
             //    da.IS_RETURN = sArray[0];
 
-            //    //thuận tiệnkhoản mục đăng ký khámcùng nhauđã chọncùng hủy màthiết lậpcủađặc biệtsố thành nhóm
+            //    //thuận tiện khoản mục đăng ký khám cùng nhau đã chọn cùng hủy mà thiết lập của đặc biệt số thành nhóm
             //    if (sArray[1]== "gh0209")
             //    {
             //        da.czh = "0";

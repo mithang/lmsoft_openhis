@@ -107,7 +107,7 @@
                 <tr>
                     <th class="formTitle"><span class="required">*</span>Khoản thu phí：</th>
                     <td class="formValue">
-                        <input type="text" class="form-control" id="sfxm" name="sfxm" placeholder="Vui lòng nhập chính xácTra cứuđiều kiện" />
+                        <input type="text" class="form-control" id="sfxm" name="sfxm" placeholder="Vui lòng nhập chính xácTra cứu điều kiện" />
                     </td>
                     <th class="formTitle"><span class="required">*</span>Số lượng：</th>
                     <td class="formValue">
@@ -173,7 +173,7 @@
     $(function () {
         localStorage.clear();
         loadPage();
-        //khi cửa sổ trình duyệt đổi kích thước thì tải lạitảijqGridcủarộng
+        //khi cửa sổ trình duyệt đổi kích thước thì tải lại tải jqGrid của rộng
         $(window).resize(function () {
             initLayout("tabGrid");
         });
@@ -186,7 +186,7 @@
             }
         });
 
-        //số thẻnhấn Enter
+        //số thẻ nhấn Enter
         $("#kh").keyup(function (event) {
             var keyword = $.trim($("#kh").val());
             if (event.keyCode === 13) {
@@ -199,18 +199,18 @@
             }
         });
 
-        //khoản thu phíbindlớp nổi
+        //khoản thu phí bind lớp nổi
         loadYpItemData();
 
-        //đăng ký khámnhấn Enter
+        //đăng ký khám nhấn Enter
         bindGHSource(mzghData);
 
-        //bác sĩbinglớp nổi
+        //bác sĩ bing lớp nổi
         bindDoctors();
 
         GetNewCFH(); //lấy số đơn thuốc mới
 
-        //khoanhấn Enter
+        //khoa nhấn Enter
         $("#ks").keyup(function (event) {
             var ks = $("#ks").val();
             if (event.keyCode === 13) {
@@ -218,24 +218,24 @@
                     $.modalAlert("Khoa không được trống", 'warning');
                     return false;
                 } else {
-                    //thêm thông tin nhậpcủaxác định
+                    //thêm thông tin nhập của xác định
                     AddData_Check();
                 }
             }
         });
 
-        //số nhómnhấn Enter
+        //số nhóm nhấn Enter
         $("#czh").keyup(function (event) {
             if ($(this).hasClass('form-an-cur')) {
                 return; //vừa tự động nhảy từ nút trước đó sang
             }
             if (event.keyCode == 13) {
-                //thêm thông tin nhậpcủaxác định
+                //thêm thông tin nhập của xác định
                 AddData_Check();
             }
         });
 
-        //số tiền thanh toánnhấn Enter
+        //số tiền thanh toán nhấn Enter
         $("#txtmoney").keyup(function (event) {
             if (event.keyCode == 13) {
                 zfje = $("#txtmoney").val();  //số tiền thanh toán
@@ -260,13 +260,13 @@
     function loadPage() {
         GetInvoiceListByEmpCode(); //lấy số hóa đơn
         $('#listGrid').jqGrid("clearGridData");//xóa dữ liệu trước
-        gridListData([]); //tảijqGrid
+        gridListData([]); //tải jqGrid
 
         //số thành nhóm
         $("#czh").val(0);
-        //lấyngàykỳ
+        //lấy ngày kỳ
         $("#txtzfrq").val($.getDate);
-        //khởi tạo số tiềnlà0
+        //khởi tạo số tiền là0
         $("#lbldqxmje,#lblzje").text("0.00");
         $("#lbldqcfh").text("");
         $("#txtysk,#txtzl").val("0.00");
@@ -288,8 +288,8 @@
         zh_sbrxzbh = 0,
         zh_mbrxzbh = 0,
         lsCfh = "",     //số đơn thuốc tạm thời
-        sfxmbh = "",   //khoản thu phíintmã số loại
-        sfxmcbh = "",   //khoản thu phícharmã số loại
+        sfxmbh = "",   //khoản thu phí int mã số loại
+        sfxmcbh = "",   //khoản thu phí char mã số loại
         sfxmzfbl = "",  //tỷ lệ tự chi trả khoản thu phí
         sfxmdlmc = "",  //tên nhóm lớn khoản thu phí
         sfxmdl = "",    //nhóm lớn khoản thu phí
@@ -299,7 +299,7 @@
         sfxmNbdl = "", //nhóm lớn bảo hiểm nông nghiệp
         sfxmYbdm = "", //mã BHYT
         sfxmkeyword = "", //điều kiện nhập khoản thu phí đã lưu
-        //ysksbh = "", //bác sĩkhoamã số
+        //ysksbh = "", //bác sĩ khoa mã số
         mzgh = "", //đăng ký khám
         ks = "", //khoaCODE
         ysbh = "", //mã bác sĩ
@@ -307,7 +307,7 @@
         lsysbh = "", //dùng khi đăng ký khám là số chuyên gia
         ghnm = "", //mã nội bộ đăng ký khám
         brxz = "", //tính chất bệnh nhân
-        patInfoObj = {}, //thông tin cá nhânObjectđối tượng
+        patInfoObj = {}, //thông tin cá nhânObject đối tượng
         mzYbjylx = 0,//loại giao dịch BHYT
         mjzbz = "", //dấu hiệu khám ngoại trú/cấp cứu
         stateSave = true,//xác định dữ liệu có thay đổi không
@@ -339,7 +339,7 @@
         });
     }
 
-    //bật lênsố hóa đơncủacửa sổ
+    //bật lên số hóa đơn của cửa sổ
     function ShowInvoicePanel() {
         $.modalOpen({
             id: "InvoiceNoPanel",
@@ -353,7 +353,7 @@
         });
     }
 
-    //theosố thẻlấythông tin cơ bản bệnh nhân
+    //theo số thẻ lấy thông tin cơ bản bệnh nhân
     function searchPatInfo(keyword) {
         if (keyword === '') {
             return false;
@@ -368,7 +368,7 @@
                 funcDoPageClear();//xóa
                 var mzghbrxzData = ajaxresp.data.patInfo.brxzList;
                 if (mzghbrxzData && mzghbrxzData.length && mzghbrxzData.length > 1) {
-                    //bật lên nhiềutính chất bệnh nhâncủacửa sổ
+                    //bật lên nhiều tính chất bệnh nhân của cửa sổ
                     bindBrxz();
                 }
                 else if (mzghbrxzData == null)//chỉ có một tính chất bệnh nhân
@@ -384,7 +384,7 @@
         });
     };
 
-    //xóathao tác
+    //xóa thao tác
     var funcDoPageClear = function () {
         loadPage();
     };
@@ -396,7 +396,7 @@
         $("#csny").val((patModel.csny && patModel.csny.length >= 10 ? patModel.csny.substring(0, 10) : ""));
         $("#fzbz").val(patModel.fzbz == "1" ? "Tái khám" : "Khám đầu tiên");
         brxz = patModel.brxz;
-        //tảithông tin bệnh nhân
+        //tải thông tin bệnh nhân
         patInfoObj.kh = patModel.kh;  //số thẻ bệnh nhân
         patInfoObj.xm = patModel.xm; //họ tên
         patInfoObj.xb = patModel.xb; //giới tính
@@ -410,7 +410,7 @@
         patInfoObj.zjlx = patModel.zjlx; //loại giấy tờ
     }
 
-    //tảitính chất bệnh nhân
+    //tải tính chất bệnh nhân
     function bindBrxz() {
         localStorage.setItem("brxzData", JSON.stringify(mzghbrxzData));
         $.modalOpen({
@@ -425,7 +425,7 @@
         });
     }
 
-    //saumáy theotính chất bệnh nhânvàsố thẻajaxtra cứu nhân viêndữ liệu
+    //sau máy theo tính chất bệnh nhân và số thẻ ajax tra cứu nhân viên dữ liệu
     function getChargeInfoAjax(patobj) {
         var cardNo = $("#txt_keyword").val();
         $.najax({
@@ -450,7 +450,7 @@
     }
 
 
-    //tảiđăng ký khámdữ liệu
+    //tải đăng ký khám dữ liệu
     function bindGHSource() {
         $("#mzgh").newtouchBatchFloatingSelector({
             clickautotrigger: true,
@@ -503,7 +503,7 @@
         });
     }
 
-    //tảibác sĩthông tin
+    //tải bác sĩ thông tin
     function bindDoctors() {
         ///bác sĩ
         $("#ys").newtouchFloatingSelector({
@@ -517,7 +517,7 @@
                 if (!keyword) {
                     return false;
                 }
-                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                //duyệt dữ liệu nguồn，dùng keyword để lọc ra kết quả
                 var resultObjArr = new Array();//
                 $.each(top.window.clients.doctorInHosBookkeep, function (idx, val) {
                     if ($.trim(keyword).length == 0 || (val.py && val.py.toUpperCase().indexOf(keyword.toUpperCase()) >= 0) || (val.rymc && val.rymc.indexOf(keyword.toLowerCase()) >= 0) || (val.gh && val.gh.indexOf(keyword.toLowerCase()) >= 0) || (val.kspy && val.kspy.indexOf(keyword.toUpperCase()) >= 0)) {
@@ -613,7 +613,7 @@
         loadCFHAndInfo(); //máy chủ lấy số đơn thuốc và phí dịch vụ
     }
 
-    //thêm đơn thuốcdữ liệu
+    //thêm đơn thuốc dữ liệu
     function AddCFData() {
         var obj = new Object();
         var messCfxm = "";
@@ -624,7 +624,7 @@
         if (sfxmtype == "2")//thuốc
         {
             obj.cfh = lsCfh;
-            //cùng một đơn thuốc không được nhập giống nhaucủathuốc
+            //cùng một đơn thuốc không được nhập giống nhau của thuốc
             messCfxm = cheYPEqual(sfxmcbh, yfCode);
         }
 
@@ -657,7 +657,7 @@
         obj.fwfdj = sfxmfwf; //phí dịch vụ khoản thu phí
         obj.nbdl = sfxmNbdl;
         obj.ybdm = sfxmYbdm;
-        //nếu đã thêmkhoản mụchoặcthuốc  xác định hiện tạimã sốlàkhôngđã tồn tại
+        //nếu đã thêm khoản mục hoặc thuốc  xác định hiện tại mã số là không đã tồn tại
         if (myCFData) {
             for (var i = 0; i < myCFData.length; i++) {
                 if (myCFData[i].sfxmbh === sfxmbh) {
@@ -667,7 +667,7 @@
                 }
             }
         }
-        obj = $.extend(obj, patInfoObj); //đempatInfoObjgiá trị trong đối tượng bổ sung vào objbên trong đối tượng
+        obj = $.extend(obj, patInfoObj); //đem patInfoObj giá trị trong đối tượng bổ sung vào obj bên trong đối tượng
         myCFData.push(obj);
         myCFCount++;
         $('#listGrid').jqGrid("clearGridData");//xóa dữ liệu trước
@@ -698,7 +698,7 @@
         clearItemXM();
     }
 
-    //xác định làkhônggiống nhauthuốcnhập cùng một đơn thuốc
+    //xác định là không giống nhau thuốc nhập cùng một đơn thuốc
     function cheYPEqual(sfxmcbh, yfCode) {
         var res = "";
         var cflength = myCFData.length;
@@ -727,7 +727,7 @@
         return res;
     }
 
-    //tảithông tin đơn thuốc
+    //tải thông tin đơn thuốc
     function gridListData(mydata) {
         var $gridList = $("#listGrid");
         $gridList.dataNewGrid({
@@ -798,8 +798,8 @@
     }
 
 
-    //askhoản mụcnhấn Enter
-    //ajaxlấythuốcvàkhoản mụcthông tin
+    //as khoản mục nhấn Enter
+    //ajax lấy thuốc và khoản mục thông tin
     function loadYpItemData() {
         //khoản thu phí
         $("#sfxm").newtouchBatchFloatingSelector({
@@ -883,14 +883,14 @@
                 sfxmdl = $thistr.attr("data-dl");
                 sfxmzfxz = $thistr.attr("data-zfxz");
                 sfxmNbdl = $thistr.attr("data-nbdl");
-                //thuốc  cùng một đơn thuốc không được phép nhập giống nhauthuốc
+                //thuốc  cùng một đơn thuốc không được phép nhập giống nhau thuốc
                 messCFXM = "";
                 if (sfxmtype == "2") {
-                    //xác định làkhôngđã nhậpnàythuốchoặckhoản mục
+                    //xác định là không đã nhập này thuốc hoặc khoản mục
                     messCFXM = cheYPEqual(sfxmcbh, yfCode);
                 }
                 if (sfxmkeyword != sfxmmc) { //cho thấy đã chọn khoản thu phí hoặc thuốc từ danh sách
-                    //kiểm tra cùng một đơn thuốc làkhôngcónhập giống nhau và xử lý tương ứngxử lý
+                    //kiểm tra cùng một đơn thuốc là không có nhập giống nhau và xử lý tương ứng xử lý
                     if (messCFXM == "") {
                         if (sfxmbh != "") {
                             lsCzh = "";
@@ -949,10 +949,10 @@
         });
     }
 
-    //lấysố đơn thuốchoặcthông tin chi phí khác
+    //lấy số đơn thuốc hoặc thông tin chi phí khác
     function loadCFHAndInfo() {
-        //nếu làthuốccầncầnsố đơn thuốc，khoản mụckhông cầncầnsố đơn thuốc
-        //từlấy từ máy chủphí dịch vụvàthông tin số đơn thuốc
+        //nếu là thuốc cần cần số đơn thuốc，khoản mục không cần cần số đơn thuốc
+        //từ lấy từ máy chủ phí dịch vụ và thông tin số đơn thuốc
         $.najax({
             type: "POST",
             url: "/OutpatientManage/OutpatCharge/GetCfAndSfInfo?r=" + Math.random(),
@@ -964,7 +964,7 @@
                 $("#lbldqcfh").text(lsCfh);
                 sfxmfwf = cffwf.sfxmfwf;
                 jeNum = cffwf.jeNum;
-                //thêm đơn thuốcdữ liệu
+                //thêm đơn thuốc dữ liệu
                 AddCFData();
             },
             errorCallback: function (err) {
@@ -978,13 +978,13 @@
 
     //xóa
     function DeleteGrid() {
-        //lấydòng đã chọn
+        //lấy dòng đã chọn
         var gridIds = $("#listGrid").jqGrid('getGridParam', 'selarrrow');
         console.log(gridIds);
         if (gridIds.length > 0) {
             $.modalConfirm("Có chắc xóa dữ liệu đơn thuốc đã chọn không？", function (flag) {
                 if (flag) {
-                    //lấy của dòng đã chọnid
+                    //lấy của dòng đã chọn id
                     //duyệt
                     for (var i = gridIds.length - 1; i >= 0; i--) {
                         $("#listGrid").jqGrid('delRowData', gridIds[i]);
@@ -1007,7 +1007,7 @@
         }
     }
 
-    //tảikhoản thu phímẫu
+    //tải khoản thu phí mẫu
     function LoadSfXMmb() {
         if ($("#mzgh").val() == "" || mzgh == "") {
             $("#mzgh").focus();
@@ -1024,11 +1024,11 @@
             $.modalAlert("Vui lòng chọn đăng ký khám！", 'warning');
             return false;
         }
-        // tảicửa sổ mẫu thu phí，truyền vàokhoa
+        // tải cửa sổ mẫu thu phí，truyền vào khoa
         getSfxmMbAjax();
     }
 
-    //lấy từ máy chủmẫu thu phí
+    //lấy từ máy chủ mẫu thu phí
     function getSfxmMbAjax() {
         if (ys && ks) {
             $.modalOpen({
@@ -1049,7 +1049,7 @@
         }
     }
 
-    //tảiđã chọncủakhoản mẫu
+    //tải đã chọn của khoản mẫu
     function loadTempDetail(tempDetailData) {
         var tempData = [];
         var tempJe = 0;
@@ -1133,7 +1133,7 @@
     //đổi đơn F6
     function ChangeCF() {
         if (myCFData.length > 0) {
-            //xác địnhdữ liệulàkhôngđã thay đổi stateSave=false
+            //xác định dữ liệu là không đã thay đổi stateSave=false
             clearHfItem();
         } else {
             $("#kh").focus();
@@ -1141,14 +1141,14 @@
         }
     }
 
-    //đổi đơnxóa
+    //đổi đơn xóa
     function clearHfItem() {
         clearItemXM(); //xóa khoản mục，không xóa đăng ký khám và bác sĩ、khoa
         GetNewCFH(); //lấy số đơn thuốc mới
     }
 
 
-    //thêm một đơn thuốcsauxóa trước đókhoản mụcdữ liệu
+    //thêm một đơn thuốc sau xóa trước đó khoản mục dữ liệu
     function clearItem() {
         $("#sfxm").val("");
         $("#sl").val("");
@@ -1169,7 +1169,7 @@
         $("#mzgh,#ys,#ks").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
     }
 
-    //đổi đơnlấy số đơn thuốc mới
+    //đổi đơn lấy số đơn thuốc mới
     function GetNewCFH() {
         $.loading(true);
         $.najax({
@@ -1197,7 +1197,7 @@
         xjzffs, //phương thức thanh toán tiền mặt
         xjzffsbh, //mã số
         zffsmc,
-        gridIds, //dòng đã chọnid
+        gridIds, //dòng đã chọn id
         fph; //số hóa đơn
 
     //lưu xác định
@@ -1225,7 +1225,7 @@
         var ddlzffs = $("#ddlzffs option:selected");//lấy khoản đã chọn
         xjzffs = ddlzffs.val();//lấy giá trị của khoản đã chọn
         zffsmc = ddlzffs.text();//lấy văn bản của khoản đã chọn
-        xjzffsbh = ddlzffs.attr("data-xjzffsbh"); //lấydata-*thuộc tính tùy chỉnh
+        xjzffsbh = ddlzffs.attr("data-xjzffsbh"); //lấy data-*thuộc tính tùy chỉnh
 
         fph = $("#txtfph").val();
         if (xjzffs == -1 || zffsmc == "") {
@@ -1248,7 +1248,7 @@
             zl = parseFloat(zfje) - parseFloat(ysk);
             zl = zl.toFixed(2);
             $("#txtzl").val(zl);
-            //quyết toánbiểu mẫu
+            //quyết toán biểu mẫu
             showBillSuccessDialog(ysk, zfje, 0, zl);
         }
     }
@@ -1267,7 +1267,7 @@
             height: "260px",
             callBack: function (iframeId) {
                 $.modalClose("FormShowBillSuccessDialog");   //đóng biểu mẫu số tiền quyết toán
-                var allJson = $("#listGrid").jqGrid('getRowData_AllLine', true); //lấy của dòng đã chọnJsondữ liệu
+                var allJson = $("#listGrid").jqGrid('getRowData_AllLine', true); //lấy của dòng đã chọnJson dữ liệu
                 SaveAjax(JSON.parse(allJson));
             }
         });
@@ -1275,20 +1275,20 @@
 
     //lưu F8
     function newtouch_event_f8() {
-        //trước tiên xác định làkhôngchọn đơn thuốc、phương thức thanh toán、số tiền
+        //trước tiên xác định là không chọn đơn thuốc、phương thức thanh toán、số tiền
         CheckSave();
         //hộp bật lên
     }
 
-    //lưu ajax saumáy thêm đơn thuốcvàkhoản mục、quyết toán
+    //lưu ajax sau máy thêm đơn thuốc và khoản mục、quyết toán
     function SaveAjax(allJson) {
-        //đemđơn thuốcdữ liệutruyền đếnsaumáy
+        //đem đơn thuốc dữ liệu truyền đến sau máy
         $.najax({
             type: "POST",
             url: "/OutpatientManage/OutpatCharge/AddCfInfo",
             data: { chargeDto: allJson, kh: kh, fph: fph, xjzffs: xjzffs, xjzffsbh: xjzffsbh, zfje: zfje, ysk: ysk, zl: zl },
             dataType: "json",
-            cache: false, //sửa chữaiebộ nhớ đệm
+            cache: false, //sửa chữa ie bộ nhớ đệm
             success: function (ajaxresp) {
                 $.modalAlert("Lưu thành công", 'success');
                 newtouch_globalevent_f4();//xóa
@@ -1305,13 +1305,13 @@
     }
 
 
-    //jqGridhộp chọn nhiều chọn mộtsauthay đổisố tiền phải thusố tiền
+    //jqGrid hộp chọn nhiều chọn một sau thay đổi số tiền phải thu số tiền
     function grid_checkedit() {
         ysk = 0;
-        gridIds = $("#listGrid").jqGrid('getGridParam', 'selarrrow'); //lấy của dòng đã chọnid
+        gridIds = $("#listGrid").jqGrid('getGridParam', 'selarrrow'); //lấy của dòng đã chọn id
         //cũng có thể
         //var zzzzzfje = 0;
-        //var allJson = $("#listGrid").jqGrid('getRowData_AllLine', true); //lấy của dòng đã chọnJsondữ liệu
+        //var allJson = $("#listGrid").jqGrid('getRowData_AllLine', true); //lấy của dòng đã chọnJson dữ liệu
         //var allArr = JSON.parse(allJson);
         //for (var i = 0; i < allArr.length; i++) {
         //    var skje = allArr[i].je;
@@ -1322,15 +1322,15 @@
 
         if (gridIds != "" && gridIds != undefined) {
             for (var i = 0; i < gridIds.length; i++) {
-                var rowData = $("#listGrid").jqGrid("getRowData", gridIds[i]);//theo ở trênidlấy tất cả dữ liệu của dòng này
-                var xmje = rowData.je; //lấy giá trị của cột chỉ định （auditStatus làcolModelcủaname）
+                var rowData = $("#listGrid").jqGrid("getRowData", gridIds[i]);//theo ở trên id lấy tất cả dữ liệu của dòng này
+                var xmje = rowData.je; //lấy giá trị của cột chỉ định （auditStatus là colModel của name）
                 ysk = parseFloat(ysk) + parseFloat(xmje);
             }
         }
         ysk = ysk.toFixed(2);
         $("#txtysk").val(ysk); //số phải thu thay đổi theo lựa chọn
 
-        //hiện tạidòng đã chọncủacfh nếukhông trốnglàthuốc，nếu làtrống làkhoản thu phí
+        //hiện tại dòng đã chọn của cfh nếu không trống là thuốc，nếu là trống là khoản thu phí
         var gr = $("#listGrid").jqGrid('getGridParam', 'selrow');//dòng đang nhấn
         var dqcfobj = $("#listGrid").jqGrid("getRowData", gr);
         var dqcfje = 0;
@@ -1359,11 +1359,11 @@
     function checkedAll() {
         $("#tabGrid input[type=checkbox]").attr("checked", true);
         $("#tabGrid tbody input[type=checkbox]").each(function (i) {
-            $("#listGrid").jqGrid('setSelection', i + 1); //thiết lậpjqGridđã chọn
+            $("#listGrid").jqGrid('setSelection', i + 1); //thiết lập jqGrid đã chọn
         });
         //hộp chọn tất cả
         var $checkAll = $("#tabGrid table thead").find("input");
-        //body các dòngcủacheckboxkhung
+        //body các dòng của checkbox khung
         var $tbr = $("#tabGrid table tbody").find("input");
         $checkAll.prop('checked', $tbr.find('input:checked').length == $tbr.length ? true : false);
     }

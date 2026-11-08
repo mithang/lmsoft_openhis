@@ -27,7 +27,7 @@
             $("#txtpzh").val(sjh);
         } else
         {
-            //lấysố chứng từ biên lai
+            //lấy số chứng từ biên lai
             GetReceiptByEmpCode();
         }
     })
@@ -57,12 +57,12 @@
         }
     }
 
-    //quy tắc xác thực số chứng từ phía trướcthì
+    //quy tắc xác thực số chứng từ phía trước thì
     function checkPZH(pzh)
     {
         var szm = pzh.substring(0, 1);
         var reg = new RegExp("^[0-9]*$");
-        //nếusố hóa đơnký tự đầu tiên không phảichữ số，thì làđầuchữ cái
+        //nếu số hóa đơn ký tự đầu tiên không phải chữ số，thì là đầu chữ cái
         if (!reg.test(szm))
         {
             szm = pzh.substring(0, 1);
@@ -86,7 +86,7 @@
         return true;
     }
 
-    //saumáy xác thực số chứng từ
+    //sau máy xác thực số chứng từ
     function checkExitPZH(pzh)
     {
         $.najax({
