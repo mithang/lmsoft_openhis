@@ -1611,11 +1611,10 @@ namespace Newtouch.CIS.Web.Controllers
             var j = "";
             switch (item.title)
             {
-                case "打印中草药":
+                case "In đơn thuốc Y học cổ truyền":
                     j = _reportDmnService.GetZCYCFjson(item.cfId, item.mzh, OrganizeId);
                     break;
                 case "InĐơn thuốc":
-                case "打印常规处方":
                     j = _reportDmnService.GetCFDjson(item.cfId, item.mzh, OrganizeId);
                     break;
                 case "In phiếu xét nghiệm":
@@ -1624,10 +1623,10 @@ namespace Newtouch.CIS.Web.Controllers
                 case "In phiếu kiểm tra":
                     j = _reportDmnService.GetJCDjson(item.cfId, item.mzh, OrganizeId);
                     break;
-                case "打印雾化单":
+                case "InĐơn khí dung":
                     j = _reportDmnService.GetWHDjson(item.cfId, item.mzh, OrganizeId);
                     break;
-                case "打印注射单":
+                case "InĐơn tiêm":
                     j = _reportDmnService.GetZSDjson(item.cfId, item.mzh, OrganizeId);
                     break;
             }
