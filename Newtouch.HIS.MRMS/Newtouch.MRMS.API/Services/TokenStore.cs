@@ -86,15 +86,29 @@ namespace Newtouch.MRMS.API.Services
             }
         }
 
-        /// <summary>Tra cứu thô cho UA GetUserInfo (đúng code gốc: StringGet + gia hạn 120 phút).</summary>
+        /// <summary>Tra cứu thô cho UA GetUserInfo (đúng code gốc: StringGet + gia hạn 120 phút).
+        /// Fallback 2 dạng token (D-UA-FALLBACK-001): thử "OHIS:&lt;token&gt;" trước, rỗng thì thử
+        /// bare token; KHÔNG ghi cache bare key (cache đó giữ JSON sống dưới key trần sau khi
+        /// phiên bị đá — lỗ hổng bỏ qua giới hạn đa phiên). KeyExpire áp cho key thực sự trúng.</summary>
         public (string Account, string OrganizeId) GetUaUser(string token)
         {
+            if (string.IsNullOrWhiteSpace(token)) return (null, null);
             var db = DbOrNull();
             if (db == null) return (null, null);
             try
             {
-                var val = db.StringGet(token);
-                if (val.IsNullOrEmpty || val == "SIDELINED") return (null, null);
+                string hitKey = null;
+                var val = db.StringGet($"OHIS:{token}");
+                if (!val.IsNullOrEmpty)
+                {
+                    hitKey = $"OHIS:{token}";
+                }
+                else
+                {
+                    val = db.StringGet(token);
+                    if (!val.IsNullOrEmpty) hitKey = token;
+                }
+                if (hitKey == null || val.IsNullOrEmpty || val == "SIDELINED") return (null, null);
                 var jObj = JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JObject>(val);
                 string account = null, orgId = null;
                 foreach (var prop in jObj.Properties())
@@ -103,7 +117,7 @@ namespace Newtouch.MRMS.API.Services
                     else if (prop.Name == "OrganizeId") orgId = prop.Value.ToString();
                 }
                 if (string.IsNullOrWhiteSpace(account)) return (null, null);
-                db.KeyExpire(token, TimeSpan.FromMinutes(120));
+                db.KeyExpire(hitKey, TimeSpan.FromMinutes(120));
                 return (account, orgId);
             }
             catch
