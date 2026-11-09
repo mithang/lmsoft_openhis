@@ -40,6 +40,8 @@ namespace Newtouch.Repository
             if (!string.IsNullOrEmpty(keyValue))
             {
                 var dbEntity = this.FindEntity(keyValue);
+                var ignoreProps = new List<string>() { "Id", "OrganizeId", "CreateTime", "CreatorCode", "LastModifyTime", "LastModifierCode" };
+                entity.MapperTo(dbEntity, ignoreProps);
                 //properties
 
                 dbEntity.Modify(keyValue);
