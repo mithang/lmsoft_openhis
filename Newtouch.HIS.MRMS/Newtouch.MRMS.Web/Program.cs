@@ -13,6 +13,7 @@ using Newtouch.MR.ManageSystem.Domain.IRepository;
 using Newtouch.MR.ManageSystem.DomainServices;
 using Newtouch.MR.ManageSystem.Infrastructure;
 using Newtouch.MR.ManageSystem.Repository;
+using Newtouch.MRMS.Web.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -71,6 +72,9 @@ builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 {
     options.Filters.Add(typeof(LogTrackingAttribute));
     options.Filters.Add(typeof(FrameworkAuthorizationFilter));
+    // Culture đợt 3 (F42): decimal form-POST parse sai dưới vi-VN (37.5 → 375);
+    // DecimalModelBinder chấp nhận cả dấu chấm invariant và dấu phẩy vi-VN.
+    options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
 });
 var app = builder.Build();
 

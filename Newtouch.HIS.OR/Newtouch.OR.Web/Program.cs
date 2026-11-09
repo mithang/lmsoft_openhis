@@ -77,6 +77,9 @@ builder.Services.AddControllersWithViews().AddMvcOptions(options =>
     // DateTime binder (cycle 39): query strings bind InvariantCulture, so the
     // views' dd/MM/yyyy values mis-bound on GET; see Helpers/DateTimeModelBinder.cs.
     options.ModelBinderProviders.Insert(0, new DateTimeModelBinderProvider());
+    // Culture đợt 3 (F42): decimal form-POST parse sai dưới vi-VN (37.5 → 375);
+    // DecimalModelBinder chấp nhận cả dấu chấm invariant và dấu phẩy vi-VN.
+    options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
 });
 var app = builder.Build();
 
