@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using NewtouchHIS.Lib.Base.Extension;
@@ -53,6 +54,65 @@ namespace Newtouch.Herp.Web.Areas.PurchaseManage.Controllers
 
         private IActionResult SunUnavailable() =>
             Error("Dịch vụ mua sắm tập trung hiện không khả dụng, vui lòng thử lại sau.");
+
+        // G15: do dai cot theo schema STG (varchar dem theo byte, mau G13/G14).
+        private static bool TooLong(string s, int maxBytes) =>
+            !string.IsNullOrEmpty(s) && Encoding.Default.GetBytes(s).Length > maxBytes;
+
+        // G15: guard dung chung cho SubmitPurchase + SubmitAndUploadPurchase.
+        // Base probe: body rong -> loi SQL tho "Cannot insert NULL into 'czlx'";
+        // tao moi payload dung UI -> "truncated" (yyjhdh 21 ky tu, da sua o
+        // repo) + sau do se lo zt NULL; detail thieu field NOT NULL -> loi SQL
+        // tho; cgmxList rong -> header mo coi jls=0 (UI chan, API khong).
+        // Message dung message UI Form.cshtml (Validately) khi co.
+        private IActionResult ValidatePurchase(PurchaseEntity cgEntity, List<PurchaseDetailEntity> cgmxList)
+        {
+            if (cgEntity == null) return Error("Dữ liệu đơn mua hàng không được để trống");
+            if (string.IsNullOrWhiteSpace(cgEntity.czlx)) return Error("Loại thao tác không được để trống");
+            if (TooLong(cgEntity.czlx, 1)) return Error("Loại thao tác không được vượt quá 1 ký tự");
+            if (string.IsNullOrWhiteSpace(cgEntity.yybm)) return Error("Mã bệnh viện không được để trống");
+            if (TooLong(cgEntity.yybm, 20)) return Error("Mã bệnh viện không được vượt quá 20 ký tự");
+            if (string.IsNullOrWhiteSpace(cgEntity.psdbm)) return Error("Mã điểm giao hàng là bắt buộc");
+            if (TooLong(cgEntity.psdbm, 20)) return Error("Mã điểm giao hàng không được vượt quá 20 ký tự");
+            if (string.IsNullOrWhiteSpace(cgEntity.ddlx)) return Error("Loại đơn hàng không được để trống");
+            if (TooLong(cgEntity.ddlx, 1)) return Error("Loại đơn hàng không được vượt quá 1 ký tự");
+            if (TooLong(cgEntity.cgfs, 1)) return Error("Phương thức mua sắm không được vượt quá 1 ký tự");
+            if (TooLong(cgEntity.sfhbsfw, 1)) return Error("Có kèm dịch vụ đi kèm không được vượt quá 1 ký tự");
+            if (TooLong(cgEntity.zwdhrq, 10)) return Error("Ngày giao hàng muộn nhất không được vượt quá 10 ký tự");
+            if (TooLong(cgEntity.xtbm, 80)) return Error("Mã hệ thống không được vượt quá 80 ký tự");
+            if (cgmxList == null || cgmxList.Count == 0) return Error("Vui lòng chọn dữ liệu cần chỉnh sửa!");
+            foreach (var d in cgmxList)
+            {
+                if (d == null) return Error("Dữ liệu chi tiết đơn mua hàng không được để trống");
+                if (string.IsNullOrWhiteSpace(d.productCode)) return Error("Thuốc là bắt buộc");
+                if (TooLong(d.productCode, 20)) return Error("Mã thuốc không được vượt quá 20 ký tự");
+                if (string.IsNullOrWhiteSpace(d.sxh)) return Error("Số thứ tự không được để trống");
+                if (TooLong(d.sxh, 20)) return Error("Số thứ tự không được vượt quá 20 ký tự");
+                if (string.IsNullOrWhiteSpace(d.cglx)) return Error("Loại mua sắm không được để trống");
+                if (TooLong(d.cglx, 1)) return Error("Loại mua sắm không được vượt quá 1 ký tự");
+                if (string.IsNullOrWhiteSpace(d.cgggxh)) return Error("Quy cách mua sắm không được để trống");
+                if (TooLong(d.cgggxh, 300)) return Error("Quy cách mua sắm không được vượt quá 300 ký tự");
+                if (string.IsNullOrWhiteSpace(d.cgsl) || !decimal.TryParse(d.cgsl, out var cgsl) || cgsl <= 0 || cgsl != Math.Floor(cgsl))
+                    return Error("Số lượng phải là số nguyên lớn hơn 0");
+                if (string.IsNullOrWhiteSpace(d.cgdj) || !decimal.TryParse(d.cgdj, out var cgdj) || cgdj < 0)
+                    return Error("Đơn giá phải là số không âm");
+                if (string.IsNullOrWhiteSpace(d.qybm)) return Error("Mã doanh nghiệp không được để trống");
+                if (TooLong(d.qybm, 20)) return Error("Mã doanh nghiệp không được vượt quá 20 ký tự");
+                if (string.IsNullOrWhiteSpace(d.sfjj)) return Error("Có đàm phán giá không được để trống");
+                if (TooLong(d.sfjj, 10)) return Error("Có đàm phán giá không được vượt quá 10 ký tự");
+                if (string.IsNullOrWhiteSpace(d.psyq)) return Error("Yêu cầu giao hàng không được để trống");
+                if (TooLong(d.psyq, 10)) return Error("Yêu cầu giao hàng không được vượt quá 10 ký tự");
+                if (string.IsNullOrWhiteSpace(d.dcpsbs)) return Error("Dấu hiệu giao hàng không được để trống");
+                if (TooLong(d.dcpsbs, 10)) return Error("Dấu hiệu giao hàng không được vượt quá 10 ký tự");
+                if (TooLong(d.hctbdm, 30)) return Error("Mã thầu không được vượt quá 30 ký tự");
+                if (TooLong(d.hcxfdm, 80)) return Error("Mã thầu phụ không được vượt quá 80 ký tự");
+                if (TooLong(d.yybddm, 20)) return Error("Mã bệnh viện của thuốc không được vượt quá 20 ký tự");
+                if (TooLong(d.pssm, 300)) return Error("Mô tả giao hàng không được vượt quá 300 ký tự");
+                if (TooLong(d.cwxx, 80)) return Error("Thông tin lỗi không được vượt quá 80 ký tự");
+                if (TooLong(d.bzsm, 80)) return Error("Ghi chú không được vượt quá 80 ký tự");
+            }
+            return null;
+        }
 
         #region Trang
 
@@ -165,6 +225,9 @@ namespace Newtouch.Herp.Web.Areas.PurchaseManage.Controllers
         {
             OperatorModel user = this.UserIdentity;
             cgmxList = cgmxList ?? new List<PurchaseDetailEntity>();
+            // G15: guard truoc khi deref/insert (xem ValidatePurchase).
+            var guard = ValidatePurchase(cgEntity, cgmxList);
+            if (guard != null) return guard;
             cgEntity.OrganizeId = this.OrganizeId;
             cgEntity.jls = cgmxList.Count;
             var cgId = _purchaseRepo.SubmitForm(cgEntity, keyValue);
@@ -184,6 +247,11 @@ namespace Newtouch.Herp.Web.Areas.PurchaseManage.Controllers
         {
             OperatorModel user = this.UserIdentity;
             cgmxList = cgmxList ?? new List<PurchaseDetailEntity>();
+            // G15: guard giong SubmitPurchase (phan luu local); phan YY
+            // verify-only — don DA luu local nhung user thay loi SunUnavailable
+            // khi YY vang (ghi ro ngu nghia, cung ho G12 #6).
+            var guard = ValidatePurchase(cgEntity, cgmxList);
+            if (guard != null) return guard;
             cgEntity.OrganizeId = this.OrganizeId;
             cgEntity.jls = cgmxList.Count;
             var cgId = _purchaseRepo.SubmitForm(cgEntity, keyValue);
@@ -341,6 +409,23 @@ namespace Newtouch.Herp.Web.Areas.PurchaseManage.Controllers
 
         public IActionResult SubmitLocation(PurchaseLocationEntity entity)
         {
+            // G15: base probe body rong / psdbm rong -> loi SQL tho "Cannot
+            // insert NULL into 'psdbm'"; sua voi psdmc rong -> loi SQL tho
+            // "Cannot insert NULL into 'psdmc'" (UPDATE fails). Guard theo
+            // dung message DataValidate cua LocationForm.cshtml.
+            if (entity == null) return Error("Dữ liệu điểm giao hàng không được để trống");
+            if (string.IsNullOrWhiteSpace(entity.psdbm)) return Error("Mã điểm giao hàng là bắt buộc");
+            if (TooLong(entity.psdbm, 50)) return Error("Mã điểm giao hàng không được vượt quá 50 ký tự");
+            if (string.IsNullOrWhiteSpace(entity.psdmc)) return Error("Tên điểm giao hàng là bắt buộc");
+            if (TooLong(entity.psdmc, 50)) return Error("Tên điểm giao hàng không được vượt quá 50 ký tự");
+            if (string.IsNullOrWhiteSpace(entity.psdz)) return Error("Địa chỉ giao hàng là bắt buộc");
+            if (TooLong(entity.psdz, 50)) return Error("Địa chỉ giao hàng không được vượt quá 50 ký tự");
+            if (string.IsNullOrWhiteSpace(entity.lxrxm)) return Error("Họ tên người liên hệ là bắt buộc");
+            if (TooLong(entity.lxrxm, 50)) return Error("Họ tên người liên hệ không được vượt quá 50 ký tự");
+            if (string.IsNullOrWhiteSpace(entity.lxdh)) return Error("Số điện thoại liên hệ là bắt buộc");
+            if (TooLong(entity.lxdh, 50)) return Error("Số điện thoại liên hệ không được vượt quá 50 ký tự");
+            if (string.IsNullOrWhiteSpace(entity.yzbm)) return Error("Mã bưu chính là bắt buộc");
+            if (TooLong(entity.yzbm, 50)) return Error("Mã bưu chính không được vượt quá 50 ký tự");
             _purchaseLocationRepo.SubmitForm(entity, this.OrganizeId, entity.Id);
             return Success();
         }

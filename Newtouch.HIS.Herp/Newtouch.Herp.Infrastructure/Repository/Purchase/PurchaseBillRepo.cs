@@ -30,6 +30,11 @@ namespace Newtouch.Herp.Repository.Purchase
             dbEntity.qybm = entity.QYBM;
             dbEntity.fpysjg = entity.FPYSJG;
             dbEntity.fphszje = entity.FPHSZJE;
+            // G15 (fix theo code, chua probe live): cot xt_wz_fp.zt char(1)
+            // NOT NULL nhung InsertItem khong set zt — nhanh success cua YY132
+            // (chua cham duoc vi YY vang) se loi zt NULL, cung lop G12 #5 /
+            // G9 #8 (tien le G9 Wbck fix theo code). KHONG ghi PASS live.
+            dbEntity.zt = "1";
             dbEntity.Create(true);
             return this.Insert(dbEntity);
         }

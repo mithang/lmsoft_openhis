@@ -54,6 +54,12 @@ and createtime BETWEEN @kssj  AND  @jssj+' 23:59:59' ";
         {
             var dbEntity = this.FindEntity(p => p.cgId == cgId);
             if (dbEntity == null) throw new FailedException("Không tìm thấy đơn mua hàng.");
+            // G15: base probe ddzt=9 -> Success + ghi ddzt=9; ddzt tren don da xoa
+            // (zt=0) -> Success + doi ddzt. Chi nhan 1 Da luu / 2 Da truyen bao /
+            // 3 Da nghiem thu (comment code + UI Index.cshtml chi gui 3), tu choi
+            // don da xoa. Bao ve ca 3 caller: controller, PurchaseUpload, SureTest.
+            if (ddzt != 1 && ddzt != 2 && ddzt != 3) throw new FailedException("Trạng thái đơn hàng không hợp lệ.");
+            if (dbEntity.zt != "1") throw new FailedException("Đơn mua hàng đã bị xóa, không thể cập nhật trạng thái.");
             //properties
             dbEntity.ddzt = ddzt;
             dbEntity.Modify(cgId);
@@ -86,9 +92,25 @@ and createtime BETWEEN @kssj  AND  @jssj+' 23:59:59' ";
                 var dbEntity = this.FindEntity(p => p.cgId == keyValue);
                 if (dbEntity == null) throw new FailedException("Không tìm thấy đơn mua hàng.");
                 //properties
-                dbEntity.cgId = entity.cgId;
+                // G15: base probe edit that -> header KHONG doi gi (dbEntity.cgId =
+                // entity.cgId voi entity.cgId null vi form khong post cgId -> Update
+                // 0 dong, im lang) nhung controller van DeleteItem + InsertItem ->
+                // chi tiet cu bi xoa, chi tiet moi loi zt NULL -> mat het chi tiet.
+                // Giu cgId cu, chi copy field form that su post; ddbh/yyjhdh la so
+                // he thong (ddbh do YY111 cap, yyjhdh do repo sinh luc tao) nen
+                // khong copy tu form (form post ddbh=" ", yyjhdh="test" se wipe
+                // so that); ddzt/zt giu gia tri DB (form luon post ddzt=1).
+                // ddsj do repo quan ly nhu nhanh tao (format da sua HH:mm:ss).
+                dbEntity.psdbm = entity.psdbm;
+                dbEntity.ddlx = entity.ddlx;
+                dbEntity.zwdhrq = entity.zwdhrq;
+                dbEntity.cgfs = entity.cgfs;
+                dbEntity.xtbm = entity.xtbm;
+                dbEntity.sfhbsfw = entity.sfhbsfw;
+                dbEntity.yybm = entity.yybm;
                 dbEntity.czlx = entity.czlx;
                 dbEntity.jls = entity.jls;
+                dbEntity.ddsj = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 dbEntity.Modify(keyValue);
                 this.Update(dbEntity);
                 return keyValue;
@@ -96,11 +118,21 @@ and createtime BETWEEN @kssj  AND  @jssj+' 23:59:59' ";
             else
             {
                 entity.cgId = Guid.NewGuid().ToString();
-                entity.ddsj = DateTime.Now.ToString("yyyy-MM-dd HH:ss:mm");
+                // G15: format cu "yyyy-MM-dd HH:ss:mm" dao phut/giay (bang chung
+                // G6: CreateTime 13:40:20 -> ddsj "13:20:40").
+                entity.ddsj = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 //entity.ddbh = "DHMS" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
-                entity.yyjhdh = "KHMS" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                // G15: "KHMS"+yyyyMMddHHmmssfff = 21 ky tu > cot yyjhdh
+                // varchar(20) -> moi create deu loi "String or binary data would
+                // be truncated" (base probe d6-real/d7-real). Dung centisecond
+                // (ff) cho vua 20 ky tu; prefix KHMS giu nguyen, khong doi
+                // GetNewReceiptNo. yyjhdh khong phai khoa duy nhat.
+                entity.yyjhdh = "KHMS" + DateTime.Now.ToString("yyyyMMddHHmmssff");
                 entity.ddzt = 1; //1 Đã lưu
-                //entity.zt = "1";
+                // G15: base probe sau khi sua truncation se lo loi zt NULL
+                // (Create(true) khong set zt, cot zt char(1) NOT NULL) — cung
+                // lop G12 #5 / G9 #8.
+                entity.zt = "1";
                 //entity.CreatorCode = user.rygh;
                 //entity.CreateTime = DateTime.Now;
                 //cgEntity.LastModifierCode = "";

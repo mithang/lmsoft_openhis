@@ -1,3 +1,5 @@
+using NewtouchHIS.Lib.Base.Exceptions;
+using NewtouchHIS.Lib.Base.Model;
 using Newtouch.Herp.Domain.Entity;
 using SqlSugar;
 using Newtouch.Herp.Domain.IRepository;
@@ -23,19 +25,17 @@ namespace Newtouch.Herp.Repository.Purchase
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                // F19-FIX D1: form LocationForm khong post CreatorCode/CreateTime nen
-                // entity mang null/default; Herp RepositoryBase chi co DUNG 1 overload
-                // Update(T) (full-column, RepositoryBase.cs:133-136), khong co overload
-                // ignore 2 cot nhu Base -> UPDATE gan NULL vao cot CreatorCode NOT NULL
-                // (xt_wz_psd). Nap oldEntity tu DB va khoi phuc 2 cot truoc khi update.
-                // Khong can DetacheEntity: Herp khong co method do, va SqlSugar
-                // Updateable khong track entity nhu EF (FindEntity tra POCO tach roi);
-                // cung mau LocationStateUpdate trong file nay FindEntity roi Update
-                // truc tiep, khong detach.
+                // G15: base probe edit bogus Id -> Success gia (FindEntity null
+                // -> Update 0 dong, controller van Success). Guard khong tim
+                // thay -> Error, mau G10/G11/G12.
                 PurchaseLocationEntity oldEntity = this.FindEntity(p => p.Id == keyValue);
+                if (oldEntity == null) throw new FailedException("Không tìm thấy điểm giao hàng.");
                 entity.Id = keyValue;
                 entity.OrganizeId = orgId;
-                entity.psdzt = 1;
+                // G15: base probe edit dong psdzt=2 (Da bao cao) -> bi reset ve
+                // 1 (Da luu) ma khong qua YY — mat trang thai da truyen bao.
+                // Giu psdzt cu; dong psdzt=1 sua van 1 nhu cu.
+                entity.psdzt = oldEntity.psdzt;
                 entity.zt = "1";
                 entity.Modify(keyValue);
                 if (oldEntity != null)

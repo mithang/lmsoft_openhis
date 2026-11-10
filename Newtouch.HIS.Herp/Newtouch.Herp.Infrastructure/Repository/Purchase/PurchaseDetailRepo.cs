@@ -40,6 +40,11 @@ namespace Newtouch.Herp.Repository.Purchase
         {
             entity.cgmxId = Guid.NewGuid().ToString();
             entity.cgId = keyValue;
+            // G15: base probe d6-edit-real: chi tiet moi loi "Cannot insert NULL
+            // into 'zt'" (cot zt char(1) NOT NULL, Create(true) khong set zt) —
+            // cung lop G12 #5 / G9 #8. Khong co zt thi moi SubmitPurchase deu
+            // hong o buoc insert detail.
+            entity.zt = "1";
             entity.Create(true);
             return this.Insert(entity);
         }
