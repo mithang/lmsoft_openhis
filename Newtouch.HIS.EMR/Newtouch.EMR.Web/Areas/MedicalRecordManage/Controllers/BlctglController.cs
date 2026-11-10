@@ -128,16 +128,19 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             }
             else
             {
-                if (Request.ReqVal("type").ToString() == "mulu")
+                if (Request.ReqVal("type") == "mulu")
                 {
                     entity.parentId = "0";
-                    entity.qx = Convert.ToInt32(Request.ReqVal("mlqx"));
-                    entity.mc = Request.ReqVal("mlmc").ToString().Trim(trimstr);
+                    if (!int.TryParse(Request.ReqVal("mlqx"), out var mlqx))
+                    {
+                        return Error("Quyền danh mục không hợp lệ.");
+                    }
+                    entity.qx = mlqx;
+                    entity.mc = (Request.ReqVal("mlmc") ?? "").Trim(trimstr);
                 }
                 else
                 {
-                    string PartCTID = Request.ReqVal("parentId").ToString();
-                    entity.parentId = PartCTID;
+                    entity.parentId = Request.ReqVal("parentId") ?? "";
                 }
                 entity.CreatorCode = this.UserIdentity.UserCode;
                 entity.ksbm = this.UserIdentity.DepartmentCode;
@@ -153,8 +156,13 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 entity.ctnr = entity.ctnr.ToString().Trim(trimstr);
             }
 
+            if (string.IsNullOrWhiteSpace(entity.mc))
+            {
+                return Error("Tên từ mục không được để trống.");
+            }
+
             _blctglRepo.SubmitForm(entity, entity.ID);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -165,8 +173,8 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         public IActionResult DeleteForm(string delCTID)
         {
-            _blctglRepo.DeleteForm(delCTID);
-            return Success("Thao tác thành công。");
+            _blctglRepo.DeleteForm(delCTID, OrganizeId);
+            return Success("Thao tác thành công.");
         }
 
         public IActionResult ShowTab()

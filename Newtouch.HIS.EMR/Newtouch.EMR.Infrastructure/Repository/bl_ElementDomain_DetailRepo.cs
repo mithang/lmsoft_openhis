@@ -24,19 +24,29 @@ namespace Newtouch.EMR.Repository
 
             if (!string.IsNullOrEmpty(keyValue))
             {
-                int Id = Convert.ToInt32(keyValue);
+                if (!int.TryParse(keyValue, out int Id))
+                {
+                    throw new FailedException("Mã trường bệnh án không hợp lệ.");
+                }
                 var dbEntity = this.FindEntity(Id);
+                if (dbEntity == null)
+                {
+                    throw new FailedException("Không tìm thấy trường bệnh án.");
+                }
+                // Chi copy field chuoi khi form co gui (bo-null): sua thieu field
+                // khong duoc xoa gia tri cu (mau G2). Cac field int UI luon post
+                // nen giu copy nhu cu (khong phan biet duoc 0-bi-thieu voi 0-that).
                 dbEntity.Table_Column_No = entity.Table_Column_No;
-                dbEntity.Table_Column_Code = entity.Table_Column_Code;
-                dbEntity.Table_Colunn_Name = entity.Table_Colunn_Name;
-                dbEntity.Table_Column_Type = entity.Table_Column_Type;
-                dbEntity.Element_Name = entity.Element_Name;
-                dbEntity.Element_ID = entity.Element_ID;
+                dbEntity.Table_Column_Code = entity.Table_Column_Code ?? dbEntity.Table_Column_Code;
+                dbEntity.Table_Colunn_Name = entity.Table_Colunn_Name ?? dbEntity.Table_Colunn_Name;
+                dbEntity.Table_Column_Type = entity.Table_Column_Type ?? dbEntity.Table_Column_Type;
+                dbEntity.Element_Name = entity.Element_Name ?? dbEntity.Element_Name;
+                dbEntity.Element_ID = entity.Element_ID ?? dbEntity.Element_ID;
                 dbEntity.Element_Type = entity.Element_Type;
-                dbEntity.Element_Type_Name = entity.Element_Type_Name;
+                dbEntity.Element_Type_Name = entity.Element_Type_Name ?? dbEntity.Element_Type_Name;
                 dbEntity.Sybz = entity.Sybz;
-                dbEntity.ysmxId = entity.ysmxId;
-                dbEntity.AreValue = entity.AreValue;
+                dbEntity.ysmxId = entity.ysmxId ?? dbEntity.ysmxId;
+                dbEntity.AreValue = entity.AreValue ?? dbEntity.AreValue;
                 dbEntity.Px = entity.Px;
                 dbEntity.LastModifierCode = entity.LastModifierCode;
                 dbEntity.LastModifyTime = DateTime.Now;
@@ -56,12 +66,21 @@ namespace Newtouch.EMR.Repository
 
         public void DeleteForm(string keyValue)
         {
-            if (!string.IsNullOrEmpty(keyValue))
+            if (string.IsNullOrEmpty(keyValue))
             {
-                var dbEntity = this.FindEntity(Convert.ToInt32(keyValue));
-                dbEntity.Zt = 0;
-                this.Update(dbEntity);
+                throw new FailedException("Vui lòng chọn trường bệnh án cần xóa.");
             }
+            if (!int.TryParse(keyValue, out int Id))
+            {
+                throw new FailedException("Mã trường bệnh án không hợp lệ.");
+            }
+            var dbEntity = this.FindEntity(Id);
+            if (dbEntity == null)
+            {
+                throw new FailedException("Không tìm thấy trường bệnh án.");
+            }
+            dbEntity.Zt = 0;
+            this.Update(dbEntity);
         }
 
        

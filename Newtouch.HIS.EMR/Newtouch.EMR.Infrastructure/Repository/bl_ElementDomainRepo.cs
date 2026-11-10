@@ -86,8 +86,15 @@ namespace Newtouch.EMR.Repository
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                int Id = Convert.ToInt32(keyValue);
+                if (!int.TryParse(keyValue, out int Id))
+                {
+                    throw new FailedException("Mã bảng cấu trúc bệnh án không hợp lệ.");
+                }
                 var dbEntity = this.FindEntity(Id);
+                if (dbEntity == null)
+                {
+                    throw new FailedException("Không tìm thấy bảng cấu trúc bệnh án.");
+                }
                 dbEntity.Px = entity.Px;
                 dbEntity.Regex = entity.Regex;
                 dbEntity.LastModifierCode = entity.LastModifierCode;
@@ -96,6 +103,29 @@ namespace Newtouch.EMR.Repository
             }
             else
             {
+                // Bllx la khoa dinh danh + khoa chong trung: khong cho NULL
+                // (check trung `Bllx == null` dich ra `IS NULL` nen se khop bat ky
+                // dong Bllx NULL nao, bao sai "da ton tai" - bang chung probe #5c).
+                if (string.IsNullOrWhiteSpace(entity.Bllx))
+                {
+                    throw new FailedException("Mã loại bệnh án không được để trống.");
+                }
+                if (entity.Bllx.Length > 10)
+                {
+                    throw new FailedException("Mã loại bệnh án tối đa 10 ký tự.");
+                }
+                if (!string.IsNullOrEmpty(entity.Table_Name) && entity.Table_Name.Length > 30)
+                {
+                    throw new FailedException("Tên bảng tối đa 30 ký tự.");
+                }
+                if (!string.IsNullOrEmpty(entity.Table_EngLish_Name) && entity.Table_EngLish_Name.Length > 30)
+                {
+                    throw new FailedException("Tên bảng (tiếng Anh) tối đa 30 ký tự.");
+                }
+                if (!string.IsNullOrEmpty(entity.Regex) && entity.Regex.Length > 100)
+                {
+                    throw new FailedException("Biểu thức chính quy tối đa 100 ký tự.");
+                }
                 var check = this.FindEntity(p => p.Bllx == entity.Bllx && p.Zt == 1 && p.OrganizeId == entity.OrganizeId);
                 if (check != null)
                 {
@@ -112,7 +142,10 @@ namespace Newtouch.EMR.Repository
         {
             if (!string.IsNullOrWhiteSpace(keyValue) && !string.IsNullOrWhiteSpace(orgId))
             {
-                int Id = Convert.ToInt32(keyValue);
+                if (!int.TryParse(keyValue, out int Id))
+                {
+                    throw new FailedException("Bảng bệnh án không tồn tại hoặc đã bị xóa, vui lòng chọn lại!");
+                }
                 bl_ElementDomainEntity ety = this.FindEntity(p => p.Id == Id && p.OrganizeId == orgId && p.Zt ==1);
                 if (ety != null)
                 {

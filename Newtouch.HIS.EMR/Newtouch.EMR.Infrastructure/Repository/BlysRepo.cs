@@ -1,5 +1,6 @@
 using Newtouch.EMR.Domain.Entity;
 using Newtouch.EMR.Domain.IRepository;
+using NewtouchHIS.Lib.Base.Exceptions;
 using Newtouch.Infrastructure;
 using System.Collections.Generic;
 using NewtouchHIS.Lib.Base.Model;
@@ -64,24 +65,29 @@ where  b.zt='1' and (b.OrganizeId=@orgId or b.OrganizeId='*')
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                var dbEntity = this.FindEntity(keyValue);            
+                var dbEntity = this.FindEntity(keyValue);
+                if (dbEntity == null)
+                {
+                    throw new FailedException("Không tìm thấy phần tử.");
+                }
 
-        
-                dbEntity.ysmc = entity.ysmc;
-                dbEntity.BackgroundText = entity.BackgroundText;
-                dbEntity.DataSource = entity.DataSource;
-                dbEntity.BindingPath = entity.BindingPath;
-                dbEntity.yscode = entity.yscode;
-                dbEntity.AutoUpdate = entity.AutoUpdate;
-                dbEntity.Readonly = entity.Readonly;
-                dbEntity.TypeName = entity.TypeName;
-                dbEntity.Description = entity.Description;
-                dbEntity.ListSource = entity.ListSource;
-                dbEntity.UserEditable = entity.UserEditable;
-                dbEntity.EditStyle = entity.EditStyle;
-                dbEntity.Value = entity.Value;
-                dbEntity.Style = entity.Style;
-                dbEntity.Format = entity.Format;
+                // Chi copy field khi form co gui (bo-null): sua thieu field
+                // khong duoc xoa gia tri cu (mau G2, bang chung probe #7b).
+                dbEntity.ysmc = entity.ysmc ?? dbEntity.ysmc;
+                dbEntity.BackgroundText = entity.BackgroundText ?? dbEntity.BackgroundText;
+                dbEntity.DataSource = entity.DataSource ?? dbEntity.DataSource;
+                dbEntity.BindingPath = entity.BindingPath ?? dbEntity.BindingPath;
+                dbEntity.yscode = entity.yscode ?? dbEntity.yscode;
+                dbEntity.AutoUpdate = entity.AutoUpdate ?? dbEntity.AutoUpdate;
+                dbEntity.Readonly = entity.Readonly ?? dbEntity.Readonly;
+                dbEntity.TypeName = entity.TypeName ?? dbEntity.TypeName;
+                dbEntity.Description = entity.Description ?? dbEntity.Description;
+                dbEntity.ListSource = entity.ListSource ?? dbEntity.ListSource;
+                dbEntity.UserEditable = entity.UserEditable ?? dbEntity.UserEditable;
+                dbEntity.EditStyle = entity.EditStyle ?? dbEntity.EditStyle;
+                dbEntity.Value = entity.Value ?? dbEntity.Value;
+                dbEntity.Style = entity.Style ?? dbEntity.Style;
+                dbEntity.Format = entity.Format ?? dbEntity.Format;
 
                 dbEntity.LastModifierCode = entity.LastModifierCode;
                 dbEntity.LastModifyTime = DateTime.Now;
@@ -100,13 +106,18 @@ where  b.zt='1' and (b.OrganizeId=@orgId or b.OrganizeId='*')
         public void DeleteForm(string keyValue)
         {
             //  this.Delete(p => p.Id == keyValue);
-            if (!string.IsNullOrEmpty(keyValue))
+            if (string.IsNullOrEmpty(keyValue))
             {
-                var dbEntity = this.FindEntity(keyValue);
-                //properties
-                dbEntity.zt = "0";
-                this.Update(dbEntity);
+                throw new FailedException("Không tìm thấy phần tử.");
             }
+            var dbEntity = this.FindEntity(keyValue);
+            if (dbEntity == null)
+            {
+                throw new FailedException("Không tìm thấy phần tử.");
+            }
+            //properties
+            dbEntity.zt = "0";
+            this.Update(dbEntity);
         }
 
     }

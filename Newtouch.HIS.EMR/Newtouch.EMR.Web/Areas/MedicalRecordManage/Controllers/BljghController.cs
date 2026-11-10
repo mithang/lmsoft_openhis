@@ -107,9 +107,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 entity.Element_Type_Name = ((EnumBlys)(entity.Element_Type)).GetDescription();
                 _bljsmxRepo.SubmitForm(entity, keyValue);
 
-                return Success("Thao tác thành công。");
+                return Success("Thao tác thành công.");
             }
-            return Error("Thao tác thất bại，Thông tin quan trọng không được để trống。");
+            return Error("Thao tác thất bại, thông tin quan trọng không được để trống.");
            
         }
         /// <summary>
@@ -120,7 +120,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         public IActionResult DeleteForm(string delBljgmxId)
         {
             _bljsmxRepo.DeleteForm(delBljgmxId);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         public IActionResult GetTableColumnList(string TableName, string keyword)

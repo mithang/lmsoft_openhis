@@ -27,7 +27,8 @@ namespace Newtouch.EMR.Domain.IRepository
         /// Xóa dữ liệu
         /// </summary>
         /// <param name="keyValue">Giá trị khóa chính</param>
-        void DeleteForm(string keyValue);
+        /// <param name="orgId">Mã tổ chức hiện tại (chỉ xóa dòng cùng tổ chức)</param>
+        void DeleteForm(string keyValue, string orgId);
 
         BlctglEntity GetCitiaoByID(string orgId, string ID);
 

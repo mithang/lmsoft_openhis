@@ -1,5 +1,6 @@
 using Newtouch.EMR.Domain.Entity;
 using Newtouch.EMR.Domain.IRepository;
+using NewtouchHIS.Lib.Base.Exceptions;
 using Newtouch.Infrastructure;
 using System.Collections.Generic;
 using NewtouchHIS.Lib.Base.Model;
@@ -45,6 +46,10 @@ namespace Newtouch.EMR.Domain.Entity
             if (!string.IsNullOrEmpty(keyValue))
             {
                 var dbEntity = this.FindEntity(keyValue);
+                if (dbEntity == null)
+                {
+                    throw new FailedException("Không tìm thấy từ mục.");
+                }
                 //properties
                 dbEntity.ctnr = entity.ctnr;
                 dbEntity.mc = entity.mc;
@@ -65,11 +70,15 @@ namespace Newtouch.EMR.Domain.Entity
         /// Xóa dữ liệu
         /// </summary>
         /// <param name="keyValue">Giá trị khóa chính</param>
-        public void DeleteForm(string keyValue)
+        public void DeleteForm(string keyValue, string orgId)
         {
-            // this.Delete(p => p.ID == keyValue);
-
-            var dbEntity = this.FindEntity(keyValue);
+            // Chi xoa dong cung to chuc: dong org khac tra loi "khong tim thay"
+            // (FindEntity theo khoa chinh + OrganizeId, khong doi logic nghiep vu).
+            var dbEntity = this.FindEntity(p => p.ID == keyValue && p.OrganizeId == orgId);
+            if (dbEntity == null)
+            {
+                throw new FailedException("Không tìm thấy từ mục.");
+            }
             dbEntity.zt = "0";
             this.Update(dbEntity);
         }

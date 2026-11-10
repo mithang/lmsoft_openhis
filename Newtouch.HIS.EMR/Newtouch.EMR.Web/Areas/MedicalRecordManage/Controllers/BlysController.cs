@@ -139,11 +139,11 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     }
 
                     _blysRepo.SubmitForm(entity, keyValue);
-                    return Success("Thao tác thành công。");
+                    return Success("Thao tác thành công.");
                 }
 
             }
-            return Error("Thao tác thất bại，Thông tin quan trọng không được để trống。");
+            return Error("Thao tác thất bại, thông tin quan trọng không được để trống.");
         }
 
         /// <summary>
@@ -154,15 +154,25 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         public IActionResult DeleteForm(string delYSID)
         {
             _blysRepo.DeleteForm(delYSID);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         public IActionResult toCS()
         {
             string dir = WebPath.Map("~\\File\\");
-            XMLCreate(dir + "DataSourceDescriptor.xml", OrganizeId);
-            return Success("Thao tác thành công。");
+            // Khong bo qua ket qua XMLCreate nua: ghi file that bai phai bao
+            // loi that, khong bao Success gia (bang chung probe #9b3).
+            if (!XMLCreate(dir + "DataSourceDescriptor.xml", OrganizeId))
+            {
+                return Error("Tạo tệp mô tả nguồn dữ liệu thất bại.");
+            }
+            return Success("Thao tác thành công.");
         }
+        // Khong phai action: chi toCS goi noi bo. Truoc day la public method
+        // tren controller nen route duoc truc tiep voi filePath tuy y qua HTTP
+        // (bang chung probe #10a: ghi duoc file /tmp) - khong nhan filePath
+        // tu request nua, duong dan co dinh nhu toCS.
+        [NonAction]
         public bool XMLCreate(string filePath, string OrganizeId)
         {
             bool result = true;
