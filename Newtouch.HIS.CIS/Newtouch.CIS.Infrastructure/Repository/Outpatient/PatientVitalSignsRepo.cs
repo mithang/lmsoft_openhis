@@ -3,6 +3,7 @@ using Newtouch.CIS.Repository;
 using Newtouch.Domain.Entity;
 using Newtouch.HIS.Domain.IRepository;
 using System;
+using System.Collections.Generic;
 using Newtouch.CIS.Compat;
 using System.Linq;
 
@@ -27,21 +28,30 @@ namespace Newtouch.HIS.Repository
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                PatientVitalSignsEntity oldEntity = null;   //đổi hơn trước Entity
-                oldEntity = this.FindEntity(keyValue);
-                this.DetacheEntity(oldEntity);
-
-                entity.Modify(keyValue);
-                // FIX-2 B-CIS-03 (cung mau AuxiliaryDictionary): giu CreatorCode/
-                // CreateTime goc khi form post khong co cac truong nay.
-                if (oldEntity != null)
+                // G2: keyValue khong ton tai -> Update 0 dong nhung controller van
+                // tra Success (thanh cong gia) -> loi trung thuc.
+                var oldEntity = this.FindEntity(keyValue);
+                if (oldEntity == null)
                 {
-                    if (string.IsNullOrWhiteSpace(entity.CreatorCode))
-                        entity.CreatorCode = oldEntity.CreatorCode;
-                    if (entity.CreateTime == default)
-                        entity.CreateTime = oldEntity.CreateTime;
+                    throw new FailedException("Không tìm thấy bản ghi dấu hiệu sinh tồn cần sửa, thao tác thất bại.");
                 }
-                this.Update(entity);
+                // G2: gop chi cac field form-post co gia tri (khac null) vao ban ghi
+                // cu, giu nguyen field khong sua. MapperTo mau T1 khong dung duoc
+                // o day vi no copy ca null (ServiceCompat.MapperTo) -> field khong
+                // co trong form bi ghi de thanh null (da probe live baseline).
+                var ignoreProps = new HashSet<string>(new[]
+                {
+                    "Id", "OrganizeId", "CreateTime", "CreatorCode", "LastModifyTime", "LastModifierCode"
+                }, System.StringComparer.OrdinalIgnoreCase);
+                foreach (var prop in typeof(PatientVitalSignsEntity).GetProperties())
+                {
+                    if (!prop.CanWrite || !prop.CanRead || ignoreProps.Contains(prop.Name)) continue;
+                    var value = prop.GetValue(entity);
+                    if (value == null) continue;
+                    prop.SetValue(oldEntity, value);
+                }
+                oldEntity.Modify(keyValue);
+                this.Update(oldEntity);
             }
             else
             {

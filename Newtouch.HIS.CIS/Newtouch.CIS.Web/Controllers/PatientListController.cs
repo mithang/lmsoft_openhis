@@ -362,7 +362,7 @@ namespace Newtouch.CIS.Web.Controllers
                 _idbDmnService.Refreshcfsfbz(blh, this.OrganizeId);
 
             }
-            return null;
+            return Success();
         }
 
         #region Nhập viện Bệnh nhân một xem
@@ -453,6 +453,10 @@ namespace Newtouch.CIS.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(PatientVitalSignsEntity entity, string keyValue)
         {
+            if (entity == null || string.IsNullOrWhiteSpace(entity.mzh))
+            {
+                throw new FailedException("Thiếu mã khám bệnh, không lưu được dấu hiệu sinh tồn.");
+            }
             entity.zt = "1";
             entity.OrganizeId = this.OrganizeId;
             _patientVitalSignsRepo.SubmitForm(entity, keyValue);

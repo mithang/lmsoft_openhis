@@ -158,7 +158,7 @@ from [192.168.0.100].[bshrp].[dbo].[kk_1]
             var entity = this.FindEntity(a => a.jzId == jzId && a.OrganizeId == orgId && a.zt == "1");
             if (entity == null)
             {
-                throw new FailedException("chưa Tra cứu đến Khám bệnh ghi chép，khôi phục lại Khám bệnh thất bại");
+                throw new FailedException("Chưa tra cứu được thông tin khám bệnh, khôi phục lại khám bệnh thất bại");
             }
             entity.jzzt = (int)EnumJzzt.Treating;
             entity.Modify();
