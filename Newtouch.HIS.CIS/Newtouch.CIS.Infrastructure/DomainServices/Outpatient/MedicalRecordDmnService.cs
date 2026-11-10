@@ -2494,14 +2494,16 @@ WHERE   b.mzh = @mzh
         public DataTable jianyanshenqing(string patid, string jzlsh, string OrgId)
         {
 
+            // G6 #2: doc Sett DB qua DbNames.Name (mau G4 #3) — truoc day hardcode
+            // [NewtouchHIS_Sett] nen tren carrier STG doc nham sang DB demo.
             string settsql = @"select convert(varchar(20),patid)patid, convert(varchar(20),ghnm) ghnm
-                        from [NewtouchHIS_Sett].dbo.mz_gh with(nolock)
+                        from " + DbNames.Name("SettDb", "NewtouchHIS_Sett") + @".dbo.mz_gh with(nolock)
                         where organizeid=@orgId and mzh=@mzh and zt='1' ";
             var ety = FindList<YCYL_LisInpDTO>(settsql, new SqlParameter[] { new SqlParameter("@orgId", OrgId), new SqlParameter("@mzh", patid) }).FirstOrDefault();
 
             if (ety == null)
             {
-                throw new FailedException("Bệnh nhânKhám bệnhthông tinNgoại lệ");
+                throw new FailedException("Thông tin khám bệnh của bệnh nhân không hợp lệ, vui lòng kiểm tra lại.");
             }
             // string sBusinessReqCGQ = @"<BusinessRequest><Parameters><PatientID>{0}</PatientID><JZLSH>{1}</JZLSH></Parameters></BusinessRequest>";
             string sBusinessReqCGQ = @"<BusinessRequest>
@@ -2585,7 +2587,7 @@ WHERE   b.mzh = @mzh
                                           AND zt = '1';";
                         sql = string.Format(sql, OrgId, cflist);
                         this.ExecuteSqlCommand(sql);
-                        AppLogger.Info("xatrìnhXét nghiệmTải lênthành công");
+                        AppLogger.Info("Xét nghiệm tải lên thành công");
                         //}
                         //else
                         //{
@@ -2599,18 +2601,18 @@ WHERE   b.mzh = @mzh
                     }
                     else
                     {
-                        throw new FailedException("Tải lêngiao diệnQuay lạiNgoại lệ");
+                        throw new FailedException("Tải lên thất bại: giao diện trả về ngoại lệ.");
                     }
                 }
                 else
                 {
-                    throw new FailedException("Tải lêngiao diệnNgoại lệ");
+                    throw new FailedException("Tải lên thất bại: giao diện ngoại lệ.");
                 }
             }
             catch (Exception ex)
             {
                 AppLogger.Info(ex.InnerException + ex.Message);
-                throw new FailedException("Tải lênthất bại");
+                throw new FailedException("Tải lên thất bại.");
             }
 
             return null;
@@ -3107,10 +3109,13 @@ and a.mzh=@mzh and a.OrganizeId=@orgid
             {
                 foreach (var jz in jzlist)
                 {
+                    // G6 #6: doc CIS + PDS DB qua DbNames.Name (mau G4 #3) — truoc day
+                    // hardcode Newtouch_CIS / NewtouchHIS_PDS nen tren carrier STG doc
+                    // nham sang DB demo. PdsDb la ConnId moi (xem appsettings.json).
                     sql = @"select *
-from Newtouch_CIS.dbo.xt_cf a with(nolock)
+from " + DbNames.Name("CisDb", "Newtouch_CIS") + @".dbo.xt_cf a with(nolock)
 where  cflx in(1,2) 
-and not exists(select 1 from NewtouchHIS_PDS.dbo.mz_cf b with(nolock) where a.cfh=b.cfh and a.OrganizeId=b.OrganizeId )
+and not exists(select 1 from " + DbNames.Name("PdsDb", "NewtouchHIS_PDS") + @".dbo.mz_cf b with(nolock) where a.cfh=b.cfh and a.OrganizeId=b.OrganizeId )
 and a.zt='1' and a.jzId=@jzId ";
                     var cflist = FindList<PrescriptionDTO>(sql, new SqlParameter[] { new SqlParameter("jzId", jz.jzId) });
                     if (cflist != null && cflist.Count > 0)
@@ -3218,7 +3223,7 @@ where  yzlx='7' and a.zyh=@zymzh  and a.OrganizeId=@orgId and a.zt=1 and yzzt='2
                         {
                             if (string.IsNullOrWhiteSpace(cf.cfh))
                             {
-                                throw new FailedException("Đơn thuốcNgoại lệ，thiếuSố đơn thuốc");
+                                throw new FailedException("Đơn thuốc không hợp lệ, thiếu số đơn thuốc.");
                             }
 
                             DateTime? cfklrq = null;
@@ -3233,7 +3238,7 @@ where  yzlx='7' and a.zyh=@zymzh  and a.OrganizeId=@orgId and a.zt=1 and yzzt='2
                                 var dbPresEnitty = db.FirstOrDefault<PrescriptionEntity>(sql4, new DbParameter[] { new SqlParameter("@cfId", cf.cfId) });
                                 if (dbPresEnitty == null)
                                 {
-                                    throw new FailedException("Đơn thuốcNgoại lệ，Đơn thuốcdấuhiển thịcộtNgoại lệ");
+                                    throw new FailedException("Đơn thuốc không hợp lệ: không tìm thấy cột hiển thị đơn thuốc.");
                                 }
 
                                 cfklrq = dbPresEnitty.CreateTime;
