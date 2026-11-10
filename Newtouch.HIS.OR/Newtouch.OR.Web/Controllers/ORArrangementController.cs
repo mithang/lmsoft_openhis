@@ -15,14 +15,16 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
     public class ORArrangementController : OrgControllerBase
     {
         private readonly IORArrangementRepo _oRArrangementRepo;
+        private readonly IORApplyInfoRepo _oRApplyInfoRepo;
 
         /// <summary>
         /// Hàm tạo mặc định
         /// </summary>
         /// <param name="oRArrangementRepo"></param>
-        public ORArrangementController(IORArrangementRepo oRArrangementRepo)
+        public ORArrangementController(IORArrangementRepo oRArrangementRepo, IORApplyInfoRepo oRApplyInfoRepo)
         {
             this._oRArrangementRepo = oRArrangementRepo;
+            this._oRApplyInfoRepo = oRApplyInfoRepo;
         }
 
         /// <summary>
@@ -65,7 +67,26 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         /// <returns></returns>
         public IActionResult DeleteForm(string keyValue)
         {
+            // G25: khoa rong/khong co lich trong cung co so -> loi ro rang
+            // (mau OpOperation/DeleteData G24); tra don ve cho duyet
+            // (sqzt=1) khi lich vua huy dang o trang thai da xep (sqzt=2)
+            // (mau OpArrangement/DeleteForm G23).
+            if (string.IsNullOrWhiteSpace(keyValue))
+            {
+                return Error("Không tìm thấy lịch xếp phẫu thuật");
+            }
+            var dbEntity = _oRArrangementRepo.FindEntity(p => p.Id == keyValue && p.OrganizeId == OrganizeId && p.zt == "1");
+            if (dbEntity == null)
+            {
+                return Error("Không tìm thấy lịch xếp phẫu thuật");
+            }
+            var wasArranged = dbEntity.sqzt == "2";
+            var applyId = dbEntity.ApplyId;
             _oRArrangementRepo.DeleteForm(keyValue);
+            if (wasArranged)
+            {
+                _oRApplyInfoRepo.UpdateSqzt(applyId, "1");
+            }
             return Success("Thao tác thành công.");
         }
 

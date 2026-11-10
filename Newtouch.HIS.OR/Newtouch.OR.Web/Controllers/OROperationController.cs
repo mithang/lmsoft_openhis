@@ -73,6 +73,13 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         /// <returns></returns>
         public IActionResult SubmitForm(OROperationEntity entity, string keyValue)
         {
+            // G25: mac dinh co so tu session (mau OpOperation/submitForm
+            // G24) — base entity.OrganizeId null nen tao moi loi SQL
+            // OrganizeId NULL, sua khong tim thay dong.
+            if (string.IsNullOrWhiteSpace(entity.OrganizeId))
+            {
+                entity.OrganizeId = OrganizeId;
+            }
             _oROperationRepo.SubmitForm(entity, keyValue);
             return Success("Thao tác thành công.");
         }
@@ -84,6 +91,18 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         /// <returns></returns>
         public IActionResult DeleteForm(string keyValue)
         {
+            // G25: khoa rong/khong ton tai/khac co so -> loi ro rang, khong
+            // xoa nham dong cua co so khac (mau OpOperation/DeleteData G24);
+            // repo chi nhan Id nen rang buoc co so phai kiem tra o day.
+            if (string.IsNullOrWhiteSpace(keyValue))
+            {
+                return Error("Không tìm thấy phẫu thuật");
+            }
+            var dbEntity = _oROperationRepo.FindEntity(p => p.Id == keyValue && p.OrganizeId == OrganizeId && p.zt == "1");
+            if (dbEntity == null)
+            {
+                return Error("Không tìm thấy phẫu thuật");
+            }
             _oROperationRepo.DeleteForm(keyValue);
             return Success("Thao tác thành công.");
         }

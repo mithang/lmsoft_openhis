@@ -28,6 +28,19 @@ namespace Newtouch.OR.ManageSystem.Repository
         }
 
         /// <summary>
+        /// G25: kiem tra do dai chuoi theo cot DB; qua dai -> loi ro rang
+        /// thay vi loi cat chuoi cua SQL. Tra ve gia tri goc de gan truc tiep.
+        /// </summary>
+        private static string Len(string value, int max, string name)
+        {
+            if (value != null && value.Length > max)
+            {
+                throw new FailedException(name + " tối đa " + max + " ký tự");
+            }
+            return value;
+        }
+
+        /// <summary>
         /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
@@ -36,7 +49,9 @@ namespace Newtouch.OR.ManageSystem.Repository
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                var dbEntity = this.FindEntity(keyValue);
+                // G25: sua chi trong cung co so (base FindEntity theo khoa
+                // chinh nen sua duoc don cua co so khac).
+                var dbEntity = this.FindEntity(p => p.Id == keyValue && p.OrganizeId == entity.OrganizeId);
                 // G23: nhanh edit truoc day bo qua entity (lay dbEntity roi
                 // Modify + Update ngay) nen sua don qua SubmitForm1 la NO-OP.
                 // Ghi that bang MapperTo (D-T1-FIX-001); khong tim thay -> loi
@@ -45,10 +60,37 @@ namespace Newtouch.OR.ManageSystem.Repository
                 {
                     throw new FailedException("Không tìm thấy đơn phẫu thuật hợp lệ!");
                 }
-                var ignoreProps = new List<string>() { "Id", "OrganizeId", "CreateTime", "CreatorCode", "LastModifyTime", "LastModifierCode" };
-                entity.MapperTo(dbEntity, ignoreProps);
+                // G25: MapperToSkipNull + them "sqzt","zt" vao ignoreProps —
+                // base MapperTo copy ca null: entity tu form binder co zt=null
+                // nen sua nao cung loi "Cannot insert NULL into column 'zt'",
+                // va sqzt bi wipe ve null; zt/sqzt la truong vong doi, khong
+                // doi qua SubmitForm (nhu ORArrangementRepo).
+                var ignoreProps = new List<string>() { "Id", "OrganizeId", "CreateTime", "CreatorCode", "LastModifyTime", "LastModifierCode", "sqzt", "zt" };
+                entity.MapperToSkipNull(dbEntity, ignoreProps);
                 EntityHelper.Modify(dbEntity, keyValue);
                 return Update(dbEntity);
+            }
+            // G25: tao moi — so don bat buoc + khong trung trong cung co so
+            // + do dai theo cot DB (base Insert tran: thieu org -> loi SQL
+            // tho; Applyno rong tao dong rac; trung Applyno tao dong trung
+            // vi khong co unique constraint tren Applyno).
+            if (string.IsNullOrWhiteSpace(entity.Applyno))
+            {
+                throw new FailedException("Số đơn đăng ký không được để trống");
+            }
+            entity.Applyno = Len(entity.Applyno, 50, "Số đơn đăng ký");
+            entity.zyh = Len(entity.zyh, 50, "Số nhập viện");
+            entity.ssdm = Len(entity.ssdm, 50, "Mã phẫu thuật");
+            entity.ssmcn = Len(entity.ssmcn, 100, "Tên phẫu thuật");
+            entity.ysgh = Len(entity.ysgh, 50, "Mã bác sĩ mổ chính");
+            entity.ysxm = Len(entity.ysxm, 100, "Tên bác sĩ mổ chính");
+            entity.AnesCode = Len(entity.AnesCode, 50, "Phương pháp gây mê");
+            entity.ssbw = Len(entity.ssbw, 100, "Vị trí phẫu thuật");
+            entity.sqzt = Len(entity.sqzt, 2, "Trạng thái đơn");
+            entity.isgl = Len(entity.isgl, 2, "Cách ly");
+            if (this.IQueryable().Any(p => p.Applyno == entity.Applyno && p.zt == "1" && p.OrganizeId == entity.OrganizeId))
+            {
+                throw new FailedException("Số đơn đăng ký đã tồn tại.");
             }
             EntityHelper.Create(entity, true);
             return Insert(entity);
@@ -67,7 +109,8 @@ namespace Newtouch.OR.ManageSystem.Repository
             //return Delete(p => p.Id == keyValue);
             
             var dbEntity = this.FindEntity(p=>p.Applyno==keyValue && p.OrganizeId==orgId);
-            var mc = dbEntity.ssmcn;
+            // G25: xoa dong "var mc = dbEntity.ssmcn;" (carry G23) — chay
+            // truoc null-check nen khong tim thay don thi NRE; mc khong dung.
             if (dbEntity != null)
             {
                 dbEntity.sqzt = ((int)EnumSqzt.yqx).ToString();
