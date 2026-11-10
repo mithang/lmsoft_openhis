@@ -119,7 +119,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
             entity.CreateTime = Convert.ToDateTime(DateTime.Now);
             entity.CreatorCode= UserIdentity.UserName;
             _MrreldeptRepo.Save(entity);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
                 entity.OrganizeId = OrganizeId;
             }
             _MrdicdeptRepo.SubmitForm(entity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }  
 
         /// <summary>
@@ -174,8 +174,8 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
         /// <returns></returns>
         public IActionResult DeleteData(string keyValue)
         {
-            _MrdicdeptRepo.DeleteForm(keyValue);
-            return Success("Thao tác thành công。");
+            _MrdicdeptRepo.DeleteForm(keyValue, OrganizeId);
+            return Success("Thao tác thành công.");
         }
     }
 }

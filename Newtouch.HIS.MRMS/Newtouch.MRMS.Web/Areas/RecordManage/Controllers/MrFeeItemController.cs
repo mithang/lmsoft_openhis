@@ -2,6 +2,7 @@ using Newtouch.MR.ManageSystem.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
 using NewtouchHIS.Framework.Web.Controllers;
 using NewtouchHIS.Lib.Base;
+using NewtouchHIS.Lib.Base.Exceptions;
 using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Lib.Base.Init;
 using NewtouchHIS.Lib.Base.Utilities;
@@ -166,31 +167,54 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
 
 		public IActionResult Save(IList<itemEntity> list,string code,string hissfdl)
 		{
+			// G21: code rong -> ghi feetypecode NULL; item thieu sfxmCode -> loi SQL
+			// tho NULL sfxm; cung item 2 lan -> 2 row. Validate het truoc khi
+			// insert (tranh ghi nua chung), bo trung trong cung 1 lan goi.
+			if (string.IsNullOrWhiteSpace(code))
+			{
+				throw new FailedException("Nhóm thu phí bệnh án không được để trống");
+			}
+			if (list == null || list.Count == 0)
+			{
+				throw new FailedException("Chưa chọn khoản thu nào để lưu");
+			}
 			foreach (var obj in list)
 			{
+				if (string.IsNullOrWhiteSpace(obj.sfxmCode))
+				{
+					throw new FailedException("Mã khoản thu không được để trống");
+				}
+			}
+			var seen = new HashSet<string>();
+			foreach (var obj in list)
+			{
+				if (!seen.Add(obj.sfxmCode))
+				{
+					continue;
+				}
 				bafeeRelEntity rel = new bafeeRelEntity();
 				rel.sfxm = obj.sfxmCode;
 				rel.sfxmmc = obj.sfxmmc;
 				rel.feetypecode = code;
 				SubmitForm(rel);
 			}
-			return Success("Thao tác thành công。");
+			return Success("Thao tác thành công.");
 		}
 
         public IActionResult SavebyHISsfdl(string code,string hissfdl)
         {
             _MrFeeRelDmnService.SaveRelbyHissfdl(code, hissfdl, this.UserIdentity.rygh,OrganizeId);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
         public IActionResult SavebySfxm(string code,string ids)
         {
             _MrFeeRelDmnService.SaveRelbyhissfxm(code, ids, this.UserIdentity.rygh,OrganizeId);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 		public IActionResult DeleteForm(string keyValue)
 		{
-			_MrFeeRelRepo.DeleteForm(keyValue);
-			return Success("Thao tác thành công。");
+			_MrFeeRelRepo.DeleteForm(keyValue, OrganizeId);
+			return Success("Thao tác thành công.");
 		}
 
 	}

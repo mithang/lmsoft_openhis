@@ -24,6 +24,6 @@ namespace Newtouch.MR.ManageSystem.Domain.IRepository
     {
         IList<bafeeRelEntity> GetPagintionList(Pagination pagination, string keyword, string organizeId);
 		int SaveForm(bafeeRelEntity entity);
-		int DeleteForm(string keyValue);
+		int DeleteForm(string keyValue, string organizeId = null);
 	}
 }

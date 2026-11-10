@@ -110,6 +110,17 @@ where zt='1'  and organizeid=@orgId and  Lev!=1";
         /// <param name="keyValue">Giá trị khóa chính</param>
         public int SubmitForm(bafeeRelVO entity)
         {
+                // G21: Id rong -> UPDATE id='' anh huong 0 row nhung controller cu van
+                // Success gia; feetypecode rong -> ghi '' vao DB. Chan ngay tu dau,
+                // controller kiem tra so row tra ve (0 row = khong tim thay).
+                if (string.IsNullOrWhiteSpace(entity.Id))
+                {
+                    throw new FailedException("Không tìm thấy thông tin quan hệ thu phí.");
+                }
+                if (string.IsNullOrWhiteSpace(entity.feetypecode))
+                {
+                    throw new FailedException("Nhóm thu phí bệnh án không được để trống");
+                }
                 //Mã khoa HIS đã tồn tại Cập nhật
                 string sql = "update [mr_dic_sfxmrel] set feetypecode=@feetypecode ,zt='1' ,LastModifyTime=@LastModifyTime ,LastModifierCode=@LastModifierCode where id = @id and organizeId=@organizeId";
                 SugarParameter[] para ={
@@ -295,24 +306,42 @@ where organizeId=@orgId  and ypCode not in (
         {
             if (!string.IsNullOrWhiteSpace(code) && !string.IsNullOrWhiteSpace(hissfdl))
             {
+                // G21: hissfdl la thi 0 row khop -> loi sach thay vi Success gia;
+                // chay lai chi insert row chua co (NOT EXISTS, gioi han theo org +
+                // feetypecode hien tai) -> idempotent, chay lai khong tao trung.
+                var matched = this.FindScalarList<int>(
+                    "select count(*) from [NewtouchHIS_Base].[dbo].[V_S_xt_sfxm] with(nolock) where sfdlcode=@sfdl and OrganizeId=@orgId",
+                    new SugarParameter("@sfdl", hissfdl),
+                    new SugarParameter("@orgId", orgId)).FirstOrDefault();
+                if (matched == 0)
+                {
+                    throw new FailedException("Không tìm thấy khoản thu HIS thuộc nhóm " + hissfdl + ".");
+                }
                 try
                 {
                     string sql = @"insert into mr_dic_sfxmrel(Id,OrganizeId,sfxm,sfxmmc,feetypecode,zt,CreateTime,CreatorCode)
 select newid(),OrganizeId,sfxmCode,sfxmmc,@code,'1',getdate(),@user 
 from  [NewtouchHIS_Base].[dbo].[V_S_xt_sfxm] a with(nolock)
 where sfdlcode=@sfdl and OrganizeId=@orgId 
---and not exists(select 1 from mr_dic_sfxmrel b with(nolock) where a.sfxmCode=b.sfxm and b.zt='1')
+and not exists(select 1 from mr_dic_sfxmrel b with(nolock) where a.sfxmCode=b.sfxm and b.zt='1' and b.OrganizeId=@orgId and b.feetypecode=@code)
 ";
-                    this.ExecuteSqlCommand(sql, new SugarParameter[] {
+                    int cnt = this.ExecuteSqlCommand(sql, new SugarParameter[] {
                         new SugarParameter("@code",code),
                         new SugarParameter("@sfdl",hissfdl),
                         new SugarParameter("@user",user),
                         new SugarParameter("@orgId",orgId)
                     });
+                    // cnt == 0: tat ca da duoc phan loai truoc do -> Success idempotent.
                 }
-                catch (Exception ex)
+                catch (FailedException)
                 {
-                    throw new FailedException("Bất thường:" + ex.Message);
+                    throw;
+                }
+                catch (Exception)
+                {
+                    // G21: khong de lo ex.Message (co the chua text SQL / ten kieu
+                    // exception mac dinh) nhu "Bất thường:..." cu.
+                    throw new FailedException("Đồng bộ khoản thu HIS thất bại, vui lòng thử lại.");
                 }
             }
             else
@@ -324,41 +353,65 @@ where sfdlcode=@sfdl and OrganizeId=@orgId
         {
             if (!string.IsNullOrWhiteSpace(code) &&!string.IsNullOrWhiteSpace(ids))
             {
+                // G21: loc id rong TRUOC try (ids=",,," truoc day roi nhanh guard trong
+                // try roi bi catch goi lai thanh "Bất thường:Exception of type ...").
+                // FailedException chi set Msg (khong set Message) nen catch cu dung
+                // ex.Message se de lo ten kieu exception mac dinh.
+                var idList = ids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(s => s.Trim())
+                    .Where(s => s.Length > 0)
+                    .ToList();
+                if (idList.Count == 0)
+                {
+                    throw new FailedException("Nhóm thu phí bệnh án và nhóm thu phí HIS không được để trống!");
+                }
+                var inNames = new List<string>();
+                var pars = new List<SugarParameter>
+                {
+                    new SugarParameter("@code",code),
+                    new SugarParameter("@user",user),
+                    new SugarParameter("@orgId",orgId)
+                };
+                for (int i = 0; i < idList.Count; i++)
+                {
+                    string pname = "@id" + i;
+                    inNames.Add(pname);
+                    pars.Add(new SugarParameter(pname, idList[i]));
+                }
+                var countPars = new List<SugarParameter>
+                {
+                    new SugarParameter("@orgId",orgId)
+                };
+                for (int i = 0; i < idList.Count; i++)
+                {
+                    countPars.Add(new SugarParameter("@id" + i, idList[i]));
+                }
+                var matched = this.FindScalarList<int>(
+                    string.Format("select count(*) from [NewtouchHIS_Base].[dbo].[V_S_xt_sfxm] with(nolock) where sfxmCode in({0}) and OrganizeId=@orgId", string.Join(",", inNames)),
+                    countPars.ToArray()).FirstOrDefault();
+                if (matched == 0)
+                {
+                    throw new FailedException("Không tìm thấy khoản thu HIS tương ứng.");
+                }
                 try
                 {
                     string sql = @"insert into mr_dic_sfxmrel(Id,OrganizeId,sfxm,sfxmmc,feetypecode,zt,CreateTime,CreatorCode)
 select newid(),OrganizeId,sfxmCode,sfxmmc,@code,'1',getdate(),@user 
 from  [NewtouchHIS_Base].[dbo].[V_S_xt_sfxm] a with(nolock)
 where sfxmCode in({0}) and OrganizeId=@orgId 
---and not exists(select 1 from mr_dic_sfxmrel b with(nolock) where a.sfxmCode=b.sfxm and b.zt='1')
+and not exists(select 1 from mr_dic_sfxmrel b with(nolock) where a.sfxmCode=b.sfxm and b.zt='1' and b.OrganizeId=@orgId and b.feetypecode=@code)
 ";
-                    var idList = ids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(s => s.Trim())
-                        .Where(s => s.Length > 0)
-                        .ToList();
-                    if (idList.Count == 0)
-                    {
-                        throw new FailedException("Nhóm thu phí bệnh án và nhóm thu phí HIS không được để trống!");
-                    }
-                    var inNames = new List<string>();
-                    var pars = new List<SugarParameter>
-                    {
-                        new SugarParameter("@code",code),
-                        new SugarParameter("@user",user),
-                        new SugarParameter("@orgId",orgId)
-                    };
-                    for (int i = 0; i < idList.Count; i++)
-                    {
-                        string pname = "@id" + i;
-                        inNames.Add(pname);
-                        pars.Add(new SugarParameter(pname, idList[i]));
-                    }
                     sql = string.Format(sql, string.Join(",", inNames));
                     int cnt = this.ExecuteSqlCommand(sql, pars.ToArray());
+                    // cnt == 0: tat ca da duoc phan loai truoc do -> Success idempotent.
                 }
-                catch (Exception ex)
+                catch (FailedException)
                 {
-                    throw new FailedException("Bất thường:" + ex.Message);
+                    throw;
+                }
+                catch (Exception)
+                {
+                    throw new FailedException("Đồng bộ khoản thu HIS thất bại, vui lòng thử lại.");
                 }
             }
             else

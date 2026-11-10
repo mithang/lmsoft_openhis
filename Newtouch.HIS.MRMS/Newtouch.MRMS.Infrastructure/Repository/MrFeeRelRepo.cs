@@ -75,9 +75,19 @@ namespace Newtouch.MR.ManageSystem.Repository
 			return Insert(entity);
 		}
 
-		public int DeleteForm(string keyValue)
+		public int DeleteForm(string keyValue, string organizeId = null)
 		{
+			// G21: FindEntity null -> loi sach thay vi NRE; truyen organizeId thi
+			// chan xoa row cua to chuc khac.
 			var dbEntity = this.FindEntity(keyValue);
+			if (dbEntity == null)
+			{
+				throw new FailedException("Không tìm thấy thông tin quan hệ thu phí.");
+			}
+			if (!string.IsNullOrWhiteSpace(organizeId) && dbEntity.OrganizeId != organizeId)
+			{
+				throw new FailedException("Không có quyền xóa dữ liệu của tổ chức khác.");
+			}
 			//properties
 			dbEntity.zt = "0";
 			dbEntity.Modify(keyValue);

@@ -46,21 +46,70 @@ namespace Newtouch.MR.ManageSystem.Repository
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                if (this.IQueryable().Any(p => p.ksbm == entity.ksbm && p.Id != keyValue && p.zt == "1"))
+                // Sua: chi validate field duoc post (merge-skip-null, tien le G2/G18);
+                // form post thieu ksmc thi giu ksmc cu, khong xoa ve NULL.
+                if (entity.ksbm != null)
                 {
-                    throw new FailedException("Mã không được trùng lặp");
+                    if (string.IsNullOrWhiteSpace(entity.ksbm))
+                    {
+                        throw new FailedException("Mã khoa bệnh án không được để trống");
+                    }
+                    if (entity.ksbm.Length > 50)
+                    {
+                        throw new FailedException("Mã khoa bệnh án tối đa 50 ký tự");
+                    }
+                    if (this.IQueryable().Any(p => p.ksbm == entity.ksbm && p.Id != keyValue && p.zt == "1" && p.OrganizeId == entity.OrganizeId))
+                    {
+                        throw new FailedException("Mã không được trùng lặp");
+                    }
+                }
+                if (entity.ksmc != null && entity.ksmc.Length > 100)
+                {
+                    throw new FailedException("Tên khoa bệnh án tối đa 100 ký tự");
                 }
                 var dbEntity = this.FindEntity(keyValue);
-                //properties
-                dbEntity.ksbm = entity.ksbm;
-                dbEntity.ksmc = entity.ksmc;
+                if (dbEntity == null)
+                {
+                    throw new FailedException("Không tìm thấy thông tin khoa bệnh án.");
+                }
+                if (!string.IsNullOrWhiteSpace(entity.OrganizeId) && dbEntity.OrganizeId != entity.OrganizeId)
+                {
+                    throw new FailedException("Không có quyền sửa dữ liệu của tổ chức khác.");
+                }
+                if (entity.ksbm != null)
+                {
+                    dbEntity.ksbm = entity.ksbm;
+                }
+                if (entity.ksmc != null)
+                {
+                    dbEntity.ksmc = entity.ksmc;
+                }
 
                 dbEntity.Modify(keyValue);
                 return Update(dbEntity);
             }
             else
             {
-                if (this.IQueryable().Any(p => p.ksbm == entity.ksbm))
+                // Tao moi: ksbm/ksmc bat buoc. Kiem tra trung chi trong to chuc hien tai
+                // va chi voi row dang hoat dong (zt=1): ma cua row da xoa mem duoc dung lai,
+                // dong nhat nhanh sua; dong thoi ksbm rong khong khop row NULL co san nua.
+                if (string.IsNullOrWhiteSpace(entity.ksbm))
+                {
+                    throw new FailedException("Mã khoa bệnh án không được để trống");
+                }
+                if (entity.ksbm.Length > 50)
+                {
+                    throw new FailedException("Mã khoa bệnh án tối đa 50 ký tự");
+                }
+                if (string.IsNullOrWhiteSpace(entity.ksmc))
+                {
+                    throw new FailedException("Tên khoa bệnh án không được để trống");
+                }
+                if (entity.ksmc.Length > 100)
+                {
+                    throw new FailedException("Tên khoa bệnh án tối đa 100 ký tự");
+                }
+                if (this.IQueryable().Any(p => p.ksbm == entity.ksbm && p.OrganizeId == entity.OrganizeId && p.zt == "1"))
                 {
                     throw new FailedException("Mã không được trùng lặp");
                 }
@@ -73,9 +122,19 @@ namespace Newtouch.MR.ManageSystem.Repository
         /// Xóa dữ liệu
         /// </summary>
         /// <param name="keyValue">Giá trị khóa chính</param>
-        public int DeleteForm(string keyValue)
+        public int DeleteForm(string keyValue, string organizeId = null)
         {
+            // G21: FindEntity null -> loi sach thay vi NRE; truyen organizeId thi
+            // chan xoa row cua to chuc khac.
             var dbEntity = this.FindEntity(keyValue);
+            if (dbEntity == null)
+            {
+                throw new FailedException("Không tìm thấy thông tin khoa bệnh án.");
+            }
+            if (!string.IsNullOrWhiteSpace(organizeId) && dbEntity.OrganizeId != organizeId)
+            {
+                throw new FailedException("Không có quyền xóa dữ liệu của tổ chức khác.");
+            }
             //properties
             dbEntity.zt = "0";
             dbEntity.Modify(keyValue);

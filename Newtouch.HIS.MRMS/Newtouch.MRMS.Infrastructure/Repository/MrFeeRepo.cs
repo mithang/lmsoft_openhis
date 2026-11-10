@@ -35,77 +35,115 @@ namespace Newtouch.MR.ManageSystem.Repository
 
         }
 		
-        public int SubmitForm(bafeeVO entity, string keyValue,string OrganizeId,bafeeVO oldEntity)
+        public int SubmitForm(bafeeVO entity, string keyValue, string OrganizeId)
         {
-			// FIX-2 C2-B2: tao moi (keyValue rong) thi controller van goi
-			// GetFormJson -> oldEntity null; dereference oldEntity.Lev o day
-			// gay NRE. Khi khong co ban cu, flag = false: tao moi di nhanh
-			// insert (keyValue rong), sua doi ten thi di nhanh update nhu cu.
-			var flag = oldEntity != null && ((oldEntity.Lev == 1 && entity.name1 == oldEntity.name1) || (oldEntity.Lev == 2 && entity.name1 == oldEntity.name1 && entity.name2 == oldEntity.name2));//true Thực hiện Thêm mới
-
-			if ( (!string.IsNullOrEmpty(keyValue)) && (!flag) )
+            // G21: name la cot NOT NULL; form khong post name thi loi SQL tho.
+            // Sua chi validate field duoc post (merge-skip-null).
+            if (string.IsNullOrEmpty(keyValue))
             {
-                //if (this.IQueryable().Any(p => p.ssdm == entity.ssdm && p.Id != keyValue && p.zt == "1"))
-                //{
-                //    throw new FailedException("Số hiệu không được trùng lặp");
-                //}
-                //var dbEntity = this.FindEntity(keyValue);
-                var dbEntity = new bafeeEntity();
-				//properties
-				dbEntity.Id = keyValue;
-                dbEntity.OrganizeId = OrganizeId;
-                dbEntity.Name = entity.name;
-                dbEntity.py = entity.py;
-				var code = getCode(dbEntity.Lev, dbEntity.ParentCode,OrganizeId).ToString();
-				dbEntity.ShortCode = entity.ShortCode == null ? "-" : entity.ShortCode; ;
+                if (string.IsNullOrWhiteSpace(entity.name))
+                {
+                    throw new FailedException("Tên nhóm thu phí không được để trống");
+                }
+            }
+            else if (entity.name != null && string.IsNullOrWhiteSpace(entity.name))
+            {
+                throw new FailedException("Tên nhóm thu phí không được để trống");
+            }
+            if (entity.name != null && entity.name.Length > 50)
+            {
+                throw new FailedException("Tên nhóm thu phí tối đa 50 ký tự");
+            }
+            if (entity.ShortCode != null && entity.ShortCode.Length > 50)
+            {
+                throw new FailedException("Mã viết tắt tối đa 50 ký tự");
+            }
+            if (entity.py != null && entity.py.Length > 50)
+            {
+                throw new FailedException("Pinyin tối đa 50 ký tự");
+            }
+
+            if (!string.IsNullOrEmpty(keyValue))
+            {
+                // Sua: keyValue co + row ton tai moi duoc update. Bo flag cu so sanh
+                // name1/name2: doi ten khong doi parent thi flag=true -> roi nhanh
+                // INSERT, tao row trung lap thay vi sua row cu. Sua luon load row cu
+                // (merge-skip-null) thay vi tao entity moi: entity moi co CreateTime
+                // null -> Update loi SQL tho "Cannot insert NULL into CreateTime".
+                // Cung bo luon GetFormJson(keyValue, Lev=0) tra row sai o controller.
+                var dbEntity = this.FindEntity(keyValue);
+                if (dbEntity == null)
+                {
+                    throw new FailedException("Không tìm thấy thông tin nhóm thu phí.");
+                }
+                if (!string.IsNullOrWhiteSpace(OrganizeId) && dbEntity.OrganizeId != OrganizeId)
+                {
+                    throw new FailedException("Không có quyền sửa dữ liệu của tổ chức khác.");
+                }
+                var oldLev = dbEntity.Lev;
+                var oldParentCode = dbEntity.ParentCode;
+                if (entity.name != null)
+                {
+                    dbEntity.Name = entity.name;
+                }
+                if (entity.py != null)
+                {
+                    dbEntity.py = entity.py;
+                }
+                if (entity.ShortCode != null)
+                {
+                    dbEntity.ShortCode = entity.ShortCode;
+                }
+                int newLev;
+                string newParentCode;
                 if (entity.code1 == null)
                 {
-                    dbEntity.Lev = 1;
-                    dbEntity.ParentCode = null;
+                    newLev = 1;
+                    newParentCode = null;
                 }
                 else if (entity.code2 == null)
                 {
-                    dbEntity.Lev = 2;
-                    dbEntity.ParentCode = entity.code1;
+                    newLev = 2;
+                    newParentCode = entity.code1;
                 }
                 else
                 {
-                    dbEntity.Lev = 3;
-                    dbEntity.ParentCode = entity.code2;
+                    newLev = 3;
+                    newParentCode = entity.code2;
                 }
-                if (entity.Lev == dbEntity.Lev && entity.ParentCode == dbEntity.ParentCode)
+                dbEntity.Lev = newLev;
+                dbEntity.ParentCode = newParentCode;
+                if (newLev == oldLev && newParentCode == oldParentCode)
                 {
-                    //Nhóm lớn Chưa Sửa
-                    dbEntity.px = entity.px;
-                    dbEntity.Code = entity.code;
+                    // Chi doi ten: giu nguyen px/Code cu
                 }
                 else
                 {
-                    dbEntity.px = getPx(dbEntity.Lev, dbEntity.ParentCode,OrganizeId);//Lấy px lớn nhất + 1
-					if (dbEntity.Lev == 1)
-					{
-						//dbEntity.Code = dbEntity.px.ToString();
-						dbEntity.Code = code;
-					}
-					else
-					{
-						if (code == "1")
-						{
-							dbEntity.Code = dbEntity.ParentCode + code.ToString().PadLeft(2, '0');
-						}
-						else
-						{
-							dbEntity.Code = code;
-						}
-						//dbEntity.Code = dbEntity.ParentCode+dbEntity.px.ToString().PadLeft(2, '0');
-					}
+                    // Doi cap/parent: tinh lai px/Code SAU khi da co Lev/ParentCode moi
+                    // (code cu goi getCode voi Lev=0/ParentCode=null -> Code max toan org).
+                    dbEntity.px = getPx(newLev, newParentCode, OrganizeId);
+                    var code = getCode(newLev, newParentCode, OrganizeId).ToString();
+                    if (newLev == 1)
+                    {
+                        dbEntity.Code = code;
+                    }
+                    else
+                    {
+                        if (code == "1")
+                        {
+                            dbEntity.Code = newParentCode + code.PadLeft(2, '0');
+                        }
+                        else
+                        {
+                            dbEntity.Code = code;
+                        }
+                    }
                 }
                 dbEntity.zt = "1";
 
-				dbEntity.Modify(keyValue);
-				return Update(dbEntity);
-				//return 0;
-			}
+                dbEntity.Modify(keyValue);
+                return Update(dbEntity);
+            }
             else
             {
                 var dbEntity = new bafeeEntity();
@@ -221,9 +259,19 @@ namespace Newtouch.MR.ManageSystem.Repository
 			return result;
 		}
 
-		public int DeleteForm(string keyValue)
+		public int DeleteForm(string keyValue, string organizeId = null)
         {
+            // G21: FindEntity null -> loi sach thay vi NRE; truyen organizeId thi
+            // chan xoa row cua to chuc khac.
             var dbEntity = this.FindEntity(keyValue);
+            if (dbEntity == null)
+            {
+                throw new FailedException("Không tìm thấy thông tin nhóm thu phí.");
+            }
+            if (!string.IsNullOrWhiteSpace(organizeId) && dbEntity.OrganizeId != organizeId)
+            {
+                throw new FailedException("Không có quyền xóa dữ liệu của tổ chức khác.");
+            }
             //properties
             dbEntity.zt = "0";
             dbEntity.Modify(keyValue);

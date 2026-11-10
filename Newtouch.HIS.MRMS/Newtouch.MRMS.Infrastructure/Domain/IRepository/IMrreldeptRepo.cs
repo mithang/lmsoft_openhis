@@ -41,7 +41,7 @@ namespace Newtouch.MR.ManageSystem.Domain.IRepository
         /// Xóa dữ liệu
         /// </summary>
         /// <param name="keyValue">Giá trị khóa chính</param>
-        int DeleteForm(string keyValue);
+        int DeleteForm(string keyValue, string organizeId = null);
 
     }
 }

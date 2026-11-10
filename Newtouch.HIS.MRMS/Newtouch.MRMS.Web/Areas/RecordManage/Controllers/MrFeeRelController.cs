@@ -2,6 +2,7 @@ using Newtouch.MR.ManageSystem.Domain.IDomainServices;
 using Microsoft.AspNetCore.Mvc;
 using NewtouchHIS.Framework.Web.Controllers;
 using NewtouchHIS.Lib.Base;
+using NewtouchHIS.Lib.Base.Exceptions;
 using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Lib.Base.Init;
 using NewtouchHIS.Lib.Base.Utilities;
@@ -74,15 +75,24 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
             }
             entity.CreateTime = Convert.ToDateTime(DateTime.Now);
             entity.CreatorCode = UserIdentity.UserName;
-            _MrFeeRelDmnService.SubmitForm(entity);
-            return 1;
+            // G21: tra ve so row that su bi update (0 = Id khong ton tai).
+            return _MrFeeRelDmnService.SubmitForm(entity);
         }
 
         public IActionResult Save(IList<bafeeRelVO> list) {
-            foreach (var obj in list) {
-                SubmitForm(obj);
+            // G21: list rong -> loi sach thay vi Success gia; Id la ->
+            // update 0 row -> loi sach thay vi Success gia.
+            if (list == null || list.Count == 0)
+            {
+                throw new FailedException("Chưa chọn quan hệ thu phí nào để lưu");
             }
-            return Success("Thao tác thành công。");
+            foreach (var obj in list) {
+                if (SubmitForm(obj) == 0)
+                {
+                    throw new FailedException("Không tìm thấy thông tin quan hệ thu phí.");
+                }
+            }
+            return Success("Thao tác thành công.");
         }
 
     }

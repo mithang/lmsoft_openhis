@@ -42,6 +42,29 @@ namespace Newtouch.MR.ManageSystem.Repository
         /// <param name="keyValue">Giá trị khóa chính</param>
         public int SubmitForm(MrreldeptEntity entity, string keyValue)
         {
+            // G21: hisdept rong -> Any(hisdept==null) khop row NULL co san (SqlSugar dich
+            // null thanh IS NULL) roi update 0 row nhung van Success; hisdept > 20 ky tu
+            // (varchar(20)) -> loi SQL tho. Chan ngay tu dau.
+            if (string.IsNullOrWhiteSpace(entity.hisdept))
+            {
+                throw new FailedException("Mã khoa HIS không được để trống");
+            }
+            if (entity.hisdept.Length > 20)
+            {
+                throw new FailedException("Mã khoa HIS tối đa 20 ký tự");
+            }
+            if (string.IsNullOrWhiteSpace(entity.hisdeptname))
+            {
+                throw new FailedException("Tên khoa HIS không được để trống");
+            }
+            if (entity.hisdeptname.Length > 50)
+            {
+                throw new FailedException("Tên khoa HIS tối đa 50 ký tự");
+            }
+            if (!string.IsNullOrEmpty(entity.baksId) && entity.baksId.Length > 50)
+            {
+                throw new FailedException("Mã bệnh án tối đa 50 ký tự");
+            }
             if (this.IQueryable().Any(p => p.hisdept == entity.hisdept && p.OrganizeId == entity.OrganizeId))
             {
                 //Mã khoa HIS đã tồn tại Cập nhật
@@ -68,6 +91,27 @@ namespace Newtouch.MR.ManageSystem.Repository
         /// <param name="entity"></param>
         /// <returns></returns>
         public int Save(MrreldeptEntity entity) {
+            // G21: xem ghi chu o SubmitForm (hisdept rong / qua dai).
+            if (string.IsNullOrWhiteSpace(entity.hisdept))
+            {
+                throw new FailedException("Mã khoa HIS không được để trống");
+            }
+            if (entity.hisdept.Length > 20)
+            {
+                throw new FailedException("Mã khoa HIS tối đa 20 ký tự");
+            }
+            if (string.IsNullOrWhiteSpace(entity.hisdeptname))
+            {
+                throw new FailedException("Tên khoa HIS không được để trống");
+            }
+            if (entity.hisdeptname.Length > 50)
+            {
+                throw new FailedException("Tên khoa HIS tối đa 50 ký tự");
+            }
+            if (!string.IsNullOrEmpty(entity.baksId) && entity.baksId.Length > 50)
+            {
+                throw new FailedException("Mã bệnh án tối đa 50 ký tự");
+            }
             if (this.IQueryable().Any(p => p.hisdept == entity.hisdept && p.OrganizeId == entity.OrganizeId))
             {
                 //Mã khoa HIS đã tồn tại Cập nhật
@@ -92,8 +136,19 @@ namespace Newtouch.MR.ManageSystem.Repository
         /// Xóa dữ liệu
         /// </summary>
         /// <param name="keyValue">Giá trị khóa chính</param>
-        public int DeleteForm(string keyValue)
+        public int DeleteForm(string keyValue, string organizeId = null)
         {
+            // G21: keyValue la khong tim thay -> loi sach thay vi Success gia (0 row);
+            // truyen organizeId thi chan xoa row cua to chuc khac.
+            var dbEntity = this.FindEntity(keyValue);
+            if (dbEntity == null)
+            {
+                throw new FailedException("Không tìm thấy thông tin quan hệ khoa.");
+            }
+            if (!string.IsNullOrWhiteSpace(organizeId) && dbEntity.OrganizeId != organizeId)
+            {
+                throw new FailedException("Không có quyền xóa dữ liệu của tổ chức khác.");
+            }
             return Delete(p => p.Id == keyValue);
         }
     }

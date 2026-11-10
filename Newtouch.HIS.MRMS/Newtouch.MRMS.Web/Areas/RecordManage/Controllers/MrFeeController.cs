@@ -78,22 +78,16 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
 
         public IActionResult submitForm(bafeeVO entity, string keyValue)
         {
-			//if (string.IsNullOrWhiteSpace(entity.OrganizeId))
-			//{
-			//    entity.OrganizeId = OrganizeId;
-			//}
-
-			//Lấy dữ liệu trước khi sửa theo khóa chính
-			var oldEntity=_MrFeeDmnService.GetFormJson(keyValue, entity.Lev);
-
-			_MrFeeRepo.SubmitForm(entity, keyValue,OrganizeId,oldEntity);
-            return Success("Thao tác thành công。");
+            // G21: bo GetFormJson(keyValue, Lev) cu: Lev=0 tra row sai, va flag
+            // name1/name2 trong repo da bo — repo tu load row cu theo keyValue.
+            _MrFeeRepo.SubmitForm(entity, keyValue, OrganizeId);
+            return Success("Thao tác thành công.");
         }
 
         public IActionResult DeleteData(string keyValue)
         {
-            _MrFeeRepo.DeleteForm(keyValue);
-            return Success("Thao tác thành công。");
+            _MrFeeRepo.DeleteForm(keyValue, OrganizeId);
+            return Success("Thao tác thành công.");
         }
     }
 }

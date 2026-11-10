@@ -23,8 +23,8 @@ namespace Newtouch.MR.ManageSystem.Domain.IRepository
 {
     public interface IMrFeeRepo
     {
-        int SubmitForm(bafeeVO entity, string keyValue,string OrganizeId,bafeeVO oldEntity);
-        int DeleteForm(string keyValue);
+        int SubmitForm(bafeeVO entity, string keyValue, string OrganizeId);
+        int DeleteForm(string keyValue, string organizeId = null);
 		IList<bafeeEntity> GetAllFeeList(string orgId);
 
 	}
