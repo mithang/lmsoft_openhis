@@ -111,6 +111,14 @@ namespace Newtouch.MR.ManageSystem.Repository
                     newLev = 3;
                     newParentCode = entity.code2;
                 }
+                // G21-extra: chan self-parenting — chon chinh nhom cua minh lam nhom
+                // cha thi ParentCode treo (Code doi sau khi tinh lai px/Code, khong con
+                // row nao co Code cu). Chi chan khi parent THAY DOI: row da treo tu
+                // truoc van sua duoc (doi ten tai cho / chuyen sang cha hop le).
+                if (!string.IsNullOrEmpty(newParentCode) && newParentCode != oldParentCode && newParentCode == dbEntity.Code)
+                {
+                    throw new FailedException("Không thể chọn chính nhóm này làm nhóm cha.");
+                }
                 dbEntity.Lev = newLev;
                 dbEntity.ParentCode = newParentCode;
                 if (newLev == oldLev && newParentCode == oldParentCode)
