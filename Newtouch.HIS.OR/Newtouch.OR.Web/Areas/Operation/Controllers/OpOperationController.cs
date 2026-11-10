@@ -72,6 +72,18 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
         }
         public IActionResult DeleteData(string keyValue)
         {
+            // G24 (theo mau G23 OPAnesthesiaController): khoa rong/khong ton
+            // tai/khac co so -> loi ro rang, khong xoa nham dong cua co so
+            // khac; repo chi nhan Id nen rang buoc co so phai kiem tra o day.
+            if (string.IsNullOrWhiteSpace(keyValue))
+            {
+                return Error("Không tìm thấy phẫu thuật");
+            }
+            var dbEntity = _OROperationRepo.FindEntity(p => p.Id == keyValue && p.OrganizeId == OrganizeId && p.zt == "1");
+            if (dbEntity == null)
+            {
+                return Error("Không tìm thấy phẫu thuật");
+            }
             _OROperationRepo.DeleteForm(keyValue);
             return Success("Thao tác thành công.");
         }

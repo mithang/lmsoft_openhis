@@ -130,27 +130,67 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
             {
                 entity.OrganizeId = OrganizeId;
             }
-            var ssxh = "";
-			if (!(string.IsNullOrWhiteSpace(keyValue) || keyValue == "null"))
-			{//Sửa
-				ssxh = entity.ssxh;
-			}
-			else
-			{//Thêm mới
-				ssxh = EFDBBaseFuncHelper.GetOPSsxh(OrganizeId);
-			}
-			//var ssxh = "S20191127A000002";
-			//Sửa bảng hồ sơ nhân viên
-			List<OROpStaffRecordEntity> staffRecordList = getStaffRecordList(entity, ssxh);
-			foreach (var ent in staffRecordList)
-			{
-				_OROpStaffRecordRepo.SubmitForm(ent, "");
-			}
-			//Sửa trạng thái xếp lịch(Đã đăng ký)
-			_ORArrangementRepo.UpdateSqzt(entity.arrangeId, "4");
-			//Sửa bảng đăng ký
-			_ORRegistrationRepo.SubmitForm(entity, keyValue, ssxh);
-			return Success("Thao tác thành công.");
+            var isEdit = !(string.IsNullOrWhiteSpace(keyValue) || keyValue == "null");
+            // G24: sua phai ton tai trong cung co so; sua khong gui arrangeId
+            // thi lay lich cua chinh dang ky; khong cho doi dang ky sang lich
+            // khac (UI khong co luong nay).
+            ORRegistrationEntity regEntity = null;
+            if (isEdit)
+            {
+                regEntity = _ORRegistrationRepo.FindEntity(keyValue);
+                if (regEntity == null || regEntity.OrganizeId != OrganizeId || regEntity.zt != "1")
+                {
+                    return Error("Không tìm thấy đăng ký phẫu thuật");
+                }
+                if (string.IsNullOrWhiteSpace(entity.arrangeId))
+                {
+                    entity.arrangeId = regEntity.ArrangeId;
+                }
+                if (entity.arrangeId != regEntity.ArrangeId)
+                {
+                    return Error("Không thể đổi lịch xếp của đăng ký phẫu thuật");
+                }
+            }
+            // G24: validate lich TRUOC KHI dot serial / ghi gi ca — base dot
+            // serial roi moi throw o UpdateSqzt (create loi van dot so ssxh),
+            // va insert staff truoc roi moi loi nen de lai staff mo coi.
+            if (string.IsNullOrWhiteSpace(entity.arrangeId))
+            {
+                return Error("Không tìm thấy lịch xếp phẫu thuật");
+            }
+            var arrangement = _ORArrangementRepo.FindEntity(entity.arrangeId);
+            if (arrangement == null || arrangement.OrganizeId != OrganizeId || arrangement.zt != "1")
+            {
+                return Error("Không tìm thấy lịch xếp phẫu thuật");
+            }
+            if (!isEdit && arrangement.sqzt != "2")
+            {
+                return Error("Lịch phẫu thuật đã được đăng ký hoặc đã hủy");
+            }
+            string ssxh;
+            if (isEdit)
+            {
+                // G24: sua khong gui ssxh -> dung ssxh cua chinh dang ky
+                // (base: staff insert ssxh NULL -> loi SQL).
+                ssxh = string.IsNullOrWhiteSpace(entity.ssxh) ? regEntity.ssxh : entity.ssxh;
+            }
+            else
+            {
+                ssxh = EFDBBaseFuncHelper.GetOPSsxh(OrganizeId);
+            }
+            // Build staff truoc (validate ten nhan vien, chua ghi gi ca).
+            List<OROpStaffRecordEntity> staffRecordList = getStaffRecordList(entity, ssxh);
+            // G24: ghi dang ky TRUOC khi ghi staff — dang ky loi thi khong de
+            // lai staff mo coi (base: staff truoc, dang ky sau).
+            _ORRegistrationRepo.SubmitForm(entity, keyValue, ssxh);
+            //Sửa bảng hồ sơ nhân viên
+            foreach (var ent in staffRecordList)
+            {
+                _OROpStaffRecordRepo.SubmitForm(ent, "");
+            }
+            //Sửa trạng thái xếp lịch(Đã đăng ký)
+            _ORArrangementRepo.UpdateSqzt(entity.arrangeId, "4");
+            return Success("Thao tác thành công.");
         }
 
         // Tra ve ten nhan vien theo ma; nem FailedException ro rang thay vi
@@ -252,10 +292,33 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
 
         public IActionResult DeleteData(string keyValue,string arrangeId,string ssxh)
         {
+            // G24: validate tat ca TRUOC KHI doi gi ca — base UpdateSqzt truoc
+            // roi moi NRE o DeleteForm nen lich da lat + staff da xoa trong
+            // khi dang ky con nguyen (half-write); arrangeId phai la lich cua
+            // chinh dang ky, khong lat lich khac.
+            if (string.IsNullOrWhiteSpace(keyValue))
+            {
+                return Error("Không tìm thấy đăng ký phẫu thuật");
+            }
+            var dbEntity = _ORRegistrationRepo.FindEntity(keyValue);
+            if (dbEntity == null || dbEntity.OrganizeId != OrganizeId || dbEntity.zt != "1")
+            {
+                return Error("Không tìm thấy đăng ký phẫu thuật");
+            }
+            if (string.IsNullOrWhiteSpace(arrangeId) || arrangeId != dbEntity.ArrangeId)
+            {
+                return Error("Không tìm thấy lịch xếp phẫu thuật");
+            }
+            var arrangement = _ORArrangementRepo.FindEntity(arrangeId);
+            if (arrangement == null || arrangement.OrganizeId != OrganizeId || arrangement.zt != "1")
+            {
+                return Error("Không tìm thấy lịch xếp phẫu thuật");
+            }
             //Sửa trạng thái xếp lịch(Đã xếp lịch)
             _ORArrangementRepo.UpdateSqzt(arrangeId, "2");
-            //Sửa đăng ký nhân viên
-            var list=_OROpStaffRecordRepo.getIdBySsxh(ssxh);
+            //Sửa đăng ký nhân viên — xoa theo ssxh cua chinh dang ky, khong
+            // theo ssxh do client gui (co the xoa staff cua dang ky khac).
+            var list=_OROpStaffRecordRepo.getIdBySsxh(dbEntity.ssxh);
             foreach (var obj in list) {
                 _OROpStaffRecordRepo.DeleteForm(obj.Id);
             }

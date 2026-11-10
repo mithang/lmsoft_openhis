@@ -60,9 +60,68 @@ and exists(select 1 from [NewtouchHIS_Base].dbo.V_S_Sys_Department d with(nolock
 
         public void ChargeTemplate_SubmitForm(SysChargeTemplateDto entity, string xmListStr,string user)
         {
+            // G24: validate het TRUOC KHI ghi gi ca — base ghi template truoc
+            // roi moi parse xmListStr nen JSON loi / sfxm rong de lai template
+            // (half-write); sua sfmbbh ao thi UPDATE 0 dong nhung van insert
+            // item mo coi + Success.
+            if (string.IsNullOrWhiteSpace(entity.sfmb))
+            {
+                throw new FailedException("Mã mẫu thu phí không được để trống");
+            }
+            if (entity.sfmb.Length > 20)
+            {
+                throw new FailedException("Mã mẫu thu phí tối đa 20 ký tự");
+            }
+            if (string.IsNullOrWhiteSpace(entity.sfmbmc))
+            {
+                throw new FailedException("Tên mẫu thu phí không được để trống");
+            }
+            if (entity.sfmbmc.Length > 100)
+            {
+                throw new FailedException("Tên mẫu thu phí tối đa 100 ký tự");
+            }
+            IList<SysChargeItemTemplateVO> itemList = null;
+            if (!string.IsNullOrWhiteSpace(xmListStr))
+            {
+                try
+                {
+                    itemList = Json.ToObject<IList<SysChargeItemTemplateVO>>(xmListStr);
+                }
+                catch (Exception)
+                {
+                    throw new FailedException("Danh sách khoản thu phí không hợp lệ");
+                }
+                foreach (var item in itemList)
+                {
+                    if (item == null || string.IsNullOrWhiteSpace(item.sfxmCode))
+                    {
+                        throw new FailedException("Mã khoản thu phí không được để trống");
+                    }
+                    if (item.sfxmCode.Length > 20)
+                    {
+                        throw new FailedException("Mã khoản thu phí tối đa 20 ký tự");
+                    }
+                }
+            }
+
             string sql = "";
             if (!string.IsNullOrWhiteSpace(entity.sfmbbh))
             {
+                // G24: template phai ton tai trong cung co so, con hieu luc —
+                // neu khong thi loi truoc khi insert item mo coi.
+                sql = @"select sfmbbh
+                from " + DbNames.Name("SettDb", "NewtouchHIS_Sett") + @".dbo.xt_sfmb with(nolock)
+                where OrganizeId = @orgId and zt = '1' and sfmbbh = @sfmbbh ";
+                var exist = this.FindList<SysChargeTemplateGridVO>(sql, new SugarParameter[]
+                {
+                    new SugarParameter("@orgId", entity.OrganizeId),
+                    new SugarParameter("@sfmbbh", entity.sfmbbh)
+                });
+                if (exist == null || exist.Count == 0)
+                {
+                    throw new FailedException("Không tìm thấy mẫu thu phí");
+                }
+
                 sql = @"select sfmbbh
                 from " + DbNames.Name("SettDb", "NewtouchHIS_Sett") + @".dbo.xt_sfmb with(nolock)
                 where OrganizeId = @orgId and zt = '1' and sfmb = @sfmb and sfmbbh <> @sfmbbh ";
@@ -81,7 +140,9 @@ and exists(select 1 from [NewtouchHIS_Base].dbo.V_S_Sys_Department d with(nolock
                 sql = "update a set  a.sfmb = @sfmb,a.sfmbmc=@sfmbmc,a.ks=@ks,a.LastModifyTime=getdate(),a.LastModifierCode=@user,a.zt=@zt " +
                       "from " + DbNames.Name("SettDb", "NewtouchHIS_Sett") + ".dbo.xt_sfmb a " +
                       "where a.OrganizeId = @orgId and a.zt = '1' and a.sfmbbh = @sfmbbh ";
-                this.ExecuteSqlCommand(sql, new SugarParameter[]
+                // G24: UPDATE 0 dong -> loi ro rang (phong khi template doi
+                // trang thai giua chung sau buoc check ton tai o tren).
+                var updated = this.ExecuteSqlCommand(sql, new SugarParameter[]
                 {
                     new SugarParameter("@sfmbbh", entity.sfmbbh),
                     new SugarParameter("@orgId", entity.OrganizeId),
@@ -91,6 +152,10 @@ and exists(select 1 from [NewtouchHIS_Base].dbo.V_S_Sys_Department d with(nolock
                     new SugarParameter("@ks", entity.ks),
                     new SugarParameter("@zt", entity.zt ?? "1")
                 });
+                if (updated <= 0)
+                {
+                    throw new FailedException("Không tìm thấy mẫu thu phí");
+                }
 
                 sql = @"update a
                 set a.zt = '0',a.LastModifyTime=getdate(),a.LastModifierCode=@user
@@ -138,25 +203,23 @@ values(@sfmbbh,@orgId,@sfmb,@sfmbmc,2,0,'1',@user,getdate(),@ks)";
 
             // 7-fix: tham so hoa INSERT xt_sfmbxm theo tung item (truoc day noi
             // OrganizeId/sfmbbh/sfxmCode/user/sl truc tiep vao chuoi SQL).
-            if (!string.IsNullOrWhiteSpace(xmListStr))
+            // G24: dung itemList da parse + validate o dau ham (khong parse lai
+            // sau khi da ghi template).
+            if (itemList != null && itemList.Count > 0)
             {
-                var itemList = Json.ToObject<IList<SysChargeItemTemplateVO>>(xmListStr);
-                if (itemList.Count > 0)
+                foreach (var item in itemList)
                 {
-                    foreach (var item in itemList)
-                    {
-                        var sqlitems = @"INSERT INTO " + DbNames.Name("SettDb", "NewtouchHIS_Sett") + @".dbo.[xt_sfmbxm]
+                    var sqlitems = @"INSERT INTO " + DbNames.Name("SettDb", "NewtouchHIS_Sett") + @".dbo.[xt_sfmbxm]
                 ([sfmbxmId],[OrganizeId],[sfmbbh],[sfxm],[CreatorCode],[CreateTime],[zt],[sl])
                 values(newid(),@orgId,@sfmbbh,@sfxm,@user,getdate(),'1',@sl)";
-                        this.ExecuteSqlCommand(sqlitems, new SugarParameter[]
-                        {
-                            new SugarParameter("@orgId", entity.OrganizeId),
-                            new SugarParameter("@sfmbbh", entity.sfmbbh),
-                            new SugarParameter("@sfxm", item.sfxmCode),
-                            new SugarParameter("@user", user),
-                            new SugarParameter("@sl", (object)item.sl ?? System.DBNull.Value)
-                        });
-                    }
+                    this.ExecuteSqlCommand(sqlitems, new SugarParameter[]
+                    {
+                        new SugarParameter("@orgId", entity.OrganizeId),
+                        new SugarParameter("@sfmbbh", entity.sfmbbh),
+                        new SugarParameter("@sfxm", item.sfxmCode),
+                        new SugarParameter("@user", user),
+                        new SugarParameter("@sl", (object)item.sl ?? System.DBNull.Value)
+                    });
                 }
             }
         }

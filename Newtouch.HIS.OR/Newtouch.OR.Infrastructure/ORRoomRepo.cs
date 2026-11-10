@@ -64,22 +64,83 @@ namespace Newtouch.OR.ManageSystem.Repository
 
             if (!string.IsNullOrEmpty(keyValue))
             {
-                if (this.IQueryable().Any(p => p.Code == entity.Code && p.Id != keyValue && p.zt == "1"))
+                // G24 (theo mau G23 ORAnesthesiaRepo): sua chi trong cung co so;
+                // khong tim thay -> loi ro rang thay vi NRE.
+                var dbEntity = this.FindEntity(p => p.Id == keyValue && p.OrganizeId == entity.OrganizeId && p.zt == "1");
+                if (dbEntity == null)
                 {
-                    throw new FailedException("Mã không được trùng lặp");
+                    throw new FailedException("Không tìm thấy phòng phẫu thuật");
                 }
-                var dbEntity = this.FindEntity(keyValue);
-                //properties
-                dbEntity.Code = entity.Code;
-                dbEntity.Name = entity.Name;
-                dbEntity.Addr = entity.Addr;
+                // G24 merge-skip-null (G2): chi kiem tra + ghi de cac truong
+                // duoc gui; truong khong gui (null) giu nguyen gia tri cu.
+                if (entity.Code != null)
+                {
+                    if (string.IsNullOrWhiteSpace(entity.Code))
+                    {
+                        throw new FailedException("Mã phòng phẫu thuật không được để trống");
+                    }
+                    if (entity.Code.Length > 50)
+                    {
+                        throw new FailedException("Mã phòng phẫu thuật tối đa 50 ký tự");
+                    }
+                    // G24: dup-check chi trong cung co so + dong con hieu luc
+                    // (zt=1) — ma cua dong da xoa (zt=0) duoc dung lai, ma
+                    // cua co so khac khong chan.
+                    if (this.IQueryable().Any(p => p.Code == entity.Code && p.Id != keyValue && p.zt == "1" && p.OrganizeId == entity.OrganizeId))
+                    {
+                        throw new FailedException("Mã không được trùng lặp");
+                    }
+                    dbEntity.Code = entity.Code;
+                }
+                if (entity.Name != null)
+                {
+                    if (string.IsNullOrWhiteSpace(entity.Name))
+                    {
+                        throw new FailedException("Tên phòng phẫu thuật không được để trống");
+                    }
+                    if (entity.Name.Length > 100)
+                    {
+                        throw new FailedException("Tên phòng phẫu thuật tối đa 100 ký tự");
+                    }
+                    dbEntity.Name = entity.Name;
+                }
+                if (entity.Addr != null)
+                {
+                    if (entity.Addr.Length > 200)
+                    {
+                        throw new FailedException("Địa chỉ tối đa 200 ký tự");
+                    }
+                    dbEntity.Addr = entity.Addr;
+                }
 
                 EntityHelper.Modify(dbEntity, keyValue);
                 return Update(dbEntity);
             }
             else
             {
-                if (this.IQueryable().Any(p => p.Code == entity.Code))
+                // G24: tao moi — ma + ten la bat buoc, gioi han do dai theo
+                // cot (Code varchar(50), Name varchar(100), Addr varchar(200)).
+                if (string.IsNullOrWhiteSpace(entity.Code))
+                {
+                    throw new FailedException("Mã phòng phẫu thuật không được để trống");
+                }
+                if (entity.Code.Length > 50)
+                {
+                    throw new FailedException("Mã phòng phẫu thuật tối đa 50 ký tự");
+                }
+                if (string.IsNullOrWhiteSpace(entity.Name))
+                {
+                    throw new FailedException("Tên phòng phẫu thuật không được để trống");
+                }
+                if (entity.Name.Length > 100)
+                {
+                    throw new FailedException("Tên phòng phẫu thuật tối đa 100 ký tự");
+                }
+                if (entity.Addr != null && entity.Addr.Length > 200)
+                {
+                    throw new FailedException("Địa chỉ tối đa 200 ký tự");
+                }
+                if (this.IQueryable().Any(p => p.Code == entity.Code && p.zt == "1" && p.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("Mã không được trùng lặp");
                 }
@@ -94,7 +155,13 @@ namespace Newtouch.OR.ManageSystem.Repository
         /// <param name="keyValue">Giá trị khóa chính</param>
         public int DeleteForm(string keyValue)
         {
+            // G24: khoa rong/khong ton tai -> loi ro rang thay vi NRE.
+            // Rang buoc co so do controller kiem tra truoc khi goi.
             var dbEntity = this.FindEntity(keyValue);
+            if (dbEntity == null)
+            {
+                throw new FailedException("Không tìm thấy phòng phẫu thuật");
+            }
             //properties
             dbEntity.zt = "0";
             EntityHelper.Modify(dbEntity, keyValue);
