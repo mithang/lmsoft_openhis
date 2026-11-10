@@ -1706,16 +1706,39 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 return Error("Lấy thông tin khám bệnh của bệnh nhân thất bại, vui lòng chọn lại bệnh nhân rồi thử lại");
             }
+            // G4: TryParse thay cho Convert.ToDateTime/ParseDecimal (throw
+            // FormatException tren input sai dinh dang) — tra Error tieng Viet.
             if (!string.IsNullOrEmpty(fbrq))
             {
-                blEntity.fbsj = Convert.ToDateTime(fbrq);
+                if (!DateTime.TryParse(fbrq, out var fbsj))
+                {
+                    return Error("Ngày phát bệnh không đúng định dạng, vui lòng nhập lại.");
+                }
+                blEntity.fbsj = fbsj;
             }
             decimal? decimalNull = null;
-            entity.xuetang = (string.IsNullOrEmpty(xuetang) ? decimalNull : DecimalParseHelper.ParseDecimal(xuetang));
+            decimal xuetangVal = 0, tiwenVal = 0, shousuoyaVal = 0, shuzhangyaVal = 0;
+            if (!string.IsNullOrEmpty(xuetang) && !DecimalParseHelper.TryParseDecimal(xuetang, out xuetangVal))
+            {
+                return Error("Đường huyết không đúng định dạng, vui lòng nhập lại.");
+            }
+            if (!string.IsNullOrEmpty(tiwen) && !DecimalParseHelper.TryParseDecimal(tiwen, out tiwenVal))
+            {
+                return Error("Nhiệt độ không đúng định dạng, vui lòng nhập lại.");
+            }
+            if (!string.IsNullOrEmpty(shousuoya) && !DecimalParseHelper.TryParseDecimal(shousuoya, out shousuoyaVal))
+            {
+                return Error("Huyết áp tâm thu không đúng định dạng, vui lòng nhập lại.");
+            }
+            if (!string.IsNullOrEmpty(shuzhangya) && !DecimalParseHelper.TryParseDecimal(shuzhangya, out shuzhangyaVal))
+            {
+                return Error("Huyết áp tâm trương không đúng định dạng, vui lòng nhập lại.");
+            }
+            entity.xuetang = string.IsNullOrEmpty(xuetang) ? decimalNull : xuetangVal;
             entity.xuetangclfs = xuetangclfs;
-            entity.tiwen = string.IsNullOrEmpty(tiwen) ? decimalNull : DecimalParseHelper.ParseDecimal(tiwen);
-            entity.shousuoya = string.IsNullOrEmpty(shousuoya) ? decimalNull : DecimalParseHelper.ParseDecimal(shousuoya);
-            entity.shuzhangya = string.IsNullOrEmpty(shuzhangya) ? decimalNull : DecimalParseHelper.ParseDecimal(shuzhangya);
+            entity.tiwen = string.IsNullOrEmpty(tiwen) ? decimalNull : tiwenVal;
+            entity.shousuoya = string.IsNullOrEmpty(shousuoya) ? decimalNull : shousuoyaVal;
+            entity.shuzhangya = string.IsNullOrEmpty(shuzhangya) ? decimalNull : shuzhangyaVal;
             _treatmentRepo.Update(entity);
             _medicalRecordRepo.Update(blEntity);
             return Success();

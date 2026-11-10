@@ -1781,7 +1781,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                 var cf = _prescriptionRepo.IQueryable().Where(a => a.cfId == cfId).FirstOrDefault();
                 if (cf == null)
                 {
-                    throw new FailedException("định ký tựĐơn thuốcthất bại");
+                    throw new FailedException("Không tìm thấy đơn thuốc, hủy đơn thất bại.");
                 }
                 if (cf.sfbz == true)
                 {
@@ -1791,7 +1791,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                     }
                     else
                     {
-                        throw new FailedException("Đơn thuốcĐã thu phí，khôngcho phéphơnsửa");
+                        throw new FailedException("Đơn thuốc đã thu phí, không cho phép hủy.");
                     }
 
                 }
@@ -1829,7 +1829,9 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
             apicflx = 0;
             apicfh = "";
             isAlertinherit = false;
-            string sql = "select * from Newtouch_CIS..xt_dzcf where cfId=@cfId  and SyncStatus!='1' ";
+            // G4: SELECT kiểm tra dùng DbNames.Name như UPDATE ngay dưới (trước đây
+            // hardcode [Newtouch_CIS] nên trên carrier STG đọc nhầm sang DB demo).
+            string sql = "select * from " + DbNames.Name("CisDb", "Newtouch_CIS") + "..xt_dzcf where cfId=@cfId  and SyncStatus!='1' ";
             var cflist = this.FindList<DzcfEntity>(sql, new[] { new SqlParameter("@cfId", cfId) }).FirstOrDefault();
             if (cflist != null)
             {
@@ -1837,14 +1839,14 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                 apicfh = cflist.cfh;
                 isAlertinherit = false;
                 // 7-fix: tham so hoa cfId (truoc day string.Format noi truc tiep
-                // vao 2 cau update). Luu y: SELECT kiem tra o tren van doc
-                // [Newtouch_CIS] cung (read leak, khong phai write leak).
+                // vao 2 cau update). G4: SELECT kiem tra o tren da dung DbNames.Name
+                // (truoc day hardcode [Newtouch_CIS] nen tren STG doc nham DB demo).
                 string cfsqls = @"update " + DbNames.Name("CisDb", "Newtouch_CIS") + @"..xt_dzcf set zt='0' where cfid=@cfId and zt='1';  update " + DbNames.Name("CisDb", "Newtouch_CIS") + "..xt_dzcfmx set zt='0' where cfid=@cfId and zt='1' ";
                 this.ExecuteSqlCommand(cfsqls, new[] { new SqlParameter("@cfId", cfId) });
             }
             else
             {
-                throw new FailedException("Bảo hiểm y tếđiện tửĐơn thuốcĐã tải lên,trướcHủyTải lênởvàodòngHủy bỏ");
+                throw new FailedException("Đơn thuốc điện tử BHYT đã tải lên, vui lòng hủy tải lên trước rồi mới hủy đơn thuốc.");
             }
 
         }
