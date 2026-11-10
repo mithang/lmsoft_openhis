@@ -181,12 +181,40 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
                 entity.OrganizeId = OrganizeId;
             }
             var ApplyId = keyValue;
+            // G23: don phai ton tai trong cung co so va chua bi huy; khoa
+            // rong/khoa ao/khac co so -> loi ro rang thay vi NRE o
+            // UpdateSqzt (FindEntity null). Don da huy khong duoc xep lich.
+            if (string.IsNullOrWhiteSpace(ApplyId))
+            {
+                return Error("Không tìm thấy đơn phẫu thuật hợp lệ");
+            }
+            var apply = _ORApplyInfoRepo.FindEntity(p => p.Id == ApplyId && p.OrganizeId == OrganizeId && p.zt == "1");
+            if (apply == null)
+            {
+                return Error("Không tìm thấy đơn phẫu thuật hợp lệ");
+            }
+            if (apply.sqzt == ((int)EnumSqzt.yqx).ToString())
+            {
+                return Error("Đơn phẫu thuật đã bị hủy, không thể sắp xếp!");
+            }
+            // G23: gioi han do dai theo cot (oproom varchar(20), oporder
+            // varchar(2)) — chan truoc khi luu de tranh loi cat chuoi SQL.
+            if (!string.IsNullOrEmpty(entity.oproom) && entity.oproom.Length > 20)
+            {
+                return Error("Phòng mổ tối đa 20 ký tự");
+            }
+            if (!string.IsNullOrEmpty(entity.oporder) && entity.oporder.Length > 2)
+            {
+                return Error("Thứ tự mổ tối đa 2 ký tự");
+            }
             //Chuyển số đơn đăng ký thành lịch phẫu thuật Id
             var ArrangeId = getArrangeIdByApplyId(ApplyId);
+            // G23: luu lich TRUOC roi moi doi trang thai don — truoc day
+            // UpdateSqzt chay truoc nen luu lich that bai (trung/cac chuoi)
+            // van de lai don o trang thai da xep lich (ghi nua chung).
+            _ORArrangementRepo.SubmitForm(entity, ApplyId, ArrangeId);
             //Đổi trạng thái đơn của bảng xếp lịch thành Đã duyệt
             _ORApplyInfoRepo.UpdateSqzt(ApplyId, "2");
-            //Đổi trạng thái đơn của bảng đơn đăng ký thành Đã xếp lịch
-            _ORArrangementRepo.SubmitForm(entity, ApplyId, ArrangeId);
             return Success("Thao tác thành công.");
         }
 
@@ -288,11 +316,30 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
 
         public IActionResult DeleteForm(string keyValue)
         {
+            // G23: khoa rong/khong co lich trong cung co so -> loi ro rang
+            // thay vi NRE; getArrangeIdByApplyId("") tra lich dau tien nen
+            // khoa rong phai chan truoc khi goi (truoc day huy nham lich
+            // cua don khac). Chi tra don ve cho duyet (sqzt=1) khi lich vua
+            // huy dang o trang thai da xep (sqzt=2) — huy lich da huy truoc
+            // do khong duoc hoi sinh don da xep lai sau do.
+            if (string.IsNullOrWhiteSpace(keyValue))
+            {
+                return Error("Không tìm thấy lịch xếp phẫu thuật");
+            }
             //Cập nhật trạng thái phẫu thuật đã xếp lịch
             var ArrangeId = getArrangeIdByApplyId(keyValue);
+            if (string.IsNullOrWhiteSpace(ArrangeId))
+            {
+                return Error("Không tìm thấy lịch xếp phẫu thuật");
+            }
+            var arrange = _ORArrangementRepo.FindEntity(ArrangeId);
+            var wasArranged = arrange != null && arrange.sqzt == "2";
             _ORArrangementRepo.DeleteForm(ArrangeId);
             //Hủy xếp lịch, cập nhật trạng thái đơn đăng ký(1.Đã đăng ký)
-            _ORApplyInfoRepo.UpdateSqzt(keyValue, "1");
+            if (wasArranged)
+            {
+                _ORApplyInfoRepo.UpdateSqzt(keyValue, "1");
+            }
             return Success("Thao tác thành công.");
         }
     }

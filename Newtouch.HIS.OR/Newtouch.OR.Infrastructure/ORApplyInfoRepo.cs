@@ -37,8 +37,16 @@ namespace Newtouch.OR.ManageSystem.Repository
             if (!string.IsNullOrEmpty(keyValue))
             {
                 var dbEntity = this.FindEntity(keyValue);
-                //properties
-                
+                // G23: nhanh edit truoc day bo qua entity (lay dbEntity roi
+                // Modify + Update ngay) nen sua don qua SubmitForm1 la NO-OP.
+                // Ghi that bang MapperTo (D-T1-FIX-001); khong tim thay -> loi
+                // ro rang thay vi NRE o Update(null).
+                if (dbEntity == null)
+                {
+                    throw new FailedException("Không tìm thấy đơn phẫu thuật hợp lệ!");
+                }
+                var ignoreProps = new List<string>() { "Id", "OrganizeId", "CreateTime", "CreatorCode", "LastModifyTime", "LastModifierCode" };
+                entity.MapperTo(dbEntity, ignoreProps);
                 EntityHelper.Modify(dbEntity, keyValue);
                 return Update(dbEntity);
             }
@@ -100,7 +108,13 @@ where yzlx=3 and zyh=@zyh and xmmc=@ssmcn and ysgh=@ysgh and OrganizeId=@orgId a
         /// <returns></returns>
         public int UpdateSqzt(string keyValue,string sqzt )
         {
+            // G23: don khong ton tai (khoa rong/khoa ao/khac co so — FindEntity
+            // theo khoa chinh, khong loc co so) -> loi ro rang thay vi NRE.
             var dbEntity = this.FindEntity(keyValue);
+            if (dbEntity == null)
+            {
+                throw new FailedException("Không tìm thấy đơn phẫu thuật hợp lệ!");
+            }
             //properties
             dbEntity.sqzt = sqzt;
             EntityHelper.Modify(dbEntity, keyValue);

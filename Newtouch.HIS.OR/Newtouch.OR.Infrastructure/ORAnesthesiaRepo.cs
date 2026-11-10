@@ -63,22 +63,80 @@ namespace Newtouch.OR.ManageSystem.Repository
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                if (this.IQueryable().Any(p => p.AnesCode == entity.AnesCode && p.Id != keyValue && p.zt == "1"))
+                // G23: sua chi trong cung co so; khong tim thay -> loi ro
+                // rang thay vi NRE.
+                var dbEntity = this.FindEntity(p => p.Id == keyValue && p.OrganizeId == entity.OrganizeId && p.zt == "1");
+                if (dbEntity == null)
                 {
-                    throw new FailedException("Mã không được trùng lặp");
+                    throw new FailedException("Không tìm thấy phương pháp gây mê");
                 }
-                var dbEntity = this.FindEntity(keyValue);
-                //properties
-                dbEntity.AnesCode = entity.AnesCode;
-                dbEntity.AnesName = entity.AnesName;
-                dbEntity.Aneszjm = entity.Aneszjm;
+                // G23 merge-skip-null (G2): chi kiem tra + ghi de cac truong
+                // duoc gui; truong khong gui (null) giu nguyen gia tri cu.
+                // Ma gui rong (chuoi rong) la loi; ma khong gui thi giu ma cu
+                // nen khong the trung — bo qua dup-check trong truong hop do.
+                if (entity.AnesCode != null)
+                {
+                    if (string.IsNullOrWhiteSpace(entity.AnesCode))
+                    {
+                        throw new FailedException("Mã gây mê không được để trống");
+                    }
+                    if (entity.AnesCode.Length > 50)
+                    {
+                        throw new FailedException("Mã gây mê tối đa 50 ký tự");
+                    }
+                    // G23: dup-check chi trong cung co so + dong con hieu luc
+                    // (zt=1) — ma cua dong da xoa (zt=0) duoc dung lai, ma
+                    // cua co so khac khong chan.
+                    if (this.IQueryable().Any(p => p.AnesCode == entity.AnesCode && p.Id != keyValue && p.zt == "1" && p.OrganizeId == entity.OrganizeId))
+                    {
+                        throw new FailedException("Mã không được trùng lặp");
+                    }
+                    dbEntity.AnesCode = entity.AnesCode;
+                }
+                if (entity.AnesName != null)
+                {
+                    if (string.IsNullOrWhiteSpace(entity.AnesName))
+                    {
+                        throw new FailedException("Tên gây mê không được để trống");
+                    }
+                    if (entity.AnesName.Length > 100)
+                    {
+                        throw new FailedException("Tên gây mê tối đa 100 ký tự");
+                    }
+                    dbEntity.AnesName = entity.AnesName;
+                }
+                if (entity.Aneszjm != null)
+                {
+                    dbEntity.Aneszjm = entity.Aneszjm;
+                }
 
                 EntityHelper.Modify(dbEntity, keyValue);
                 return Update(dbEntity);
             }
             else
             {
-                if (this.IQueryable().Any(p => p.AnesCode == entity.AnesCode))
+                // G23: tao moi — ma + ten la bat buoc, gioi han do dai theo
+                // cot (AnesCode varchar(50), AnesName varchar(100)); chan
+                // truoc dup-check de bao loi dung nghia thay vi "Ma khong
+                // duoc trung lap" (ma rong khop dong NULL san co) hay loi
+                // cat chuoi cua SQL.
+                if (string.IsNullOrWhiteSpace(entity.AnesCode))
+                {
+                    throw new FailedException("Mã gây mê không được để trống");
+                }
+                if (entity.AnesCode.Length > 50)
+                {
+                    throw new FailedException("Mã gây mê tối đa 50 ký tự");
+                }
+                if (string.IsNullOrWhiteSpace(entity.AnesName))
+                {
+                    throw new FailedException("Tên gây mê không được để trống");
+                }
+                if (entity.AnesName.Length > 100)
+                {
+                    throw new FailedException("Tên gây mê tối đa 100 ký tự");
+                }
+                if (this.IQueryable().Any(p => p.AnesCode == entity.AnesCode && p.zt == "1" && p.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("Mã không được trùng lặp");
                 }
@@ -93,7 +151,13 @@ namespace Newtouch.OR.ManageSystem.Repository
         /// <param name="keyValue">Giá trị khóa chính</param>
         public int DeleteForm(string keyValue)
         {
+            // G23: khoa rong/khong ton tai -> loi ro rang thay vi NRE.
+            // Rang buoc co so do controller kiem tra truoc khi goi.
             var dbEntity = this.FindEntity(keyValue);
+            if (dbEntity == null)
+            {
+                throw new FailedException("Không tìm thấy phương pháp gây mê");
+            }
             //properties
             dbEntity.zt = "0";
             EntityHelper.Modify(dbEntity, keyValue);

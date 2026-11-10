@@ -210,6 +210,22 @@ on a.applyno=b.applyno and b.px=1
             {
                 dto.ysxm = ysxm;
             }
+            // G23: kiem tra mang phau thuat TRUOC khi tao so don (va truoc
+            // transaction) — tranh NRE o dto.ssdm[0]/dto.ssmcn[0] va tranh
+            // dot so don khi tao that bai; ssmcn phai du dai cho ssdm de
+            // tranh IndexOutOfRange o ORApplyInfoExpandCreate.
+            if (dto.ssdm == null || dto.ssdm.Length == 0)
+            {
+                throw new FailedException("Vui lòng chọn phẫu thuật");
+            }
+            if (dto.ssmcn == null || dto.ssmcn.Length == 0)
+            {
+                throw new FailedException("Vui lòng chọn phẫu thuật");
+            }
+            if (dto.ssmcn.Length < dto.ssdm.Length)
+            {
+                throw new FailedException("Danh sách phẫu thuật phụ không khớp danh sách phẫu thuật chính");
+            }
             ORApplyInfoEntity ety = new ORApplyInfoEntity();
             var db = OrDb.GetConnection();
             db.Ado.BeginTran();
@@ -219,7 +235,14 @@ on a.applyno=b.applyno and b.px=1
                 {
                     //Thay đổi thông tin
                     ety = _ORApplyInfoRepo.FindEntity(p => p.Applyno == keyValue && p.zt == "1" && p.OrganizeId == dto.OrganizeId);
-                    if (ety != null && ety.sqzt == ((int)EnumSqzt.dsh).ToString())
+                    // G23: phan biet khong tim thay (khoa ao/khac co so) voi
+                    // don doi trang thai — truoc day ca hai cung bao "Trang
+                    // thai don phau thuat da thay doi".
+                    if (ety == null)
+                    {
+                        throw new FailedException("Không tìm thấy đơn phẫu thuật hợp lệ!");
+                    }
+                    if (ety.sqzt == ((int)EnumSqzt.dsh).ToString())
                     {
                         ety.ssdm = dto.ssdm[0];
                         ety.ssmcn = dto.ssmcn[0].Replace(ety.ssdm, string.Empty).Trim();
@@ -275,20 +298,38 @@ on a.applyno=b.applyno and b.px=1
 
                     if (pat != null)
                     {
-                        if (!string.IsNullOrWhiteSpace(dto.ysgh))
+                        // G23: bac si mo chinh la bat buoc (nhu overload DTO)
+                        // — truoc day thieu ysgh van tao don voi ysgh rong.
+                        if (string.IsNullOrWhiteSpace(dto.ysgh))
                         {
-                            string ysxm = _SysStaffRepo.GetNameByGh(dto.ysgh, dto.organizeid);
-                            if (!string.IsNullOrWhiteSpace(ysxm))
-                            {
-                                dto.ysxm = ysxm;
-                            }
+                            throw new FailedException("Bác sĩ mổ chính không được để trống!");
+                        }
+                        string ysxm = _SysStaffRepo.GetNameByGh(dto.ysgh, dto.organizeid);
+                        if (!string.IsNullOrWhiteSpace(ysxm))
+                        {
+                            dto.ysxm = ysxm;
                         }
 
                         ORApplyInfoEntity ety = new ORApplyInfoEntity();
                         if (!string.IsNullOrWhiteSpace(keyValue))
                         {
                             ety = _ORApplyInfoRepo.FindEntity(p => p.Applyno == keyValue && p.zt == "1" && p.OrganizeId == dto.organizeid);
-                            if (ety != null)
+                            // G23: phan biet khong tim thay / don da huy / don
+                            // doi trang thai; chi cho sua don cho duyet (dsh).
+                            // Truoc day sua don da huy van chay (FindEntity
+                            // thay zt=1) va sua don da xep lich khong bi chan.
+                            if (ety == null)
+                            {
+                                throw new FailedException("Không tìm thấy đơn phẫu thuật hợp lệ!");
+                            }
+                            if (ety.sqzt == ((int)EnumSqzt.yqx).ToString())
+                            {
+                                throw new FailedException("Đơn phẫu thuật đã bị hủy bỏ!");
+                            }
+                            if (ety.sqzt != ((int)EnumSqzt.dsh).ToString())
+                            {
+                                throw new FailedException("Trạng thái đơn phẫu thuật đã thay đổi, không thể sửa!");
+                            }
                             {
                                 ety.ssmcn = dto.ssmcn;
                                 ety.ssdm = dto.ssdm;
@@ -302,10 +343,6 @@ on a.applyno=b.applyno and b.px=1
                                 _ORApplyInfoRepo.SubmitForm(ety, ety.Id);
 
                                 return ety.Applyno;
-                            }
-                            else
-                            {
-                                throw new FailedException("Đơn phẫu thuật đã bị hủy bỏ!");
                             }
                         }
                         else
@@ -395,7 +432,9 @@ on a.applyno=b.applyno and b.px=1
             ety.zd = pat.zdmc;
             #endregion
             ety.ssdm = dto.ssdm.Length == 0 ? throw new FailedException("Vui lòng chọn phẫu thuật") : dto.ssdm[0];
-            ety.ssmcn = dto.ssmcn.Length == 0 ? throw new FailedException("Vui lòng chọn phẫu thuật") : dto.ssmcn[0].Replace(dto.ssdm[0], string.Empty).Trim();
+            // G23: phan tu mang co the null khi model-binding thua (vd chi
+            // gui ssmcn[1]) — dung chuoi rong thay vi NRE o .Replace.
+            ety.ssmcn = dto.ssmcn.Length == 0 ? throw new FailedException("Vui lòng chọn phẫu thuật") : (dto.ssmcn[0] ?? string.Empty).Replace(dto.ssdm[0] ?? string.Empty, string.Empty).Trim();
             EntityHelper.Create(ety, true);
             return ety;
         }
@@ -414,7 +453,10 @@ on a.applyno=b.applyno and b.px=1
                         ssObj.OrganizeId = !string.IsNullOrWhiteSpace(dto.OrganizeId) ? dto.OrganizeId : throw new FailedException("Thông tin cơ sở không được để trống");
                         ssObj.Applyno = !string.IsNullOrWhiteSpace(dto.Applyno) ? dto.Applyno : throw new FailedException("Số thứ tự đơn không được để trống");
                         ssObj.zyh = !string.IsNullOrWhiteSpace(dto.zyh) ? dto.zyh : throw new FailedException("Số nhập viện không được để trống"); ;
-                        ssObj.ssmc = dto.ssmcn[i].Replace(dto.ssdm[0], string.Empty).Trim();
+                        // G23: phong khi ssmcn ngan hon ssdm / phan tu null
+                        // (model-binding thua) — dung chuoi rong thay vi
+                        // IndexOutOfRange/NRE.
+                        ssObj.ssmc = (dto.ssmcn != null && i < dto.ssmcn.Length && dto.ssmcn[i] != null) ? dto.ssmcn[i].Replace(dto.ssdm[0] ?? string.Empty, string.Empty).Trim() : string.Empty;
                         ssObj.ssdm = dto.ssdm[i];
                         ssObj.px = i + 1;
                         EntityHelper.Create(ssObj, true);

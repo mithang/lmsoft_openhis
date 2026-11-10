@@ -1,5 +1,6 @@
 using Newtouch.OR.ManageSystem.Domain.Entity;
 using Newtouch.OR.ManageSystem.Domain.IRepository;
+using Newtouch.OR.ManageSystem.Infrastructure;
 using System.Linq;
 using NewtouchHIS.Lib.Base.Exceptions;
 using NewtouchHIS.Lib.Base.Model;
@@ -35,40 +36,27 @@ namespace Newtouch.OR.ManageSystem.Repository
 			if (!string.IsNullOrEmpty(ArrangeId))
 			{
 				var dbEntity = this.FindEntity(ArrangeId);
-				//properties
-				dbEntity.AnesCode = entity.AnesCode;
+				// G23: lich khong ton tai -> loi ro rang thay vi NRE.
+				if (dbEntity == null)
+				{
+					throw new FailedException("Không tìm thấy lịch xếp phẫu thuật");
+				}
+				// G23 merge-skip-null (G2): form chi gui cac truong da sua;
+				// truong khong gui (null) giu nguyen gia tri cu thay vi bi
+				// wipe ve null (ke ca zt NOT NULL). ApplyId/sqzt/zt do repo
+				// tu dat, khong lay tu form.
+				var ignoreProps = new List<string>() { "Id", "OrganizeId", "CreateTime", "CreatorCode", "LastModifyTime", "LastModifierCode", "ApplyId", "sqzt", "zt" };
+				entity.MapperToSkipNull(dbEntity, ignoreProps);
 				dbEntity.ApplyId = ApplyId;
-				dbEntity.Applyno = entity.Applyno;
-				dbEntity.bq = entity.bq;
-				dbEntity.ch = entity.ch;
-				dbEntity.ks = entity.ks;
-				dbEntity.oporder = entity.oporder;
-				dbEntity.oproom = entity.oproom;
-				dbEntity.OrganizeId = entity.OrganizeId;
 				dbEntity.sqzt = "2";
-				dbEntity.ssbw = entity.ssbw;
-				dbEntity.ssdm = entity.ssdm;
-				dbEntity.ssmc = entity.ssmc;
-				dbEntity.sssj = entity.sssj;
-				dbEntity.ssxh = entity.ssxh;
-				dbEntity.xhhs = entity.xhhs;
-				dbEntity.xm = entity.xm;
-				dbEntity.xshs = entity.xshs;
-				dbEntity.ysgh = entity.ysgh;
-				dbEntity.ysxm = entity.ysxm;
-				dbEntity.zd = entity.zd;
-				dbEntity.zlys1 = entity.zlys1;
-				dbEntity.zlys2 = entity.zlys2;
-				dbEntity.zlys3 = entity.zlys3;
-				dbEntity.zlys4 = entity.zlys4;
-				dbEntity.zt = entity.zt;
-				dbEntity.zyh = entity.zyh;
 				EntityHelper.Modify(dbEntity, ArrangeId);
 				return Update(dbEntity);
 			}
 			else
 			{
-				if (this.IQueryable().Any(p => p.ApplyId == ApplyId && p.zt == "1"))
+				// G23: dup-check them dieu kien co so (mot don chi co mot
+				// lich hieu luc trong cung co so).
+				if (this.IQueryable().Any(p => p.ApplyId == ApplyId && p.zt == "1" && p.OrganizeId == entity.OrganizeId))
 				{
 					throw new FailedException("Mã đơn đăng ký không được trùng lặp");
 				}
@@ -88,7 +76,12 @@ namespace Newtouch.OR.ManageSystem.Repository
         /// <param name="keyValue">Giá trị khóa chính</param>
         public int DeleteForm(string keyValue)
         {
+            // G23: lich khong ton tai -> loi ro rang thay vi NRE.
             var dbEntity = this.FindEntity(keyValue);
+            if (dbEntity == null)
+            {
+                throw new FailedException("Không tìm thấy lịch xếp phẫu thuật");
+            }
             //properties
             dbEntity.sqzt = "3";
             EntityHelper.Modify(dbEntity, keyValue);
@@ -137,7 +130,12 @@ namespace Newtouch.OR.ManageSystem.Repository
         /// <param name="keyValue">Giá trị khóa chính</param>
         public int UpdateSqzt(string keyValue,string value)
         {
+            // G23: lich khong ton tai -> loi ro rang thay vi NRE.
             var dbEntity = this.FindEntity(keyValue);
+            if (dbEntity == null)
+            {
+                throw new FailedException("Không tìm thấy lịch xếp phẫu thuật");
+            }
             //properties
             dbEntity.sqzt = value;
             EntityHelper.Modify(dbEntity, keyValue);

@@ -45,7 +45,14 @@ namespace Newtouch.OR.ManageSystem.Repository
 		/// <param name="keyValue">Giá trị khóa chính</param>
 		public void DeleteForm(string keyValue, string orgId)
 		{
-			Delete(p => p.Applyno == keyValue);
+			// G23: truoc day bo qua orgId (xoa cheo co so) va tra Success ca
+			// khi khong xoa dong nao (fake success). Loc theo co so; khoa
+			// rong thi khong lam gi (controller kiem tra ton tai truoc).
+			if (string.IsNullOrWhiteSpace(keyValue))
+			{
+				return;
+			}
+			Delete(p => p.Applyno == keyValue && p.OrganizeId == orgId);
 		}
 		
 		/// <summary>

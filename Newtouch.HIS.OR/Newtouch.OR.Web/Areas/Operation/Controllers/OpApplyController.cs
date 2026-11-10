@@ -247,32 +247,56 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
         {
             if (entity != null)
             {
+                // G23: zyh rong -> loi ro rang (nhu SubmitForm); staffgh lay
+                // tu session khi form khong gui (truoc day staffgh null lam
+                // tra cuu benh nhan that bai); organizeid mac dinh theo
+                // session (service dung de tra cuu benh nhan + tao don).
+                if (string.IsNullOrWhiteSpace(entity.sq_zyh))
+                {
+                    throw new FailedException("Thông tin bệnh nhân không được để trống");
+                }
+                if (string.IsNullOrWhiteSpace(entity.staffgh))
+                {
+                    entity.staffgh = this.UserIdentity.rygh;
+                }
+                if (string.IsNullOrWhiteSpace(entity.organizeid))
+                {
+                    entity.organizeid = OrganizeId;
+                }
                 //Gửi thông tin đơn đăng ký
                 string applyno = _applyDmnService.SubmitApplyForm(entity, keyValue, datas);
 
                 //Xóa phẫu thuật phụ trợ
-                if (keyValue != "")
+                // G23: goi truc tiep repo (khong qua action DeleteApplyExtend)
+                // de sua don chua co dong phu van chay; keyValue null cung
+                // duoc chan (!= "" la true voi null truoc day).
+                if (!string.IsNullOrWhiteSpace(keyValue))
                 {
-                    DeleteApplyExtend(keyValue);
+                    _ORApplyInfoExpandRepo.DeleteForm(keyValue, OrganizeId);
                 }
 
                 ////Thêm phẫu thuật phụ trợ
-                for (var i = 0; i < entity.ss.Count; i++)
+                // G23: ss null (form khong gui dong phu) -> khong NRE sau
+                // khi don chinh da luu (ghi nua chung truoc day).
+                if (entity.ss != null)
                 {
-                    var ssObj = new ORApplyInfoExpandEntity();
-                    ssObj.OrganizeId = entity.organizeid;
-                    ssObj.Applyno = applyno;
-                    ssObj.zyh = entity.sq_zyh;
-                    ssObj.ssmc = entity.ss[i].ssmc;
-                    ssObj.ssdm = entity.ss[i].ssdm;
-                    ssObj.px = i + 1;
-                    _ORApplyInfoExpandRepo.SubmitForm(ssObj, null);
+                    for (var i = 0; i < entity.ss.Count; i++)
+                    {
+                        var ssObj = new ORApplyInfoExpandEntity();
+                        ssObj.OrganizeId = entity.organizeid;
+                        ssObj.Applyno = applyno;
+                        ssObj.zyh = entity.sq_zyh;
+                        ssObj.ssmc = entity.ss[i].ssmc;
+                        ssObj.ssdm = entity.ss[i].ssdm;
+                        ssObj.px = i + 1;
+                        _ORApplyInfoExpandRepo.SubmitForm(ssObj, null);
+                    }
                 }
 
-                return Success($"Gửi đơn thành công，Số đơn đăng ký phẫu thuật:{applyno}", new { applyno });
+                return Success($"Gửi đơn thành công, Số đơn đăng ký phẫu thuật:{applyno}", new { applyno });
             }
 
-            return Error("Thông tin chưa đầy đủ，Gửi đơn thất bại.");
+            return Error("Thông tin chưa đầy đủ, Gửi đơn thất bại.");
 
 
         }
@@ -301,6 +325,19 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
         /// <returns></returns>
         public IActionResult DeleteApplyExtend(string keyValue)
         {
+            // G23: khoa rong/khong co dong phu trong cung co so -> loi ro
+            // rang thay vi Success gia (truoc day DeleteForm bo qua orgId va
+            // luon tra Success du xoa 0 dong). Sua don ben trong SubmitForm1
+            // goi truc tiep repo de khong bi chan o day.
+            if (string.IsNullOrWhiteSpace(keyValue))
+            {
+                return Error("Không tìm thấy phẫu thuật phụ trợ");
+            }
+            var exists = _ORApplyInfoExpandRepo.FindEntity(p => p.Applyno == keyValue && p.OrganizeId == OrganizeId && p.zt == "1");
+            if (exists == null)
+            {
+                return Error("Không tìm thấy phẫu thuật phụ trợ");
+            }
             _ORApplyInfoExpandRepo.DeleteForm(keyValue, OrganizeId);
             return Success();
         }
