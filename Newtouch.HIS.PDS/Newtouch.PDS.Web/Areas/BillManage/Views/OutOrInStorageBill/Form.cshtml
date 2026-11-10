@@ -720,7 +720,8 @@
 			}
 			$.ajax({
 				url: "/StorageManage/DrugStockSearch/DeleteCrkDj",
-				data: { crkId: crkId },
+				type: "POST",
+				data: { crkId: crkId, __RequestVerificationToken: $('[name=__RequestVerificationToken]').val() },
 				dataType: "json",
 				async: false,
 				cache: false,

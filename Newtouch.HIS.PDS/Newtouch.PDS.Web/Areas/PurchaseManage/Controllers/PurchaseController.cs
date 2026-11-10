@@ -83,6 +83,8 @@ namespace Newtouch.HIS.Web.Areas.PurchaseManage.Controllers
             return Content(result.ToJson());
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitLocation(PurchaseLocationEntity entity)
         {
             _purchaseLocationRepo.SubmitForm(entity, this.OrganizeId, entity.Id);
@@ -90,6 +92,8 @@ namespace Newtouch.HIS.Web.Areas.PurchaseManage.Controllers
         }
 
         //Truyền báo điểm giao hàng
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult LocationUpload(string Id, int psdzt, string czlx)
         {
             //1.Tải lên nền tảng mua hàng Sunshine YY001
@@ -103,6 +107,8 @@ namespace Newtouch.HIS.Web.Areas.PurchaseManage.Controllers
         }
 
         //Hủy bỏ điểm giao hàng
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult LocationDelete(string Id, int psdzt, string czlx)
         {
             //1.Hủy bỏ nền tảng mua hàng Sunshine

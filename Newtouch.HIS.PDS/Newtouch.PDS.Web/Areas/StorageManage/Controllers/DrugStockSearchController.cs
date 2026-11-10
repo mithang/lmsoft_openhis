@@ -214,10 +214,12 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		/// Xóa dữ liệu chứng từ
 		/// </summary>
 		/// <param name="crkId"></param>
-		/// <returns></returns>
+		/// <returns>1 = đã xóa thật; 0 = không tìm thấy / sai org / đã duyệt</returns>
+		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public int DeleteCrkDj(string crkId)
 		{
-			var data = drugStorageDmnService.DeleteCrkDj(crkId);
+			var data = drugStorageDmnService.DeleteCrkDj(crkId, this.OrganizeId);
 			return data;
 		}
 
@@ -281,8 +283,10 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
         /// <param name="kcId"></param>
         /// <param name="yxq"></param>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult UpdateExpired(string kcId, string yxq) {
-            return _sysMedicineStockInfoRepo.UpdateExpired(kcId, yxq) > 0 ? Success() : Error("Sửa hạn dùng thất bại");
+            return _sysMedicineStockInfoRepo.UpdateExpired(kcId, yxq, this.OrganizeId) > 0 ? Success() : Error("Sửa hạn dùng thất bại");
         } 
         
 

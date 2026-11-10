@@ -487,13 +487,16 @@ where crkId = @crkId and a.zt='1'
 			return FindList<CrkMxAll>(sql.ToString(), param);
 		}
 
-		public int DeleteCrkDj(string crkId)
+		public int DeleteCrkDj(string crkId, string orgId)
 		{
-			var index = 0;
+			//G29-F1: chỉ xóa phiếu của đúng org, chưa duyệt (shzt='0'); trả 0 khi không xóa được row nào (không fake Success)
+			if (string.IsNullOrWhiteSpace(crkId) || string.IsNullOrWhiteSpace(orgId)) return 0;
 			using (var db = new EFDbTransaction().BeginTrans())
 			{
 				//Xóa bảng xuất nhập kho
-				var inventoryEntity = db.FindEntity<SysMedicineStorageIOReceiptEntity>(p => p.crkId == crkId);
+				var inventoryEntity = db.FindEntity<SysMedicineStorageIOReceiptEntity>(p => p.crkId == crkId && p.OrganizeId == orgId);
+				if (inventoryEntity == null) return 0;
+				if (inventoryEntity.shzt != "0") return 0;
 				db.Delete(inventoryEntity);
 				//Xóa bảng chi tiết xuất nhập kho
 				var inventoryDetailEntityList = db.IQueryable<SysMedicineStorageIOReceiptDetailEntity>().Where(a => a.crkId == crkId).ToList();
@@ -502,9 +505,8 @@ where crkId = @crkId and a.zt='1'
 					db.Delete(item);
 				}
 				db.Commit();
-				index++;
+				return 1;
 			}
-			return index;
 		}
 
 		public int ReviseCrkDj(string crkId)

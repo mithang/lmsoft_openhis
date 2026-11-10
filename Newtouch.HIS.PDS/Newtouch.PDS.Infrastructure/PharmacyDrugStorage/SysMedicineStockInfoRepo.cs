@@ -78,9 +78,13 @@ namespace Newtouch.HIS.Repository
         /// <returns></returns>
         public int UpdateZt(string ypdm, string ph, string pc, string zt, string yfbmCode, string organizeId)
         {
+            //G29-F3: zt bắt buộc, chỉ nhận "0"/"1" (zt là char(1); null gây NRE ở zt.Trim(), "12" gây truncation, "9" lưu rác)
+            if (string.IsNullOrWhiteSpace(zt)) throw new FailedException("Trạng thái tồn kho không được để trống");
+            zt = zt.Trim();
+            if (zt != "0" && zt != "1") throw new FailedException("Trạng thái tồn kho không hợp lệ (chỉ nhận 0 hoặc 1)");
             var entity = FindEntity(p => p.ph == ph && p.pc == pc && p.ypdm == ypdm && p.yfbmCode == yfbmCode && p.OrganizeId == organizeId);
             if (entity == null) return 0;
-            entity.zt = zt.Trim();
+            entity.zt = zt;
             entity.Modify();
             return Update(entity);
         }
@@ -264,9 +268,10 @@ WHERE pc=@pc AND ph=@ph AND ypdm=@ypCode AND OrganizeId=@OrganizeId AND yfbmCode
         }
 
 
-        public int UpdateExpired(string kcId, string yxq)
+        public int UpdateExpired(string kcId, string yxq, string organizeId)
         {
-            var entity = this.FindEntity(p => p.kcId == kcId);
+            //G29-F2: chỉ sửa hạn dùng của row đúng org (chặn cross-org)
+            var entity = this.FindEntity(p => p.kcId == kcId && p.OrganizeId == organizeId);
             if (entity == null) throw new FailedException("Không tìm thấy thông tin tồn kho");
             if (!DateTime.TryParse(yxq, out var yxqDate)) throw new FailedException("Hạn dùng không đúng định dạng ngày giờ");
             entity.yxq = yxqDate;

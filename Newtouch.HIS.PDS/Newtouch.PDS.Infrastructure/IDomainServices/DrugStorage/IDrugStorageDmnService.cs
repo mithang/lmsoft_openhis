@@ -305,8 +305,9 @@ namespace Newtouch.HIS.Domain.IDomainServices
 		/// Xóa chứng từ
 		/// </summary>
 		/// <param name="crkId"></param>
-		/// <returns></returns>
-		int DeleteCrkDj(string crkId);
+		/// <param name="orgId">G29-F1: chỉ xóa phiếu của đúng org (chặn cross-org)</param>
+		/// <returns>1 = đã xóa thật; 0 = không tìm thấy / sai org / đã duyệt (không fake Success)</returns>
+		int DeleteCrkDj(string crkId, string orgId);
 
 		/// <summary>
 		/// Sửa chứng từ

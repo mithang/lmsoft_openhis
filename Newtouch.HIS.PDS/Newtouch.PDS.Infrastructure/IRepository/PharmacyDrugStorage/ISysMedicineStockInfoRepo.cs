@@ -106,6 +106,6 @@ namespace Newtouch.HIS.Domain.IRepository
         /// <returns></returns>
         int SubtractForzenKc(int sl, string kcId, string organizeId, string userCode);
 
-        int UpdateExpired(string kcId, string yxq);
+        int UpdateExpired(string kcId, string yxq, string organizeId);
     }
 }

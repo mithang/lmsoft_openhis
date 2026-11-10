@@ -100,7 +100,7 @@
             return;
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
-        if (rowData.psdzt != "已保存") {
+        if (rowData.psdzt != "Đã lưu") {
             $.modalAlert("Điểm phân phối đã chọn không phải trạng thái đã lưu, Không thể sửa", 'warning');
             return;
         }
@@ -133,7 +133,7 @@
         $.najax({
             type: "POST",
             url: "/PurchaseManage/Purchase/LocationUpload",
-            data: { Id: rowData.Id, psdzt: 2, czlx: "1" }, //psdzt 1Đã lưu 2Đã gửi báo cáo 3Đã hủy //Loại thao tác: 1Thêm mới 3Hủy bỏ
+            data: { Id: rowData.Id, psdzt: 2, czlx: "1", __RequestVerificationToken: $('[name=__RequestVerificationToken]').val() }, //psdzt 1Đã lưu 2Đã gửi báo cáo 3Đã hủy //Loại thao tác: 1Thêm mới 3Hủy bỏ
             dataType: "json",
             success: function (res) {
                 if (res.state == "success") {
@@ -158,14 +158,14 @@
             return;
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
-        if (rowData.psdzt == "已作废") {
+        if (rowData.psdzt == "Đã hủy") {
             $.modalAlert("Điểm phân phối này đã bị hủy bỏ", 'warning');
             return;
         }
         $.najax({
             type: "POST",
             url: "/PurchaseManage/Purchase/LocationDelete",
-            data: { Id: rowData.Id, psdzt: 3,czlx:"3" }, //psdzt 1Đã lưu 2Đã gửi báo cáo 3Đã hủy //Loại thao tác: 1Thêm mới 3Hủy bỏ
+            data: { Id: rowData.Id, psdzt: 3,czlx:"3", __RequestVerificationToken: $('[name=__RequestVerificationToken]').val() }, //psdzt 1Đã lưu 2Đã gửi báo cáo 3Đã hủy //Loại thao tác: 1Thêm mới 3Hủy bỏ
             dataType: "json",
             success: function (res) {
                 if (res.state == "success") {

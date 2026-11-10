@@ -905,7 +905,8 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             catch (Exception e)
             {
                 AppLogger.Info("Gọi giao dịch mua hàng thất bại: " + e.Message);
-                return e.Message;
+                //G29-F6: YY001 thất bại phải throw thay vì return e.Message — base: controller trả Success giả (họ G27 F6)
+                throw new FailedException("Truyền báo điểm giao hàng lên nền tảng Sunshine thất bại (YY001): " + e.Message);
             }
         }
 
