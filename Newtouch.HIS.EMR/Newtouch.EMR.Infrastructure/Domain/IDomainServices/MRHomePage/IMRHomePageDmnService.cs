@@ -36,7 +36,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
         /// </summary>
         /// <param name="list"></param>
         /// <param name="orgId"></param>
-        void OpListSubmit(List<BasyOpDto> list, string orgId);
+        void OpListSubmit(List<BasyOpDto> list, string orgId, string userCode);
         void PatBasicSubmit(BasyVO vo, BasyRelVO reldto, string blmbId, string orgId, string user, string username = null);
         /// <summary>
         /// Danh sách bệnh án

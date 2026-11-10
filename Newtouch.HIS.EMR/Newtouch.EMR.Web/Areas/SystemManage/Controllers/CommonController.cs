@@ -91,6 +91,16 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         public IActionResult SubmitForm(bl_bllxEntity ety,string keyValue)
         {
             ety.OrganizeId = OrganizeId;
+            // G19: repo Insert đòi CreatorCode NOT NULL nhưng form không gửi
+            // trường này — mọi tạo mới đều lỗi SQL thô. Điền từ user hiện tại.
+            if (string.IsNullOrWhiteSpace(ety.CreatorCode))
+            {
+                ety.CreatorCode = this.UserIdentity.rygh;
+            }
+            if (string.IsNullOrWhiteSpace(ety.LastModifierCode))
+            {
+                ety.LastModifierCode = this.UserIdentity.rygh;
+            }
             _BllxRepo.SubmitForm(ety, keyValue);
             return Success("Lưu thành công");
         }

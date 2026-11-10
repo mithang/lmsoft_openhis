@@ -39,6 +39,12 @@ namespace Newtouch.EMR.Repository
             if (!string.IsNullOrEmpty(keyValue))
             {
                 var dbEntity = this.FindEntity(keyValue);
+                // G19: keyValue không tồn tại trước đây dbEntity=null rồi NRE
+                // ở dbEntity.relTB / dbEntity.mzbz.
+                if (dbEntity == null)
+                {
+                    throw new FailedException("Không tìm thấy loại bệnh án.");
+                }
                 var check = this.FindEntity(p => p.bllx == entity.bllx && p.zt == "1" && p.Id != keyValue && p.OrganizeId==entity.OrganizeId);
                 if (check != null)
                 {
@@ -73,6 +79,13 @@ where ParentId=@id and zt='1' and OrganizeId=@orgId ";
             }
             else
             {
+                // G19: tạo gốc (ParentId rỗng) thì bllx do user nhập — null
+                // trước đây lọt qua dup-check (IS NULL không khớp) rồi Insert
+                // lỗi NOT NULL thô. Nhánh con tự sinh bllx từ cha nên không chặn.
+                if (string.IsNullOrWhiteSpace(entity.ParentId) && string.IsNullOrWhiteSpace(entity.bllx))
+                {
+                    throw new FailedException("Mã định danh nhóm lớn bệnh án không được để trống.");
+                }
                 var check = this.FindEntity(p => p.bllx == entity.bllx && p.zt == "1" && p.OrganizeId==entity.OrganizeId);
                 if (check != null)
                 {
@@ -96,14 +109,21 @@ where ParentId=@id and zt='1' and OrganizeId=@orgId ";
                 }
                 else
                 {
+                    // G19: relTB rỗng trước đây chạy `select 1 from ` rồi lộ
+                    // message lỗi SQL thô ("Incorrect syntax near 'from'").
+                    if (string.IsNullOrWhiteSpace(entity.relTB))
+                    {
+                        throw new FailedException("Vui lòng nhập liên kết bảng nghiệp vụ.");
+                    }
                     sql = "select 1 from " + entity.relTB;
                     try
                     {
                         int tbcheck = this.ExecuteSqlCommand(sql);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        throw new FailedException("Vui lòng kiểm tra liên kết bảng nghiệp vụ!" + ex.Message);
+                        // G19: không lộ message SQL thô ra client.
+                        throw new FailedException("Vui lòng kiểm tra liên kết bảng nghiệp vụ!");
                     }
                 }
                 entity.CreateTime = DateTime.Now;

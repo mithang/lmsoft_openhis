@@ -127,6 +127,12 @@ namespace Newtouch.EMR.Web.Controllers
         /// </summary>
         public IActionResult SyncSysConfigParams(string orgId)
         {
+            // G19: orgId rỗng trước đây insert dòng OrganizeId='' (hoặc lỗi
+            // SQL thô khi Sugar map "" thành NULL) — chặn sớm như G14 #8.
+            if (string.IsNullOrWhiteSpace(orgId))
+            {
+                return Content(new AjaxResult { state = ResultType.error.ToString(), message = "Vui lòng chọn tổ chức", data = null }.ToJson());
+            }
             var db = SqlSugarDbContext.Db.GetConnection("EmrDb");
             var baseEntities = db.Queryable<SysConfigRow>().Where(r => r.OrganizeId == "*").ToList();
             var orgEntities = db.Queryable<SysConfigRow>().Where(r => r.OrganizeId == orgId).ToList();
@@ -148,6 +154,18 @@ namespace Newtouch.EMR.Web.Controllers
             public string Id { get; set; }
             public string OrganizeId { get; set; }
             public string Code { get; set; }
+            // G19: trước đây chỉ map 3 cột nên INSERT copy luôn thiếu
+            // Name/Value/CreateTime/CreatorCode/zt (NOT NULL) và lỗi SQL thô
+            // — đồng bộ không bao giờ chạy được. Map đủ cột để copy nguyên dòng.
+            public string Name { get; set; }
+            public string Value { get; set; }
+            public string Memo { get; set; }
+            public DateTime CreateTime { get; set; }
+            public string CreatorCode { get; set; }
+            public DateTime? LastModifyTime { get; set; }
+            public string LastModifierCode { get; set; }
+            public string zt { get; set; }
+            public int? px { get; set; }
         }
     }
 }

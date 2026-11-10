@@ -438,35 +438,38 @@ order by SSOrder ";
                     if (!string.IsNullOrWhiteSpace(v.Id))
                     {
                         zdety = _MrbasyzdRepo.FindEntity(v.Id);
-                        if (zdety != null)
+                        // G19: Id không tồn tại trước đây zdety=null rồi rớt
+                        // xuống nhánh INSERT deref zdety.BAH gây NRE.
+                        if (zdety == null)
                         {
-                            if (zdety.OrganizeId == orgId && zdety.zt == "1")
-                            {
-                                zdety.RYBQ = v.RYBQ;
-                                zdety.RYBQMS = v.RYBQMS;
-                                zdety.CYQK = v.CYQK;
-                                zdety.CYQKMS = v.CYQKMS;
-                                zdety.ZDLX = v.ZDLX;
-                                zdety.ZDLB = v.ZDLB;
-                                zdety.JBDM = v.JBDM;
-                                zdety.JBMC = v.JBMC;
-                                zdety.zt = v.zt == null ? zdety.zt : v.zt;
+                            throw new FailedException("Không tìm thấy chẩn đoán.");
+                        }
+                        if (zdety.OrganizeId == orgId && zdety.zt == "1")
+                        {
+                            zdety.RYBQ = v.RYBQ;
+                            zdety.RYBQMS = v.RYBQMS;
+                            zdety.CYQK = v.CYQK;
+                            zdety.CYQKMS = v.CYQKMS;
+                            zdety.ZDLX = v.ZDLX;
+                            zdety.ZDLB = v.ZDLB;
+                            zdety.JBDM = v.JBDM;
+                            zdety.JBMC = v.JBMC;
+                            zdety.zt = v.zt == null ? zdety.zt : v.zt;
 
-                                if (zdety.zt == "1")
-                                {
-                                    if (v.ZDLB == "TCM")
-                                        zdety.ZDOrder = zycnt;
-                                    else
-                                        zdety.ZDOrder = i;
-                                }
-
-                                flag = 1;
-                                _MrbasyzdRepo.Update(zdety);
-                            }
-                            else
+                            if (zdety.zt == "1")
                             {
-                                throw new FailedException("Dữ liệu bất thường, vui lòng làm mới rồi nhập lại");
+                                if (v.ZDLB == "TCM")
+                                    zdety.ZDOrder = zycnt;
+                                else
+                                    zdety.ZDOrder = i;
                             }
+
+                            flag = 1;
+                            _MrbasyzdRepo.Update(zdety);
+                        }
+                        else
+                        {
+                            throw new FailedException("Dữ liệu bất thường, vui lòng làm mới rồi nhập lại");
                         }
                     }
 
@@ -488,7 +491,8 @@ order by SSOrder ";
                         zdety.JBMC = v.JBMC;
                         zdety.ZDLX = v.ZDLX;
                         zdety.ZDLB = v.ZDLB;
-                        zdety.zt = v.zt;
+                        // G19: v.zt null trước đây insert zt NULL -> lỗi SQL thô.
+                        zdety.zt = string.IsNullOrWhiteSpace(v.zt) ? "1" : v.zt;
 
                         if (v.ZDLB == "TCM")
                             zdety.ZDOrder = zycnt;
@@ -519,7 +523,7 @@ order by SSOrder ";
         /// </summary>
         /// <param name="list"></param>
         /// <param name="orgId"></param>
-        public void OpListSubmit(List<BasyOpDto> list, string orgId)
+        public void OpListSubmit(List<BasyOpDto> list, string orgId, string userCode)
         {
             int i = 1;
             int flag = 0;
@@ -533,55 +537,72 @@ order by SSOrder ";
                 }
                 foreach (BasyOpDto v in list)
                 {
+                    // G19: SSJCZRQ là DateTime — form "abc" bind fail thành
+                    // 0001-01-01, Convert.ToDateTime không ném mà INSERT sẽ
+                    // lỗi tràn datetime thô. Chặn sớm bằng FailedException.
+                    if (v.SSJCZRQ == default || v.SSJCZRQ.Year < 1753)
+                    {
+                        throw new FailedException("Ngày phẫu thuật không đúng định dạng.");
+                    }
                     MrbasyssEntity opety = new MrbasyssEntity();
                     if (!string.IsNullOrWhiteSpace(v.Id))
                     {
                         opety = _MrbasyssRepo.FindEntity(v.Id);
-                        if (opety != null)
+                        // G19: Id không tồn tại trước đây opety=null rồi rớt
+                        // xuống nhánh INSERT deref opety.SSJCZBM gây NRE.
+                        if (opety == null)
                         {
-                            if (opety.OrganizeId == orgId && opety.zt == "1")
+                            throw new FailedException("Không tìm thấy phẫu thuật.");
+                        }
+                        if (opety.OrganizeId == orgId && opety.zt == "1")
+                        {
+                            opety.SSJCZBM = v.SSJCZBM;
+                            opety.SSJCZRQ = Convert.ToDateTime(v.SSJCZRQ);
+                            opety.SSJB = v.SSJB;
+                            opety.SSJCZMC = v.SSJCZMC;
+                            opety.SZ = v.SZ;
+                            opety.YZ = v.YZ;
+                            opety.EZ = v.EZ;
+                            opety.QKDJ = v.QKDJ;
+                            opety.QKYHLB = v.QKYHLB;
+                            opety.QKYHDJ = v.QKYHDJ;
+                            opety.MZFS = v.MZFS;
+                            opety.MZYS = v.MZYS;
+                            // G19: v.zt null trước đây wipe zt về NULL -> lỗi SQL thô.
+                            opety.zt = string.IsNullOrWhiteSpace(v.zt) ? opety.zt : v.zt;
+                            opety.SSLX = v.SSLX;
+                            opety.SQZBSJT = v.SQZBSJT;
+                            opety.SSJSSJ = v.SSJSSJ;
+                            opety.SSKSSJ = v.SSKSSJ;
+                            opety.SQYFKJGYS = v.SQYFKJGYS;
+                            opety.MZKSSJNYR = v.MZKSSJNYR;
+                            opety.MZFJ_ASA = v.MZFJ_ASA;
+                            opety.QKBW = v.QKBW;
+                            opety.SSQKGR = v.SSQKGR;
+                            opety.SSBFZ = v.SSBFZ;
+                            opety.SSBFZMC = v.SSBFZMC;
+                            if (v.zt == "1")
                             {
-                                opety.SSJCZBM = v.SSJCZBM;
-                                opety.SSJCZRQ = Convert.ToDateTime(v.SSJCZRQ);
-                                opety.SSJB = v.SSJB;
-                                opety.SSJCZMC = v.SSJCZMC;
-                                opety.SZ = v.SZ;
-                                opety.YZ = v.YZ;
-                                opety.EZ = v.EZ;
-                                opety.QKDJ = v.QKDJ;
-                                opety.QKYHLB = v.QKYHLB;
-                                opety.QKYHDJ = v.QKYHDJ;
-                                opety.MZFS = v.MZFS;
-                                opety.MZYS = v.MZYS;
-                                opety.zt = v.zt;
-                                opety.SSLX = v.SSLX;
-                                opety.SQZBSJT = v.SQZBSJT;
-                                opety.SSJSSJ = v.SSJSSJ;
-                                opety.SSKSSJ = v.SSKSSJ;
-                                opety.SQYFKJGYS = v.SQYFKJGYS;
-                                opety.MZKSSJNYR = v.MZKSSJNYR;
-                                opety.MZFJ_ASA = v.MZFJ_ASA;
-                                opety.QKBW = v.QKBW;
-                                opety.SSQKGR = v.SSQKGR;
-                                opety.SSBFZ = v.SSBFZ;
-                                opety.SSBFZMC = v.SSBFZMC;
-                                if (v.zt == "1")
-                                {
-                                    opety.SSOrder = i;
-                                }
+                                opety.SSOrder = i;
+                            }
 
-                                flag = 1;
-                                _MrbasyssRepo.Update(opety);
-                            }
-                            else
-                            {
-                                throw new FailedException("Dữ liệu bất thường, vui lòng làm mới rồi nhập lại");
-                            }
+                            flag = 1;
+                            _MrbasyssRepo.Update(opety);
+                        }
+                        else
+                        {
+                            throw new FailedException("Dữ liệu bất thường, vui lòng làm mới rồi nhập lại");
                         }
                     }
 
                     if (flag == 0 && v.zt != "0")
                     {
+                        // G19: nhánh INSERT trước đây không set zt /
+                        // CreatorCode / CreateTime (đều NOT NULL) nên mọi tạo
+                        // mới đều lỗi SQL thô; zt null mặc định "1".
+                        opety.zt = string.IsNullOrWhiteSpace(v.zt) ? "1" : v.zt;
+                        opety.CreatorCode = userCode;
+                        opety.CreateTime = DateTime.Now;
                         opety.SSJCZBM = v.SSJCZBM;
                         opety.SSJCZRQ = Convert.ToDateTime(v.SSJCZRQ);
                         opety.SSJB = v.SSJB;
@@ -740,14 +761,18 @@ order by SSOrder ";
                             ety = PatBasyInfoSet(ety, vo, orgId);
                             ety.LastModifyTime = DateTime.Now;
                             ety.LastModifierCode = user;
-                            _MrbasyRepo.Update(ety);
 
+                            // G19: PatBasyInfoRelSet validate enum (RYTJ/XB/
+                            // LYFS/...) và ném FailedException — trước đây nó
+                            // chạy SAU _MrbasyRepo.Update nên request lỗi vẫn
+                            // ghi nửa chừng (basy đã đổi, relcode chưa). Tính
+                            // relety trước mọi ghi; PatBasyInfoRelSet chỉ đọc
+                            // + sửa object detached nên reorder an toàn.
                             var findrel = _MrbasyrelcodeRepo.FindEntity(p => p.BAH == ety.BAH && p.SYId == ety.Id && p.OrganizeId == orgId);
                             if (findrel != null)
                             {
                                 relvo.R_YLFKFS = vo.YLFKFS;
                                 relety = PatBasyInfoRelSet(findrel, relvo, vo, orgId);
-                                _MrbasyrelcodeRepo.Update(relety);
                             }
                             else
                             {
@@ -756,6 +781,14 @@ order by SSOrder ";
 
                                 relety = PatBasyInfoRelSet(relety, relvo, vo, orgId);
                                 relety.SYId = ety.Id;
+                            }
+                            _MrbasyRepo.Update(ety);
+                            if (findrel != null)
+                            {
+                                _MrbasyrelcodeRepo.Update(relety);
+                            }
+                            else
+                            {
                                 _MrbasyrelcodeRepo.Insert(relety);
                             }
 
@@ -790,11 +823,12 @@ order by SSOrder ";
                             ety.PATID = pat.PATID;
                             ety.bazt = ((int)Enumbazt.lrz).ToString();
                             ety.OrganizeId = orgId;
-                            _MrbasyRepo.Insert(ety);
 
+                            // G19: như nhánh edit — validate rel trước khi ghi.
                             relvo.R_BAH = vo.BAH;
                             relvo.R_YLFKFS = vo.YLFKFS;
                             relety = PatBasyInfoRelSet(relety, relvo, vo, orgId);
+                            _MrbasyRepo.Insert(ety);
                             relety.SYId = ety.Id;
                             _MrbasyrelcodeRepo.Insert(relety);
 

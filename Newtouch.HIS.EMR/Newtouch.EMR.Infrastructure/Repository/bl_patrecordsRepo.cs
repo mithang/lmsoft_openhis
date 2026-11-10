@@ -42,6 +42,13 @@ namespace Newtouch.EMR.Repository
                 //properties
                 dbEntity.IsLock = entity.IsLock;
                 dbEntity.blxtmc_hj = entity.blxtmc_hj;
+                // G19 (carry-fix PROBE-G18 §9): nhánh edit không copy
+                // blxtmc_yj nên mọi lần sửa đều giữ tên cũ (hj thì đã copy
+                // từ G18). Chỉ copy khi có giá trị để không wipe về NULL.
+                if (!string.IsNullOrWhiteSpace(entity.blxtmc_yj))
+                {
+                    dbEntity.blxtmc_yj = entity.blxtmc_yj;
+                }
                 dbEntity.LastModifierCode = entity.LastModifierCode;
                 dbEntity.LastModifyTime= DateTime.Now;
                 this.Update(dbEntity);

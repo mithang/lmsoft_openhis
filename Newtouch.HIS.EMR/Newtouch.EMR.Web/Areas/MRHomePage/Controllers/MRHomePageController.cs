@@ -9,6 +9,7 @@ using Newtouch.EMR.Domain.IRepository;
 using Newtouch.EMR.Domain.ValueObjects.MRHomePage;
 using Newtouch.EMR.Infrastructure.EnumMR;
 using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Exceptions;
 using NewtouchHIS.Lib.Base.Extension;
 using System;
 using System.Collections.Generic;
@@ -200,6 +201,12 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
 
         public IActionResult SubmitZdList(List<BasyZdDto> dto,string zyh,string Code)
         {
+            // G19: dto null/rỗng trước đây trả Success rỗng (Success giả) mà
+            // không gọi service — service đã có guard nhưng controller không tới.
+            if (dto == null || dto.Count == 0)
+            {
+                return Error("Danh sách chẩn đoán không được để trống");
+            }
             var data = "";
             if (dto != null && dto.Count > 0)
             {
@@ -268,10 +275,12 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
 
         public IActionResult SubmitOpList(List<BasyOpDto> dto)
         {
-            if (dto != null && dto.Count > 0)
+            // G19: dto null/rỗng trước đây trả Success mà không lưu gì.
+            if (dto == null || dto.Count == 0)
             {
-                _MainRecordDmnService.OpListSubmit(dto, OrganizeId);
+                return Error("Danh sách phẫu thuật không được để trống");
             }
+            _MainRecordDmnService.OpListSubmit(dto, OrganizeId, this.UserIdentity.rygh);
             return Success("Lưu phẫu thuật thành công");
         }
         /// <summary>
@@ -303,6 +312,11 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
         {
             try
             {
+                // G19: cả hai danh sách đều rỗng trước đây trả Success mà không lưu gì.
+                if ((zddto == null || zddto.Count == 0) && (opdto == null || opdto.Count == 0))
+                {
+                    return Error("Danh sách chẩn đoán và phẫu thuật không được để trống");
+                }
                 //_MainRecordDmnService.PatBasicSubmit(dto, reldto, OrganizeId, this.UserIdentity.rygh);
                 if (zddto != null && zddto.Count > 0)
                 {
@@ -319,11 +333,22 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                     { 
                         if (outpatDiagModify.Count > 0)
                         {
-                            // ON Bật công tắc  Có thể chỉnh sửa  OFF  Không thể chỉnh sửa
-                            if (outpatDiagModify[0].Value != "OFF" || outpatDiagModify[0].Value != "off")
+                            // G19: điều kiện cũ `!= "OFF" || != "off"` luôn true
+                            // (tautology) nên cổng chặn sửa khi đã quyết toán không
+                            // bao giờ đóng — sửa thành `==` như SubmitZdList: OFF
+                            // thì chặn, còn lại thì lưu + đồng bộ khi DiagnosticSave ON.
+                            if (outpatDiagModify[0].Value == "OFF" || outpatDiagModify[0].Value == "off")
                             {
-                                //Lưu chẩn đoán
-                                _MainRecordDmnService.ZdListSubmit(zddto, OrganizeId, this.UserIdentity.rygh);
+                                return Error("Bệnh nhân đã quyết toán không được thêm/sửa thông tin chẩn đoán");
+                            }
+                            //Lưu chẩn đoán
+                            _MainRecordDmnService.ZdListSubmit(zddto, OrganizeId, this.UserIdentity.rygh);
+                            if (dtcsxx.Count > 0) {
+                                if (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on")
+                                {
+                                    //Đồng bộ thông tin chẩn đoán
+                                    _MainRecordDmnService.SynchronizationZD(zyh, this.OrganizeId);
+                                }
                             }
                         }
                         else {
@@ -354,13 +379,21 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                 }
                 if (opdto != null && opdto.Count > 0)
                 {
-                    _MainRecordDmnService.OpListSubmit(opdto, OrganizeId);
+                    _MainRecordDmnService.OpListSubmit(opdto, OrganizeId, this.UserIdentity.rygh);
                 }
                 return Success();
             }
-            catch (Exception e)
+            catch (FailedException ex)
             {
-                return Error(e.Message);
+                // G19: FailedException chỉ set Msg (không set Message của
+                // Exception) nên Error(e.Message) cũ trả về chuỗi
+                // "Exception of type '...FailedException' was thrown.".
+                return Error(ex.Msg ?? ex.Message);
+            }
+            catch (Exception)
+            {
+                // G19: không lộ message SQL/NRE thô ra client.
+                return Error("Lưu trang đầu bệnh án thất bại, vui lòng thử lại.");
             }
 
         }
@@ -390,7 +423,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                         OPERID = this.UserIdentity.rygh,
                         OPERNAME = UserIdentity.UserName,
                         PERIODNO = "",
-                        MSGID = YBOrgCode + DateTime.Now.ToString("yyyymmddhh24miss"),
+                        MSGID = YBOrgCode + DateTime.Now.ToString("yyyyMMddHHmmss"),
                         GRANTID = "",
                         INPUT = ety
                     };
@@ -448,17 +481,35 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                         OPERID = this.UserIdentity.rygh,
                         OPERNAME = UserIdentity.UserName,
                         PERIODNO = "",
-                        MSGID = YBOrgCode + DateTime.Now.ToString("yyyymmddhh24miss"),
+                        MSGID = YBOrgCode + DateTime.Now.ToString("yyyyMMddHHmmss"),
                         GRANTID = "",
                         INPUT = ety
                     };
                     rootinput.jsondata = JsonConvert.SerializeObject(YBJKDATA);
                     rootinput.jydm = "7600";
-                    var respstr = EmrHttpHelper.PostJsonString(UploadURL + "api/QHDSmartCheck/MedicalRecordUpload", JsonConvert.SerializeObject(rootinput));
+                    // G19: PostJsonString ném thẳng ra ngoài khi host YB không
+                    // nghe (STG: 127.0.0.1:33333 không có server) — bắt lại
+                    // thành Error tiếng Việt thay vì lỗi thô/500.
+                    string respstr;
+                    try
+                    {
+                        respstr = EmrHttpHelper.PostJsonString(UploadURL + "api/QHDSmartCheck/MedicalRecordUpload", JsonConvert.SerializeObject(rootinput));
+                    }
+                    catch (Exception)
+                    {
+                        return Error("Dịch vụ tải lên bảo hiểm y tế hiện không khả dụng, vui lòng thử lại sau.");
+                    }
                     var resp = JsonConvert.DeserializeObject<Newtouch.EMR.Domain.DTO.OutputDto.MRUpload.ResponseBase>(respstr);
                     if (resp.code == "1")
                     {
-                        string bllx = _BllxRepo.FindEntity(p => p.OrganizeId == OrganizeId && p.zt == "1" && p.bllxcode == "basy").bllx;
+                        // G19: FindEntity có thể trả null khi không có dòng
+                        // basy — deref .bllx cũ gây NRE.
+                        var bllxEty = _BllxRepo.FindEntity(p => p.OrganizeId == OrganizeId && p.zt == "1" && p.bllxcode == "basy");
+                        if (bllxEty == null)
+                        {
+                            return Error("Không tìm thấy loại bệnh án trang đầu.");
+                        }
+                        string bllx = bllxEty.bllx;
                         var rel = _zymeddocsrelationRep.FindEntity(p => p.zyh == zyh && p.zt == "1" && p.OrganizeId == OrganizeId && p.bllx == bllx);
                         if (rel != null)
                         {
@@ -482,8 +533,20 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                             };
                             rootinput.jsondata = JsonConvert.SerializeObject(YBJKDATA_ZD);
                             rootinput.jydm = "7610";
-                            var respstrzd = EmrHttpHelper.PostJsonString(UploadURL + "api/QHDSmartCheck/MedicalRecordUpload", JsonConvert.SerializeObject(rootinput));
-                            var respzd = JsonConvert.DeserializeObject<Newtouch.EMR.Domain.DTO.OutputDto.MRUpload.ResponseBase>(respstr);
+                            string respstrzd;
+                            try
+                            {
+                                respstrzd = EmrHttpHelper.PostJsonString(UploadURL + "api/QHDSmartCheck/MedicalRecordUpload", JsonConvert.SerializeObject(rootinput));
+                            }
+                            catch (Exception)
+                            {
+                                return Error("Dịch vụ tải lên bảo hiểm y tế hiện không khả dụng, vui lòng thử lại sau.");
+                            }
+                            // G19: trước đây deserialize nhầm respstr (kết quả
+                            // 7600) thay vì respstrzd (kết quả 7610) nên quyết
+                            // định thành công/thất bại của lần tải chẩn đoán
+                            // luôn lấy theo lần tải trang đầu.
+                            var respzd = JsonConvert.DeserializeObject<Newtouch.EMR.Domain.DTO.OutputDto.MRUpload.ResponseBase>(respstrzd);
                             if (respzd.code == "1")
                             {
                                 return Success("Tải lên thành công");
@@ -510,13 +573,21 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
         }
         public IActionResult UpdateUploadStu(string zyh)
         {
-            var bllxety = _CommonDmnService.GetBllxList(OrganizeId, "basy").FirstOrDefault();
-            var rel = _zymeddocsrelationRep.FindEntity(p => p.zyh == zyh && p.zt == "1" && p.OrganizeId == OrganizeId && p.bllx == bllxety.Code);
-            if (rel != null)
+            // G19: GetBllxList(org, "basy") lọc theo Id/bllx/bllxmc (không
+            // lọc bllxcode) nên luôn trả rỗng — bllxety null rồi NRE ở
+            // .Code. Tra thẳng repo theo bllxcode như HomePageUpload.
+            var bllxEty = _BllxRepo.FindEntity(p => p.OrganizeId == OrganizeId && p.zt == "1" && p.bllxcode == "basy");
+            if (bllxEty == null)
             {
-                rel.YbUploadFlag = "1";
-                _zymeddocsrelationRep.Update(rel);
+                return Error("Không tìm thấy loại bệnh án trang đầu.");
             }
+            var rel = _zymeddocsrelationRep.FindEntity(p => p.zyh == zyh && p.zt == "1" && p.OrganizeId == OrganizeId && p.bllx == bllxEty.bllx);
+            if (rel == null)
+            {
+                return Error("Không tìm thấy thông tin liên kết bệnh án.");
+            }
+            rel.YbUploadFlag = "1";
+            _zymeddocsrelationRep.Update(rel);
             return Success();
         }
         #region Liên quan đến bảo hiểm y tế
