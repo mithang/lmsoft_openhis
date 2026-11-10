@@ -1,4 +1,5 @@
 using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Exceptions;
 using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Framework.Web.Controllers;
 using NewtouchHIS.Lib.Framework.Operator;
@@ -164,6 +165,9 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         {
             //1.Tải lên nền tảng mua hàng Sunshine YY009
             var ddbh = _sunPurchaseDmnService.Purchase_YY009(this.OrganizeId, cgId);
+            //G27-F6: YY009 thất bại không được gán message lỗi vào cột ddbh (varchar(20)) — base: message SOAP dài gây truncation nhưng local save đã commit trước đó (half-write)
+            if (string.IsNullOrWhiteSpace(ddbh)) throw new FailedException("Nền tảng Sunshine không trả về số đơn hàng.");
+            if (ddbh.Length > 20) throw new FailedException("Số đơn hàng từ nền tảng Sunshine vượt quá 20 ký tự.");
             //2.Cập nhật ddbh
             _purchaseRepo.PurchaseDdbhUpdate(cgId, ddbh, this.OrganizeId);
             //4.Xác nhận khai báo đơn hàng YY010
@@ -208,6 +212,9 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 
             cgEntity.OrganizeId = this.OrganizeId;
             cgEntity.yyjhdh = "YPCGD"+DateTime.Now.ToString("yyyyMMddHHmm");
+            //G27-F1: validate toàn bộ input TRƯỚC khi write — base: header mồ côi (7b), lỗi SQL thô (7d/7k/7l), detail lỗi nhưng header đã lưu (7e), số lượng âm (7f), jls tin client (7m)
+            ValidatePurchase(cgEntity, cgmxList);
+            cgEntity.jls = cgmxList.Count; //G27-F1: jls do server tính, bỏ qua giá trị client gửi (7m)
             // 1.Thêm mới hoặc cập nhật danh sách mua hàng
             var cgId = _purchaseRepo.SubmitForm(cgEntity, keyValue);
             //2.Xóa chi tiết mua hàng
@@ -236,6 +243,8 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             OperatorModel user = this.UserIdentity;
 
             cgEntity.OrganizeId = this.OrganizeId;
+            //G27-F1: validate trước khi write (cùng ValidatePurchase với SubmitPurchase); cgmxList null → Error TV thay vì NRE ở .Count
+            ValidatePurchase(cgEntity, cgmxList);
             cgEntity.jls = cgmxList.Count;
             // 1.Thêm mới hoặc cập nhật danh sách mua hàng
             var cgId = _purchaseRepo.SubmitForm(cgEntity, keyValue);
@@ -253,6 +262,41 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             //4.Khai báo và truyền báo đơn hàng mua hàng
             PurchaseUpload(cgId, 2);
             return Success();
+        }
+
+        /// <summary>
+        /// G27-F1: Validate toàn bộ input của SubmitPurchase/SubmitAndUploadPurchase TRƯỚC khi write.
+        /// Độ dài theo đúng cột xt_yp_cg / xt_yp_cgmx (INFORMATION_SCHEMA, NewtouchHIS_PDS_STG);
+        /// cgsl/cgdj numeric(16,4) → chặn tràn ở mức 999999999999.
+        /// </summary>
+        private void ValidatePurchase(PurchaseEntity cgEntity, List<PurchaseDetailEntity> cgmxList)
+        {
+            if (cgEntity == null) throw new FailedException("Dữ liệu đơn mua hàng không được để trống.");
+            if (string.IsNullOrWhiteSpace(cgEntity.czlx) || cgEntity.czlx.Length != 1) throw new FailedException("Loại thao tác (czlx) không được để trống và chỉ gồm 1 ký tự.");
+            if (string.IsNullOrWhiteSpace(cgEntity.ddlx) || cgEntity.ddlx.Length != 1) throw new FailedException("Loại đơn hàng (ddlx) không được để trống và chỉ gồm 1 ký tự.");
+            if (string.IsNullOrWhiteSpace(cgEntity.yybm) || cgEntity.yybm.Length > 20) throw new FailedException("Mã bệnh viện (yybm) không được để trống và không vượt quá 20 ký tự.");
+            if (string.IsNullOrWhiteSpace(cgEntity.psdbm) || cgEntity.psdbm.Length > 20) throw new FailedException("Mã điểm phân phối (psdbm) không được để trống và không vượt quá 20 ký tự.");
+            if (!string.IsNullOrEmpty(cgEntity.ddbh) && cgEntity.ddbh.Length > 20) throw new FailedException("Số đơn hàng (ddbh) không vượt quá 20 ký tự.");
+            if (!string.IsNullOrEmpty(cgEntity.gysCode) && cgEntity.gysCode.Length > 20) throw new FailedException("Mã nhà cung cấp không vượt quá 20 ký tự.");
+            if (!string.IsNullOrEmpty(cgEntity.gysName) && cgEntity.gysName.Length > 50) throw new FailedException("Tên nhà cung cấp không vượt quá 50 ký tự.");
+            if (!string.IsNullOrEmpty(cgEntity.zwdhrq) && cgEntity.zwdhrq.Length > 10) throw new FailedException("Ngày giao hàng muộn nhất không vượt quá 10 ký tự.");
+            if (cgmxList == null || cgmxList.Count == 0) throw new FailedException("Chi tiết đơn mua hàng không được để trống.");
+            foreach (var d in cgmxList)
+            {
+                if (string.IsNullOrWhiteSpace(d.ypCode) || d.ypCode.Length > 20) throw new FailedException("Mã thuốc (ypCode) không được để trống và không vượt quá 20 ký tự.");
+                if (string.IsNullOrWhiteSpace(d.ggbz) || d.ggbz.Length > 200) throw new FailedException("Quy cách (ggbz) không được để trống và không vượt quá 200 ký tự.");
+                if (d.cgsl <= 0 || d.cgsl > 999999999999m) throw new FailedException("Số lượng mua (cgsl) phải lớn hơn 0 và không vượt quá 999999999999.");
+                if (d.cgdj < 0 || d.cgdj > 999999999999m) throw new FailedException("Đơn giá mua (cgdj) phải lớn hơn hoặc bằng 0 và không vượt quá 999999999999.");
+                if (string.IsNullOrWhiteSpace(d.yqbm) || d.yqbm.Length > 20) throw new FailedException("Mã khu vực (yqbm) không được để trống và không vượt quá 20 ký tự.");
+                if (string.IsNullOrWhiteSpace(d.dcpsbs) || (d.dcpsbs != "0" && d.dcpsbs != "1")) throw new FailedException("Cờ dừng mua (dcpsbs) chỉ nhận giá trị 0 hoặc 1.");
+                if (!string.IsNullOrEmpty(d.cglx) && d.cglx.Length > 1) throw new FailedException("Loại mua (cglx) không vượt quá 1 ký tự.");
+                if (!string.IsNullOrEmpty(d.splx) && d.splx.Length > 1) throw new FailedException("Loại sản phẩm (splx) không vượt quá 1 ký tự.");
+                if (!string.IsNullOrEmpty(d.zxspbm) && d.zxspbm.Length > 50) throw new FailedException("Mã sản phẩm (zxspbm) không vượt quá 50 ký tự.");
+                if (!string.IsNullOrEmpty(d.cgjldw) && d.cgjldw.Length > 1) throw new FailedException("Đơn vị mua (cgjldw) không vượt quá 1 ký tự.");
+                if (!string.IsNullOrEmpty(d.dw) && d.dw.Length > 50) throw new FailedException("Đơn vị (dw) không vượt quá 50 ký tự.");
+                if (!string.IsNullOrEmpty(d.bzsm) && d.bzsm.Length > 80) throw new FailedException("Ghi chú (bzsm) không vượt quá 80 ký tự.");
+                if (!string.IsNullOrEmpty(d.ypName) && d.ypName.Length > 100) throw new FailedException("Tên thuốc (ypName) không vượt quá 100 ký tự.");
+            }
         }
         #endregion
 
@@ -461,6 +505,8 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         #region
         public IActionResult PurchaseReturnUpload(string thId, int ddzt)
         {
+            //G27-F6: thId rỗng/bogus trước đây vẫn Success (fake success) vì YY011/YY012 nuốt lỗi — validate trước, YY throw sau (xem SunPurchaseDmnService)
+            if (string.IsNullOrWhiteSpace(thId)) throw new FailedException("Mã phiếu trả hàng không được để trống.");
             //1.Tải lên nền tảng mua hàng Sunshine YY011
             var ddbh = _sunPurchaseDmnService.Purchase_YY011(this.OrganizeId, thId);
             //2.Lấy YY011 số đơn hàng của  (YY011Bảng lưu)

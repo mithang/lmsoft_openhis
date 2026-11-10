@@ -288,7 +288,7 @@
             return;
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
-        if (rowData.ddzt != "已保存") {
+        if (rowData.ddzt != "Đã lưu") {
             $.modalAlert("Chứng từ đã chọn không phải trạng thái đã lưu, Không thể sửa", 'warning');
             return;
         }
@@ -370,7 +370,7 @@
             return;
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
-        if (rowData.ddzt != "已传报") {
+        if (rowData.ddzt != "Đã gửi báo cáo") {
             $.modalAlert("Chứng từ đã chọn không phải trạng thái đã báo cáo, không thể nghiệm thu", 'warning');
             return;
         }
@@ -402,7 +402,7 @@
             return;
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
-        if (rowData.ddzt != "已保存") {
+        if (rowData.ddzt != "Đã lưu") {
             $.modalAlert("Vui lòng chọn chứng từ đã lưu để hủy bỏ", 'warning');
             return;
         }
@@ -424,7 +424,7 @@
     $('#btn_test').click(function () {
         $.najax({
             type: "POST",
-            url: "/Purchase/PurchaseReturnUpload",
+            url: "/OutOrInStoredManage/Purchase/PurchaseReturnUpload",
             data: { thId: '', ddzt: 4 },
             dataType: "json",
             success: function (res) {

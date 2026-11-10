@@ -22,6 +22,7 @@ using System.Security.Cryptography;
 using Newtouch.HIS.Domain.IRepository.PharmacyDrugStorage;
 using Newtouch.HIS.DomainServices.PurchaseWebService;
 using Newtouch.Infrastructure.Log;
+using NewtouchHIS.Lib.Base.Exceptions;
 
 namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 {
@@ -274,7 +275,8 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             }
             catch (Exception e)
             {
-                return e.Message;
+                //G27-F6: YY thất bại phải throw thay vì return e.Message — base: controller gán message lỗi vào cột ddbh varchar(20) gây truncation, local save đã commit trước đó (half-write)
+                throw new FailedException("Khai báo đơn hàng lên nền tảng Sunshine thất bại (YY009): " + e.Message);
             }
         }
 
@@ -349,7 +351,8 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             }
             catch (Exception e)
             {
-                return e.Message;
+                //G27-F6: YY thất bại phải throw thay vì return e.Message (xem YY009)
+                throw new FailedException("Xác nhận khai báo đơn hàng lên nền tảng Sunshine thất bại (YY010): " + e.Message);
             }
         }
 
@@ -416,7 +419,8 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             }
             catch (Exception e)
             {
-                return e.Message;
+                //G27-F6: YY thất bại phải throw thay vì return e.Message (xem YY009)
+                throw new FailedException("Khai báo phiếu trả hàng lên nền tảng Sunshine thất bại (YY011): " + e.Message);
             }
         }
 
@@ -489,7 +493,8 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             }
             catch (Exception e)
             {
-                return e.Message;
+                //G27-F6: YY thất bại phải throw thay vì return e.Message (xem YY009)
+                throw new FailedException("Xác nhận khai báo phiếu trả hàng lên nền tảng Sunshine thất bại (YY012): " + e.Message);
             }
         }
 

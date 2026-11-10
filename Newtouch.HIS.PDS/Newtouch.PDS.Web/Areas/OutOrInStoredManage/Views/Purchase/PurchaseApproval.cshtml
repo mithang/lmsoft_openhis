@@ -329,15 +329,15 @@
         }
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
-            if (ddzt=='1' && rowData.ddzt != "审核通过") {
+            if (ddzt=='1' && rowData.ddzt != "Đã duyệt") {
                 $.modalAlert("Số chứng từ" + rowData.yyjhdh + "không phải là chứng từ đã phê duyệt, không thể thu hồi", 'warning');
                 return;
             }
-            if (ddzt == '2' && rowData.ddzt != "待审核") {
+            if (ddzt == '2' && rowData.ddzt != "Chờ duyệt") {
                 $.modalAlert("Số chứng từ" + rowData.yyjhdh + "không phải trạng thái chờ phê duyệt, không thể phê duyệt", 'warning');
                 return;
             }
-            if (ddzt == '3' && rowData.ddzt != "待审核") {
+            if (ddzt == '3' && rowData.ddzt != "Chờ duyệt") {
                 $.modalAlert("Số chứng từ" + rowData.yyjhdh + "không phải trạng thái chờ phê duyệt, không thể hủy bỏ", 'warning');
                 return;
             }
