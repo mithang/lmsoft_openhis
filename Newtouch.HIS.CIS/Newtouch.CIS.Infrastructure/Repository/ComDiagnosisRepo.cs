@@ -142,7 +142,7 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
             catch (Exception ex)
             {
 
-                throw new FailedException("Lỗi thông tin：" + ex.Message);
+                throw new FailedException("Lỗi thông tin: " + ex.Message);
             }
 
         }
@@ -154,7 +154,7 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
                 ComDiagnosisEntity zdbm = this.FindEntity(p => p.cyzdbm == entity.cyzdbm && p.cyzdtype == entity.cyzdtype && p.ys == entity.ys);
                 if (zdbm != null)
                 {
-                    throw new FailedException("không thể Thêm trùng lặp thường dùng Chẩn đoán");
+                    throw new FailedException("Không thể thêm trùng lặp chẩn đoán thường dùng");
                 }
                 else
                 {
@@ -167,7 +167,7 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
             catch (Exception ex)
             {
 
-                throw new FailedException("Lỗi thông tin：" + ex.Message);
+                throw new FailedException("Lỗi thông tin: " + ex.Message);
             }
 
         }

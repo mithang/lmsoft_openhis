@@ -45,6 +45,10 @@ namespace Newtouch.Repository
             if (!string.IsNullOrEmpty(keyValue))
             {
                 var dbEntity = this.FindEntity(keyValue);
+                if (dbEntity == null)
+                {
+                    throw new FailedException("Không tìm thấy mẫu bảng phiếu cần sửa, thao tác thất bại.");
+                }
                 //properties
                 dbEntity.ctnr = entity.ctnr;
                 dbEntity.mc = entity.mc;
@@ -72,6 +76,10 @@ namespace Newtouch.Repository
             // this.Delete(p => p.ID == keyValue);
 
             var dbEntity = this.FindEntity(keyValue);
+            if (dbEntity == null)
+            {
+                throw new FailedException("Không tìm thấy mẫu bảng phiếu cần xóa, thao tác thất bại.");
+            }
             dbEntity.zt = "0";
             this.Update(dbEntity);
         }

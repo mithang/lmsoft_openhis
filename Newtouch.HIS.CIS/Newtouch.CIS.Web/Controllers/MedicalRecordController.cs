@@ -521,6 +521,18 @@ namespace Newtouch.CIS.Web.Controllers
         /// <returns></returns>
         public IActionResult SaveMedicalRecord(TreatmentEntity jzObject, List<WMDiagnosisHtmlVO> xyzdList, List<TCMDiagnosisHtmlVO> zyzdList, MedicalRecordEntity blObject, string cfDto, bool jzFinish, List<CFZDDiagnosisHtmlVO> cfzdlist)
         {
+            if (jzObject == null)
+            {
+                throw new FailedException("Thiếu thông tin khám bệnh, không lưu được hồ sơ.");
+            }
+            if (string.IsNullOrWhiteSpace(jzObject.mzh))
+            {
+                throw new FailedException("Thiếu mã khám bệnh, không lưu được hồ sơ.");
+            }
+            if (blObject == null)
+            {
+                throw new FailedException("Thiếu thông tin hồ sơ, không lưu được hồ sơ.");
+            }
             jzObject.jzks = this.UserIdentity.DepartmentCode;   // Khám bệnh khoa lấy thao tác người viên hiện tại khoa
             jzObject.jzys = this.UserIdentity.rygh;    // Khám bệnh bác sĩ lấy thao tác người viên hiện tại mã nhân viên // cuối cùng xem khám bác sĩ mã nhân viên
             jzObject.jzysmc = this.UserIdentity.UserName;   // cuối cùng xem khám bác sĩ tên
@@ -546,6 +558,10 @@ namespace Newtouch.CIS.Web.Controllers
                 };
                 var apiResp = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<SignInStateRequest>>(
                      "api/SignInAppointment/SignInState", reqObj);
+                if (apiResp == null)
+                {
+                    throw new FailedException("Không gọi được giao diện đăng ký khám, không cập nhật được trạng thái check-in, vui lòng thử lại sau.");
+                }
                 if (apiResp.msg != null || apiResp.sub_msg != null)
                 {
                     LogCore.Error("Sửa trạng thái check-in, gọi giao diện thất bại 【" + apiResp.msg + apiResp.sub_msg + "】");
@@ -558,8 +574,16 @@ namespace Newtouch.CIS.Web.Controllers
             var cfList = new List<PrescriptionDTO>();
             foreach (var item in cfDtoList)
             {
+                if (item == null || item.cfHtml == null)
+                {
+                    continue;
+                }
                 foreach (var cfitem in item.cfHtml)
                 {
+                    if (cfitem == null)
+                    {
+                        continue;
+                    }
                     cfitem.cflx = item.cflx == "kfcf" ? (int)EnumCflx.RehabPres : item.cflx=="wzhccf" ? (int)EnumCflx.Yyhc: item.cflx == "cgxmcf" ? (int)EnumCflx.RegularItemPres : item.cflx == "xycf" ? (int)EnumCflx.WMPres : item.cflx == "zycf" ? cfitem.cflx = (int)EnumCflx.TCMPres : item.cflx == "jycf" ? (int)EnumCflx.InspectionPres : item.cflx == "jccf" ? (int)EnumCflx.ExaminationPres : item.cflx == "dzcf"? (int)EnumCflx.Dzcf:0;
                     var ztsl2 = cfitem.ztsl != null ? cfitem.ztsl : cfitem.sl;
                     switch (cfitem.cflx)

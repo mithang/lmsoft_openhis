@@ -1121,7 +1121,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                 var jzEntity = _treatmentRepo.IQueryable().Where(a => a.jzId == jzId && a.OrganizeId == orgId && a.zt == "1").FirstOrDefault();
                 if (jzEntity == null)
                 {
-                    throw new FailedException("Dữ liệu bất thường，chưatrađếnKhám bệnhghi chép");
+                    throw new FailedException("Dữ liệu bất thường, chưa tra cứu được thông tin khám bệnh");
                 }
                 //jzEntity.zt = "0";
                 //jzEntity.Modify();
