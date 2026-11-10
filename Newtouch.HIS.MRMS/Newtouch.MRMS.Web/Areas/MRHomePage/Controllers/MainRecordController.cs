@@ -211,37 +211,50 @@ namespace Newtouch.MRMS.Web.Areas.MRHomePage.Controllers
         public IActionResult SubmitZdList(List<BasyZdDto> dto,string zyh,string Code)
         {
             var data = "";
-            if (dto!=null && dto.Count>0)
+            // G20: dto rỗng trước đây vẫn trả {"data":""} mà UI hiểu là lưu thành công.
+            if (dto == null || dto.Count == 0)
             {
-                //Thông tin bệnh nhân đã thanh toán
-                var jsbrxx = _MainRecordDmnService.SettlementQuery(zyh, this.OrganizeId);
-                //Có đồng bộ thông tin tham số động không
-                var dtcsxx = _MainRecordDmnService.DiagnosticSave(Code, this.OrganizeId);
+                return Error("Danh sách chẩn đoán không được để trống.");
+            }
+            //Thông tin bệnh nhân đã thanh toán
+            var jsbrxx = _MainRecordDmnService.SettlementQuery(zyh, this.OrganizeId);
+            //Có đồng bộ thông tin tham số động không
+            var dtcsxx = _MainRecordDmnService.DiagnosticSave(Code, this.OrganizeId);
+            // G20: DiagnosticSave trả 0 dòng (Code lạ) thì dtcsxx[0] ném IndexOutOfRange.
+            if (dtcsxx == null || dtcsxx.Count == 0)
+            {
+                return Error("Không tìm thấy thông tin tham số chẩn đoán.");
+            }
 
-                //Kiểm tra bệnh nhân đã thanh toán chưa
-                if (jsbrxx.Count > 0)
+            //Kiểm tra bệnh nhân đã thanh toán chưa
+            if (jsbrxx.Count > 0)
+            {
+                //Tham số: thời gian sửa trống thì lấy thời gian tạo
+                var uptime = dtcsxx[0].LastModifyTime.ToString() == null || dtcsxx[0].LastModifyTime.ToString() == "" ? dtcsxx[0].CreateTime : dtcsxx[0].LastModifyTime;
+                //Kiểm tra thời gian thanh toán có lớn hơn thời gian sửa hoặc tạo của tham số không
+                if ((jsbrxx[0].CreateTime > uptime) && (dtcsxx[0].Value == "OFF" || dtcsxx[0].Value == "off"))
                 {
-                    //Tham số: thời gian sửa trống thì lấy thời gian tạo
-                    var uptime = dtcsxx[0].LastModifyTime.ToString() == null || dtcsxx[0].LastModifyTime.ToString() == "" ? dtcsxx[0].CreateTime : dtcsxx[0].LastModifyTime;
-                    //Kiểm tra thời gian thanh toán có lớn hơn thời gian sửa hoặc tạo của tham số không
-                    if ((jsbrxx[0].CreateTime > uptime) && (dtcsxx[0].Value == "OFF" || dtcsxx[0].Value == "off"))
-                    {
-                        data = "Bệnh nhân đã quyết toán không thể thêm thông tin chẩn đoán";
-                    }
-                    //Kiểm tra thời gian thanh toán có nhỏ hơn thời gian sửa hoặc tạo của tham số không
-                    else if ((jsbrxx[0].CreateTime < uptime) && (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on"))
-                    {
-                        //Lưu chẩn đoán
-                        _MainRecordDmnService.ZdListSubmit(dto, OrganizeId);
-                        data = "Lưu thông tin chẩn đoán thành công";
-                    }
-                    else
-                    {
-                        //return Success("Không thể thêm thông tin chẩn đoán");
-                        data = "Không thể thêm thông tin chẩn đoán";
-                    }
+                    data = "Bệnh nhân đã quyết toán không thể thêm thông tin chẩn đoán";
                 }
-                //_MainRecordDmnService.ZdListSubmit(dto, OrganizeId);
+                //Kiểm tra thời gian thanh toán có nhỏ hơn thời gian sửa hoặc tạo của tham số không
+                else if ((jsbrxx[0].CreateTime < uptime) && (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on"))
+                {
+                    //Lưu chẩn đoán
+                    _MainRecordDmnService.ZdListSubmit(dto, OrganizeId);
+                    data = "Lưu thông tin chẩn đoán thành công";
+                }
+                else
+                {
+                    //return Success("Không thể thêm thông tin chẩn đoán");
+                    data = "Không thể thêm thông tin chẩn đoán";
+                }
+            }
+            else
+            {
+                // G20: chưa quyết toán thì lưu trực tiếp — trước đây rơi qua, trả
+                // {"data":""} mà không lưu dòng nào (UI vẫn báo thành công).
+                _MainRecordDmnService.ZdListSubmit(dto, OrganizeId);
+                data = "Lưu thông tin chẩn đoán thành công";
             }
             data = "{\"data\":\"" + data + "\"}";
             return Content(data.ToJson().ToString());
@@ -249,10 +262,12 @@ namespace Newtouch.MRMS.Web.Areas.MRHomePage.Controllers
 
         public IActionResult SubmitOpList(List<BasyOpDto> dto)
         {
-            if(dto!=null&&dto.Count>0)
+            // G20: dto rỗng trước đây vẫn Success "Lưu phẫu thuật thành công".
+            if (dto == null || dto.Count == 0)
             {
-                _MainRecordDmnService.OpListSubmit(dto, OrganizeId);
+                return Error("Danh sách phẫu thuật không được để trống.");
             }
+            _MainRecordDmnService.OpListSubmit(dto, OrganizeId);
             return Success("Lưu phẫu thuật thành công");
         }
 
@@ -261,7 +276,7 @@ namespace Newtouch.MRMS.Web.Areas.MRHomePage.Controllers
             {
                 if(!string.IsNullOrWhiteSpace(dto.Id) && dto.Id!=keyValue)
                 {
-                    return Error("Thông tin bệnh án bất thường，Vui lòng làm mới và thử lại");
+                    return Error("Thông tin bệnh án bất thường, Vui lòng làm mới và thử lại");
                 }
                 else
                 {
@@ -275,6 +290,11 @@ namespace Newtouch.MRMS.Web.Areas.MRHomePage.Controllers
         public IActionResult SubmitMR(string keyValue, List<BasyOpDto> opdto, List<BasyZdDto> zddto,string zyh,string Code)
         {
             //_MainRecordDmnService.PatBasicSubmit(dto, reldto, OrganizeId, this.UserIdentity.rygh);
+            // G20: cả hai dto null trước đây vẫn Success() (không lưu gì).
+            if ((zddto == null || zddto.Count == 0) && (opdto == null || opdto.Count == 0))
+            {
+                return Error("Không có dữ liệu để lưu.");
+            }
             if(zddto!=null&&zddto.Count>0)
             {
                 //_MainRecordDmnService.ZdListSubmit(zddto, OrganizeId);
@@ -282,6 +302,12 @@ namespace Newtouch.MRMS.Web.Areas.MRHomePage.Controllers
                 var jsbrxx = _MainRecordDmnService.SettlementQuery(zyh, this.OrganizeId);
                 //Có đồng bộ thông tin tham số động không
                 var dtcsxx = _MainRecordDmnService.DiagnosticSave(Code, this.OrganizeId);
+                // G20: DiagnosticSave trả 0 dòng (Code lạ) thì dtcsxx[0] ném
+                // IndexOutOfRange trước cả nhánh op — chặn bằng lỗi tiếng Việt.
+                if (dtcsxx == null || dtcsxx.Count == 0)
+                {
+                    return Error("Không tìm thấy thông tin tham số chẩn đoán.");
+                }
 
                 //Kiểm tra bệnh nhân đã thanh toán chưa
                 if (jsbrxx.Count > 0)
@@ -305,6 +331,12 @@ namespace Newtouch.MRMS.Web.Areas.MRHomePage.Controllers
                         //return Success("Không thể thêm thông tin chẩn đoán");
                         //data = "Không thể thêm thông tin chẩn đoán";
                     }
+                }
+                else
+                {
+                    // G20: chưa quyết toán thì lưu trực tiếp (cùng fix như
+                    // SubmitZdList #1b — trước đây rơi qua, zd không lưu mà op vẫn lưu).
+                    _MainRecordDmnService.ZdListSubmit(zddto, OrganizeId);
                 }
             }
             if (opdto != null && opdto.Count > 0)
@@ -330,7 +362,9 @@ namespace Newtouch.MRMS.Web.Areas.MRHomePage.Controllers
         public IActionResult CXGDZT(string dataId, string ZYH, string XM) {
             var LastModifierCode = UserIdentity.UserName;
             var LastModifyTime = DateTime.Now;
-            var data1 = _MrbasyRepo.CXUpdatebazt(dataId, ZYH, XM, this.OrganizeId, LastModifierCode, LastModifyTime);
+            // G20: trước đây gọi nhầm CXUpdatebazt (GDRQ=null + đụng EMR zy_brjbxx)
+            // trong khi repo có CXGDZT riêng (GDRQ=now, chỉ đụng MRMS).
+            var data1 = _MrbasyRepo.CXGDZT(dataId, ZYH, XM, this.OrganizeId, LastModifierCode, LastModifyTime);
             return Content(data1.ToJson());
         }
 

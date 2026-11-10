@@ -476,30 +476,35 @@ order by SSOrder ";
                     if (!string.IsNullOrWhiteSpace(v.Id))
                     {
                         zdety = _MrbasyzdRepo.FindEntity(v.Id);
-                        if(zdety!=null)
+                        if (zdety == null)
                         {
-                            if(zdety.OrganizeId==orgId && zdety.zt=="1")
-                            {
-                                zdety.RYBQ = v.RYBQ;
-                                zdety.RYBQMS = v.RYBQMS;
-                                zdety.CYQK = v.CYQK;
-                                zdety.CYQKMS = v.CYQKMS;
-                                zdety.JBDM = v.JBDM;
-                                zdety.JBMC = v.JBMC;
-                                zdety.zt = v.zt == null ? zdety.zt : v.zt;
+                            // G20: Id lạ trước đây rơi nhánh insert rồi NRE ở
+                            // zdety.BAH (cùng mẫu OpListSubmit #2d chứng minh live).
+                            throw new FailedException("Không tìm thấy thông tin chẩn đoán.");
+                        }
+                        if (zdety.OrganizeId == orgId && zdety.zt == "1")
+                        {
+                            // G20: merge-skip-null — form post thiếu field thì giữ
+                            // giá trị cũ, không ghi đè null (KHÔNG dùng MapperTo copy-null).
+                            if (v.RYBQ != null) zdety.RYBQ = v.RYBQ;
+                            if (v.RYBQMS != null) zdety.RYBQMS = v.RYBQMS;
+                            if (v.CYQK != null) zdety.CYQK = v.CYQK;
+                            if (v.CYQKMS != null) zdety.CYQKMS = v.CYQKMS;
+                            if (v.JBDM != null) zdety.JBDM = v.JBDM;
+                            if (v.JBMC != null) zdety.JBMC = v.JBMC;
+                            zdety.zt = v.zt == null ? zdety.zt : v.zt;
 
-                                if(v.zt=="1")
-                                {
-                                    zdety.ZDOrder = i;
-                                }
-                                 
-                                flag = 1;
-                                _MrbasyzdRepo.Update(zdety);
-                            }
-                            else
+                            if(v.zt=="1")
                             {
-                                throw new FailedException("Dữ liệu bất thường, vui lòng làm mới rồi nhập lại");
+                                zdety.ZDOrder = i;
                             }
+                             
+                            flag = 1;
+                            _MrbasyzdRepo.Update(zdety);
+                        }
+                        else
+                        {
+                            throw new FailedException("Dữ liệu bất thường, vui lòng làm mới rồi nhập lại");
                         }
                     }
 
@@ -558,41 +563,53 @@ order by SSOrder ";
                     if (!string.IsNullOrWhiteSpace(v.Id))
                     {
                         opety = _MrbasyssRepo.FindEntity(v.Id);
-                        if (opety != null)
+                        if (opety == null)
                         {
-                            if (opety.OrganizeId == orgId && opety.zt == "1")
-                            {
-                                opety.SSJCZBM = v.SSJCZBM;
-                                opety.SSJCZRQ = Convert.ToDateTime(v.SSJCZRQ);
-                                opety.SSJB = v.SSJB;
-                                opety.SSJCZMC = v.SSJCZMC;
-                                opety.SZ = v.SZ;
-                                opety.YZ = v.YZ;
-                                opety.EZ = v.EZ;
-                                opety.QKDJ = v.QKDJ;
-                                opety.QKYHLB = v.QKYHLB;
-                                opety.QKYHDJ = v.QKYHDJ;
-                                opety.MZFS = v.MZFS;
-                                opety.MZYS = v.MZYS;
-                                opety.zt = v.zt;
+                            // G20: Id lạ trước đây rơi nhánh insert rồi NRE ở
+                            // opety.SSJCZBM (#2d chứng minh live).
+                            throw new FailedException("Không tìm thấy thông tin phẫu thuật.");
+                        }
+                        if (opety.OrganizeId == orgId && opety.zt == "1")
+                        {
+                            // G20: merge-skip-null — form post thiếu field thì giữ
+                            // giá trị cũ (ngày thiếu = MinValue thì giữ ngày cũ),
+                            // không ghi đè null (KHÔNG dùng MapperTo copy-null).
+                            if (v.SSJCZBM != null) opety.SSJCZBM = v.SSJCZBM;
+                            if (v.SSJCZRQ != DateTime.MinValue) opety.SSJCZRQ = Convert.ToDateTime(v.SSJCZRQ);
+                            if (v.SSJB != null) opety.SSJB = v.SSJB;
+                            if (v.SSJCZMC != null) opety.SSJCZMC = v.SSJCZMC;
+                            if (v.SZ != null) opety.SZ = v.SZ;
+                            if (v.YZ != null) opety.YZ = v.YZ;
+                            if (v.EZ != null) opety.EZ = v.EZ;
+                            if (v.QKDJ != null) opety.QKDJ = v.QKDJ;
+                            if (v.QKYHLB != null) opety.QKYHLB = v.QKYHLB;
+                            if (v.QKYHDJ != null) opety.QKYHDJ = v.QKYHDJ;
+                            if (v.MZFS != null) opety.MZFS = v.MZFS;
+                            if (v.MZYS != null) opety.MZYS = v.MZYS;
+                            if (v.zt != null) opety.zt = v.zt;
 
-                                if(v.zt=="1")
-                                {
-                                    opety.SSOrder = i;
-                                }
-
-                                flag = 1;
-                                _MrbasyssRepo.Update(opety);
-                            }
-                            else
+                            if(v.zt=="1")
                             {
-                                throw new FailedException("Dữ liệu bất thường, vui lòng làm mới rồi nhập lại");
+                                opety.SSOrder = i;
                             }
+
+                            flag = 1;
+                            _MrbasyssRepo.Update(opety);
+                        }
+                        else
+                        {
+                            throw new FailedException("Dữ liệu bất thường, vui lòng làm mới rồi nhập lại");
                         }
                     }
 
                     if (flag == 0 && v.zt!="0")
                     {
+                        // G20: ngày sai định dạng (binder -> MinValue) trước đây
+                        // vẫn insert thành công với 1900-01-01 (#2c/#4d chứng minh live).
+                        if (v.SSJCZRQ == DateTime.MinValue)
+                        {
+                            throw new FailedException("Ngày phẫu thuật không đúng định dạng, vui lòng nhập lại.");
+                        }
                         opety.SSJCZBM = v.SSJCZBM;
                         opety.SSJCZRQ = Convert.ToDateTime(v.SSJCZRQ);
                         opety.SSJB = v.SSJB;
@@ -730,14 +747,30 @@ order by SSOrder ";
                             ety = PatBasyInfoSet(ety, vo, orgId);
                             ety.LastModifyTime = DateTime.Now;
                             ety.LastModifierCode = user;
-                            
-                            _MrbasyRepo.Update(ety);
 
+                            // G20: validate rel (enum/YLFKFS) TRƯỚC khi ghi mr_basy —
+                            // trước đây Update(ety) chạy trước RelSet nên giá trị lỗi
+                            // (RYTJ/YLFKFS) đã lưu rồi mới báo lỗi (#3b/#3c chứng minh live).
                             var findrel = _MrbasyrelcodeRepo.FindEntity(p => p.BAH == ety.BAH && p.SYId == ety.Id && p.OrganizeId == orgId);
                             if(findrel!=null)
                             {
                                 relvo.R_YLFKFS = vo.YLFKFS;
                                 relety = PatBasyInfoRelSet(findrel, relvo,vo, orgId);
+                            }
+                            else
+                            {
+                                relvo.R_BAH = vo.BAH;
+                                relvo.R_YLFKFS = vo.YLFKFS;
+
+                                relety = PatBasyInfoRelSet(relety, relvo,vo, orgId);
+                                relety.SYId = ety.Id;
+                                relety.Create(true);
+                            }
+
+                            _MrbasyRepo.Update(ety);
+
+                            if(findrel!=null)
+                            {
                                 _MrbasyrelcodeRepo.Update(relety);
 
                                 string sqlje = @"exec [usp_sync_basy_feefromSettbyzyh] @orgId,@zyh";
@@ -748,14 +781,7 @@ order by SSOrder ";
                             }
                             else
                             {
-                                relvo.R_BAH = vo.BAH;
-                                relvo.R_YLFKFS = vo.YLFKFS;
-                                
-                                relety = PatBasyInfoRelSet(relety, relvo,vo, orgId);
-                                relety.SYId = ety.Id;
-                                relety.Create(true);
                                 _MrbasyrelcodeRepo.Insert(relety);
-                                
                             }
                         }
                         else
@@ -774,13 +800,14 @@ order by SSOrder ";
                             ety.bazt = ((int)Enumbazt.lrz).ToString();
                             ety.OrganizeId = orgId;
                             ety.Create(true);
-                            _MrbasyRepo.Insert(ety);
-
+                            // G20: validate rel TRƯỚC khi Insert(ety) (cùng lỗi ghi
+                            // nửa chừng như nhánh edit — RelSet chạy sau Insert).
                             relvo.R_BAH = vo.BAH;
                             relvo.R_YLFKFS = vo.YLFKFS;
                             relety = PatBasyInfoRelSet(relety, relvo, vo, orgId);
                             relety.SYId = ety.Id;
                             relety.Create(true);
+                            _MrbasyRepo.Insert(ety);
                             _MrbasyrelcodeRepo.Insert(relety);
                             
                             //Ghi đè EMR
@@ -1015,6 +1042,11 @@ order by SSOrder ";
             if (!string.IsNullOrWhiteSpace(vo.YLFKFS))
             {
                 var ylfk = _CommonDmnService.DicCommonList(orgId,null, "YLFKFS", vo.YLFKFS).FirstOrDefault();
+                // G20: mã YLFKFS lạ trước đây NRE ở ylfk.Name (#3c chứng minh live).
+                if (ylfk == null)
+                {
+                    throw new FailedException("Phương thức thanh toán y tế không hợp lệ.");
+                }
                 relEty.YLFKFS = ylfk.Name;
             }
 
