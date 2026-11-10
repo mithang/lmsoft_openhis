@@ -40,6 +40,19 @@ namespace Newtouch.Herp.Application.Implementation
         {
             if (pp == null) return "Thông tin chính kế hoạch mua sắm không được để trống";
             if (ppmx == null || ppmx.Count == 0) return "Chi tiết kế hoạch mua sắm không được để trống";
+            // G13: tra ve message cu the thay vi de catch nuot thanh message chung
+            // (check do dai trong try chi throw roi bi catch tra "Lưu kế hoạch mua sắm thất bại").
+            if (!string.IsNullOrWhiteSpace(pp.remark) && System.Text.Encoding.Default.GetBytes(pp.remark).Length > 200)
+            {
+                return "Độ dài ghi chú không được vượt quá 200 ký tự";
+            }
+            // G13: UI chan san nhung API thi khong — vat tu rong / sl<=0 deu insert
+            // duoc (sl=0) hoac loi SQL tho (productId NULL). Dung dung message cua UI.
+            foreach (var d in ppmx)
+            {
+                if (string.IsNullOrWhiteSpace(d.productId)) return "Vật tư bắt buộc chọn";
+                if (d.sl <= 0) return "Số lượng phải là số nguyên lớn hơn 0!";
+            }
             try
             {
                 var oldpp = _cgPurchaseOrderRepo.SelectData(pp.cgdh, organizeId);
@@ -55,7 +68,7 @@ namespace Newtouch.Herp.Application.Implementation
                 //Thêm mới
                 if (!string.IsNullOrWhiteSpace(pp.remark) && System.Text.Encoding.Default.GetBytes(pp.remark).Length > 200)
                 {
-                    throw new Exception("Độ dài ghi chú không được vượt quá 2000 ký tự");
+                    throw new Exception("Độ dài ghi chú không được vượt quá 200 ký tự");
                 }
                 var operateTime = DateTime.Now;
                 pp.OrganizeId = organizeId;
@@ -102,7 +115,7 @@ namespace Newtouch.Herp.Application.Implementation
             {
                 if (!string.IsNullOrWhiteSpace(pp.remark) && System.Text.Encoding.Default.GetBytes(pp.remark).Length > 200)
                 {
-                    throw new Exception("Độ dài ghi chú không được vượt quá 2000 ký tự");
+                    throw new Exception("Độ dài ghi chú không được vượt quá 200 ký tự");
                 }
 
                 var operateTime = DateTime.Now;
@@ -240,7 +253,7 @@ namespace Newtouch.Herp.Application.Implementation
                 default:
                     return "Thao tác này không hợp lệ";
             }
-            if (!string.IsNullOrWhiteSpace(remarks) && System.Text.Encoding.Default.GetBytes(remarks).Length > 200) return "Độ dài ghi chú không được vượt quá 2000 ký tự";
+            if (!string.IsNullOrWhiteSpace(remarks) && System.Text.Encoding.Default.GetBytes(remarks).Length > 200) return "Độ dài ghi chú không được vượt quá 200 ký tự";
             entity.remark = remarks;
             entity.LastModifierCode = userCode;
             entity.LastModifyTime = DateTime.Now;

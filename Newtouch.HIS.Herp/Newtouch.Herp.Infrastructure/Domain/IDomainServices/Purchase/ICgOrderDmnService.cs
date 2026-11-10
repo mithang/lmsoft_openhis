@@ -74,6 +74,6 @@ namespace Newtouch.Herp.Domain.IDomainServices
         /// <param name="subOrderNo"></param>
         /// <param name="fph"></param>
         /// <param name="userCode"></param>
-        void PurchaseDdbhUpdate(string subOrderNo, string fph, string userCode);
+        int PurchaseDdbhUpdate(string subOrderNo, string fph, string userCode);
     }
 }

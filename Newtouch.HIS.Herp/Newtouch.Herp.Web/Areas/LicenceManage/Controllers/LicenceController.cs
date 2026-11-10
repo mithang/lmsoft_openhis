@@ -104,8 +104,13 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         [HandlerAjaxOnly]
         public IActionResult SubmitLicenceForm(LicLicenceEntity licLicenceEntity, string keyValue)
         {
+            if (licLicenceEntity == null) return Error("Thông tin chứng chỉ không được để trống");
+            if (string.IsNullOrWhiteSpace(licLicenceEntity.belongedId)) return Error("Phải chọn chủ thể giấy phép");
+            if (string.IsNullOrWhiteSpace(licLicenceEntity.licenceTypeId)) return Error("Phải chọn loại giấy phép");
+            if (string.IsNullOrWhiteSpace(licLicenceEntity.licenceNo)) return Error("Phải nhập số giấy phép");
+            if (string.IsNullOrWhiteSpace(licLicenceEntity.objectName)) return Error("Phải nhập tên đối tượng");
             var file = Request.HasFormContentType ? Request.Form.Files["fileUpload"] : null;
-            licLicenceEntity.zt = licLicenceEntity.zt == "on" ? "1" : "0";
+            licLicenceEntity.zt = licLicenceEntity.zt == "on" || string.Equals(licLicenceEntity.zt, "true", StringComparison.OrdinalIgnoreCase) ? "1" : "0";
             licLicenceEntity.OrganizeId = OrganizeId;
             licLicenceEntity.fileUrl = _licLicence.UploadFile(file);
             return _licLicenceRepo.SubmitForm(licLicenceEntity, keyValue) > 0 ? Success("Thao tác thành công", null) : Error("Thao tác thất bại");
@@ -203,7 +208,10 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// <returns></returns>
         public IActionResult SubmitLicenceTypeForm(LicLicenceTypeEntity source, string keyWord)
         {
-            source.zt = source.zt == "true" ? "1" : "0";
+            if (source == null) return Error("Thông tin loại chứng chỉ không được để trống");
+            if (string.IsNullOrWhiteSpace(source.belongedId)) return Error("Phải chọn chủ thể giấy phép");
+            if (string.IsNullOrWhiteSpace(source.typeName)) return Error("Phải nhập loại");
+            source.zt = source.zt == "true" || source.zt == "on" ? "1" : "0";
             return _licLicenceTypeRepo.SubmitForm(source, keyWord) > 0 ? Success("Thao tác thành công") : Error("Thao tác thất bại");
         }
 
@@ -309,7 +317,9 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// <returns></returns>
         public IActionResult SubmitLicenceBelongedForm(LicLicenceBelongedEntity source, string keyWord)
         {
-            source.zt = source.zt == "true" ? "1" : "0";
+            if (source == null) return Error("Thông tin chủ thể chứng chỉ không được để trống");
+            if (string.IsNullOrWhiteSpace(source.belonged)) return Error("Phải nhập tên chủ thể");
+            source.zt = source.zt == "true" || source.zt == "on" ? "1" : "0";
             return _licLicenceBelongedRepo.SubmitForm(source, keyWord) > 0 ? Success("Thao tác thành công") : Error("Thao tác thất bại");
         }
 

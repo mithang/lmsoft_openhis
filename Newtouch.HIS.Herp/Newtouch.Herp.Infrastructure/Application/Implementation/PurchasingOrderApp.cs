@@ -8,6 +8,7 @@ using Newtouch.Herp.Domain.IRepository;
 using Newtouch.Herp.Infrastructure;
 using Newtouch.Herp.Infrastructure.Common;
 using Newtouch.Herp.Infrastructure.Enum;
+using Newtouch.Herp.Infrastructure.Log;
 using Newtouch.Infrastructure.EF;
 using SqlSugar;
 
@@ -51,7 +52,7 @@ if (string.IsNullOrWhiteSpace(p.gysId)) return string.Format("Vui lòng chọn n
 if (p.zxqds > 0)
 {
 var zsl = cgmx.FindAll(t => t.productId == p.productId).Sum(s => s.jxcgs);
-if (zsl * p.zhyz < p.zxqds) return string.Format("Không được thấp hơn số lượng đặt tối thiểu {2}", p.wzmc, p.zxqds, p.zxdwmc);
+if (zsl * p.zhyz < p.zxqds) return string.Format("Không được thấp hơn số lượng đặt tối thiểu {1} {2}", p.wzmc, p.zxqds, p.zxdwmc);
 }
 }
 
@@ -109,6 +110,7 @@ if (fresh!= null && fresh.Id > 0) cgOrderEntity.Id = fresh.Id;
 }
 try
 {
+string pdError = null;
 using (var db = new EFDbTransaction(HerpDb.GetConnection()).BeginTrans())
 {
 foreach (var p in detailEntities)
@@ -118,21 +120,29 @@ db.Insert(p);
 const string sql = @"
 UPDATE dbo.cg_purchaseOrderDetail
 SET sjsl=sjsl+@sl, LastModifyTime=@operateTime, LastModifierCode=@userCode
-WHERE Id=@pdId AND zt='1'
+WHERE Id=@pdId AND zt='1' AND productId=@productId
 ";
-db.Db.Ado.ExecuteCommand(sql,
+var rows = db.Db.Ado.ExecuteCommand(sql,
 new SugarParameter("@sl", p.sl),
 new SugarParameter("@operateTime", p.CreateTime),
 new SugarParameter("@userCode", p.CreatorCode),
-new SugarParameter("@pdId", p.pdId));
+new SugarParameter("@pdId", p.pdId),
+new SugarParameter("@productId", p.productId));
+if (rows <= 0) { pdError = "Không tìm thấy chi tiết kế hoạch mua sắm đã chỉ định"; break; }
 }
-db.Commit();
+if (pdError == null) db.Commit();
+}
+if (pdError != null)
+{
+_cgOrderRepo.Delete(cgOrderEntity);
+return pdError;
 }
 }
 catch (Exception e)
 {
+LogCore.Error("SubmitGeneratingPurchaseOrder error", e);
 _cgOrderRepo.Delete(cgOrderEntity);
-return e.Message;
+return "Lưu đơn mua sắm thất bại";
 }
 return "";
 }
@@ -154,7 +164,6 @@ if (cgOrder == null || cgOrder.Id <= 0) return "Không tìm thấy đơn mua s�
 if (cgOrder.orderType!= (int)EnumOrderTypeHrp.TempOrder || cgOrder.orderProcess!= (int)EnumOrderProcess.Waiting) return "Thao tác duyệt chỉ áp dụng cho đơn lưu tạm đang chờ duyệt";
 switch (orderType)
 {
-case (int)EnumOrderTypeHrp.TempOrder:
 case (int)EnumOrderTypeHrp.OfficialOrder:
 case (int)EnumOrderTypeHrp.BadOrder:
 return _cgOrderRepo.AuditPurchasingOrder(orderNo, orderType, userCode, organizeId, remarks) > 0

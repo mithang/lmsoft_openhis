@@ -174,8 +174,8 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         /// </summary>
         public IActionResult UpdateFph(string subOrderNo, string fph)
         {
-            _cgOrderDmnService.PurchaseDdbhUpdate(subOrderNo, fph, this.UserIdentity.UserCode);
-            return Success();
+            if (!string.IsNullOrWhiteSpace(fph) && System.Text.Encoding.Default.GetBytes(fph).Length > 30) return Error("Số hóa đơn không được vượt quá 30 ký tự");
+            return _cgOrderDmnService.PurchaseDdbhUpdate(subOrderNo, fph, this.UserIdentity.UserCode) > 0 ? Success() : Error("Sửa số hóa đơn thất bại");
         }
         #endregion
     }

@@ -255,11 +255,11 @@ AND co.zt='1' AND cod.subOrderNo=@subOrderNo ")
         /// <param name="subOrderNo"></param>
         /// <param name="fph"></param>
         /// <param name="userCode"></param>
-        public void PurchaseDdbhUpdate(string subOrderNo, string fph, string userCode)
+        public int PurchaseDdbhUpdate(string subOrderNo, string fph, string userCode)
         {
             string sql = @" update [cg_orderDetail] set fph=@fph,LastModifierCode=@userCode,LastModifyTime=GETDATE()
                         where subOrderNo=@subOrderNo ";
-            ExecuteSqlCommand(sql, new SugarParameter("@subOrderNo", subOrderNo), new SugarParameter("@fph", fph), new SugarParameter("@userCode", userCode));
+            return ExecuteSqlCommand(sql, new SugarParameter("@subOrderNo", subOrderNo), new SugarParameter("@fph", fph), new SugarParameter("@userCode", userCode));
         }
         #endregion
     }

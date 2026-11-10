@@ -67,6 +67,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         /// </summary>
         public IActionResult SubmitFillPurchasingPlan(CgPurchaseOrderEntity pp, List<CgPurchaseOrderDetailEntity> ppmx)
         {
+            if (pp == null) return Error("Thông tin chính kế hoạch mua sắm không được để trống");
             var userCode = UserIdentity.UserCode;
             pp.rkbmCode = pp.rkbmCode ?? this.UserIdentity.DepartmentCode;
             pp.cgdh = pp.cgdh ?? ReceiptNoManage.GetNewReceiptNo(Desc(EnumOutOrInStorageBillType.purchasingPlan));
