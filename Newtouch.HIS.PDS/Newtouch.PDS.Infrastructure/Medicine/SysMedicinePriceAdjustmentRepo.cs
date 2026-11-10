@@ -31,7 +31,11 @@ namespace Newtouch.HIS.Repository
         public SysMedicinePriceAdjustmentEntity GetMedicinePriceAdjustmentNotApproveEntity(string ypCode)
         {
             var organizeId = OperatorProvider.GetCurrent().OrganizeId;
-            return IQueryable().FirstOrDefault(a => a.ypCode == ypCode && a.zxbz == "0" && (a.shzt == "0" || a.shzt == "1") && a.zxsj > DateTime.Now && a.OrganizeId == organizeId);   //Chưa duyệt Chưa thực hiện
+            // G28: RepositoryBase.IQueryable() chạy predicate in-memory (LINQ-to-Objects) nhưng
+            // zxbz là char(2) nên SQL lưu "0 " (đệm space) — so sánh == "0" không bao giờ khớp,
+            // guard chống trùng chết. Trim trước khi so sánh. Bỏ lọc zxsj > Now: đơn chưa thực
+            // hiện nào (shzt 0/1, zxbz 0) cũng phải chặn gửi lại; đơn quá khứ xử lý bằng thu hồi.
+            return IQueryable().FirstOrDefault(a => a.ypCode == ypCode && (a.zxbz ?? "").Trim() == "0" && ((a.shzt ?? "").Trim() == "0" || (a.shzt ?? "").Trim() == "1") && a.OrganizeId == organizeId);   //Chưa duyệt Chưa thực hiện
         }
 
         /// <summary>
@@ -42,7 +46,8 @@ namespace Newtouch.HIS.Repository
         public SysMedicinePriceAdjustmentEntity GetMedicinePriceAdjustmentNotExecteEntity(string ypCode)
         {
             var organizeId = OperatorProvider.GetCurrent().OrganizeId;
-            return IQueryable().FirstOrDefault(a => a.ypCode == ypCode && a.zxbz == "0" && a.shzt == "1" && a.OrganizeId == organizeId);   //Đã duyệt Chưa thực hiện
+            // G28: cùng lỗi char(2) "0 " như GetMedicinePriceAdjustmentNotApproveEntity — trim trước khi so sánh.
+            return IQueryable().FirstOrDefault(a => a.ypCode == ypCode && (a.zxbz ?? "").Trim() == "0" && (a.shzt ?? "").Trim() == "1" && a.OrganizeId == organizeId);   //Đã duyệt Chưa thực hiện
         }
 
         /// <summary>

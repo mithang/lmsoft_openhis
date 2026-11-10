@@ -102,6 +102,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void SaveOutStorageInfo(SysMedicineStorageIOReceiptEntity ioReceiptEntity, List<SysMedicineStorageIOReceiptDetailVO> ioReceiptDetailList);
 
         /// <summary>
+        /// Kiểm tra số chứng từ nhập/xuất kho đã tồn tại chưa (G28: chống trùng Pdh)
+        /// </summary>
+        /// <param name="pdh">Số chứng từ</param>
+        /// <returns></returns>
+        bool ExistsReceiptByPdh(string pdh);
+
+        /// <summary>
         /// Đơn xin điều chỉnh giá Truy vấn
         /// </summary>
         /// <param name="pagination"></param>

@@ -80,10 +80,49 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="crkdj">Chứng từ xuất nhập kho</param>
         /// <param name="crkdjmx">Chi tiết chứng từ xuất nhập kho</param>
         /// <returns></returns>
+        /// <summary>
+        /// G28 F1: guard header chung cho nhập/xuất kho (chạy trước mọi write).
+        /// </summary>
+        private static void ValidateStorageIOHeader(string pdh, string bm, string bmName, string crkfsdm)
+        {
+            if (string.IsNullOrWhiteSpace(pdh)) throw new FailedException("Số chứng từ không được để trống.");
+            if (pdh.Trim().Length > 30) throw new FailedException("Số chứng từ không được dài quá 30 ký tự.");
+            if (string.IsNullOrWhiteSpace(bm)) throw new FailedException(bmName + " không được để trống.");
+            if (bm.Trim().Length > 100) throw new FailedException(bmName + " không được dài quá 100 ký tự.");
+            if (string.IsNullOrWhiteSpace(crkfsdm)) throw new FailedException("Phương thức xuất nhập kho không được để trống.");
+            if (crkfsdm.Trim().Length > 10) throw new FailedException("Mã phương thức xuất nhập kho không được dài quá 10 ký tự.");
+        }
+
+        /// <summary>
+        /// G28 F1: guard 1 dòng chi tiết nhập/xuất kho. kcId chỉ bắt buộc với xuất kho.
+        /// </summary>
+        private static void ValidateStorageIODetail(string ypdM, string fph, string ph, string pc, decimal pfj, decimal lsj, decimal zje, int sl, int zhyz, string kcId, bool isOut)
+        {
+            if (string.IsNullOrWhiteSpace(ypdM)) throw new FailedException("Mã thuốc không được để trống.");
+            if (ypdM.Trim().Length > 20) throw new FailedException("Mã thuốc không được dài quá 20 ký tự.");
+            if (!string.IsNullOrEmpty(fph) && fph.Length > 50) throw new FailedException("Số hóa đơn không được dài quá 50 ký tự.");
+            if (!string.IsNullOrEmpty(ph) && ph.Length > 30) throw new FailedException("Số lô không được dài quá 30 ký tự.");
+            if (string.IsNullOrWhiteSpace(pc)) throw new FailedException("Mã lô không được để trống.");
+            if (pc.Trim().Length > 30) throw new FailedException("Mã lô không được dài quá 30 ký tự.");
+            if (sl <= 0) throw new FailedException("Số lượng phải lớn hơn 0.");
+            if (pfj < 0 || lsj < 0 || zje < 0) throw new FailedException("Giá và thành tiền không được âm.");
+            if (zhyz <= 0) throw new FailedException("Hệ số chuyển đổi phải lớn hơn 0.");
+            if (isOut && string.IsNullOrWhiteSpace(kcId)) throw new FailedException("Mã tồn kho không được để trống.");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult SaveInStorageInfo(SysMedicineStorageIOReceiptEntity crkdj, SysMedicineStorageIOReceiptDetailEntity[] crkdjmx)
         {
+            // G28 F1: guard đầu vào (trước mọi write).
+            if (crkdj == null) throw new FailedException("Chứng từ nhập kho không được để trống.");
+            ValidateStorageIOHeader(crkdj.Pdh, crkdj.Ckbm, "Bộ phận xuất kho", crkdj.Crkfsdm);
+            if (crkdjmx == null || crkdjmx.Length == 0) throw new FailedException("Chi tiết chứng từ không được để trống.");
+            foreach (var item in crkdjmx)
+            {
+                ValidateStorageIODetail(item.Ypdm, item.Fph, item.Ph, item.pc, item.Pfj, item.Lsj, item.Zje, item.Sl, item.Rkzhyz, null, false);
+            }
+            if (_drugStorageDmnService.ExistsReceiptByPdh(crkdj.Pdh)) throw new FailedException("Số chứng từ đã tồn tại.");
             var ioReceiptEntity = new SysMedicineStorageIOReceiptEntity
             {
                 crkId = Guid.NewGuid().ToString(),
@@ -202,8 +241,20 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="crkdj"></param>
         /// <param name="crkdjmx"></param>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SaveOutStorageInfo(SysMedicineStorageIOReceiptEntity crkdj, SysMedicineStorageIOReceiptDetailVO[] crkdjmx)
         {
+            // G28 F1: guard đầu vào (trước mọi write) + [HttpPost]/antiforgery
+            // (trước đây action này ghi dữ liệu qua GET — CSRF, họ D-G9-HTTPPOST-001).
+            if (crkdj == null) throw new FailedException("Chứng từ xuất kho không được để trống.");
+            ValidateStorageIOHeader(crkdj.Pdh, crkdj.Rkbm, "Bộ phận nhập kho", crkdj.Crkfsdm);
+            if (crkdjmx == null || crkdjmx.Length == 0) throw new FailedException("Chi tiết chứng từ không được để trống.");
+            foreach (var item in crkdjmx)
+            {
+                ValidateStorageIODetail(item.Ypdm, item.Fph, item.Ph, item.pc, item.Pfj, item.Lsj, item.Zje, item.Sl, item.Ckzhyz, item.kcId, true);
+            }
+            if (_drugStorageDmnService.ExistsReceiptByPdh(crkdj.Pdh)) throw new FailedException("Số chứng từ đã tồn tại.");
             var ioReceiptEntity = new SysMedicineStorageIOReceiptEntity
             {
                 crkId = Guid.NewGuid().ToString(),
@@ -330,10 +381,20 @@ namespace Newtouch.HIS.Web.Controllers
         ///  <returns></returns>
         public IActionResult SubmitRequuest(string ypCode, string pfj, string lsj, string ypfj, string ylsj, string tzwj, string zxsj)
         {
+            // G28 F4: guard đầu vào (trước mọi write).
+            if (string.IsNullOrWhiteSpace(ypCode)) throw new FailedException("Mã thuốc không được để trống.");
+            if (ypCode.Trim().Length > 20) throw new FailedException("Mã thuốc không được dài quá 20 ký tự.");
+            if (!string.IsNullOrWhiteSpace(tzwj) && tzwj.Length > 30) throw new FailedException("Tên văn bản điều chỉnh không được dài quá 30 ký tự.");
+            if (!DecimalParseHelper.TryParseDecimal(pfj, out var pfjVal)) throw new FailedException("Giá mua không đúng định dạng.");
+            if (!DecimalParseHelper.TryParseDecimal(lsj, out var lsjVal)) throw new FailedException("Giá bán lẻ không đúng định dạng.");
+            if (!DecimalParseHelper.TryParseDecimal(ypfj, out var ypfjVal)) throw new FailedException("Giá mua gốc không đúng định dạng.");
+            if (!DecimalParseHelper.TryParseDecimal(ylsj, out var ylsjVal)) throw new FailedException("Giá bán lẻ gốc không đúng định dạng.");
             var notApproveEntity = _sysMedicinePriceAdjustmentRepo.GetMedicinePriceAdjustmentNotApproveEntity(ypCode);
             if (notApproveEntity != null)
             {
-                throw new FailedCodeException("THERE_ARE_UNRECOGNIZED_RECORDS_OF_THE_DRUG_AND_CAN_NOT_BE_REAPPLIED");
+                // G28: FailedCodeException không được middleware chuyển thành message
+                // (client nhận message=null) — dùng FailedException với message tiếng Việt.
+                throw new FailedException("Thuốc đã có đơn xin điều chỉnh giá chưa duyệt, không thể gửi lại.");
             }
             if (!DateTime.TryParse(zxsj, out var zxsjVal))
             {
@@ -345,10 +406,10 @@ namespace Newtouch.HIS.Web.Controllers
                 OrganizeId = OperatorProvider.GetCurrent().OrganizeId,
                 yfbmCode = Constants.CurrentYfbm.yfbmCode,
                 ypCode = ypCode,
-                pfj = DecimalParseHelper.ParseDecimal(pfj),
-                lsj = DecimalParseHelper.ParseDecimal(lsj),
-                ypfj = DecimalParseHelper.ParseDecimal(ypfj),
-                ylsj = DecimalParseHelper.ParseDecimal(ylsj),
+                pfj = pfjVal,
+                lsj = lsjVal,
+                ypfj = ypfjVal,
+                ylsj = ylsjVal,
                 shzt = "0",
                 xglx = "tj",
                 tzsj = DateTime.Now,
@@ -1084,9 +1145,17 @@ namespace Newtouch.HIS.Web.Controllers
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(ypCodes) || ypCodes.IndexOf(',') <= 0) return Error("Thuốc không được để trống");
+                // G28 F6: guard đầu vào (trước khi gọi proc).
+                if (string.IsNullOrWhiteSpace(ypCodes)) return Error("Thuốc không được để trống");
+                if (string.IsNullOrWhiteSpace(rkbm)) return Error("Bộ phận nhập kho không được để trống.");
+                if (rkbm.Trim().Length > 100) return Error("Mã bộ phận nhập kho không được dài quá 100 ký tự.");
+                if (string.IsNullOrWhiteSpace(djh)) return Error("Số chứng từ không được để trống.");
+                if (djh.Trim().Length > 30) return Error("Số chứng từ không được dài quá 30 ký tự.");
+                if (string.IsNullOrWhiteSpace(fyfs)) return Error("Phương thức phát thuốc không được để trống.");
+                if (fyfs.Trim().Length > 10) return Error("Mã phương thức phát thuốc không được dài quá 10 ký tự.");
                 var tli = ypCodes.Trim().Split(',');
-                var li = tli.Select(i => i.FilterSql()).ToList();
+                var li = tli.Select(i => i.FilterSql()).Where(i => !string.IsNullOrWhiteSpace(i)).ToList();
+                if (li.Count == 0) return Error("Thuốc không được để trống");
                 var param = new DirectDeliveryBatchDTO
                 {
                     Organizeid = OrganizeId,
@@ -1101,6 +1170,10 @@ namespace Newtouch.HIS.Web.Controllers
                     ypCodes = string.Join(",", li)
                 };
                 var result = _handOutMedicineDmnService.DirectDeliveryBatchSubmit(param);
+                // G28 F6: proc trả về GUID crkId khi thành công, text lỗi khi thất bại —
+                // trước đây controller bọc cả hai trong Success (fake Success).
+                if (string.IsNullOrWhiteSpace(result)) return Error("Xuất kho trực tiếp hàng loạt thất bại.");
+                if (!Guid.TryParse(result.Trim(), out _)) return Error(result);
                 return Success(result);
             }
             catch (Exception e)

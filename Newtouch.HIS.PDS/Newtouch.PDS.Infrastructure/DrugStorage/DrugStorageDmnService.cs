@@ -229,7 +229,9 @@ order by kc.ypdm , kc.yxq
 					if (kcEntity == null) throw new FailedException("Không tìm thấy thông tin tồn kho");
 					if (kcEntity.kcsl - kcEntity.djsl < item.Sl * item.Ckzhyz)
 					{
-						throw new FailedCodeException("AVAILABLE_QUANTITY_LESS_THAN_FREEZING_QUANTITY");
+						// G28: FailedCodeException không được middleware chuyển thành message
+						// (client nhận message=null) — dùng FailedException với message tiếng Việt.
+						throw new FailedException("Số lượng tồn kho khả dụng không đủ để xuất kho.");
 					}
 					kcEntity.djsl = kcEntity.djsl + item.Sl * item.Ckzhyz;
 					kcEntity.Modify();
@@ -278,6 +280,24 @@ order by kc.ypdm , kc.yxq
 
 				db.Commit();
 			}
+		}
+
+		/// <summary>
+		/// G28: kiểm tra số chứng từ đã tồn tại chưa (Pdh + org + zt='1', so sánh đã trim).
+		/// </summary>
+		/// <param name="pdh">Số chứng từ</param>
+		/// <returns></returns>
+		public bool ExistsReceiptByPdh(string pdh)
+		{
+			if (string.IsNullOrWhiteSpace(pdh)) return false;
+			var count = FirstOrDefaultNoLog<int>(
+				"SELECT COUNT(1) FROM dbo.xt_yp_crkdj WHERE LTRIM(RTRIM(Pdh)) = @Pdh AND OrganizeId = @OrganizeId AND zt = '1'",
+				new SugarParameter[]
+				{
+					new SugarParameter("@Pdh", pdh.Trim()),
+					new SugarParameter("@OrganizeId", OperatorProvider.GetCurrent().OrganizeId)
+				});
+			return count > 0;
 		}
 
 		#region Điều chỉnh giá thuốc
@@ -708,11 +728,22 @@ GROUP BY d.Slbm ,M.sldmxId ,m.sldId ,d.sldh ,M.ypcode ,J.ypmc, ypsx.ypgg ,J.py ,
 		/// <returns></returns>
 		public void UpgradeStatus(string id)
 		{
+			// G28: id rỗng / không tồn tại / khác org trước đây vẫn trả Success giả.
+			if (string.IsNullOrWhiteSpace(id)) throw new FailedException("Mã đơn lĩnh không được để trống.");
+			var organizeId = OperatorProvider.GetCurrent().OrganizeId;
+			var count = FirstOrDefaultNoLog<int>(
+				"SELECT COUNT(1) FROM dbo.xt_yp_sld WHERE sldId = @sldId AND OrganizeId = @OrganizeId AND zt = '1'",
+				new SugarParameter[]
+				{
+					new SugarParameter("@sldId", id),
+					new SugarParameter("@OrganizeId", organizeId)
+				});
+			if (count <= 0) throw new FailedException("Không tìm thấy đơn lĩnh.");
 			var strSql = new StringBuilder();
 			strSql.Append("UPDATE  dbo.xt_yp_sld ");
 			strSql.Append("SET     ffzt = " + (int)EnumSLDDeliveryStatus.Abandon + " ");
-			strSql.Append("WHERE   sldId = @sldId");
-			ExecuteSqlCommand(strSql.ToString(), new SugarParameter("@sldId", id));
+			strSql.Append("WHERE   sldId = @sldId AND OrganizeId = @OrganizeId");
+			ExecuteSqlCommand(strSql.ToString(), new SugarParameter("@sldId", id), new SugarParameter("@OrganizeId", organizeId));
 		}
 
 		#endregion

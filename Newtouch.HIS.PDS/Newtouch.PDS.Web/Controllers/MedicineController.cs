@@ -143,7 +143,12 @@ namespace Newtouch.HIS.Web.Controllers
 		/// <returns></returns>
 		public IActionResult ControlMedicine(string ypCode, string type)
 		{
-			_medicineInfoDmnService.ControlMedicine(ypCode, type, OrganizeId, Constants.CurrentYfbm.yfbmCode);
+			// G28 F7: type chỉ nhận "1" (Kiểm soát) / "2" (Bình thường); service trả số row
+			// — trước đây controller bỏ qua return value nên ypCode không tồn tại vẫn Success giả.
+			if (string.IsNullOrWhiteSpace(ypCode)) return Error("Mã thuốc không được để trống.");
+			if (type != "1" && type != "2") return Error("Loại kiểm soát không hợp lệ (chỉ nhận 1: Kiểm soát, 2: Bình thường).");
+			var rows = _medicineInfoDmnService.ControlMedicine(ypCode, type, OrganizeId, Constants.CurrentYfbm.yfbmCode);
+			if (rows <= 0) return Error("Không tìm thấy thuốc.");
 			return Success("Thao tác thành công");
 		}
 
