@@ -143,13 +143,12 @@ namespace Newtouch.Herp.Application.Implementation
         /// </summary>
         public string LossAndProfitSubmit(List<LossAndProditSubmitDTO> plist, string warehouseId)
         {
-            var syxxlist = AssembleSyxxEntities(plist, warehouseId);
-            if (syxxlist.Count <= 0) return "Thiếu thông tin lãi lỗ";
-            // G14: base probe — pc rong -> loi SQL tho "Cannot insert NULL
-            // into 'pc'"; pc 31 ky tu -> "truncated"; productId rong -> loi
-            // SQL tho "Cannot insert NULL into 'productId'"; Sysl=0 -> throw
-            // "Số lượng phải là số dương" sau insert (rollback). Guard
-            // truoc insert de tra Error tieng Viet, khong insert roi rollback.
+            // G14: guard TRUOC AssembleSyxxEntities — Assemble doi dau Sysl
+            // (Loss -> -Sysl) nen guard Sysl<=0 dat sau Assemble se chan
+            // nham MOI phieu bao hong (post v1: d6-loss tra "Số lượng phải
+            // là số dương" thay vi "Không đủ tồn kho..."). Guard tren gia
+            // tri client gui: Sysl phai > 0.
+            if (plist == null || plist.Count <= 0) return "Thiếu thông tin lãi lỗ";
             foreach (var item in plist)
             {
                 if (item == null || string.IsNullOrWhiteSpace(item.productId)) return "Vật tư bắt buộc chọn";
@@ -158,6 +157,8 @@ namespace Newtouch.Herp.Application.Implementation
                     return "Lô hàng không được vượt quá 30 ký tự";
                 if (item.Sysl <= 0) return "Số lượng phải là số dương";
             }
+            var syxxlist = AssembleSyxxEntities(plist, warehouseId);
+            if (syxxlist.Count <= 0) return "Thiếu thông tin lãi lỗ";
             _stockInventoryDmnService.InsertSyxxBatch(syxxlist, warehouseId, OrganizeId);
             return "";
         }
