@@ -39,6 +39,17 @@ namespace Newtouch.EMR.DomainServices
         /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(bl_hljl_wzEntity entity, string keyValue)
         {
+            // G18: xem NursingRecordDmnService.SubmitForm (cùng mẫu) — entity
+            // null / thiếu zyh/rq/sj / edit bogus NRE / MapperTo wipe field
+            // không post / tạo mới lỗi SQL thô CreatorCode NULL.
+            if (entity == null)
+            {
+                throw new FailedException("Dữ liệu phiếu điều dưỡng không được để trống.");
+            }
+            if (string.IsNullOrWhiteSpace(entity.zyh) || string.IsNullOrWhiteSpace(entity.rq) || string.IsNullOrWhiteSpace(entity.sj))
+            {
+                throw new FailedException("Số nhập viện, ngày và giờ không được để trống.");
+            }
             if (!string.IsNullOrEmpty(keyValue))
             {
                 if (this.IQueryable(p => p.zyh == entity.zyh && p.rq == entity.rq && p.sj == entity.sj && p.Id != keyValue && p.zt == "1").Any())
@@ -46,13 +57,19 @@ namespace Newtouch.EMR.DomainServices
                     throw new FailedException("InpatientVitalSigns_Repeated_Error", "Nhập trùng lặp");
                 }
                 var dbEntity = this.FindEntity(keyValue);
+                if (dbEntity == null)
+                {
+                    throw new FailedException("Không tìm thấy phiếu điều dưỡng.");
+                }
                 if (dbEntity.OrganizeId != entity.OrganizeId)
                 {
                     throw new FailedException("Error", "Thao tác bất thường");
                 }
                 //properties
                 var ignoreProps = new List<string>() { "Id", "CreateTime", "CreatorCode" };
-                entity.MapperTo(dbEntity, ignoreProps);
+                entity.MapperToSkipNull(dbEntity, ignoreProps);
+                dbEntity.LastModifyTime = DateTime.Now;
+                try { dbEntity.LastModifierCode = OperatorProvider.GetCurrent()?.UserCode ?? ""; } catch { dbEntity.LastModifierCode = ""; }
                 this.Update(dbEntity);
             }
             else
@@ -61,6 +78,9 @@ namespace Newtouch.EMR.DomainServices
                 {
                     throw new FailedException("InpatientVitalSigns_Repeated_Error", "Nhập trùng lặp");
                 }
+                entity.Id = Guid.NewGuid().ToString();
+                entity.CreateTime = DateTime.Now;
+                try { entity.CreatorCode = OperatorProvider.GetCurrent()?.UserCode ?? ""; } catch { entity.CreatorCode = ""; }
                 this.Insert(entity);
             }
         }

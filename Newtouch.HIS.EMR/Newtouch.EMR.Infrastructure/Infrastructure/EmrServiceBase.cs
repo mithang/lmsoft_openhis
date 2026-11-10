@@ -200,6 +200,16 @@ namespace Newtouch.EMR.Infrastructure
             return _db.Insertable(entity).ExecuteCommand();
         }
 
+        /// <summary>
+        /// G18: chạy câu lệnh SQL thô trong cùng transaction (dùng cho
+        /// SaveSrlBatch/SaveSclBatch: DELETE cũ + INSERT mới phải chung một
+        /// transaction thì lỗi giữa chừng mới rollback hết).
+        /// </summary>
+        public int ExecuteCommand(string sql, SugarParameter[] pars)
+        {
+            return _db.Ado.ExecuteCommand(sql, pars);
+        }
+
         public int Update<T>(T entity) where T : class, new()
         {
             return _db.Updateable(entity).ExecuteCommand();

@@ -186,6 +186,16 @@ namespace Newtouch.EMR.Repository
         #region Lưu trữ chuyển đổi bảng dọc cấu trúc bệnh án sang bảng ngang
         public void BljghDataDealwith(BljghReq req)
         {
+            // G18: blmc null trước đây ném ArgumentNullException thô ở
+            // Regex.IsMatch (đã chứng minh live ở base: "Value cannot be
+            // null. (Parameter 'input')") — mà lúc đó UpdtPatMedRecord đã
+            // flip xong bảng bệnh án gốc. Không có tên bệnh án thì không
+            // khớp được bảng cấu trúc nào: bỏ qua lặng như trường hợp
+            // không khớp Regex (controller vẫn trả kết quả xóa relation).
+            if (req == null || string.IsNullOrWhiteSpace(req.blmc))
+            {
+                return;
+            }
             //Bảng cấu trúc khớp biểu thức chính quy
             string bljgTable = "";
             var bljgTab = this.IQueryable(p => p.Zt == 1).ToList();

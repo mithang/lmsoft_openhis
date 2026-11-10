@@ -85,21 +85,35 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             {
                 return Error("Dữ liệu bản ghi điều dưỡng không đúng định dạng.");
             }
+            // G18: zyh/rq/sj/bllx rỗng trước đây vẫn chạy Delete + Insert
+            // (Insert lỗi SQL thô "Cannot insert NULL into column 'Id'" nên
+            // chưa tạo được dòng mồ côi — nhưng sau khi sửa Insert thì sẽ
+            // tạo dòng mồ côi). Chặn sớm bằng lỗi tiếng Việt rõ ràng.
+            if (string.IsNullOrWhiteSpace(zyh) || string.IsNullOrWhiteSpace(rq) || string.IsNullOrWhiteSpace(sj) || string.IsNullOrWhiteSpace(bllx))
+            {
+                return Error("Số nhập viện, ngày, giờ và loại bệnh án không được để trống.");
+            }
             var segments = srlstr.Split(',');
+            var partsList = new List<string[]>();
             foreach (var segment in segments)
             {
-                if (segment.Split('|').Length < 4)
+                var parts = segment.Split('|');
+                if (parts.Length < 4)
                 {
                     return Error("Dữ liệu bản ghi điều dưỡng không đúng định dạng.");
                 }
+                // G18: đoạn có phần rỗng (vd "Nước||ml|uống") trước đây chèn
+                // dòng thiếu số lượng/đơn vị — dòng chưa hoàn chỉnh.
+                if (parts.Take(4).Any(p => string.IsNullOrWhiteSpace(p)))
+                {
+                    return Error("Dữ liệu bản ghi điều dưỡng không đúng định dạng.");
+                }
+                partsList.Add(parts.Take(4).ToArray());
             }
-            _nursingRecordDmnService.DeleteSrl(orgId, zyh, rq, sj, bllx, UserIdentity.UserCode);
-            for (int i = 0; i < segments.Length; i++)
-            {
-                var parts = segments[i].Split('|');
-                _nursingRecordDmnService.SubmitSrl(parts[0], parts[1], parts[2], parts[3], orgId, zyh, rq, sj, bllx, UserIdentity.UserCode);
-            }
-            return Success("Thao tác thành công。");
+            // G18: xóa cũ + chèn mới trong MỘT transaction (service) — lỗi
+            // ở dòng sau không còn để lại dữ liệu dở dang.
+            _nursingRecordDmnService.SaveSrlBatch(partsList, orgId, zyh, rq, sj, bllx, UserIdentity.UserCode);
+            return Success("Thao tác thành công.");
         }
         public IActionResult SubmitScl(string srlstr, string zyh, string rq, string sj, string bllx)
         {
@@ -108,21 +122,28 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             {
                 return Error("Dữ liệu bản ghi điều dưỡng không đúng định dạng.");
             }
+            // G18: như SubmitSrl — chặn zyh/rq/sj/bllx rỗng và đoạn thiếu phần.
+            if (string.IsNullOrWhiteSpace(zyh) || string.IsNullOrWhiteSpace(rq) || string.IsNullOrWhiteSpace(sj) || string.IsNullOrWhiteSpace(bllx))
+            {
+                return Error("Số nhập viện, ngày, giờ và loại bệnh án không được để trống.");
+            }
             var segments = srlstr.Split(',');
+            var partsList = new List<string[]>();
             foreach (var segment in segments)
             {
-                if (segment.Split('|').Length < 4)
+                var parts = segment.Split('|');
+                if (parts.Length < 4)
                 {
                     return Error("Dữ liệu bản ghi điều dưỡng không đúng định dạng.");
                 }
+                if (parts.Take(4).Any(p => string.IsNullOrWhiteSpace(p)))
+                {
+                    return Error("Dữ liệu bản ghi điều dưỡng không đúng định dạng.");
+                }
+                partsList.Add(parts.Take(4).ToArray());
             }
-            _nursingRecordDmnService.DeleteScl(orgId, zyh, rq, sj, bllx, UserIdentity.UserCode);
-            for (int i = 0; i < segments.Length; i++)
-            {
-                var parts = segments[i].Split('|');
-                _nursingRecordDmnService.SubmitScl(parts[0], parts[1], parts[2], parts[3], orgId, zyh, rq, sj, bllx, UserIdentity.UserCode);
-            }
-            return Success("Thao tác thành công。");
+            _nursingRecordDmnService.SaveSclBatch(partsList, orgId, zyh, rq, sj, bllx, UserIdentity.UserCode);
+            return Success("Thao tác thành công.");
         }
         /// <summary>
         /// Lấy cây thực hiện của nhân viên khu bệnh
@@ -188,7 +209,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             entity.OrganizeId = this.OrganizeId;
             entity.zt = "1";
             _nursingRecordDmnService.SubmitForm(entity, keyValue);
-            return Success("Lưu thành công。");
+            return Success("Lưu thành công.");
         }
         /// <summary>
         /// Gửi và lưu bản ghi điều dưỡng
@@ -204,7 +225,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             entity.OrganizeId = this.OrganizeId;
             entity.zt = "1";
             _nursingRecordWZDmnService.SubmitForm(entity, keyValue);
-            return Success("Lưu thành công。");
+            return Success("Lưu thành công.");
         }
         /// <summary>
         /// Gửi và lưu bản ghi điều dưỡng
@@ -220,7 +241,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             entity.OrganizeId = this.OrganizeId;
             entity.zt = "1";
             _nursingRecordSSDmnService.SubmitForm(entity, keyValue);
-            return Success("Lưu thành công。");
+            return Success("Lưu thành công.");
         }
         /// <summary>
         /// Truy vấn phân trang
@@ -270,8 +291,8 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <returns></returns>
         public IActionResult DeleteForm(string keyValue)
         {
-            _nursingRecordDmnService.DeleteForm(keyValue);
-            return Success("Hủy hiệu lực thành công。");
+            _nursingRecordDmnService.DeleteForm(keyValue, OrganizeId);
+            return Success("Hủy hiệu lực thành công.");
         }
         public IActionResult GetSrlScl(string zyh, string rq, string sj, string bllx)
         {

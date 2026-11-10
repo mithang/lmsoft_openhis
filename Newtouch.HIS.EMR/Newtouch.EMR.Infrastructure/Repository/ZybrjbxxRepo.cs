@@ -103,13 +103,17 @@ namespace Newtouch.EMR.Repository
             if (!string.IsNullOrWhiteSpace(zyh))
             {
                 var ety = this.FindEntity(p => p.zyh == zyh && p.OrganizeId == OrgId && p.zt == "1");
-                if (ety != null)
+                // G18: zyh bogus / khác org trước đây FindEntity null rồi
+                // return im lặng, controller vẫn Success "Bệnh án đã nộp"
+                // (đã chứng minh live ở base).
+                if (ety == null)
                 {
-                    ety.RecordStu = ((int)EnumRecordStu.ytj).ToString();
-                    ety.Commitor = user;
-                    ety.CommitTime = DateTime.Now;
-                    this.Update(ety);
+                    throw new FailedException("Không tìm thấy bệnh nhân.");
                 }
+                ety.RecordStu = ((int)EnumRecordStu.ytj).ToString();
+                ety.Commitor = user;
+                ety.CommitTime = DateTime.Now;
+                this.Update(ety);
             }
             else
                 throw new FailedException("Thông tin bệnh nhân không được để trống");
@@ -126,13 +130,16 @@ namespace Newtouch.EMR.Repository
             if (!string.IsNullOrWhiteSpace(zyh))
             {
                 var ety = this.FindEntity(p => p.zyh == zyh && p.OrganizeId == OrgId && p.zt == "1");
-                if (ety != null)
+                // G18: như CommitRecord — zyh bogus / khác org (vd 01999
+                // thuộc org 00000018) trước đây Success giả.
+                if (ety == null)
                 {
-                    ety.RecordStu = ((int)EnumRecordStu.th).ToString();
-                    ety.Commitor = user;
-                    ety.CommitTime = DateTime.Now;
-                    this.Update(ety);
+                    throw new FailedException("Không tìm thấy bệnh nhân.");
                 }
+                ety.RecordStu = ((int)EnumRecordStu.th).ToString();
+                ety.Commitor = user;
+                ety.CommitTime = DateTime.Now;
+                this.Update(ety);
             }
             else
                 throw new FailedException("Thông tin bệnh nhân không được để trống");

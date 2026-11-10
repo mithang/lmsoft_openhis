@@ -15,6 +15,9 @@ namespace Newtouch.EMR.Domain.IDomainServices
 
         void MedicalRecordSave(medicalRecordVO medicalRecord, ZymeddocsrelationEntity Entity);
         void LockRecord(string blid, string bllx, string OrganizeId, string UserCode, int isLock);
+        // G18 (r6d): khóa bản ghi ngoại trú bl_patrecords cho nhánh mzh của
+        // LoadMedicalRecordHtml (không đi qua relTB như LockRecord).
+        void LockPatRecord(string blid, string OrganizeId, string UserCode, int isLock);
         /// <summary>
         /// Lưu trữ thống nhất bệnh án
         /// </summary>

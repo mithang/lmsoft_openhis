@@ -88,8 +88,12 @@ namespace Newtouch.EMR.Repository
                     ety.ysxm = entity.ysxm;
                     ety.zt = entity.zt;
 
-                    var dbEntity = this.FindEntity(ety.Id);
-                    this.Update(dbEntity);
+                    // G18: trước đây lấy lại một bản SAO MỚI (FindEntity)
+                    // rồi Update bản sao đó — mọi thay đổi trên ety (kể cả
+                    // zt="0" từ UpdtPatMedRecord) đều bị mất, xóa bệnh án
+                    // chỉ flip được bảng bệnh án gốc mà relation vẫn zt=1
+                    // (đã chứng minh live ở base). Update chính ety đã sửa.
+                    this.Update(ety);
                 }
                 else
                 {

@@ -93,6 +93,16 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
         /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(bl_hljl_ybEntity entity, string keyValue)
         {
+            // G18: entity null (binder không tạo được instance) / thiếu
+            // zyh/rq/sj trước đây chạy tới Insert rồi lỗi SQL thô.
+            if (entity == null)
+            {
+                throw new FailedException("Dữ liệu phiếu điều dưỡng không được để trống.");
+            }
+            if (string.IsNullOrWhiteSpace(entity.zyh) || string.IsNullOrWhiteSpace(entity.rq) || string.IsNullOrWhiteSpace(entity.sj))
+            {
+                throw new FailedException("Số nhập viện, ngày và giờ không được để trống.");
+            }
             if (!string.IsNullOrEmpty(keyValue))
             {
                 if (this.IQueryable(p => p.zyh == entity.zyh && p.rq == entity.rq && p.sj == entity.sj && p.Id != keyValue && p.zt == "1").Any())
@@ -100,13 +110,24 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
                     throw new FailedException("InpatientVitalSigns_Repeated_Error", "Nhập trùng lặp");
                 }
                 var dbEntity = this.FindEntity(keyValue);
+                // G18: keyValue bogus trước đây NRE ở dbEntity.OrganizeId.
+                if (dbEntity == null)
+                {
+                    throw new FailedException("Không tìm thấy phiếu điều dưỡng.");
+                }
                 if (dbEntity.OrganizeId != entity.OrganizeId)
                 {
                     throw new FailedException("Error", "Thao tác bất thường");
                 }
                 //properties
                 var ignoreProps = new List<string>() { "Id", "CreateTime", "CreatorCode" };
-                entity.MapperTo(dbEntity, ignoreProps);
+                // G18: MapperTo thường copy cả null — form điều dưỡng không
+                // post gms/dghl/jybq/hlgcjg/hlczjg/hsqmrqsj nên mọi lần sửa
+                // đều wipe 6 cột này về NULL (đã chứng minh live ở base).
+                // Merge bỏ-null: field không post giữ giá trị cũ.
+                entity.MapperToSkipNull(dbEntity, ignoreProps);
+                dbEntity.LastModifyTime = DateTime.Now;
+                try { dbEntity.LastModifierCode = OperatorProvider.GetCurrent()?.UserCode ?? ""; } catch { dbEntity.LastModifierCode = ""; }
                 this.Update(dbEntity);
             }
             else
@@ -115,6 +136,14 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
                 {
                     throw new FailedException("InpatientVitalSigns_Repeated_Error", "Nhập trùng lặp");
                 }
+                // G18: Insert trước đây không set Id/CreateTime/CreatorCode
+                // nên tạo mới LUÔN lỗi SQL thô "Cannot insert NULL into
+                // column 'CreatorCode'" (đã chứng minh live ở base — cả 3
+                // form yb/wz/ss đều không tạo được dòng mới). Set đủ như
+                // mẫu MedicalRulesDmnService.SubmitForm.
+                entity.Id = Guid.NewGuid().ToString();
+                entity.CreateTime = DateTime.Now;
+                try { entity.CreatorCode = OperatorProvider.GetCurrent()?.UserCode ?? ""; } catch { entity.CreatorCode = ""; }
                 this.Insert(entity);
             }
         }
@@ -152,80 +181,126 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
         /// Xóa dữ liệu
         /// </summary>
         /// <param name="keyValue">Giá trị khóa chính</param>
-        public void DeleteForm(string keyValue)
+        public void DeleteForm(string keyValue, string orgId)
         {
             var dbEntity = this.FindEntity(keyValue);
+            // G18: keyValue bogus/rỗng trước đây NRE ở dbEntity.zt; không
+            // filter OrganizeId nên xóa (zt=0) được dòng của org khác
+            // (đã chứng minh live ở base: dòng XORG bị flip + Success giả).
+            if (dbEntity == null)
+            {
+                throw new FailedException("Không tìm thấy phiếu điều dưỡng.");
+            }
+            if (dbEntity.OrganizeId != orgId)
+            {
+                throw new FailedException("Error", "Thao tác bất thường");
+            }
             dbEntity.zt = "0";  //Không hợp lệ
+            dbEntity.LastModifyTime = DateTime.Now;
+            try { dbEntity.LastModifierCode = OperatorProvider.GetCurrent()?.UserCode ?? ""; } catch { dbEntity.LastModifierCode = ""; }
             this.Update(dbEntity);
         }
-        public int SubmitSrl(string mc, string ml, string dw, string tj, string orgId, string zyh, string rq, string sj,string bllx,string user)
+        /// <summary>
+        /// Ghi lại toàn bộ lượng đưa vào (srsclx='0') cho một lượt điều dưỡng:
+        /// xóa (zt=0) các dòng cũ rồi chèn các dòng mới TRONG MỘT transaction.
+        /// G18: trước đây DeleteSrl chạy ngoài transaction, mỗi SubmitSrl có
+        /// transaction riêng — lỗi ở dòng sau (vd tên quá dài) để lại dữ liệu
+        /// dở dang (dòng cũ đã xóa + dòng mới chèn dở); và Insert không set
+        /// Id/CreateTime/CreatorCode/zt nên KHÔNG chèn được dòng nào (lỗi SQL
+        /// thô "Cannot insert NULL into column 'Id'" — đã chứng minh live ở
+        /// base, cả SubmitSrl lẫn SubmitScl đều hỏng hoàn toàn).
+        /// </summary>
+        public void SaveSrlBatch(IList<string[]> segments, string orgId, string zyh, string rq, string sj, string bllx, string user)
         {
+            // G18: RepositoryBase của EMR không có IQueryable<T> generic
+            // nên check bằng COUNT thô (cùng EmrDb, tham số hóa).
+            var pat = this.FirstOrDefault<ZybrjbxxEntity>("SELECT TOP 1 Id FROM zy_brjbxx WHERE zyh=@zyh AND OrganizeId=@orgId AND zt='1'",
+                new SugarParameter[] { new SugarParameter("@zyh", zyh), new SugarParameter("@orgId", orgId) });
+            if (pat == null)
+            {
+                throw new FailedException("Không tìm thấy bệnh nhân.");
+            }
             using (var db = new EmrTransaction().BeginTrans())
             {
-                bl_hljl_srsclEntity srscl = new bl_hljl_srsclEntity();
-                srscl.mc = mc;
-                srscl.ml = ml;
-                srscl.dw = dw;
-                srscl.tj = tj;
-                srscl.zyh = zyh;
-                srscl.rq = rq;
-                srscl.sj = sj;
-                srscl.bllx = bllx; //0 Thông thường 1 Nguy kịch 2 Phẫu thuật
-                srscl.srsclx = "0";//Lượng đưa vào 0 Lượng thải ra 1
-                srscl.OrganizeId = orgId;
-                db.Insert(srscl);
+                string sql = @"update bl_hljl_srscl set zt='0',LastModifyTime=@date,LastModifierCode=@user where OrganizeId=@orgId and srsclx='0' and zyh=@zyh and rq=@rq and sj=@sj and bllx=@bllx";
+                var pars = new List<SugarParameter>();
+                pars.Add(new SugarParameter("@orgId", orgId));
+                pars.Add(new SugarParameter("@zyh", zyh));
+                pars.Add(new SugarParameter("@rq", rq));
+                pars.Add(new SugarParameter("@sj", sj));
+                pars.Add(new SugarParameter("@bllx", bllx));
+                pars.Add(new SugarParameter("@date", DateTime.Now));
+                pars.Add(new SugarParameter("@user", user ?? ""));
+                db.ExecuteCommand(sql, pars.ToArray());
+                foreach (var parts in segments)
+                {
+                    bl_hljl_srsclEntity srscl = new bl_hljl_srsclEntity();
+                    srscl.Id = Guid.NewGuid().ToString();
+                    srscl.mc = parts[0];
+                    srscl.ml = parts[1];
+                    srscl.dw = parts[2];
+                    srscl.tj = parts[3];
+                    srscl.zyh = zyh;
+                    srscl.rq = rq;
+                    srscl.sj = sj;
+                    srscl.bllx = bllx; //0 Thông thường 1 Nguy kịch 2 Phẫu thuật
+                    srscl.srsclx = "0";//Lượng đưa vào 0 Lượng thải ra 1
+                    srscl.OrganizeId = orgId;
+                    srscl.CreateTime = DateTime.Now;
+                    srscl.CreatorCode = user ?? "";
+                    srscl.zt = "1";
+                    db.Insert(srscl);
+                }
                 db.Commit();
             }
-            return 0;
-        }
-        public int DeleteSrl(string orgId, string zyh, string rq, string sj, string bllx, string user)
-        {
-            string sql = @"update bl_hljl_srscl set zt='0',LastModifyTime=@date,LastModifierCode=@user where OrganizeId=@orgId and srsclx='0' and zyh=@zyh and rq=@rq and sj=@sj and bllx=@bllx";
-            var pars = new List<SugarParameter>();
-            pars.Add(new SugarParameter("@orgId", orgId));
-            pars.Add(new SugarParameter("@zyh", zyh));
-            pars.Add(new SugarParameter("@rq", rq));
-            pars.Add(new SugarParameter("@sj", sj));
-            pars.Add(new SugarParameter("@bllx", bllx));
-            pars.Add(new SugarParameter("@date", DateTime.Now));
-            pars.Add(new SugarParameter("@user", user));
-            this.ExecuteSqlCommand(sql, pars.ToArray());
-            return 0;
         }
 
-        public int DeleteScl(string orgId, string zyh, string rq, string sj, string bllx, string user)
+        /// <summary>
+        /// Như SaveSrlBatch nhưng cho lượng thải ra (srsclx='1').
+        /// </summary>
+        public void SaveSclBatch(IList<string[]> segments, string orgId, string zyh, string rq, string sj, string bllx, string user)
         {
-            string sql = @"update bl_hljl_srscl set zt='0',LastModifyTime=@date,LastModifierCode=@user where OrganizeId=@orgId and srsclx='1' and zyh=@zyh and rq=@rq and sj=@sj and bllx=@bllx";
-            var pars = new List<SugarParameter>();
-            pars.Add(new SugarParameter("@orgId", orgId));
-            pars.Add(new SugarParameter("@zyh", zyh));
-            pars.Add(new SugarParameter("@rq", rq));
-            pars.Add(new SugarParameter("@sj", sj));
-            pars.Add(new SugarParameter("@bllx", bllx));
-            pars.Add(new SugarParameter("@date", DateTime.Now));
-            pars.Add(new SugarParameter("@user", user));
-            this.ExecuteSqlCommand(sql, pars.ToArray());
-            return 0;
-        }
-        public int SubmitScl(string mc, string ml, string dw, string ysxz, string orgId, string zyh, string rq, string sj, string bllx, string user)
-        {
+            // G18: RepositoryBase của EMR không có IQueryable<T> generic
+            // nên check bằng COUNT thô (cùng EmrDb, tham số hóa).
+            var pat = this.FirstOrDefault<ZybrjbxxEntity>("SELECT TOP 1 Id FROM zy_brjbxx WHERE zyh=@zyh AND OrganizeId=@orgId AND zt='1'",
+                new SugarParameter[] { new SugarParameter("@zyh", zyh), new SugarParameter("@orgId", orgId) });
+            if (pat == null)
+            {
+                throw new FailedException("Không tìm thấy bệnh nhân.");
+            }
             using (var db = new EmrTransaction().BeginTrans())
             {
-                bl_hljl_srsclEntity srscl = new bl_hljl_srsclEntity();
-                srscl.mc = mc;
-                srscl.ml = ml;
-                srscl.dw = dw;
-                srscl.ysxz = ysxz;
-                srscl.zyh = zyh;
-                srscl.rq = rq;
-                srscl.sj = sj;
-                srscl.bllx = bllx; //0 Thông thường 1 Nguy kịch 2 Phẫu thuật
-                srscl.srsclx = "1";//Lượng đưa vào 0 Lượng thải ra 1
-                srscl.OrganizeId = orgId;
-                db.Insert(srscl);
+                string sql = @"update bl_hljl_srscl set zt='0',LastModifyTime=@date,LastModifierCode=@user where OrganizeId=@orgId and srsclx='1' and zyh=@zyh and rq=@rq and sj=@sj and bllx=@bllx";
+                var pars = new List<SugarParameter>();
+                pars.Add(new SugarParameter("@orgId", orgId));
+                pars.Add(new SugarParameter("@zyh", zyh));
+                pars.Add(new SugarParameter("@rq", rq));
+                pars.Add(new SugarParameter("@sj", sj));
+                pars.Add(new SugarParameter("@bllx", bllx));
+                pars.Add(new SugarParameter("@date", DateTime.Now));
+                pars.Add(new SugarParameter("@user", user ?? ""));
+                db.ExecuteCommand(sql, pars.ToArray());
+                foreach (var parts in segments)
+                {
+                    bl_hljl_srsclEntity srscl = new bl_hljl_srsclEntity();
+                    srscl.Id = Guid.NewGuid().ToString();
+                    srscl.mc = parts[0];
+                    srscl.ml = parts[1];
+                    srscl.dw = parts[2];
+                    srscl.ysxz = parts[3];
+                    srscl.zyh = zyh;
+                    srscl.rq = rq;
+                    srscl.sj = sj;
+                    srscl.bllx = bllx; //0 Thông thường 1 Nguy kịch 2 Phẫu thuật
+                    srscl.srsclx = "1";//Lượng đưa vào 0 Lượng thải ra 1
+                    srscl.OrganizeId = orgId;
+                    srscl.CreateTime = DateTime.Now;
+                    srscl.CreatorCode = user ?? "";
+                    srscl.zt = "1";
+                    db.Insert(srscl);
+                }
                 db.Commit();
             }
-            return 0;
         }
         public IList<bl_hljl_srsclEntity> GetSrlScl(string orgId, string zyh, string rq, string sj, string bllx)
         {

@@ -333,21 +333,32 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         public IActionResult UpdatePlanStu(string blId,string stu)
         {
             var ety = _zymeddocsrelationRepo.FindEntity(p => p.blId == blId && p.OrganizeId == OrganizeId && p.zt == "1");
-            if (ety != null)
+            // G18: blId bogus/rỗng trước đây vẫn Success "Thao tác thành
+            // công" dù không đổi dòng nào (đã chứng minh live ở base).
+            if (ety == null)
             {
-                if (stu == ((int)EnumPlanStu.tz).ToString())
-                {
-                    ety.PlanStu = ((int)EnumPlanStu.tzqx).ToString();
-                }
-                else if (stu == ((int)EnumPlanStu.tzqx).ToString() || string.IsNullOrWhiteSpace(stu))
-                {
-                    ety.PlanStu = ((int)EnumPlanStu.tz).ToString();
-                }
-
-                ety.LastModifyTime = DateTime.Now;
-                ety.LastModifierCode = this.UserIdentity.rygh;
-                _zymeddocsrelationRepo.Update(ety);
+                return Error("Không tìm thấy bệnh án.");
             }
+            // G18: stu lạ (vd "9") trước đây không nhánh nào khớp, không
+            // đổi gì mà vẫn Success. Chỉ nhận 2 giá trị toggle của UI
+            // (tz=1/tzqx=2); stu rỗng giữ hành vi cũ (flip về tz — UI gửi
+            // rỗng khi PlanStu chưa có giá trị).
+            if (!string.IsNullOrWhiteSpace(stu) && stu != ((int)EnumPlanStu.tz).ToString() && stu != ((int)EnumPlanStu.tzqx).ToString())
+            {
+                return Error("Trạng thái kế hoạch không hợp lệ.");
+            }
+            if (stu == ((int)EnumPlanStu.tz).ToString())
+            {
+                ety.PlanStu = ((int)EnumPlanStu.tzqx).ToString();
+            }
+            else if (stu == ((int)EnumPlanStu.tzqx).ToString() || string.IsNullOrWhiteSpace(stu))
+            {
+                ety.PlanStu = ((int)EnumPlanStu.tz).ToString();
+            }
+
+            ety.LastModifyTime = DateTime.Now;
+            ety.LastModifierCode = this.UserIdentity.rygh;
+            _zymeddocsrelationRepo.Update(ety);
             return Success("Thao tác thành công");
         }
         #endregion
@@ -384,7 +395,8 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             //    Getaddress = Getaddress + zyh;
             //    Directory.Delete(Getaddress, true);
             //}
-            return Success("Bệnh án đã nộp");
+            // G18: trước đây copy-paste message của Commit ("Bệnh án đã nộp").
+            return Success("Bệnh án đã trả lại");
 
         }
 
@@ -487,6 +499,19 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <returns></returns>
         public IActionResult SubmitForm(MrApplyWritingVo applyVo)
         {
+            // G18: SiteConmonAPIHost KHÔNG có trong appsettings.json của EMR
+            // Web (grep 0 hit) nên HttpPost trước đây ném InvalidOperation-
+            // Exception thô "An invalid request URI was provided..." (đã
+            // chứng minh live ở base, cả body rỗng lẫn body đủ field).
+            // Không bịa host/config — chặn sớm bằng lỗi tiếng Việt rõ ràng.
+            if (applyVo == null)
+            {
+                return Error("Dữ liệu yêu cầu không được để trống.");
+            }
+            if (string.IsNullOrWhiteSpace(AuthenManageHelper.SiteConmonAPIHost))
+            {
+                return Error("Dịch vụ bệnh án liên hệ thống hiện không khả dụng, vui lòng liên hệ quản trị viên.");
+            }
             applyVo.CreatorCode = this.UserIdentity.UserCode;
             applyVo.ApplyDate = DateTime.Now;
             string msg = "Gửi yêu cầu bệnh án thành công";
@@ -497,9 +522,29 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 OrganizeId = OrganizeId,
                 Timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
             };
-            var outstr = AuthenManageHelper.HttpPost<ApplyWritingResp>(reqObj.ToJson(), AuthenManageHelper.SiteConmonAPIHost + "api/MedicalRecordApply/AddMedicalApplyRecord", this.UserIdentity);
+            AuthenApiResult<ApplyWritingResp> outstr;
+            try
+            {
+                outstr = AuthenManageHelper.HttpPost<ApplyWritingResp>(reqObj.ToJson(), AuthenManageHelper.SiteConmonAPIHost + "api/MedicalRecordApply/AddMedicalApplyRecord", this.UserIdentity);
+            }
+            catch (Exception)
+            {
+                return Error("Dịch vụ bệnh án liên hệ thống hiện không khả dụng, vui lòng liên hệ quản trị viên.");
+            }
+            // G18: HttpPost trả null (vd body trả về không parse được) trước
+            // đây NRE ở outstr.code.
+            if (outstr == null)
+            {
+                return Error("Dịch vụ bệnh án liên hệ thống hiện không khả dụng, vui lòng liên hệ quản trị viên.");
+            }
             if (outstr.code == 10000)
             {
+                // G18: code 10000 mà data null thì chưa lưu được gì — không
+                // được trả Success "Gửi yêu cầu thành công" giả.
+                if (outstr.data == null)
+                {
+                    return Error("Dịch vụ bệnh án liên hệ thống hiện không khả dụng, vui lòng liên hệ quản trị viên.");
+                }
                 _mrblapplyrecordRepo.SubmitForm(applyVo, outstr.data,this.UserIdentity.UserCode,this.OrganizeId);
                 msg = outstr.data.ApplyStatus==(int)ApplyStatusEnum.ysp? "Yêu cầu bệnh án thành công, đã được phê duyệt, có thể tiếp tục viết bệnh án": "Yêu cầu bệnh án thành công, vui lòng liên hệ phòng kiểm soát chất lượng để phê duyệt";
             }

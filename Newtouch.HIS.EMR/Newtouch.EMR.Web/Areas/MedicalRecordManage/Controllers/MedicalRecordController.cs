@@ -2839,7 +2839,12 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             bllj = mr.blxtml;
             blxtmc_yj = mr.blxtmc_yj;
             //Tên tệp sao lưu
-            nameblxtmc = DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + zyh + "-" + mr.blxtmc_yj;
+            // G18 (r6d): nhánh mzh dùng mzh làm khóa thư mục/tên file — trước
+            // đây dùng zyh (rỗng khi mzh) nên backup rơi ra root BackupsBL
+            // với tên "--<tên>.html". Nhất quán với SavePatientBl đặt file
+            // mzh ở HoSoBenhAn/.../<mzh>/.
+            string backupKey = string.IsNullOrWhiteSpace(mzh) ? zyh : mzh;
+            nameblxtmc = DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + backupKey + "-" + mr.blxtmc_yj;
             lujing = mr.blxtml;
             if (mr.IsLock == 1 && mr.LastModifierCode != this.UserIdentity.UserCode)
                 lockd = true;
@@ -2850,11 +2855,22 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             }
             // Tải mẫu
             string htmldata = System.IO.File.ReadAllText(currentFileName);
-            LockRecord(blid, bllx, 1);
+            // G18 (r6d): nhánh mzh phải khóa dòng bl_patrecords, không đi
+            // qua LockRecord (tra bl_bllx lấy relTB → bl_rybl, luôn lỗi
+            // "Không tìm thấy bệnh án." với patrec mzh). Đường zyh giữ
+            // nguyên (MedicalRecordEdit/PreView cũng gọi LockRecord đó).
+            if (!string.IsNullOrWhiteSpace(mzh))
+            {
+                _medicalRecordDmnService.LockPatRecord(blid, OrganizeId, this.UserIdentity.UserCode, 1);
+            }
+            else
+            {
+                LockRecord(blid, bllx, 1);
+            }
             if (!string.IsNullOrWhiteSpace(nameblxtmc.Trim()))
             {
                 //Phán đoán đường dẫn có tồn tại hay không,Tạo thư mục
-                string path = Getaddress + zyh;
+                string path = Getaddress + backupKey;
                 if (!IsPathWithinDir(path, Getaddress))
                 {
                     return Error("Đường dẫn lưu trữ không hợp lệ.");

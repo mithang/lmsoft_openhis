@@ -100,6 +100,39 @@ namespace Newtouch.EMR.DomainServices
             }
 
         }
+
+        /// <summary>
+        /// G18 (r6d): khóa/mở khóa bản ghi ngoại trú bl_patrecords — đường
+        /// mzh của LoadMedicalRecordHtml trước đây gọi LockRecord (tra
+        /// bl_bllx lấy relTB, bllx=1 → bl_rybl) nên LUÔN lỗi "Không tìm
+        /// thấy bệnh án." với patrec mzh (đã chứng minh live ở re-probe
+        /// G17). Khóa thẳng dòng bl_patrecords theo Id+OrganizeId.
+        /// Chỉ Load nhánh mzh gọi hàm này; đường zyh không đổi.
+        /// </summary>
+        public void LockPatRecord(string blid, string OrganizeId, string UserCode, int isLock)
+        {
+            string sql = @"update bl_patrecords
+                        set IsLock = @IsLock, LastModifierCode = @UserCode, LastModifyTime = getdate()
+                        where Id = @id and OrganizeId = @OrgId ";
+            int rows = 0;
+            try
+            {
+                var para = new List<SugarParameter>();
+                para.Add(new SugarParameter("@OrgId", OrganizeId));
+                para.Add(new SugarParameter("@Id", blid));
+                para.Add(new SugarParameter("@IsLock", isLock));
+                para.Add(new SugarParameter("@UserCode", UserCode ?? ""));
+                rows = this.ExecuteSqlCommand(sql, para.ToArray());
+            }
+            catch (FailedException ex)
+            {
+                throw new FailedException("Thao tác thất bại (" + ex.InnerException + ")");
+            }
+            if (rows == 0)
+            {
+                throw new FailedException("Không tìm thấy bệnh án cần khóa.");
+            }
+        }
         #endregion
 
         public medicalRecordVO GetMedicalRecord(string blid, string bllx)
@@ -517,6 +550,13 @@ namespace Newtouch.EMR.DomainServices
             blety.mbbh = medicalRecord.mbbh;
             blety.mzh = medicalRecord.mzh;
             blety.blxtmc_yj = medicalRecord.blxtmc_yj;
+            // G18 (r7f): thiếu copy này nên mọi lần sửa mzh đều wipe
+            // blxtmc_hj về NULL (đã chứng minh live ở re-probe G17:
+            // update mzh Success + file OK nhưng patrec hj=NULL). Đường
+            // zyh đã fix ở G17 trong MedicalRecordSave (6 case); nhánh
+            // edit của bl_patrecordsRepo.SubmitForm chỉ copy IsLock/hj/
+            // LastModifier nên copy ở đây là đủ (không MapperTo-wipe).
+            blety.blxtmc_hj = medicalRecord.blxtmc_hj;
             blety.CreateTime = DateTime.Now;
             blety.zt = "1";
             blety.bllx = medicalRecord.bllx;
