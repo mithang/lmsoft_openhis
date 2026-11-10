@@ -55,12 +55,16 @@ namespace Newtouch.Herp.Application.Implementation.BillApprovalProcess
             else
             {
                 if (((int)EnumAuditState.Waiting).ToString()!= _dj.auditState)
-                throw new FailedException(" chỉ áp dụng cho phiếu đang chờ xử lý");
+                throw new FailedException("Chỉ áp dụng cho phiếu đang chờ xử lý");
             }
 
             _mx = _kfCrkmxRepo.IQueryable(p => p.crkId == Request.djId && p.zt == ((int)Enumzt.Enable).ToString())
             .ToList();
-            if (_mx == null) throw new FailedException("Không tìm thấy chi tiết phiếu");
+            // G12: như WbrkProcess — check `_mx == null` cũ là dead check
+            // (ToList() không bao giờ null); phiếu 0 chi tiết Adopt sẽ "thành
+            // công" giả (DirectDeliveryAdopt 0 dòng nhưng vẫn flip auditState).
+            // Chỉ chặn khi duyệt (Adopt); Refuse/Cancelled chỉ flip trạng thái.
+            if (_mx == null || (_mx.Count == 0 && Request.shzt == ((int)EnumAuditState.Adopt).ToString())) throw new FailedException("Không tìm thấy chi tiết phiếu");
             return new ActResult();
         }
 

@@ -35,7 +35,15 @@ namespace Newtouch.Herp.Web.Areas.PurchaseManage.Controllers
         public IActionResult SubmitPurchase(ReturnedEntity thEntity, List<ReturnedDetailEntity> thmxList, string keyValue)
         {
             OperatorModel user = this.UserIdentity;
+            // G12: guard phòng thủ — thEntity null (nếu binder trả null) sẽ NRE
+            // ở `thEntity.OrganizeId`; probe live cho thấy binder hiện tạo
+            // instance rỗng cả với form trống lẫn JSON {} nên nhánh này chưa
+            // chạm được qua HTTP (ghi rõ trong PROBE-G12, không claim PASS).
+            // thmxList rỗng -> tạo header JLS=0 (phiếu mồ côi, UI ReForm đã chặn
+            // bằng "Vui lòng chọn dữ liệu cần chỉnh sửa!" nên server chặn giống UI).
+            if (thEntity == null) return Error("Thông tin trả hàng không được để trống");
             thmxList = thmxList ?? new List<ReturnedDetailEntity>();
+            if (thmxList.Count == 0) return Error("Vui lòng chọn dữ liệu cần chỉnh sửa!");
             thEntity.OrganizeId = this.OrganizeId;
             thEntity.JLS = thmxList.Count;
             var thId = _returnedRepo.SubmitForm(thEntity, keyValue);
@@ -54,7 +62,11 @@ namespace Newtouch.Herp.Web.Areas.PurchaseManage.Controllers
         public IActionResult SubmitAndUploadPurchase(ReturnedEntity thEntity, List<ReturnedDetailEntity> thmxList, string keyValue)
         {
             OperatorModel user = this.UserIdentity;
+            // G12: cùng guard như SubmitPurchase (phòng thủ null thEntity +
+            // list rỗng -> header mồ côi); phần YY giữ nguyên, không đụng.
+            if (thEntity == null) return Error("Thông tin trả hàng không được để trống");
             thmxList = thmxList ?? new List<ReturnedDetailEntity>();
+            if (thmxList.Count == 0) return Error("Vui lòng chọn dữ liệu cần chỉnh sửa!");
             thEntity.OrganizeId = this.OrganizeId;
             thEntity.JLS = thmxList.Count;
             var thId = _returnedRepo.SubmitForm(thEntity, keyValue);

@@ -24,8 +24,11 @@ namespace Newtouch.Herp.Repository.Purchase
             if (!string.IsNullOrEmpty(keyValue))
             {
                 var dbEntity = this.FindEntity(p => p.thId == keyValue);
-                //properties
-                dbEntity.thId = entity.thId;
+                // G12: keyValue bogus -> FindEntity null -> deref NRE (lỗi 500 thô).
+                if (dbEntity == null) throw new Exception("Không tìm thấy đơn trả hàng đã chỉ định");
+                // G12: KHÔNG copy entity.thId (form sửa không gửi thId -> null sẽ
+                // wipe khóa chính rồi Update WHERE thId IS NULL = 0 dòng, sửa
+                // lặng lẽ không có tác dụng nhưng controller vẫn báo Success).
                 dbEntity.CZLX = entity.CZLX;
                 dbEntity.YYBM = entity.YYBM;
                 dbEntity.PSDBM = entity.PSDBM;
@@ -43,6 +46,9 @@ namespace Newtouch.Herp.Repository.Purchase
             else
             {
                 entity.thId = Guid.NewGuid().ToString();
+                // G12: xt_wz_th.zt NOT NULL, không default; Create(true) không set
+                // zt nên tạo mới luôn lỗi SQL thô "Cannot insert NULL into 'zt'".
+                entity.zt = "1";
                 entity.CZLX = entity.CZLX;
                 entity.YYBM = entity.YYBM;
                 entity.PSDBM = entity.PSDBM;
@@ -77,6 +83,8 @@ and createtime BETWEEN @kssj  AND  @jssj+' 23:59:59' ";
         public void PurchaseReturnDelete(string thId, string orgId)
         {
             var dbEntity = this.FindEntity(p => p.thId == thId);
+            // G12: thId bogus -> FindEntity null -> deref NRE.
+            if (dbEntity == null) throw new Exception("Không tìm thấy đơn trả hàng đã chỉ định");
             //properties
             dbEntity.zt = "0";
             dbEntity.Modify(thId);
@@ -86,6 +94,8 @@ and createtime BETWEEN @kssj  AND  @jssj+' 23:59:59' ";
         public void PurchaseReturnStateUpdate(string thId, int thdzt, string orgId)
         {
             var dbEntity = this.FindEntity(p => p.thId == thId);
+            // G12: như trên.
+            if (dbEntity == null) throw new Exception("Không tìm thấy đơn trả hàng đã chỉ định");
             //properties
             dbEntity.thdzt = thdzt;
             dbEntity.Modify(thId);
@@ -95,6 +105,9 @@ and createtime BETWEEN @kssj  AND  @jssj+' 23:59:59' ";
         public void PurchaseDdbhUpdate(string thId, string ddbh, string orgId)
         {
             var dbEntity = this.FindEntity(p => p.thId == thId);
+            // G12: như trên (đường này chỉ tới sau khi YY113 trả ddbh, nhưng
+            // guard phòng thủ vẫn cần nếu thId bị xóa giữa chừng).
+            if (dbEntity == null) throw new Exception("Không tìm thấy đơn trả hàng đã chỉ định");
             //properties
             dbEntity.THDBH = ddbh;
             dbEntity.Modify(thId);

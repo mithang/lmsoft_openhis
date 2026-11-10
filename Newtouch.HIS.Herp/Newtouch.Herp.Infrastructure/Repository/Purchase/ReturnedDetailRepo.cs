@@ -57,6 +57,9 @@ namespace Newtouch.Herp.Repository.Purchase
             entity.THDJ = entity.THDJ;
             entity.QYBM = entity.QYBM;
             entity.THYY = entity.THYY;
+            // G12: xt_wz_thmx.zt NOT NULL, không default; Create(true) không set
+            // zt nên chèn chi tiết luôn lỗi SQL thô "Cannot insert NULL into 'zt'".
+            entity.zt = "1";
             entity.Create(true);
             return this.Insert(entity);
         }

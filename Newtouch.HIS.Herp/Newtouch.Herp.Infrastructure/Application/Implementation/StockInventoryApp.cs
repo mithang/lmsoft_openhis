@@ -70,6 +70,13 @@ namespace Newtouch.Herp.Application.Implementation
                 throw new Exception("Đợt kiểm kê này đã kết thúc");
             }
 
+            // G12: resultObjArr null -> ToList<T>(null) trả null -> foreach null
+            // trong repo NRE; rỗng -> lưu 0 dòng nhưng controller vẫn Success.
+            if (inventoryInfoList == null || inventoryInfoList.Count == 0)
+            {
+                throw new Exception("Không có dữ liệu kiểm kê để lưu");
+            }
+
             SaveInventoryInfo(inventoryInfoList, pdId, noPc, Constants.CurrentKf.currentKfId, OrganizeId);
         }
 
@@ -92,6 +99,14 @@ namespace Newtouch.Herp.Application.Implementation
         /// </summary>
         public void CancelInventory(long pdId)
         {
+            // G12: phân biệt không-tìm-thấy với đã-kết-thúc — trước đây pdId
+            // bogus cũng báo "Đợt kiểm kê này đã kết thúc, không thể hủy"
+            // (message gây hiểu lầm: phiếu không tồn tại mà báo đã kết thúc).
+            var pdInfo = _kcPdxxRepo.SelectPdInfByPdId(pdId, OrganizeId);
+            if (pdInfo == null)
+            {
+                throw new Exception("Không tìm thấy thông tin kiểm kê đã chỉ định");
+            }
             //Kiểm tra có kiểm kê chưa hoàn thành không
             var count = _kcPdxxRepo.SelectUnfinishedInventoryByPdId(pdId, OrganizeId);
             if (count != 1)

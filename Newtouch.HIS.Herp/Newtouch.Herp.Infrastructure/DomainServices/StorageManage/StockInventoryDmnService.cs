@@ -378,7 +378,7 @@ BEGIN TRY
 	SET @pdId= @@IDENTITY  
 	IF(@pdId<=0)
 	BEGIN
-		SELECT 'Tạo thông tin kiểm kê chính thất bại'  AS Jgxx;
+		SELECT N'Tạo thông tin kiểm kê chính thất bại'  AS Jgxx;
 		ROLLBACK TRANSACTION;
 		RETURN;
 	END
@@ -485,7 +485,7 @@ BEGIN TRY
 	SELECT '' AS Jgxx;
 END TRY
 BEGIN CATCH
-	SELECT 'Tạo thông tin kiểm kê thất bại!' AS Jgxx;
+	SELECT N'Tạo thông tin kiểm kê thất bại!' AS Jgxx;
 	PRINT ERROR_MESSAGE();
 	ROLLBACK TRANSACTION;
 END CATCH
@@ -517,7 +517,7 @@ BEGIN
 	UPDATE dbo.kc_pdxxmx SET sjsl=sjsl+@sl WHERE Id=@pdmxId AND zt='1'
 	IF @@ROWCOUNT<=0
 	BEGIN
-		SELECT 'Lưu chi tiết kiểm kê thất bại'
+		SELECT N'Lưu chi tiết kiểm kê thất bại'
 		ROLLBACK TRANSACTION
 		RETURN;
 	END 
@@ -544,7 +544,7 @@ BEGIN
 		UPDATE dbo.kc_pdxxmx SET sjsl=0 WHERE Id=@pdmxId AND zt='1'
 		IF @@ROWCOUNT<=0
 		BEGIN
-			SELECT 'Lưu chi tiết kiểm kê thất bại'
+			SELECT N'Lưu chi tiết kiểm kê thất bại'
 			ROLLBACK TRANSACTION
 			RETURN;
 		END 
@@ -554,7 +554,7 @@ BEGIN
 		UPDATE dbo.kc_pdxxmx SET sjsl=@sysl WHERE Id=@pdmxId AND zt='1'
 		IF @@ROWCOUNT<=0
 		BEGIN
-			SELECT 'Lưu chi tiết kiểm kê thất bại'
+			SELECT N'Lưu chi tiết kiểm kê thất bại'
 			ROLLBACK TRANSACTION
 			RETURN;
 		END
@@ -565,7 +565,7 @@ BEGIN
 END 
 IF @sysl<>0
 BEGIN
-	SELECT 'Số tồn kho của hệ thống không đủ để bù trừ số thực tế đã nhập, vui lòng kiểm tra trong quá trình kiểm kê có phát sinh xuất kho hoặc báo hỏng hay không!';
+	SELECT N'Số tồn kho của hệ thống không đủ để bù trừ số thực tế đã nhập, vui lòng kiểm tra trong quá trình kiểm kê có phát sinh xuất kho hoặc báo hỏng hay không!';
 END
 ELSE
 BEGIN
@@ -623,7 +623,7 @@ BEGIN
 		If Isnull(@Kcsl,0) + @Sysl < 0
 		BEGIN
 			ROLLBACK TRANSACTION
-			SELECT @productName + ' không đủ tồn kho!' 
+			SELECT @productName + N' không đủ tồn kho!' 
 			RETURN;
 		END		
 			
@@ -633,7 +633,7 @@ BEGIN
 		IF @@ERROR <>0
 		BEGIN
 			ROLLBACK TRANSACTION
-			SELECT 'Sửa tồn kho thất bại!';
+			SELECT N'Sửa tồn kho thất bại!';
 			RETURN;
 		END
 
@@ -669,7 +669,7 @@ BEGIN
 			IF @@ERROR <>0
 			BEGIN
 				ROLLBACK TRANSACTION
-				SELECT 'Ghi thông tin lãi lỗ thất bại!'
+				SELECT N'Ghi thông tin lãi lỗ thất bại!'
 				RETURN;
 			END
 		END
@@ -704,7 +704,7 @@ BEGIN
 			IF @@ERROR <>0
 			BEGIN
 				ROLLBACK TRANSACTION
-				SELECT 'Ghi thông tin lãi lỗ thất bại!' ;
+				SELECT N'Ghi thông tin lãi lỗ thất bại!' ;
 				RETURN;
 			END
 		END
@@ -718,7 +718,7 @@ WHERE Id = @pdId
 IF @@ERROR <>0
 BEGIN
 	ROLLBACK TRANSACTION
-	SELECT 'Sửa kho thông tin kiểm kê thất bại!' ;
+	SELECT N'Sửa kho thông tin kiểm kê thất bại!' ;
 	RETURN;
 END
 	
