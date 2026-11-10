@@ -801,7 +801,13 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 if (MedicalRecord.IsLock != 1)
                 {
                     _medicalRecordDmnService.LockRecord(blid, bllx, OrganizeId, this.UserIdentity.UserCode, isToLock);
+                    return Success("Khóa thành công");
                 }
+                // G17: đã bị khóa trước đây vẫn trả "Mở khóa thành công" (sai
+                // nghĩa cho thao tác khóa). KHÔNG throw ở nhánh này: các caller
+                // nội bộ (MedicalRecordEdit/PreView/LoadMedicalRecordHtml) gọi
+                // LockRecord rồi bỏ qua kết quả — throw sẽ phá luồng load/edit.
+                return Success("Bệnh án đã bị khóa.");
             }
             else
             {
@@ -823,7 +829,6 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 }
 
             }
-            return Success("Mở khóa thành công");
         }
         /// <summary>
         /// Xem trước văn bản bệnh án
@@ -1395,6 +1400,22 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <returns></returns>
         public string BL_Save(string bllx, string mbbh, string zyh, string path, string BLMC, string DataSource = null, string xmlConten = null,string doctype=null)
         {
+            // G17: mbbh không tồn tại trước đây vẫn chèn bản ghi + relation với
+            // mbId bogus. Caller nội bộ (EdiForAdd) đã kiểm tra mẫu trước nên
+            // guard này không đổi hành vi với dữ liệu hợp lệ.
+            if (_bl_mblbRepo.FindEntity(mbbh) == null)
+            {
+                throw new FailedException("Không tìm thấy mẫu bệnh án.");
+            }
+            // G17 (bổ sung sau probe post): guard zyh rỗng. Đường này (controller
+            // BL_Save) tự build relation + gọi MedicalRecordSave trực tiếp, KHÔNG
+            // qua service BL_Save nên guard ở service không có tác dụng ở đây —
+            // probe post d1a vẫn lỗi SQL thô "Cannot insert NULL into column
+            // 'zyh'". Đặt trước GetNewFieldUniqueValue để khỏi tốn serial.
+            if (string.IsNullOrWhiteSpace(zyh))
+            {
+                throw new FailedException("Số nhập viện hoặc số khám không được để trống.");
+            }
             var medicalRecord = new medicalRecordVO();
             medicalRecord.ID = Guid.NewGuid().ToString();
             medicalRecord.blxtml = path;
@@ -2633,14 +2654,14 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         public IActionResult UpdateLockzt(string blid)
         {
             var data = _medicalRecordDmnService.updateLock(this.OrganizeId, blid, this.UserIdentity.UserName);
-            //if (data != 0)
-            //{
+            // G17: updateLock chỉ chạm bl_hljl; blid loại khác/bogus/rỗng đều
+            // 0 dòng mà trước đây vẫn Success. UI gọi fire-and-forget nên trả
+            // Error không phá UI.
+            if (data == 0)
+            {
+                return Error("Không tìm thấy phiếu điều dưỡng cần mở khóa.");
+            }
             return Success();
-            //}
-            //else
-            //{
-            //return Error("Sửa trạng thái khóa thất bại");chỉ áp dụng cho phiếu bản ghi điều dưỡng
-            //}
         }
         #endregion
 
@@ -2704,10 +2725,17 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         //Lưu bệnh án
         public IActionResult SavePatientBl(List<Blyyjgh> docData, string mbbh, string zyh, string mzh = null, string submitData=null )
         {
-            string ywid = zyh.Trim();
+            // G17: các guard đặt TRƯỚC khi ghi file — trước đây zyh null NRE ở
+            // Trim(), mbbh bogus NRE ở mbety.mbmc, submitData sai base64 ném
+            // FormatException, đều sau khi IsExistDir đã tạo thư mục.
+            string ywid = (zyh ?? "").Trim();
             if (!string.IsNullOrWhiteSpace(mzh))
             {
                 ywid = mzh.Trim();
+            }
+            if (string.IsNullOrWhiteSpace(ywid))
+            {
+                return Error("Số nhập viện hoặc số khám không được để trống.");
             }
             // ywid (số zyh/mzh) là mã định danh, không bao giờ chứa dấu phân
             // cách thư mục: từ chối để không tạo thư mục ngoài thư mục ngày.
@@ -2717,16 +2745,32 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             }
             string DataSource = "";
             var mbety = _bl_mblbRepo.FindEntity(mbbh);
-            if (mbety != null && mbety.EnableDataLoad == "1" && !string.IsNullOrWhiteSpace(mbety.DataSource))
+            if (mbety == null)
+            {
+                return Error("Không tìm thấy mẫu bệnh án.");
+            }
+            if (mbety.EnableDataLoad == "1" && !string.IsNullOrWhiteSpace(mbety.DataSource))
             {
                 DataSource = mbety.DataSource;
+            }
+            byte[] decodedBytes;
+            string xmlConten;
+            try
+            {
+                decodedBytes = Convert.FromBase64String(submitData);
+                xmlConten = Encoding.UTF8.GetString(decodedBytes);
+            }
+            catch (Exception)
+            {
+                return Error("Dữ liệu bệnh án không hợp lệ.");
             }
             string path = BlFilePath + DateTime.Now.ToString("yyyy/MM/dd/") + ywid + "/";// Máy tính Win10 có vấn đề
             path = $"{BlFilePath}{DateTime.Now.ToString("yyyy")}/{DateTime.Now.ToString("MM")}/{DateTime.Now.ToString("dd")}/{ywid}/";
             IsExistDir(path);
-            string BLMC = DateTime.Now.ToString("ddHHmm") + mbety.mbmc.Trim();
-            byte[] decodedBytes = Convert.FromBase64String(submitData);
-            string xmlConten = Encoding.UTF8.GetString(decodedBytes);
+            // G17: ddHHmm trùng khi lưu 2 lần cùng phút + cùng mẫu (file sau
+            // ghi đè file trước, 2 bản ghi chung 1 file). Thêm giây để giảm
+            // cửa sổ trùng; trùng cùng giây vẫn có thể xảy ra (ghi nhận).
+            string BLMC = DateTime.Now.ToString("ddHHmmss") + mbety.mbmc.Trim();
             string currentFileName = WebPath.Map(path);
             if (!IsPathWithinDir(currentFileName + BLMC + ".html", currentFileName))
             {
@@ -2819,7 +2863,11 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 {
                     Directory.CreateDirectory(path);
                 }
-                path = path + "\\";
+                // G17: "\\" là phân cách Windows — trên Linux nó thành ký tự
+                // trong tên file (backup ghi thành "01000\<tên>.html" ngay dưới
+                // BackupsBL thay vì trong thư mục 01000/). Dùng "/" (đường
+                // dẫn web đã dùng "/" ở mọi chỗ khác trong file này).
+                path = path + "/";
                 //Lưu địa chỉ tệp sao lưu
                 if (!IsPathWithinDir(path + nameblxtmc.Trim() + ".html", Getaddress))
                 {
@@ -2838,10 +2886,43 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         //Cập nhật bệnh án
         public IActionResult UpdatePatientBl(List<Blyyjgh> docData, string blid,string bllx,string bllj,string blxtmc_yj, string zyh, string mzh = null, string submitData = null)
         {
-            string currentFileName = WebPath.Map(bllj);
-            byte[] decodedBytes = Convert.FromBase64String(submitData);
-            string xmldata = Encoding.UTF8.GetString(decodedBytes);
+            // G17: các guard đặt TRƯỚC khi ghi file — trước đây blid bogus NRE
+            // ở repo SubmitForm (sau khi file đã ghi = file mồ côi), blxtmc_yj
+            // rỗng NRE ở Trim(), submitData sai base64 ném FormatException, và
+            // bản ghi không có relation / khác org NRE ở relEty (sau khi
+            // MedicalRecordSave đã wipe blxtmc_hj về NULL).
+            if (string.IsNullOrWhiteSpace(blxtmc_yj))
+            {
+                return Error("Tên bệnh án không được để trống.");
+            }
+            byte[] decodedBytes;
+            string xmldata;
+            try
+            {
+                decodedBytes = Convert.FromBase64String(submitData);
+                xmldata = Encoding.UTF8.GetString(decodedBytes);
+            }
+            catch (Exception)
+            {
+                return Error("Dữ liệu bệnh án không hợp lệ.");
+            }
             blxtmc_yj = blxtmc_yj.Trim();
+            if (string.IsNullOrWhiteSpace(mzh))
+            {
+                var relCheck = _ZymeddocsrelationRepo.FindEntity(p => p.blId == blid && p.OrganizeId == this.OrganizeId && p.zyh == zyh);
+                if (relCheck == null)
+                {
+                    return Error("Không tìm thấy bệnh án.");
+                }
+                // Ném FailedException nếu bản ghi không tồn tại / bllx lạ.
+                _medicalRecordDmnService.GetMedicalRecord(blid, bllx);
+            }
+            else
+            {
+                // Ném FailedException nếu bản ghi ngoại trú không tồn tại.
+                _medicalRecordDmnService.GetMedicalRecordbyId(blid, bllx);
+            }
+            string currentFileName = WebPath.Map(bllj);
             if (!IsPathWithinDir(currentFileName + blxtmc_yj.Trim() + ".html", currentFileName))
             {
                 return Error("Đường dẫn lưu trữ không hợp lệ.");
@@ -2860,6 +2941,13 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             else {
                 _medicalRecordDmnService.MedicalRecordSave(medicalRecord, null);
                 var relEty = _ZymeddocsrelationRepo.FindEntity(p => p.blId == blid && p.OrganizeId == this.OrganizeId && p.zyh == zyh);
+                // Đã kiểm tra ở đầu method nên relEty không null trong luồng
+                // thường; giữ guard phòng thủ để khỏi NRE nếu dữ liệu đổi giữa
+                // chừng (vd bị xóa bởi phiên khác).
+                if (relEty == null)
+                {
+                    return Error("Không tìm thấy bệnh án.");
+                }
                 relEty.LastModifyTime = DateTime.Now;
                 relEty.LastModifierCode = this.UserIdentity.rygh;
                 relEty.OldXmlConten = relEty.XmlConten;

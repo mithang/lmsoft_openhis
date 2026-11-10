@@ -9,6 +9,6 @@ namespace Newtouch.EMR.Domain.IRepository
 {
     public interface IMrWritingRulesRepo : IRepositoryBase<MrWritingRulesEntity>
     {
-        void DeleteForm(string Id, string orgId);
+        int DeleteForm(string Id, string orgId);
     }
 }

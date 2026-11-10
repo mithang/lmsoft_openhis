@@ -37,6 +37,8 @@ namespace Newtouch.EMR.Repository
             if (!string.IsNullOrEmpty(keyValue))
             {
                 var dbEntity = this.FindEntity(keyValue);
+                // G17: keyValue không tồn tại trước đây NRE ở dòng dưới.
+                if (dbEntity == null) throw new FailedException("Không tìm thấy bệnh án.");
                 //properties
                 dbEntity.IsLock = entity.IsLock;
                 dbEntity.blxtmc_hj = entity.blxtmc_hj;

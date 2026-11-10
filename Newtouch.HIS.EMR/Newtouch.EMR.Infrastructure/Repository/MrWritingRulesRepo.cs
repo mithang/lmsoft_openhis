@@ -13,9 +13,11 @@ namespace Newtouch.EMR.Repository
     {
 
 
-        public void DeleteForm(string Id, string orgId)
+        // G17: trả số dòng đã xóa để controller báo lỗi trung thực khi Id
+        // không tồn tại (trước đây xóa 0 dòng vẫn Success).
+        public int DeleteForm(string Id, string orgId)
         {
-            this.Delete(a => a.Id == Id && a.OrganizeId == orgId);
+            return this.Delete(a => a.Id == Id && a.OrganizeId == orgId);
         }
     }
 }

@@ -99,7 +99,12 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
         /// <returns></returns>
         public IActionResult RulesDel(string Id)
         {
-            _mrwritingrulesRepo.DeleteForm(Id, this.OrganizeId);
+            // G17: Id bogus/rỗng trước đây xóa 0 dòng vẫn Success.
+            var rows = _mrwritingrulesRepo.DeleteForm(Id, this.OrganizeId);
+            if (rows == 0)
+            {
+                return Error("Không tìm thấy quy tắc cần xóa.");
+            }
             return Success();
         }
     }

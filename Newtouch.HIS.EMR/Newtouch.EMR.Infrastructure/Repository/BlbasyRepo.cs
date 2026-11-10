@@ -1,6 +1,7 @@
 using Newtouch.EMR.Domain.Entity;
 using Newtouch.EMR.Domain.IRepository;
 using Newtouch.Infrastructure;
+using NewtouchHIS.Lib.Base.Exceptions;
 using System.Collections.Generic;
 using NewtouchHIS.Lib.Base.Model;
 using System.Text;
@@ -32,6 +33,8 @@ namespace Newtouch.EMR.Repository
             if (!string.IsNullOrEmpty(keyValue))
             {
                 var dbEntity = this.FindEntity(keyValue);
+                // G17: keyValue không tồn tại trước đây NRE ở dòng dưới.
+                if (dbEntity == null) throw new FailedException("Không tìm thấy bệnh án.");
                 //properties             
                 dbEntity.blxtmc_yj = entity.blxtmc_yj;
                 dbEntity.blxtmc_hj = entity.blxtmc_hj;

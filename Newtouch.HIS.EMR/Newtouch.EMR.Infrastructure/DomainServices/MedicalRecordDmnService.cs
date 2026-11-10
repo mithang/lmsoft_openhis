@@ -66,6 +66,11 @@ namespace Newtouch.EMR.DomainServices
         public void LockRecord(string blid, string bllx, string OrganizeId, string UserCode, int isLock)
         {
             var bllxtb = _BllxRepo.FindEntity(p => p.OrganizeId == OrganizeId && p.zt == "1" && p.bllx == bllx);
+            // G17: bllx không có trong bl_bllx (vd "9"/"yzd") trước đây NRE ở bllxtb.relTB.
+            if (bllxtb == null)
+            {
+                throw new FailedException("Không tìm thấy loại bệnh án.");
+            }
             // R-49: tham số hóa LastModifierCode (trước đây nối UserCode trực tiếp).
             // Tên bảng bllxtb.relTB vẫn nối chuỗi (không tham số hóa được) — lấy từ DB
             // (bl_bllx, đã validate ở SubmitForm), không phải input trực tiếp của user.
@@ -73,6 +78,7 @@ namespace Newtouch.EMR.DomainServices
                         set a.IsLock = @IsLock,a.LastModifierCode = @UserCode,a.LastModifyTime = getdate()
                         from " + bllxtb.relTB + @" a
                         where a.id = @id and a.OrganizeId = @OrgId ";
+            int rows = 0;
             try
             {
                 var para = new List<SugarParameter>();
@@ -80,11 +86,17 @@ namespace Newtouch.EMR.DomainServices
                 para.Add(new SugarParameter("@Id", blid));
                 para.Add(new SugarParameter("@IsLock", isLock));
                 para.Add(new SugarParameter("@UserCode", UserCode ?? ""));
-                this.ExecuteSqlCommand(sql, para.ToArray());
+                rows = this.ExecuteSqlCommand(sql, para.ToArray());
             }
             catch (FailedException ex)
             {
                 throw new FailedException("Thao tác thất bại (" + ex.InnerException + ")");
+            }
+            // G17: UPDATE 0 dòng (blid không tồn tại / khác org) trước đây vẫn
+            // trả Success — kiểm tra số dòng để báo lỗi trung thực.
+            if (rows == 0)
+            {
+                throw new FailedException("Không tìm thấy bệnh án cần khóa.");
             }
 
         }
@@ -154,6 +166,10 @@ namespace Newtouch.EMR.DomainServices
                     medicalRecordVO.mbbh = kfpg.mbbh;
                     medicalRecordVO.LastModifierCode = kfpg.LastModifierCode;
                     break;
+                // G17: bllx lạ (vd "9"/"yzd") trước đây trả VO rỗng → NRE ở
+                // caller (LockRecord/LoadMedicalRecordHtml). Lỗi rõ ràng ngay.
+                default:
+                    throw new FailedException("Loại bệnh án không hợp lệ.");
             }
             return medicalRecordVO;
         }
@@ -184,6 +200,7 @@ namespace Newtouch.EMR.DomainServices
                     bl_rybl.mbbh = medicalRecord.mbbh;
                     bl_rybl.zyh = medicalRecord.zyh;
                     bl_rybl.blxtmc_yj = medicalRecord.blxtmc_yj;
+                    bl_rybl.blxtmc_hj = medicalRecord.blxtmc_hj;
                     bl_rybl.CreateTime = DateTime.Now;
                     bl_rybl.zt = "1";
                     if (Entity == null)
@@ -210,6 +227,7 @@ namespace Newtouch.EMR.DomainServices
                     bl_bcjl.mbbh = medicalRecord.mbbh;
                     bl_bcjl.zyh = medicalRecord.zyh;
                     bl_bcjl.blxtmc_yj = medicalRecord.blxtmc_yj;
+                    bl_bcjl.blxtmc_hj = medicalRecord.blxtmc_hj;
                     bl_bcjl.CreateTime = DateTime.Now;
                     bl_bcjl.zt = "1";
 
@@ -236,6 +254,7 @@ namespace Newtouch.EMR.DomainServices
                     bl_zqws.mbbh = medicalRecord.mbbh;
                     bl_zqws.zyh = medicalRecord.zyh;
                     bl_zqws.blxtmc_yj = medicalRecord.blxtmc_yj;
+                    bl_zqws.blxtmc_hj = medicalRecord.blxtmc_hj;
                     bl_zqws.CreateTime = DateTime.Now;
                     bl_zqws.zt = "1";
                     if (Entity == null)
@@ -261,6 +280,7 @@ namespace Newtouch.EMR.DomainServices
                     bl_hljl.mbbh = medicalRecord.mbbh;
                     bl_hljl.zyh = medicalRecord.zyh;
                     bl_hljl.blxtmc_yj = medicalRecord.blxtmc_yj;
+                    bl_hljl.blxtmc_hj = medicalRecord.blxtmc_hj;
                     bl_hljl.CreateTime = DateTime.Now;
                     bl_hljl.zt = "1";
                     if (Entity == null)
@@ -285,6 +305,7 @@ namespace Newtouch.EMR.DomainServices
                     bl_basy.blxtml = medicalRecord.blxtml;
                     bl_basy.mbbh = medicalRecord.mbbh;
                     bl_basy.blxtmc_yj = medicalRecord.blxtmc_yj;
+                    bl_basy.blxtmc_hj = medicalRecord.blxtmc_hj;
                     bl_basy.CreateTime = DateTime.Now;
                     bl_basy.zt = "1";
                     if (Entity == null)
@@ -309,6 +330,7 @@ namespace Newtouch.EMR.DomainServices
                     bl_kf.mbbh = medicalRecord.mbbh;
                     bl_kf.zyh = medicalRecord.zyh;
                     bl_kf.blxtmc_yj = medicalRecord.blxtmc_yj;
+                    bl_kf.blxtmc_hj = medicalRecord.blxtmc_hj;
                     bl_kf.CreateTime = DateTime.Now;
                     bl_kf.zt = "1";
                     bl_kf.bllx = medicalRecord.bllx;
@@ -324,6 +346,12 @@ namespace Newtouch.EMR.DomainServices
                     }
 
                     break;
+                // G17: bllx lạ (vd "9"/"yzd") trước đây switch không làm gì mà
+                // BL_Save vẫn trả GUID — lưu giả. Lỗi rõ ràng ngay. Lưu ý: các
+                // caller nội bộ (EdiForAdd/Edit) truyền bllx mẫu thật nên không
+                // đổi hành vi với dữ liệu hợp lệ.
+                default:
+                    throw new FailedException("Loại bệnh án không hợp lệ.");
             }
 
         }
@@ -408,6 +436,13 @@ namespace Newtouch.EMR.DomainServices
         /// <returns></returns>
         public string BL_Save(string orgId, string bllx, string mbbh, string path, string BLMC, OperatorModel user, string zyh, string mzh = null, string doctype = null)
         {
+            // G17: zyh và mzh đều rỗng trước đây chạy tới MedicalRecordSave rồi
+            // lỗi SQL thô "Cannot insert NULL into column 'zyh'" (transaction
+            // rollback, 0 dòng) — chặn sớm bằng lỗi tiếng Việt rõ ràng.
+            if (string.IsNullOrWhiteSpace(zyh) && string.IsNullOrWhiteSpace(mzh))
+            {
+                throw new FailedException("Số nhập viện hoặc số khám không được để trống.");
+            }
             var medicalRecord = new medicalRecordVO();
             medicalRecord.ID = Guid.NewGuid().ToString();
             medicalRecord.blxtml = path;
@@ -809,10 +844,26 @@ select CONVERT(varchar(10),'Tạm thời') yzlb,yz.yzlx,yz.yzzt, yz.kssj kssj ,r
         }
         public void BLJG_Save(List<bl_ysjgnrEntity> bl_ysjgnr)
         {
+            // G17: caller (SavePatientBl/UpdatePatientBl/EdiForAdd) không set
+            // Id/CreateTime/CreatorCode nên INSERT luôn lỗi "Cannot insert NULL
+            // into column 'Id'" — mà bản ghi chính + file đã tạo trước đó (lưu
+            // dở dang; ở UpdatePatientBl còn xóa mất dữ liệu cũ do BLJG_Delete
+            // chạy trước). Điền mặc định tại đây (1 điểm sửa chung cho cả 3
+            // caller) thay vì sửa từng caller. Các field mô tả null → "" để
+            // khỏi lỗi NULL-insert cùng lớp (cột NOT NULL).
+            string creatorCode = "";
+            try { creatorCode = OperatorProvider.GetCurrent()?.UserCode ?? ""; } catch { creatorCode = ""; }
             using (var db = new EmrTransaction().BeginTrans())
             {
                 foreach (var Item in bl_ysjgnr)
                 {
+                    if (string.IsNullOrWhiteSpace(Item.Id)) Item.Id = Guid.NewGuid().ToString();
+                    if (Item.CreateTime == default) Item.CreateTime = DateTime.Now;
+                    if (string.IsNullOrWhiteSpace(Item.CreatorCode)) Item.CreatorCode = creatorCode;
+                    Item.yscode = Item.yscode ?? "";
+                    Item.ysvalue = Item.ysvalue ?? "";
+                    Item.ysid = Item.ysid ?? "";
+                    Item.ysmc = Item.ysmc ?? "";
                     Item.zt = "1";
                     db.Insert(Item);
                 }

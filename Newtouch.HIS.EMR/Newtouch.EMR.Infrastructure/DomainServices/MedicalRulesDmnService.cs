@@ -1,4 +1,5 @@
 using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Exceptions;
 using Newtouch.EMR.Domain.Entity;
 using Newtouch.EMR.Domain.IDomainServices;
 using Newtouch.EMR.Domain.ValueObjects;
@@ -21,12 +22,33 @@ namespace Newtouch.EMR.DomainServices
 
         public void SubmitForm(RulesEntityVo entityvo)
         {
+            // G17: entityvo null / Bllx / RulesType rỗng trước đây NRE hoặc lỗi
+            // SQL thô "Cannot insert NULL" (Bllx/RulesType NOT NULL).
+            if (entityvo == null)
+            {
+                throw new FailedException("Dữ liệu quy tắc không được để trống.");
+            }
+            if (string.IsNullOrWhiteSpace(entityvo.Bllx))
+            {
+                throw new FailedException("Mã loại bệnh án không được để trống.");
+            }
+            if (string.IsNullOrWhiteSpace(entityvo.RulesType))
+            {
+                throw new FailedException("Tên quy tắc không được để trống.");
+            }
             string OrganizeId = OperatorProvider.GetCurrent().OrganizeId;
             using (var db = new EmrTransaction().BeginTrans())
             {
                 if (entityvo.czlx == "update")
                 {
-                    var entity = db.IQueryable<MrWritingRulesEntity>().Where(p => p.Id == entityvo.Id).Take(1).ToList().FirstOrDefault();
+                    // G17: trước đây FindEntity chỉ theo Id (không filter org)
+                    // rồi deref không null-check → NRE với Id bogus + sửa được
+                    // quy tắc của org khác.
+                    var entity = db.IQueryable<MrWritingRulesEntity>().Where(p => p.Id == entityvo.Id && p.OrganizeId == OrganizeId).Take(1).ToList().FirstOrDefault();
+                    if (entity == null)
+                    {
+                        throw new FailedException("Không tìm thấy quy tắc.");
+                    }
                     entity.Bllx = entityvo.Bllx;
                     entity.RulesDay = entityvo.RulesDay;
                     entity.RulesType = entityvo.RulesType;
