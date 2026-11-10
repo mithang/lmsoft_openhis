@@ -90,7 +90,13 @@ namespace Newtouch.DomainServices
 
             if (string.IsNullOrWhiteSpace(cfmxid))
             {
-                throw new FailedException("Vui lòng chọn da thử Mục");
+                throw new FailedException("Vui lòng chọn mục da thử");
+            }
+            // G5: lrjg rong/null truoc day dua SqlParameter null vao INSERT...SELECT
+            // (Result NOT NULL) roi tra ve message SQL tho / Success gia — chan ngay tu dau.
+            if (string.IsNullOrWhiteSpace(lrjg))
+            {
+                throw new FailedException("Vui lòng nhập kết quả da thử");
             }
             string sqll = "select * from xt_gmxx with(nolock) where OrganizeId=@orgId and cfmxid in(select col from dbo.f_split( @cfmxid,',')) and zt='1' and cancel='1'";
             var exist = FindList<AllergyEntity>(sqll, new SqlParameter[] {
@@ -99,8 +105,9 @@ namespace Newtouch.DomainServices
             });
             if (exist != null && exist.Count > 0)
             {
-                throw new FailedException("bộ phút Mục đã nhập，vui lòng Làm mới trang mặt trọng thử");
+                throw new FailedException("Mục da thử đã nhập, vui lòng làm mới trang rồi thử lại");
             }
+            int rows = 0;
             try
             {
                 sql = @" insert into " + DbNames.Name("CisDb", "Newtouch_CIS") + @".dbo.xt_gmxx ([Id],[blh],[xm],[sex],[xmCode],[xmmc],[Result],[Remark],
@@ -116,7 +123,7 @@ getdate(),@user,@username,null,null,null,
 where a.cfmxid in(select col from dbo.f_split(@cfmxid, ',') where col> '')
 and a.OrganizeId=@orgId and a.zt='1' and a.ispsbz='1'
 and not exists(select 1 from xt_gmxx c with(nolock) where a.OrganizeId=c.OrganizeId and c.cfmxid=a.cfmxId and c.zt='1' and c.cancel='1')";
-                ExecuteSqlCommand(sql, new SqlParameter[] {
+                rows = ExecuteSqlCommand(sql, new SqlParameter[] {
                     new SqlParameter("@orgId",user.OrganizeId),
                     new SqlParameter("@cfmxid",cfmxid),
                     new SqlParameter("@lrjg",lrjg),
@@ -127,6 +134,13 @@ and not exists(select 1 from xt_gmxx c with(nolock) where a.OrganizeId=c.Organiz
             catch (Exception ex)
             {
                 return ex.Message;
+            }
+            // G5: INSERT...SELECT chi lay xt_cfmx co ispsbz='1'; cfmxid khong khop thi
+            // 0 dong duoc insert nhung truoc day van tra Success "Lưu thành công" gia.
+            // ExecuteSqlCommand tra so dong (DmnServiceBase) — 0 dong la loi trung thuc.
+            if (rows == 0)
+            {
+                throw new FailedException("Không tìm thấy mục da thử cần nhập, vui lòng kiểm tra lại");
             }
             return null;
         }
@@ -162,11 +176,18 @@ and not exists(select 1 from xt_gmxx c with(nolock) where a.OrganizeId=c.Organiz
 
         public string skintescancel(string gmxxid, OperatorModel user)
         {
+            // G5: gmxxid rong/null truoc day dua SqlParameter null vao UPDATE roi van
+            // tra Success gia — chan ngay tu dau.
+            if (string.IsNullOrWhiteSpace(gmxxid))
+            {
+                throw new FailedException("Vui lòng chọn bản ghi da thử cần hủy");
+            }
             string sql = "";
+            int rows = 0;
             try
             {
                 sql = @"update xt_gmxx set cancel='0',LastModifyTime=GETDATE(),LastModifierCode=@user,LastModifierName=@username where id=@gmxxid and OrganizeId=@orgId";
-                ExecuteSqlCommand(sql, new SqlParameter[] {
+                rows = ExecuteSqlCommand(sql, new SqlParameter[] {
                     new SqlParameter("@orgId",user.OrganizeId),
                     new SqlParameter("@gmxxid",gmxxid),
                     new SqlParameter("@user",user.rygh),
@@ -176,6 +197,13 @@ and not exists(select 1 from xt_gmxx c with(nolock) where a.OrganizeId=c.Organiz
             catch (Exception ex)
             {
                 return ex.Message;
+            }
+            // G5: UPDATE khong khop dong nao (gmxxid bogus / da xoa) thi 0 dong nhung
+            // truoc day van tra Success "Hủy Thực hiện thành công" gia — nhu G2 #3(d).
+            // ExecuteSqlCommand tra so dong (DmnServiceBase) — 0 dong la loi trung thuc.
+            if (rows == 0)
+            {
+                throw new FailedException("Không tìm thấy bản ghi da thử cần hủy, có thể đã hủy hoặc đã xóa");
             }
             return null;
         }

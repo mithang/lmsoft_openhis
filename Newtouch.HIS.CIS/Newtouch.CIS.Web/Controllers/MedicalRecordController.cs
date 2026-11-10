@@ -2221,6 +2221,12 @@ namespace Newtouch.CIS.Web.Controllers
         }
         public IActionResult SaveReservationData(string yyrq, string yysj, string yyks, string mzh, string yylxfs)
         {
+            // G5: mzh rong/null truoc day van insert len dong mzh NULL (cot mzh nullable)
+            // roi tra Content("") em — ghi len khong trung thuc. Chan ngay tu dau.
+            if (string.IsNullOrWhiteSpace(mzh))
+            {
+                return Error("Vui lòng nhập mã số khám của bệnh nhân.");
+            }
             ReservationEntity entity = _reservationRepo
                 .IQueryable(p => p.mzh == mzh && p.OrganizeId == this.OrganizeId && p.zt == "1")
                 .FirstOrDefault();
@@ -2268,6 +2274,12 @@ namespace Newtouch.CIS.Web.Controllers
         }
         public IActionResult SaveAdmissionNoticeData(AdmissionNoticeEntity postData)
         {
+            // G5: postData null thi postData.mzh NRE; mzh rong/null thi insert len dong
+            // mzh NULL (cot mzh nullable) roi tra Content("") em — chan ngay tu dau.
+            if (postData == null || string.IsNullOrWhiteSpace(postData.mzh))
+            {
+                return Error("Vui lòng nhập mã số khám của bệnh nhân.");
+            }
             AdmissionNoticeEntity entity = _admissionNoticeRepo
                .IQueryable(p => p.mzh == postData.mzh && p.OrganizeId == this.OrganizeId && p.zt == "1")
                .FirstOrDefault();

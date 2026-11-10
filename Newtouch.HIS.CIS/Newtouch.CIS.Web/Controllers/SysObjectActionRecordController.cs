@@ -32,6 +32,15 @@ namespace Newtouch.CIS.Web.Controllers
         /// <returns></returns>
         public IActionResult Add(SysObjectActionRecordEntity entity)
         {
+            // G5: entity null thi entity.OrganizeId NRE; entity rong thi Add insert dong
+            // thieu objectType/objectKey/actionType (NOT NULL) roi tra ve loi SQL tho.
+            // Chan ngay tu dau bang loi trung thuc tieng Viet.
+            if (entity == null || string.IsNullOrWhiteSpace(entity.objectType)
+                || string.IsNullOrWhiteSpace(entity.objectKey)
+                || string.IsNullOrWhiteSpace(entity.actionType))
+            {
+                return Error("Vui lòng nhập đầy đủ loại đối tượng, mã đối tượng và loại thao tác.");
+            }
             entity.OrganizeId = this.OrganizeId;
             _sysObjectActionRecordRepo.Add(entity);
             return Success();
