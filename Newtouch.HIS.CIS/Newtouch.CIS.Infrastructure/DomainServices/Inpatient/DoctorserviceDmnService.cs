@@ -3290,8 +3290,18 @@ where id=@yzid");
         public string GetxzklsList(string orgId, YpxzkldataDTO Ypxzkldata)
         {
             string message = "";
+            //G1: null-guard — dto null hoặc cfdata null (gọi không dto) thì trả message rỗng đúng dạng,
+            //không NRE ở foreach.
+            if (Ypxzkldata == null || Ypxzkldata.cfdata == null)
+            {
+                return message;
+            }
             foreach (var item in Ypxzkldata.cfdata)
             {
+                if (item == null || string.IsNullOrWhiteSpace(item.ypCode))
+                {
+                    continue;
+                }
                 string sql = @" select xs.dcxl,xs.mbxl,yp.ypmc from  [NewtouchHIS_Base]..xt_ypsx xs
  left join [NewtouchHIS_Base]..xt_yp yp on xs.ypId=yp.ypId and xs.OrganizeId=yp.OrganizeId and xs.zt='1'
  where  xs.ypCode=@ypCode and xs.OrganizeId=@orgId";
@@ -3307,14 +3317,14 @@ where id=@yzid");
                         {
                             if (item.sl > listjg.mbxl)
                             {
-                                message += listjg.ypmc + "của Bệnh mạn tính nhất lớn mở lập số là【" + listjg.mbxl + "】";
+                                message += listjg.ypmc + " số lượng mở tối đa cho bệnh mạn tính là【" + listjg.mbxl + "】";
                             }
                             continue;
                         }
                     }
                     if (listjg.dcxl != null && item.sl > listjg.dcxl)
                     {
-                        message += listjg.ypmc + "của nhất lớn mở lập số là【" + listjg.dcxl + "】";
+                        message += listjg.ypmc + " số lượng mở tối đa là【" + listjg.dcxl + "】";
                     }
                 }
             }

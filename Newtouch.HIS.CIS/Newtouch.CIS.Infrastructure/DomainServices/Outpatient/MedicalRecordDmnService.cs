@@ -183,23 +183,23 @@ AND jz.zt='1' AND bl.zt='1'");
             return list;
         }
         /// <summary>
-        /// Chi tiếtcâytiếtđiểmnội dung (TheojzIdTra cứuHồ sơvàĐơn thuốcnội dung)
+        /// Chi tiết nội dung nút cây (theo jzId tra cứu hồ sơ và đơn thuốc)
         /// </summary>
         /// <param name="jzId"></param>
         /// <returns></returns>
        public NodeContentDto SelectNodeContent(string jzId)
         {
-            //Bệnh nhânKhám bệnhthông tin
+            //Thông tin khám bệnh của bệnh nhân
             var jzEntity = _treatmentRepo.IQueryable().Where(a => a.jzId == jzId && a.zt == "1").FirstOrDefault();
             if (jzEntity == null)
             { 
-                throw new FailedException("Dữ liệu bất thường，chưaTra cứuraBệnh nhânKhám bệnhthông tin");
+                throw new FailedException("Dữ liệu bất thường, chưa tra cứu ra thông tin khám bệnh của bệnh nhân");
             }
             //Hồ sơ
             var blEntity = _medicalRecordRepo.IQueryable().Where(a => a.jzId == jzId && a.zt == "1").FirstOrDefault();
             if (blEntity == null)
             {
-                throw new FailedException("Dữ liệu bất thường，chưaTra cứuraHồ sơthông tin");
+                throw new FailedException("Dữ liệu bất thường, chưa tra cứu ra thông tin hồ sơ");
             }
             //Chẩn đoán Tây y  //chínhChẩn đoánxếpởtrướcmặt
             var xysql = @" SELECT a.zdCode,a.zdmc,a.zdlx,a.ysbz, b.icd10,a.zdbz FROM Newtouch_CIS.dbo.xt_xyzd a 
@@ -2753,6 +2753,33 @@ WHERE   b.mzh = @mzh
             //trangmặttrênGửiquađếncủaĐơn thuốcchi tiếtdanh sách    //trọngcấu trúcĐơn thuốcDữ liệu
             var cfDtoList = Tools.Json.ToList<PrescriptionHtmlDTO>(strCfList);
             OrganizationData orgInfo = GetOrgInfo(orgId);
+            //G1: null-guard — lỗi trung thực, không NRE khi mzh bogus / tổ chức / chẩn đoán rỗng.
+            //Các guard này chạy trước mọi deref và trước điểm ghi DB (_qhdznshsqtxRepo.SubmitForm ở cuối),
+            //nên probe với mzh bogus vẫn chỉ-đọc.
+            if (orgInfo == null)
+            {
+                throw new FailedException("Dữ liệu bất thường, chưa tra cứu ra thông tin tổ chức");
+            }
+            if (patjzInfo == null)
+            {
+                throw new FailedException("Dữ liệu bất thường, chưa tra cứu ra thông tin khám bệnh của bệnh nhân");
+            }
+            if ((xyzdList == null || xyzdList.Count == 0) && (zyzdList == null || zyzdList.Count == 0))
+            {
+                throw new FailedException("Dữ liệu bất thường, chưa có chẩn đoán để gửi thẩm tra trước BHYT");
+            }
+            if (cfDtoList == null)
+            {
+                cfDtoList = new List<PrescriptionHtmlDTO>();
+            }
+            if (xyzdList == null)
+            {
+                xyzdList = new List<WMDiagnosisHtmlVO>();
+            }
+            if (zyzdList == null)
+            {
+                zyzdList = new List<TCMDiagnosisHtmlVO>();
+            }
 
             #region gốctiếtđiểmlắp ráp
             request.AKB020 = orgInfo.orgCode;
@@ -2801,7 +2828,7 @@ WHERE   b.mzh = @mzh
             kc21.AAC003 = patjzInfo.xm;
             kc21.AAE135 = patjzInfo.zjh;
             kc21.AAC004 = (patjzInfo.xb == "Nam" ? "1" : "2");
-            kc21.BAE450 = Convert.ToDecimal(new string(patjzInfo.nlshow.TakeWhile(c => char.IsDigit(c) || c == '.').ToArray()));
+            kc21.BAE450 = string.IsNullOrWhiteSpace(patjzInfo.nlshow) ? 0 : Convert.ToDecimal(new string(patjzInfo.nlshow.TakeWhile(c => char.IsDigit(c) || c == '.').ToArray()));
             kc21.AAE011 = patjzInfo.CreatorCode;
             kc21.AAE036 = DateTime.Now.ToString("yyyyMMddHHmmss");
             request.KC21XML = kc21;
@@ -2810,6 +2837,10 @@ WHERE   b.mzh = @mzh
             #region kc22Lắp ráp dữ liệu nút
             foreach (var item in cfDtoList)
             {
+                if (item == null || item.cfHtml == null)
+                {
+                    continue;
+                }
                 foreach (var cfitem in item.cfHtml)
                 {
                     if (string.IsNullOrWhiteSpace(cfitem.cfId))
@@ -2831,6 +2862,10 @@ WHERE   b.mzh = @mzh
                         if (cfitem.cflx == (int)EnumCflx.InspectionPres || cfitem.cflx == (int)EnumCflx.ExaminationPres || cfitem.cflx == (int)EnumCflx.RegularItemPres || cfitem.cflx == (int)EnumCflx.RehabPres)
                         {
                             SqtxXmYpInfoVO xmInfo = GetXmYpInfo(cfitem.xmCode, "1", orgId);
+                            if (xmInfo == null)
+                            {
+                                throw new FailedException("Không tra cứu được thông tin BHYT của hạng mục " + cfitem.xmCode);
+                            }
                             sfdlcode = xmInfo.sfdlCode;
                             row.AKE001 = xmInfo.ybdm;
                             row.AKE002 = cfitem.xmmc;
@@ -2842,6 +2877,10 @@ WHERE   b.mzh = @mzh
                         else
                         {
                             SqtxXmYpInfoVO ypInfo = GetXmYpInfo(cfitem.ypCode, "2", orgId);
+                            if (ypInfo == null)
+                            {
+                                throw new FailedException("Không tra cứu được thông tin BHYT của thuốc " + cfitem.ypCode);
+                            }
                             sfdlcode = ypInfo.sfdlCode;
                             row.AKE001 = ypInfo.ybdm;
                             row.AKE002 = cfitem.ypmc;
@@ -3344,7 +3383,9 @@ WHERE zt = '1' and organizeId = @orgId and sfxmCode = @sfxmCode";
         //
         public IList<MedicineInfoVO2> GetMedicineInfoList(Pagination pagination, string xmbm, string xmmc, string ck_kc, string orgId)
         {
-            if (string.IsNullOrWhiteSpace(pagination.sidx))
+            //G1: null-guard — pagination null hoặc xmbm/xmmc null (không sidx / không filter) thì lỗi
+            //trung thực / chuỗi rỗng thay vì NRE ở .Trim().
+            if (pagination == null || string.IsNullOrWhiteSpace(pagination.sidx))
             {
                 throw new Exception("pagination.sidx is required");
             }
@@ -3352,8 +3393,8 @@ WHERE zt = '1' and organizeId = @orgId and sfxmCode = @sfxmCode";
             var parameters = new SqlParameter[]
             {
                 new SqlParameter("@orgId", orgId),
-                new SqlParameter("@xmbm", xmbm.Trim()),
-                new SqlParameter("@xmmc", "%" + xmmc.Trim() + "%"),
+                new SqlParameter("@xmbm", (xmbm ?? "").Trim()),
+                new SqlParameter("@xmmc", "%" + (xmmc ?? "").Trim() + "%"),
                 new SqlParameter("@lkc", ck_kc=="0"?0:1),
             };
 
