@@ -20,14 +20,20 @@ namespace Newtouch.Herp.Application.Implementation
         {
             if (string.IsNullOrWhiteSpace(keyWord))
             {
+                // G11: phong thu — controller da guard khi tao moi.
+                if (string.IsNullOrWhiteSpace(wzCrkfsEntity.crkfsmc)
+                    || string.IsNullOrWhiteSpace(wzCrkfsEntity.crkbz)) return 0;
                 wzCrkfsEntity.Create(true);
                 return _wzCrkfsRepo.Insert(wzCrkfsEntity);
             }
             var dbCrkfs = _wzCrkfsRepo.FindEntity(p => p.Id == keyWord);
             if (dbCrkfs == null) return 0;
-            dbCrkfs.crkbz = wzCrkfsEntity.crkbz;
-            dbCrkfs.crkfsmc = wzCrkfsEntity.crkfsmc;
-            dbCrkfs.zt = wzCrkfsEntity.zt;
+            // G11: chi copy field khac null — POST sua thieu field ma copy
+            // null se loi SQL (crkfsmc/crkbz NOT NULL, probe base
+            // d10-edit-nocrkbz).
+            if (wzCrkfsEntity.crkbz != null) dbCrkfs.crkbz = wzCrkfsEntity.crkbz;
+            if (wzCrkfsEntity.crkfsmc != null) dbCrkfs.crkfsmc = wzCrkfsEntity.crkfsmc;
+            if (wzCrkfsEntity.zt != null) dbCrkfs.zt = wzCrkfsEntity.zt;
             dbCrkfs.Modify();
             return _wzCrkfsRepo.Update(dbCrkfs);
         }

@@ -94,6 +94,18 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         [HandlerAjaxOnly]
         public IActionResult SubmitForm(VProductInfoEntity wzProductEntity, string keyValue, IFormFile imgUpload)
         {
+            if (wzProductEntity == null) return Error("Nội dung gửi lên không được để trống");
+            // G11: chi bat buoc khi TAO MOI — sua thi merge bo-null o
+            // ProductApp nen POST thieu field van giu gia tri cu. Khong co
+            // guard thi tao moi rong roi loi SQL tho "Cannot insert NULL..."
+            // lo ten bang/DB (probe base d4-empty).
+            if (string.IsNullOrWhiteSpace(keyValue))
+            {
+                if (string.IsNullOrWhiteSpace(wzProductEntity.name)) return Error("Vui lòng nhập tên vật tư");
+                if (string.IsNullOrWhiteSpace(wzProductEntity.productCode)) return Error("Vui lòng nhập mã vật tư");
+                if (string.IsNullOrWhiteSpace(wzProductEntity.typeId)) return Error("Vui lòng chọn loại vật tư");
+                if (string.IsNullOrWhiteSpace(wzProductEntity.minUnit)) return Error("Vui lòng chọn đơn vị nhỏ nhất");
+            }
             if (!string.IsNullOrEmpty(_wzProductDmnService.CheckProductCode(wzProductEntity.productCode, keyValue)))
             {
                 return Error("Mã vật tư đã tồn tại");

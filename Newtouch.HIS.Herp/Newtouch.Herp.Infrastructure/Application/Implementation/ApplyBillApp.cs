@@ -146,8 +146,11 @@ namespace Newtouch.Herp.Application.Implementation
                             var crkmx = new KfCrkmxEntity
                             {
                                 productId = item.productId,
-                                lsj = wzxx.lsj * item.zhyz,
-                                jj = wzxx.jj * item.zhyz,
+                                // G11: VProductInfoEntity.jj/lsj la decimal?
+                                // (de phan biet "khong gui" khi sua vat tu);
+                                // cot DB NOT NULL nen thuc te luon co gia tri.
+                                lsj = (wzxx.lsj ?? 0m) * item.zhyz,
+                                jj = (wzxx.jj ?? 0m) * item.zhyz,
                                 unitId = item.bmdwId,
                                 unitName = item.bmdwmc,
                                 zhyz = item.zhyz,

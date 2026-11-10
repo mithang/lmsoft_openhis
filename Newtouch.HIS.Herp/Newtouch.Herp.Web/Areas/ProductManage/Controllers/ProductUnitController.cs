@@ -70,8 +70,23 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         [HandlerAjaxOnly]
         public IActionResult SubmitForm(WzUnitEntity wzUnitEntity, string keyWord)
         {
-            var o = _wzUnitRepo.FindEntity(p => p.name.Trim() == wzUnitEntity.name.Trim());
-            if (o != null) return Error("Đơn vị này đã tồn tại, vui lòng không gửi trùng!");
+            // G11: (1) check trung loai tru chinh Id dang sua — truoc day sua
+            // 1 don vi ma khong doi ten thi tim thay chinh no -> Error "da
+            // ton tai" luon, khong bao gio sua duoc (probe base d8-editself).
+            // (2) ten rong: tao moi -> Error tieng Viet thay vi loi SQL tho
+            // "Cannot insert NULL into column 'name'" (probe base d8-noname);
+            // sua ma thieu ten -> bo qua check trung, merge giu ten cu.
+            if (!string.IsNullOrWhiteSpace(wzUnitEntity.name))
+            {
+                var o = string.IsNullOrWhiteSpace(keyWord)
+                    ? _wzUnitRepo.FindEntity(p => p.name.Trim() == wzUnitEntity.name.Trim())
+                    : _wzUnitRepo.FindEntity(p => p.name.Trim() == wzUnitEntity.name.Trim() && p.Id != keyWord);
+                if (o != null) return Error("Đơn vị này đã tồn tại, vui lòng không gửi trùng!");
+            }
+            else if (string.IsNullOrWhiteSpace(keyWord))
+            {
+                return Error("Vui lòng nhập tên đơn vị");
+            }
             wzUnitEntity.zt = wzUnitEntity.zt == "true" ? "1" : "0";
             return _wzUnitApp.SubmitForm(wzUnitEntity, keyWord) > 0 ? Success("Thao tác thành công") : Error("Thao tác thất bại");
         }

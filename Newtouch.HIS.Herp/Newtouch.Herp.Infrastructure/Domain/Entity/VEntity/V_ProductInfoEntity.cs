@@ -75,12 +75,12 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         /// <summary>
         /// Giá nhập,Đơn vị nhỏ nhất 
         /// </summary>
-        public decimal jj { get; set; }
+        public decimal? jj { get; set; }
 
         /// <summary>
         /// Giá bán lẻ Đơn vị nhỏ nhất
         /// </summary>
-        public decimal lsj { get; set; }
+        public decimal? lsj { get; set; }
 
         /// <summary>
         /// Có phải tồn kho bằng 0 không

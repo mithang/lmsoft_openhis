@@ -61,6 +61,15 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         [HandlerAjaxOnly]
         public IActionResult SubmitForm(WzCrkfsEntity wzCrkfsEntity, string keyWord)
         {
+            // G11: chi bat buoc khi TAO MOI — sua thi merge bo-null o
+            // WzCrkfsApp. Khong co guard thi tao moi/sua thieu field roi loi
+            // SQL tho "Cannot insert NULL into column 'crkfsmc'/'crkbz'"
+            // (probe base d10-empty / d10-edit-nocrkbz).
+            if (string.IsNullOrWhiteSpace(keyWord))
+            {
+                if (string.IsNullOrWhiteSpace(wzCrkfsEntity.crkfsmc)) return Error("Vui lòng nhập tên phương thức nhập/xuất kho");
+                if (string.IsNullOrWhiteSpace(wzCrkfsEntity.crkbz)) return Error("Vui lòng nhập ký hiệu phương thức nhập/xuất kho");
+            }
             wzCrkfsEntity.zt = wzCrkfsEntity.zt == "true" ? "1" : "0";
             return _wzCrkfsApp.SubmitForm(wzCrkfsEntity, keyWord) > 0 ? Success("Thao tác thành công") : Error("Thao tác thất bại");
         }

@@ -41,9 +41,17 @@ namespace Newtouch.Herp.Application.Implementation
 
         public int SubmitForm(VProductInfoEntity source, string keyWord)
         {
-            var wzProductEntity = TransformProductEntity(source);
             if (string.IsNullOrWhiteSpace(keyWord))
             {
+                var wzProductEntity = TransformProductEntity(source);
+                // G11: don vi nho nhat khong ton tai thi bao loi TRUOC khi chen
+                // vat tu/sfxm — neu de SubmitRelProductUnit moi fail thi vat tu
+                // + dong xt_sfxm da commit xong, de lai vat tu mo coi.
+                if (string.IsNullOrWhiteSpace(wzProductEntity.minUnit)
+                    || _wzUnitRepo.FindEntity(p => p.Id == wzProductEntity.minUnit) == null)
+                {
+                    throw new Exception("Không tìm thấy đơn vị nhỏ nhất của vật tư");
+                }
                 wzProductEntity.Create(true);
                 if (_wzProductDmnService.InsertProductToSfxm(wzProductEntity) <= 0)
                 {
@@ -56,37 +64,51 @@ namespace Newtouch.Herp.Application.Implementation
                 _wzProductDmnService.InsertTOSfxm(wzProductEntity.OrganizeId, wzProductEntity.productCode);
                 return 1;
             }
+            // G11: tim vat tu truoc khi Transform — Transform co the tao nhanh
+            // nha san xuat (GetSupplierId) nen sua keyWord bogus truoc day van
+            // de lai 1 dong gys_supplier mo coi du tra ve 0.
             var dbProduct = wzProductRepo.FindEntity(p => p.Id == keyWord);
             if (dbProduct == null) return 0;
-            dbProduct.brand = wzProductEntity.brand;
-            dbProduct.gg = wzProductEntity.gg;
-            dbProduct.imageUrl = string.IsNullOrWhiteSpace(wzProductEntity.imageUrl) ? dbProduct.imageUrl : wzProductEntity.imageUrl;
-            dbProduct.jj = wzProductEntity.jj;
-            dbProduct.lsj = wzProductEntity.lsj;
-            dbProduct.minUnit = wzProductEntity.minUnit;
-            dbProduct.name = wzProductEntity.name;
-            dbProduct.py = wzProductEntity.py;
-            dbProduct.sffy = wzProductEntity.sffy;
-            dbProduct.sfgt = wzProductEntity.sfgt;
-            dbProduct.sflkc = wzProductEntity.sflkc;
-            dbProduct.supplierId = wzProductEntity.supplierId;
-            dbProduct.typeId = wzProductEntity.typeId;
-            dbProduct.zczh = wzProductEntity.zczh;
-            dbProduct.zt = wzProductEntity.zt;
-            dbProduct.zxqds = wzProductEntity.zxqds;
-            dbProduct.productCode = wzProductEntity.productCode;
-            dbProduct.hcgjybdm = wzProductEntity.hcgjybdm;
-            dbProduct.iswzsame = wzProductEntity.iswzsame;
-            dbProduct.zfxz = wzProductEntity.zfxz;
-            dbProduct.zfbl = wzProductEntity.zfbl;
-            dbProduct.gjybdm = wzProductEntity.gjybdm;
-            dbProduct.ybdm = wzProductEntity.ybdm;
-            dbProduct.zblb = wzProductEntity.zblb;
-            dbProduct.hslb = wzProductEntity.hslb;
-            dbProduct.kcyjz = wzProductEntity.kcyjz;
+            var editEntity = TransformProductEntity(source);
+            // G11: chi copy field khac null — form luon post du field, con
+            // POST thieu field ma copy null se loi SQL (name/typeId/minUnit
+            // NOT NULL) hoac xoa sach gia tri cu (py/jj/lsj ve null/0).
+            // Danh doi: API khong the xoa sach 1 field ve null/0 bang cach
+            // bo field; muon xoa phai gui gia tri rong/0 tuong minh — nhung
+            // voi jj/lsj thi gui 0 tuong minh van dat ve 0 (HasValue).
+            // zt/sflkc/sffy/sfgt/iswzsame controller luon map "on"->"1" nen
+            // khong bao gio null, van copy nhu cu.
+            if (editEntity.brand != null) dbProduct.brand = editEntity.brand;
+            if (editEntity.gg != null) dbProduct.gg = editEntity.gg;
+            if (!string.IsNullOrWhiteSpace(editEntity.imageUrl)) dbProduct.imageUrl = editEntity.imageUrl;
+            if (source.jj.HasValue) dbProduct.jj = source.jj.Value;
+            if (source.lsj.HasValue) dbProduct.lsj = source.lsj.Value;
+            if (editEntity.minUnit != null) dbProduct.minUnit = editEntity.minUnit;
+            if (editEntity.name != null) dbProduct.name = editEntity.name;
+            if (editEntity.py != null) dbProduct.py = editEntity.py;
+            if (editEntity.sffy != null) dbProduct.sffy = editEntity.sffy;
+            if (editEntity.sfgt != null) dbProduct.sfgt = editEntity.sfgt;
+            if (editEntity.sflkc != null) dbProduct.sflkc = editEntity.sflkc;
+            if (editEntity.supplierId != null) dbProduct.supplierId = editEntity.supplierId;
+            if (editEntity.typeId != null) dbProduct.typeId = editEntity.typeId;
+            if (editEntity.zczh != null) dbProduct.zczh = editEntity.zczh;
+            if (editEntity.zt != null) dbProduct.zt = editEntity.zt;
+            if (editEntity.zxqds.HasValue) dbProduct.zxqds = editEntity.zxqds;
+            if (editEntity.productCode != null) dbProduct.productCode = editEntity.productCode;
+            if (editEntity.hcgjybdm != null) dbProduct.hcgjybdm = editEntity.hcgjybdm;
+            if (editEntity.iswzsame != null) dbProduct.iswzsame = editEntity.iswzsame;
+            if (editEntity.zfxz != null) dbProduct.zfxz = editEntity.zfxz;
+            if (editEntity.zfbl.HasValue) dbProduct.zfbl = editEntity.zfbl;
+            if (editEntity.gjybdm != null) dbProduct.gjybdm = editEntity.gjybdm;
+            if (editEntity.ybdm != null) dbProduct.ybdm = editEntity.ybdm;
+            if (editEntity.zblb != null) dbProduct.zblb = editEntity.zblb;
+            if (editEntity.hslb != null) dbProduct.hslb = editEntity.hslb;
+            if (editEntity.kcyjz.HasValue) dbProduct.kcyjz = editEntity.kcyjz;
             dbProduct.Modify();
             int updatecount = wzProductRepo.Update(dbProduct);
-            _wzProductDmnService.InsertTOSfxm(wzProductEntity.OrganizeId, wzProductEntity.productCode);
+            // G11: dung ma vat tu da merge (cu) thay vi ma tu form — form
+            // thieu productCode thi truoc day gui null vao proc dong bo.
+            _wzProductDmnService.InsertTOSfxm(dbProduct.OrganizeId, dbProduct.productCode);
             return updatecount;
         }
 
@@ -100,10 +122,10 @@ namespace Newtouch.Herp.Application.Implementation
                 gg = s.gg,
                 Id = s.Id,
                 imageUrl = s.imageUrl,
-                jj = s.jj,
+                jj = s.jj ?? 0m,
                 LastModifierCode = s.LastModifierCode,
                 LastModifyTime = s.LastModifyTime,
-                lsj = s.lsj,
+                lsj = s.lsj ?? 0m,
                 minUnit = s.minUnit,
                 name = s.name,
                 OrganizeId = s.OrganizeId,
@@ -196,13 +218,23 @@ namespace Newtouch.Herp.Application.Implementation
 
         public int SubmitRelProductUnit(ProductUnitRelVo rel, string organizeId)
         {
+            // G11: chan rel mo coi (probe base d3-bogus-product: productId
+            // bogus van Success + 1 dong rel; d3-bogus-unit: unitId bogus ->
+            // unit NULL -> loi SQL tho). Tra 0 -> controller Error.
+            if (rel == null) return 0;
+            var product = string.IsNullOrWhiteSpace(rel.keyWord) ? null
+                : wzProductRepo.FindEntity(p => p.Id == rel.keyWord);
+            if (product == null) return 0;
+            var unit = string.IsNullOrWhiteSpace(rel.unitId) ? null
+                : _wzUnitRepo.FindEntity(p => p.Id == rel.unitId);
+            if (unit == null) return 0;
             if (string.IsNullOrWhiteSpace(rel.id))
             {
                 var entity = new RelProductUnitEntity
                 {
                     OrganizeId = organizeId,
                     productId = rel.keyWord,
-                    unit = rel.unitName,
+                    unit = rel.unitName ?? unit.name,
                     unitId = rel.unitId,
                     zhyz = rel.zhyz,
                     zt = ((int)Enumzt.Enable).ToString()
@@ -215,7 +247,7 @@ namespace Newtouch.Herp.Application.Implementation
                 var entity = _relProductUnitRepo.FindEntity(p => p.Id == rel.id);
                 if (entity == null) return 0;
                 entity.productId = rel.keyWord;
-                entity.unit = rel.unitName;
+                entity.unit = rel.unitName ?? unit.name;
                 entity.unitId = rel.unitId;
                 entity.zhyz = rel.zhyz;
                 entity.Modify();

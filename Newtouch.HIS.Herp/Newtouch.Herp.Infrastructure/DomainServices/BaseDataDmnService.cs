@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using SqlSugar;
 using Newtouch.Herp.Domain.IDomainServices;
 using Newtouch.Herp.Infrastructure;
@@ -40,6 +41,18 @@ ORDER BY sfxmCode
             return FindList<SfxmVo>(sql,
                 new SugarParameter("@sfdlCode", sfdlCode),
                 new SugarParameter("@OrganizeId", organizeId));
+        }
+
+        public bool SfxmExists(string sfxmCode, string organizeId)
+        {
+            if (string.IsNullOrWhiteSpace(sfxmCode)) return false;
+            const string sql = @"
+SELECT COUNT(1) FROM dbo.xt_sfxm(NOLOCK)
+WHERE sfxmCode=@sfxmCode AND OrganizeId=@OrganizeId
+";
+            return FindListScalar<int>(sql,
+                new SugarParameter("@sfxmCode", sfxmCode),
+                new SugarParameter("@OrganizeId", organizeId)).FirstOrDefault() > 0;
         }
     }
 }

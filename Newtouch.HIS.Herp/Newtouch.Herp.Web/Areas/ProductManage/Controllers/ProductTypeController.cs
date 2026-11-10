@@ -59,6 +59,11 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         [HandlerAjaxOnly]
         public IActionResult SubmitForm(WzTypeEntity wzTypeEntity, string keyWord)
         {
+            // G11: chi bat buoc ten khi TAO MOI — sua thi merge bo-null o
+            // ProductTypeApp. Khong co guard thi tao moi rong roi loi SQL tho
+            // "Cannot insert NULL into column 'name'" (probe base d6-empty).
+            if (string.IsNullOrWhiteSpace(keyWord) && string.IsNullOrWhiteSpace(wzTypeEntity.name))
+                return Error("Vui lòng nhập tên loại vật tư");
             wzTypeEntity.zt = wzTypeEntity.zt == "true" ? "1" : "0";
             return _productTypeApp.SubmitForm(wzTypeEntity, keyWord) > 0 ? Success("Thao tác thành công") : Error("Thao tác thất bại");
         }

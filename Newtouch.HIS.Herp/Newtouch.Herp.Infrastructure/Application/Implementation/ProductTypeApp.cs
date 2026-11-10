@@ -20,16 +20,22 @@ namespace Newtouch.Herp.Application.Implementation
         {
             if (string.IsNullOrWhiteSpace(keyWord))
             {
+                // G11: phong thu — controller da guard ten khi tao moi; neu
+                // ten null lọt xuong day thi tra 0 thay vi loi SQL tho.
+                if (string.IsNullOrWhiteSpace(wzTypeEntity.name)) return 0;
                 wzTypeEntity.Create(true);
                 return _wzTypeRepo.Insert(wzTypeEntity);
             }
             var dbType = _wzTypeRepo.FindEntity(p => p.Id == keyWord);
             if (dbType == null) return 0;
-            dbType.parentId = wzTypeEntity.parentId;
-            dbType.name = wzTypeEntity.name;
-            dbType.remark = wzTypeEntity.remark;
-            dbType.px = wzTypeEntity.px;
-            dbType.zt = wzTypeEntity.zt;
+            // G11: chi copy field khac null — POST sua thieu field ma copy
+            // null se loi SQL (name NOT NULL) hoac xoa sach gia tri cu
+            // (remark ve NULL, probe base d6-edit-noremark).
+            if (wzTypeEntity.parentId != null) dbType.parentId = wzTypeEntity.parentId;
+            if (wzTypeEntity.name != null) dbType.name = wzTypeEntity.name;
+            if (wzTypeEntity.remark != null) dbType.remark = wzTypeEntity.remark;
+            if (wzTypeEntity.px.HasValue) dbType.px = wzTypeEntity.px;
+            if (wzTypeEntity.zt != null) dbType.zt = wzTypeEntity.zt;
             dbType.Modify();
             return _wzTypeRepo.Update(dbType);
         }

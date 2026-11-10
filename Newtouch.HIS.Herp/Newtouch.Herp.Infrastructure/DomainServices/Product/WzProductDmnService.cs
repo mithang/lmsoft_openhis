@@ -81,10 +81,17 @@ AND (product.zt=@zt OR ''=@zt )
         {
             using (var db = new EFDbTransaction(Db).BeginTrans())
             {
-                if (DeleteProductToSfxm(id) <= 0)
+                // G11: vat tu that nhung dong xt_sfxm tuong ung da mat (dong bo
+                // loi / xoa tay) thi truoc day throw "Xoa hang muc thu phi..."
+                // va khong xoa duoc vat tu (probe base d1-real-nosfxm).
+                // Chi bao loi khi that su khong tim thay vat tu; tim thay thi
+                // cu xoa ke ca khi sfxm da mat (0 dong khong phai loi).
+                var product = wzProductRepo.FindEntity(p => p.Id == id);
+                if (product == null)
                 {
-                    throw new Exception("Xóa hạng mục thu phí tương ứng thất bại");
+                    throw new Exception("Không tìm thấy vật tư");
                 }
+                DeleteProductToSfxm(id);
                 db.Delete<RelProductWarehouseEntity>(p => p.productId == id);
                 db.Delete<RelProductUnitEntity>(p => p.productId == id);
                 db.Delete<WzProductEntity>(p => p.Id == id);
@@ -355,7 +362,11 @@ AND wz.Id=@Id
             const string sql = "select productCode from wz_product where productCode=@productCode and Id!=@keyValue";
             var param = new SugarParameter[] {
                 new SugarParameter("@productCode", productCode),
-                new SugarParameter("@keyValue", keyValue),
+                // G11: keyValue null (API khong gui keyValue) lam "Id != NULL"
+                // thanh UNKNOWN -> khong tim thay trung -> check trung vo hieu
+                // va INSERT roi loi UNIQUE KEY tho (probe base d4-dupcode).
+                // Coalesce ve "" de check trung chay dung ca khi tao moi.
+                new SugarParameter("@keyValue", keyValue ?? ""),
             };
             return FirstOrDefaultScalar<string>(sql, param);
 

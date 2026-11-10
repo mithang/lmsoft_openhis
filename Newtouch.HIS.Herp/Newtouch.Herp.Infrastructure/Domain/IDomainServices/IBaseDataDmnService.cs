@@ -27,5 +27,9 @@ namespace Newtouch.Herp.Domain.IDomainServices
     {
         List<SfdlVo> SelectSfdl(string organizeId);
         List<SfxmVo> SelectSfxm(string sfdlCode, string organizeId);
+        // G11: kiem tra 1 sfxmCode co ton tai trong xt_sfxm cua to chuc
+        // khong (khong loc zt — chi hoi "co ton tai", dung de chan rel
+        // doi chieu mo coi o RelProductAndsfxmApp).
+        bool SfxmExists(string sfxmCode, string organizeId);
     }
 }
