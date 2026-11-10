@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using NewtouchHIS.Lib.Base.Model;
 using NewtouchHIS.Lib.Framework.Operator;
@@ -21,13 +22,16 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         private readonly IWzPriceAdjustmentRepo _wzPriceAdjustmentRepo;
         private readonly IWzPriceAdjustmentDmnService _wzPriceAdjustmentDmnService;
         private readonly IAdjustPriceApp adjustPriceApp;
+        private readonly IWzProductRepo _wzProductRepo;
 
         public PriceAdjustmentController(IWzPriceAdjustmentRepo wzPriceAdjustmentRepo,
-            IWzPriceAdjustmentDmnService wzPriceAdjustmentDmnService, IAdjustPriceApp adjustPriceApp)
+            IWzPriceAdjustmentDmnService wzPriceAdjustmentDmnService, IAdjustPriceApp adjustPriceApp,
+            IWzProductRepo wzProductRepo)
         {
             _wzPriceAdjustmentRepo = wzPriceAdjustmentRepo;
             _wzPriceAdjustmentDmnService = wzPriceAdjustmentDmnService;
             this.adjustPriceApp = adjustPriceApp;
+            _wzProductRepo = wzProductRepo;
         }
 
         public IActionResult PriceAdjustmentRequest()
@@ -52,6 +56,24 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
 
         public IActionResult SubmitPriceAdjustmentRequest(SubmitPriceAdjustmentRequestDTO param)
         {
+            // G14: guard truoc khi deref param / insert — base probe: body rong
+            // -> loi SQL tho "Cannot insert NULL into 'productId'"; productId
+            // bogus -> Success + dong mo coi; dwmc 11 ky tu / tzwj 31 ky tu ->
+            // "String or binary data would be truncated"; zxsj rong -> luu
+            // 1900-01-01 (dong chet, khong bao gio thuc hien duoc); lsj=0 /
+            // lsj==ylsj -> Success (UI PriceAdjustmentRequest.cshtml CheckData
+            // chan ca 2). Message dung message UI.
+            if (param == null || string.IsNullOrWhiteSpace(param.productId)) return Error("Vui lòng chọn vật tư!");
+            if (_wzProductRepo.FindEntity(p => p.Id == param.productId && p.OrganizeId == OrganizeId) == null)
+                return Error("Không tìm thấy vật tư đã chỉ định");
+            if (param.lsj <= 0) return Error("Giá bán lẻ không được để trống!");
+            if (param.lsj == param.ylsj) return Error("Giá bán buôn không được giống giá gốc!");
+            if (string.IsNullOrWhiteSpace(param.tzwj)) return Error("Văn bản thực hiện không được để trống!");
+            if (!string.IsNullOrWhiteSpace(param.dwmc) && Encoding.Default.GetBytes(param.dwmc).Length > 10)
+                return Error("Đơn vị không được vượt quá 10 ký tự");
+            if (Encoding.Default.GetBytes(param.tzwj).Length > 30)
+                return Error("Tên tệp không được vượt quá 30 ký tự");
+            if (param.zxsj < Constants.MinDateTime) return Error("Thời gian thực hiện không được để trống!");
             if (_wzPriceAdjustmentRepo.GetUnexecutedList(param.productId, OrganizeId).Any())
             {
                 return Error("Vật tư này đã có đơn xin điều chỉnh giá (chưa thực hiện), vui lòng thực hiện đơn đã gửi trước!");
@@ -97,6 +119,18 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
 
         public IActionResult AdjustPriceApproval(string ids, string operationType)
         {
+            // G14: base probe — ids rong/null -> NRE "Object reference not set
+            // to an instance of an object" (ids.TrimEnd khong guard);
+            // operationType "9" -> Success + ghi shzt=9 (trang thai khong hop
+            // le); operationType "0" tren don da Audited -> Success + dao
+            // shzt 1->0; ids bogus -> Success gia (service UPDATE 0 dong).
+            // UI PriceAdjustmentApproval.cshtml chi gui 1 (Audited) / 2
+            // (Refuse) / 3 (Revoke).
+            if (string.IsNullOrWhiteSpace(ids)) return Error("Chưa lấy được dữ liệu cần thao tác");
+            if (operationType != ((int)EnumTjShzt.Audited).ToString()
+                && operationType != ((int)EnumTjShzt.Refuse).ToString()
+                && operationType != ((int)EnumTjShzt.Revoke).ToString())
+                return Error("Thao tác không hợp lệ");
             var idList = ids.TrimEnd(',').Split(',').ToList();
             var result = _wzPriceAdjustmentDmnService.Approval(idList, operationType, OperatorProvider.GetCurrent().UserCode, OrganizeId);
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);

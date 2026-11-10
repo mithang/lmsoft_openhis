@@ -124,10 +124,19 @@ namespace Newtouch.Herp.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SwithKf(string kfId, string kfName, int kfLeve)
         {
+            // G14: base probe — kfId bogus / rong / kho cua org khac deu
+            // Success + CurrentKf bi doi sang kho khong co that (cac query
+            // sau tra rong/loi); kfLeve chu -> binder 0. Chi nhan kho trong
+            // danh sach kho cua user (LoginController nap vao kfList luc
+            // login); lay ten/cap kho tu danh sach (khong tin gia tri POST).
+            if (string.IsNullOrWhiteSpace(kfId)) return Error("Vui lòng chọn kho");
+            var kf = Constants.CurrentKf.kfList?.FirstOrDefault(k =>
+                string.Equals(k.kfId, kfId, StringComparison.OrdinalIgnoreCase));
+            if (kf == null) return Error("Không tìm thấy kho đã chỉ định");
             var opr = Constants.CurrentKf;
-            opr.currentKfId = kfId;
-            opr.currentKfName = kfName;
-            opr.currentKfLevel = kfLeve;
+            opr.currentKfId = kf.kfId;
+            opr.currentKfName = kf.kfName;
+            opr.currentKfLevel = kf.kfLeve;
             Constants.SetCurrentKf(opr.userId, opr);
             return Success("Chuyển kho thành công");
         }
@@ -243,6 +252,11 @@ namespace Newtouch.Herp.Web.Controllers
         /// </summary>
         public IActionResult SyncSysConfigParams(string orgId)
         {
+            // G14: base probe — orgId rong/null khi da co dong '*' -> loi
+            // SQL tho "Cannot insert NULL into 'OrganizeId'"; orgId bogus
+            // thi insert dong OrganizeId bogus (ghi nhan, khong fix — tac vu
+            // dong bo theo orgId duoc chi dinh). Guard orgId rong truoc.
+            if (string.IsNullOrWhiteSpace(orgId)) return Error("Vui lòng chọn tổ chức");
             // Dữ liệu gốc
             var sysConfigBaseEntities = _sysConfigRepo.GetList("", "*").ToList();
             // Dữ liệu riêng của tổ chức

@@ -145,6 +145,19 @@ namespace Newtouch.Herp.Application.Implementation
         {
             var syxxlist = AssembleSyxxEntities(plist, warehouseId);
             if (syxxlist.Count <= 0) return "Thiếu thông tin lãi lỗ";
+            // G14: base probe — pc rong -> loi SQL tho "Cannot insert NULL
+            // into 'pc'"; pc 31 ky tu -> "truncated"; productId rong -> loi
+            // SQL tho "Cannot insert NULL into 'productId'"; Sysl=0 -> throw
+            // "Số lượng phải là số dương" sau insert (rollback). Guard
+            // truoc insert de tra Error tieng Viet, khong insert roi rollback.
+            foreach (var item in plist)
+            {
+                if (item == null || string.IsNullOrWhiteSpace(item.productId)) return "Vật tư bắt buộc chọn";
+                if (string.IsNullOrWhiteSpace(item.pc)) return "Lô hàng không được để trống";
+                if (System.Text.Encoding.Default.GetBytes(item.pc).Length > 30)
+                    return "Lô hàng không được vượt quá 30 ký tự";
+                if (item.Sysl <= 0) return "Số lượng phải là số dương";
+            }
             _stockInventoryDmnService.InsertSyxxBatch(syxxlist, warehouseId, OrganizeId);
             return "";
         }

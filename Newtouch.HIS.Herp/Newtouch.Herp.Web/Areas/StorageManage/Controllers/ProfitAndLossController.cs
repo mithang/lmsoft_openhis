@@ -82,7 +82,21 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 
         public IActionResult SubmitSyyyForm(KcSyyyEntity kcSyyyEntity, string keyWord)
         {
-            kcSyyyEntity.zt = kcSyyyEntity.zt == "true" ? "1" : "0";
+            // G14: base probe — tao moi zt=on (dung UI SyyyForm.cshtml
+            // formSerialize) luu zt=0, dropdown GetLossProfitReasonListByType
+            // filter zt='1' nen khong thay dong moi; sua dong baseline cung
+            // zt 1->0; body rong / syyy rong / sybz rong / syyy 101 ky tu ->
+            // loi SQL tho "Cannot insert ... / truncated". Cung ho bug zt
+            // nhu G13 #10/#12: nhan ca "on" va "true".
+            if (kcSyyyEntity == null) return Error("Thông tin nguyên nhân không được để trống");
+            if (string.IsNullOrWhiteSpace(kcSyyyEntity.syyy)) return Error("Nguyên nhân lãi lỗ bắt buộc");
+            if (System.Text.Encoding.Default.GetBytes(kcSyyyEntity.syyy).Length > 100)
+                return Error("Nguyên nhân lãi lỗ không được vượt quá 100 ký tự");
+            if (string.IsNullOrWhiteSpace(kcSyyyEntity.sybz)
+                || (kcSyyyEntity.sybz != ((int)EnumSybz.Loss).ToString()
+                    && kcSyyyEntity.sybz != ((int)EnumSybz.Profit).ToString()))
+                return Error("Dấu hiệu lãi lỗ không hợp lệ");
+            kcSyyyEntity.zt = kcSyyyEntity.zt == "true" || kcSyyyEntity.zt == "on" ? "1" : "0";
             return _kcSyyyRepo.SubmitForm(kcSyyyEntity, keyWord) > 0 ? Success("Thao tác thành công") : Error("Thao tác thất bại");
         }
 

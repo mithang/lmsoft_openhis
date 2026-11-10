@@ -73,6 +73,8 @@ AND (pa.zxbz=@zxbz OR ''=@zxbz)
                 userCode = "";
             }
             var expireApply = new List<string>();
+            var notFound = new List<string>();
+            var alreadyExecuted = new List<string>();
             foreach (var id in idList)
             {
                 var updateSql = @"
@@ -88,17 +90,42 @@ WHERE wztjId=@Id AND OrganizeId=@OrganizeId AND zxbz=@zxbz AND zxsj>GETDATE()
                     new SugarParameter("@OrganizeId", organizeId),
                     new SugarParameter("@zxbz", ((int)EnumTjZxbz.Not).ToString())
                 };
-                ExecuteSqlCommand(updateSql, param);
+                // G14: base probe — UPDATE 0 dong (id bogus / don qua han /
+                // don da thuc hien) van tra "" -> controller Success gia.
+                // Check so dong: 0 dong thi phan biet khong-tim-thay / da
+                // thuc hien / qua han bang SELECT khong join wz_product
+                // (join cu doi wz.zt='1' nen don cua vat tu zt=0 hoac vat tu
+                // da mat deu tra null -> mat ca nhan qua han).
+                var affected = ExecuteSqlCommand(updateSql, param);
+                if (affected > 0) continue;
                 const string selectSql = @"
-SELECT wz.name wzmc, pa.ylsj, pa.lsj, pa.zhyz, pa.zxsj
+SELECT pa.wztjId, pa.shzt, pa.zxbz, wz.name wzmc, pa.ylsj, pa.lsj, pa.zhyz, pa.zxsj
 FROM dbo.wz_priceAdjustment pa
-INNER JOIN dbo.wz_product(NOLOCK) wz ON wz.Id=pa.productId AND wz.OrganizeId=pa.OrganizeId AND wz.zt='1'
-WHERE pa.wztjId=@Id AND pa.zxbz=@zxbz AND pa.OrganizeId=@OrganizeId
+LEFT JOIN dbo.wz_product(NOLOCK) wz ON wz.Id=pa.productId AND wz.OrganizeId=pa.OrganizeId
+WHERE pa.wztjId=@Id AND pa.OrganizeId=@OrganizeId
 ";
                 var ret = FirstOrDefault<VPriceAdjustmentInfoEntity>(selectSql, param);
-                if (ret != null && ret.zxsj < DateTime.Now && ret.zxsj > Constants.MinDateTime) expireApply.Add(ret.wzmc);
+                if (ret == null)
+                {
+                    notFound.Add(id);
+                }
+                else if (ret.zxbz == ((int)EnumTjZxbz.Already).ToString())
+                {
+                    alreadyExecuted.Add(string.IsNullOrWhiteSpace(ret.wzmc) ? id : ret.wzmc);
+                }
+                else if (ret.zxsj <= DateTime.Now)
+                {
+                    expireApply.Add(string.IsNullOrWhiteSpace(ret.wzmc) ? id : ret.wzmc);
+                }
+                else
+                {
+                    notFound.Add(id);
+                }
             }
-            return expireApply.Count > 0 ? string.Format("Thao tác thất bại đối với vật tư có mã {0}, đã quá thời gian thực hiện muộn nhất.", string.Join(",", expireApply)) : "";
+            if (expireApply.Count > 0) return string.Format("Thao tác thất bại đối với vật tư có mã {0}, đã quá thời gian thực hiện muộn nhất.", string.Join(",", expireApply));
+            if (alreadyExecuted.Count > 0) return string.Format("Thao tác thất bại đối với vật tư có mã {0}, đã thực hiện điều chỉnh giá, không thể duyệt.", string.Join(",", alreadyExecuted));
+            if (notFound.Count > 0) return string.Format("Không tìm thấy thông tin điều chỉnh giá có khóa chính {0}!", string.Join(",", notFound));
+            return "";
         }
 
         public List<VPriceAdjustmentProfitLossEntity> GetPriceAdjustmentProfitLoss(string wztjId, string productId, string organizeid)
