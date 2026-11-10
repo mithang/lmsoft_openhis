@@ -38,6 +38,53 @@ namespace Newtouch.HIS.Application.Implementation.Process
             {
                 throw new FailedException("Chi tiết chứng từ không được để trống");
             }
+            // G26: chặn sớm field thiếu/vượt độ dài cột DB, tránh lỗi SQL thô
+            // (Cannot-insert NULL / truncation) và NRE ở BeforeAction.
+            // Apply UI chỉ post djh/ckbm/rkbm + mx(ypdm, sl, rkzhyz) — không
+            // post fyfs/ph/pc nên không validate các field đó ở đây.
+            if (string.IsNullOrWhiteSpace(Request.djh))
+            {
+                throw new FailedException("Số chứng từ không được để trống");
+            }
+            if (Request.djh.Length > 30)
+            {
+                throw new FailedException("Số chứng từ không được vượt quá 30 ký tự");
+            }
+            if (string.IsNullOrWhiteSpace(Request.ckbm))
+            {
+                throw new FailedException("Bộ phận xuất kho không được để trống");
+            }
+            if (Request.ckbm.Length > 100)
+            {
+                throw new FailedException("Bộ phận xuất kho không được vượt quá 100 ký tự");
+            }
+            if (string.IsNullOrWhiteSpace(Request.rkbm))
+            {
+                throw new FailedException("Bộ phận nhập kho không được để trống");
+            }
+            if (Request.rkbm.Length > 100)
+            {
+                throw new FailedException("Bộ phận nhập kho không được vượt quá 100 ký tự");
+            }
+            foreach (var item in Request.mx)
+            {
+                if (string.IsNullOrWhiteSpace(item.ypdm))
+                {
+                    throw new FailedException("Mã thuốc không được để trống");
+                }
+                if (item.ypdm.Length > 20)
+                {
+                    throw new FailedException("Mã thuốc không được vượt quá 20 ký tự");
+                }
+                if (item.sl <= 0)
+                {
+                    throw new FailedException("Số lượng phải lớn hơn 0");
+                }
+                if (item.rkzhyz == null || item.rkzhyz <= 0)
+                {
+                    throw new FailedException("Hệ số quy đổi nhập kho phải lớn hơn 0");
+                }
+            }
             return new ActResult();
         }
 

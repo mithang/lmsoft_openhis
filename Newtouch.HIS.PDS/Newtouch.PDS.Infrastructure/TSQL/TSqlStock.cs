@@ -274,6 +274,21 @@ BEGIN TRY
 	INNER JOIN NewtouchHIS_Base.dbo.V_S_xt_ypsx ypsx ON ypsx.ypId=yp.ypId AND ypsx.OrganizeId=kcxx.OrganizeId
 	WHERE kcxx.ypdm=@ypdm AND kcxx.pc=@pc AND kcxx.ph=@ph AND kcxx.OrganizeId=@Organizeid AND kcxx.yfbmCode=@yfbmCode AND kcxx.zt='1'
 	GROUP BY yp.ypmc
+	-- G26: khi ypdm/pc/ph không khớp dòng tồn kho nào, SUM trả NULL nên
+	-- IF @kykc<@sl bị bỏ qua (so sánh với NULL) và frozen trả '' — receipt
+	-- được tạo dù không có tồn kho (defect 6c/6d/7c/7d/9c). Trả lỗi rõ ràng.
+	IF @kykc IS NULL
+	BEGIN
+		SELECT 'Không tìm thấy tồn kho cho thuốc ['+ISNULL(@ypdm,'')+'] lô ['+ISNULL(@pc,'')+'] số lô ['+ISNULL(@ph,'')+']';
+		ROLLBACK TRANSACTION
+		RETURN;
+	END
+	IF @sl<=0
+	BEGIN
+		SELECT 'Số lượng phải lớn hơn 0';
+		ROLLBACK TRANSACTION
+		RETURN;
+	END
 	IF @kykc<@sl
 	BEGIN
 		SELECT '【'+@ypmc+'】'+ 'Tồn kho không đủ';
@@ -283,7 +298,7 @@ BEGIN TRY
 
 	IF NOT EXISTS(SELECT 1 FROM dbo.xt_yp_kcxx WHERE ypdm=@ypdm AND ypdm=@ypdm AND pc=@pc AND ph=@ph AND OrganizeId=@Organizeid AND yfbmCode=@rkbm AND zt='1')
 	BEGIN
-		SELECT 'Khoa nhập kho không có lô là【'+@pc+'】thuốc【'+@ypmc+'】';
+		SELECT 'Khoa nhập kho không có lô là【'+ISNULL(@pc,'')+'】thuốc【'+ISNULL(@ypmc,'')+'】';
 		ROLLBACK TRANSACTION;
 		RETURN ;
 	END
@@ -337,6 +352,21 @@ BEGIN TRY
 	INNER JOIN NewtouchHIS_Base.dbo.V_S_xt_ypsx ypsx ON ypsx.ypId=yp.ypId AND ypsx.OrganizeId=kcxx.OrganizeId
 	WHERE kcxx.ypdm=@ypdm AND kcxx.pc=@pc AND kcxx.ph=@ph AND kcxx.OrganizeId=@Organizeid AND kcxx.yfbmCode=@yfbmCode AND kcxx.zt='1'
 	GROUP BY yp.ypmc
+	-- G26: khi ypdm/pc/ph không khớp dòng tồn kho nào, SUM trả NULL nên
+	-- IF @kykc<@sl bị bỏ qua (so sánh với NULL) và frozen trả '' — receipt
+	-- được tạo dù không có tồn kho (defect 6c/6d/7c/7d/9c). Trả lỗi rõ ràng.
+	IF @kykc IS NULL
+	BEGIN
+		SELECT 'Không tìm thấy tồn kho cho thuốc ['+ISNULL(@ypdm,'')+'] lô ['+ISNULL(@pc,'')+'] số lô ['+ISNULL(@ph,'')+']';
+		ROLLBACK TRANSACTION
+		RETURN;
+	END
+	IF @sl<=0
+	BEGIN
+		SELECT 'Số lượng phải lớn hơn 0';
+		ROLLBACK TRANSACTION
+		RETURN;
+	END
 	IF @kykc<@sl
 	BEGIN
 		SELECT '【'+@ypmc+'】'+ 'Tồn kho không đủ';
@@ -870,6 +900,13 @@ INNER JOIN NewtouchHIS_Base.dbo.V_S_xt_ypsx ypsx ON ypsx.ypId=yp.ypId AND ypsx.O
 WHERE kcxx.ypdm=@ypdm AND kcxx.ph=@ph AND kcxx.pc=@pc AND kcxx.kcsl>0 AND kcxx.yfbmCode=@yfbmCode AND kcxx.OrganizeId=@Organizeid AND kcxx.zt='1'
 GROUP BY yp.ypmc
 PRINT @kykc
+-- G26: như frozen deliveryDirect — SUM NULL khi không khớp dòng tồn kho
+-- nào, IF @kykc<@sl bị bỏ qua nên trừ kho thành công 0 đơn vị (7c/7d).
+IF @kykc IS NULL
+BEGIN
+	SELECT CONCAT('Không tìm thấy tồn kho cho thuốc [',@ypdm,'] lô [',@pc,'] số lô [',@ph,']');
+	RETURN;
+END
 
 IF @sl<=0
 BEGIN

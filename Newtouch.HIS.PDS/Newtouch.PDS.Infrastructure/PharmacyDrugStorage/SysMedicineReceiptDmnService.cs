@@ -43,14 +43,14 @@ namespace Newtouch.HIS.DomainServices
                 {
                     if (djsh == null)   //Thao tác hủy bỏ,Phải tồn tại bản ghi duyệt chứng từ
                     {
-                        throw new FailedException("Không tìm thấy bản ghi duyệt chứng từ，Hủy bỏ thất bại");
+                        throw new FailedException("Không tìm thấy bản ghi duyệt chứng từ, hủy bỏ thất bại");
                     }
                 }
                 else
                 {
                     if (djsh != null)   //Phí thao tác không hủy bỏ,Phải không tồn tại bản ghi duyệt chứng từ
                     {
-                        throw new FailedException("Chứng từ đã duyệt，Không thể duyệt trùng lặp");
+                        throw new FailedException("Chứng từ đã duyệt, không thể duyệt trùng lặp");
                     }
                 }
 
@@ -62,7 +62,7 @@ namespace Newtouch.HIS.DomainServices
                 }
                 if (djmxList.Any(p => p.Sl < 0))
                 {
-                    throw new FailedException("Bản ghi Số lượng chi tiết không thể là Số âm，Thao tác thất bại");
+                    throw new FailedException("Số lượng chi tiết không thể là số âm, thao tác thất bại");
                 }
 
                 djmxList = djmxList.FindAll(p => p.Sl > 0);
@@ -218,11 +218,11 @@ namespace Newtouch.HIS.DomainServices
                 var entity = db.IQueryable<SysMedicineStockInfoEntity>().Single(p => p.OrganizeId == curUser.OrganizeId && p.yfbmCode == crkdj.Rkbm && p.pc == mx.pc && p.ph == mx.Ph);
                 if (entity.djsl > 0)
                 {
-                    throw new FailedException("Tồn tại tồn kho đóng băng，Không thể hủy bỏ");
+                    throw new FailedException("Tồn tại tồn kho đóng băng, không thể hủy bỏ");
                 }
                 if (entity.kcsl < mx.Sl * mx.Rkzhyz)   //tức Tồn kho đã thay đổi thì không thể hủy bỏ
                 {
-                    throw new FailedException("Tồn kho kho thuốc không đủ，Không thể hủy bỏ");
+                    throw new FailedException("Tồn kho kho thuốc không đủ, không thể hủy bỏ");
                 }
                 entity.kcsl -= mx.Sl * mx.Rkzhyz;
                 db.Update(entity);
@@ -253,7 +253,7 @@ namespace Newtouch.HIS.DomainServices
                 }
                 if (entities.Where(p => p.kcsl > 0 && p.djsl > 0).Sum(p => p.kcsl) < mx.Sl * mx.Ckzhyz)
                 {
-                    throw new FailedException("Tồn kho kho đích không đủ，Duyệt thất bại");
+                    throw new FailedException("Tồn kho kho đích không đủ, duyệt thất bại");
                 }
                 var sysl = mx.Sl * mx.Ckzhyz;
                 foreach (var ckbmkcEntity in entities)
@@ -338,7 +338,7 @@ namespace Newtouch.HIS.DomainServices
                 var entity = db.IQueryable<SysMedicineStockInfoEntity>().Single(p => p.OrganizeId == curUser.OrganizeId && p.yfbmCode == crkdj.Ckbm && p.pc == mx.pc);
                 if (entity.kcsl < mx.Sl * mx.Ckzhyz)
                 {
-                    throw new FailedException("Tồn kho kho thuốc không đủ，Duyệt thất bại");
+                    throw new FailedException("Tồn kho kho thuốc không đủ, duyệt thất bại");
                 }
                 entity.kcsl -= mx.Sl * mx.Ckzhyz;
                 entity.djsl -= mx.Sl * mx.Ckzhyz;   //Khi xin xuất kho sẽ đóng băng
@@ -397,21 +397,21 @@ namespace Newtouch.HIS.DomainServices
             else
             {
                 var sldmxEntity = db.IQueryable<SysMedicineRequisitionDetailEntity>().SingleOrDefault(p => p.sldmxId == mx.sldmxId);//Đơn lĩnh liên kết Xử lý trạng thái
-                if (sldmxEntity == null) throw new FailedException("Thao tác thất bại，Ngoại lệ chi tiết đơn lĩnh liên kết");
+                if (sldmxEntity == null) throw new FailedException("Thao tác thất bại, ngoại lệ chi tiết đơn lĩnh liên kết");
                 var sldEntity = db.IQueryable<SysMedicineRequisitionEntity>().SingleOrDefault(p => p.sldId == sldmxEntity.sldId);
-                if (sldEntity == null) throw new FailedException("Thao tác thất bại，Ngoại lệ thông tin chính đơn lĩnh liên kết");
+                if (sldEntity == null) throw new FailedException("Thao tác thất bại, ngoại lệ thông tin chính đơn lĩnh liên kết");
                 var sldmxList = db.IQueryable<SysMedicineRequisitionDetailEntity>().Where(p => p.sldId == sldEntity.sldId).ToList();//Tất cả bản ghi chi tiết thuộc đơn lĩnh này
                 switch (sldEntity.ffzt)
                 {
                     //Hủy bỏ và không đạt Có Xử lý giống nhau
                     case (int)EnumSLDDeliveryStatus.None:
-                        throw new FailedException("Thao tác thất bại，Đơn lĩnh chưa phát thuốc。");
+                        throw new FailedException("Thao tác thất bại, đơn lĩnh chưa phát thuốc.");
                     case (int)EnumSLDDeliveryStatus.Abandon:
-                        throw new FailedException("Thao tác thất bại，Đơn lĩnh đã chấm dứt，Không thay đổi trạng thái phát của nó nữa。");
+                        throw new FailedException("Thao tác thất bại, đơn lĩnh đã chấm dứt, không thay đổi trạng thái phát của nó nữa.");
                 }
 
                 sldmxEntity.yfsl -= mx.Sl;
-                if (sldmxEntity.yfsl < 0) throw new FailedException("Thao tác thất bại，Số lượng chi tiết đơn lĩnh không cho phép là Số âm");
+                if (sldmxEntity.yfsl < 0) throw new FailedException("Thao tác thất bại, số lượng chi tiết đơn lĩnh không cho phép là số âm");
                 sldEntity.ffzt = sldmxList.Any(p => p.yfsl > 0) ? (int)EnumSLDDeliveryStatus.Part : (int)EnumSLDDeliveryStatus.None;//Không thể phát hết
 
                 db.Update(sldmxEntity);
@@ -462,11 +462,11 @@ namespace Newtouch.HIS.DomainServices
                 var effectiveData = ckbmkcEntities.Where(p => p.kcsl > 0 && p.djsl > 0);
                 if (!effectiveData.Any())
                 {
-                    throw new FailedException(string.Format("Mã là【{0}】thuốc，Tồn kho kho thuốc bằng 0，Duyệt thất bại", mx.Ypdm));
+                    throw new FailedException(string.Format("Mã là【{0}】thuốc, tồn kho kho thuốc bằng 0, duyệt thất bại", mx.Ypdm));
                 }
                 if (effectiveData.Sum(p => p.kcsl) < mx.Sl * mx.Ckzhyz)
                 {
-                    throw new FailedException(string.Format("Mã là【{0}】thuốc，Tồn kho kho thuốc không đủ，Duyệt thất bại", mx.Ypdm));
+                    throw new FailedException(string.Format("Mã là【{0}】thuốc, tồn kho kho thuốc không đủ, duyệt thất bại", mx.Ypdm));
                 }
                 var sysl = mx.Sl * mx.Ckzhyz;
 
@@ -573,7 +573,7 @@ namespace Newtouch.HIS.DomainServices
                 var ckSysl = rkSysl;
                 if ((rkbmkcEntities.Where(p => p.kcsl > 0 && p.djsl >= 0).Sum(p => p.kcsl) - rkbmkcEntities.Where(p => p.kcsl > 0 && p.djsl >= 0).Sum(p => p.djsl)) < rkSysl)
                 {
-                    throw new FailedException(string.Format("Mã là【{0}】thuốc tồn kho nhà thuốc không đủ，Không thể hủy bỏ", mx.Ypdm));   //Nhà thuốc không trả lại được nữa
+                    throw new FailedException(string.Format("Mã là【{0}】thuốc tồn kho nhà thuốc không đủ, không thể hủy bỏ", mx.Ypdm));   //Nhà thuốc không trả lại được nữa
                 }
                 foreach (var rkbmkcEntity in rkbmkcEntities)//Số tồn kho bộ phận nhập kho phải trả về
                 {

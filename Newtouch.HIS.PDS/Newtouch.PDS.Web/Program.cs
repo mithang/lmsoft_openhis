@@ -185,6 +185,11 @@ builder.Services.AddControllersWithViews().AddMvcOptions(options =>
     // Cycle 27: query-string dates bind InvariantCulture in stock ASP.NET Core,
     // so dd/MM/yyyy view values mis-bound on GET. Provider runs first.
     options.ModelBinderProviders.Insert(0, new DateTimeModelBinderProvider());
+    // G26: form-POST decimals bind with CurrentCulture (vi-VN), so a
+    // dot-decimal price such as "26.08" bound as 2608 ('.' is the vi-VN
+    // group separator) — proved live on SubmitDeliveryDirect 6a and
+    // SubmitInStorage 8a. Provider runs first, same pattern as CIS.
+    options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
     options.Filters.Add(typeof(LogTrackingAttribute));
     options.Filters.Add(typeof(FrameworkAuthorizationFilter));
 });

@@ -56,6 +56,12 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         /// <returns></returns>
         public IActionResult SubmitReceiptApprovalBatch(List<OutOrInStorageBillApprovalDTO> param)
         {
+            // G26: danh sách rỗng trước đây trả Success giả (defect 4a:
+            // body rỗng → "Thao tác thành công" dù không duyệt gì cả).
+            if (param == null || param.Count == 0)
+            {
+                return Error("Danh sách chứng từ duyệt không được để trống");
+            }
             var auditor = UserIdentity.UserCode;
             Parallel.ForEach(param, item => { item.auditor = auditor; });
             var result = new StringBuilder();

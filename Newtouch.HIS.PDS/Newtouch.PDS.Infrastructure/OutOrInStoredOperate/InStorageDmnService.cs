@@ -5,6 +5,7 @@ using Newtouch.HIS.Domain.IDomainServices;
 using Newtouch.HIS.Domain.IDomainServices.DrugStorage;
 using Newtouch.HIS.Domain.IRepository;
 using Newtouch.Infrastructure;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 
@@ -27,6 +28,22 @@ namespace Newtouch.HIS.DomainServices.OutOrInStoredOperate
         public string SubmitInStorage(SysMedicineStorageIOReceiptEntity dj, List<SysMedicineStorageIOReceiptDetailEntity> mx)
         {
             var result = "";
+            // G26: nhập kho không qua frozen nên kiểm tra mã thuốc tồn tại ở
+            // đây (defect 8c: bogus ypdm vẫn tạo receipt, sau đó không duyệt
+            // được vì AssembleKcxx NRE ở GetYpDetails). Cùng mẫu F5.
+            const string ypSql = "select top 1 ypCode from [NewtouchHIS_Base]..V_C_xt_yp where zt = '1' and ypCode = @ypCode and OrganizeId = @orgId";
+            foreach (var d in mx)
+            {
+                var found = FirstOrDefaultNoLog<string>(ypSql, new SugarParameter[]
+                {
+                    new SugarParameter("@ypCode", d.Ypdm),
+                    new SugarParameter("@orgId", dj.OrganizeId)
+                });
+                if (found == null)
+                {
+                    return string.Format("Mã thuốc [{0}] không tồn tại", d.Ypdm);
+                }
+            }
             using (var db = new EFDbTransaction().BeginTrans())
             {
                 crkdj.Insert(dj);

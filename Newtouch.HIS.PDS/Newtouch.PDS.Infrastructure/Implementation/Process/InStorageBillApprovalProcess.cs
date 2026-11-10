@@ -47,6 +47,11 @@ namespace Newtouch.HIS.Application.Implementation.Process
                     {
                         actResult.IsSucceed = false;
                         actResult.ResultMsg = cancelResult;
+                        // G26: hủy bỏ lỗi (vd tồn kho không đủ) thì KHÔNG được
+                        // lật trạng thái chứng từ sang Cancelled — defect 3l:
+                        // cancel lỗi nhưng shzt vẫn thành 3, chứng từ "đã hủy"
+                        // dù tồn kho chưa được hoàn lại.
+                        break;
                     }
                     Request.dj.shzt = ((int)EnumDjShzt.Cancelled).ToString();
                     Request.dj.Shczy = Request.auditor;

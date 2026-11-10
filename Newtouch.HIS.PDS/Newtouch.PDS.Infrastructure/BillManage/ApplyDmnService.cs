@@ -43,6 +43,33 @@ namespace Newtouch.HIS.DomainServices.BillManage
         /// <returns></returns>
         public string SubmitApply(SysMedicineRequisitionEntity sysMedicineRequisitionEntity, List<SysMedicineRequisitionDetailEntity> sysMedicineRequisitionDetailEntities)
         {
+            // G26: kiểm tra trùng số đơn + mã thuốc tồn tại trước khi insert
+            // (defect 5h: trùng Sldh tạo 2 đơn; 5c: bogus ypdm vẫn tạo đơn).
+            if (!string.IsNullOrWhiteSpace(sysMedicineRequisitionEntity.Sldh))
+            {
+                var dup = sldRepo.FindEntity(p => p.Sldh == sysMedicineRequisitionEntity.Sldh
+                    && p.OrganizeId == sysMedicineRequisitionEntity.OrganizeId && p.zt == "1");
+                if (dup != null)
+                {
+                    return string.Format("Số đơn lĩnh [{0}] đã tồn tại", sysMedicineRequisitionEntity.Sldh);
+                }
+            }
+            // Kiểm tra mã thuốc theo catalog (cùng mẫu SysMedicineExDmnService.
+            // GetYpDetails; hardcode [NewtouchHIS_Base] như code hiện có — xem
+            // caveat PROBE-G26 §8: trên STG nó đọc catalog Base demo).
+            const string ypSql = "select top 1 ypCode from [NewtouchHIS_Base]..V_C_xt_yp where zt = '1' and ypCode = @ypCode and OrganizeId = @orgId";
+            foreach (var d in sysMedicineRequisitionDetailEntities)
+            {
+                var found = FirstOrDefaultNoLog<string>(ypSql, new SugarParameter[]
+                {
+                    new SugarParameter("@ypCode", d.ypCode),
+                    new SugarParameter("@orgId", sysMedicineRequisitionEntity.OrganizeId)
+                });
+                if (found == null)
+                {
+                    return string.Format("Mã thuốc [{0}] không tồn tại", d.ypCode);
+                }
+            }
             using (var db = new EFDbTransaction().BeginTrans())
             {
                 db.Insert(sysMedicineRequisitionEntity);
@@ -213,6 +240,28 @@ SELECT @@ROWCOUNT;
             {
 
                 var curSldId = source[0].sldId;
+                // G26: chặn cross-org / sldmx không thuộc đơn / phát vượt số
+                // còn lại TRƯỚC khi đóng băng (defect 2d cross-org, 2e bogus
+                // sldmxId, 2g over-issue xfsl>sysl). Kiểm tra theo DB, không
+                // tin sysl client gửi.
+                var sldEntity = sldRepo.FindEntity(p => p.sldId == curSldId && p.OrganizeId == organizeId && p.zt == "1");
+                if (sldEntity == null)
+                {
+                    return "Không tìm thấy đơn lĩnh thuộc đơn vị hiện tại";
+                }
+                foreach (var item in group)
+                {
+                    var mxEntity = sldmxRepo.FindEntity(m => m.sldmxId == item.sldmxId && m.sldId == curSldId && m.zt == "1");
+                    if (mxEntity == null)
+                    {
+                        return string.Format("Không tìm thấy chi tiết đơn lĩnh [{0}]", item.sldmxId);
+                    }
+                    var remain = mxEntity.slsl - mxEntity.yfsl;
+                    if (item.xfsl <= 0 || item.xfsl > remain)
+                    {
+                        return string.Format("Số lượng phát của thuốc [{0}] phải lớn hơn 0 và không vượt quá số lượng còn lại [{1}]", item.ypdm, remain);
+                    }
+                }
                 var tmpFrozenSuccesseList = new FrozenStockAndGenerateCrkdjDTO
                 {
                     rkbm = source[0].slbm,
@@ -252,7 +301,7 @@ SELECT @@ROWCOUNT;
                 {
                     return resultGenerateCrkdj;
                 }
-                UpdateSld(db, curSldId, group);
+                UpdateSld(db, curSldId, group, organizeId);
                 db.Commit();
                 return "";
             }
@@ -262,10 +311,11 @@ SELECT @@ROWCOUNT;
         /// Sửa thông tin đơn lĩnh
         /// </summary>
         /// <param name="db"></param>
-        private void UpdateSld(Newtouch.Infrastructure.EFDbTransaction db, string sldId, List<ApplyOutStockVEntity> group)
+        private void UpdateSld(Newtouch.Infrastructure.EFDbTransaction db, string sldId, List<ApplyOutStockVEntity> group, string organizeId)
         {
             #region Sửa thông tin bảng chính
-            var sldEntity = sldRepo.FindEntity(p => p.sldId == sldId);
+            // G26: lọc thêm OrganizeId (defense-in-depth cho chặn cross-org 2d).
+            var sldEntity = sldRepo.FindEntity(p => p.sldId == sldId && p.OrganizeId == organizeId);
             if (sldEntity == null) throw new Exception(string.Format("Không tìm thấy khóa chính là【{0}】đơn lĩnh của", sldId));
             sldEntity.ffzt = IsPartProvide(group) ? (int)EnumSLDDeliveryStatus.Part : (int)EnumSLDDeliveryStatus.All;
             sldEntity.Modify();
@@ -275,7 +325,8 @@ SELECT @@ROWCOUNT;
             #region Sửa thông tin bảng chi tiết
             group.ForEach(p =>
             {
-                var mx = sldmxRepo.FindEntity(m => m.sldmxId == p.sldmxId);
+                // G26: chi tiết phải thuộc đúng đơn lĩnh này.
+                var mx = sldmxRepo.FindEntity(m => m.sldmxId == p.sldmxId && m.sldId == sldId);
                 if (mx == null) throw new Exception(string.Format("Không tìm thấy khóa chính là【{0}】chi tiết đơn lĩnh của", p.sldmxId));
                 mx.yfsl = mx.yfsl + p.xfsl;
                 mx.Modify();

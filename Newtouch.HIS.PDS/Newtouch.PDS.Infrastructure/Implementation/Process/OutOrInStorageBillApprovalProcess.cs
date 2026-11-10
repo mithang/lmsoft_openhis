@@ -25,8 +25,14 @@ namespace Newtouch.HIS.Application.Implementation
 
         public OutOrInStorageBillApprovalProcess(OutOrInStorageBillApprovalDTO request) : base(request)
         {
-            request.djmx = new List<SysMedicineStorageIOReceiptDetailEntity>();
-            request.dj = new SysMedicineStorageIOReceiptEntity();
+            // G26: null-guard (ctor cũ NRE khi request null; qua HTTP form
+            // model binding luôn tạo DTO rỗng nên không trigger được, nhưng
+            // chặn ở đây để Validata trả lỗi TV thay vì NRE).
+            if (request != null)
+            {
+                request.djmx = new List<SysMedicineStorageIOReceiptDetailEntity>();
+                request.dj = new SysMedicineStorageIOReceiptEntity();
+            }
         }
 
         /// <summary>
@@ -37,15 +43,24 @@ namespace Newtouch.HIS.Application.Implementation
         {
             if (Request == null)
             {
-                throw new FailedException("Thông tin duyệt không được để trống！");
+                throw new FailedException("Thông tin duyệt không được để trống!");
             }
             if (string.IsNullOrWhiteSpace(Request.crkId))
             {
-                throw new FailedException("Chứng từ xuất nhập kho ID Không được để trống！");
+                throw new FailedException("ID chứng từ xuất nhập kho không được để trống!");
             }
             if (string.IsNullOrWhiteSpace(Request.shzt))
             {
-                throw new FailedException("Trạng thái duyệt không được để trống！");
+                throw new FailedException("Trạng thái duyệt không được để trống!");
+            }
+            // G26: chỉ chấp nhận 1=duyệt, 2=không đạt, 3=hủy bỏ. Giá trị khác
+            // (vd "abc") trước đây rơi vào nhánh else rồi FormatException ở
+            // Convert.ToInt32(Request.shzt) trong InStorageBillApprovalProcess.
+            if (Request.shzt != ((int)EnumDjShzt.Approved).ToString()
+                && Request.shzt != ((int)EnumDjShzt.Rejected).ToString()
+                && Request.shzt != ((int)EnumDjShzt.Cancelled).ToString())
+            {
+                throw new FailedException("Trạng thái duyệt không hợp lệ, chỉ chấp nhận duyệt, không đạt hoặc hủy bỏ!");
             }
             var djmc = "";//Tên chứng từ
             switch (Request.djlx)
@@ -69,7 +84,7 @@ namespace Newtouch.HIS.Application.Implementation
                     djmc = EnumDanJuLX.zhijiefayao.GetDescription();
                     break;
                 default:
-                    throw new FailedException("Không khớp loại chứng từ hiệu lực！");
+                    throw new FailedException("Loại chứng từ không hợp lệ!");
             }
             Request.dj = _crkdj.FindEntity(p => p.crkId == Request.crkId
             && p.OrganizeId == OrganizeId
@@ -78,26 +93,26 @@ namespace Newtouch.HIS.Application.Implementation
             && (p.Ckbm == Constants.CurrentYfbm.yfbmCode || p.Rkbm == Constants.CurrentYfbm.yfbmCode));
             if (Request.dj == null)
             {
-                throw new FailedException(string.Format("Theo chứng từ truyền vào ID và loại chứng từ không tìm thấy thông tin chứng từ đáp ứng yêu cầu，Chứng từ ID【{0}】,Loại chứng từ【{1}】！", Request.crkId, djmc));
+                throw new FailedException(string.Format("Không tìm thấy chứng từ phù hợp với ID chứng từ [{0}] và loại chứng từ [{1}]!", Request.crkId, djmc));
             }
             if (Request.shzt == ((int)EnumDjShzt.Cancelled).ToString())
             {
-                if (((int)EnumDjShzt.WaitingApprove).ToString() == Request.dj.shzt) throw new FailedException("Chứng từ chưa duyệt，Không cho phép hủy bỏ！"); //Thao tác hủy bỏ，Phải tồn tại bản ghi duyệt chứng từ
-                if (((int)EnumDjShzt.Cancelled).ToString() == Request.dj.shzt) throw new FailedException("Chứng từ đã hủy bỏ，Không thể hủy bỏ trùng lặp！");
-                if (((int)EnumDjShzt.Rejected).ToString() == Request.dj.shzt) throw new FailedException("Chứng từ đã duyệt không đạt，Không thể hủy bỏ！");
+                if (((int)EnumDjShzt.WaitingApprove).ToString() == Request.dj.shzt) throw new FailedException("Chứng từ chưa duyệt, không cho phép hủy bỏ!"); //Thao tác hủy bỏ, phải tồn tại bản ghi duyệt chứng từ
+                if (((int)EnumDjShzt.Cancelled).ToString() == Request.dj.shzt) throw new FailedException("Chứng từ đã hủy bỏ, không thể hủy bỏ trùng lặp!");
+                if (((int)EnumDjShzt.Rejected).ToString() == Request.dj.shzt) throw new FailedException("Chứng từ đã duyệt không đạt, không thể hủy bỏ!");
             }
             else if (Request.shzt == ((int)EnumDjShzt.Rejected).ToString())
             {
-                if (((int)EnumDjShzt.WaitingApprove).ToString() != Request.dj.shzt) throw new FailedException("Chỉ có thể thao tác chứng từ trạng thái chờ xử lý！");
+                if (((int)EnumDjShzt.WaitingApprove).ToString() != Request.dj.shzt) throw new FailedException("Chỉ có thể thao tác với chứng từ đang chờ duyệt!");
             }
             else
             {
-                if (((int)EnumDjShzt.WaitingApprove).ToString() != Request.dj.shzt) throw new FailedException("Chứng từ đã duyệt，Không thể duyệt trùng lặp！");//Thao tác không hủy bỏ，Phải không tồn tại bản ghi duyệt chứng từ
+                if (((int)EnumDjShzt.WaitingApprove).ToString() != Request.dj.shzt) throw new FailedException("Chứng từ đã duyệt, không thể duyệt trùng lặp!");//Thao tác không hủy bỏ, phải không tồn tại bản ghi duyệt chứng từ
             }
             Request.djmx = _crkdjmx.IQueryable(p => p.crkId == Request.crkId && p.zt == "1").ToList();
             if (Request.djmx == null || Request.djmx.Count <= 0)
             {
-                throw new FailedException(string.Format("Theo chứng từ truyền vào ID và loại chứng từ không tìm thấy chi tiết chứng từ đáp ứng yêu cầu，Chứng từ ID【{0}】,Loại chứng từ【{1}】！", Request.crkId, djmc));
+                throw new FailedException(string.Format("Không tìm thấy chi tiết chứng từ phù hợp với ID chứng từ [{0}] và loại chứng từ [{1}]!", Request.crkId, djmc));
             }
             //if (_mx.Any(p => p.Sl <= 0))
             //{
@@ -122,7 +137,7 @@ namespace Newtouch.HIS.Application.Implementation
                     if (!sysMedicineReceiptDmnService.ApprovalStorageIoReceipt(Request.crkId, Request.djlx, Request.shzt))
                     {
                         actResult.IsSucceed = false;
-                        actResult.ResultMsg = "Duyệt thất bại！";
+                        actResult.ResultMsg = "Duyệt thất bại!";
                     }
                     break;
                 case (int)EnumDanJuLX.yaopinruku:
