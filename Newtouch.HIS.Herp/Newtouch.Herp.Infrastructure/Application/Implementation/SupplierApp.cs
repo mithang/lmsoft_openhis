@@ -26,33 +26,41 @@ namespace Newtouch.Herp.Application.Implementation
         /// </summary>
         /// <param name="supplierEntity"></param>
         /// <param name="keyWord"></param>
-        public void SubmitForm(GysSupplierEntity supplierEntity, string keyWord)
+        /// <returns>false khi sửa mà không tìm thấy nhà cung cấp (keyWord bogus)</returns>
+        public bool SubmitForm(GysSupplierEntity supplierEntity, string keyWord)
         {
             if (string.IsNullOrWhiteSpace(keyWord))
             {
+                // py NOT NULL trong DB — form luôn post py (kể cả rỗng), chỉ
+                // API thiếu field mới null; mặc định rỗng thay vì lỗi SQL thô.
+                supplierEntity.py ??= "";
                 supplierEntity.Create(true);
                 _gysSupplierRepo.Insert(supplierEntity);
+                return true;
             }
             else
             {
                 var dbSupplier = _gysSupplierRepo.FindEntity(p => p.Id == keyWord);
-                if (dbSupplier == null) return;
-                dbSupplier.address = supplierEntity.address;
-                dbSupplier.fax = supplierEntity.fax;
-                dbSupplier.jszq = supplierEntity.jszq;
-                dbSupplier.khh = supplierEntity.khh;
-                dbSupplier.khhzh = supplierEntity.khhzh;
-                dbSupplier.name = supplierEntity.name;
-                dbSupplier.supplierType = supplierEntity.supplierType;
-                dbSupplier.py = supplierEntity.py;
-                dbSupplier.sh = supplierEntity.sh;
-                dbSupplier.tel = supplierEntity.tel;
-                dbSupplier.zipCode = supplierEntity.zipCode;
-                dbSupplier.zt = supplierEntity.zt;
+                if (dbSupplier == null) return false;
+                // Chỉ copy field khác null: form luôn post đủ field, còn
+                // POST thiếu field mà copy null sẽ lỗi SQL (cột py NOT NULL).
+                if (supplierEntity.address != null) dbSupplier.address = supplierEntity.address;
+                if (supplierEntity.fax != null) dbSupplier.fax = supplierEntity.fax;
+                if (supplierEntity.jszq != null) dbSupplier.jszq = supplierEntity.jszq;
+                if (supplierEntity.khh != null) dbSupplier.khh = supplierEntity.khh;
+                if (supplierEntity.khhzh != null) dbSupplier.khhzh = supplierEntity.khhzh;
+                if (supplierEntity.name != null) dbSupplier.name = supplierEntity.name;
+                if (supplierEntity.supplierType.HasValue) dbSupplier.supplierType = supplierEntity.supplierType;
+                if (supplierEntity.py != null) dbSupplier.py = supplierEntity.py;
+                if (supplierEntity.sh != null) dbSupplier.sh = supplierEntity.sh;
+                if (supplierEntity.tel != null) dbSupplier.tel = supplierEntity.tel;
+                if (supplierEntity.zipCode != null) dbSupplier.zipCode = supplierEntity.zipCode;
+                if (supplierEntity.zt != null) dbSupplier.zt = supplierEntity.zt;
                 // Original stamped Modify() on the incoming entity (a no-op
                 // for the persisted row); stamp the row actually updated.
                 dbSupplier.Modify();
                 _gysSupplierRepo.Update(dbSupplier);
+                return true;
             }
         }
 

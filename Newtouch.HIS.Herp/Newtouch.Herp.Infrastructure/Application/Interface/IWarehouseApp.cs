@@ -15,7 +15,8 @@ namespace Newtouch.Herp.Application.Interface
         /// <param name="staffghs"></param>
         /// <param name="departmentIds"></param>
         /// <param name="keyWord"></param>
-        void SubmitForm(KfWarehouseEntity wzEntity, string[] staffghs, string[] departmentIds, string keyWord);
+        /// <returns>false khi sửa mà không tìm thấy kho (keyWord bogus)</returns>
+        bool SubmitForm(KfWarehouseEntity wzEntity, string[] staffghs, string[] departmentIds, string keyWord);
 
         /// <summary>
         /// Đồng bộ vật tư kho

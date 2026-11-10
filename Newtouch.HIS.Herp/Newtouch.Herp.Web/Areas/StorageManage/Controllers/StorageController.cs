@@ -259,6 +259,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
             return Content(_kfCrkdjDmnService.GetFphAndGysInfo(keyWord, Constants.CurrentKf.currentKfId, OrganizeId).ToJson());
         }
 
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult SaveOutStorageInfo(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx)
         {

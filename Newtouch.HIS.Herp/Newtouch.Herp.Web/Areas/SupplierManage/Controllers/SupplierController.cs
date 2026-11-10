@@ -73,10 +73,10 @@ namespace Newtouch.Herp.Web.Areas.SupplierManage.Controllers
         /// <returns></returns>
         public IActionResult DeleteForm(string keyValue)
         {
-            if (!string.IsNullOrEmpty(keyValue))
-            {
-                _gysSupplierDmnService.DeleteSupplier(keyValue);
-            }
+            if (string.IsNullOrWhiteSpace(keyValue)) return Error("Mã nhà cung cấp không được để trống");
+            var entity = _gysSupplierRepo.FindEntity(p => p.Id == keyValue && p.OrganizeId == OrganizeId);
+            if (entity == null) return Error("Không tìm thấy nhà cung cấp");
+            _gysSupplierDmnService.DeleteSupplier(keyValue);
             return Success("Xóa thành công");
         }
 
@@ -111,10 +111,11 @@ namespace Newtouch.Herp.Web.Areas.SupplierManage.Controllers
         [HandlerAjaxOnly]
         public IActionResult SubmitForm(GysSupplierEntity supplierEntity, string keyWord)
         {
+            if (supplierEntity == null) return Error("Thông tin nhà cung cấp không được để trống");
+            if (string.IsNullOrWhiteSpace(supplierEntity.name)) return Error("Tên nhà cung cấp không được để trống");
             supplierEntity.zt = supplierEntity.zt == "true" ? "1" : "0";
             supplierEntity.OrganizeId = OrganizeId;
-            _supplierApp.SubmitForm(supplierEntity, keyWord);
-            return Success("Thao tác thành công", null);
+            return _supplierApp.SubmitForm(supplierEntity, keyWord) ? Success("Thao tác thành công", null) : Error("Không tìm thấy nhà cung cấp");
         }
 
         /// <summary>
@@ -130,6 +131,11 @@ namespace Newtouch.Herp.Web.Areas.SupplierManage.Controllers
             {
                 return _gysContactsRepo.UpdateContact(contactInfo) > 0 ? Success("Sửa người liên hệ thành công") : Error("Sửa người liên hệ thất bại");
             }
+            // UI chặn thêm contact khi chưa lưu nhà cung cấp (keyWord rỗng);
+            // keyWord bogus mà ghi sẽ tạo contact mồ côi (không có FK check).
+            if (contactInfo == null || string.IsNullOrWhiteSpace(contactInfo.keyWord)) return Error("Không tìm thấy nhà cung cấp");
+            var supplier = _gysSupplierRepo.FindEntity(p => p.Id == contactInfo.keyWord && p.OrganizeId == OrganizeId);
+            if (supplier == null) return Error("Không tìm thấy nhà cung cấp");
             return _gysContactsRepo.InserContact(contactInfo, OrganizeId) > 0 ? Success("Thêm người liên hệ thành công") : Error("Thêm người liên hệ thất bại");
         }
 
@@ -141,7 +147,8 @@ namespace Newtouch.Herp.Web.Areas.SupplierManage.Controllers
         public IActionResult DeleteContacts(string contactsId)
         {
             var entity = _gysContactsRepo.FindEntity(p => p.Id == contactsId && p.OrganizeId == OrganizeId);
-            if (entity != null && !string.IsNullOrWhiteSpace(entity.Id)) _gysContactsRepo.Delete(entity);
+            if (entity == null) return Error("Không tìm thấy người liên hệ");
+            if (!string.IsNullOrWhiteSpace(entity.Id)) _gysContactsRepo.Delete(entity);
             return Success("Xóa người liên hệ thành công");
         }
 

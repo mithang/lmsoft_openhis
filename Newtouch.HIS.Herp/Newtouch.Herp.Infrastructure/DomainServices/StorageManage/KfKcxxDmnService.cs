@@ -535,13 +535,13 @@ BEGIN TRY
 	WHERE productId=@proId AND pc=@pc AND ph=@ph AND OrganizeId=@OrganizeId AND zt='1' AND warehouseId=@warehouseId AND djsl>0 AND kcsl>0
 	IF @kcsl<=0 OR @djsl<=0
 	BEGIN
-		SELECT 'Trong tồn kho chưa có vật tư đã đóng băng';
+		SELECT N'Trong tồn kho chưa có vật tư đã đóng băng';
 		ROLLBACK TRANSACTION;
 		RETURN;
 	END 
 	IF @kcsl<@sl OR @kcsl<@djsl
 	BEGIN
-		SELECT 'Số lượng đã đóng băng nhỏ hơn số lượng xuất kho, cấm xuất kho';
+		SELECT N'Số lượng đã đóng băng nhỏ hơn số lượng xuất kho, cấm xuất kho';
 		ROLLBACK TRANSACTION;
 		RETURN;
 	END 
@@ -600,7 +600,7 @@ BEGIN TRANSACTION
 BEGIN TRY 
 	IF @sl<=0
 	BEGIN
-		SELECT 'Số lượng cần giải đóng băng phải lớn hơn 0'
+		SELECT N'Số lượng cần giải đóng băng phải lớn hơn 0'
 		ROLLBACK TRANSACTION
 		RETURN;
 	END 
@@ -611,7 +611,7 @@ BEGIN TRY
 	
 	IF @sl>@totalDjsl
 	BEGIN
-		SELECT 'Tổng số đã đóng băng nhỏ hơn số cần giải đóng băng, giải đóng băng thất bại'
+		SELECT N'Tổng số đã đóng băng nhỏ hơn số cần giải đóng băng, giải đóng băng thất bại'
 		ROLLBACK TRANSACTION
 		RETURN;
 	END 
@@ -657,7 +657,7 @@ BEGIN TRANSACTION
 BEGIN TRY 
 	IF @sl<=0
 	BEGIN
-		SELECT 'Số lượng tồn kho cần hủy phải lớn hơn 0';
+		SELECT N'Số lượng tồn kho cần hủy phải lớn hơn 0';
 		ROLLBACK TRANSACTION;
 		RETURN;
 	END 
@@ -668,13 +668,13 @@ BEGIN TRY
 	IF @totalDjsl>0  
 	BEGIN
 		-- Có đóng băng nghĩa là đang được sử dụng，Hủy bỏ có thể khiến trừ tồn kho sau này không đủ
-		SELECT 'Lô này đang có tồn kho đóng băng, không thể hủy';
+		SELECT N'Lô này đang có tồn kho đóng băng, không thể hủy';
 		ROLLBACK TRANSACTION;
 		RETURN;
 	END
 	IF @totalKcsl<@sl
 	BEGIN
-		SELECT 'Không đủ tồn kho, không thể hủy';
+		SELECT N'Không đủ tồn kho, không thể hủy';
 		ROLLBACK TRANSACTION;
 		RETURN;
 	END

@@ -12,7 +12,8 @@ namespace Newtouch.Herp.Application.Interface
         /// </summary>
         /// <param name="supplierEntity"></param>
         /// <param name="keyWord"></param>
-        void SubmitForm(GysSupplierEntity supplierEntity, string keyWord);
+        /// <returns>false khi sửa mà không tìm thấy nhà cung cấp (keyWord bogus)</returns>
+        bool SubmitForm(GysSupplierEntity supplierEntity, string keyWord);
 
         /// <summary>
         /// Tạo nhanh nhà sản xuất  Trả về nhà sản xuất ID

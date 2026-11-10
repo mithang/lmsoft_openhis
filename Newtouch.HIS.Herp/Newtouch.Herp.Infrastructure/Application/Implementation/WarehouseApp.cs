@@ -43,7 +43,8 @@ public WarehouseApp(IRelWarehouseDeptRepo relWarehouseDeptRepo, IKfWarehouseRepo
         /// <param name="staffghs"></param>
         /// <param name="departmentIds"></param>
         /// <param name="keyWord"></param>
-        public void SubmitForm(KfWarehouseEntity wzEntity, string[] staffghs, string[] departmentIds, string keyWord)
+        /// <returns>false khi sửa mà không tìm thấy kho (keyWord bogus)</returns>
+        public bool SubmitForm(KfWarehouseEntity wzEntity, string[] staffghs, string[] departmentIds, string keyWord)
         {
             var tempWarehouseId = Guid.NewGuid().ToString();
             var staffs = AssembleRelWarehouseUserEntity(string.IsNullOrWhiteSpace(keyWord) ? tempWarehouseId : keyWord, staffghs);
@@ -52,11 +53,12 @@ public WarehouseApp(IRelWarehouseDeptRepo relWarehouseDeptRepo, IKfWarehouseRepo
             {
                 wzEntity.Create(true, tempWarehouseId);
                 warehouseDmnService.InsertWarehouse(wzEntity, staffs, depts);
+                return true;
             }
             else
             {
                 wzEntity.Modify(keyWord);
-                warehouseDmnService.UpdateWarehouse(wzEntity, staffs, depts);
+                return warehouseDmnService.UpdateWarehouse(wzEntity, staffs, depts);
             }
         }
 

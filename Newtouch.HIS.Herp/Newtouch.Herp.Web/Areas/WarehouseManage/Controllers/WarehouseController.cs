@@ -54,10 +54,10 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         /// <returns></returns>
         public IActionResult DeleteForm(string keyValue)
         {
-            if (!string.IsNullOrEmpty(keyValue))
-            {
-                _warehouseDmnService.DeleteWarehouse(keyValue);
-            }
+            if (string.IsNullOrWhiteSpace(keyValue)) return Error("Mã kho không được để trống");
+            var entity = _kfWarehouseRepo.FindEntity(p => p.Id == keyValue && p.OrganizeId == OrganizeId);
+            if (entity == null) return Error("Không tìm thấy kho");
+            _warehouseDmnService.DeleteWarehouse(keyValue);
             return Success("Xóa thành công.");
         }
 
@@ -187,11 +187,16 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         [HandlerAjaxOnly]
         public IActionResult SubmitForm(KfWarehouseEntity wzEntity, string staffghs, string departmentIds, string keyWord)
         {
+            if (wzEntity == null) return Error("Thông tin kho không được để trống");
+            if (string.IsNullOrWhiteSpace(wzEntity.name)) return Error("Tên kho không được để trống");
             wzEntity.zt = wzEntity.zt == "true" ? "1" : "0";
             wzEntity.isDefSyn = wzEntity.isDefSyn == "true" ? "1" : "0";
             wzEntity.OrganizeId = OrganizeId;
-            _warehouseApp.SubmitForm(wzEntity, staffghs.Split(','), departmentIds.Split(','), keyWord);
-            return Success("Thao tác thành công", null);
+            // staffghs/departmentIds null khi form không post (binder cho
+            // null với giá trị rỗng) — Split null gây NRE; Assemble đã
+            // xử lý mảng null (trả list rỗng).
+            return _warehouseApp.SubmitForm(wzEntity, staffghs?.Split(','), departmentIds?.Split(','), keyWord)
+                ? Success("Thao tác thành công", null) : Error("Không tìm thấy kho");
         }
 
         #region Đồng bộ vật tư
@@ -235,6 +240,7 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         public IActionResult ControlWz(string relId, string wId, string op = "")
         {
             var rel = _relProductWarehouseRepe.FindEntity(p => p.Id == relId && p.OrganizeId == OrganizeId && p.warehouseId == wId);
+            if (rel == null) return Error("Không tìm thấy thông tin vật tư kho đã chỉ định");
             rel.zt = op == ((int)Enumzt.Enable).ToString() ? ((int)Enumzt.Enable).ToString() : ((int)Enumzt.Disable).ToString();
             rel.Modify();
             return _relProductWarehouseRepe.Update(rel) > 0 ? Success("Kiểm soát thành công") : Error("Kiểm soát thất bại");
@@ -249,10 +255,11 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         /// <returns></returns>
         public IActionResult FreshWhAndwzRelList(string[] productIds, int opereateType, string keyWord)
         {
-            var list = productIds.ToList();
+            // Binder cho mảng rỗng khi thiếu param, nhưng vẫn guard null
+            // để ToList() không NRE nếu gọi trực tiếp.
+            var list = productIds?.ToList() ?? new List<string>();
             var result = _warehouseApp.FreshWhAndwzRelList(list, opereateType, OrganizeId, keyWord);
-            //return result ? Success("Thao tác thành công") : Error("Thao tác thất bại");
-            return Success("Thao tác thành công");
+            return result ? Success("Thao tác thành công") : Error("Thao tác thất bại");
         }
 
         #endregion

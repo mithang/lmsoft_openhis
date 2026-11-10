@@ -24,7 +24,8 @@ namespace Newtouch.Herp.Domain.IDomainServices
         /// <param name="wzEntity"></param>
         /// <param name="deptList"></param>
         /// <param name="userList"></param>
-        void UpdateWarehouse(KfWarehouseEntity wzEntity, List<RelWarehouseUserEntity> userList, List<RelWarehouseDeptEntity> deptList);
+        /// <returns>false khi không tìm thấy kho cần sửa</returns>
+        bool UpdateWarehouse(KfWarehouseEntity wzEntity, List<RelWarehouseUserEntity> userList, List<RelWarehouseDeptEntity> deptList);
 
         /// <summary>
         /// Lấy thông tin kho

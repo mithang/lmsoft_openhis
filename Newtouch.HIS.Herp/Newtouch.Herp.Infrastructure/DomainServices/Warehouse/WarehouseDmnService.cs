@@ -44,20 +44,24 @@ namespace Newtouch.Herp.DomainServices.Warehouse
         /// <param name="wzEntity"></param>
         /// <param name="deptList"></param>
         /// <param name="userList"></param>
-        public void UpdateWarehouse(KfWarehouseEntity wzEntity, List<RelWarehouseUserEntity> userList, List<RelWarehouseDeptEntity> deptList)
+        /// <returns>false khi không tìm thấy kho cần sửa</returns>
+        public bool UpdateWarehouse(KfWarehouseEntity wzEntity, List<RelWarehouseUserEntity> userList, List<RelWarehouseDeptEntity> deptList)
         {
             using (var db = new EFDbTransaction(Db).BeginTrans())
             {
                 var dbwzEntity = _kfWarehouseRepo.FindEntity(p => p.Id == wzEntity.Id);
-                dbwzEntity.address = wzEntity.address;
+                if (dbwzEntity == null) return false;
+                // Chỉ copy field chuỗi khác null: POST thiếu field mà copy
+                // null sẽ lỗi SQL (cột name NOT NULL), như SupplierApp.
+                if (wzEntity.address != null) dbwzEntity.address = wzEntity.address;
                 dbwzEntity.level = wzEntity.level;
-                dbwzEntity.name = wzEntity.name;
-                dbwzEntity.parentId = wzEntity.parentId;
-                dbwzEntity.py = wzEntity.py;
-                dbwzEntity.remark = wzEntity.remark;
+                if (wzEntity.name != null) dbwzEntity.name = wzEntity.name;
+                if (wzEntity.parentId != null) dbwzEntity.parentId = wzEntity.parentId;
+                if (wzEntity.py != null) dbwzEntity.py = wzEntity.py;
+                if (wzEntity.remark != null) dbwzEntity.remark = wzEntity.remark;
                 dbwzEntity.px = wzEntity.px;
-                dbwzEntity.zt = wzEntity.zt;
-                dbwzEntity.isDefSyn = wzEntity.isDefSyn;
+                if (wzEntity.zt != null) dbwzEntity.zt = wzEntity.zt;
+                if (wzEntity.isDefSyn != null) dbwzEntity.isDefSyn = wzEntity.isDefSyn;
                 dbwzEntity.LastModifierCode = wzEntity.LastModifierCode;
                 dbwzEntity.LastModifyTime = wzEntity.LastModifyTime;
                 db.Update(dbwzEntity);
@@ -72,6 +76,7 @@ namespace Newtouch.Herp.DomainServices.Warehouse
                     db.Insert(p);
                 });
                 db.Commit();
+                return true;
             }
         }
 
