@@ -83,14 +83,25 @@ namespace Newtouch.MRMS.Web.Controllers
         /// </summary>
         public IActionResult SyncSysConfigParams(string orgId)
         {
-            var sysConfigEntities = _sysConfigRepo.GetList("", "*").ToList();
-            foreach (var item in sysConfigEntities)
+            // G22 (theo mau G19 EMR): truoc day (1) orgId rong thi insert
+            // dong OrganizeId NULL -> loi SQL tho; (2) GetList("", "*") lay
+            // TOAN BO dong Sys_Config (ca dong cua to chuc khac, dong zt=0)
+            // chu khong chi dong mau OrganizeId='*'; (3) khong dedup nen
+            // chay lai tao trung. Nay chi dong bo dong mau chua co o to chuc.
+            if (string.IsNullOrWhiteSpace(orgId))
+            {
+                return Content(new { state = "error", message = "Vui lòng chọn tổ chức", data = (object)null }.ToJson());
+            }
+            var templateEntities = _sysConfigRepo.GetList("*", "*").ToList();
+            var orgEntities = _sysConfigRepo.GetList(orgId, "*").ToList();
+            var orgCodes = new System.Collections.Generic.HashSet<string>(orgEntities.Select(e => e.Code));
+            var filtered = templateEntities.Where(e => !orgCodes.Contains(e.Code)).ToList();
+            foreach (var item in filtered)
             {
                 item.Id = Guid.NewGuid().ToString();
                 item.OrganizeId = orgId;
             }
-
-            var insert = _sysConfigRepo.Insert(sysConfigEntities);
+            var insert = filtered.Count == 0 ? 0 : _sysConfigRepo.Insert(filtered);
             return Content(new { state = "success", message = "", data = insert }.ToJson());
         }
     }

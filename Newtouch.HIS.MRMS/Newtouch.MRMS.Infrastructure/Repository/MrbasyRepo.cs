@@ -48,21 +48,93 @@ namespace Newtouch.MR.ManageSystem.Repository
             if (!string.IsNullOrEmpty(keyValue))
             {
                 var dbEntity = this.FindEntity(keyValue);
-                //properties
-                
+                if (dbEntity == null)
+                {
+                    throw new FailedException("Không tìm thấy thông tin trang đầu bệnh án.");
+                }
+                var curOrg = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent()?.OrganizeId ?? "";
+                if (!string.IsNullOrWhiteSpace(curOrg) && dbEntity.OrganizeId != curOrg)
+                {
+                    throw new FailedException("Không có quyền sửa dữ liệu của tổ chức khác.");
+                }
+                // G22: edit truoc day bo qua entity da post (chi cham Modify)
+                // nen sua khong doi du lieu; nay merge cac field da post,
+                // bo qua field chua post (tien le G2/G18).
+                MrmsMergeHelper.MergeSkipNull(entity, dbEntity);
                 dbEntity.Modify(keyValue);
                 return Update(dbEntity);
             }
+            // G22: create truoc day khong kiem tra gi — thieu field NOT NULL
+            // thi loi SQL tho "Cannot insert the value NULL...".
+            var missing = new System.Collections.Generic.List<string>();
+            CheckRequired(entity.BAH, "Số bệnh án", 100, missing);
+            CheckRequired(entity.ZYH, "Số nội trú", 50, missing);
+            CheckRequired(entity.XM, "Họ tên bệnh nhân", 100, missing);
+            CheckRequired(entity.YLFKFS, "Cách thức nhập viện (YLFKFS)", 100, missing);
+            CheckRequired(entity.ZYCS, "Số lần nhập viện", 100, missing);
+            CheckRequired(entity.XB, "Giới tính", 100, missing);
+            CheckRequired(entity.SFZH, "Số chứng minh thư", 100, missing);
+            CheckRequired(entity.ZY, "Dân tộc", 100, missing);
+            CheckRequired(entity.HY, "Hôn nhân", 100, missing);
+            CheckRequired(entity.RYTJ, "Đường vào viện (RYTJ)", 100, missing);
+            CheckRequired(entity.MZZD, "Chẩn đoán lúc vào viện", 200, missing);
+            CheckRequired(entity.MZZDDM, "Mã chẩn đoán lúc vào viện", 100, missing);
+            CheckRequired(entity.BRLY, "Nguồn bệnh nhân", 50, missing);
+            CheckRequired(entity.YWGM, "Dị ứng thuốc", 100, missing);
+            CheckRequired(entity.BAZL, "Loại bệnh án", 100, missing);
+            CheckRequired(entity.LYFS, "Cách thức ra viện", 100, missing);
+            if (entity.CSRQ == DateTime.MinValue)
+            {
+                missing.Add("Ngày sinh không hợp lệ");
+            }
+            if (entity.RYSJ == DateTime.MinValue)
+            {
+                missing.Add("Ngày nhập viện không hợp lệ");
+            }
+            if (missing.Count > 0)
+            {
+                throw new FailedException("Thông tin trang đầu bệnh án chưa đầy đủ: " + string.Join("; ", missing) + ".");
+            }
             entity.Create(true);
             return Insert(entity);
+        }
+
+        private static void CheckRequired(string value, string label, int maxLen, System.Collections.Generic.List<string> missing)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                missing.Add(label + " không được để trống");
+            }
+            else if (value.Length > maxLen)
+            {
+                missing.Add(label + " tối đa " + maxLen + " ký tự");
+            }
         }
 
         /// <summary>
         /// Xóa dữ liệu
         /// </summary>
         /// <param name="keyValue">Giá trị khóa chính</param>
-        public int DeleteForm(string keyValue)
+        public int DeleteForm(string keyValue, string organizeId = null)
         {
+            if (string.IsNullOrWhiteSpace(keyValue))
+            {
+                throw new FailedException("Không tìm thấy thông tin trang đầu bệnh án.");
+            }
+            var dbEntity = this.FindEntity(keyValue);
+            if (dbEntity == null)
+            {
+                throw new FailedException("Không tìm thấy thông tin trang đầu bệnh án.");
+            }
+            var org = organizeId;
+            if (string.IsNullOrWhiteSpace(org))
+            {
+                org = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent()?.OrganizeId ?? "";
+            }
+            if (!string.IsNullOrWhiteSpace(org) && dbEntity.OrganizeId != org)
+            {
+                throw new FailedException("Không có quyền xóa dữ liệu của tổ chức khác.");
+            }
             return Delete(p => p.Id == keyValue);
         }
 

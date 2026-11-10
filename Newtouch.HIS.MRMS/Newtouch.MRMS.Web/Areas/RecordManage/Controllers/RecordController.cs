@@ -240,6 +240,12 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
         /// <returns></returns>
         public IActionResult LockRecord(string blid, string bllx, int isToLock)
         {
+            // G22: isToLock chi co 2 gia tri hop le (1 khoa, 2 mo khoa) — gia
+            // tri khac truoc day roi nhanh else (mo khoa) mot cach im lang.
+            if (isToLock != 1 && isToLock != 2)
+            {
+                throw new FailedException("Thao tác khóa/mở khóa không hợp lệ.");
+            }
             var MedicalRecord = _RecordDmnService.GetMedicalRecord(blid, bllx, OrganizeId);
             if (isToLock == 1)
             {
@@ -280,10 +286,30 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
 
 
         public IActionResult updateRecordStu(string Id,string blzt) {
+            // G22: truoc day khong kiem tra gi — Id la / blzt rong / blzt la
+            // deu tra Success gia (0 dong doi) hoac ghi RecordStu rong.
+            // Trang thai hop le theo EnumRecordStu: 1 da gui, 2 tra lai,
+            // 3 da ky nhan, 4 chua gui.
+            if (string.IsNullOrWhiteSpace(Id))
+            {
+                throw new FailedException("Không tìm thấy thông tin bệnh nhân.");
+            }
+            if (string.IsNullOrWhiteSpace(blzt))
+            {
+                throw new FailedException("Trạng thái bệnh án không được để trống.");
+            }
+            if (blzt != "1" && blzt != "2" && blzt != "3" && blzt != "4")
+            {
+                throw new FailedException("Trạng thái bệnh án không hợp lệ.");
+            }
             var LastModifierCode = UserIdentity.UserName;
             var LastModifyTime = DateTime.Now;
-            _RecordDmnService.updateRecordStu(Id,OrganizeId, LastModifierCode, LastModifyTime,blzt);
-            return Success("Thao tác thành công。");
+            var rows = _RecordDmnService.updateRecordStu(Id,OrganizeId, LastModifierCode, LastModifyTime,blzt);
+            if (rows <= 0)
+            {
+                throw new FailedException("Không tìm thấy thông tin bệnh nhân.");
+            }
+            return Success("Thao tác thành công.");
         }
 
 

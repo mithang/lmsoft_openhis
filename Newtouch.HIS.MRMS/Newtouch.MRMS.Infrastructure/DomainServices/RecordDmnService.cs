@@ -154,6 +154,12 @@ namespace Newtouch.MR.ManageSystem.DomainServices
                     medicalRecordVO.mbbh = kfpg.mbbh;
                     medicalRecordVO.LastModifierCode = kfpg.LastModifierCode;
                     break;
+                // G22: bllx la truoc day khong co case nao khop thi tra VO
+                // rong — LockRecord hieu IsLock=0 roi goi dich vu khoa voi
+                // ten bang mac dinh bl_zqws (GetBllxTB) nhung 0 dong doi ma
+                // controller van bao "Khóa thành công".
+                default:
+                    throw new FailedException("Loại bệnh án không hợp lệ.");
             }
             return medicalRecordVO;
         }
