@@ -47,6 +47,7 @@ AND kcxx.zt='1'
         /// <returns></returns>
         public int UpdateZt(string productId, string ph, string pc, string zt)
         {
+            if (string.IsNullOrWhiteSpace(zt)) return 0;
             var entity = FindEntity(p => p.ph == ph && p.pc == pc && p.productId == productId);
             if (entity == null) return 0;
             entity.zt = zt.Trim();

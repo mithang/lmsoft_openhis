@@ -661,7 +661,7 @@ FROM (
         {
             if (_kfCrkdjRepo == null || _kfCrkmxRepo == null) return BillNotIntegratedMsg;
             var ret = _kfCrkdjRepo.Insert(dj); //Thêm mới kf_crkdj
-            if (ret <= 0) return "";
+            if (ret <= 0) return "Lưu thông tin chính phiếu xuất/nhập kho thất bại";
             var successList = new List<KfCrkmxEntity>();
             try
             {

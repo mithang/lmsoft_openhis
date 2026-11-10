@@ -405,7 +405,7 @@ BEGIN TRANSACTION
 BEGIN TRY 
 	IF @sl<=0
 	BEGIN
-		SELECT 'Số lượng tiêu hao tồn kho phải lớn hơn 0';
+		SELECT N'Số lượng tiêu hao tồn kho phải lớn hơn 0';
 		ROLLBACK TRANSACTION
 		RETURN;
 	END 
@@ -415,7 +415,7 @@ BEGIN TRY
 	WHERE productId=@proId AND warehouseId=@warehouseId AND OrganizeId=@OrganizeId AND pc=@pc AND ph=@ph AND zt='1' 
 	IF @totalKcsl<@sl
 	BEGIN
-		SELECT 'Không đủ tồn kho, xuất kho thất bại';
+		SELECT N'Không đủ tồn kho, xuất kho thất bại';
 		ROLLBACK TRANSACTION;
 		RETURN
 	END 
@@ -477,13 +477,13 @@ BEGIN TRY
 	SELECT @dqkykc=SUM(kcsl-djsl) FROM dbo.kf_kcxx WHERE productId=@proId AND pc=@pc AND ph=@ph AND OrganizeId=@OrganizeId AND zt='1' AND warehouseId=@warehouseId
 	IF @sl > @dqkykc
 	BEGIN
-		SELECT 'Không đủ tồn kho, đăng ký thất bại';
+		SELECT N'Không đủ tồn kho, đăng ký thất bại';
 		ROLLBACK TRANSACTION;
 		RETURN
 	END
 	IF @sl <=0
 	BEGIN
-		SELECT 'Số lượng cần đóng băng tồn kho phải lớn hơn 0';
+		SELECT N'Số lượng cần đóng băng tồn kho phải lớn hơn 0';
 		ROLLBACK TRANSACTION;
 		RETURN
 	END

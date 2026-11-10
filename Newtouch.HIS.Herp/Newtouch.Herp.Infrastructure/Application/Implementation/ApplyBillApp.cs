@@ -66,6 +66,7 @@ namespace Newtouch.Herp.Application.Implementation
             sld.OrganizeId = organizeId;
             sld.applyProcess = (int)EnumApplyProcess.AuditApproved;
             sld.applyType = (int)EnumApplyType.DepartmentApply;
+            sld.zt = ((int)Enumzt.Enable).ToString();
             // Create(false): long identity Id is assigned by the DB, not here.
             sld.Create(false);
             if (_kfApplyOrderRepo.Insert(sld) <= 0) return "Lưu thông tin chính phiếu lĩnh thất bại";
@@ -79,6 +80,7 @@ namespace Newtouch.Herp.Application.Implementation
             sldmx.ForEach(p =>
             {
                 p.sldId = sld.Id;
+                p.zt = ((int)Enumzt.Enable).ToString();
                 p.Create(false);
             });
             if (_kfApplyOrderDetailRepo.Insert(sldmx) > 0) return "";

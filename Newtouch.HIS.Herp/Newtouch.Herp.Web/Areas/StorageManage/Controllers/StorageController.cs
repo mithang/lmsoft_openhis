@@ -215,6 +215,8 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SaveInStorageInfo(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx)
         {
+            if (crkdj == null || string.IsNullOrWhiteSpace(crkdj.Pdh)) return Error("Số phiếu không được để trống");
+            if (crkdjmx == null || crkdjmx.Length == 0) return Error("Chi tiết phiếu không được để trống");
             crkdj.auditState = ((int)EnumAuditState.Waiting).ToString();
             var result = _storageApp.InStorageSubmit(crkdj, crkdjmx);
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
@@ -224,6 +226,8 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult TemporaryStorageInStorageInfo(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx)
         {
+            if (crkdj == null || string.IsNullOrWhiteSpace(crkdj.Pdh)) return Error("Số phiếu không được để trống");
+            if (crkdjmx == null || crkdjmx.Length == 0) return Error("Chi tiết phiếu không được để trống");
             crkdj.auditState = ((int)EnumAuditState.Temporary).ToString();
             var result = _storageApp.InStorageSubmit(crkdj, crkdjmx);
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
@@ -258,6 +262,8 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SaveOutStorageInfo(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx)
         {
+            if (crkdj == null || string.IsNullOrWhiteSpace(crkdj.Pdh)) return Error("Số phiếu không được để trống");
+            if (crkdjmx == null || crkdjmx.Length == 0) return Error("Chi tiết phiếu không được để trống");
             var result = _storageApp.OutStorageSubmit(crkdj, crkdjmx);
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
         }
@@ -293,6 +299,8 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SaveDirectDelivery(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx)
         {
+            if (crkdj == null || string.IsNullOrWhiteSpace(crkdj.Pdh)) return Error("Số phiếu không được để trống");
+            if (crkdjmx == null || crkdjmx.Length == 0) return Error("Chi tiết phiếu không được để trống");
             var result = _storageApp.DirectDeliverySubmit(crkdj, crkdjmx);
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
         }
@@ -322,6 +330,8 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SaveDeliveryOfReturn(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx)
         {
+            if (crkdj == null || string.IsNullOrWhiteSpace(crkdj.Pdh)) return Error("Số phiếu không được để trống");
+            if (crkdjmx == null || crkdjmx.Length == 0) return Error("Chi tiết phiếu không được để trống");
             var result = _storageApp.DeliveryOfReturnSubmit(crkdj, crkdjmx);
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
         }
