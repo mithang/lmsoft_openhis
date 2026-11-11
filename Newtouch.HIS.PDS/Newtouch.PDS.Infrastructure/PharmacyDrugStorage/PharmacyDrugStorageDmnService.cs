@@ -892,6 +892,24 @@ where kcxx.yfbmCode=@YfbmCode ");
         /// <param name="zq"></param>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
+        /// <summary>
+        /// G39-F3: kỳ kết chuyển đã tồn tại chưa (cùng nhà thuốc + tổ chức) — chặn kết chuyển trùng kỳ.
+        /// Raw SQL COUNT (không dùng IQueryable shim — họ G28/G30: char(n) padding làm sai so sánh chuỗi).
+        /// </summary>
+        /// <param name="zq">Kỳ kết chuyển (vd 202611)</param>
+        /// <returns></returns>
+        public bool ExistsCarryOverPeriod(string zq)
+        {
+            const string sql = @"SELECT COUNT(1) FROM dbo.xt_yp_kcjz(NOLOCK) WHERE zq=@zq AND yfbmCode=@yfbmCode AND OrganizeId=@OrganizeId";
+            var par = new SugarParameter[]
+            {
+                new SugarParameter("@zq", zq ?? ""),
+                new SugarParameter("@yfbmCode", Constants.CurrentYfbm.yfbmCode),
+                new SugarParameter("@OrganizeId", OperatorProvider.GetCurrent().OrganizeId),
+            };
+            return FirstOrDefault<int>(sql, par) > 0;
+        }
+
         public void CarryOverMedicine(List<NeedCarryOverMedicineVO> list, string zq, DateTime kssj, DateTime jssj)
         {
             //Chèn tất cả thuốc cần kết chuyển vào bảng kết chuyển

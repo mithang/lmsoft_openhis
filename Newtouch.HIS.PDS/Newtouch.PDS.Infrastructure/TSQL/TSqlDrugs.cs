@@ -12,12 +12,28 @@ namespace Newtouch.Infrastructure.TSQL
 DECLARE @bmypId VARCHAR(50), @ypmc VARCHAR(256), @result VARCHAR(256);
 SET @result='';
 
+--G39-F8: operateType chỉ nhận 0 (Thêm) / 1 (Xóa); base: operateType=2 trả '' → Success giả.
+IF @operateType NOT IN (0, 1)
+BEGIN
+	SET @result='Loại thao tác không hợp lệ (chỉ nhận 0: Thêm, 1: Xóa).';
+	SELECT @result;
+	RETURN;
+END
+
 SELECT @bmypId=ISNULL(bmypxx.bmypId, ''), @ypmc=yp.ypmc
 FROM NewtouchHIS_Base.dbo.V_C_xt_yp yp  
 LEFT JOIN dbo.xt_yp_bmypxx(NOLOCK) bmypxx ON bmypxx.Ypdm=yp.ypCode AND bmypxx.OrganizeId=yp.OrganizeId AND bmypxx.yfbmCode=@yfbmCode AND bmypxx.zt='1'
 WHERE yp.OrganizeId=@OrganizeId 
 AND yp.zt='1'
 AND yp.ypId=@ypId
+
+--G39-F8: ypId không tồn tại → @ypmc NULL; base: INSERT...SELECT khớp 0 dòng, @result '' → Success giả.
+IF @ypmc IS NULL
+BEGIN
+	SET @result='Không tìm thấy thuốc (mã nội bộ '+@ypId+').';
+	SELECT @result;
+	RETURN;
+END
 
 IF @bmypId IS NOT NULL AND @bmypId<>'' 
 BEGIN
@@ -35,7 +51,8 @@ BEGIN
 	IF @operateType=0
 	BEGIN
 		INSERT INTO XT_YP_BMYPXX( bmypId ,OrganizeId ,yfbmCode ,Ypdm ,Ypkw ,Zcxh ,Pxfs1 ,Pxfs2 ,Kcsx ,Kcxx ,Jhd ,Jhl ,Ypsxdm ,zt ,Ylsx ,Sysx,CreatorCode,CreateTime)
-		SELECT  NEWID(),
+		--G39-F8: TOP 1 — base: join multiplicity chèn 2 dòng cho 1 lần gọi (ypId 839, dlCode 01).
+		SELECT TOP 1 NEWID(),
 				@OrganizeId ,
 				K.yfbmCode ,
 				Y.ypCode ,
@@ -69,7 +86,7 @@ BEGIN
 	END
 	ELSE IF @operateType=1
 	BEGIN
-		SET @result= 'Thuốc【'+@ypmc+'】không có nhà thuốc này，không thể xóa';
+		SET @result= 'Thuốc【'+@ypmc+'】không có nhà thuốc này, không thể xóa';
 	END
 END
     

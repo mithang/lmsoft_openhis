@@ -212,11 +212,12 @@ GROUP BY yp.ypId ,sx.ypgg ,bm.Zcxh ,bm.zt,bm.yfbmCode,bm.OrganizeId,bm.Ypdm,bm.Y
         public string FreshList(string[] yp, int operateType, string orgId, string yfbmCode)
         {
             var ret = new StringBuilder();
-            if (yp == null || yp.Length <= 0) return ret.ToString();
+            //G39-F8: base: yp rỗng trả '' → controller map thành Success giả.
+            if (yp == null || yp.Length <= 0) return "Vui lòng chọn thuốc cần đồng bộ.";
             foreach (var item in yp)
             {
                 var t = Fresh(item, operateType, orgId, yfbmCode);
-                if (!string.IsNullOrWhiteSpace(t)) ret.Append(t).Append("； ");
+                if (!string.IsNullOrWhiteSpace(t)) ret.Append(t).Append("; ");
             }
             return ret.ToString();
         }

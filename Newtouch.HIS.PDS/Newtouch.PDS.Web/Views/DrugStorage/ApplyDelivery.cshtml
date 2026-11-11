@@ -312,6 +312,7 @@
         par["xtYpLsNbfymxk"] = dic;
         par["type"] =@((int)EnumDanJuLX.shenlingfayao);//Phát thuốc đơn lĩnh
         par["fyfs"] = @((int)EnumFyfs.Zcck);//Xuất kho bình thường
+        par["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val(); //G39-F7: action đã thêm [ValidateAntiForgeryToken]
         $.najax({
             type: "POST",
             url: "/DrugStorage/ExecHandOutMedicineByReq",

@@ -159,6 +159,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void CarryOverMedicine(List<NeedCarryOverMedicineVO> list, string zq, DateTime kssj, DateTime jssj);
 
         /// <summary>
+        /// G39-F3: kỳ kết chuyển đã tồn tại chưa (cùng nhà thuốc + tổ chức) — chặn kết chuyển trùng kỳ.
+        /// </summary>
+        /// <param name="zq">Kỳ kết chuyển (vd 202611)</param>
+        /// <returns></returns>
+        bool ExistsCarryOverPeriod(string zq);
+
+        /// <summary>
         /// Truy vấn thuốc đã kết chuyển
         /// </summary>
         /// <param name="zq"></param>

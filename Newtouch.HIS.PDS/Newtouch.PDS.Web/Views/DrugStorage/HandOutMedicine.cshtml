@@ -529,6 +529,7 @@
         par["fydh"] = $("#fydh").val();
         par["fyfs"] = $("#fyfs").val();
         par["type"] = 3;//Phát thuốc trực tiếp
+        par["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val(); //G39-F5: action đã thêm [ValidateAntiForgeryToken]
 
         if (newxmList && par["lybm"] && par["fydh"] && par["fyfs"]) {
             $.najax({

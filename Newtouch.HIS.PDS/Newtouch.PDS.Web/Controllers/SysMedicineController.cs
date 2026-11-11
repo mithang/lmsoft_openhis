@@ -128,6 +128,42 @@ namespace Newtouch.HIS.Web.Controllers
             {
                 throw new FailedException("Vui lòng chọn cơ sở y tế(Bệnh viện hoặc phòng khám)");
             }
+            //G39-F10: base: field rỗng → binder map thành null → lỗi SQL thô "Cannot insert NULL into
+            //column 'zfxz'/'djdw'/'ypmc'". Validate server-side 8 field string NOT NULL của xt_yp
+            //(nhãn đúng form Views/SysMedicine/SysMedicineAdd.cshtml; ycmc đã default "" ở trên,
+            //mzzybz default "1" ở UpdateEnityProperties, số bzs/lsj/zfbl non-nullable nên không null được).
+            if (string.IsNullOrWhiteSpace(model.ypCode))
+            {
+                throw new FailedException("Vui lòng nhập mã thuốc.");
+            }
+            if (string.IsNullOrWhiteSpace(model.ypmc))
+            {
+                throw new FailedException("Vui lòng nhập tên thuốc.");
+            }
+            if (string.IsNullOrWhiteSpace(model.py))
+            {
+                throw new FailedException("Vui lòng nhập chữ đầu pinyin.");
+            }
+            if (string.IsNullOrWhiteSpace(model.dlCode))
+            {
+                throw new FailedException("Vui lòng chọn nhóm lớn.");
+            }
+            if (string.IsNullOrWhiteSpace(model.zfxz))
+            {
+                throw new FailedException("Vui lòng chọn tính chất tự trả.");
+            }
+            if (string.IsNullOrWhiteSpace(model.djdw))
+            {
+                throw new FailedException("Vui lòng nhập đơn vị định giá.");
+            }
+            if (string.IsNullOrWhiteSpace(model.bzdw))
+            {
+                throw new FailedException("Vui lòng nhập kho thuốc.");
+            }
+            if (string.IsNullOrWhiteSpace(model.zxdw))
+            {
+                throw new FailedException("Vui lòng nhập đơn vị nhỏ nhất.");
+            }
             _sysMedicineDmnService.SubmitMedicine(model, keyValue);
             var t = SubmitEmpowermentPharmacyDepartment(p, ypCode, model.OrganizeId, keyValue);
             var msg = string.IsNullOrWhiteSpace(t) ? "Thao tác thành công." : ("Lưu thông tin thuốc thành công,nhưng ủy quyền nhà thuốc/kho thuốc thất bại," + t);

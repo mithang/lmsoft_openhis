@@ -393,6 +393,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// Bắt đầu kiểm kê
         /// </summary>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult StartInventory()
         {
             return Success(null, _pharmacyDrugStorageApp.StartInventory());
@@ -472,6 +474,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="pdId">Đơn kiểm kê ID</param>
         /// <param name="autoCarryDown">null/0:Không tự động kết chuyển  1:Tự động kết chuyển</param>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult EndInventory(string pdId, string autoCarryDown)
         {
             _pharmacyDrugStorageApp.EndInventory(pdId);
@@ -483,6 +487,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// Hủy kiểm kê
         /// </summary>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult CancelInventory(string pdId)
         {
             _pharmacyDrugStorageApp.CancelInventory(pdId);
@@ -538,6 +544,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult CarryOverMedicine(string zq, DateTime kssj, DateTime jssj)
         {
             _pharmacyDrugStorageApp.CarryOverMedicine(zq, kssj, jssj);

@@ -383,6 +383,7 @@
         par["XT_YP_LS_NBFYMXK"] = medicineList;
         par["type"] = 4;//Phát thuốc đơn lĩnh
         par["fyfs"] = "11";//Xuất kho bình thường
+        par["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val(); //G39-F5: action đã thêm [ValidateAntiForgeryToken]
         $.ajax({
             type: "POST",
             url: "/DrugStorage/ExecHandOutMedicine",

@@ -712,6 +712,12 @@ AND x.OrganizeId=@OrganizeId
                         };
                         var ypsxEntity = FirstOrDefault<SysMedicinePropertyBaseVO>(ypsxSql, parList2.ToArray());
 
+                        //G39-F10: base: ypId bogus → ypEntity null → NRE ở ypEntity.pfj (12c).
+                        if (ypEntity == null || ypsxEntity == null)
+                        {
+                            throw new FailedException("Không tìm thấy thuốc cần sửa.");
+                        }
+
                         model.ypId = ypId.Value;
                         ypEntity.pfj = model.pfj;
                         model.OrganizeId = ypEntity.OrganizeId;//Tổ chức Cơ sở Không thể thay đổi
@@ -842,6 +848,15 @@ where ypId=@ypId");
             }
             else
             {
+                //G39-F10: base: không có unique constraint trên ypCode → dup tạo trùng lặng lẽ;
+                //hơn nữa code phía dưới tra lại dòng vừa chèn theo (ypCode, OrganizeId) để lấy ypId —
+                //dup sẽ làm xt_ypsx gắn nhầm ypId của dòng cũ. Check trước khi INSERT, ngoài try.
+                var dupCount = FirstOrDefault<int>("SELECT COUNT(1) FROM " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + ".dbo.xt_yp WHERE ypCode=@ypCode AND OrganizeId=@OrganizeId AND zt='1'",
+                    new SugarParameter[] { new SugarParameter("@ypCode", model.ypCode ?? ""), new SugarParameter("@OrganizeId", model.OrganizeId ?? "") });
+                if (dupCount > 0)
+                {
+                    throw new FailedException("Mã thuốc " + model.ypCode + " đã tồn tại, vui lòng nhập mã khác.");
+                }
                 model.ypId = 0;
                 //Thêm mới
                 var ypEntity = new SysMedicineBaseVO();

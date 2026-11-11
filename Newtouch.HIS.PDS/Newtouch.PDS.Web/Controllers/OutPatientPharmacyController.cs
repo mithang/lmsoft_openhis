@@ -251,6 +251,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="cfnm">Mã nội bộ đơn thuốc</param>
         /// <param name="sfck">Cửa sổ thu phí</param>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SetPyInfo(string cfnm, string sfck)
         {
             //1. Lấy thông tin thuốc đơn thuốc
@@ -260,6 +262,11 @@ namespace Newtouch.HIS.Web.Controllers
                 TimeStamp = DateTime.Now
             };
             var apiResp = SiteSettAPIHelper.Request<object, DefaultResponse>("api/OutpatientPharmacy/GetpyParListBycfnm", reqObj);
+            //G39-F9: base: Sett.API trả 404 → Request trả null → NRE ở apiResp.code.
+            if (apiResp == null)
+            {
+                throw new FailedException("Không nhận được phản hồi từ dịch vụ kết toán khi lấy thông tin đơn thuốc.");
+            }
             if (apiResp.code != Newtouch.Common.Web.APIRequestHelper.ResponseResultCode.SUCCESS)
             {
                 throw new FailedException("Lấy thông tin giao diện đơn thuốc thất bại");
@@ -271,6 +278,11 @@ namespace Newtouch.HIS.Web.Controllers
                 TimeStamp = DateTime.Now
             };
             var apicfRep = SiteSettAPIHelper.Request<object, DefaultResponse>("api/OutpatientPharmacy/GetcfInfoBycfnm", reqObj);
+            //G39-F9: null-check như bước 1 (cùng lỗi NRE nếu Sett.API không trả về).
+            if (apicfRep == null || apicfRep.data == null)
+            {
+                throw new FailedException("Không nhận được phản hồi từ dịch vụ kết toán khi lấy tổng tiền đơn thuốc.");
+            }
             if (apicfRep.code != Newtouch.Common.Web.APIRequestHelper.ResponseResultCode.SUCCESS)
             {
                 throw new FailedException("Lấy tổng Số tiền đơn thuốc và nhà thuốc nhận thuốc giao diện thất bại");
@@ -293,6 +305,11 @@ namespace Newtouch.HIS.Web.Controllers
                 TimeStamp = DateTime.Now
             };
             var apiztRep = SiteSettAPIHelper.Request<object, DefaultResponse>("api/OutpatientPharmacy/Updatefyzt", reqzt);
+            //G39-F9: null-check như bước 1.
+            if (apiztRep == null)
+            {
+                throw new FailedException("Không nhận được phản hồi từ dịch vụ kết toán khi cập nhật trạng thái phát thuốc.");
+            }
             if (apiztRep.code != Newtouch.Common.Web.APIRequestHelper.ResponseResultCode.SUCCESS)
             {
                 throw new FailedException("Xử lý giao diện chuẩn bị thuốc thất bại");

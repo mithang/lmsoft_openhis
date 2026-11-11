@@ -587,8 +587,15 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="fyfs"></param>
         /// <param name="type"></param>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult ExecHandOutMedicine(List<XT_YP_LS_NBFYMXK> XT_YP_LS_NBFYMXK, string lybm, string fydh, string fyfs, int type)
         {
+            //G39-F5: guard controller (mẫu MedicineController.ExecHandOutMedicine G30); service còn guard lại + joinability.
+            if (XT_YP_LS_NBFYMXK == null || XT_YP_LS_NBFYMXK.Count == 0) return Error("Thông tin thuốc phát không được để trống.");
+            if (string.IsNullOrWhiteSpace(lybm)) return Error("Vui lòng chọn bộ phận lĩnh thuốc.");
+            if (string.IsNullOrWhiteSpace(fydh)) return Error("Thiếu số đơn phát thuốc.");
+            if (string.IsNullOrWhiteSpace(fyfs)) return Error("Vui lòng chọn phương thức xuất/nhập kho.");
             var data = _handOutMedicineDmnService.HandOutMedicine(XT_YP_LS_NBFYMXK, lybm, fydh, fyfs, type);
             return string.IsNullOrWhiteSpace(data) ? Success() : Error(data);
         }
@@ -602,6 +609,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="fyfs"></param>
         /// <param name="type"></param>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult DispensingMedicineToKs(List<XT_YP_LS_NBFYMXK> XT_YP_LS_NBFYMXK, string lybm, string fydh, string fyfs, int type)
         {
             var data = _handOutMedicineDmnService.DispensingMedicineToKs(XT_YP_LS_NBFYMXK, lybm, fydh, fyfs, type);
@@ -662,8 +671,12 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="fyfs"></param>
         /// <param name="type"></param>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult ExecHandOutMedicineByReq(Dictionary<string, List<XT_YP_LS_NBFYMXK>> xtYpLsNbfymxk, string fyfs, int type)
         {
+            //G39-F7: chặn dict rỗng TRƯỚC khi mint fydh (đỡ đốt 1 số serial cho input rỗng — C-G39-5 một phần).
+            if (xtYpLsNbfymxk == null || xtYpLsNbfymxk.Count == 0) return Error("Thông tin đơn lĩnh không được để trống.");
             var fydh = EFDBBaseFuncHelper.Instance.GetNewMedicineReceiptNo("Linh Phat thuoc don", Constants.CurrentYfbm.yfbmCode, OrganizeId);
             var res = _handOutMedicineDmnService.HandOutMedicineByRequest(xtYpLsNbfymxk, fydh, fyfs, type);
             return string.IsNullOrWhiteSpace(res) ? Success() : Error(res);

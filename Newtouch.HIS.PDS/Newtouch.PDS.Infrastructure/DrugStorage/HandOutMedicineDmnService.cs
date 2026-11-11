@@ -143,9 +143,15 @@ ORDER BY s.yxq ASC
         /// <returns></returns>
         public string HandOutMedicineByRequest(Dictionary<string, List<XT_YP_LS_NBFYMXK>> xtYpLsNbfymxk, string fydh, string fyfs, int type)
         {
+            //G39-F7: base: dict null/rỗng vẫn NRE ở foreach (8d); key có list null cũng NRE ở .Where.
+            //Lưu ý: 8a dict đã bind đầy đủ vẫn NRE ở :147 — nguyên nhân gốc chưa tìm ra bằng đọc code
+            //tĩnh (đã loại trừ DLL cũ, proc thiếu, CurrentYfbm null); post probe PHẢI re-test 8a, nếu
+            //vẫn NRE thì build real-DLL harness (C-G39-1).
+            if (xtYpLsNbfymxk == null || xtYpLsNbfymxk.Count == 0) return "Thông tin đơn lĩnh không được để trống.";
             #region Xuất kho theo đơn lĩnh
             foreach (var key in xtYpLsNbfymxk.Keys)
             {
+                if (xtYpLsNbfymxk[key] == null || xtYpLsNbfymxk[key].Count == 0) return "Thông tin thuốc của đơn lĩnh " + key + " không được để trống.";
                 var ckbm = Constants.CurrentYfbm.yfbmCode;
                 var organizeid = OperatorProvider.GetCurrent().OrganizeId;
                 var usercode = OperatorProvider.GetCurrent().UserCode;
@@ -183,7 +189,7 @@ ORDER BY s.yxq ASC
                 var outpar2 = new SugarParameter("@res", "") { DbType = System.Data.DbType.String, Size = 100, Direction = ParameterDirection.Output };
                 sqlParList2.Add(outpar2);
                 var retun = FindList<XT_YP_LS_NBFYMXK>("EXEC dbo.YP_XT_GetSLFYInfo @YfbmCode, @Organizeid, @OrderDetailsType,@res Out", sqlParList2.ToArray());
-                if (!string.IsNullOrWhiteSpace(outpar2.Value.ToString())) return outpar2.Value.ToString();
+                if (!string.IsNullOrWhiteSpace(outpar2.Value.ToString())) return MapReturnMedicineMessage(outpar2.Value.ToString());
                 if (retun == null || retun.Count <= 0) return "Không có thuốc khả dụng";
                 #endregion
                 var dtt = new DataTable();
@@ -237,7 +243,7 @@ ORDER BY s.yxq ASC
                 {
                     continue;
                 }
-                return outpar1.Value.ToString();
+                return MapReturnMedicineMessage(outpar1.Value.ToString());
             }
             #endregion
             return "";
@@ -328,6 +334,14 @@ WHERE J1.ypCode=@Ypdm AND J1.zt='1' AND J1.OrganizeId=@OrganizeId";
             var organizeid = OperatorProvider.GetCurrent().OrganizeId;
             var usercode = OperatorProvider.GetCurrent().UserCode;
             var ckbm = Constants.CurrentYfbm.yfbmCode;
+            //G39-F5: base: list rỗng/thiếu trường vẫn tạo orphan header + Success giả (6d);
+            //ypdm bogus cũng tạo orphan header (6f) — chặn ở service như G30-F2 ở RequestOfReturnMedicine.
+            if (xtYpLsNbfymxk == null || xtYpLsNbfymxk.Count == 0) return "Thông tin thuốc phát không được để trống.";
+            foreach (var item in xtYpLsNbfymxk)
+            {
+                if (!IsReturnDetailJoinable(item.Ypdm, lybm, ckbm, organizeid))
+                    return "Không tìm thấy thuốc " + (item.Ypdm ?? "") + " trong danh mục hoặc bộ phận này. Vui lòng kiểm tra lại thông tin thuốc.";
+            }
             var param = new List<SugarParameter>
             {
                  new SugarParameter("@Rkbm", lybm),
@@ -347,7 +361,8 @@ WHERE J1.ypCode=@Ypdm AND J1.zt='1' AND J1.OrganizeId=@OrganizeId";
             var outpar = new SugarParameter("@result", "") { DbType = System.Data.DbType.AnsiString, Size = 100, Direction = ParameterDirection.Output };
             param.Add(outpar);
             var proResult = FindList<object>("EXEC [dbo].[YP_XT_NBFYTH] @Rkbm,@Ckbm,@Pdh,@Ckczy,@Crkfsdm,@XT_YP_LS_NBFYMX,@usercode,@organizeid,@type,@result out", param.ToArray());
-            return outpar.Value.ToString();
+            //G39-F5: dịch message tiếng Trung của proc sang tiếng Việt (6e/6g trả raw "数量必须大于零！"/"库存不足！").
+            return MapReturnMedicineMessage(outpar.Value.ToString());
         }
 
         /// <summary>
@@ -380,7 +395,8 @@ WHERE J1.ypCode=@Ypdm AND J1.zt='1' AND J1.OrganizeId=@OrganizeId";
             var outpar = new SugarParameter("@result", "") { DbType = System.Data.DbType.AnsiString, Size = 100, Direction = ParameterDirection.Output };
             param.Add(outpar);
             var proResult = FindList<object>("EXEC [NewtouchHIS_PDS].[dbo].[YP_XT_YF_KSFY] @Rkbm,@Ckbm,@Pdh,@Ckczy,@Crkfsdm,@XT_YP_LS_NBFYMX,@usercode,@organizeid,@type,@result out", param.ToArray());
-            return outpar.Value.ToString();
+            //G39-F6: dịch message proc (phòng khi proc YP_XT_YF_KSFY có lại sau này); hiện proc thiếu nên luôn lỗi ở trên.
+            return MapReturnMedicineMessage(outpar.Value.ToString());
         }
 
         /// <summary>

@@ -204,11 +204,17 @@ namespace Newtouch.HIS.Application.Implementation
         /// <param name="pdId"></param>
         public void CancelInventory(string pdId)
         {
-            //Kiểm tra có kiểm kê chưa hoàn thành không
-            var count = _sysMedicineInventoryRepo.SelectUnfinishedInventoryByPdId(pdId);
-            if (count != 1)
+            //G39-F2: dùng SelectPdInfByPdId (có filter OrganizeId, cùng mẫu EndInventory)
+            //để phân biệt "không tồn tại" với "đã kết thúc"; FailedCodeException cũ bị
+            //middleware render thành error rỗng vì chỉ FailedException.Msg mới hiện.
+            var pdInfo = _sysMedicineInventoryRepo.SelectPdInfByPdId(pdId, OperatorProvider.GetCurrent().OrganizeId);
+            if (pdInfo == null)
             {
-                throw new FailedCodeException("THE_INVENTORY_HAS_ENDED_AND_CAN_NOT_BE_CANCELED");
+                throw new FailedException("Không tìm thấy thông tin kiểm kê chỉ định");
+            }
+            if (pdInfo.Jssj != null || pdInfo.Jssj >= Constants.MinDateTime)
+            {
+                throw new FailedException("Kiểm kê này đã kết thúc, không thể hủy.");
             }
             _pharmacyDrugStorageDmnService.CancelInventory(pdId);
         }
@@ -230,6 +236,19 @@ namespace Newtouch.HIS.Application.Implementation
         /// </summary>
         public void CarryOverMedicine(string zq, DateTime kssj, DateTime jssj)
         {
+            //G39-F3: base: zq rỗng / ngày đảo / kỳ trùng đều success + chèn 461 dòng.
+            if (string.IsNullOrWhiteSpace(zq))
+            {
+                throw new FailedException("Vui lòng chọn kỳ kết chuyển.");
+            }
+            if (kssj > jssj)
+            {
+                throw new FailedException("Ngày bắt đầu kỳ kết chuyển không được lớn hơn ngày kết thúc.");
+            }
+            if (_pharmacyDrugStorageDmnService.ExistsCarryOverPeriod(zq))
+            {
+                throw new FailedException("Kỳ kết chuyển " + zq + " đã tồn tại, không thể kết chuyển lại.");
+            }
             var needCarryOverMedicineList = _pharmacyDrugStorageDmnService.SelectNeedCarryOverMedicineList();//Truy vấn trước thông tin thuốc cần kết chuyển
             if (needCarryOverMedicineList.Count > 0)
             {

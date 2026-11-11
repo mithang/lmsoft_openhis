@@ -224,6 +224,7 @@
         $.najax({
             type: "POST",
             url: "/PharmacyDrugStorage/StartInventory",
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val() }, //G39-F1: action đã thêm [ValidateAntiForgeryToken]
             dataType: "json",
             success: function (ajaxresp) {
                 if (ajaxresp != null && ajaxresp.data != null) {
@@ -308,7 +309,7 @@
             type: "POST",
             url: "/PharmacyDrugStorage/EndInventory",
             dataType: "json",
-            data: { pdId: $("#ddlRQ option:selected").attr('data-pdId') },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), pdId: $("#ddlRQ option:selected").attr('data-pdId') }, //G39-F1
             success: function (ajaxresp) {
                 $.modalAlert("Kiểm kê hoàn tất", 'success');
                 GetPDSJ();//Làm mới thời gian kiểm kê và thông tin thuốc
@@ -322,7 +323,7 @@
             type: "POST",
             url: "/PharmacyDrugStorage/CancelInventory",
             dataType: "json",
-            data: { pdId: $("#ddlRQ option:selected").attr('data-pdId') },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), pdId: $("#ddlRQ option:selected").attr('data-pdId') }, //G39-F1
             success: function (ajaxresp) {
                 $.modalAlert("Hủy thành công", 'success');
                 GetPDSJ();

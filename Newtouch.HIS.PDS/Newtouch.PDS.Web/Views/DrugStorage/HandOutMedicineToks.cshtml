@@ -532,6 +532,7 @@
         par["fydh"] = $("#fydh").val();
         par["fyfs"] = $("#fyfs").val();
         par["type"] = 6;//Nhà thuốc phát thuốc cho khoa
+        par["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val(); //G39-F6: action đã thêm [ValidateAntiForgeryToken]
 
         if (newxmList && par["lybm"] && par["fydh"] && par["fyfs"]) {
             $.najax({

@@ -216,7 +216,9 @@
             var sfck = $("#gridCF").jqGridRowValue().sfck;
             if (cfnm) {
                 $.najax({
+                    type: "POST", //G39-F9: SetPyInfo đã thêm [HttpPost]+[ValidateAntiForgeryToken] (trước đây GET mặc định)
                     url: "/OutPatientPharmacy/SetPyInfo?cfnm=" + cfnm + "&&sfck=" + sfck,
+                    data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val() },
                     dataType: "json",
                     cache: false,
                     success: function (res) {
