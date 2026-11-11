@@ -73,30 +73,39 @@ namespace Newtouch.HIS.Repository
             return QueryWithPage<SysMedicineProfitLossReasonEntity>(sql.ToString(), pagination, pars.ToArray());
         }
 
-        public void SubmitForm(SysMedicineProfitLossReasonEntity SyyyDTO, string keyValue)
+        // G35-F2: zt chuan hoa ("true"/"1" -> "1"); G35-F5: edit merge-skip-null, tra so dong.
+        private static string MapZt(string zt) => (zt == "true" || zt == "1") ? "1" : "0";
+
+        public int SubmitForm(SysMedicineProfitLossReasonEntity SyyyDTO, string keyValue)
         {
-            var entity = new SysMedicineProfitLossReasonEntity
-            {
-                syyy = SyyyDTO.syyy,
-                sybz = SyyyDTO.sybz,
-                px = SyyyDTO.px,
-                zt = SyyyDTO.zt == "true" ? "1" : "0"
-            };
             if (!string.IsNullOrEmpty(keyValue))
             {
-                entity.Modify();
-                entity.syyyId = keyValue;
-                Update(entity);
+                var db = FindEntity(p => p.syyyId == keyValue);
+                if (db == null) return 0;
+                if (SyyyDTO.syyy != null) db.syyy = SyyyDTO.syyy;
+                if (SyyyDTO.sybz != null) db.sybz = SyyyDTO.sybz;
+                if (SyyyDTO.px.HasValue) db.px = SyyyDTO.px;
+                if (SyyyDTO.zt != null) db.zt = MapZt(SyyyDTO.zt);
+                db.Modify();
+                return Update(db);
             }
             else
             {
+                var entity = new SysMedicineProfitLossReasonEntity
+                {
+                    syyy = SyyyDTO.syyy,
+                    sybz = SyyyDTO.sybz,
+                    px = SyyyDTO.px,
+                    zt = MapZt(SyyyDTO.zt)
+                };
                 entity.Create(true);
-                Insert(entity);
+                entity.zt = MapZt(SyyyDTO.zt); // Create(true) ghi de zt="1" — gan lai gia tri that (G35 1a2)
+                return Insert(entity);
             }
         }
-        public void DeleteForm(string keyValue)
+        public int DeleteForm(string keyValue)
         {
-            Delete(p => p.syyyId == keyValue);
+            return Delete(p => p.syyyId == keyValue);
         }
     }
 }

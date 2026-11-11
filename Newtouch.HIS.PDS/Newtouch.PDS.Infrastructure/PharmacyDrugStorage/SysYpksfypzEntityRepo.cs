@@ -82,30 +82,39 @@ SELECT a.[Id]
         /// </summary>
         /// <param name="FypzDTO"></param>
         /// <param name="keyValue"></param>
-        public void SubmitForm(SysYpksfypzEntity FypzDTO, string keyValue)
+        // G35-F2: zt chuan hoa ("true"/"1" -> "1"); G35-F5: edit merge-skip-null + loc org khi xoa, tra so dong.
+        private static string MapZt(string zt) => (zt == "true" || zt == "1") ? "1" : "0";
+
+        public int SubmitForm(SysYpksfypzEntity FypzDTO, string keyValue)
         {
-            var entity = new SysYpksfypzEntity
-            {
-                ksCode = FypzDTO.ksCode,
-                yfCode = FypzDTO.yfCode,
-                OrganizeId = FypzDTO.OrganizeId,
-                zt = FypzDTO.zt == "true" ? "1" : "0"
-            };
             if (!string.IsNullOrEmpty(keyValue))
             {
-                entity.Modify();
-                entity.Id = keyValue;
-                Update(entity);
+                var db = FindEntity(p => p.Id == keyValue);
+                if (db == null) return 0;
+                if (FypzDTO.ksCode != null) db.ksCode = FypzDTO.ksCode;
+                if (FypzDTO.yfCode != null) db.yfCode = FypzDTO.yfCode;
+                if (FypzDTO.zt != null) db.zt = MapZt(FypzDTO.zt);
+                // OrganizeId KHONG copy tu DTO — controller giu nguyen org goc (G35 5h)
+                db.Modify();
+                return Update(db);
             }
             else
             {
+                var entity = new SysYpksfypzEntity
+                {
+                    ksCode = FypzDTO.ksCode,
+                    yfCode = FypzDTO.yfCode,
+                    OrganizeId = FypzDTO.OrganizeId,
+                    zt = MapZt(FypzDTO.zt)
+                };
                 entity.Create(true);
-                Insert(entity);
+                entity.zt = MapZt(FypzDTO.zt); // Create(true) ghi de zt="1" — gan lai gia tri that (G35 5b)
+                return Insert(entity);
             }
         }
-        public void DeleteForm(string keyValue)
+        public int DeleteForm(string keyValue, string organizeId)
         {
-            Delete(p => p.Id == keyValue);
+            return Delete(p => p.Id == keyValue && p.OrganizeId == organizeId);
         }
     }
 }

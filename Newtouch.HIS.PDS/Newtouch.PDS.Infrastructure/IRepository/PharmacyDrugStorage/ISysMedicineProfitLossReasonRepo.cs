@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Domain.IRepository
         /// <returns></returns>
         List<SysMedicineProfitLossReasonEntity> GetLossProfitReasonListByType(string sylx);
         IList<SysMedicineProfitLossReasonEntity> GetPagintionList(Pagination pagination, string keyword);
-        void SubmitForm(SysMedicineProfitLossReasonEntity SyyyDTO, string keyValue);
-        void DeleteForm(string keyValue);
+        int SubmitForm(SysMedicineProfitLossReasonEntity SyyyDTO, string keyValue);
+        int DeleteForm(string keyValue);
     }
 }

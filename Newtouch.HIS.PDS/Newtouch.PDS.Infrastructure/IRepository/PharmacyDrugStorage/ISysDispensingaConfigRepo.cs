@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Domain.IRepository
         List<CodeNameVO> GetCodeName(string organizeId, int yjbmjb);
         List<CodeNameVO> GetYFYKCodeName(string organizeId);
         IList<SysDispensingaConfigEntity> GetPagintionList(Pagination pagination, string keyword,string organizeId);
-        void SubmitForm(SysDispensingaConfigEntity FypzDTO, string keyValue);
-        void DeleteForm(string keyValue);
+        int SubmitForm(SysDispensingaConfigEntity FypzDTO, string keyValue);
+        int DeleteForm(string keyValue, string organizeId);
     }
 }

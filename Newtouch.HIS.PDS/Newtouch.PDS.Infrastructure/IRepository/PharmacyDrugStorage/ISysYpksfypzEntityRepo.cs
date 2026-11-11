@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Domain.IRepository
     {
         List<CodeNameVO> GetCodeName(string organizeId, int yjbmjb, string keyword = null);
         IList<SysYpksfypzEntity> GetPagintionList(Pagination pagination, string keyword,string organizeId);
-        void SubmitForm(SysYpksfypzEntity FypzDTO, string keyValue);
-        void DeleteForm(string keyValue);
+        int SubmitForm(SysYpksfypzEntity FypzDTO, string keyValue);
+        int DeleteForm(string keyValue, string organizeId);
     }
 }
