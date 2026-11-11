@@ -86,6 +86,14 @@ namespace Newtouch.HIS.Application.Implementation
                 default:
                     throw new FailedException("Loại chứng từ không hợp lệ!");
             }
+            // G36 F36-3: phiếu phát thuốc cho khoa (keshifayao) được duyệt ngay khi tạo
+            // (SubmitDeliveryToDepartment sinh shzt="1"), nên luồng duyệt không hỗ trợ
+            // loại này — chặn sớm bằng message rõ thay vì để service trả lỗi chung
+            // "Loại chứng từ không hỗ trợ duyệt".
+            if (Request.djlx == (int)EnumDanJuLX.keshifayao)
+            {
+                throw new FailedException("Chứng từ phát thuốc cho khoa đã duyệt ngay khi tạo, không hỗ trợ duyệt lại!");
+            }
             Request.dj = _crkdj.FindEntity(p => p.crkId == Request.crkId
             && p.OrganizeId == OrganizeId
             && p.djlx == Request.djlx

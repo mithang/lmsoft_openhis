@@ -49,6 +49,12 @@ namespace Newtouch.HIS.Application.Implementation
 			{
 				throw new FailedException("Số chứng từ không được vượt quá 30 ký tự");
 			}
+			// G36 F36-1: crkId do client gửi (chỉ tới được qua request tự tạo — UI không gửi);
+			// chặn sớm để tránh lỗi SQL thô khi vượt độ dài cột crkId varchar(50).
+			if (Request.crkId != null && Request.crkId.Length > 50)
+			{
+				throw new FailedException("ID chứng từ không được vượt quá 50 ký tự");
+			}
 			if (string.IsNullOrWhiteSpace(Request.fyfs))
 			{
 				throw new FailedException("Phương thức phát thuốc không được để trống");
@@ -127,8 +133,11 @@ namespace Newtouch.HIS.Application.Implementation
 			};
 			if (Request.crkId != null)
 			{
+				// G36 F36-1: không bao giờ tin trạng thái do client gửi — phiếu mới
+				// luôn sinh ở trạng thái chờ duyệt (WaitingApprove), không cho sinh
+				// thẳng trạng thái đã duyệt (bypass luồng duyệt) hay trạng thái lạ.
 				djmain.Create(true, Request.crkId);
-				djmain.shzt = Request.shzt;
+				djmain.shzt = ((int)EnumDjShzt.WaitingApprove).ToString();
 			}
 			else
 			{

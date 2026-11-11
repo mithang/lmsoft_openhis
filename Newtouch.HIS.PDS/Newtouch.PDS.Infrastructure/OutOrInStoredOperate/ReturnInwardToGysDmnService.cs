@@ -29,6 +29,20 @@ namespace Newtouch.HIS.DomainServices.OutOrInStoredOperate
         public string SubmitReturnInwardToGys(SysMedicineStorageIOReceiptEntity dj, List<SysMedicineStorageIOReceiptDetailEntity> mx)
         {
             var result = "";
+            // G36 F36-1: crkId do client gửi — trùng ID đã tồn tại thì từ chối bằng
+            // message rõ thay vì để lỗi vi phạm khóa chính bị nuốt thành lỗi chung.
+            var dupCrk = crkdj.FindEntity(p => p.crkId == dj.crkId && p.OrganizeId == dj.OrganizeId);
+            if (dupCrk != null)
+            {
+                return "Chứng từ đã tồn tại, không thể gửi trùng lặp";
+            }
+            // G36 F36-5: chặn trùng số chứng từ (Pdh không có unique constraint trên DB;
+            // 2 phiếu cùng số làm query hóa đơn gộp sai). Kiểm tra TRƯỚC mọi đóng băng kho.
+            var dupPdh = crkdj.FindEntity(p => p.Pdh == dj.Pdh && p.djlx == dj.djlx && p.OrganizeId == dj.OrganizeId && p.zt == "1" && p.crkId != dj.crkId);
+            if (dupPdh != null)
+            {
+                return string.Format("Số chứng từ [{0}] đã tồn tại", dj.Pdh);
+            }
             using (var db = new EFDbTransaction().BeginTrans())
             {
                 foreach (var d in mx)

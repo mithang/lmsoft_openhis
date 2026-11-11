@@ -391,7 +391,7 @@
                 if (!flag) return false;
                 $.najax({
                     url: "/OutOrInStorageBill/SubmitReceiptApprovalBatch",
-                    data: { param: shdj },
+                    data: { param: shdj, __RequestVerificationToken: $('[name=__RequestVerificationToken]').val() },
                     type: 'POST',
                     dataType: 'json',
                     success: function (ajaxresp) {
@@ -431,7 +431,7 @@
         if (selRowData.crkId && selRowData.djlx) {
             $.najax({
                 url: "/OutOrInStorageBill/SubmitReceiptApproval",
-                data: { crkId: selRowData.crkId, djlx: selRowData.djlx, shzt: dstnShzt },
+                data: { crkId: selRowData.crkId, djlx: selRowData.djlx, shzt: dstnShzt, __RequestVerificationToken: $('[name=__RequestVerificationToken]').val() },
                 type: 'POST',
                 dataType: 'json',
                 success: function (ajaxresp) {

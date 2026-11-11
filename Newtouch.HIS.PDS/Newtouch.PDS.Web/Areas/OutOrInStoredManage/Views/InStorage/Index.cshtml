@@ -638,7 +638,7 @@
         $.najax({
             type: "POST",
             url: "/OutOrInStoredManage/InStorage/SubmitInStorage",
-            data: par,
+            data: $.extend({}, par, { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val() }),
             dataType: "json",
             success: function (res) {
                 if (res.state === "success") {

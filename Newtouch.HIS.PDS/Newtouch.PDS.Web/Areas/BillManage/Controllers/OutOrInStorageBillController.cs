@@ -42,6 +42,8 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
 		/// </summary>
 		/// <param name="param"></param>
 		/// <returns></returns>
+		[HttpPost]
+        [ValidateAntiForgeryToken]
 		public IActionResult SubmitReceiptApproval(OutOrInStorageBillApprovalDTO param)
         {
             param.auditor = UserIdentity.UserCode;
@@ -54,6 +56,8 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitReceiptApprovalBatch(List<OutOrInStorageBillApprovalDTO> param)
         {
             // G26: danh sách rỗng trước đây trả Success giả (defect 4a:

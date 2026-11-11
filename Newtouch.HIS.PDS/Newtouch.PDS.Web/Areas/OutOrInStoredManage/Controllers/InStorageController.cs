@@ -16,6 +16,8 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         /// </summary>
         /// <param name="djInfoDto"></param>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitInStorage(DjInfoDTO djInfoDto)
         {
             djInfoDto.djlx = (int)EnumDanJuLX.yaopinruku;

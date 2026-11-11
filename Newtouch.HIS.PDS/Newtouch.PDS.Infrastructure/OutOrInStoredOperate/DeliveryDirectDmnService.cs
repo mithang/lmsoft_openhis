@@ -32,6 +32,13 @@ namespace Newtouch.HIS.DomainServices.OutOrInStoredOperate
         public string SubmitDeliveryDirect(SysMedicineStorageIOReceiptEntity dj, List<SysMedicineStorageIOReceiptDetailEntity> mx)
         {
             var result = "";
+            // G36 F36-5: chặn trùng số chứng từ (Pdh không có unique constraint trên DB;
+            // 2 phiếu cùng số làm query hóa đơn gộp sai). Kiểm tra TRƯỚC mọi đóng băng kho.
+            var dupPdh = crkdj.FindEntity(p => p.Pdh == dj.Pdh && p.djlx == dj.djlx && p.OrganizeId == dj.OrganizeId && p.zt == "1" && p.crkId != dj.crkId);
+            if (dupPdh != null)
+            {
+                return string.Format("Số chứng từ [{0}] đã tồn tại", dj.Pdh);
+            }
             using (var db = new EFDbTransaction().BeginTrans())
             {
                 foreach (var d in mx)
