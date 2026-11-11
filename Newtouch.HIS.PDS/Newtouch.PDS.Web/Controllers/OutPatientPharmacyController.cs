@@ -123,9 +123,10 @@ namespace Newtouch.HIS.Web.Controllers
             }
             var isAutoFy = configInfo.IsAutoFy == "true" ? "Y" : "N";
             var isAutoPy = configInfo.IsAutoPy == "true" ? "Y" : "N";
-            _sysConfigRepo.UpsertValueByCode("IsAutoFy", isAutoFy, OrganizeId);
-            _sysConfigRepo.UpsertValueByCode("IsAutoPy", isAutoPy, OrganizeId);
-            _sysConfigRepo.UpsertValueByCode("pycxjgsj", configInfo.pycxjgsj.ToString(), OrganizeId);
+            var userCode = OperatorProvider.GetCurrent().UserCode;
+            _sysConfigRepo.UpsertValueByCode("IsAutoFy", isAutoFy, OrganizeId, userCode);
+            _sysConfigRepo.UpsertValueByCode("IsAutoPy", isAutoPy, OrganizeId, userCode);
+            _sysConfigRepo.UpsertValueByCode("pycxjgsj", configInfo.pycxjgsj.ToString(), OrganizeId, userCode);
             return Success();
         }
         #endregion

@@ -175,20 +175,21 @@ namespace Newtouch.HIS.Repository
         /// của tổ chức khác nếu có, tránh hardcode). Dùng cho SubmitConfig khi tổ chức
         /// chưa có dòng cấu hình nào — SetValueByCode thuần UPDATE sẽ lặng lẽ không ghi gì.
         /// </summary>
-        public void UpsertValueByCode(string code, string value, string orgId)
+        public void UpsertValueByCode(string code, string value, string orgId, string creatorCode)
         {
             var paraList = new object[]
             {
                 new SugarParameter("@value", value),
                 new SugarParameter("@code", code),
-                new SugarParameter("@orgId", orgId)
+                new SugarParameter("@orgId", orgId),
+                new SugarParameter("@creatorCode", creatorCode ?? "")
             };
             _dataContext.Database.ExecuteSqlCommand(@"
 IF EXISTS (SELECT 1 FROM dbo.Sys_Config WHERE Code = @code AND OrganizeId = @orgId)
     UPDATE dbo.Sys_Config SET Value = @value WHERE Code = @code AND OrganizeId = @orgId
 ELSE
-    INSERT INTO dbo.Sys_Config (Id, Code, Name, Value, OrganizeId, zt, CreateTime)
-    SELECT NEWID(), @code, ISNULL((SELECT TOP 1 Name FROM dbo.Sys_Config WHERE Code = @code), @code), @value, @orgId, '1', GETDATE()", paraList);
+    INSERT INTO dbo.Sys_Config (Id, Code, Name, Value, OrganizeId, zt, CreatorCode, CreateTime)
+    SELECT NEWID(), @code, ISNULL((SELECT TOP 1 Name FROM dbo.Sys_Config WHERE Code = @code), @code), @value, @orgId, '1', @creatorCode, GETDATE()", paraList);
         }
 
     }
