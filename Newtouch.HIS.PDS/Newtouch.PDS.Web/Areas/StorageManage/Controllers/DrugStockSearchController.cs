@@ -227,10 +227,13 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		/// Sửa dữ liệu chứng từ
 		/// </summary>
 		/// <param name="crkId"></param>
-		/// <returns></returns>
+		/// <returns>1 = đã sửa lại thành nháp; -1 = không tìm thấy / sai org / trạng thái cuối cùng (UI kiểm tra res&lt;0)</returns>
+		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public int ReviseCrkDj(string crkId)
 		{
-			var data = drugStorageDmnService.ReviseCrkDj(crkId);
+			//G30-F1: chỉ sửa lại phiếu của đúng org (mẫu G29 F1 DeleteCrkDj)
+			var data = drugStorageDmnService.ReviseCrkDj(crkId, this.OrganizeId);
 			return data;
 		}
 

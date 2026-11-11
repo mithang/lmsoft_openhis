@@ -79,6 +79,30 @@ namespace Newtouch.HIS.DomainServices.DrugStorage
         }
 
         /// <summary>
+        /// G30-F4: validate 1 item lãi lỗ (không ghi gì). Trả "" nếu OK, ngược lại message TV.
+        /// </summary>
+        /// <param name="syxx"></param>
+        /// <returns></returns>
+        public string ValidateReportLossAndProfit(SysMedicineProfitLossEntity syxx)
+        {
+            if (syxx == null) return "Thông tin lãi lỗ không được để trống.";
+            if (string.IsNullOrWhiteSpace(syxx.Ypdm)) return "Mã thuốc không được để trống.";
+            if (syxx.Ypdm.Length > 20) return "Mã thuốc không được vượt quá 20 ký tự.";
+            if (syxx.Ph != null && syxx.Ph.Length > 30) return "Số tần suất không được vượt quá 30 ký tự.";
+            if (syxx.pc != null && syxx.pc.Length > 30) return "Lô không được vượt quá 30 ký tự.";
+            if (syxx.Djh != null && syxx.Djh.Length > 30) return "Số chứng từ không được vượt quá 30 ký tự.";
+            if (syxx.Sysl == 0) return "Số lượng lãi lỗ phải khác 0.";
+            if (syxx.Zhyz <= 0) return "Hệ số chuyển đổi phải lớn hơn 0.";
+            var kcxxRepo = new SysMedicineStockInfoRepo(new DefaultDatabaseFactory());
+            var kcxx = kcxxRepo.SelectData(syxx.Ypdm, syxx.Ph, syxx.pc, syxx.yfbmCode, syxx.OrganizeId);
+            //G30-F4: base 4c/4h — thuốc không tồn tại vẫn đi tiếp (loss báo "không đủ tồn kho" gây hiểu lầm; profit ghi syxx nhưng kho không đổi)
+            if (kcxx == null || kcxx.Count == 0) return "Không tìm thấy thuốc " + syxx.Ypdm + " trong kho.";
+            if (syxx.Sysl < 0 && kcxx.Sum(p => p.kcsl) + syxx.Sysl < 0)
+                return string.Format("Mã {0}, số lô {1}, lô {2}: tồn kho thuốc không đủ", syxx.Ypdm, syxx.Ph, syxx.pc);
+            return "";
+        }
+
+        /// <summary>
         /// Gửi báo hỏng báo thừa
         /// </summary>
         /// <param name="syxx"></param>
@@ -87,6 +111,8 @@ namespace Newtouch.HIS.DomainServices.DrugStorage
         {
             try
             {
+                var validateResult = ValidateReportLossAndProfit(syxx);
+                if (!string.IsNullOrWhiteSpace(validateResult)) return validateResult;
                 using (var db = new EFDbTransaction().BeginTrans())
                 {
                     var kcxxRepo = new SysMedicineStockInfoRepo(new DefaultDatabaseFactory());
@@ -95,7 +121,7 @@ namespace Newtouch.HIS.DomainServices.DrugStorage
                     if (syxx.Sysl < 0)//Báo hỏng  Kiểm tra tồn kho có đủ không
                     {
                         if (kcxx.Sum(p => p.kcsl) + syxx.Sysl < 0)
-                            return string.Format("Mã là{0}、Số lô{1}、Lô{2}tồn kho thuốc không đủ", syxx.Ypdm, syxx.Ph, syxx.pc);
+                            return string.Format("Mã {0}, số lô {1}, lô {2}: tồn kho thuốc không đủ", syxx.Ypdm, syxx.Ph, syxx.pc);
                     }
 
                     kcxxRepo.UpdateKcslWithTrans(syxx.Sysl, syxx.pc, syxx.Ph, syxx.Ypdm, syxx.yfbmCode, syxx.OrganizeId,

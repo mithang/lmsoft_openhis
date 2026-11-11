@@ -515,6 +515,7 @@
         par["tydh"] = $("#tydh").val();
         par["fyfs"] = $("#fyfs").val();
         par["tybm"] = $("#tybm").val();
+        par["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val(); //G30-F2: action đã thêm [ValidateAntiForgeryToken]
         if (newxmList && par["tybm"] && par["tydh"] && par["fyfs"]) {
             $.najax({
                 type: "POST",

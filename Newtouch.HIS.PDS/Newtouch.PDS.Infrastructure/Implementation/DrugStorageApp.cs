@@ -213,38 +213,21 @@ public string PrepareMedicineReturn (BythDjInfoDTO yplist, string organizeId, st
         public string SubmitReportLossAndProfit(SysMedicineProfitLossEntity[] syxx)
         {
             if (syxx == null || syxx.Length <= 0) return "Chi tiết lãi lỗ không được để trống";
-            var errorMsg = "";
-            var cts = new CancellationTokenSource();
             try
             {
-                var parent = new Task(() =>
+                //G30-F4: base 4e — chạy song song, mỗi item 1 transaction riêng: item1 commit rồi item2 mới fail (half-write).
+                //Pre-validate TOÀN BỘ batch trước khi ghi gì; sau đó chạy tuần tự. (Chỉ còn rủi ro TOCTOU nếu 2 người cùng sửa 1 thuốc.)
+                var stockService = new SysMedicineStockInfoDmnService(new DefaultDatabaseFactory(), false);
+                foreach (var item in syxx)
                 {
-                    var taskFactory = new TaskFactory<bool>(cts.Token, TaskCreationOptions.AttachedToParent, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Default);
-                    foreach (var item in syxx)
-                    {
-                        taskFactory.StartNew(() =>
-                        {
-                            if (cts.IsCancellationRequested)
-                            {
-                                return false;
-                            }
-
-                            var tmpResult = new SysMedicineStockInfoDmnService(new DefaultDatabaseFactory(), false).SubmitReportLossAndProfit(item);
-                            if (string.IsNullOrWhiteSpace(tmpResult)) return true;
-                            cts.Cancel();
-                            errorMsg = tmpResult;
-                            return false;
-
-                        }, cts.Token);
-                    }
-                });
-                parent.Start();
-                parent.Wait();
-                if (cts.IsCancellationRequested || !string.IsNullOrWhiteSpace(errorMsg))
-                {
-                    throw new Exception(errorMsg);
+                    var validateResult = stockService.ValidateReportLossAndProfit(item);
+                    if (!string.IsNullOrWhiteSpace(validateResult)) return validateResult;
                 }
-
+                foreach (var item in syxx)
+                {
+                    var tmpResult = stockService.SubmitReportLossAndProfit(item);
+                    if (!string.IsNullOrWhiteSpace(tmpResult)) return tmpResult;
+                }
                 return "";
             }
             catch (Exception e)

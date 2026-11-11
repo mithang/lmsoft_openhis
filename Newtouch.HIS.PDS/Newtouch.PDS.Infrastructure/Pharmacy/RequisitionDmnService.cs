@@ -40,6 +40,13 @@ namespace Newtouch.HIS.DomainServices
         {
             using (var db = new EFDbTransaction().BeginTrans())
             {
+                //G30-F5: guard trước khi ghi — base: trùng Sldh, slsl 0/âm, fybmCode không tồn tại đều Success
+                if (string.IsNullOrWhiteSpace(sldh)) throw new FailedException("Thiếu số đơn lĩnh");
+                if (sldh.Length > 30) throw new FailedException("Số đơn lĩnh không được vượt quá 30 ký tự.");
+                if (IsSldhExists(sldh, orgId))
+                    throw new FailedException("Số đơn lĩnh đã tồn tại.");
+                if (!IsYfbmExists(fybmCode, orgId))
+                    throw new FailedException("Khoa phát thuốc không tồn tại.");
                 var mainEntity = new SysMedicineRequisitionEntity
                 {
                     OrganizeId = orgId,
@@ -53,9 +60,13 @@ namespace Newtouch.HIS.DomainServices
 
                 foreach (var mx in mxList)
                 {
+                    if (string.IsNullOrWhiteSpace(mx.ypCode)) throw new FailedException("Mã thuốc không được để trống.");
+                    if (mx.ypCode.Length > 20) throw new FailedException("Mã thuốc không được vượt quá 20 ký tự.");
+                    if (mx.slsl <= 0) throw new FailedException("Số lượng lĩnh phải lớn hơn 0.");
+                    if (mx.bbmzhyz <= 0) throw new FailedException("Hệ số chuyển đổi phải lớn hơn 0.");
                     if (!db.IQueryable<SysPharmacyDepartmentMedicineEntity>().Any(p => p.yfbmCode == slbmCode && p.Ypdm == mx.ypCode))
                     {
-                        throw new FailedException("Không thể lĩnh，Vui lòng hoàn thiện thông tin thuốc bộ phận này trước，Mã thuốc：" + mx.ypCode);
+                        throw new FailedException("Không thể lĩnh, vui lòng hoàn thiện thông tin thuốc của bộ phận này trước. Mã thuốc: " + mx.ypCode);
                     }
                     var mxEntity = new SysMedicineRequisitionDetailEntity
                     {
@@ -74,6 +85,32 @@ namespace Newtouch.HIS.DomainServices
                 db.Commit();
             }
             return true;
+        }
+
+        /// <summary>G30-F5-fix: Sldh là char(30) — so sánh C# trong IQueryable().Any() (shim ToList, LINQ-to-Objects) luôn sai do khoảng trắng đệm; kiểm tra bằng SQL để SQL Server tự bỏ đệm.</summary>
+        private bool IsSldhExists(string sldh, string orgId)
+        {
+            if (string.IsNullOrWhiteSpace(sldh)) return false;
+            const string sql = "SELECT COUNT(1) FROM dbo.xt_yp_sld WHERE Sldh=@Sldh AND OrganizeId=@orgId AND zt='1'";
+            var par = new SugarParameter[]
+            {
+                new SugarParameter("@Sldh", sldh),
+                new SugarParameter("@orgId", orgId ?? ""),
+            };
+            return FirstOrDefault<int>(sql, par) > 0;
+        }
+
+        /// <summary>G30-F5: fybmCode phải là kho/bộ phận có thật (đọc [NewtouchHIS_Base] theo mẫu có sẵn trong file — trên STG nó đọc demo Base).</summary>
+        private bool IsYfbmExists(string fybmCode, string orgId)
+        {
+            if (string.IsNullOrWhiteSpace(fybmCode)) return false;
+            const string sql = "SELECT COUNT(1) FROM [NewtouchHIS_Base].dbo.V_S_xt_yfbm WHERE yfbmCode=@yfbmCode AND OrganizeId=@orgId AND zt='1'";
+            var par = new SugarParameter[]
+            {
+                new SugarParameter("@yfbmCode", fybmCode),
+                new SugarParameter("@orgId", orgId ?? ""),
+            };
+            return FirstOrDefault<int>(sql, par) > 0;
         }
 
         /// <summary>

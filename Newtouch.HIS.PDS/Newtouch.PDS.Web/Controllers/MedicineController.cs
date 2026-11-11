@@ -160,8 +160,26 @@ namespace Newtouch.HIS.Web.Controllers
 		/// <param name="tydh"></param>
 		/// <param name="fyfs"></param>
 		/// <returns></returns>
+		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public IActionResult ExecHandOutMedicine(List<XT_YP_LS_NBFYMXK> xtYpLsNbfymxk, string tybm, string tydh, string fyfs)
 		{
+			//G30-F2: guard trước khi gọi proc YP_XT_NBFYTH — base: list rỗng/thiếu trường vẫn tạo orphan header + Success giả
+			if (xtYpLsNbfymxk == null || xtYpLsNbfymxk.Count == 0) return Error("Thông tin thuốc trả không được để trống.");
+			if (string.IsNullOrWhiteSpace(tybm)) return Error("Vui lòng chọn bộ phận trả thuốc.");
+			if (string.IsNullOrWhiteSpace(tydh)) return Error("Thiếu số đơn trả thuốc.");
+			if (string.IsNullOrWhiteSpace(fyfs)) return Error("Vui lòng chọn phương thức xuất/nhập kho.");
+			foreach (var item in xtYpLsNbfymxk)
+			{
+				if (string.IsNullOrWhiteSpace(item.Ypdm)) return Error("Mã thuốc không được để trống.");
+				if (item.Ypdm.Length > 20) return Error("Mã thuốc không được vượt quá 20 ký tự.");
+				if (item.Ph != null && item.Ph.Length > 50) return Error("Số tần suất không được vượt quá 50 ký tự.");
+				if (item.pc != null && item.pc.Length > 50) return Error("Lô không được vượt quá 50 ký tự.");
+				if (item.fysl <= 0) return Error("Số lượng trả thuốc phải lớn hơn 0.");
+				if (item.zhyz == 0) return Error("Hệ số chuyển đổi không được bằng 0.");
+				if (item.sldmxId != null && item.sldmxId.Length > 50) return Error("Mã chi tiết đơn lĩnh không được vượt quá 50 ký tự.");
+				if (item.bzdw != null && item.bzdw.Length > 20) return Error("Đơn vị đóng gói không được vượt quá 20 ký tự.");
+			}
 			var data = _handOutMedicineDmnService.RequestOfReturnMedicine(xtYpLsNbfymxk, tybm, tydh, fyfs, 5);
 			return string.IsNullOrWhiteSpace(data) ? Success() : Error(data);
 		}
@@ -255,6 +273,8 @@ namespace Newtouch.HIS.Web.Controllers
 		/// </summary>
 		/// <param name="syxx"></param>
 		/// <returns></returns>
+		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public IActionResult SubmitReportLossAndProfit(SysMedicineProfitLossEntity[] syxx)
 		{
 			if (syxx == null || syxx.Length <= 0) return Error("Vui lòng truyền chi tiết lãi lỗ");
@@ -262,7 +282,8 @@ namespace Newtouch.HIS.Web.Controllers
 			var yfbmCode = Constants.CurrentYfbm.yfbmCode;
 			var userCode = OperatorProvider.GetCurrent().UserCode;
 			var syIds = "";
-			Parallel.ForEach(syxx, item =>
+			//G30-F4: Parallel.ForEach + syIds += race — chạy tuần tự, giữ thứ tự syIds cho bản in
+			foreach (var item in syxx)
 			{
 				item.syId = Guid.NewGuid().ToString();
 				item.OrganizeId = organizeId;
@@ -272,7 +293,7 @@ namespace Newtouch.HIS.Web.Controllers
 				item.zt = "1";
 				item.Bgsj = DateTime.Now;
 				syIds += item.syId + ",";
-			});
+			}
 			var result = _drugStorageApp.SubmitReportLossAndProfit(syxx);
 			return string.IsNullOrWhiteSpace(result) ? Success(syIds) : Error(result);
 		}
@@ -282,12 +303,28 @@ namespace Newtouch.HIS.Web.Controllers
 		/// </summary>
 		/// <param name="syxx"></param>
 		/// <returns></returns>
+		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public IActionResult SaveReportLossAndProfit(SysMedicineProfitLossEntity[] syxx)
 		{
 			var syxxList = syxx != null && syxx.Length > 0 ? syxx.ToList() : new List<SysMedicineProfitLossEntity>();
 			var profitLossEntityList = new List<YpSyxxVo>();
 			if (syxxList.Count > 0)
 			{
+				//G30-F3: guard độ dài/giá trị trước khi gọi proc — base: Ypdm/Djh quá dài chỉ lỗi truncation thô
+				foreach (var p in syxxList)
+				{
+					if (string.IsNullOrWhiteSpace(p.Ypdm)) throw new FailedException("Mã thuốc không được để trống.");
+					if (p.Ypdm.Length > 20) throw new FailedException("Mã thuốc không được vượt quá 20 ký tự.");
+					if (p.Ph != null && p.Ph.Length > 30) throw new FailedException("Số tần suất không được vượt quá 30 ký tự.");
+					if (p.pc != null && p.pc.Length > 30) throw new FailedException("Lô không được vượt quá 30 ký tự.");
+					if (p.Djh != null && p.Djh.Length > 30) throw new FailedException("Số chứng từ không được vượt quá 30 ký tự.");
+					if (p.Syyy != null && p.Syyy.Length > 50) throw new FailedException("Lý do lãi lỗ không được vượt quá 50 ký tự.");
+					if (p.Zrr != null && p.Zrr.Length > 16) throw new FailedException("Người chịu trách nhiệm không được vượt quá 16 ký tự.");
+					if (p.remark != null && p.remark.Length > 100) throw new FailedException("Ghi chú không được vượt quá 100 ký tự.");
+					if (p.Sysl == 0) throw new FailedException("Số lượng lãi lỗ phải khác 0.");
+					if (p.Zhyz <= 0) throw new FailedException("Hệ số chuyển đổi phải lớn hơn 0.");
+				}
 				syxxList.ForEach(p =>
 				{
 					profitLossEntityList.Add(new YpSyxxVo

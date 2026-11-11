@@ -314,7 +314,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 		/// </summary>
 		/// <param name="crkId"></param>
 		/// <returns></returns>
-		int ReviseCrkDj(string crkId);
+		int ReviseCrkDj(string crkId, string orgId);
 
 		/// <summary>
 		/// Lấy dữ liệu chứng từ

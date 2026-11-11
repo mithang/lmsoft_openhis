@@ -470,7 +470,7 @@
         $.najax({
             url: "/Medicine/SubmitReportLossAndProfit",
             type: "POST",
-            data: { syxx: syxx },
+            data: { syxx: syxx, __RequestVerificationToken: $('[name=__RequestVerificationToken]').val() }, //G30-F4: action đã thêm [ValidateAntiForgeryToken]
             dataType: "json",
             success: function (data) {
                 $.modalMsg("Lưu thành công", 'success', 1000);

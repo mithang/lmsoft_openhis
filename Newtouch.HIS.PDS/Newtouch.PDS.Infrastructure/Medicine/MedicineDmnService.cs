@@ -141,7 +141,22 @@ order by a.ypcode,a.kcsl,a.yxq
                     TypeName = "dbo.yp_syxx"
                 }
             };
-            return FirstOrDefault<string>("EXEC [dbo].[sp_yp_bsby] @CreatorCode, @syxx", param);
+            //G30-F3: dịch message tiếng Trung của proc sp_yp_bsby sang tiếng Việt
+            return MapLossProfitMessage(FirstOrDefault<string>("EXEC [dbo].[sp_yp_bsby] @CreatorCode, @syxx", param));
+        }
+
+        /// <summary>G30-F3: dịch message tiếng Trung của proc sp_yp_bsby sang tiếng Việt (chuỗi lạ giữ nguyên).</summary>
+        private static string MapLossProfitMessage(string message)
+        {
+            if (string.IsNullOrWhiteSpace(message)) return message;
+            switch (message.Trim())
+            {
+                case "从库存中未查到有效的药品": return "Không tìm thấy thuốc hợp lệ trong kho.";
+                case "报损数量不能大于当前可用库存": return "Số lượng báo hỏng không được lớn hơn tồn kho khả dụng hiện tại.";
+                case "插入损益信息失败!": return "Thêm thông tin lãi lỗ thất bại!";
+                case "修改库存失败!": return "Cập nhật tồn kho thất bại!";
+                default: return message;
+            }
         }
         #endregion
 

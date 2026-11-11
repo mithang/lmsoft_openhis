@@ -255,6 +255,14 @@ ORDER BY s.yxq ASC
             var organizeid = OperatorProvider.GetCurrent().OrganizeId;
             var usercode = OperatorProvider.GetCurrent().UserCode;
             var ckbm = Constants.CurrentYfbm.yfbmCode;
+            //G30-F2: list rỗng thì proc vẫn tạo header rỗng + trả rỗng (Success giả) — chặn ở service luôn
+            if (xtYpLsNbfymxk == null || xtYpLsNbfymxk.Count == 0) return "Thông tin thuốc trả không được để trống.";
+            //G30-F2: kiểm tra từng item có khớp join của proc (#djmx) không — base: item hợp lệ nhưng không có trong catalog/bmypxx vẫn tạo orphan header + Success giả
+            foreach (var item in xtYpLsNbfymxk)
+            {
+                if (!IsReturnDetailJoinable(item.Ypdm, tybm, ckbm, organizeid))
+                    return "Không tìm thấy thuốc " + (item.Ypdm ?? "") + " trong danh mục hoặc bộ phận này. Vui lòng kiểm tra lại thông tin thuốc.";
+            }
             var param = new List<SugarParameter>
             {
                 new SugarParameter("@Rkbm", tybm),
@@ -272,7 +280,39 @@ ORDER BY s.yxq ASC
             var outpar = new SugarParameter("@result", "") { DbType = System.Data.DbType.AnsiString, Size = 100, Direction = ParameterDirection.Output };
             param.Add(outpar);
             var proResult = FindList<object>("EXEC [dbo].[YP_XT_NBFYTH] @Rkbm,@Ckbm,@Pdh,@Ckczy,@Crkfsdm,@XT_YP_LS_NBFYMX,@usercode,@organizeid, @type,@result out", param.ToArray());
-            return outpar.Value.ToString();
+            return MapReturnMedicineMessage(outpar.Value.ToString());
+        }
+
+        /// <summary>G30-F2: item chỉ vào được #djmx của YP_XT_NBFYTH khi khớp đúng join của proc (catalog + bmypxx cả 2 kho + yfbm hợp lệ). Đọc [NewtouchHIS_Base] theo mẫu có sẵn trong cây (G26 F5) — trên STG nó đọc demo Base.</summary>
+        private bool IsReturnDetailJoinable(string ypdm, string rkbm, string ckbm, string organizeid)
+        {
+            const string sql = @"
+SELECT COUNT(1) FROM [NewtouchHIS_Base].dbo.V_C_xt_yp J1
+INNER JOIN dbo.xt_yp_bmypxx(NOLOCK) K2 ON K2.Ypdm=J1.ypCode AND K2.OrganizeId=J1.OrganizeId AND K2.zt='1' AND K2.yfbmCode=@Ckbm
+INNER JOIN [NewtouchHIS_Base].dbo.V_S_xt_yfbm K2f ON K2f.yfbmCode=K2.yfbmCode AND K2f.OrganizeId=J1.OrganizeId AND K2f.zt='1'
+INNER JOIN dbo.xt_yp_bmypxx(NOLOCK) K1 ON K1.Ypdm=J1.ypCode AND K1.OrganizeId=J1.OrganizeId AND K1.zt='1' AND K1.yfbmCode=@Rkbm
+INNER JOIN [NewtouchHIS_Base].dbo.V_S_xt_yfbm K1f ON K1f.yfbmCode=K1.yfbmCode AND K1f.OrganizeId=J1.OrganizeId AND K1f.zt='1'
+WHERE J1.ypCode=@Ypdm AND J1.zt='1' AND J1.OrganizeId=@OrganizeId";
+            var par = new SugarParameter[]
+            {
+                new SugarParameter("@Ypdm", ypdm ?? ""),
+                new SugarParameter("@Rkbm", rkbm ?? ""),
+                new SugarParameter("@Ckbm", ckbm ?? ""),
+                new SugarParameter("@OrganizeId", organizeid ?? ""),
+            };
+            return FirstOrDefault<int>(sql, par) > 0;
+        }
+
+        /// <summary>G30-F2: dịch message tiếng Trung của proc YP_XT_NBFYTH sang tiếng Việt (giữ tên thuốc trong ngoặc).</summary>
+        private static string MapReturnMedicineMessage(string message)
+        {
+            if (string.IsNullOrWhiteSpace(message)) return message;
+            return message
+                .Replace("数量必须大于零", "số lượng phải lớn hơn 0")
+                .Replace("库存不足", "tồn kho không đủ")
+                .Replace("写出入库单据失败", "Ghi phiếu xuất/nhập kho thất bại")
+                .Replace("写出入库明细失败", "Ghi chi tiết phiếu xuất/nhập kho thất bại")
+                .Replace("！", "!").Replace("，", ",");
         }
 
         /// <summary>

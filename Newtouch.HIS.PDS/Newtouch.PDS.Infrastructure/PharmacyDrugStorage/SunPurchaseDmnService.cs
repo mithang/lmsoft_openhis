@@ -28,6 +28,13 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 {
     public class SunPurchaseDmnService : DmnServiceBase, ISunPurchaseDmnService
     {
+
+        /// <summary>G30-F6: FailedException(string) chỉ set .Msg, không set .Message — khi inner exception là FailedException thì e.Message là text mặc định ".NET Exception of type..." (base G29 5a). Unwrap .Msg trong trường hợp đó.</summary>
+        private static string UnwrapFailedMessage(Exception e)
+        {
+            if (e is FailedException fe && !string.IsNullOrWhiteSpace(fe.Msg)) return fe.Msg;
+            return e.Message;
+        }
         
         private readonly IPurchaseRepo _purchaseRepo;
 
@@ -276,7 +283,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             catch (Exception e)
             {
                 //G27-F6: YY thất bại phải throw thay vì return e.Message — base: controller gán message lỗi vào cột ddbh varchar(20) gây truncation, local save đã commit trước đó (half-write)
-                throw new FailedException("Khai báo đơn hàng lên nền tảng Sunshine thất bại (YY009): " + e.Message);
+                throw new FailedException("Khai báo đơn hàng lên nền tảng Sunshine thất bại (YY009): " + UnwrapFailedMessage(e));
             }
         }
 
@@ -352,7 +359,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             catch (Exception e)
             {
                 //G27-F6: YY thất bại phải throw thay vì return e.Message (xem YY009)
-                throw new FailedException("Xác nhận khai báo đơn hàng lên nền tảng Sunshine thất bại (YY010): " + e.Message);
+                throw new FailedException("Xác nhận khai báo đơn hàng lên nền tảng Sunshine thất bại (YY010): " + UnwrapFailedMessage(e));
             }
         }
 
@@ -420,7 +427,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             catch (Exception e)
             {
                 //G27-F6: YY thất bại phải throw thay vì return e.Message (xem YY009)
-                throw new FailedException("Khai báo phiếu trả hàng lên nền tảng Sunshine thất bại (YY011): " + e.Message);
+                throw new FailedException("Khai báo phiếu trả hàng lên nền tảng Sunshine thất bại (YY011): " + UnwrapFailedMessage(e));
             }
         }
 
@@ -494,7 +501,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             catch (Exception e)
             {
                 //G27-F6: YY thất bại phải throw thay vì return e.Message (xem YY009)
-                throw new FailedException("Xác nhận khai báo phiếu trả hàng lên nền tảng Sunshine thất bại (YY012): " + e.Message);
+                throw new FailedException("Xác nhận khai báo phiếu trả hàng lên nền tảng Sunshine thất bại (YY012): " + UnwrapFailedMessage(e));
             }
         }
 
@@ -906,7 +913,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             {
                 AppLogger.Info("Gọi giao dịch mua hàng thất bại: " + e.Message);
                 //G29-F6: YY001 thất bại phải throw thay vì return e.Message — base: controller trả Success giả (họ G27 F6)
-                throw new FailedException("Truyền báo điểm giao hàng lên nền tảng Sunshine thất bại (YY001): " + e.Message);
+                throw new FailedException("Truyền báo điểm giao hàng lên nền tảng Sunshine thất bại (YY001): " + UnwrapFailedMessage(e));
             }
         }
 

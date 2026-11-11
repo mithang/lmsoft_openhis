@@ -3,6 +3,8 @@ namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
     /// Chi tiết xuất kho thuốc hệ thống
+    /// G30-F2: THỨ TỰ property PHẢI khớp TVP dbo.XT_YP_LS_NBFYMXK (Ypdm,Ph,pc,Yxq,Lsj,Pfj,fysl,zhyz,lsje,bzdw,sldmxId).
+    /// ToDataTable() tạo cột theo thứ tự khai báo và SqlClient map TVP theo VỊ TRÍ, không theo tên — đảo thứ tự sẽ làm lệch giá trị (fysl nhận lsje, bzdw nhận sldmxId...).
     /// </summary>
     public class XT_YP_LS_NBFYMXK
     {
@@ -37,11 +39,6 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public decimal Pfj { get; set; }
 
         /// <summary>
-        /// Tổng giá bán lẻ
-        /// </summary>
-        public decimal lsje { get; set; }
-
-        /// <summary>
         /// Số lượng phát thuốc Số lượng đơn vị nhỏ nhất
         /// </summary>
         public int fysl { get; set; }
@@ -52,13 +49,18 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public int zhyz { get; set; }
 
         /// <summary>
-        /// Chi tiết lĩnh nhưng ID
+        /// Tổng giá bán lẻ
         /// </summary>
-        public string sldmxId { get; set; }
+        public decimal lsje { get; set; }
 
         /// <summary>
         /// Đơn vị đóng gói
         /// </summary>
         public string bzdw { get; set; }
+
+        /// <summary>
+        /// Chi tiết lĩnh nhưng ID
+        /// </summary>
+        public string sldmxId { get; set; }
     }
 }

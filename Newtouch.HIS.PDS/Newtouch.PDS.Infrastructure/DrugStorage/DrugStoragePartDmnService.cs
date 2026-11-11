@@ -509,16 +509,21 @@ where crkId = @crkId and a.zt='1'
 			}
 		}
 
-		public int ReviseCrkDj(string crkId)
+		public int ReviseCrkDj(string crkId, string orgId)
 		{
-			const string sql = @"
-update dbo.xt_yp_crkdj set shzt=0 where crkId=@crkId
-";
-			var param = new SugarParameter[]
+			//G30-F1: chỉ sửa lại phiếu của đúng org, shzt 0 (đã ở nháp, idempotent) hoặc 1 (đã đạt); shzt 2/3 là trạng thái cuối cùng, không được lật lại; trả -1 khi không sửa được (UI kiểm tra res<0)
+			if (string.IsNullOrWhiteSpace(crkId) || string.IsNullOrWhiteSpace(orgId)) return -1;
+			using (var db = new EFDbTransaction().BeginTrans())
 			{
-					new SugarParameter("@crkId", crkId ),
-			};
-			return ExecuteSqlCommand(sql, param);
+				var inventoryEntity = db.FindEntity<SysMedicineStorageIOReceiptEntity>(p => p.crkId == crkId && p.OrganizeId == orgId);
+				if (inventoryEntity == null) return -1;
+				if (inventoryEntity.shzt == "2" || inventoryEntity.shzt == "3") return -1;
+				inventoryEntity.shzt = "0";
+				inventoryEntity.Modify();
+				db.Update(inventoryEntity);
+				db.Commit();
+				return 1;
+			}
 		}
 
 		public DjGys GetCrkDjh(string crkId, int? djlx)

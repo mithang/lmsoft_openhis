@@ -496,8 +496,9 @@
 			return;
 		}
 		$.ajax({
+			type: "POST",
 			url: "/StorageManage/DrugStockSearch/ReviseCrkDj",
-			data: { crkId: crkId },
+			data: { crkId: crkId, __RequestVerificationToken: $('[name=__RequestVerificationToken]').val() },
 			dataType: "json",
 			async: false,
 			cache: false,
