@@ -73,7 +73,10 @@ namespace Newtouch.HIS.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SubmitSyyyForm(SysMedicineProfitLossReasonEntity SyyyDTO, string keyValue)
         {
-            if (!ModelState.IsValid) return Error("Dữ liệu nhập không hợp lệ, vui lòng kiểm tra lại");
+            // G35-F3b: KHONG dung ModelState.IsValid toan cuc — DTO co CreateTime (DateTime, khong nullable)
+            // khong bao gio duoc post nen ModelState luon invalid; kiem tra truc tiep field can thiet.
+            var pxRaw = Request.Form["px"].ToString();
+            if (!string.IsNullOrEmpty(pxRaw) && !int.TryParse(pxRaw, out _)) return Error("Thứ tự phải là số nguyên");
             var isCreate = string.IsNullOrEmpty(keyValue);
             if (isCreate || SyyyDTO.syyy != null)
             {
@@ -160,7 +163,7 @@ namespace Newtouch.HIS.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SubmitFypzForm(SysDispensingaConfigEntity FypzDTO, string keyValue)
         {
-            if (!ModelState.IsValid) return Error("Dữ liệu nhập không hợp lệ, vui lòng kiểm tra lại");
+            // G35-F3b: bo ModelState.IsValid toan cuc (ly do nhu SubmitSyyyForm — DTO co CreateTime khong post).
             var isCreate = string.IsNullOrEmpty(keyValue);
             if (isCreate || FypzDTO.ykCode != null)
             {
@@ -329,7 +332,7 @@ namespace Newtouch.HIS.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SubmitKsFypzForm(SysYpksfypzEntity FypzDTO, string keyValue)
         {
-            if (!ModelState.IsValid) return Error("Dữ liệu nhập không hợp lệ, vui lòng kiểm tra lại");
+            // G35-F3b: bo ModelState.IsValid toan cuc (ly do nhu SubmitSyyyForm — DTO co CreateTime khong post).
             var isCreate = string.IsNullOrEmpty(keyValue);
             if (isCreate || FypzDTO.ksCode != null)
             {
