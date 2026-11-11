@@ -642,17 +642,27 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
                         };
                         db.ExecuteSqlCommand(strSql.ToString(), paraList);
 
+                        // G33-F7: lấy yzId/zxId từ DB theo Id+org session (UI không gửi yzId; không tin client) —
+                        // czjl có 5 cột NOT NULL mà INSERT cũ bỏ sót (OrganizeId, yzId, zxId, CreateTime, CreatorCode) → INSERT lỗi NULL, catch nuốt thành "Trả thuốc thất bại"
+                        var yzxxRow = this.FindList<YPFYPatientInfoVO>("select yzId, zxId from " + DbNames.Name("PdsDb", "NewtouchHIS_PDS") + ".dbo.zy_ypyzxx where Id=@Id and OrganizeId=@OrganizeId",
+                            new SugarParameter[] { new SugarParameter("@Id", item.Id), new SugarParameter("@OrganizeId", OrganizeId) }).FirstOrDefault();
+                        if (yzxxRow == null) throw new Exception("Không thể truy vấn thông tin phát thuốc này");
                         //Thêm bản ghi thao tác trả thuốc
                         strSql.Clear();
                         strSql.Append(@"insert into " + DbNames.Name("PdsDb", "NewtouchHIS_PDS") + @".dbo.zy_ypyzczjl
-                                  (ypyzxxId,operateType,ypCode,sl,LastModifyTime,LastModifierCode)
-                                  values (@ypyzxxId,@operateType,@ypCode,@sl,@LastModifyTime,@LastModifierCode);");
+                                  (OrganizeId,ypyzxxId,yzId,zxId,operateType,ypCode,sl,CreateTime,CreatorCode,LastModifyTime,LastModifierCode)
+                                  values (@OrganizeId,@ypyzxxId,@yzId,@zxId,@operateType,@ypCode,@sl,@CreateTime,@CreatorCode,@LastModifyTime,@LastModifierCode);");
                         paraList = new SugarParameter[]
                         {
+                        new SugarParameter("@OrganizeId", OrganizeId),
                         new SugarParameter("@ypyzxxId", item.Id),
+                        new SugarParameter("@yzId", yzxxRow.yzId),
+                        new SugarParameter("@zxId", yzxxRow.zxId),
                         new SugarParameter("@operateType", ((int)EnumOperateType.Ty).ToString()),
                         new SugarParameter("@ypCode", item.ypCode),
                         new SugarParameter("@sl", item.tysl),
+                        new SugarParameter("@CreateTime", DateTime.Now),
+                        new SugarParameter("@CreatorCode", OperatorProvider.GetCurrent().UserCode),
                         new SugarParameter("@LastModifierCode", OperatorProvider.GetCurrent().UserCode),
                         new SugarParameter("@LastModifyTime", DateTime.Now)
                         };

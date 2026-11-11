@@ -16,7 +16,8 @@ namespace Newtouch.HIS.Domain.Entity
         /// Khóa chính ID
         /// </summary>
         [Key]
-        [SugarColumn(IsPrimaryKey = true)]
+        // G33-F7: Id là IDENTITY trong DB — thiếu IsIdentity khiến SqlSugar INSERT kèm Id=0 → "Cannot insert explicit value for identity column"
+        [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         public long Id { get; set; }
 
         /// <summary>
