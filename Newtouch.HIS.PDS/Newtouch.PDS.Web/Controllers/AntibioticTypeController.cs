@@ -61,23 +61,42 @@ namespace Newtouch.HIS.Web.Controllers
             // truncation SQL tho lot ra UI. Do dai theo xt_kssType
             // (typeName varchar(50), typelevel varchar(2), qxjb varchar(2),
             // qxjbmc varchar(50), parentId varchar(50)).
+            // G37-POST1 (1f): sua chi validate field DA POST (non-null).
+            // Tao moi: typeName + typelevel bat buoc. Sua: field nao post
+            // thi validate field do (post typeName="" van loi); field khong
+            // post (null) thi merge giu gia tri cu, khong duoc bat buoc.
+            var isCreate = string.IsNullOrEmpty(AntibioticType.Id);
             var typeName = AntibioticType.typeName == null ? null : AntibioticType.typeName.Trim();
-            if (string.IsNullOrEmpty(typeName))
+            if (typeName != null)
+            {
+                if (string.IsNullOrEmpty(typeName))
+                {
+                    throw new FailedException("Tên loại kháng sinh không được để trống");
+                }
+                if (typeName.Length > 50)
+                {
+                    throw new FailedException("Tên loại kháng sinh tối đa 50 ký tự");
+                }
+            }
+            else if (isCreate)
             {
                 throw new FailedException("Tên loại kháng sinh không được để trống");
             }
-            if (typeName.Length > 50)
-            {
-                throw new FailedException("Tên loại kháng sinh tối đa 50 ký tự");
-            }
             var typelevel = AntibioticType.typelevel == null ? null : AntibioticType.typelevel.Trim();
-            if (string.IsNullOrEmpty(typelevel))
+            if (typelevel != null)
+            {
+                if (string.IsNullOrEmpty(typelevel))
+                {
+                    throw new FailedException("Cấp loại không được để trống");
+                }
+                if (typelevel.Length > 2)
+                {
+                    throw new FailedException("Cấp loại tối đa 2 ký tự");
+                }
+            }
+            else if (isCreate)
             {
                 throw new FailedException("Cấp loại không được để trống");
-            }
-            if (typelevel.Length > 2)
-            {
-                throw new FailedException("Cấp loại tối đa 2 ký tự");
             }
             if (AntibioticType.qxjb != null && AntibioticType.qxjb.Length > 2)
             {
@@ -92,7 +111,7 @@ namespace Newtouch.HIS.Web.Controllers
                 throw new FailedException("Mã cấp trên tối đa 50 ký tự");
             }
 
-            if (!string.IsNullOrEmpty(AntibioticType.Id))
+            if (!isCreate)
             {
                 // G37 F37-3: sua — load ban ghi goc (GetById da ve Base STG,
                 // F37-1), merge-skip-null, giu OrganizeId + zt goc. Khong cho
@@ -106,8 +125,16 @@ namespace Newtouch.HIS.Web.Controllers
                 {
                     throw new FailedException("Không có quyền sửa loại kháng sinh của tổ chức khác");
                 }
-                existing.typeName = typeName;
-                existing.typelevel = typelevel;
+                // G37-POST1 (1f): chi copy field da post (non-null) —
+                // typeName/typelevel null nghia la khong post, giu gia tri cu.
+                if (typeName != null)
+                {
+                    existing.typeName = typeName;
+                }
+                if (typelevel != null)
+                {
+                    existing.typelevel = typelevel;
+                }
                 if (AntibioticType.qxjb != null)
                 {
                     existing.qxjb = AntibioticType.qxjb;
