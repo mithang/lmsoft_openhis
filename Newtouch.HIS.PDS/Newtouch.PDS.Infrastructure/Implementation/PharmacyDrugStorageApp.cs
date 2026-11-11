@@ -141,6 +141,10 @@ namespace Newtouch.HIS.Application.Implementation
         /// <param name="pdId"></param>
         public void SaveInventoryInfo(List<SaveInventoryInfoVO> inventoryInfoList, string pdId)
         {
+            if (inventoryInfoList == null || inventoryInfoList.Count == 0)
+            {
+                throw new FailedException("Danh sách kiểm kê trống");
+            }
             var pdInfo = _sysMedicineInventoryRepo.SelectPdInfByPdId(pdId, OperatorProvider.GetCurrent().OrganizeId);
             if (pdInfo == null)
             {
@@ -150,12 +154,25 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 throw new FailedException("Kiểm kê này đã kết thúc");
             }
-            _sysMedicineInventoryDetailRepo.UpdateSlBySaveInventoryInfo(inventoryInfoList);
+            _sysMedicineInventoryDetailRepo.UpdateSlBySaveInventoryInfo(inventoryInfoList, pdId);
         }
 
-        public void SaveInventoryZsmInfo(List<SaveInventoryInfoVO> inventoryInfoList)
+        public void SaveInventoryZsmInfo(List<SaveInventoryInfoVO> inventoryInfoList, string pdId)
         {
-            _sysMedicineInventoryDetailRepo.UpdateZsmBySaveInventoryInfo(inventoryInfoList);
+            if (inventoryInfoList == null || inventoryInfoList.Count == 0)
+            {
+                throw new FailedException("Danh sách kiểm kê trống");
+            }
+            var pdInfo = _sysMedicineInventoryRepo.SelectPdInfByPdId(pdId, OperatorProvider.GetCurrent().OrganizeId);
+            if (pdInfo == null)
+            {
+                throw new FailedException("Không tìm thấy thông tin kiểm kê chỉ định");
+            }
+            if (pdInfo.Jssj != null || pdInfo.Jssj >= Constants.MinDateTime)
+            {
+                throw new FailedException("Kiểm kê này đã kết thúc");
+            }
+            _sysMedicineInventoryDetailRepo.UpdateZsmBySaveInventoryInfo(inventoryInfoList, pdId);
         }
 
         /// <summary>

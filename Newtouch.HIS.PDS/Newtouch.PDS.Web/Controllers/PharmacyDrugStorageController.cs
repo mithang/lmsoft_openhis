@@ -247,6 +247,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="djlx"></param>
         /// <param name="shzt"></param>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitReceiptApproval(string crkId, int djlx, string shzt)
         {
             return _sysMedicineReceiptDmnService.ApprovalStorageIoReceipt(crkId, djlx, shzt) ? Success("Thao tác thành công") : Error("Thao tác thất bại");
@@ -258,6 +260,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="djlx"></param>
         /// <param name="shzt"></param>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitDrupreparation(string byId, string shzt)
         {
             return _sysMedicineReceiptDmnService.SubmitDrupreparation(byId, shzt) ? Success("Thao tác thành công") : Error("Thao tác thất bại");
@@ -442,6 +446,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// Lưu
         /// </summary>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SaveInventoryInfo(string resultObjArr, string pdId)
         {
             _pharmacyDrugStorageApp.SaveInventoryInfo(resultObjArr.ToObject<List<SaveInventoryInfoVO>>(), pdId);
@@ -452,9 +458,11 @@ namespace Newtouch.HIS.Web.Controllers
         /// Lưu thông tin mã truy xuất tồn kho
         /// </summary>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SaveInventoryZsmInfo(string resultObjArr, string pdId)
         {
-            _pharmacyDrugStorageApp.SaveInventoryZsmInfo(resultObjArr.ToObject<List<SaveInventoryInfoVO>>());
+            _pharmacyDrugStorageApp.SaveInventoryZsmInfo(resultObjArr.ToObject<List<SaveInventoryInfoVO>>(), pdId);
             return Success();
         }
 
@@ -633,9 +641,19 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="crkmxId"></param>
         /// <param name="fph"></param>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult UpdateFph(string crkmxId, string fph)
         {
-            return _sysMedicineStorageIOReceiptDetailRepo.UpdateFph(crkmxId, fph) > 0 ? Success() : Error("Sửa số hóa đơn thất bại");
+            if (string.IsNullOrWhiteSpace(fph))
+            {
+                return Error("Số hóa đơn không được để trống");
+            }
+            if (fph.Length > 50)
+            {
+                return Error("Số hóa đơn tối đa 50 ký tự");
+            }
+            return _sysMedicineStorageIOReceiptDetailRepo.UpdateFph(crkmxId, fph, OperatorProvider.GetCurrent().OrganizeId) > 0 ? Success() : Error("Sửa số hóa đơn thất bại");
         }
 
     }

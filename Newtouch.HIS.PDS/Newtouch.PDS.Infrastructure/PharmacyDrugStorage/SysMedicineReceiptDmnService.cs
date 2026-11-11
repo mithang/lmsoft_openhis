@@ -36,9 +36,17 @@ namespace Newtouch.HIS.DomainServices
         public bool ApprovalStorageIoReceipt(string crkId, int djlx, string dstnShzt)
         {
             var curUser = OperatorProvider.GetCurrent();
+            if (dstnShzt != ((int)EnumDjShzt.Approved).ToString() && dstnShzt != ((int)EnumDjShzt.Rejected).ToString() && dstnShzt != ((int)EnumDjShzt.Cancelled).ToString())
+            {
+                throw new FailedException("Trạng thái duyệt không hợp lệ");
+            }
+            if (djlx < (int)EnumDanJuLX.yaopinruku || djlx > (int)EnumDanJuLX.neibufayaotuihui)
+            {
+                throw new FailedException("Loại chứng từ không hỗ trợ duyệt");
+            }
             using (var db = new EFDbTransaction().BeginTrans())
             {
-                var djsh = db.IQueryable<SysMedicineReceiptApprovalEntity>().FirstOrDefault(p => p.crkId == crkId);
+                var djsh = db.IQueryable<SysMedicineReceiptApprovalEntity>().FirstOrDefault(p => p.crkId == crkId && p.OrganizeId == curUser.OrganizeId);
                 if (dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())
                 {
                     if (djsh == null)   //Thao tác hủy bỏ,Phải tồn tại bản ghi duyệt chứng từ
@@ -54,11 +62,23 @@ namespace Newtouch.HIS.DomainServices
                     }
                 }
 
-                var crkdj = db.FindEntity<SysMedicineStorageIOReceiptEntity>(p => p.crkId == crkId && p.djlx == djlx && p.zt == "1");
+                var crkdj = db.FindEntity<SysMedicineStorageIOReceiptEntity>(p => p.crkId == crkId && p.djlx == djlx && p.zt == "1" && p.OrganizeId == curUser.OrganizeId);
                 var djmxList = db.IQueryable<SysMedicineStorageIOReceiptDetailEntity>().Where(p => p.crkId == crkId && p.zt == "1").ToList();
                 if (crkdj == null || djmxList.Count == 0)
                 {
                     throw new FailedException("Chứng từ/Chi tiết chứng từ không tồn tại");
+                }
+                if (crkdj.shzt != ((int)EnumDjShzt.WaitingApprove).ToString() && crkdj.shzt != ((int)EnumDjShzt.Approved).ToString())
+                {
+                    throw new FailedException("Trạng thái chứng từ không hợp lệ, không thể duyệt");
+                }
+                if (crkdj.shzt == ((int)EnumDjShzt.Approved).ToString() && dstnShzt != ((int)EnumDjShzt.Cancelled).ToString())
+                {
+                    throw new FailedException("Chứng từ đã duyệt, chỉ có thể hủy bỏ");
+                }
+                if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())
+                {
+                    throw new FailedException("Chứng từ chưa duyệt, không thể hủy bỏ");
                 }
                 if (djmxList.Any(p => p.Sl < 0))
                 {

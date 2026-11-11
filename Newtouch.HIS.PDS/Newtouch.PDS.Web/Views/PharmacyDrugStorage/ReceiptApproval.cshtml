@@ -227,7 +227,7 @@
                     $.najax({
                         url: "/PharmacyDrugStorage/UpdateFph",
                         type: "POST",
-                        data: { crkmxId: crkmxId,fph: fph },
+                        data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), crkmxId: crkmxId, fph: fph },
                         dataType: "json",
                         success: function (data) {
                             if (data.state === 'success') {
@@ -266,7 +266,7 @@
             return;
         }
         if (selRowData.crkId && selRowData.djlx) {
-            var postData = { crkId: selRowData.crkId, djlx: selRowData.djlx, shzt: dstnShzt };
+            var postData = { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), crkId: selRowData.crkId, djlx: selRowData.djlx, shzt: dstnShzt };
             $.najax({
                 url: "/PharmacyDrugStorage/SubmitReceiptApproval",
                 data: postData,

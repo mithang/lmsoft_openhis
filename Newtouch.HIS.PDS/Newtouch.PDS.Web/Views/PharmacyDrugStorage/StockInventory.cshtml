@@ -275,7 +275,7 @@
             type: "POST",
             url: "/PharmacyDrugStorage/SaveInventoryInfo",
             dataType: "json",
-            data: { resultObjArr: JSON.stringify(resultObjArr), pdId: $("#ddlRQ option:selected").attr('data-pdId') },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), resultObjArr: JSON.stringify(resultObjArr), pdId: $("#ddlRQ option:selected").attr('data-pdId') },
             success: function (ajaxresp) {
                 $.modalAlert("Lưu thành công", 'success');
                 $("#btn_search").trigger("click");

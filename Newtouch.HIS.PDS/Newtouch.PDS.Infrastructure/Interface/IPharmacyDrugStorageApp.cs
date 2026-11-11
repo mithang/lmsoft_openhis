@@ -80,8 +80,9 @@ namespace Newtouch.HIS.Application.Interface
         /// <summary>
         /// Lưu thông tin mã truy xuất tồn kho
         /// </summary>
-        /// <param name="SaveInventoryZsmInfo"></param>
-        void SaveInventoryZsmInfo(List<SaveInventoryInfoVO> inventoryInfoList);
+        /// <param name="inventoryInfoList"></param>
+        /// <param name="pdId"></param>
+        void SaveInventoryZsmInfo(List<SaveInventoryInfoVO> inventoryInfoList, string pdId);
 
         /// <summary>
         /// Kết thúc kiểm kê
