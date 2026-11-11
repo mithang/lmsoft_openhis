@@ -164,6 +164,12 @@ namespace Newtouch.HIS.Web.Controllers
             {
                 throw new FailedException("Vui lòng nhập đơn vị nhỏ nhất.");
             }
+            //G39-F10b: xt_ypsx.ybbz NOT NULL nhưng không có trong 8 field F39-10 — thiếu ybbz
+            //là lỗi SQL thô (12a post). Cờ BHYT là select required trên form SysMedicineAdd.
+            if (string.IsNullOrWhiteSpace(model.ybbz))
+            {
+                throw new FailedException("Vui lòng chọn cờ BHYT.");
+            }
             _sysMedicineDmnService.SubmitMedicine(model, keyValue);
             var t = SubmitEmpowermentPharmacyDepartment(p, ypCode, model.OrganizeId, keyValue);
             var msg = string.IsNullOrWhiteSpace(t) ? "Thao tác thành công." : ("Lưu thông tin thuốc thành công,nhưng ủy quyền nhà thuốc/kho thuốc thất bại," + t);

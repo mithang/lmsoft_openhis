@@ -676,7 +676,9 @@ namespace Newtouch.HIS.Web.Controllers
         public IActionResult ExecHandOutMedicineByReq(Dictionary<string, List<XT_YP_LS_NBFYMXK>> xtYpLsNbfymxk, string fyfs, int type)
         {
             //G39-F7: chặn dict rỗng TRƯỚC khi mint fydh (đỡ đốt 1 số serial cho input rỗng — C-G39-5 một phần).
-            if (xtYpLsNbfymxk == null || xtYpLsNbfymxk.Count == 0) return Error("Thông tin đơn lĩnh không được để trống.");
+            //G39-F7b: binder còn tạo dict rác {"fyfs":[],"type":[],...} khi không post dict (8d) — dict
+            //có key nhưng mọi list đều rỗng cũng phải chặn ở đây, trước khi mint.
+            if (xtYpLsNbfymxk == null || xtYpLsNbfymxk.Count == 0 || xtYpLsNbfymxk.Values.All(v => v == null || v.Count == 0)) return Error("Thông tin đơn lĩnh không được để trống.");
             var fydh = EFDBBaseFuncHelper.Instance.GetNewMedicineReceiptNo("Linh Phat thuoc don", Constants.CurrentYfbm.yfbmCode, OrganizeId);
             var res = _handOutMedicineDmnService.HandOutMedicineByRequest(xtYpLsNbfymxk, fydh, fyfs, type);
             return string.IsNullOrWhiteSpace(res) ? Success() : Error(res);

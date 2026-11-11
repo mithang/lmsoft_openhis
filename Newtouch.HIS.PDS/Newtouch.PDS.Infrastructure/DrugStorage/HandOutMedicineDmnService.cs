@@ -144,9 +144,11 @@ ORDER BY s.yxq ASC
         public string HandOutMedicineByRequest(Dictionary<string, List<XT_YP_LS_NBFYMXK>> xtYpLsNbfymxk, string fydh, string fyfs, int type)
         {
             //G39-F7: base: dict null/rỗng vẫn NRE ở foreach (8d); key có list null cũng NRE ở .Where.
-            //Lưu ý: 8a dict đã bind đầy đủ vẫn NRE ở :147 — nguyên nhân gốc chưa tìm ra bằng đọc code
-            //tĩnh (đã loại trừ DLL cũ, proc thiếu, CurrentYfbm null); post probe PHẢI re-test 8a, nếu
-            //vẫn NRE thì build real-DLL harness (C-G39-1).
+            //G39-F7b (post probe): NRE gốc đã tìm ra — KHÔNG phải dict null (dict bind đầy đủ) mà là
+            //outpar2.Value null ở dòng GetSLFYInfo: proc trả @res='' (chứng minh bằng sqlcmd trực tiếp),
+            //nhưng Database.SqlQuery<T> (EFDBBase) không trả output @res về SugarParameter cho call này
+            //→ .ToString() NRE. outpar1 (NBFYTH @result) cùng hàm đã null-check sẵn — outpar2 thì không.
+            //Fix: null-check outpar2 như outpar1; các guard chẩn đoán tạm đã gỡ.
             if (xtYpLsNbfymxk == null || xtYpLsNbfymxk.Count == 0) return "Thông tin đơn lĩnh không được để trống.";
             #region Xuất kho theo đơn lĩnh
             foreach (var key in xtYpLsNbfymxk.Keys)
@@ -155,16 +157,28 @@ ORDER BY s.yxq ASC
                 var ckbm = Constants.CurrentYfbm.yfbmCode;
                 var organizeid = OperatorProvider.GetCurrent().OrganizeId;
                 var usercode = OperatorProvider.GetCurrent().UserCode;
+                //G39-F7d: như G30-F2 ở RequestOfReturnMedicine/HandOutMedicine — key là Rkbm (UI: Slbm,
+                //mã khoa xin lĩnh); key/ypdm không khớp join #djmx của proc thì NBFYTH vẫn tạo header
+                //rỗng + trả rỗng (Success giả — 8a/8g supp3 với key "K1" giả). Chặn ở service trước
+                //khi gọi proc; chỉ kiểm item có fysl>0 (đúng tập proc sẽ xử lý).
+                foreach (var item in xtYpLsNbfymxk[key].Where(p => p.fysl > 0))
+                {
+                    if (!IsReturnDetailJoinable(item.Ypdm, key, ckbm, organizeid))
+                        return "Không tìm thấy thuốc " + (item.Ypdm ?? "") + " trong danh mục hoặc bộ phận này. Vui lòng kiểm tra lại thông tin thuốc.";
+                }
 
                 #region Gọi theo thông tin thuốcYP_XT_GetSLFYInfo Nhận lô，Số lô，Hạn dùng
+                //G39-F7c: cột DataTable PHẢI có kiểu (decimal/int) — cột string mặc định làm
+                //decimal 0.04 → chuỗi "0,04" theo culture vi-VN của request thread; TVP money
+                //nuốt lặng ("0,04"→4.00) còn TVP numeric báo 8114 "nvarchar to numeric" (8a/8g).
                 var dt = new DataTable();
-                dt.Columns.Add("Ypdm");
-                dt.Columns.Add("Sl");
-                dt.Columns.Add("zhyz");
-                dt.Columns.Add("bzdw");
-                dt.Columns.Add("Lsj");
-                dt.Columns.Add("Pfj");
-                dt.Columns.Add("sldmxId");
+                dt.Columns.Add("Ypdm", typeof(string));
+                dt.Columns.Add("Sl", typeof(int));
+                dt.Columns.Add("zhyz", typeof(int));
+                dt.Columns.Add("bzdw", typeof(string));
+                dt.Columns.Add("Lsj", typeof(decimal));
+                dt.Columns.Add("Pfj", typeof(decimal));
+                dt.Columns.Add("sldmxId", typeof(string));
                 foreach (var item in xtYpLsNbfymxk[key].Where(p => p.fysl > 0))
                 {
                     var row = dt.NewRow();
@@ -189,21 +203,26 @@ ORDER BY s.yxq ASC
                 var outpar2 = new SugarParameter("@res", "") { DbType = System.Data.DbType.String, Size = 100, Direction = ParameterDirection.Output };
                 sqlParList2.Add(outpar2);
                 var retun = FindList<XT_YP_LS_NBFYMXK>("EXEC dbo.YP_XT_GetSLFYInfo @YfbmCode, @Organizeid, @OrderDetailsType,@res Out", sqlParList2.ToArray());
-                if (!string.IsNullOrWhiteSpace(outpar2.Value.ToString())) return MapReturnMedicineMessage(outpar2.Value.ToString());
+                //G39-F7b: outpar2.Value có thể null (xem chú thích đầu hàm) — null-check như outpar1,
+                //không .ToString() trực tiếp. Value null = không đọc được message của proc, đi tiếp
+                //theo retun (rỗng → "Không có thuốc khả dụng"; có dòng → NBFYTH tự kiểm tồn kho).
+                if (outpar2.Value != null && !string.IsNullOrWhiteSpace(outpar2.Value.ToString())) return MapReturnMedicineMessage(outpar2.Value.ToString());
                 if (retun == null || retun.Count <= 0) return "Không có thuốc khả dụng";
                 #endregion
+                //G39-F7c: như dt — cột số phải có kiểu, Yxq giữ string (ISO '2025-09-06 00:00:00'
+                //chuyển sang datetime của TVP được; đã kiểm chứng bằng sqlcmd trực tiếp).
                 var dtt = new DataTable();
-                dtt.Columns.Add("Ypdm");
-                dtt.Columns.Add("Ph");
-                dtt.Columns.Add("pc");
-                dtt.Columns.Add("Yxq");
-                dtt.Columns.Add("Lsj");
-                dtt.Columns.Add("Pfj");
-                dtt.Columns.Add("fysl");
-                dtt.Columns.Add("zhyz");
-                dtt.Columns.Add("lsje");
-                dtt.Columns.Add("bzdw");
-                dtt.Columns.Add("sldmxId");
+                dtt.Columns.Add("Ypdm", typeof(string));
+                dtt.Columns.Add("Ph", typeof(string));
+                dtt.Columns.Add("pc", typeof(string));
+                dtt.Columns.Add("Yxq", typeof(string));
+                dtt.Columns.Add("Lsj", typeof(decimal));
+                dtt.Columns.Add("Pfj", typeof(decimal));
+                dtt.Columns.Add("fysl", typeof(int));
+                dtt.Columns.Add("zhyz", typeof(int));
+                dtt.Columns.Add("lsje", typeof(decimal));
+                dtt.Columns.Add("bzdw", typeof(string));
+                dtt.Columns.Add("sldmxId", typeof(string));
                 retun.ForEach(p =>
                 {
                     var row = dtt.NewRow();

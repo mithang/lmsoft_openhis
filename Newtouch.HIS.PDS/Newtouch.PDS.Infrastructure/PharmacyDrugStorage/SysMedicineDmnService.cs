@@ -1,4 +1,4 @@
-using NewtouchHIS.Lib.Base.Extension;
+﻿using NewtouchHIS.Lib.Base.Extension;
 using DbConfigHelper;
 using Newtouch.Infrastructure.EF;
 using Newtouch.HIS.Repository;
@@ -841,6 +841,10 @@ where ypId=@ypId");
                         db.Commit();
                     }
                 }
+                catch (FailedException)
+                {
+                    throw;
+                }
                 catch (Exception ex)
                 {
                     throw new FailedException(ex.Message);
@@ -1006,6 +1010,10 @@ where ypId=@ypId");
                         db.ExecuteSqlCommand(strSql2.ToString(), paraList2);
                         db.Commit();
                     }
+                }
+                catch (FailedException)
+                {
+                    throw;
                 }
                 catch (Exception ex)
                 {
