@@ -21,7 +21,8 @@
     function SwithUserPharmacy(yfbmCode, mzzybz, yfbmjb, yfbmmc) {
         $.najax({
             url: "/Home/SetUserPharmacy",
-            data: { yfbmCode: yfbmCode, mzzybz: mzzybz, yfbmjb: yfbmjb, yfbmmc: yfbmmc },
+            // G34-F1: SetUserPharmacy yeu cau antiforgery token (layout _Form.cshtml da render).
+            data: { yfbmCode: yfbmCode, mzzybz: mzzybz, yfbmjb: yfbmjb, yfbmmc: yfbmmc, __RequestVerificationToken: $('input[name=__RequestVerificationToken]').val() },
             type: "post",
             dataType: "json",
             success: function (data) {

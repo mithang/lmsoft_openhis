@@ -89,7 +89,8 @@
                 $.najax({
                     url: "/Home/SyncSysConfigParams",
                     type: "POST",
-                    data: {orgId: '@(opeator.OrganizeId)'},
+                    // G34-F4: SyncSysConfigParams yeu cau antiforgery token (layout _Index.cshtml da render).
+                    data: {orgId: '@(opeator.OrganizeId)', __RequestVerificationToken: $('input[name=__RequestVerificationToken]').val()},
                     dataType: "json",
                     async: false,
                     success: function (data) {

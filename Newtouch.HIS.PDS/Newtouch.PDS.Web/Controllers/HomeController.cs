@@ -171,9 +171,12 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Hook doi org (FrameworkBase.MultiOrg da mat) — khong action nao goi nua.
+        /// G34-F3: [NonAction] — chan routing GET ghi Redis + cookie + param trust (UserId/OrganizeId
+        /// tu request); chi chan routing, goi truc tiep tu C# van chay.
         /// </summary>
         /// <param name="opr"></param>
+        [NonAction]
         public void SwithOrgSuccessOprBeforeSave(OperatorModel opr)
         {
             //Cập nhật phần nhà thuốc người dùng
@@ -276,6 +279,10 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="kfName">Tên kho</param>
         /// <param name="kfLeve">Cấp kho</param>
         /// <returns></returns>
+        // G34-F1: GET-write -> chi POST + antiforgery (mau SwithOrg cung controller).
+        // G34-F2: validate yfbmCode + lay gia tri hien thi tu DB, khong tin client.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SetUserPharmacy(string yfbmCode, string mzzybz, string yfbmjb, string yfbmmc)
         {
             // NX16-001: [HandlerLogin] da bo — request an danh bi filter chan; giu guard phong thu:
@@ -285,11 +292,29 @@ namespace Newtouch.HIS.Web.Controllers
             {
                 return Error("Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại.");
             }
+            if (string.IsNullOrWhiteSpace(yfbmCode))
+            {
+                return Error("Vui lòng chọn nhà thuốc");
+            }
+            // G34-F2: code phai ton tai o org hien tai (zt=1) — GetUserYfbmByCode tra null
+            // neu code bogus / khac org / zt!=1; va phai nam trong danh sach kho cua user.
+            var yfbm = _sysPharmacyDepartmentRepo.GetUserYfbmByCode(yfbmCode, curOpr.OrganizeId);
+            if (yfbm == null)
+            {
+                return Error("Nhà thuốc không hợp lệ");
+            }
+            var userCodes = _sysUserDmnService.GetYfbmCodeListByUserId(curOpr.UserId, curOpr.OrganizeId);
+            if (userCodes == null || !userCodes.Contains(yfbmCode))
+            {
+                return Error("Nhà thuốc không hợp lệ");
+            }
             var opr = Constants.CurrentYfbm;
-            opr.yfbmCode = yfbmCode;
-            opr.yfbmjb = yfbmjb;
-            opr.mzzybz = mzzybz;
-            opr.yfbmmc = yfbmmc;
+            // G34-F2: lay mzzybz/yfbmjb/yfbmmc tu DB (yfbm), bo 3 param client
+            // (giu signature de view khong doi).
+            opr.yfbmCode = yfbm.yfbmCode;
+            opr.yfbmjb = yfbm.yfbmjb;
+            opr.mzzybz = yfbm.mzzybz;
+            opr.yfbmmc = yfbm.yfbmmc;
             Constants.SetCurrentYfbm(curOpr.UserId, opr);
             return Success("Chuyển thành công");
         }
@@ -321,8 +346,31 @@ namespace Newtouch.HIS.Web.Controllers
         /**
          * Đồng bộ tham Số cấu hình hệ thống
          */
+        // G34-F4: GET-write -> chi POST + antiforgery (mau SwithOrg cung controller).
+        // G34-F5: orgId rong -> loi TV (sua NRE); org khong ton tai -> loi TV.
+        // G34-F6: skip Insert khi 0 dong (mau Herp).
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SyncSysConfigParams(string orgId)
         {
+            if (string.IsNullOrWhiteSpace(orgId))
+            {
+                return Error("Vui lòng chọn tổ chức");
+            }
+            // G34-F5: org phai ton tai trong Sys_Organize (tra cuu BaseDb, mau SHELL-C GetOrgName
+            // cung controller; read-only, khong ghi demo) — neu khong, dong bo se tao dong rac OrganizeId bogus.
+            string orgName = null;
+            try
+            {
+                orgName = SqlSugarDbContext.Db.GetConnection("BaseDb").Ado.GetString(
+                    "select top 1 Name from [NewtouchHIS_Base].[dbo].[Sys_Organize] with(nolock) where Id = @id",
+                    new SugarParameter("@id", orgId));
+            }
+            catch { /* org khong ton tai hoac loi tra cuu -> loi ben duoi */ }
+            if (string.IsNullOrWhiteSpace(orgName))
+            {
+                return Error("Tổ chức không tồn tại");
+            }
             //Dữ liệu cơ bản
             var sysConfigBaseEntities = _sysConfigRepo.GetList("", "*").ToList();
             //Dữ liệu tự mang của tổ chức
@@ -337,7 +385,8 @@ namespace Newtouch.HIS.Web.Controllers
                 item.Id = Guid.NewGuid().ToString();
                 item.OrganizeId = orgId;
             }
-            var insert = _sysConfigRepo.Insert(filteredEntities);
+            // G34-F6: khong co dong moi thi khong goi Insert (tranh lenh insert rong).
+            var insert = filteredEntities.Count > 0 ? _sysConfigRepo.Insert(filteredEntities) : 0;
             return Success("",insert);
         }
     }
