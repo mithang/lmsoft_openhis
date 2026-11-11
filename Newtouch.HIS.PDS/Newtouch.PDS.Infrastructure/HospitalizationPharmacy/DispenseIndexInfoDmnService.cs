@@ -1,4 +1,4 @@
-using NewtouchHIS.Lib.Base.Extension;
+﻿using NewtouchHIS.Lib.Base.Extension;
 using DbConfigHelper;
 using Newtouch.Core.Common.Utils;
 using FrameworkBase.MultiOrg.DmnService;
@@ -446,7 +446,8 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
                 using (var db = new EFDbTransaction().BeginTrans())
                 {
                     var yzxxList = _yzYpyzxxRepo.SelectDataByYzId(yzId, zxId, organizeId);
-                    if (yzxxList == null || yzxxList.Count == 0) return "";
+                    // G33-F1: không tìm thấy y lệnh → lỗi (trước đây return "" = Success giả)
+                    if (yzxxList == null || yzxxList.Count == 0) return "Không tìm thấy y lệnh cần xóa";
 
                     foreach (var yzxx in yzxxList)
                     {
@@ -542,19 +543,25 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
         /// </summary>
         /// <param name="list"></param>
         /// <returns>0:Không có thông tin phát thuốc,1:Có thể trả thuốc,2:Không xin trả thuốc,3:Đã trả rồi</returns>
-        public int IsTYHasOperated(List<ModelBQBRYZZXTYInfoVO> list)
+        public int IsTYHasOperated(List<ModelBQBRYZZXTYInfoVO> list, string organizeId)
         {
-            StringBuilder strSql = new StringBuilder("select fybz,sqtybz from NewtouchHIS_PDS.dbo.zy_ypyzxx");
+            if (list == null || list.Count == 0) return 0;
+            // G33-F0: đọc PDS STG qua DbNames (trước đây hardcode demo NewtouchHIS_PDS);
+            // lọc OrganizeId session (trước đây không lọc → flip cross-org);
+            // alias sqtybz AS sqtyzt (cột DB là sqtybz, VO map theo tên sqtyzt — trước đây luôn null nên nhánh flag=2 không tới được)
+            StringBuilder strSql = new StringBuilder("select fybz,sqtybz as sqtyzt from " + DbNames.Name("PdsDb", "NewtouchHIS_PDS") + ".dbo.zy_ypyzxx");
             var parms = new List<SugarParameter>();
+            parms.Add(new SugarParameter("@OrganizeId", organizeId ?? ""));
             for (int i = 0; i < list.Count; i++)
             {
                 if (i == 0)
                 {
-                    strSql.Append(" where 1=0");
+                    strSql.Append(" where OrganizeId=@OrganizeId and (1=0");
                 }
                 strSql.Append(string.Format(" or Id = @Id{0}", i));
                 parms.Add(new SugarParameter(string.Format("@Id{0}", i), list[i].Id));
             }
+            strSql.Append(")");
             List<YPFYPatientInfoVO> listFind = this.FindList<YPFYPatientInfoVO>(strSql.ToString(), parms.ToArray());
             if (listFind != null && listFind.Count > 0)
             {
@@ -587,12 +594,13 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
         /// <returns></returns>
         public string ZYBQTYOperate(List<ModelBQBRYZZXTYInfoVO> list, string type,string OrganizeId)
         {
-            if (list.Count < 1)
+            // G33-F6: null-guard (binder cho List<T> thường trả empty list, nhưng gọi service trực tiếp có thể null)
+            if (list == null || list.Count < 1)
             {
                 return "Dữ liệu gửi trống！";
             }
 
-            int flag = IsTYHasOperated(list);
+            int flag = IsTYHasOperated(list, OrganizeId);
             if (flag == 0)
             {
                 return "Không thể truy vấn thông tin phát thuốc này";
@@ -604,6 +612,11 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
             if (flag == 3)
             {
                 return "Đã trả thuốc，Cấm thao tác trùng lặp";
+            }
+            // G33-F6: tysl<=0 không có thuốc để trả (trước đây vẫn flip fybz→3 + kcsl+=0 rồi báo "thành công")
+            if (list.Any(p => p.tysl <= 0))
+            {
+                return "Số lượng trả thuốc phải lớn hơn 0";
             }
             try
             {
@@ -617,13 +630,15 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
                                   SET       fybz = @fybz,
                                             LastModiFierCode = @user,
                                             LastModifyTime = @time
-                                  WHERE     Id = @Id;");
+                                  WHERE     Id = @Id AND OrganizeId = @OrganizeId;");
                         var paraList = new SugarParameter[]
                         {
                         new SugarParameter("@fybz", ((int)EnumFybz.Yt).ToString()),
                         new SugarParameter("@user", OperatorProvider.GetCurrent().UserCode),
                         new SugarParameter("@time", DateTime.Now),
-                        new SugarParameter("@Id", item.Id)
+                        new SugarParameter("@Id", item.Id),
+                        // G33-F6: chỉ flip hàng thuộc org session (trước đây WHERE theo Id không lọc org → flip cross-org)
+                        new SugarParameter("@OrganizeId", OrganizeId)
                         };
                         db.ExecuteSqlCommand(strSql.ToString(), paraList);
 
@@ -660,7 +675,8 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
                         new SugarParameter("@ph", item.ypph),
                         new SugarParameter("@ypCode", item.ypCode),
                         new SugarParameter("@tysl", item.tysl),
-                        new SugarParameter("@OrganizeId", item.OrganizeId),
+                        // G33-F6: OrganizeId session, không lấy từ client (item.OrganizeId do client gửi)
+                        new SugarParameter("@OrganizeId", OrganizeId),
                         new SugarParameter("@yfbmCode", Constants.CurrentYfbm.yfbmCode),
                         new SugarParameter("@CreatorCode", OperatorProvider.GetCurrent().UserCode)
                         };
@@ -964,14 +980,16 @@ ORDER BY r.applyNo, r.ypmc
         /// <returns></returns>
         public List<HospitalizationReturnDispenseDetail> SelectReturnDrugDetail(string applyNo, string yzId, string zxId, string ypCode, string yfbmCode, string organizeId)
         {
-            const string sql = @"
+            // G33-F0: yzxx/zxph/tymx đọc PDS STG qua DbNames (trước đây hardcode demo NewtouchHIS_PDS)
+            var pdsDb = DbNames.Name("PdsDb", "NewtouchHIS_PDS");
+            string sql = @"
 SELECT d.yzId, d.zxId, d.ypCode, CONVERT(INT, ISNULL(d.zxdwsl,0)) zxdwsl, LTRIM(RTRIM(d.ph)) ph, LTRIM(RTRIM(d.pc)) pc, d.zhyz, rdb.applyNo, rdbd.Id rdbdId
 FROM (
 	SELECT SUM(s.zxdwsl) zxdwsl, s.pc, s.ph, s.ypCode, s.yzId, s.zxId, s.zhyz
 	FROM (
 		SELECT c.sl zxdwsl, c.pc, c.ph, c.ypCode, a.yzId, a.zxId, a.zhyz 
-		FROM NewtouchHIS_PDS.dbo.zy_ypyzxx(NOLOCK) a 
-		INNER JOIN NewtouchHIS_PDS.dbo.zy_ypyzzxph(NOLOCK) c ON c.yzId=a.yzId AND c.zxId=a.zxId AND c.ypCode=a.ypCode AND c.zt='1' AND c.gjzt='0' AND c.OrganizeId=a.OrganizeId
+		FROM " + pdsDb + @".dbo.zy_ypyzxx(NOLOCK) a 
+		INNER JOIN " + pdsDb + @".dbo.zy_ypyzzxph(NOLOCK) c ON c.yzId=a.yzId AND c.zxId=a.zxId AND c.ypCode=a.ypCode AND c.zt='1' AND c.gjzt='0' AND c.OrganizeId=a.OrganizeId
 		WHERE a.organizeId=@OrganizeId
 		AND a.fyyf=@yfbmCode
 		AND a.ypCode=@ypCode
@@ -979,8 +997,8 @@ FROM (
 		AND a.zxId=@zxId
 		UNION ALL
 		SELECT -1*c.sl zxdwsl, c.pc, c.ph, c.ypCode, a.yzId, a.zxId, a.zhyz
-		FROM NewtouchHIS_PDS.dbo.zy_ypyzxx(NOLOCK) a 
-		INNER JOIN NewtouchHIS_PDS.dbo.zy_tymx(NOLOCK) c ON c.yzId=a.yzId AND c.ypCode=a.ypCode AND c.zxId=a.zxId AND c.OrganizeId=a.OrganizeId AND c.zt='1'
+		FROM " + pdsDb + @".dbo.zy_ypyzxx(NOLOCK) a 
+		INNER JOIN " + pdsDb + @".dbo.zy_tymx(NOLOCK) c ON c.yzId=a.yzId AND c.ypCode=a.ypCode AND c.zxId=a.zxId AND c.OrganizeId=a.OrganizeId AND c.zt='1'
 		WHERE a.organizeId=@OrganizeId
 		AND a.fyyf=@yfbmCode
 		AND a.ypCode=@ypCode

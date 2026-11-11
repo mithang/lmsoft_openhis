@@ -1,4 +1,4 @@
-using Newtouch.Infrastructure.EF;
+﻿using Newtouch.Infrastructure.EF;
 using Newtouch.HIS.Application.Implementation;
 using FrameworkBase.MultiOrg.DmnService;
 using System;
@@ -30,9 +30,10 @@ namespace Newtouch.HIS.Application.Implementation.Process
             if (Request == null || Request.tyDrugDetail.Count == 0) throw new FailedException("Vui lòng truyền thông tin trả thuốc hiệu lực");
             try
             {
-                var locker = new object();
                 List<ExecuteBatchDetail> execteBatch;
-                Parallel.ForEach(Request.tyDrugDetail.Select(p => p.applyNo).Distinct().ToList(), item =>
+                // G33-F4: tuan tu, khong Parallel.ForEach — loi throw phai giu message that,
+                // khong bi boc AggregateException ("One or more errors occurred. (X)X"); thu tu xac dinh (nhu G32 F2-2)
+                foreach (var item in Request.tyDrugDetail.Select(p => p.applyNo).Distinct().ToList())
                 {
                     var applyInfo = new ZyReturnDrugApplyBillRepo(new DefaultDatabaseFactory()).SelectData(item, Request.organizeId);
                     if (applyInfo == null) throw new Exception(string.Format("Không tìm thấy đơn xin trả thuốc【{0}】", item));
@@ -50,10 +51,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
                         userCode = Request.userCode,
                         yfbmCode = Request.yfbmCode
                     };
-                    lock (locker)
-                    {
-                        _effectiveLs.Add(effective);
-                    }
+                    _effectiveLs.Add(effective);
 
                     var yzId = Request.tyDrugDetail.Find(p => p.applyNo == item).yzId;
 
@@ -91,7 +89,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
                                     });
                                 });
                         });
-                });
+                }
             }
             catch (Exception e)
             {

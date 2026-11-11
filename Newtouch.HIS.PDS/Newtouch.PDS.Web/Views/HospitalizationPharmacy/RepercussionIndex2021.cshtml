@@ -1,4 +1,4 @@
-
+﻿
 @{
     ViewBag.Title = "Trả thuốc nội trú";
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
@@ -569,7 +569,7 @@
             $.najax({
                 type: "POST",
                 url: "/HospitalizationPharmacy/ExecuteReturnDrugV2",
-                data: { tyParams: tymx },
+                data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), tyParams: tymx },
                 alerterror: false,
                 success: function (res) {
                     if (res.state === "success") {

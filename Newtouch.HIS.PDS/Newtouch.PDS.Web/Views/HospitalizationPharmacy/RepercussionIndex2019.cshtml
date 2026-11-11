@@ -1,4 +1,4 @@
-
+﻿
 @{
     ViewBag.Title = "Trả thuốc nội trú";
     Layout = "~/Views/Shared/_Index.cshtml";
@@ -543,7 +543,7 @@
             $.najax({
                 type: "POST",
                 url: "/HospitalizationPharmacy/ExecuteReturnDrug",
-                data: { tyParams: tymx },
+                data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), tyParams: tymx },
                 alerterror: false,
                 success: function (res) {
                     if (res.state === "success") {

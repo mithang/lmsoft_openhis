@@ -1,4 +1,4 @@
-using NewtouchHIS.Lib.Framework.Filter;
+﻿using NewtouchHIS.Lib.Framework.Filter;
 using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Lib.Base.Model;
 using Newtouch.Infrastructure.EF;
@@ -205,6 +205,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="yzId">Y lệnh ID</param>
         /// <param name="zxId">Thực hiện y lệnh ID</param>
         /// <returns></returns>
+                [HttpPost]
+        [ValidateAntiForgeryToken] // G33-F3: GET-write -> chi POST + token
         public IActionResult DeleteYzxx(string yzId, string zxId)
         {
             var result = _idispenseIndexInfoDmnService.DeleteYzxx(yzId, zxId, OrganizeId, OperatorProvider.GetCurrent().UserCode);
@@ -220,6 +222,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="ypCode"></param>
         /// <param name="yzId"></param>
         /// <returns></returns>
+                [HttpPost]
+        [ValidateAntiForgeryToken] // G33-F3: GET-write -> chi POST + token
         public IActionResult CancelArrangement(string pc, string ph, string ypCode, string zxId, string yzId)
         {
             var param = new CancelArrangement
@@ -242,6 +246,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// </summary>
         /// <param name="fyls">Danh sách phát thuốc</param>
         [HandlerAjaxOnly]
+                [HttpPost]
+        [ValidateAntiForgeryToken] // G33-F3: GET-write -> chi POST + token
         public IActionResult DispensingDrugs(List<DispensingDrugsParam> fyls)
         {
             var result = _hospitalizationPharmacyApp.HospitalizationDispensing(fyls, OperatorProvider.GetCurrent().UserCode, Constants.CurrentYfbm.yfbmCode, OrganizeId,out string fyid);
@@ -334,6 +340,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// </summary>
         /// <param name="SqdArr">Đơn xin</param>
         [HandlerAjaxOnly]
+                [HttpPost]
+        [ValidateAntiForgeryToken] // G33-F3: GET-write -> chi POST + token
         public IActionResult ApplyNoSendDrugs(string SqdArr)
         {
             var result = _idispenseIndexInfoDmnService.ApplyNoSendDrugs(SqdArr, OperatorProvider.GetCurrent().UserCode, Constants.CurrentYfbm.yfbmCode, OrganizeId);
@@ -344,6 +352,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// </summary>
         /// <param name="SqdArr"></param>
         /// <returns></returns>
+                [HttpPost]
+        [ValidateAntiForgeryToken] // G33-F3: GET-write -> chi POST + token
         public IActionResult ApplyNoReturnDrugs(string SqdArr)
         {
             var sqdObj = new
@@ -381,6 +391,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// </summary>
         /// <param name="Sqd"></param>
         /// <returns></returns>
+                [HttpPost]
+        [ValidateAntiForgeryToken] // G33-F3: GET-write -> chi POST + token
         public IActionResult KcApplyNoReturnDrugsConfirm(string Sqd)
         {
             var result = _idispenseIndexInfoDmnService.KcApplyNoReturnDrugs(Sqd, OperatorProvider.GetCurrent().UserCode, Constants.CurrentYfbm.yfbmCode, OrganizeId);
@@ -391,6 +403,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// </summary>
         /// <param name="SqdArr"></param>
         /// <returns></returns>
+                [HttpPost]
+        [ValidateAntiForgeryToken] // G33-F3: GET-write -> chi POST + token
         public IActionResult KcApplyNoReturnDrugs(string Sqd)
         {
             var sqdObj = new
@@ -688,6 +702,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// </summary>
         /// <param name="ModelBQBRYZZXTYInfoVO"></param>
         /// <param name="type"></param>
+                [HttpPost]
+        [ValidateAntiForgeryToken] // G33-F3: GET-write -> chi POST + token
         public string ZYBQTYOperate(List<ModelBQBRYZZXTYInfoVO> ModelBQBRYZZXTYInfoVO, string type)
         {
             return _idispenseIndexInfoDmnService.ZYBQTYOperate(ModelBQBRYZZXTYInfoVO, type,this.OrganizeId);
@@ -858,6 +874,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// </summary>
         /// <param name="tyParams"></param>
         /// <returns></returns>
+                [HttpPost]
+        [ValidateAntiForgeryToken] // G33-F3: GET-write -> chi POST + token
         public IActionResult ExecuteReturnDrug(tyParam[] tyParams)
         {
             if (tyParams == null || tyParams.Length == 0) return Error("Vui lòng truyền thông tin thuốc cần trả");
@@ -880,6 +898,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// </summary>
         /// <param name="tyParams"></param>
         /// <returns></returns>
+                [HttpPost]
+        [ValidateAntiForgeryToken] // G33-F3: GET-write -> chi POST + token
         public IActionResult ExecuteReturnDrugV2(tyParam[] tyParams)
         {
             if (tyParams == null || tyParams.Length == 0) return Error("Vui lòng truyền thông tin thuốc cần trả");

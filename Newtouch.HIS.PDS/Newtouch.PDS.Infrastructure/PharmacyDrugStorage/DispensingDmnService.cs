@@ -663,7 +663,8 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
             if (yxkcxx.Count == 0) return UpdateArrangementZtAndGjzt(zyphRepo, param);
 
             var zyphList = zyphRepo.SelectZyphList(param.yzId, param.zxId, param.ypCode, param.pc, param.ph, param.OrganizeId);
-            if (zyphList == null || zyphList.Count == 0) return "";
+            // G33-F2: có tồn kho đóng băng nhưng không có dòng xếp thuốc → lỗi (trước đây return "" = Success giả, không giải phóng gì)
+            if (zyphList == null || zyphList.Count == 0) return "Không tìm thấy thông tin xếp thuốc cần hủy";
 
             if (yxkcxx.Sum(p => p.djsl) < zyphList.Sum(p => p.sl)) return string.Format("Thuốc【{0}】Số lượng đóng băng tồn kho không đủ", param.ypCode);
 
@@ -723,7 +724,8 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
             var zyph = zyphRepo.FindEntity(p =>
                 p.zxId == param.zxId && p.yzId == param.yzId && p.OrganizeId == param.OrganizeId && p.ph == param.ph && p.pc == param.pc &&
                 p.zt == "1" && p.gjzt == "0" && p.fyyf == param.yfbmCode);
-            if (zyph == null) return "";
+            // G33-F2: không tìm thấy dòng xếp thuốc → lỗi (trước đây return "" = Success giả)
+            if (zyph == null) return "Không tìm thấy thông tin xếp thuốc cần hủy";
             zyph.zt = "0";
             zyph.gjzt = "1";
             return zyphRepo.Update(zyph) > 0 ? "" : "Sửa cờ xếp kệ xếp thuốc thất bại";

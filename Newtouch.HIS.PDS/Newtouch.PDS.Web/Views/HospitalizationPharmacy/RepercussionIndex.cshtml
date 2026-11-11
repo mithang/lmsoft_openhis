@@ -1,4 +1,4 @@
-
+﻿
 @{
     ViewBag.Title = "Trả thuốc nội trú";//Trả thuốc nội trú
     Layout = "~/Views/Shared/_Index.cshtml";
@@ -322,6 +322,7 @@
                     medicineList.push(obj);
                 }
                 par["ModelBQBRYZZXTYInfoVO"] = medicineList;
+                par["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val(); // G33-F3
                 par["type"] = 3;//Trả thuốc
                 $.ajax({
                     type: "POST",

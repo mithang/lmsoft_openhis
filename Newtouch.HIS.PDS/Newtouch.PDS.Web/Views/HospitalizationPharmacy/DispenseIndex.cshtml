@@ -1,4 +1,4 @@
-@using Newtouch.Infrastructure;
+﻿@using Newtouch.Infrastructure;
 @{
     /**/
 
@@ -407,7 +407,7 @@ else
                 $.najax({
                     type: "POST",
                     url: "/HospitalizationPharmacy/DeleteYzxx",
-                    data: { yzId: data.yzId, zxId: data.zxId },
+                    data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), yzId: data.yzId, zxId: data.zxId },
                     dataType: "json",
                     success: function (res) {
                         if (res.state === "success") {
@@ -438,7 +438,7 @@ else
                 $.najax({
                     type: "POST",
                     url: "/HospitalizationPharmacy/CancelArrangement",
-                    data: { pc: data.pc, ph: data.ph, ypCode: data.ypCode, zxId: data.zxId, yzId: data.yzId },
+                    data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), pc: data.pc, ph: data.ph, ypCode: data.ypCode, zxId: data.zxId, yzId: data.yzId },
                     dataType: "json",
                     success: function (res) {
                         if (res.state === "success") {
@@ -499,7 +499,7 @@ else
                 $.najax({
                     type: "POST",
                     url: "/HospitalizationPharmacy/DispensingDrugs",
-                    data: { fyls: medicineList },
+                    data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), fyls: medicineList },
                     dataType: "json",
                     success: function (res) {
                         if (res.state === "success") {

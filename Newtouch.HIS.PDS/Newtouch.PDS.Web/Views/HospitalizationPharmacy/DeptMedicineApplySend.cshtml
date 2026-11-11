@@ -1,4 +1,4 @@
-@using Newtouch.Infrastructure;
+﻿@using Newtouch.Infrastructure;
 @{
     /**/
 
@@ -265,7 +265,7 @@
                 $.najax({
                     type: "POST",
                     url: "/HospitalizationPharmacy/ApplyNoSendDrugs",
-                    data: { SqdArr: ThisbrCode },
+                    data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), SqdArr: ThisbrCode },
                     dataType: "json",
                     success: function (res) {
                         if (res.state === "success") {
@@ -299,7 +299,7 @@
                 $.najax({
                     type: "POST",
                     url: "/HospitalizationPharmacy/ApplyNoReturnDrugs",
-                    data: { SqdArr: ThisbrCode },
+                    data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), SqdArr: ThisbrCode },
                     dataType: "json",
                     success: function (res) {
                         debugger;

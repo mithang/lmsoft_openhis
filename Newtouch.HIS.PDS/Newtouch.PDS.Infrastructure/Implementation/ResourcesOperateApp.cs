@@ -574,6 +574,11 @@ namespace Newtouch.HIS.Application.Implementation
                 }
             });
 
+            // G33-F5: effectiveLs rỗng (mọi item sl/zhyz<=0 đều bị lọc) → lỗi rõ ràng, không IndexOutOfRange tại effectiveLs[0]
+            if (effectiveLs == null || effectiveLs.Count == 0)
+            {
+                throw new Exception("Vui lòng truyền thông tin trả thuốc hiệu lực");
+            }
             if (effectiveLs[0].zytyapplyno == null || effectiveLs[0].zytyapplyno == "")
             {
                 throw new Exception("Số đơn xin trả thuốc không được để trống！");
