@@ -333,6 +333,7 @@ FROM (
 	FROM dbo.mz_cfmx(NOLOCK) cfmx
 	INNER JOIN dbo.mz_cfmxph(NOLOCK) mxph ON mxph.yp=cfmx.ypCode AND mxph.cfh = cfmx.cfh AND mxph.OrganizeId = cfmx.OrganizeId AND mxph.zt='1' AND mxph.gjzt='0'
 	WHERE cfmx.ypCode=@ypCode AND cfmx.zt='1' AND cfmx.OrganizeId=@OrganizeId
+	AND cfmx.cfh=@cfh
 	AND mxph.fyyf=@yfbmCode AND mxph.ph=@ph AND mxph.pc=@pc
 	UNION ALL
 	SELECT -1*tymx.sl sl
@@ -368,9 +369,6 @@ BEGIN TRY
 	IF ISNULL(@curKcId, '')<>''
 	BEGIN
 		UPDATE dbo.xt_yp_kcxx SET kcsl+=@tysl, LastModifyTime=GETDATE(), LastModifierCode=@userCode WHERE kcId=@curKcId
-		
-		UPDATE dbo.mz_cf SET fybz='3', LastModiFierCode=@userCode, LastModifyTime=GETDATE() 
-		WHERE cfh=@cfh AND zt='1' AND OrganizeId=@OrganizeId AND lyyf=@yfbmCode 
 
 		INSERT INTO dbo.mz_tfmx( returnDrugBillNo, OrganizeId ,ypCode ,cfh ,ph ,pc ,sl ,Remark ,zt ,CreateTime ,CreatorCode ,LastModifyTime ,LastModifierCode,zsm,sfcl)
 		VALUES  ( @returnDrugBillNo, -- returnDrugBillNo - varchar(50)
@@ -394,6 +392,24 @@ BEGIN TRY
 		SELECT TOP 1 Id,'2', ypCode, cfh, @tysl, '', GETDATE(), @userCode, NULL, NULL ,@zsm,@sfcl
 		FROM dbo.mz_cfmx(NOLOCK) 
 		WHERE cfh=@cfh AND ypCode=@ypCode AND zt='1' AND OrganizeId=@OrganizeId
+
+		-- Chỉ đánh dấu 'Đã trả' (fybz='3') khi đơn đã trả hết: còn nhóm (thuốc/lô) nào
+		-- có tổng đã xếp lớn hơn tổng đã trả thì giữ nguyên trạng thái.
+		IF NOT EXISTS (
+			SELECT 1 FROM (
+				SELECT mxph.yp, mxph.ph, mxph.pc,
+					SUM(mxph.sl) - ISNULL((SELECT SUM(tymx.sl) FROM dbo.mz_tfmx(NOLOCK) tymx
+						WHERE tymx.cfh=@cfh AND tymx.ypCode=mxph.yp AND tymx.ph=mxph.ph AND tymx.pc=mxph.pc
+						AND tymx.OrganizeId=@OrganizeId AND tymx.zt='1'), 0) AS remainQty
+				FROM dbo.mz_cfmxph(NOLOCK) mxph
+				WHERE mxph.cfh=@cfh AND mxph.OrganizeId=@OrganizeId AND mxph.zt='1' AND mxph.gjzt='0'
+				GROUP BY mxph.yp, mxph.ph, mxph.pc
+			) r WHERE r.remainQty > 0
+		)
+		BEGIN
+			UPDATE dbo.mz_cf SET fybz='3', LastModiFierCode=@userCode, LastModifyTime=GETDATE()
+			WHERE cfh=@cfh AND zt='1' AND OrganizeId=@OrganizeId AND lyyf=@yfbmCode
+		END
 	END	
 	ELSE
     BEGIN

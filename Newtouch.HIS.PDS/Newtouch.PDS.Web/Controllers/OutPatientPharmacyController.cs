@@ -113,13 +113,19 @@ namespace Newtouch.HIS.Web.Controllers
         /// </summary>
         /// <param name="configInfo"></param>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitConfig(pyConfig configInfo)
         {
+            if (configInfo == null || configInfo.pycxjgsj <= 0)
+            {
+                return Error("Thời gian giãn cách tra cứu phải là số lớn hơn 0");
+            }
             var isAutoFy = configInfo.IsAutoFy == "true" ? "Y" : "N";
             var isAutoPy = configInfo.IsAutoPy == "true" ? "Y" : "N";
-            //_sysConfigRepo.SetValueByCode("IsAutoFy", isAutoFy, OrganizeId);
-            //_sysConfigRepo.SetValueByCode("IsAutoPy", isAutoPy, OrganizeId);
-            //_sysConfigRepo.SetValueByCode("pycxjgsj", configInfo.pycxjgsj.ToString(), OrganizeId);
+            _sysConfigRepo.UpsertValueByCode("IsAutoFy", isAutoFy, OrganizeId);
+            _sysConfigRepo.UpsertValueByCode("IsAutoPy", isAutoPy, OrganizeId);
+            _sysConfigRepo.UpsertValueByCode("pycxjgsj", configInfo.pycxjgsj.ToString(), OrganizeId);
             return Success();
         }
         #endregion
@@ -634,6 +640,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="cfh"></param>
         /// <param name="cardNo"></param>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult DrugArrangementReturn(string cfh, string cardNo)
         {
             if (string.IsNullOrWhiteSpace(cfh))
@@ -685,19 +693,11 @@ namespace Newtouch.HIS.Web.Controllers
                 throw new FailedException("Vui lòng chọn bệnh nhân cần xếp thuốc！");
             }
 
-            var errorMsg = new StringBuilder();
             var yfbmCode = Constants.CurrentYfbm.yfbmCode;
-            foreach (var item in patients)
-            {
-                errorMsg.Append(_pyDmnService.DrugArrangement(item, yfbmCode, OrganizeId, OperatorProvider.GetCurrent().UserCode));
-
-            }
-            if (string.IsNullOrWhiteSpace(errorMsg.ToString()))
-            {
-                return Success("Xếp thuốc thành công");
-            }
-
-            throw new FailedException(errorMsg.ToString());
+            // Xếp theo lô all-or-nothing: lỗi ở bệnh nhân nào thì các đơn đã xếp trước đó
+            // được hủy bù trong service rồi throw lỗi thật (không còn AggregateException).
+            _pyDmnService.DrugArrangementBatch(patients, yfbmCode, OrganizeId, OperatorProvider.GetCurrent().UserCode);
+            return Success("Xếp thuốc thành công");
         }
 
         #endregion
@@ -1101,7 +1101,7 @@ namespace Newtouch.HIS.Web.Controllers
             var cfhls = new List<string>();
             var eq = new OutpatienDrugDeliveryInfo
             {
-                PatientInfo = patients.ToList().GroupBy(p => new { p.cfh, p.cfnm, p.CardNo, p.xm }).Select(v => new patientInfoVO { cfh = v.Key.cfh, cfnm = v.Key.cfnm, CardNo = v.Key.CardNo, xm = v.Key.xm, zsm = string.Join("|", v.Select(f => f.zsm.Trim())) }).ToList(),
+                PatientInfo = patients.ToList().GroupBy(p => new { p.cfh, p.cfnm, p.CardNo, p.xm }).Select(v => new patientInfoVO { cfh = v.Key.cfh, cfnm = v.Key.cfnm, CardNo = v.Key.CardNo, xm = v.Key.xm, zsm = string.Join("|", v.Select(f => (f.zsm ?? string.Empty).Trim())) }).ToList(),
                 yfbmCode = Constants.CurrentYfbm.yfbmCode,
                 userCode = OperatorProvider.GetCurrent().UserCode,
                 organizeId = OrganizeId
@@ -1491,9 +1491,23 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="cfh"></param>
         /// <param name="ysshyj"></param>
         /// <returns></returns>
-		public IActionResult UpdateCfYsshyj(string cfh, string ysshyj)
+		[HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateCfYsshyj(string cfh, string ysshyj)
         {
-            _mzCfRepo.UpdateCfYsshyj(cfh, ysshyj, this.OrganizeId);
+            if (string.IsNullOrWhiteSpace(cfh))
+            {
+                return Error("Không tìm thấy đơn thuốc");
+            }
+            if (ysshyj != null && ysshyj.Length > 30)
+            {
+                return Error("Ý kiến thẩm hạch không được vượt quá 30 ký tự");
+            }
+            var rows = _mzCfRepo.UpdateCfYsshyj(cfh, ysshyj, this.OrganizeId);
+            if (rows == 0)
+            {
+                return Error("Không tìm thấy đơn thuốc");
+            }
             return Content("");
         }
 

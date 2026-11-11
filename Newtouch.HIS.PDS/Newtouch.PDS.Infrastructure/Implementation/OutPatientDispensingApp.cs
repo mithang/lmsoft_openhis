@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Application.Implementation
                         var apiResp = SiteSettAPIHelper.Request<object, DefaultResponse>("api/OutpatientPharmacy/DeliveryRpDetailQuery", request);
                         if (apiResp == null || apiResp.data == null)
                         {
-                            errorMsg.Append(string.Format("Đơn thuốc【{0}】Giao diện thanh toán ngoại trú bất thường，Vui lòng liên hệ quản trị viên；", p.cfh));
+                            errorMsg.Append(string.Format("Đơn thuốc【{0}】Giao diện thanh toán ngoại trú bất thường, vui lòng liên hệ quản trị viên;", p.cfh));
                             break;
                         }
 
@@ -167,7 +167,7 @@ namespace Newtouch.HIS.Application.Implementation
                                 var apiResp = SiteSettAPIHelper.Request<object,DefaultResponse>("api/OutpatientPharmacy/DeliveryRpDetailQuery", request);
                                 if (apiResp == null || apiResp.data == null)
                                 {
-                                    errorMsg = "Giao diện thanh toán ngoại trú bất thường，Vui lòng liên hệ quản trị viên";
+                                    errorMsg = "Giao diện thanh toán ngoại trú bất thường, vui lòng liên hệ quản trị viên";
                                     cts.Cancel();
                                     return false;
                                 }

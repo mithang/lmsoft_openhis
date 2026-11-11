@@ -122,7 +122,7 @@
             <table id="gridCfmx"></table>
         </div>
         <div class="ckbox" style="float:left;margin:10px 10px 12px;">
-            <input id="txtbtgyy" type="text" class="form-control" placeholder="Vui lòng nhập lý do không thông qua" style="width:400px;height:15px; padding-left: 5px; z-index: 0;">
+            <input id="txtbtgyy" type="text" class="form-control" placeholder="Vui lòng nhập lý do không thông qua" maxlength="30" style="width:400px;height:15px; padding-left: 5px; z-index: 0;">
             @*<input id="autoprint" name="autoprint" type="checkbox"><label for="autoprint">Tự động in</label>*@
         </div>
         @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
@@ -368,15 +368,17 @@
         cleanCfInfo();
     }
     function updatebtgyy(shyy) {
-        $.ajax({
+        $.najax({
             type: "POST",
             url: "/OutPatientPharmacy/UpdateCfYsshyj",
-            data: { "cfh": $("#lab_cfh").text(), "ysshyj": shyy },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), "cfh": $("#lab_cfh").text(), "ysshyj": shyy },
             dataType: "json",
             cache: false,
             async: false,
-            success: function (payoptype) {
-
+            success: function (res) {
+                if (res && res.state === "error") {
+                    $.modalAlert(res.message, 'error');
+                }
             }
         });
     }

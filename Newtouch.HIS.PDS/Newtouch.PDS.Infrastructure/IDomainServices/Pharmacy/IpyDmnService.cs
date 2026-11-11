@@ -151,6 +151,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
            string creatorCode);
 
         /// <summary>
+        /// Xếp thuốc ngoại trú theo lô (all-or-nothing): lỗi ở bệnh nhân nào thì hủy bù
+        /// các đơn đã xếp trước đó rồi throw lỗi thật.
+        /// </summary>
+        string DrugArrangementBatch(patientInfoVO[] patients, string yfbmCode, string organizeId,
+           string creatorCode);
+
+        /// <summary>
         /// Lấy thông tin xếp thuốc đã xếp chưa phát chưa thanh toán
         /// </summary>
         /// <param name="expirationDate"></param>

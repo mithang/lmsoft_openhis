@@ -821,6 +821,16 @@ SELECT CONVERT(INT,a.zxdwsl/a.zhyz) sl,a.ypmc, a.gg, a.dw, a.ycmc, a.jl, a.jldw,
         /// <returns></returns>
         public string DrugArrangement(patientInfoVO patientInfo, string yfbmCode, string organizeId, string creatorCode)
         {
+            return DrugArrangement(patientInfo, yfbmCode, organizeId, creatorCode, out _);
+        }
+
+        /// <summary>
+        /// Xếp thuốc ngoại trú cho 1 bệnh nhân. arrangedCfhs nhận danh sách số đơn đã xếp xong
+        /// (gán ngay đầu method nên kể cả khi throw giữa chừng, caller vẫn đọc được phần đã xếp).
+        /// </summary>
+        private string DrugArrangement(patientInfoVO patientInfo, string yfbmCode, string organizeId, string creatorCode, out List<string> arrangedCfhs)
+        {
+            arrangedCfhs = new List<string>();
             using (var db = new EFDbTransaction().BeginTrans())
             {
                 var cfhs = _mzCfRepo.IQueryable(p =>
@@ -828,13 +838,16 @@ SELECT CONVERT(INT,a.zxdwsl/a.zhyz) sl,a.ypmc, a.gg, a.dw, a.ycmc, a.jl, a.jldw,
                     p.lyyf == yfbmCode && p.zt == "1" &&
                     p.fybz == ((int)EnumFybz.Wp).ToString() &&
                     p.jsnm > 0);
-                if (!cfhs.Any()) return "";
+                if (!cfhs.Any()) return "Không tìm thấy đơn thuốc cần xếp";
+                var arrangedAny = false;
                 foreach (var cfxx in cfhs.ToList())
                 {
                     var cfmx = _mzCfmxRepo.IQueryable(p =>
                         p.cfh == cfxx.cfh && p.zt == "1" && p.OrganizeId == organizeId);
                     if (!cfmx.Any()) continue;
-                    Parallel.ForEach(cfmx, p =>
+                    // Tuần tự (không Parallel.ForEach): lỗi book phải throw đúng message thật,
+                    // không bị bọc AggregateException; đồng thời thứ tự xếp là xác định.
+                    foreach (var p in cfmx)
                     {
                         var bookItem = new BookItemDo
                         {
@@ -849,17 +862,51 @@ SELECT CONVERT(INT,a.zxdwsl/a.zhyz) sl,a.ypmc, a.gg, a.dw, a.ycmc, a.jl, a.jldw,
                         var result =
                             new DispensingDmnService(new DefaultDatabaseFactory(), false).OutPatientBook(bookItem);
                         if (!string.IsNullOrWhiteSpace(result)) throw new FailedException("", result);
-                    });
+                    }
 
                     cfxx.fybz = ((int)EnumFybz.Yp).ToString();
                     cfxx.LastModifyTime = DateTime.Now;
                     cfxx.LastModiFierCode = creatorCode;
                     _mzCfRepo.Update(cfxx);
+                    arrangedAny = true;
+                    arrangedCfhs.Add(cfxx.cfh);
                 }
 
+                if (!arrangedAny) return "Không tìm thấy đơn thuốc cần xếp";
                 db.Commit();
             }
 
+            return "";
+        }
+
+        /// <summary>
+        /// Xếp thuốc ngoại trú theo lô (all-or-nothing): lỗi ở bệnh nhân nào thì hủy bù
+        /// các đơn đã xếp trước đó rồi throw lỗi thật. Book của từng bệnh nhân chạy trên
+        /// connection riêng nên không dùng chung transaction được — bù bằng CancelArrangedDrug.
+        /// </summary>
+        public string DrugArrangementBatch(patientInfoVO[] patients, string yfbmCode, string organizeId, string creatorCode)
+        {
+            var arranged = new List<(string CardNo, string Cfh)>();
+            foreach (var item in patients)
+            {
+                var patientArranged = new List<string>();
+                try
+                {
+                    var err = DrugArrangement(item, yfbmCode, organizeId, creatorCode, out patientArranged);
+                    if (!string.IsNullOrWhiteSpace(err)) throw new FailedException(err);
+                    foreach (var cfh in patientArranged) arranged.Add((item.CardNo, cfh));
+                }
+                catch (Exception)
+                {
+                    // Hủy bù: các đơn của bệnh nhân hiện tại đã xếp dở + các bệnh nhân trước đó.
+                    foreach (var cfh in patientArranged) arranged.Add((item.CardNo, cfh));
+                    foreach (var a in arranged)
+                    {
+                        try { CancelArrangedDrug(a.CardNo, a.Cfh, yfbmCode, organizeId, creatorCode); } catch { /* best-effort */ }
+                    }
+                    throw;
+                }
+            }
             return "";
         }
 

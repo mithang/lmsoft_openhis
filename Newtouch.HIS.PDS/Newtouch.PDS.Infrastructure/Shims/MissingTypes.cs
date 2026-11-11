@@ -49,6 +49,7 @@ namespace Newtouch.HIS.Domain.IRepository
         SysConfigEntity GetForm(string keyValue);
         void SubmitForm(SysConfigEntity entity, string keyValue);
         void SetValueByCode(string code, string value, string orgId);
+        void UpsertValueByCode(string code, string value, string orgId);
     }
 }
 

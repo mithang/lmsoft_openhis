@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
 
         protected override void BeforeAction(ActResult actResult)
         {
-            Request.tyDrugDetail.RemoveAll(p => p.sl <= 0);
+            Request.tyDrugDetail.RemoveAll(p => p.sl <= 0 || p.zhyz <= 0);
             if (Request.tyDrugDetail.Count != 0)
             {
                 return;

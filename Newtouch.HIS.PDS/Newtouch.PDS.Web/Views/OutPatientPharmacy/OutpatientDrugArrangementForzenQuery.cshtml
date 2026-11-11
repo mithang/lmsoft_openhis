@@ -249,7 +249,7 @@
                     type: "POST",
                     url: "/OutPatientPharmacy/DrugArrangementReturn",
                     dataType: "json",
-                    data: { cfh: data.cfh, cardNo: data.CardNo },
+                    data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), cfh: data.cfh, cardNo: data.CardNo },
                     success: function(res) {
                         if (res.state === "success") {
                             $.modalMsg('Hủy thành công', 'success', 1000);
