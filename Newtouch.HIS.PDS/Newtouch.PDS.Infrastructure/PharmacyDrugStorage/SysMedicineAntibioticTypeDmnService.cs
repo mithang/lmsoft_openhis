@@ -26,7 +26,11 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
         public SysMedicineAntibioticTypeVO GetById(string orgId, string Id)
         {
-            var strSql = @"select * from [NewtouchHIS_Base].dbo.xt_kssType where OrganizeId=@orgId";
+            // G37 F37-1: doc qua DbNames (Base STG tren carrier) thay vi
+            // hardcode [NewtouchHIS_Base] (demo) — neu khong, DeleteData
+            // khong bao gio tim thay dong tao o STG -> NRE; dong demo thi
+            // xoa nham ban sao STG. Tien le G4.
+            var strSql = @"select * from " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_kssType where OrganizeId=@orgId";
             var parList = new List<SugarParameter>() { };
             parList.Add(new SugarParameter("@orgId", orgId ?? ""));
             if (!string.IsNullOrEmpty(Id))
@@ -49,9 +53,11 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             {
                 return null;
             }
+            // G37 F37-1: doc qua DbNames nhu GetById — UI list phai doc cung
+            // DB voi ghi (STG), neu khong dong moi tao khong bao gio hien.
             var sql = @"select Id ,OrganizeId ,typeName ,typelevel ,qxjb ,qxjbmc ,
                             parentId ,CreateTime ,CreatorCode ,LastModifyTime ,LastModifierCode ,zt 
-                        from [NewtouchHIS_Base].dbo.xt_kssType where zt='1' and OrganizeId=@OrganizeId
+                        from " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_kssType where zt='1' and OrganizeId=@OrganizeId
                         and typelevel=@Level ";
             if (string.IsNullOrWhiteSpace(parentId))
             {
@@ -75,9 +81,10 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             {
                 return null;
             }
+            // G37 F37-1: nhu tren — dropdown phai doc cung DB voi ghi.
             var sql = @"select Id ,OrganizeId ,typeName ,typelevel ,qxjb ,qxjbmc ,
                             parentId ,CreateTime ,CreatorCode ,LastModifyTime ,LastModifierCode ,zt 
-                        from [NewtouchHIS_Base].dbo.xt_kssType where zt='1' and OrganizeId=@OrganizeId ";
+                        from " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_kssType where zt='1' and OrganizeId=@OrganizeId ";
             if (string.IsNullOrWhiteSpace(parentId))
             {
                 sql += " and parentId IS NULL ";

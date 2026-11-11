@@ -73,11 +73,46 @@ namespace Newtouch.HIS.Application
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
+                // G37 F37-7: sua — merge-skip-null len ban ghi goc (chi copy
+                // field post non-null), giu cac cot khong post. Role khong
+                // ton tai -> de guard NX20-003 o service nem loi (khong
+                // merge tren null). px la int? — null nghia la khong post.
+                var existing = _roleRepository.FindEntity(p => p.Id == keyValue);
+                if (existing != null)
+                {
+                    if (roleEntity.Name != null)
+                    {
+                        existing.Name = roleEntity.Name;
+                    }
+                    if (roleEntity.Code != null)
+                    {
+                        existing.Code = roleEntity.Code;
+                    }
+                    if (roleEntity.Description != null)
+                    {
+                        existing.Description = roleEntity.Description;
+                    }
+                    if (roleEntity.px != null)
+                    {
+                        existing.px = roleEntity.px;
+                    }
+                    if (roleEntity.zt != null)
+                    {
+                        existing.zt = roleEntity.zt;
+                    }
+                    existing.OrganizeId = roleEntity.OrganizeId;
+                    existing.TopOrganizeId = roleEntity.TopOrganizeId;
+                    roleEntity = existing;
+                }
                 roleEntity.Modify(keyValue);
             }
             else
             {
+                // G37 F37-7: Create(true) luon ep zt="1" (IEntity.Create) —
+                // giu lai zt controller da map (tao voi zt=false phai luu 0).
+                var zt = roleEntity.zt;
                 roleEntity.Create(true);
+                roleEntity.zt = zt;
             }
             var moduledata = _moduleRepository.IQueryable().ToList();
             var buttondata = _moduleButtonRepository.IQueryable().ToList();

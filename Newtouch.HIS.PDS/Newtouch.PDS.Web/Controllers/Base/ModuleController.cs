@@ -1,5 +1,6 @@
 using NewtouchHIS.Lib.Framework.Filter;
 using NewtouchHIS.Lib.Base.Extension;
+using NewtouchHIS.Lib.Base.Exceptions;
 using Newtouch.Common;
 using Newtouch.HIS.Application;
 using Newtouch.HIS.Domain.Entity;
@@ -86,8 +87,75 @@ namespace Newtouch.HIS.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysModuleEntity moduleEntity, string keyValue)
         {
-            moduleEntity.zt = moduleEntity.zt == "true" ? "1" : "0";
-            _sysModuleDmnService.SubmitForm(moduleEntity, keyValue, Constants.TopOrganizeId);
+            // G37 F37-5: map zt chap nhan ca "true"/"1" (gia tri DB) va
+            // "false"/"0"; khong post zt -> null (giu zt goc khi sua).
+            string mappedZt = null;
+            if (moduleEntity.zt == "true" || moduleEntity.zt == "1")
+            {
+                mappedZt = "1";
+            }
+            else if (moduleEntity.zt == "false" || moduleEntity.zt == "0")
+            {
+                mappedZt = "0";
+            }
+            if (!string.IsNullOrEmpty(keyValue))
+            {
+                // G37 F37-5: sua — load ban ghi goc, merge-skip-null (chi
+                // copy field post non-null), giu cac cot khong post. Neu
+                // khong co ban ghi -> loi TV thay vi Success 0 dong.
+                var existing = _moduleApp.GetForm(keyValue);
+                if (existing == null)
+                {
+                    throw new FailedException("Không tìm thấy thực đơn cần sửa");
+                }
+                if (moduleEntity.Name != null)
+                {
+                    existing.Name = moduleEntity.Name;
+                }
+                if (moduleEntity.Code != null)
+                {
+                    existing.Code = moduleEntity.Code;
+                }
+                if (moduleEntity.UrlAddress != null)
+                {
+                    existing.UrlAddress = moduleEntity.UrlAddress;
+                }
+                if (moduleEntity.Target != null)
+                {
+                    existing.Target = moduleEntity.Target;
+                }
+                if (moduleEntity.Icon != null)
+                {
+                    existing.Icon = moduleEntity.Icon;
+                }
+                if (moduleEntity.Description != null)
+                {
+                    existing.Description = moduleEntity.Description;
+                }
+                if (moduleEntity.EnName != null)
+                {
+                    existing.EnName = moduleEntity.EnName;
+                }
+                if (moduleEntity.ParentId != null)
+                {
+                    existing.ParentId = moduleEntity.ParentId;
+                }
+                // px la int? — null nghia la khong post, copy ca khi post 0.
+                if (moduleEntity.px != null)
+                {
+                    existing.px = moduleEntity.px;
+                }
+                if (mappedZt != null)
+                {
+                    existing.zt = mappedZt;
+                }
+                _sysModuleDmnService.SubmitForm(existing, keyValue, Constants.TopOrganizeId);
+            }
+            else
+            {
+                moduleEntity.zt = mappedZt ?? "1";
+                _sysModuleDmnService.SubmitForm(moduleEntity, keyValue, Constants.TopOrganizeId);
+            }
             return Success("Thao tác thành công。");
         }
 
@@ -123,10 +191,12 @@ namespace Newtouch.HIS.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateAuthOrganizeList(string keyValue, string orgList)
         {
-            if (!string.IsNullOrWhiteSpace(keyValue))
+            // G37 F37-6: keyValue rong -> loi TV thay vi Success khong lam gi.
+            if (string.IsNullOrWhiteSpace(keyValue))
             {
-                _sysModuleDmnService.UpdateAuthOrganizeList(keyValue, orgList, 1);
+                throw new FailedException("Thiếu mã thực đơn cần ủy quyền");
             }
+            _sysModuleDmnService.UpdateAuthOrganizeList(keyValue, orgList, 1);
             return Success("Thao tác thành công。");
         }
 
@@ -140,10 +210,12 @@ namespace Newtouch.HIS.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AuthAllOrganize(string keyValue)
         {
-            if (!string.IsNullOrWhiteSpace(keyValue))
+            // G37 F37-6: nhu tren.
+            if (string.IsNullOrWhiteSpace(keyValue))
             {
-                _sysModuleDmnService.AuthAllOrganize(keyValue, 1);
+                throw new FailedException("Thiếu mã thực đơn cần ủy quyền");
             }
+            _sysModuleDmnService.AuthAllOrganize(keyValue, 1);
             return Success("Thao tác thành công。");
         }
 
@@ -157,10 +229,12 @@ namespace Newtouch.HIS.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AuthCancelAllOrganize(string keyValue)
         {
-            if (!string.IsNullOrWhiteSpace(keyValue))
+            // G37 F37-6: nhu tren.
+            if (string.IsNullOrWhiteSpace(keyValue))
             {
-                _sysModuleDmnService.AuthCancelAllOrganize(keyValue, 1);
+                throw new FailedException("Thiếu mã thực đơn cần ủy quyền");
             }
+            _sysModuleDmnService.AuthCancelAllOrganize(keyValue, 1);
             return Success("Thao tác thành công。");
         }
 

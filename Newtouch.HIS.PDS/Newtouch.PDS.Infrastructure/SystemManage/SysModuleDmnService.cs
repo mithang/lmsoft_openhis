@@ -1,5 +1,7 @@
 using Newtouch.Infrastructure;
 using Newtouch.HIS.Domain.IDomainServices;
+using NewtouchHIS.Lib.Base.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtouch.HIS.Domain.Entity;
@@ -225,7 +227,12 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SugarParam
                 //Thêm mới
                 using (var db = new EFDbTransaction().BeginTrans())
                 {
+                    // G37 F37-5: Create(true) luon ep zt="1" (IEntity.Create)
+                    // — giu lai zt controller da map (tao voi zt=false phai
+                    // luu 0, khong bi ep thanh 1).
+                    var zt = moduleEntity.zt;
                     moduleEntity.Create(true);
+                    moduleEntity.zt = zt;
                     db.Insert(moduleEntity);
 
                     if (!string.IsNullOrWhiteSpace(topOrgId))
@@ -292,6 +299,19 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SugarParam
         /// <param name="itemType"></param>
         public void UpdateAuthOrganizeList(string moduleId, string orgList, int itemType)
         {
+            // G37 F37-6: orgList null -> loi TV, khong xoa gi (cu: NRE o
+            // Trim). orgList "" (rong) van la "xoa het auth" co chu y.
+            if (orgList == null)
+            {
+                throw new FailedException("Danh sách tổ chức không được để trống");
+            }
+            // G37 F37-6: module/button phai ton tai — neu khong thi day la
+            // keyValue bogus, khong duoc INSERT dong mo coi (cu: Success +
+            // 1 dong ItemId bogus).
+            if (!AuthItemExists(moduleId, itemType))
+            {
+                throw new FailedException("Không tìm thấy thực đơn cần ủy quyền");
+            }
             var orgIdArr = orgList.Trim(',');
             if (string.IsNullOrWhiteSpace(orgIdArr))
             {
@@ -305,6 +325,18 @@ delete from Sys_OrganizeAuthorize where ItemId = @moduleId and ItemType = @itemT
             }
             else
             {
+                // G37 F37-6: validate org ton tai TRUOC khi DELETE — org la
+                // -> loi TV, giu nguyen auth cu (cu: DELETE het roi INSERT
+                // 0 dong = mat quyen lang).
+                var requestedOrgIds = orgIdArr.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).Distinct().ToList();
+                var existingOrgIds = this.FindList<string>(@"select Id from [NewtouchHIS_Base]..V_S_Sys_Organize where Id in (select value from dbo.SplitToTable(@orgIdArr, ','))", new SugarParameter[] {
+                    new SugarParameter("@orgIdArr", "") { DbType = System.Data.DbType.AnsiString, Size = -1, Value = orgIdArr }
+                });
+                var missingOrgIds = requestedOrgIds.Where(id => existingOrgIds == null || !existingOrgIds.Contains(id)).ToList();
+                if (missingOrgIds.Count > 0)
+                {
+                    throw new FailedException("Tổ chức không tồn tại: " + string.Join(",", missingOrgIds));
+                }
                 var sql = @"
 delete from Sys_OrganizeAuthorize where ItemId = @moduleId and ItemType = @itemType
 insert into Sys_OrganizeAuthorize(Id, TopOrganizeId, ItemId, ItemType, CreateTime, CreatorCode,zt)
@@ -322,12 +354,34 @@ from [NewtouchHIS_Base]..V_S_Sys_Organize where Id in (
         }
 
         /// <summary>
+        /// G37 F37-6: module (itemType=1) / nut (itemType=2) co ton tai khong.
+        /// </summary>
+        private bool AuthItemExists(string moduleId, int itemType)
+        {
+            var table = itemType == 1 ? "Sys_Module" : (itemType == 2 ? "Sys_ModuleButton" : null);
+            if (table == null || string.IsNullOrWhiteSpace(moduleId))
+            {
+                return false;
+            }
+            var rows = this.FindList<string>("select Id from " + table + " where Id = @moduleId", new SugarParameter[] {
+                new SugarParameter("@moduleId", moduleId)
+            });
+            return rows != null && rows.Count > 0;
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="moduleId"></param>
         /// <param name="itemType"></param>
         public void AuthAllOrganize(string moduleId, int itemType)
         {
+            // G37 F37-6: keyValue bogus -> loi TV thay vi Success lang
+            // (SQL ben duoi co IF EXISTS guard nen chi skip — khong bao loi).
+            if (!AuthItemExists(moduleId, itemType))
+            {
+                throw new FailedException("Không tìm thấy thực đơn cần ủy quyền");
+            }
             var sql = @"
 if exists (select 1 from Sys_Module where Id = @moduleId and @itemType = 1
 union select 1 from Sys_ModuleButton where Id = @moduleId and @itemType = 2)
@@ -350,6 +404,12 @@ end";
         /// <param name="itemType"></param>
         public void AuthCancelAllOrganize(string moduleId, int itemType)
         {
+            // G37 F37-6: nhu tren — keyValue bogus -> loi TV thay vi
+            // Success 0 dong.
+            if (!AuthItemExists(moduleId, itemType))
+            {
+                throw new FailedException("Không tìm thấy thực đơn cần ủy quyền");
+            }
             var sql = @"delete from Sys_OrganizeAuthorize where ItemId = @moduleId and ItemType = @itemType";
             this.ExecuteSqlCommand(sql, new SugarParameter[] {
                 new SugarParameter("@moduleId", moduleId)

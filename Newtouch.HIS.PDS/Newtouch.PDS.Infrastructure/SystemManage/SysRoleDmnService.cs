@@ -27,8 +27,19 @@ namespace Newtouch.HIS.DomainServices
         {
             using (var db = new EFDbTransaction().BeginTrans())
             {
+                // G37 F37-8: role phai ton tai — keyValue bogus -> loi TV
+                // thay vi Success 0 dong (mau guard NX20-003).
+                var dbRoleEntity = db.IQueryable<SysRoleEntity>(p => p.Id == keyValue).FirstOrDefault();
+                if (dbRoleEntity == null)
+                {
+                    throw new FailedException("Không tìm thấy vai trò cần xóa");
+                }
                 db.Delete<SysRoleEntity>(t => t.Id == keyValue);
                 db.Delete<SysRoleAuthorizeEntity>(t => t.RoleId == keyValue);
+                // G37 F37-8: xoa ca Sys_UserRole trong cung transaction —
+                // neu khong, user van giu RoleId tro toi role da xoa
+                // (dong mo coi).
+                db.Delete<SysUserRoleEntity>(t => t.RoleId == keyValue);
                 db.Commit();
             }
         }

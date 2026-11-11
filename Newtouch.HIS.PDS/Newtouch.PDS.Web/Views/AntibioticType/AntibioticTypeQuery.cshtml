@@ -211,7 +211,7 @@
                 $.najax({
                     url: "/AntibioticType/DeleteData",
                     dataType: "json",
-                    data: { Id: Id },
+                    data: { Id: Id, __RequestVerificationToken: $('[name=__RequestVerificationToken]').val() },
                     type: "POST",
                     success: function (data) {
                         $("#gridList").trigger('reloadGrid');
@@ -233,7 +233,7 @@
                 $.najax({
                     url: "/AntibioticType/DeleteData",
                     dataType: "json",
-                    data: { Id: Id },
+                    data: { Id: Id, __RequestVerificationToken: $('[name=__RequestVerificationToken]').val() },
                     type: "POST",
                     success: function (data) {
                         var rowid = $('#gridList').jqGrid('getGridParam', 'selrow');

@@ -71,7 +71,23 @@ namespace Newtouch.HIS.Web.Controllers
         {
             roleEntity.OrganizeId = "*";    //Vai trò phiên bản này theoTopOrganizeId,không tới được bệnh viện cụ thể
             roleEntity.TopOrganizeId = Constants.TopOrganizeId;
-            roleEntity.zt = roleEntity.zt == "true" ? "1" : "0";
+            // G37 F37-7: map zt chap nhan ca "true"/"1" (gia tri DB) va
+            // "false"/"0"; khong post zt -> null (giu zt goc khi sua,
+            // mac dinh "1" khi tao).
+            string mappedZt = null;
+            if (roleEntity.zt == "true" || roleEntity.zt == "1")
+            {
+                mappedZt = "1";
+            }
+            else if (roleEntity.zt == "false" || roleEntity.zt == "0")
+            {
+                mappedZt = "0";
+            }
+            if (string.IsNullOrEmpty(keyValue) && mappedZt == null)
+            {
+                mappedZt = "1";
+            }
+            roleEntity.zt = mappedZt;
             // NX30-ROLEDDL (F-NX30-ROLE-001): permissionIds ve null khi form
             // khong check quyen nao (UI gui String([]) = "") -> Split(',') NRE
             // o dong nay (live-probe temp 5301: SubmitForm keyValue=1, perms
@@ -100,6 +116,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult submitRoleUser(string roleId, string userIds)
         {
             var organizeId = base.GetAuthOrganizeId();  //Mặc định Quyền OrganizeId
