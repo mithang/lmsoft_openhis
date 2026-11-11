@@ -27,7 +27,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
         
         public SysPharmacyWindowVO GetFormJson(string orgId, int? yfckId)
         {
-            var strSql = @"select * from [NewtouchHIS_Base].dbo.xt_yfck where OrganizeId=@orgId";
+            var strSql = @"select * from " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_yfck where OrganizeId=@orgId";
             var parList = new List<SugarParameter>() { };
             parList.Add(new SugarParameter("@orgId", orgId ?? ""));
             if (yfckId != 0)
@@ -44,7 +44,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
             if (keyValue.HasValue && keyValue.Value > 0)
             {
-                var checkSql = "select * from [NewtouchHIS_Base].dbo.xt_yfck where zt=1 and OrganizeId=@organizeId  and yfckId = @yfckId and yfckCode=@yfckCode";
+                var checkSql = "select * from " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + ".dbo.xt_yfck where zt=1 and OrganizeId=@organizeId  and yfckId <> @yfckId and yfckCode=@yfckCode";
                 var parList = new List<SugarParameter>
                 {
                     new SugarParameter("@organizeId", entity.OrganizeId ?? ""),
@@ -89,7 +89,7 @@ where yfckId=@yfckId");
             }
             else
             {
-                var checkSql = "select * from [NewtouchHIS_Base].dbo.xt_yfck where zt=1 and OrganizeId=@organizeId  and yfckCode=@yfckCode ";
+                var checkSql = "select * from " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + ".dbo.xt_yfck where zt=1 and OrganizeId=@organizeId  and yfckCode=@yfckCode ";
                 var parList = new List<SugarParameter>
                 {
                     new SugarParameter("@organizeId", entity.OrganizeId ?? ""),

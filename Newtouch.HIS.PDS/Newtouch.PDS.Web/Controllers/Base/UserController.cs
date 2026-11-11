@@ -1,4 +1,5 @@
 using NewtouchHIS.Lib.Framework.Filter;
+using NewtouchHIS.Lib.Base.Exceptions;
 using Newtouch.Core.Common.Utils;
 using Newtouch.Core.Common.Interface;
 using Newtouch.Common;
@@ -151,8 +152,20 @@ namespace Newtouch.HIS.Web.Controllers
         [HttpPost]
         [HandlerAjaxOnly]
         [ValidateAntiForgeryToken]
-        public IActionResult SubmitPersonalPassword(string newpwd)
+        public IActionResult SubmitPersonalPassword(string newpwd, string renewpwd)
         {
+            if (string.IsNullOrWhiteSpace(newpwd))
+            {
+                throw new FailedException("Vui lòng nhập mật khẩu");
+            }
+            if (renewpwd != null && renewpwd != newpwd)
+            {
+                throw new FailedException("Hai lần nhập mật khẩu không khớp");
+            }
+            if (!System.Text.RegularExpressions.Regex.IsMatch(newpwd, @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$"))
+            {
+                throw new FailedException("Mật khẩu chưa đủ phức tạp<br/>6-16 ký tự, phải bao gồm chữ cái và số");
+            }
             _sysUserDmnService.RevisePassword(newpwd, this.UserIdentity.UserId);
             return Success("Đặt lại mật khẩu thành công。");
         }
