@@ -265,13 +265,36 @@ values (@id, @org, @kh, @ct, @ctn, @brxz, @xm, @patid, '1', @user, getdate())", 
             }
         }
 
-        /// <summary>CheckIDCard gốc (CommmHelper): 18 số GB11643-1999 hoặc 15 số.</summary>
+        /// <summary>CheckIDCard gốc (CommmHelper): 18 số GB11643-1999 hoặc 15 số.
+        /// R-110 (D-SWEEP-20261120-R110): cộng thêm giấy tờ Việt Nam — CCCD 12 số
+        /// và CMND cũ 9 số — giữ nguyên 2 nhánh gốc cho dữ liệu đã có.</summary>
         public static bool CheckIdCard(string id)
         {
             if (string.IsNullOrEmpty(id)) return false;
             if (id.Length == 18) return CheckIdCard18(id);
             if (id.Length == 15) return CheckIdCard15(id);
+            if (id.Length == 12) return CheckIdCardVN12(id);
+            if (id.Length == 9) return CheckIdCardVN9(id);
             return false;
+        }
+
+        // CCCD Việt Nam 12 số: toàn số, 3 số đầu là mã tỉnh/thành trong dải
+        // 001-096 (chấp nhận cả mã không tồn tại trong dải để không bao giờ
+        // từ chối CCCD thật; CCCD không có số kiểm tra nên không checksum).
+        private static bool CheckIdCardVN12(string id)
+        {
+            long n;
+            if (!long.TryParse(id, out n)) return false;
+            int province;
+            if (!int.TryParse(id.Substring(0, 3), out province)) return false;
+            return province >= 1 && province <= 96;
+        }
+
+        // CMND cũ 9 số: toàn số.
+        private static bool CheckIdCardVN9(string id)
+        {
+            long n;
+            return long.TryParse(id, out n);
         }
 
         private static bool CheckIdCard18(string id)
