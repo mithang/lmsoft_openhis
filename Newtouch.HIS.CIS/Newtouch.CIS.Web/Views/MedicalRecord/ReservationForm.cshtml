@@ -10,7 +10,7 @@
     <div style="padding-top: 20px; margin-right: 55px;">
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>Đặt hẹnNgày:</th>
+                <th class="formTitle"><span class="required">*</span>Đặt hẹn Ngày:</th>
                 <td class="formValue">
                     <input id="yyrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
@@ -62,7 +62,7 @@
             return;
         }
         if ($('#yyrq').val() < $.getDate()) {
-            $.modalAlert("Đặt hẹnNgàyBắt buộcLớn hơnHiện tạiNgày!", 'warning');
+            $.modalAlert("Đặt hẹn NgàyBắt buộcLớn hơnHiện tại Ngày!", 'warning');
             return;
         }
         var obj = new Object();
