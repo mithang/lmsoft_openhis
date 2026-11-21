@@ -254,7 +254,7 @@
                             }
                         });
                         if (!iskt) {
-                            $.modalAlert('Số lượng có thể hoàn là0,Vui lòng xác nhận Có hay không Có thể hoàn！', 'success');
+                            $.modalAlert('Số lượng có thể hoàn là 0, Vui lòng xác nhận Có hay không Có thể hoàn！', 'success');
                             return;
                         }
                         var ybjyCqFeeReturn = {
@@ -337,7 +337,7 @@
                 },
                 url: "/OutpatientManage/OutpatientRefund/guianhandleRefund",
                 dataType: "json",
-                loadingtext: "Đang yêu cầu Đảo ngược HIS quyết toán,Vui lòng chờ…",
+                loadingtext: "Đang yêu cầu Đảo ngược HIS quyết toán, Vui lòng chờ…",
                 success: function (ajaxresp) {
                     if (funcSuccCallback) {
                         if (ajaxresp && ajaxresp.data) {

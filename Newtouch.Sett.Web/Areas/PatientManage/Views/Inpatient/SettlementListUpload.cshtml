@@ -272,7 +272,7 @@
             success: function (ckdata) {
                 var data = ckdata.data;
                 if (data != null && data != "") {
-                    $.loading("Đang tải dữ liệu,Vui lòng chờ một chút");
+                    $.loading("Đang tải dữ liệu, Vui lòng chờ một chút");
                     for (var i = 0; i < data.split(',').length; i++) {
                         var dbscobj = { mdtrt_id: "", psn_no: "", hisId: data.split(',')[i], operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', orgId: '@(opr.OrganizeId)', insuplc_admdvs: "" };
                         $.ajax({
@@ -376,7 +376,7 @@
                     upUrl = "http://127.0.0.1:33333/api/YiBao/PostMedicalSettlement_4101_V2";
                     break;
             }
-            $.loading("Đang tải dữ liệu,Vui lòng chờ một chút");
+            $.loading("Đang tải dữ liệu, Vui lòng chờ một chút");
             $.ajax({
                 type: "POST",
                 url: upUrl,

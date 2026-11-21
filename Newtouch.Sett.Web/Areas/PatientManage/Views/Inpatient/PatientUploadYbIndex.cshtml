@@ -300,7 +300,7 @@
                 upUrl = "http://127.0.0.1:33333/api/YiBao/PostMedicalRecords_4701";
                 break;
         }
-        $.loading("dữ liệu tải lên trong,Vui lòng chờ một chút");
+        $.loading("dữ liệu tải lên trong, Vui lòng chờ một chút");
         $.ajax({
             type: "POST",
             url: upUrl,
@@ -639,7 +639,7 @@
             case '4203':
                  upUrl = "http://127.0.0.1:33333/api/YiBao/PostSelfPayPatientFee_4203";
                  if (seleRow.sfyb !== '已上传') {
-                     $.modalAlert("này dữ liệu Tạm Chưa tải lên,Vui lòng tải lên sau sau đó Gửi", "warning");
+                     $.modalAlert("này dữ liệu Tạm Chưa tải lên, Vui lòng tải lên sau sau đó Gửi", "warning");
                      return;
                  }
                 break;
@@ -665,7 +665,7 @@
                  }
                 break;
         }
-        $.loading("dữ liệu tải lên trong,Vui lòng chờ một chút");
+        $.loading("dữ liệu tải lên trong, Vui lòng chờ một chút");
         $.ajax({
             type: "POST",
             url: upUrl,

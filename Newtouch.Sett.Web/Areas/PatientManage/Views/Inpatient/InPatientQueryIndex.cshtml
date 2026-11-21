@@ -541,7 +541,7 @@
                     upUrl = "http://127.0.0.1:33333/api/YiBao/PostMedicalRecords_4701";
                     break;
             }
-            $.loading("Đang tải dữ liệu,Vui lòng chờ một chút");
+            $.loading("Đang tải dữ liệu, Vui lòng chờ một chút");
             $.ajax({
                 type: "POST",
                 url: upUrl,
@@ -814,7 +814,7 @@
             if (medicalInsurance == "guian") {
                 $.najax({
                     url: '/HospitalizationManage/DischargeSettle/GetInpatientSettYbPatInfo?zyh=' + zyh,
-                    loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân,Vui lòng chờ...",
+                    loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân, Vui lòng chờ...",
                     type: 'POST',
                     success: function (ybPreSettleReq) {
                         //var ybjshtReturn;
@@ -903,7 +903,7 @@
                     url: "/HospitalizationManage/DischargeSettle/GuiAnXnhCyblCancel?zyh=" + patModel.zyh,
                     dataType: 'json',
                     async: false,
-                    loadingtext: "Bệnh nhân Làm thủ tục xuất viện hoàn tác trong,Vui lòng chờ…",
+                    loadingtext: "Bệnh nhân Làm thủ tục xuất viện hoàn tác trong, Vui lòng chờ…",
                     success: function (ajaxresp) {
                         if (ajaxresp.state != "1") {
                             $.modalAlert(ajaxresp.message, 'warning');
