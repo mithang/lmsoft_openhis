@@ -538,7 +538,7 @@
                 async: false,
                 success: function (data) {
                     if (data.code == "0") {
-                        $.loading(true, 'ĐangXuất hóa đơn điện tử,Vui lòng chờ...');
+                        $.loading(true, 'ĐangXuất hóa đơn điện tử, Vui lòng chờ...');
                         setTimeout(function () {
                             window.open(data.data.pictureUrl,
                                 "_blank",
@@ -595,7 +595,7 @@
     }
     //in phiếu
     function printReceipt(mzh, jsnm) {
-        $.loading(true, 'Đang in phiếu hóa đơn điện tử,Vui lòng chờ...');
+        $.loading(true, 'Đang in phiếu hóa đơn điện tử, Vui lòng chờ...');
         var requestJson = { "BusinessName": "In phiếu", "paySerialNo": mzh, "paySettlementNo": jsnm, "type": "Ngoại trú", "PlaceCode": "003" };//điểm xuất hóa đơn tạm ghi cố định003
         $.ajax({
             type: "POST",
@@ -622,7 +622,7 @@
     }
     //inBHYTquyết toánđơn Grk 20240606
     function printybjsd(setlId) {
-        $.loading(true, 'Đang tra cứu chứng từ quyết toán BHYT ngoại trú,Vui lòng chờ...');
+        $.loading(true, 'Đang tra cứu chứng từ quyết toán BHYT ngoại trú, Vui lòng chờ...');
 
         var inputp0001 = { "mzzy_lx": "1", "setlId": setlId, "operatorId": '@curOpr.UserCode' , "operatorName": '@curOpr.UserName'  };
 

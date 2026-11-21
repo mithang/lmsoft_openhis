@@ -160,25 +160,25 @@
         }
         //kiểm tra độ dài,loại
         if (isCardNo(card) === false) {
-            $.modalAlert('Số CMND/CCCD bạn nhập không đúng,Vui lòng nhập lại', 'warning');
+            $.modalAlert('Số CMND/CCCD bạn nhập không đúng, Vui lòng nhập lại', 'warning');
             //$("#zjh").focus;
             return false;
         }
         //kiểm tratỉnh
         if (checkProvince(card) === false) {
-            $.modalAlert('Hai ký tự đầu CMND/CCCD bạn nhập không đúng,Vui lòng nhập lại', 'warning');
+            $.modalAlert('Hai ký tự đầu CMND/CCCD bạn nhập không đúng, Vui lòng nhập lại', 'warning');
             //$("#zjh").focus;
             return false;
         }
         //kiểm tra sinhngày
         if (checkBirthday(card) === false) {
-            $.modalAlert('Ngày sinh trong số CMND/CCCD bạn nhập không đúng,Vui lòng nhập lại', 'warning');
+            $.modalAlert('Ngày sinh trong số CMND/CCCD bạn nhập không đúng, Vui lòng nhập lại', 'warning');
             //$("#zjh").focus();
             return false;
         }
         //xét nghiệmvị trícủakiểm tra
         if (checkParity(card) === false) {
-            $.modalAlert('Ký tự kiểm tra CMND/CCCD của bạn không đúng,Vui lòng nhập lại', 'warning');
+            $.modalAlert('Ký tự kiểm tra CMND/CCCD của bạn không đúng, Vui lòng nhập lại', 'warning');
             // $("#zjh").focus();
             return false;
         }

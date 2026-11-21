@@ -277,7 +277,7 @@
             async: false,
             success: function (data) {
                 if (data.code == "0") {
-                    $.loading(true, 'Đang lập hóa đơn điện tử,Vui lòng đợi...');
+                    $.loading(true, 'Đang lập hóa đơn điện tử, Vui lòng đợi...');
                     setTimeout(function () {
                         window.open(data.data.pictureUrl,
                             "_blank",
@@ -302,7 +302,7 @@
     }
     //In phiếu
     function printReceipt(zyh, jsnm) {
-        $.loading(true, 'Đang in phiếu hóa đơn điện tử,Vui lòng đợi...');
+        $.loading(true, 'Đang in phiếu hóa đơn điện tử, Vui lòng đợi...');
         var requestJson = { "BusinessName": "In phiếu", "paySerialNo": zyh, "paySettlementNo": jsnm, "type": "nhập viện", "PlaceCode": "003" };//Điểm lập hóa đơn tạm ghi cố định003
         $.ajax({
             type: "POST",
@@ -360,7 +360,7 @@
     }
 
     function printybjsd(setlId) {
-    $.loading(true, 'Đang truy vấn chứng từ quyết toán BHYT nhập viện,Vui lòng đợi...');
+    $.loading(true, 'Đang truy vấn chứng từ quyết toán BHYT nhập viện, Vui lòng đợi...');
 
     var inputp0001 = { "mzzy_lx": "2", "setlId": setlId, "operatorId": '@curOpr.UserCode', "operatorName": '@curOpr.UserName'  };
    //  var inputp0001 = { "mzzy_lx": "2", "setlId": setlId, "operatorId": "000000", "operatorName": "admin" };

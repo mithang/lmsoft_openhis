@@ -473,7 +473,7 @@
         $.najax({
             url: "/OutpatientManage/OutBook/PatBookGh",
             dataType: "json",
-            loadingtext: "Đang hẹn,Vui lòng chờ…",
+            loadingtext: "Đang hẹn, Vui lòng chờ…",
             data: { OutDate: seleRow.OutDate, cardNo: patModel.kh, ScheduId: seleRow.ghpbId, brxz: patModel.brxz },
             type: "POST",
             success: function (ajaxresp) {
@@ -526,7 +526,7 @@
         $.najax({
             url: "/OutpatientManage/OutBook/CancalBook",
             dataType: "json",
-            loadingtext: "Đang hẹn,Vui lòng chờ…",
+            loadingtext: "Đang hẹn, Vui lòng chờ…",
             data: { BookId: seleRow.BookId },
             type: "POST",
             success: function (ajaxresp) {

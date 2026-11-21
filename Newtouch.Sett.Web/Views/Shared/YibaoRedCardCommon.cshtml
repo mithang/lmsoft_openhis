@@ -40,7 +40,7 @@
     var errmsg = "";//đọcthẻsaisainêuhiển thị
     var brxzobj = { brxz: "1", brxzmc: "BHYT thường" };
     $('#readCard i').click(function () {
-         $.loading(true, 'Đang đọc thẻ,Vui lòng chờ…');
+         $.loading(true, 'Đang đọc thẻ, Vui lòng chờ…');
          setTimeout("readCard();", 50);
      });
     $("#readCard").show();
@@ -66,7 +66,7 @@
 
                  break;
              default:
-                 $.modalAlert("Địa phương BHYT chưa được thiết lập,Vui lòng thiết lập xong rồi quẹt thẻ", 'warning');
+                 $.modalAlert("Địa phương BHYT chưa được thiết lập, Vui lòng thiết lập xong rồi quẹt thẻ", 'warning');
                  return;
          }
      }

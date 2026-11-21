@@ -947,7 +947,7 @@
         });
         if (isYbjyjz && !document.getElementById('isjm').checked) {
              cqPatInfo.zymzh = MZJS.qzmzh;//số khám ngoại trú
-             $.loading(true, 'Đang đăng ký khám bệnh,Vui lòng chờ...');
+             $.loading(true, 'Đang đăng ký khám bệnh, Vui lòng chờ...');
              switch(cqPatInfo.ybVer)
              {
                  case "shanghaiV5":
@@ -1086,7 +1086,7 @@
             if (!MxscHisData()) {
                 return;
             }
-            $.loading(true, 'Đang quyết toán BHYT,Vui lòng chờ...');
+            $.loading(true, 'Đang quyết toán BHYT, Vui lòng chờ...');
             setTimeout(function () {
                 var jsstate = true;
 
@@ -1225,7 +1225,7 @@
                 /* xác nhận thu phí vàHIScổng vào quyết toán */
                 ybjs_confirm(regInfo);
             }else{
-                $.loading(true, 'Đang quyết toán BHYT,Vui lòng chờ...');
+                $.loading(true, 'Đang quyết toán BHYT, Vui lòng chờ...');
                 setTimeout(function () {
                     var jsstate = true;
                     YbMxsc();
@@ -1679,7 +1679,7 @@
         $.najax({
             url: "/OutpatientManage/OutpatientReg/Save",
             dataType: "json",
-            loadingtext: "ĐangHISĐăng ký khám,Vui lòng chờ…",
+            loadingtext: "ĐangHISĐăng ký khám, Vui lòng chờ…",
             data: {
                 patid: regInfo.patid, kh: regInfo.kh,
                 mjzbz: regInfo.mjzbz, ks: regInfo.ks, ys: regInfo.ys,
@@ -1798,7 +1798,7 @@
     //**************in báo cáoSTAR******************//
     function CSPrint(jsnm)
     {
-        setTimeout("$.loading(true, 'Đang tải dữ liệu in,Vui lòng chờ...');", 5);
+        setTimeout("$.loading(true, 'Đang tải dữ liệu in, Vui lòng chờ...');", 5);
         $.ajax({
             url: '/OutpatientManage/OutpatientReg/printCqOutpatientChargeBill',
             data: { jsnm: jsnm },
@@ -2099,7 +2099,7 @@
 
                 //1.xác định làkhônglần khám đầu tiên(tạo mới khám lần đầu,còn lạitảithông tin bệnh nhân)
                 //cách xác thực khám lần đầu:1.CMND/CCCDsố+họ tên,2:mã cá nhân hợp tác nông thôn mới
-                $.loading("Đang tải dữ liệu,Vui lòng chờ một chút");
+                $.loading("Đang tải dữ liệu, Vui lòng chờ một chút");
                 $.ajax({
                     type: "POST",
                     url: "/PatientManage/HospiterRes/ValidateFirstVisit",

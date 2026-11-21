@@ -76,11 +76,11 @@
         var resultZje = $('#lblResultZje').html();
         var details = $.currentWindow().details;
         if (!year || !month) {
-            $.modalAlert("Ngày Lỗi,Vui lòng thử lại", 'error');
+            $.modalAlert("Ngày Lỗi, Vui lòng thử lại", 'error');
             return;
         }
         if (!calcZje || !resultZje) {
-            $.modalAlert("Chi phí Lỗi,Vui lòng thử lại", 'error');
+            $.modalAlert("Chi phí Lỗi, Vui lòng thử lại", 'error');
             return;
         }
         if (!isNaN(parseFloat(resultZje)) && parseFloat(resultZje) <= 0) {
