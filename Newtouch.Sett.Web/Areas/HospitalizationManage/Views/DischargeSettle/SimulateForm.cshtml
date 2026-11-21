@@ -109,10 +109,10 @@
         if (isYbjyjz) {
             if (medicalInsurance == "chongqing") {
             	setTimeout(function(){ 
-                    $.loading(true, 'Đang tải lên chi tiết,Vui lòng đợi...');
+                    $.loading(true, 'Đang tải lên chi tiết, Vui lòng đợi...');
                     setTimeout(function() {
                             CQmxsc(function(mxxx) {
-                                $.loading(true, 'Đang quyết toán mô phỏng,Vui lòng đợi...');
+                                $.loading(true, 'Đang quyết toán mô phỏng, Vui lòng đợi...');
                                 setTimeout(function () {
                                     CQybjs(mxxx);
                                         //CQsppd(mxxx,
@@ -175,12 +175,12 @@
         if (!!spGsfReturn && !!spBdbReturn && spGsfReturn.Code === "1" && spBdbReturn.Code === "1") {
             if (!!spGsfReturn.Data && spGsfReturn.Data.cfmxlshList.length > 0) {
                 $.loading(false);
-                $.modalAlert("Bệnh nhân có mục thu phí cao chưa phê duyệt,Vui lòng liên hệ phòng BHYT phê duyệt rồi quyết toán lại！", 'error');
+                $.modalAlert("Bệnh nhân có mục thu phí cao chưa phê duyệt, Vui lòng liên hệ phòng BHYT phê duyệt rồi quyết toán lại！", 'error');
                 return;
             }
             if (!!spGsfReturn.Data && spBdbReturn.Data.cfmxlshList.length > 0) {
                 $.loading(false);
-                $.modalAlert("Bệnh nhân có mục Albumin chưa phê duyệt,Vui lòng liên hệ phòng BHYT phê duyệt rồi quyết toán lại！", 'error');
+                $.modalAlert("Bệnh nhân có mục Albumin chưa phê duyệt, Vui lòng liên hệ phòng BHYT phê duyệt rồi quyết toán lại！", 'error');
                 return;
             }
         } else {
@@ -202,7 +202,7 @@
     function funcGetSettPatientInfo(funcSuccCallback) {
         $.najax({
             url: '/HospitalizationManage/DischargeSettle/GetInpatientSettYbPatInfo?zyh=' + zyh,
-            loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân,Vui lòng đợi...",
+            loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân, Vui lòng đợi...",
             type: 'POST',
             success: function (ajaxResp) {
                 initPatientInfo(ajaxResp.data);

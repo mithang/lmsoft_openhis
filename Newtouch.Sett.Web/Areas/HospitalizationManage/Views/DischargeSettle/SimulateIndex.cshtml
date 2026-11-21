@@ -332,7 +332,7 @@
     //quyết toán trước
     $('#zy_btyjs').click(function () {
         setTimeout(function () {
-            $.loading(true, 'Đangquyết toán trước,Vui lòng đợi...');
+            $.loading(true, 'Đangquyết toán trước, Vui lòng đợi...');
             setTimeout(function () {
                 ybpreeSettCall();
             }, 50);
@@ -452,7 +452,7 @@
             return;
         }
         if (isnewyb=="1") {
-            $.modalAlert("Bệnh nhân hiện tại tạm thời không thể hoàn phí riêng lẻ,Vui lòng chọn phí hoàn toàn bộ,Và tải lên lại", 'warning');
+            $.modalAlert("Bệnh nhân hiện tại tạm thời không thể hoàn phí riêng lẻ, Vui lòng chọn phí hoàn toàn bộ,Và tải lên lại", 'warning');
             return;
         }
         $.each(selRowIds, function (i, item) {
@@ -652,7 +652,7 @@
             }
             else {
                 $.loading(false);
-                $.modalAlert("Gọiquyết toán trước BHYT【SI51】Giao diện thất bại,Vui lòng thử lại", 'error');
+                $.modalAlert("Gọiquyết toán trước BHYT【SI51】Giao diện thất bại, Vui lòng thử lại", 'error');
             }
         } else {
             var acct_used_flag = "";
@@ -759,7 +759,7 @@
             }
             else {
                 $.loading(false);
-                $.modalAlert("Gọiquyết toán trước BHYT【2303】Giao diện thất bại,Vui lòng thử lại", 'error');
+                $.modalAlert("Gọiquyết toán trước BHYT【2303】Giao diện thất bại, Vui lòng thử lại", 'error');
             }
         }
     }
@@ -854,7 +854,7 @@
     function ybBussiness(jfbbhlist)
     {
         setTimeout(function () {
-            $.loading(true, 'Đang tải lên chi tiết,Vui lòng đợi...');
+            $.loading(true, 'Đang tải lên chi tiết, Vui lòng đợi...');
             setTimeout(function () {
                 if (isnewyb=="1") {
                     shanghaimxsc(jfbbhlist);

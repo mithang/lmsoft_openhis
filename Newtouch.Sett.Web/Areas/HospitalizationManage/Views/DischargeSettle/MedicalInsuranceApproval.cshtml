@@ -18,7 +18,7 @@
         initgridList();
 
         setTimeout(function () {
-            $.loading(true, 'Đang tải lên chi tiết,Vui lòng đợi...');
+            $.loading(true, 'Đang tải lên chi tiết, Vui lòng đợi...');
             CQmxsc(function () {
                 setTimeout(function () {
                     GetApprovalXm();
@@ -268,7 +268,7 @@
         var spGsfReturn = {};
         var spBdbReturn = {};
         $.ajax({
-            loading: "Đang truy vấn mục chưa phê duyệt,Vui lòng đợi...",
+            loading: "Đang truy vấn mục chưa phê duyệt, Vui lòng đợi...",
             type: "POST",
             url: "http://127.0.0.1:22222/api/CQYiBao/GetApprovalXm",
             data: parameter1,

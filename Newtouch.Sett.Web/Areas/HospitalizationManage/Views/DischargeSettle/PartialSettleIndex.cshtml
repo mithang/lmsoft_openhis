@@ -505,7 +505,7 @@
                                 }
                             });
                             if (cqybjyDenySettleReturn.infcode !== "0") {
-                                $.modalAlert('Đảo ngược quyết toán nhập viện thất bại:' + cqybjyDenySettleReturn.err_msg + '【lúc nàyBHYTđã quyết toán thành công,Vui lòng liên hệ nhà phát triển HIS xử lý】', 'error');
+                                $.modalAlert('Đảo ngược quyết toán nhập viện thất bại:' + cqybjyDenySettleReturn.err_msg + '【lúc nàyBHYTđã quyết toán thành công, Vui lòng liên hệ nhà phát triển HIS xử lý】', 'error');
                             }
 
                             $.loading(false);
@@ -540,7 +540,7 @@
     //Hủyquyết toán
     function newtouch_event_f6() {
         if (!zyh) {
-            $.modalAlert("Mã nhập việnlàtrống,Vui lòng xác nhận", 'warning');
+            $.modalAlert("Mã nhập việnlàtrống, Vui lòng xác nhận", 'warning');
             return;
         }
         $.ajax({
@@ -551,7 +551,7 @@
             success: function (jsnm) {
                 if (isYbjyjz) {
                     if (!ybIsReadCard) {
-                        $.modalAlert("Hủyquyết toán bệnh nhân BHYT,Vui lòng đọc thẻ trước！", 'warning');
+                        $.modalAlert("Hủyquyết toán bệnh nhân BHYT, Vui lòng đọc thẻ trước！", 'warning');
                         return;
                     }
                         var cqybjyDenySettleReturn;
@@ -585,7 +585,7 @@
                                             }
                                         });
                                     } else {
-                                        $.modalAlert('Đảo ngược quyết toán nhập viện thất bại:' + cqybjyDenySettleReturn.err_msg + '【lúc nàyBHYTđã quyết toán thành công,Vui lòng liên hệ nhà phát triển HIS xử lý】', 'warning');
+                                        $.modalAlert('Đảo ngược quyết toán nhập viện thất bại:' + cqybjyDenySettleReturn.err_msg + '【lúc nàyBHYTđã quyết toán thành công, Vui lòng liên hệ nhà phát triển HIS xử lý】', 'warning');
                                         return;
                                     }
                                 } else {
@@ -669,21 +669,21 @@
 
         if (isYbjyjz) {//BHYT
             if (!medicalInsurance) {
-                $.modalAlert("Chương trình chưa cấu hình động nơi BHYT,Vui lòng cấu hình rồi thử lại", 'warning');
+                $.modalAlert("Chương trình chưa cấu hình động nơi BHYT, Vui lòng cấu hình rồi thử lại", 'warning');
                 return;
             }
                 if (!ybIsReadCard) {
-                    $.modalAlert("quyết toán bệnh nhân BHYT,Vui lòng đọc thẻ trước！", 'warning');
+                    $.modalAlert("quyết toán bệnh nhân BHYT, Vui lòng đọc thẻ trước！", 'warning');
                     return;
                 }
-                $.loading(true, 'Đang sửa đăng ký khám,Vui lòng đợi...');
+                $.loading(true, 'Đang sửa đăng ký khám, Vui lòng đợi...');
                 setTimeout(function() {
                     CQjzdj(function (jzxx) {
-                            $.loading(true, 'Đang kiểm tra chi tiết phí,Vui lòng đợi...');
+                            $.loading(true, 'Đang kiểm tra chi tiết phí, Vui lòng đợi...');
                             setTimeout(function() {
                                 CQmxsc(jzxx,
                                         function (mxxx) {
-                                            $.loading(true, 'Đangquyết toán BHYT,Vui lòng đợi...');
+                                            $.loading(true, 'Đangquyết toán BHYT, Vui lòng đợi...');
                                             setTimeout(function() {
                                                 CQybjs(jzxx, mxxx);
                                                 });
@@ -822,14 +822,14 @@
 	            if (jfbh) {
 	                $.loading(false);
 	                isuccer = false;
-	                $.modalAlert(jfbh + "Chưa tải lên BHYT,Vui lòng truy vấn và tải lên tại trangquyết toán trước!", 'error');
+	                $.modalAlert(jfbh + "Chưa tải lên BHYT, Vui lòng truy vấn và tải lên tại trangquyết toán trước!", 'error');
 	                return;
 	            }
 	            else if (zjjfbh)
 	            {
 	                $.loading(false);
 	                isuccer = false;
-	                $.modalAlert("quyết toán giữa kỳ chỉ được tải lên chi tiết phí trước thời gianquyết toán đã chọn,Vui lòng chọn thời gian cầnquyết toán giữa kỳ tại trangquyết toán trước và tải lên!,Số hiệu tính phí:"+zjjfbh , 'error');
+	                $.modalAlert("quyết toán giữa kỳ chỉ được tải lên chi tiết phí trước thời gianquyết toán đã chọn, Vui lòng chọn thời gian cầnquyết toán giữa kỳ tại trangquyết toán trước và tải lên!,Số hiệu tính phí:"+zjjfbh , 'error');
 	                return;
 	            }
 	            else {
@@ -936,7 +936,7 @@
             }
         } else {
             $.loading(false);
-            $.modalAlert("Gọi giao diện BHYT【2303】quyết toán trước thất bại,Vui lòng thử lại!", 'error');
+            $.modalAlert("Gọi giao diện BHYT【2303】quyết toán trước thất bại, Vui lòng thử lại!", 'error');
             return;
         }
 
@@ -1015,7 +1015,7 @@
     function funcGetSettPatientInfo(funcSuccCallback) {
         $.najax({
             url: '/HospitalizationManage/DischargeSettle/GetInpatientSettYbPatInfo?zyh=' + patModel.zyh,
-            loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân,Vui lòng đợi...",
+            loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân, Vui lòng đợi...",
             type: 'POST',
             success: function (ajaxResp) {
                 //
