@@ -169,13 +169,13 @@
                         if (login_error != null) {
                             switch (login_error) {
                                 case "overdue":
-                                    $.login.formMessage("Phiên đăng nhập hệ thống đã hết hạn,Vui lòng đăng nhập lại");
+                                    $.login.formMessage("Phiên đăng nhập hệ thống đã hết hạn, Vui lòng đăng nhập lại");
                                     break;
                                 case "sidelined":
                                     $.login.formMessage("Tài khoản này đã đăng nhập ở nơi khác, Bạn đã bị buộc đăng xuất");
                                     break;
                                 case "-1":
-                                    $.login.formMessage("Lỗi hệ thống không xác định,Vui lòng đăng nhập lại");
+                                    $.login.formMessage("Lỗi hệ thống không xác định, Vui lòng đăng nhập lại");
                                     break;
                             }
                             top.$.cookie(loginErrorKey, '', { path: "/", expires: -1 });
