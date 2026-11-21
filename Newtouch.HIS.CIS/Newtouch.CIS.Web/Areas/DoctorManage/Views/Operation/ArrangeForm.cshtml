@@ -56,7 +56,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>Phẫu thuậtNgày:</td>
+                <td class="formTitle"><span class="required">*</span>Phẫu thuật Ngày:</td>
                 <td class="formValue" colspan="2">
                     <input id="rq" name="rq" type="text" width="120" class="required form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" />
                 </td>
@@ -258,7 +258,7 @@
         data.zyh = $('#zyh').html();
         var ssrq = $("#rq").val();
         if ($.trim(ssrq) == "") {
-            $.modalAlert("Vui lòng chọnPhẫu thuậtNgày", "warning");
+            $.modalAlert("Vui lòng chọnPhẫu thuật Ngày", "warning");
             return;
         }
         data.aprq = $("#rq").val();
