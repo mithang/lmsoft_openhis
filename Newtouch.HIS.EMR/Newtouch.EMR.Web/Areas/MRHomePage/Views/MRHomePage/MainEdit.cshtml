@@ -394,19 +394,19 @@
             return false;
         }
         if (para.BZYZSNL > 365) {
-            $.modalAlert('Thông tin bệnh nhân (Tuổi chưa đủ1tuổi tròn)Tuổi không được lớn hơn365', 'warning');
+            $.modalAlert('Thông tin bệnh nhân (Tuổi chưa đủ 1 tuổi tròn) Tuổi không được lớn hơn 365', 'warning');
             return false;
         }
         if (para.BZYYSNL > 31) {
-            $.modalAlert('Thông tin bệnh nhân (Tuổi chưa đủ1tháng tuổi)Tuổi không được lớn hơn31', 'warning');
+            $.modalAlert('Thông tin bệnh nhân (Tuổi chưa đủ 1 tháng tuổi) Tuổi không được lớn hơn 31', 'warning');
             return false;
         }
         if (para.BZYZSNL != "" && para.BZYZSNL <= 28 && para.XSERYTZ=="") {
-            $.modalAlert('Thông tin bệnh nhân Tuổi trẻ sơ sinh nhỏ hơn hoặc bằng28ngày thì phải điền【Cân nặng nhập viện của trẻ sơ sinh】', 'warning');
+            $.modalAlert('Thông tin bệnh nhân Tuổi trẻ sơ sinh nhỏ hơn hoặc bằng 28 ngày thì phải điền【Cân nặng nhập viện của trẻ sơ sinh】', 'warning');
             return false;
         }
         if (para.BZYYSNL != "" && para.BZYYSNL <= 28 && para.XSERYTZ == "") {
-            $.modalAlert('Thông tin bệnh nhân Tuổi trẻ sơ sinh nhỏ hơn hoặc bằng28ngày thì phải điền【Cân nặng nhập viện của trẻ sơ sinh】', 'warning');
+            $.modalAlert('Thông tin bệnh nhân Tuổi trẻ sơ sinh nhỏ hơn hoặc bằng 28 ngày thì phải điền【Cân nặng nhập viện của trẻ sơ sinh】', 'warning');
             return false;
         }
         if (para.XSERYTZ != "" && (para.XSERYTZ < 100 || para.XSERYTZ >9999 )) {
