@@ -13,7 +13,7 @@
             <table class="form">
                 <tr>
                     <td class="formValue">
-                        <input type="button" id="btn_icd10" class="btn btn-primary" style="width:40%;margin-left:10%;" value="ICD10Tải xuống" />
+                        <input type="button" id="btn_icd10" class="btn btn-primary" style="width:40%;margin-left:10%;" value="ICD10 Tải xuống" />
                     </td>
                     <td class="formValue">
                         <input type="button" id="btn_fwxm" class="btn btn-primary" style="width:40%;margin-left:10%;" value="Tải danh mục hạng mục" />
@@ -32,7 +32,7 @@
 </form>
 <script>
     var userId = '@NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent().UserCode;';
-    //ICD10Tải xuống
+    //ICD10 Tải xuống
     $('#btn_icd10').click(function () {
         downIcd10();
     })
@@ -59,9 +59,9 @@
             GzYB_Icd10_61.prm_outputfile = filePath;
             var ybjySettReturn_61 = $.guianyibao.UploadICD10(GzYB_Icd10_61);
             if (ybjySettReturn_61 && ybjySettReturn_61.Code == 0) {
-                $.modalAlert("BHYTICD10Tải tệp dữ liệu thành công", 'warning');
+                $.modalAlert("BHYT ICD10 Tải tệp dữ liệu thành công", 'warning');
             } else {
-                $.modalAlert("BHYTICD10Tải tệp dữ liệu thất bại" + ybjySettReturn_61.ErrorMsg, 'warning');
+                $.modalAlert("BHYT ICD10 Tải tệp dữ liệu thất bại" + ybjySettReturn_61.ErrorMsg, 'warning');
             }
         } else $.modalAlert("Vui lòng chọn danh mục", 'warning');
     }
