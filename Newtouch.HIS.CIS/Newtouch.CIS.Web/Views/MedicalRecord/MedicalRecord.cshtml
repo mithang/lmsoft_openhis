@@ -2947,7 +2947,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         let xynames = xyzdArray.map(item => item["zdCode"]);
         let xynameSet = new Set(xynames);
         if (xynameSet.size != xynames.length) {
-            $.modalAlert("Chẩn đoán Tây yTrùng lặp,Vui lòng chọn lại", 'warning');
+            $.modalAlert("Chẩn đoán Tây yTrùng lặp, Vui lòng chọn lại", 'warning');
             return;
         }
 
@@ -2981,7 +2981,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         let zynames = zyzdArray.map(item => item["zdCode"]);
         let zynameSet = new Set(zynames);
         if (zynameSet.size != zynames.length) {
-            $.modalAlert("Chẩn đoán YHCTTrùng lặp,Vui lòng chọn lại", 'warning');
+            $.modalAlert("Chẩn đoán YHCTTrùng lặp, Vui lòng chọn lại", 'warning');
             return;
 		}
 
@@ -3102,7 +3102,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             dataType: "json",
             data: { jzObject: jzObject2, xyzdList: xyzdArray, zyzdList: zyzdArray, blObject: blObject, cfDto: JSON.stringify(cfDtoArray), jzFinish: jzFinish, cfzdlist: window.alldataArray.cfzdlist},
             type: "POST",
-            loadingtext: !!!fromCfSaveCallback ? "Đang lưu dữ liệu bệnh án,Vui lòng đợi trong giây lát…" : "Đang lưu dữ liệu đơn thuốc,Vui lòng đợi trong giây lát…",
+            loadingtext: !!!fromCfSaveCallback ? "Đang lưu dữ liệu bệnh án, Vui lòng đợi trong giây lát…" : "Đang lưu dữ liệu đơn thuốc, Vui lòng đợi trong giây lát…",
             success: function (data) {
                 var patInfoObj = window.currPatientInfo;
                 var jysj = $.getTime();

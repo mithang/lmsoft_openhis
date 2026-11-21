@@ -120,7 +120,7 @@
         $.najax({
             url: "/NurseManage/InpatientVitalSigns/GetTemperatureChartJson",
             data: { kssj: kssj, jssj: jssj, zyh: zyh },
-            loadingtext: "Phiếu nhiệt độĐang tải dữ liệu,Vui lòng đợi trong giây lát...",
+            loadingtext: "Phiếu nhiệt độĐang tải dữ liệu, Vui lòng đợi trong giây lát...",
             success: function (data) {
                 //
                 if (!(data && data.list && data.list.length)) {
@@ -227,7 +227,7 @@
             startDraw3();
         }
         else {
-            $.loading(true, 'Đang vẽ đường nối,Có thể mất nhiều thời gian,Vui lòng đợi trong giây lát...');
+            $.loading(true, 'Đang vẽ đường nối,Có thể mất nhiều thời gian, Vui lòng đợi trong giây lát...');
             setTimeout("startDraw3();", 50);
         }
     }

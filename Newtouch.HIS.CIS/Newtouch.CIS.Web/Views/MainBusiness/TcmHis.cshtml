@@ -334,7 +334,7 @@
             success: function (ajaxresp) {
                 if (!!ajaxresp && ajaxresp.state === "success") {
                     if (!ajaxresp.data || ajaxresp.data.length === 0) {
-                        $.modalAlert("Trích xuấtĐơn thuốcThông tinthất bại,Vui lòng đảm bảo đãLưuĐơn thuốc", 'error');
+                        $.modalAlert("Trích xuấtĐơn thuốcThông tinthất bại, Vui lòng đảm bảo đãLưuĐơn thuốc", 'error');
                         return;
                     }
                     localStorage.setItem("hid_RpInfo", ajaxresp.data);
@@ -433,7 +433,7 @@
             dataType: "json",
             success: function (ajaxresp) {
                 if (!ajaxresp) {
-                    $.modalAlert("Trích xuấtBệnh ánThông tinthất bại,Vui lòng đảm bảo đãLưuBệnh án", 'error');
+                    $.modalAlert("Trích xuấtBệnh ánThông tinthất bại, Vui lòng đảm bảo đãLưuBệnh án", 'error');
                     return;
                 }
                 localStorage.setItem("hid_EMRRecordInfo", JSON.stringify(ajaxresp));

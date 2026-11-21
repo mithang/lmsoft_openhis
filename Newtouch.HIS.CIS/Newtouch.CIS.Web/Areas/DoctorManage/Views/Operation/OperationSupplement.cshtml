@@ -212,7 +212,7 @@
             type: "GET",
             url: "@Url.Action("GetOperatPatSearchList")",
             loading: true,
-            loadingtext: "ĐangTảiDanh sách bệnh nhân,Vui lòng đợi trong giây lát...",
+            loadingtext: "ĐangTảiDanh sách bệnh nhân, Vui lòng đợi trong giây lát...",
             success: function (ajaxresp) {
                 newtouch_event_f4();
                 leftdata = ajaxresp;
@@ -231,7 +231,7 @@
             url: "@Url.Action("getSupplement")",
             data: { zyh: $("#zyh").html() },
             loading: true,
-            loadingtext: "ĐangTảiChi phíDanh sách,Vui lòng đợi trong giây lát...",
+            loadingtext: "ĐangTảiChi phíDanh sách, Vui lòng đợi trong giây lát...",
             success: function (ajaxresp) {
                 $("#gridFeeList").resetSelection();
                 $("#gridFeeList").clearGridData();
