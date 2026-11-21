@@ -91,10 +91,10 @@ namespace Newtouch.HIS.Application.Implementation
                             </div>
                         </div>
                     </div>
-                    <div class='dashboard-statss' style='display: none'  menuName='1thángThuốc hết hạn' menuUrl='/StorageManage/DrugStockSearch/ExpiredDrugsView?type=1'>
-                          < div class='dashboard-stats-item' style='background-color: #fc8675;'>
+                    <div class='dashboard-statss' style='display: none'  menuName='1 tháng thuốc hết hạn' menuUrl='/StorageManage/DrugStockSearch/ExpiredDrugsView?type=1'>
+                          <div class='dashboard-stats-item' style='background-color: #fc8675;'>
                             <h2 class='m-top-none' id='h_todayDrugCount'></h2>
-                            <h5>1thángThuốc hết hạn</h5>
+                            <h5>1 tháng thuốc hết hạn</h5>
                             <div class='stat-icon'>
                                 <i class='fa fa-exclamation-triangle fa-3x'></i>
                             </div>
@@ -199,10 +199,10 @@ namespace Newtouch.HIS.Application.Implementation
                             </div>
                         </div>
                     </div>
-                    <div class='dashboard-stats' style='display: none' menuName='1thángThuốc hết hạn' menuUrl='/StorageManage/DrugStockSearch/ExpiredDrugsView?type=1'>
+                    <div class='dashboard-stats' style='display: none' menuName='1 tháng thuốc hết hạn' menuUrl='/StorageManage/DrugStockSearch/ExpiredDrugsView?type=1'>
                         <div class='dashboard-stats-item' style='background-color: #fc8675;'>
                             <h2 class='m-top-none' id='h_todayDrugCount'></h2>
-                            <h5>1thángThuốc hết hạn</h5>
+                            <h5>1 tháng thuốc hết hạn</h5>
                             <div class='stat-icon'>
                                 <i class='fa fa-exclamation-triangle fa-3x'></i>
                             </div>
@@ -262,10 +262,10 @@ namespace Newtouch.HIS.Application.Implementation
                             </div>
                         </div>
                     </div>
-                    <div class='dashboard-statss' style='display: none' menuName='1thángThuốc hết hạn' menuUrl='/StorageManage/DrugStockSearch/ExpiredDrugsView?type=1'>
+                    <div class='dashboard-statss' style='display: none' menuName='1 tháng thuốc hết hạn' menuUrl='/StorageManage/DrugStockSearch/ExpiredDrugsView?type=1'>
                         <div class='dashboard-stats-item' style='background-color: #fc8675;'>
                             <h2 class='m-top-none' id='h_todayDrugCount'></h2>
-                            <h5>1thángThuốc hết hạn</h5>
+                            <h5>1 tháng thuốc hết hạn</h5>
                             <div class='stat-icon'>
                                 <i class='fa fa-exclamation-triangle fa-3x'></i>
                             </div>
