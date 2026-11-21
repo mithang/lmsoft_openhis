@@ -217,7 +217,7 @@
     //chọncủabệnh nhân callback
     function GetQueryFphAjax(obj) {
         patModel = null;
-        $.loading(true, "Đang yêu cầu thông tin bệnh nhân,Vui lòng chờ...");
+        $.loading(true, "Đang yêu cầu thông tin bệnh nhân, Vui lòng chờ...");
         $.ajax({
             type: "POST",
             url: "/OutpatientManage/OutpatCharge/GetpatientAccountInfo",
@@ -629,7 +629,7 @@
                     return;
                 }
                 if (ovpraseFloat(rowData.tsl) > ovpraseFloat(rowData.ktsl)) {
-                    $.modalAlert("Số lượng hoànlớn hơnSố lượng có thể hoàn,Vui lòng xác nhận<br/>" + rowData.mc, 'warning');
+                    $.modalAlert("Số lượng hoànlớn hơnSố lượng có thể hoàn, Vui lòng xác nhận<br/>" + rowData.mc, 'warning');
                     EnableInlineEditBox(selRowIds[i]);//bật khung sửa trong dòng
                     return;
                 }
@@ -657,7 +657,7 @@
                     return;
                 }
                 if (ovpraseFloat(rowData.tsl) > ovpraseFloat(rowData.ktsl)) {
-                    $.modalAlert("Số lượng hoànlớn hơnSố lượng có thể hoàn,Vui lòng xác nhận<br/>" + rowData.mc, 'warning');
+                    $.modalAlert("Số lượng hoànlớn hơnSố lượng có thể hoàn, Vui lòng xác nhận<br/>" + rowData.mc, 'warning');
                     $("#gridList").jqGrid("setSelection", selRowIds[i], false);
                     return;
                 }
@@ -812,7 +812,7 @@
             data: { jsnm: thisJszb.jsnm },
             url: "/OutpatientManage/OutpatientRefund/AccountPlanRefundAll",
             dataType: "json",
-            loadingtext: "Đang yêu cầu hoàn toàn bộ,Vui lòng chờ…",
+            loadingtext: "Đang yêu cầu hoàn toàn bộ, Vui lòng chờ…",
             success: function (ajaxresp) {
                 $.modalAlert("Hoàn toàn bộ thành công,và kế hoạch đã bị hủy", 'success');
                 //
@@ -963,7 +963,7 @@
 	            tjsxmDict.tsl = this.tsl;
 	            tcfArr.push(tjsxmDict);
 	        });
-	        $.loading(true, 'ĐangHủyĐã quyết toánBHYTquyết toán,Vui lòng chờ…');
+	        $.loading(true, 'ĐangHủyĐã quyết toánBHYTquyết toán, Vui lòng chờ…');
 	        var cqybjyDenySettleReturn;
 	        var payoptype = {
 	            operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh, hisId: patModel.mzh
@@ -1017,16 +1017,16 @@
 	                var queryMx = { jsnm: thisJszb.jsnm, tjsxmDict: tjsxmDictObj, mzh: patModel.mzh,
                         pch: thisJszb.pch, yllb: thisJszb.yllb, bzbm: thisJszb.bzbm, tcfArr:tcfArr };
 	                setTimeout(function () {
-	                    $.loading(true, 'Đang tải chi tiết lên,Vui lòng chờ...');
+	                    $.loading(true, 'Đang tải chi tiết lên, Vui lòng chờ...');
 	                    CQmxsc(queryMx,
 					        function (mxxx) {
 					            setTimeout(function () {
-					                $.loading(true, 'Đang quyết toán BHYT,Vui lòng chờ...');
+					                $.loading(true, 'Đang quyết toán BHYT, Vui lòng chờ...');
 					                CQybjs(mxxx,
                                         function (mxxx, newybjyCqFeeReturn) {
                                             var mztfProDto = { ZFY: mxxx.zje, XJZF: mxxx.xjzfys };
                                             setTimeout(function () {
-                                                $.loading(true, 'Đang quyết toán BHYT,Vui lòng chờ...');
+                                                $.loading(true, 'Đang quyết toán BHYT, Vui lòng chờ...');
                                                 GuiAnYbHISRefundSettlement(tjsxmDictObj,
                                                     ovpraseFloat(mxxx.tfzje).toFixed(4),
                                                     null,//cqybjyDenySettleReturn.output.setlinfo.setl_id,
@@ -1160,7 +1160,7 @@
                                                 type: "GET",
                                                 url: "/OutpatientManage/OutpatCharge/GetCQjzdjInfo?mzh=" + patModel.mzh,
                                                 dataType: "json",
-                                                loadingtext: "Đang yêu cầuHISHủy đăng ký khám,Vui lòng chờ…",
+                                                loadingtext: "Đang yêu cầuHISHủy đăng ký khám, Vui lòng chờ…",
                                                 async: false,
                                                 success: function (ajaxresp) {
                                                     if (ajaxresp && ajaxresp.mdtrt_id) {
@@ -1494,7 +1494,7 @@
                 },
                 url: "/OutpatientManage/OutpatientRefund/guianhandleRefund",
                 dataType: "json",
-                loadingtext: "Đang yêu cầuHISHoàn phíquyết toán,Vui lòng chờ…",
+                loadingtext: "Đang yêu cầuHISHoàn phíquyết toán, Vui lòng chờ…",
                 success: function (ajaxresp) {
                     if (funcSuccCallback) {
                         //thu hồi hóa đơn cũ(hủy hóa đơn cũ)//in phiếu thu phí mới
@@ -1513,7 +1513,7 @@
             $.najax({
                 type: "POST",
                 url: "/OutpatientManage/OutpatCharge/GetSettPatientInfo?mzh=" + patModel.mzh,
-                loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân,Vui lòng chờ...",
+                loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân, Vui lòng chờ...",
                 dataType: "json",
                 success: function (ajaxresp) {
                     var data = ajaxresp.data;
@@ -1554,7 +1554,7 @@
 
         //BHYTquyết toán lại
         function ybReSett(tjsxmDictObj, ybReq, ybfyxzCompResult) {
-            $.loading(true, 'ĐangHủyĐã quyết toánBHYTquyết toán,Vui lòng chờ…');
+            $.loading(true, 'ĐangHủyĐã quyết toánBHYTquyết toán, Vui lòng chờ…');
             timeoutFunc = function () {
                 //BHYThoàn phí(xác nhận hoàn) trả vềhaisố quyết toán mộtđảo đỏ một mớicủachưa quyết toán
                 var ybjyDenySettleReturn = $.yibao.DenySettle($('#readCardCardType').val(), thisJszb.ybjsh, ybReq.sbbh, ybReq.AKE279, ybReq.AKE278);
@@ -1586,7 +1586,7 @@
 
         //chưa hoàn xong quyết toán lại(BHYTquyết toán trước+quyết toánxác nhận) + HISquyết toán lại
         function ybSettWtwCxj(hcybfeeRelated, tjsxmDictObj, ybReq, tmxzje, yxzje, hcybjsh, newwjybjsh) {
-            $.loading(true, 'Đang quyết toán lại BHYT,Vui lòng chờ…');
+            $.loading(true, 'Đang quyết toán lại BHYT, Vui lòng chờ…');
             timeoutFunc = function () {
                 //1. BHYTquyết toán lại
                 var ybjySettleClinicAReturn = $.yibao.SettleClinicA($('#readCardCardType').val(), newwjybjsh, ybReq.sbbh, yxzje, ybReq.jzyy, ybReq.AKE181, ybReq.AKC195, ybReq.ys, ybReq.ysmc, ybReq.zdicd10, ybReq.zdmc, ybReq.AKE279, ybReq.AKE278, ybReq.ks, ybReq.ksmc);
@@ -1607,7 +1607,7 @@
                     });
                 }
                 else {
-                    $.modalAlert('Quyết toán lại BHYT thất bại,Vui lòng nhanh chóng liên hệ quản trị viên<br/>' + ybjySettleClinicAReturn.ErrorMsg, 'error');
+                    $.modalAlert('Quyết toán lại BHYT thất bại, Vui lòng nhanh chóng liên hệ quản trị viên<br/>' + ybjySettleClinicAReturn.ErrorMsg, 'error');
                     return;
                 }
             };
@@ -1616,7 +1616,7 @@
 
         //đã hoàn xong quyết toán lại(BHYThủyđăng ký khám) + HISquyết toán lại
         function ybSettYtwCxj(hcybfeeRelated, tjsxmDictObj, ybReq, ybfyxzCompResult, tmxzje, hcybjsh, newwjybjsh) {
-            $.loading(true, 'ĐangBHYTHủy quyết toán,Vui lòng chờ…');
+            $.loading(true, 'ĐangBHYTHủy quyết toán, Vui lòng chờ…');
             timeoutFunc = function () {
                 //1. BHYThủyđăng ký khám
                 var ybjyDenyRegReturn = $.yibao.DenyReg(newwjybjsh, ybReq.sbbh, ybfyxzCompResult.TTCode);
@@ -1641,7 +1641,7 @@
                     });
                 }
                 else {
-                    $.modalAlert('BHYTHủy đăng ký khámThất bại,Vui lòng nhanh chóng liên hệ quản trị viên<br/>' + ybjyDenyRegReturn.ErrorMsg, 'error');
+                    $.modalAlert('BHYTHủy đăng ký khámThất bại, Vui lòng nhanh chóng liên hệ quản trị viên<br/>' + ybjyDenyRegReturn.ErrorMsg, 'error');
                     return;
                 }
             };
@@ -1660,7 +1660,7 @@
                 },
                 url: "/OutpatientManage/OutpatientRefund/YbRefundSettlement",
                 dataType: "json",
-                loadingtext: "Đang yêu cầuHISHoàn phíquyết toán,Vui lòng chờ…",
+                loadingtext: "Đang yêu cầuHISHoàn phíquyết toán, Vui lòng chờ…",
                 success: function (ajaxresp) {
                     if (funcSuccCallback) {
                         //thu hồi hóa đơn cũ(hủy hóa đơn cũ)//in phiếu thu phí mới

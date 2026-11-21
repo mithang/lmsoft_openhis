@@ -404,7 +404,7 @@
         ybjyFeeReturn = JSON.parse(sessionStorage.getItem('ybjyFeeReturn'));
         if (!!ybjyFeeReturn) {
             if (!medicalInsurance) {
-                $.modalAlert("Chương trình chưa cấu hình động nơi BHYT,Vui lòng cấu hình rồi thử lại", 'warning');
+                $.modalAlert("Chương trình chưa cấu hình động nơi BHYT, Vui lòng cấu hình rồi thử lại", 'warning');
                 $.modalClose();
             }
             if (cqPatInfo.ybVer === "gjyb")
@@ -502,7 +502,7 @@
         else {
             //Bất thường
             orglxjzfys = xjzfys = zje = 0;
-            $.modalAlert("Thanh toán BHYT bất thường,Vui lòng thử lại", "error");
+            $.modalAlert("Thanh toán BHYT bất thường, Vui lòng thử lại", "error");
             $.modalClose();
         }
     }
@@ -511,7 +511,7 @@
         xnhjyFeeReturn = JSON.parse(sessionStorage.getItem('xnhjyFeeReturn'));
         if (!!xnhjyFeeReturn) {
             if (!medicalInsurance) {
-                $.modalAlert("Chương trình chưa cấu hình động nơi BHYT,Vui lòng cấu hình rồi thử lại", 'warning');
+                $.modalAlert("Chương trình chưa cấu hình động nơi BHYT, Vui lòng cấu hình rồi thử lại", 'warning');
                 $.modalClose();
             }
             //Nếu theo logic BHYT Quý An
@@ -542,7 +542,7 @@
         else {
             //Bất thường
             orglxjzfys = xjzfys = zje = 0;
-            $.modalAlert("Thanh toán BHYT bất thường,Vui lòng thử lại", "error");
+            $.modalAlert("Thanh toán BHYT bất thường, Vui lòng thử lại", "error");
             $.modalClose();
         }
     }
@@ -813,7 +813,7 @@
         zfje1 = (!!zffs1 || zffs1 == '0') && !!ovpraseFloat(zfje1) ? ovpraseFloat(zfje1) : 0;
         if (zffs1 == '3' && yjjye) {
             if (!(parseFloat(zfje1) <= parseFloat(yjjye) || parseFloat(zfje1) <= parseFloat(xjzfys))) {
-                $.modalAlert("Không đủtạm ứng,Không thể tiến hànhquyết toán,Vui lòngnạp tiềntạm ứnghoặcChọnnónóPhương thức thanh toán", "error");
+                $.modalAlert("Không đủtạm ứng,Không thể tiến hànhquyết toán, Vui lòngnạp tiềntạm ứnghoặcChọnnónóPhương thức thanh toán", "error");
                 return false;
             }
         }
