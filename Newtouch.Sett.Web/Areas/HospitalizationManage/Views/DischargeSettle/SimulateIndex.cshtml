@@ -696,7 +696,7 @@
                         }
                         else {
                             $.loading(false);
-                            $.modalAlert("Làm thủ tục xuất việnThất bại:" + cyblReg.err_msg, 'error');
+                            $.modalAlert("Làm thủ tục xuất viện Thất bại:" + cyblReg.err_msg, 'error');
                             return;
                         }
                     },
@@ -773,7 +773,7 @@
             success: function (data) {
                 var cxcyReturn = eval('(' + data + ')');
                 if (cxcyReturn.infcode != '0') {
-                    $.modalAlert('Hủy xuất việnThất bại:' + cxcyReturn.err_msg + '【Vui lòng liên hệ nhà phát triển HIS xử lý】', 'success');
+                    $.modalAlert('Hủy xuất viện Thất bại:' + cxcyReturn.err_msg + '【Vui lòng liên hệ nhà phát triển HIS xử lý】', 'success');
                 }
             }
         });

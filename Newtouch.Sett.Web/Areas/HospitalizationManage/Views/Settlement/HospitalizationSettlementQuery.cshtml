@@ -315,14 +315,14 @@
                 else {
                     $.loading(false);
                     isuccer = false;
-                    $.modalAlert('In phiếu chứng từThất bại[' + data.mes + ']', 'error');
+                    $.modalAlert('In phiếu chứng từ Thất bại[' + data.mes + ']', 'error');
                     return;
                 }
             },
             error: function (request, error, ex) {
                 $.loading(false);
                 isuccer = false;
-                $.modalAlert('In phiếu chứng từThất bại[' + ex + ']', 'error');
+                $.modalAlert('In phiếu chứng từ Thất bại[' + ex + ']', 'error');
                 return;
             }
         });
@@ -360,7 +360,7 @@
     }
 
     function printybjsd(setlId) {
-    $.loading(true, 'Đang truy vấn chứng từquyết toán BHYT nhập viện,Vui lòng đợi...');
+    $.loading(true, 'Đang truy vấn chứng từ quyết toán BHYT nhập viện,Vui lòng đợi...');
 
     var inputp0001 = { "mzzy_lx": "2", "setlId": setlId, "operatorId": '@curOpr.UserCode', "operatorName": '@curOpr.UserName'  };
    //  var inputp0001 = { "mzzy_lx": "2", "setlId": setlId, "operatorId": "000000", "operatorName": "admin" };
