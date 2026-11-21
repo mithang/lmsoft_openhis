@@ -139,7 +139,7 @@
                                     var rowid = row.attr('id');
                                     var dfl= $("#" + rowid + "_DietBigType").val();
                                     if (dfl=="YYBCJ"&&cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                        $.modalAlert("Liều lượngđể trống,Vui lòng xác nhận.", 'warning');
+                                        $.modalAlert("Liều lượng để trống, Vui lòng xác nhận.", 'warning');
                                         return;
                                     }
                                     if (isNaN(cellval)) {

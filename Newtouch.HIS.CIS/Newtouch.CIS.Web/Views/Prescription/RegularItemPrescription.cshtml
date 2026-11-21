@@ -179,7 +179,7 @@
                                     fn: function (e) {
                                         var cellval = $(this).val();
                                         if(cellval.replace(/(^\s*)|(\s*$)/g, "") == ""){
-                                            $.modalAlert("Số lượngđể trống,Vui lòng xác nhận.", 'warning');
+                                            $.modalAlert("Số lượng để trống, Vui lòng xác nhận.", 'warning');
                                             return;
                                         }
                                         if(isNaN(cellval)){
@@ -594,7 +594,7 @@
             $.each(gridcgxmcfData, function () {
                 var slval = this.sl;
                 if (slval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                    $.modalAlert("Số lượngkhông được để trống,Vui lòng xác nhận.", 'warning');
+                    $.modalAlert("Số lượng không được để trống, Vui lòng xác nhận.", 'warning');
                     flag = true;
                     return false;
                 } else if (this.xmmc == undefined || this.xmmc == "") {

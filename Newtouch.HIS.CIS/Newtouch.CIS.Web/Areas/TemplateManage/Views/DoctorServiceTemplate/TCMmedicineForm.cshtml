@@ -101,7 +101,7 @@
                                 fn: function (e) {
                                     var cellval = $(this).val();
                                     if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                        $.modalAlert("Liều lượngđể trống,Vui lòng xác nhận.", 'warning');
+                                        $.modalAlert("Liều lượng để trống, Vui lòng xác nhận.", 'warning');
                                         return;
                                     }
                                     if (isNaN(cellval)) {
@@ -399,7 +399,7 @@
     function addWMRowData(selRowId) {
         var zh = $('#' + $($("#gridmedicine").getRowData(selRowId).zh).attr('id')).val();
         if (zh.replace(/(^\s*)|(\s*$)/g, "") == "") {
-            $.modalAlert("Số nhómđể trống,Vui lòng xác nhận.", 'warning');
+            $.modalAlert("Số nhóm để trống, Vui lòng xác nhận.", 'warning');
             return;
         }
         if (isNaN(zh)) {

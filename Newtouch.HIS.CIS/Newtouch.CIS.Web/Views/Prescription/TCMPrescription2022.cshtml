@@ -242,7 +242,7 @@
                                      fn: function (e) {
                                          var cellval = $(this).val();
                                          if(cellval.replace(/(^\s*)|(\s*$)/g, "") == ""){
-                                             $.modalAlert("Liều lượngđể trống,Vui lòng xác nhận.", 'warning');
+                                             $.modalAlert("Liều lượng để trống, Vui lòng xác nhận.", 'warning');
                                              return;
                                          }
                                          if(isNaN(cellval)){
@@ -280,7 +280,7 @@
                                     var rowid = row.attr('id');
                                     var cellval = $(this).val();
                                     if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                        $.modalAlert("Số lượngđể trống,Vui lòng xác nhận.", 'warning');
+                                        $.modalAlert("Số lượng để trống, Vui lòng xác nhận.", 'warning');
                                         return;
                                     }
                                     if (isNaN(cellval)) {
@@ -408,7 +408,7 @@
                                   fn: function (e) {
                                       var cellval = $(this).val();
                                       if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                          $.modalAlert("Liều lượngđể trống,Vui lòng xác nhận.", 'warning');
+                                          $.modalAlert("Liều lượng để trống, Vui lòng xác nhận.", 'warning');
                                           return;
                                       }
                                       if (isNaN(cellval)) {
@@ -446,7 +446,7 @@
                                 fn: function (e) {
                                     var cellval = $(this).val();
                                     if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                        $.modalAlert("Số lượngđể trống,Vui lòng xác nhận.", 'warning');
+                                        $.modalAlert("Số lượng để trống, Vui lòng xác nhận.", 'warning');
                                         return;
                                     }
                                     if (isNaN(cellval)) {
@@ -1100,7 +1100,7 @@
     $('#tieshu').change(function(){
         var val = $(this).val();
         if(val.replace(/(^\s*)|(\s*$)/g, "") == ""){
-            $.modalAlert("Số lần trảđể trống,Vui lòng xác nhận.", 'warning');
+            $.modalAlert("Số lần trả để trống, Vui lòng xác nhận.", 'warning');
             return;
         }
         if(isNaN(val)){
