@@ -324,7 +324,7 @@
         $('#tdZqysk').html('Số tiền phải thu:');
         //if (!!ybjyFeeReturn) {
             if (!medicalInsurance) {
-                $.modalAlert("Chương trình chưa cấu hình động địa phương BHYT,Vui lòng cấu hình xong rồi thử lại", 'warning');
+                $.modalAlert("Chương trình chưa cấu hình động địa phương BHYT, Vui lòng cấu hình xong rồi thử lại", 'warning');
                 $.modalClose();
             }
             
@@ -352,7 +352,7 @@
             } else {
 			    //bất thường
 			    orglxjzfys = xjzfys = zje = 0;
-			    $.modalAlert("Thanh toán BHYT bất thường,Vui lòng thử lại", "error");
+			    $.modalAlert("Thanh toán BHYT bất thường, Vui lòng thử lại", "error");
 			    $.modalClose();
 		    }
 		    $('#divYbjyFee').remove();
@@ -553,7 +553,7 @@
                 $.modalAlert("Quẹt thẻ thất bại:" + yibaoCardInfo.ErrorMsg, 'error');
             }
         } else {
-            $.modalAlert("Quẹt thẻ lấy thông tin BHYT thất bại！Nguyên nhân thất bại:Trung tâm BHYT không trả về thông tin,Vui lòng thử lại！", 'error');
+            $.modalAlert("Quẹt thẻ lấy thông tin BHYT thất bại！Nguyên nhân thất bại:Trung tâm BHYT không trả về thông tin, Vui lòng thử lại！", 'error');
         }
     }
     function CQzydy() {
@@ -604,7 +604,7 @@
                 $.modalAlert("Không thể dùng khấu trừ tài khoản:"+yibaoZhdy.ErrorMsg, 'error');
             }
         } else {
-            $.modalAlert("BHYT không trả về dữ liệu,Lúc này chưa biết BHYT đã khấu trừ thành công chưa,Vui lòng đóng cửa sổ và quyết toán lại！", 'error');
+            $.modalAlert("BHYT không trả về dữ liệu,Lúc này chưa biết BHYT đã khấu trừ thành công chưa, Vui lòng đóng cửa sổ và quyết toán lại！", 'error');
         }
     }
     function initPage() {

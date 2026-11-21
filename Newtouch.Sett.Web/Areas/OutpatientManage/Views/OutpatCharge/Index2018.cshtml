@@ -411,7 +411,7 @@
             type: "GET",
             url: "@Url.Action("GetPatientGridJson")",
             loading: true,
-            loadingtext: "Đang tải danh sách bệnh nhân,Vui lòng chờ...",
+            loadingtext: "Đang tải danh sách bệnh nhân, Vui lòng chờ...",
             success: function (ajaxresp) {
                 leftdata = ajaxresp;
                 var $gridPatList = $("#gridPatList");
@@ -506,7 +506,7 @@
             dataType: "json",
             cache: false,
             async: true,
-            loadingtext: "Đang yêu cầu thông tin đơn thuốc,Vui lòng chờ...",
+            loadingtext: "Đang yêu cầu thông tin đơn thuốc, Vui lòng chờ...",
             success: function (cfList) {
                 if (cfList.length <= 0) {
                     $.modalAlert("Không có đơn thuốc chờ thu phí", "warning");
@@ -548,7 +548,7 @@
             dataType: "json",
             cache: false,
             async: true,
-            loadingtext: "Đang yêu cầu thông tin chi phí,Vui lòng chờ...",
+            loadingtext: "Đang yêu cầu thông tin chi phí, Vui lòng chờ...",
             success: function (ajaxresp) {
                 FillgridFeeList(ajaxresp);
             },
@@ -567,7 +567,7 @@
             dataType: "json",
             cache: false,
             async: true,
-            loadingtext: "Đang yêu cầu thông tin chi phí,Vui lòng chờ...",
+            loadingtext: "Đang yêu cầu thông tin chi phí, Vui lòng chờ...",
             success: function (ajaxresp) {
                 FillgridFeeList(ajaxresp);
             }
@@ -1060,7 +1060,7 @@
         if (isYbjyjz && !!!qfyj && cqPatInfo.ybVer == "gjyb") {
             var xmobj = validationItem();
             if (xmobj) {
-                $.modalAlert(xmobj + "Chưa đối chiếu mã BHYT quốc gia,Vui lòng kiểm tra!", "warning");
+                $.modalAlert(xmobj + "Chưa đối chiếu mã BHYT quốc gia, Vui lòng kiểm tra!", "warning");
                 return;
             }
         }
@@ -1093,7 +1093,7 @@
                     return;
                 }
                 if (!medicalInsurance) {
-                    $.modalAlert("Chương trình chưa cấu hình động địa phương BHYT,Vui lòng cấu hình xong rồi thử lại", 'warning');
+                    $.modalAlert("Chương trình chưa cấu hình động địa phương BHYT, Vui lòng cấu hình xong rồi thử lại", 'warning');
                     return;
                 }
                     //
@@ -1104,7 +1104,7 @@
                 /* đặt lại đối tượng ngữ cảnh quyết toán */
                 MZJS.reset();
 
-                $.loading(true, 'Đang cập nhật thông tin khám,Vui lòng chờ...');
+                $.loading(true, 'Đang cập nhật thông tin khám, Vui lòng chờ...');
                 if (openAllCfSettPz === 'True')
                     AllCfSett(xmzje);
                 else
@@ -1143,7 +1143,7 @@
             if (MZJS.jzxx == null) {
                 return;
             }
-            $.loading(true, 'Đang quyết toán BHYT,Vui lòng chờ...');
+            $.loading(true, 'Đang quyết toán BHYT, Vui lòng chờ...');
             setTimeout(function () {
                 var jsstate = true;
 
@@ -1205,7 +1205,7 @@
             if (MZJS.jzxx == null) {
                 return;
             }
-            $.loading(true, 'Đang quyết toán BHYT,Vui lòng chờ...');
+            $.loading(true, 'Đang quyết toán BHYT, Vui lòng chờ...');
 
             setTimeout(function () {
                 var jsstate = true;
@@ -1914,7 +1914,7 @@
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function (feeRelated, outTradeNo) {
 
-                    $.loading(true, 'Đang tiến hànhHISquyết toán,Vui lòng chờ...');
+                    $.loading(true, 'Đang tiến hànhHISquyết toán, Vui lòng chờ...');
                     subMzh = "";
                     subMzh = patModel.mzh;
                     setTimeout(function () {
@@ -2078,7 +2078,7 @@
             async: false,
             success: function (data) {
                 if (data.code == "0") {
-                    $.loading(true, 'ĐangXuất hóa đơn điện tử,Vui lòng chờ...');
+                    $.loading(true, 'ĐangXuất hóa đơn điện tử, Vui lòng chờ...');
                     setTimeout(function () {
                         if ('@(autoPrintFP)' === 'True')
                             window.open(data.data.pictureUrl,
@@ -2973,7 +2973,7 @@
             type: "POST",
             url: "/OutpatientManage/OutpatCharge/DetailsUploadYb?mzh=" + patModel.mzh,
             dataType: "json",
-            loadingtext: "Đang tải chi tiết lên BHYT,Vui lòng chờ…",
+            loadingtext: "Đang tải chi tiết lên BHYT, Vui lòng chờ…",
             success: function (ajaxresp) {
                 if (funcSuccCallback) {
                     timeoutFunc = funcSuccCallback;
@@ -2989,7 +2989,7 @@
         $.najax({
             type: "POST",
             url: "/OutpatientManage/OutpatCharge/GetSettPatientInfo?mzh=" + patModel.mzh,
-            loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân,Vui lòng chờ...",
+            loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân, Vui lòng chờ...",
             dataType: "json",
             success: function (ajaxresp) {
                 var data = ajaxresp.data;
@@ -3055,7 +3055,7 @@
             return;
         }
         if (!isYbjyjz&&!isXnhjyjz) {
-            $.modalAlert("Bệnh nhân này không phải bệnh nhân BHYT,Không cần chuyển tự chi trả,Vui lòng thu phí trực tiếp", 'warning');
+            $.modalAlert("Bệnh nhân này không phải bệnh nhân BHYT,Không cần chuyển tự chi trả, Vui lòng thu phí trực tiếp", 'warning');
             return;
         }
         var xmzje = waitSubmitItems();
@@ -3082,7 +3082,7 @@
 		    return;
 	    }
 	    if (isYbjyjz) {
-		    $.modalAlert("Bệnh nhân này đã là đăng ký khám BHYT,Không cần chuyển nữa,Vui lòng thu phí BHYT trực tiếp", 'warning');
+		    $.modalAlert("Bệnh nhân này đã là đăng ký khám BHYT,Không cần chuyển nữa, Vui lòng thu phí BHYT trực tiếp", 'warning');
 		    return;
 	    }
         var xmzje = waitSubmitItems();
@@ -3191,7 +3191,7 @@
     //hàm gọi lại hộp tra cứu bệnh nhân
     function GetQueryFphAjax(obj) {
         newtouch_event_f4();
-        $.loading(true, "Đang yêu cầu thông tin bệnh nhân,Vui lòng chờ...");
+        $.loading(true, "Đang yêu cầu thông tin bệnh nhân, Vui lòng chờ...");
         $.ajax({
             type: "POST",
             url: "/OutpatientManage/OutpatCharge/GetpatientAccountInfobykh",
@@ -3800,7 +3800,7 @@
                 $.modalAlert("Tính chất chi phí.Ánh xạ danh mục đối chiếu thất bại", 'error');
                 return;
             }
-            $.loading(true, 'ĐangBHYTHủy quyết toán,Vui lòng chờ…');
+            $.loading(true, 'ĐangBHYTHủy quyết toán, Vui lòng chờ…');
             timeoutFunc = function () {
                 //1. BHYThủyđăng ký khám
                 var ybjyDenyRegReturn = $.yibao.DenyReg(patModel.ybjsh, patModel.sbbh, ybfyxzCompResult.TTCode);
@@ -3809,7 +3809,7 @@
                     hisUnSettedRegBackNum();
                 }
                 else {
-                    $.modalAlert('BHYTHủy đăng ký khámThất bại,Vui lòng thử lại<br/>' + ybjyDenyRegReturn.ErrorMsg, 'error');
+                    $.modalAlert('BHYTHủy đăng ký khámThất bại, Vui lòng thử lại<br/>' + ybjyDenyRegReturn.ErrorMsg, 'error');
                     return;
                 }
             };
@@ -3824,7 +3824,7 @@
                 },
                 url: "/OutpatientManage/OutpatientReg/UnSettedRegBackNum",
                 dataType: "json",
-                loadingtext: "Đang yêu cầuHISHủy đăng ký khám,Vui lòng chờ…",
+                loadingtext: "Đang yêu cầuHISHủy đăng ký khám, Vui lòng chờ…",
                 success: function (ajaxresp) {
                     newtouch_event_f4();
                     $('#singleItemIcon').trigger('click');
@@ -3841,7 +3841,7 @@
 			        type: "GET",
 			        url: "/OutpatientManage/OutpatCharge/GetCQjzdjInfo?mzh=" + patModel.mzh,
 			        dataType: "json",
-			        loadingtext: "Đang yêu cầuHISHủy đăng ký khám,Vui lòng chờ…",
+			        loadingtext: "Đang yêu cầuHISHủy đăng ký khám, Vui lòng chờ…",
 			        success: function (ajaxresp) {
 			            if (ajaxresp && ajaxresp.mdtrt_id) {
 			                var payoptype = { 'mdtrt_id': ajaxresp.mdtrt_id, "psn_no": cqPatInfo.grbh, insuplc_admdvs: cqPatInfo.xzqh, "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', 'hisId': patModel.mzh, 'ipt_otp_no': patModel.mzh };

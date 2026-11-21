@@ -249,7 +249,7 @@
             type: "GET",
             url: "/OutpatientManage/OutpatientReg/GetCurrentDayRegListJson",
             loading: true,
-            loadingtext: "Đang tải danh sách bệnh nhân,Vui lòng chờ...",
+            loadingtext: "Đang tải danh sách bệnh nhân, Vui lòng chờ...",
             success: function (ajaxresp) {
                 leftdata = ajaxresp;
                 var $gridPatList = $("#gridPatList");
@@ -268,7 +268,7 @@
             dataType: "json",
             cache: false,
             async: true,
-            loadingtext: "Đang yêu cầu thông tin chi phí,Vui lòng chờ...",
+            loadingtext: "Đang yêu cầu thông tin chi phí, Vui lòng chờ...",
             success: function (ajaxresp) {
                 FillgridFeeList(ajaxresp);
             }
@@ -762,7 +762,7 @@
     //hàm gọi lại hộp tra cứu bệnh nhân
     function GetQueryFphAjax(obj) {
         newtouch_event_f4();
-        $.loading(true, "Đang yêu cầu thông tin bệnh nhân,Vui lòng chờ...");
+        $.loading(true, "Đang yêu cầu thông tin bệnh nhân, Vui lòng chờ...");
         $.ajax({
             type: "POST",
             url: "/OutpatientManage/OutpatCharge/GetpatientAccountInfo",
@@ -1088,7 +1088,7 @@
         })
         //kích hoạt đọc thẻ
         function setTimeoutReadCard() {
-            $.loading(true, 'Đang đọc thẻ,Vui lòng chờ…');
+            $.loading(true, 'Đang đọc thẻ, Vui lòng chờ…');
             setTimeout("readCard();", 50);
         }
 
