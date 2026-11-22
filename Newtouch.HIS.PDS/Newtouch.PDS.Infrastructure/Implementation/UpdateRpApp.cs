@@ -60,7 +60,7 @@ namespace Newtouch.HIS.Application.Implementation
             var result = new OutpatientBookApp(AssembleBookAppRequest()).Process();
             if (result.IsSucceed) return;
             actResult.IsSucceed = false;
-            actResult.ResultMsg = string.Format(@"Giải phóng tồn kho đóng băng gốc thành công，Nhưng đóng băng tồn kho mới thất bại。 \n Lý do thất bại：{0}", result.ResultMsg);
+            actResult.ResultMsg = string.Format(@"Giải phóng tồn kho đóng băng gốc thành công, Nhưng đóng băng tồn kho mới thất bại。 \n Lý do thất bại：{0}", result.ResultMsg);
         }
 
         /// <summary>

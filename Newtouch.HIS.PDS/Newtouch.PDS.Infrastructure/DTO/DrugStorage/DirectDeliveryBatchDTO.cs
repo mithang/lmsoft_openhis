@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Domain.DTO.DrugStorage
             {
                 if (value.Length > 1000)
                 {
-                    throw new Exception("Vui lòng khống chế số loại thuốc，Độ dài mã thuốc sau khi nối không được vượt quá1000");
+                    throw new Exception("Vui lòng khống chế số loại thuốc, Độ dài mã thuốc sau khi nối không được vượt quá1000");
                 }
                 _ypCodes = value;
             }

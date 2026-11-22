@@ -250,7 +250,7 @@ namespace Newtouch.HIS.Application.Implementation
                             }
                             else
                             {
-                                throw new FailedException(string.Format("Đơn thuốc【{0}】của thuốc【{1}】Số đã đóng băng nhỏ hơn số đóng băng sắp hủy，Hủy đóng băng thất bại", o.cfh, o.ypCode));
+                                throw new FailedException(string.Format("Đơn thuốc【{0}】của thuốc【{1}】Số đã đóng băng nhỏ hơn số đóng băng sắp hủy, Hủy đóng băng thất bại", o.cfh, o.ypCode));
                             }
                         }
 

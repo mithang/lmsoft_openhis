@@ -79,7 +79,7 @@ namespace Newtouch.HIS.DomainServices
             }
             else
             {
-                return "Thực hiện chuẩn bị thuốc thất bại:Mã nội bộ y lệnh【" + model.zxId + "】, Ngày lấy hồ sơ【" + model.jdrq + "】，" + outpar.Value.ToString();
+                return "Thực hiện chuẩn bị thuốc thất bại:Mã nội bộ y lệnh【" + model.zxId + "】, Ngày lấy hồ sơ【" + model.jdrq + "】, " + outpar.Value.ToString();
             }
         }
 
@@ -607,11 +607,11 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
             }
             if (flag == 2)
             {
-                return "Không khởi xướng đơn xin trả thuốc，Cấm trả thuốc";
+                return "Không khởi xướng đơn xin trả thuốc, Cấm trả thuốc";
             }
             if (flag == 3)
             {
-                return "Đã trả thuốc，Cấm thao tác trùng lặp";
+                return "Đã trả thuốc, Cấm thao tác trùng lặp";
             }
             // G33-F6: tysl<=0 không có thuốc để trả (trước đây vẫn flip fybz→3 + kcsl+=0 rồi báo "thành công")
             if (list.Any(p => p.tysl <= 0))
