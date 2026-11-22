@@ -17,7 +17,7 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>Vào khuNgày:</th>
+                <th class="formTitle"><span class="required">*</span>Vào khu Ngày:</th>
                 <td class="formValue">
                     <input id="txt_rqrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })"
                            onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss', onpicked: function () { RefreshOrder() } })" />
@@ -76,7 +76,7 @@
     function submitForm()
     {
         if ($('#txt_ryrq').val()=="") {
-            $.modalAlert("Vui lòng chọnVào khuNgày!", 'warning');
+            $.modalAlert("Vui lòng chọnVào khu Ngày!", 'warning');
             return null;
         }
         if ($('#txt_doctor').val() == "" || $("#txt_doctor").attr("data-StaffGh")=="") {
