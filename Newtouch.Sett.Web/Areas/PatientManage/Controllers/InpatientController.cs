@@ -485,7 +485,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                         {
                             isSuccess = false;
                             state = "0";
-                            message = "Rút lại đăng ký nhập viện thất bại，Bảo hiểm nông thôn Thông tin lỗi trả về là：【" + S05ResDto.message + "】";
+                            message = "Rút lại đăng ký nhập viện thất bại, Bảo hiểm nông thôn Thông tin lỗi trả về là：【" + S05ResDto.message + "】";
                         }
                         else
                         {
@@ -565,7 +565,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                         {
                             isSuccess = false;
                             state = "0";
-                            message = "Làm thủ tục nhập viện Thất bại，Bảo hiểm nông thôn Thông tin lỗi trả về là：【" + S04ResDto.message + "】";
+                            message = "Làm thủ tục nhập viện Thất bại, Bảo hiểm nông thôn Thông tin lỗi trả về là：【" + S04ResDto.message + "】";
                         }
                         else
                         {
@@ -596,7 +596,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                                 {
                                     isSuccess = false;
                                     state = "0";
-                                    message = "chuyển tự chi trả Hợp tác nông thôn mới His Cục bộ Thất bại【"+ msg2 + "】，trong đó hợp tác nông thôn mới Từ xa Đã Thành công，Rút lại đăng ký nhập viện thất bại，Bảo hiểm nông thôn Thông tin lỗi trả về là：【" + S05ResDto.message + "】";
+                                    message = "chuyển tự chi trả Hợp tác nông thôn mới His Cục bộ Thất bại【"+ msg2 + "】, trong đó hợp tác nông thôn mới Từ xa Đã Thành công, Rút lại đăng ký nhập viện thất bại, Bảo hiểm nông thôn Thông tin lỗi trả về là：【" + S05ResDto.message + "】";
                                 }
                                 else
                                 {

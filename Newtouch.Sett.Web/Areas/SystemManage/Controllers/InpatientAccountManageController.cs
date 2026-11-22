@@ -191,7 +191,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
                 {
                     var refundReuslt = _payApp.TradeRefund(depDto.outTradeNo, depDto.zfje, "tạm ứng Hoàn toàn bộ", "", out errorMsg);
                     if (refundReuslt != 0)
-                        errorMsg = "đường cũ Hoàn phí thất bại，" + errorMsg;
+                        errorMsg = "đường cũ Hoàn phí thất bại, " + errorMsg;
                 }
             }
             return Success(errorMsg, flag);
