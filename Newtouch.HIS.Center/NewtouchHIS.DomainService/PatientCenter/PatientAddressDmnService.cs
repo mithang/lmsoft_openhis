@@ -125,7 +125,7 @@ namespace NewtouchHIS.DomainService.PatientCenter
             var gh = await baseDal.GetFirstOrDefaultWithAttr<OutpatientRegistEntity>(p => p.patid == patid && p.kh == kh && p.OrganizeId == orgId && p.zt == "1");
             if (gh == null)
             {
-                throw new FailedException("Thông tin bệnh nhân không chính xác,Vui lòng kiểm tra patid và số thẻ");
+                throw new FailedException("Thông tin bệnh nhân không chính xác, Vui lòng kiểm tra patid và số thẻ");
             }
             else
             {
