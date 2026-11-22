@@ -573,9 +573,9 @@
         var cqrq = $('#cqrq').html();
         var ztjsrq = new Date($('#ztjsrq').html());
         if (!rowData.tdrq) {
-            $.modalAlert("Vui lòng chọnGhi nhận chi phíNgày", 'warning');
+            $.modalAlert("Vui lòng chọnGhi nhận chi phí Ngày", 'warning');
         } else if (ryrq > new Date(rowData.tdrq)) {
-            $.modalAlert("Ghi nhận chi phíNgàyKhông ởNhập việnTrong thời gian<br/>Ngày nhập viện:" + $('#ryrq').html(), 'warning');
+            $.modalAlert("Ghi nhận chi phí NgàyKhông ởNhập việnTrong thời gian<br/>Ngày nhập viện:" + $('#ryrq').html(), 'warning');
         } else if (!!cyrq && cyrq < new Date(rowData.tdrq) && ryrq) {
             $.modalAlert("Ngày ghi nhận chi phí không nằm trong thời gian nhập viện<br/>Ngày xuất viện:" + $('#cyrq').html(), 'warning');
         } else if (!!cqrq && cqrq < new Date(rowData.tdrq)) {

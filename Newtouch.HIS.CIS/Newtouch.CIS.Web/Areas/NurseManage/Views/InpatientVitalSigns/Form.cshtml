@@ -562,13 +562,13 @@
         var lrrq = new Date(data.rq + " "+data.sj + ":00:00");
         var ryrq = new Date($("#ryrq").val());
         if (ryrq > lrrq) {
-            $.modalAlert("NhậpNgàyKhông được nhỏ hơnNgày nhập viện!", "warning");
+            $.modalAlert("Nhập NgàyKhông được nhỏ hơn Ngày nhập viện!", "warning");
             return;
         }
         if ($("#cyrq").val() != null && $("#cyrq").val() != "") {
             var cyrq = new Date($("#cyrq").val());
             if (lrrq > cyrq) {
-                $.modalAlert("NhậpNgàyKhông thểLớn hơnXuất việnNgày!", "warning");
+                $.modalAlert("Nhập NgàyKhông thểLớn hơnXuất viện Ngày!", "warning");
                 return;
             }
         }
