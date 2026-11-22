@@ -156,7 +156,7 @@ WHERE mb.mbId=@mbId
 
             if (mbEntity == null)
             {
-                throw new FailedException("Dữ liệu bất thường，Không có tìm đến Bộ mẫu thông tin");
+                throw new FailedException("Dữ liệu bất thường, Không có tìm đến Bộ mẫu thông tin");
             }
 
             //mẫu Bộ mẫu

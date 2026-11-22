@@ -38,7 +38,7 @@ namespace Newtouch.DomainServices
             var ztEntity = _groupPackageRepo.IQueryable().Where(a => a.ztId == ztId).FirstOrDefault();
             if (ztEntity == null)
             {
-                throw new FailedException("Dữ liệu bất thường，Không có tìm đến Bộ mẫu thông tin");
+                throw new FailedException("Dữ liệu bất thường, Không có tìm đến Bộ mẫu thông tin");
             }
             //Bộ mẫu Mục
             var sql = @"
