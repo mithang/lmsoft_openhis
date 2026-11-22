@@ -177,14 +177,14 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             {
                 return new BusResult<string> { code = ResponseResultCode.SUCCESS, Data = newEty.Id };
             }
-            return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thao tác thất bại,Vui lòng làm mới và thử lại" };
+            return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thao tác thất bại, Vui lòng làm mới và thử lại" };
         }
 
         public async Task<BusResult<string>> UpdateEntity(SysModuleVO vo, string user, string orgId)
         {
             if (vo == null || string.IsNullOrEmpty(vo.Id) || string.IsNullOrEmpty(user))
             {
-                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thao tác không hợp lệ,Vui lòng kiểm tra thông tin menu và nhân viên thao tác" };
+                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thao tác không hợp lệ, Vui lòng kiểm tra thông tin menu và nhân viên thao tác" };
             }
             if (!(await MenuEditAuthcation(user, orgId)))
             {
@@ -218,7 +218,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
         {
             if (string.IsNullOrEmpty(keyValue) || string.IsNullOrEmpty(user) || string.IsNullOrEmpty(orgId))
             {
-                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thao tác không hợp lệ,Vui lòng kiểm tra thông tin menu và nhân viên thao tác" };
+                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thao tác không hợp lệ, Vui lòng kiểm tra thông tin menu và nhân viên thao tác" };
             }
             if (!(await MenuEditAuthcation(user, orgId)))
             {

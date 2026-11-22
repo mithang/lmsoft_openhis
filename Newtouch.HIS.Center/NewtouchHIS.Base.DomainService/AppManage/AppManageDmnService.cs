@@ -69,7 +69,7 @@ namespace NewtouchHIS.Base.DomainService
                 var findFriendAuth = await GetFirstOrDefaultWithAttr<SysAuthAppFriendEntity>(p => p.FriendId == friendApp.AuthId && p.AppAuthId == app.AuthId && p.zt == "1");
                 if (findFriendAuth == null)
                 {
-                    throw new FailedException("Ứng dụng đích chưa cấp quyền mở quyền,Vui lòng liên hệ quản trị viên");
+                    throw new FailedException("Ứng dụng đích chưa cấp quyền mở quyền, Vui lòng liên hệ quản trị viên");
                 }
                 authKey.FriendAppId = friendApp.AppId;
                 authKey.FriendId = friendApp.AuthId;
@@ -98,11 +98,11 @@ namespace NewtouchHIS.Base.DomainService
             var existsApp = await GetByWhere(p => (p.AuthId == authApp.AuthId || p.AppName == authApp.AppName) && p.zt == "1");
             if (existsApp != null && existsApp!.Count > 0)
             {
-                throw new FailedException(existsApp.FirstOrDefault()!.AppId == authApp.AppId ? "Ứng dụng Id đã được đăng ký,Vui lòng đổi Id" : "Tên ứng dụng đã được đăng ký,Vui lòng đổi");
+                throw new FailedException(existsApp.FirstOrDefault()!.AppId == authApp.AppId ? "Ứng dụng Id đã được đăng ký, Vui lòng đổi Id" : "Tên ứng dụng đã được đăng ký, Vui lòng đổi");
             }
             if (authApp.AuthType > 0 && string.IsNullOrWhiteSpace(Enum.GetName(typeof(AuthTypeEnum), authApp.AuthType)))
             {
-                throw new FailedException("Đăng ký hệ thống thất bại,Vui lòng liên hệ quản trị viên");
+                throw new FailedException("Đăng ký hệ thống thất bại, Vui lòng liên hệ quản trị viên");
             }
             SysAuthAppEntity sysAuthApp = new SysAuthAppEntity();
             sysAuthApp.AppId = authApp.AppId;
@@ -116,7 +116,7 @@ namespace NewtouchHIS.Base.DomainService
             var result = await Add(sysAuthApp);
             if (result == 0)
             {
-                throw new FailedException("Đăng ký hệ thống thất bại,Vui lòng liên hệ quản trị viên");
+                throw new FailedException("Đăng ký hệ thống thất bại, Vui lòng liên hệ quản trị viên");
             }
             var newApp = await GetByWhere(p => p.AuthId == sysAuthApp.AuthId);
             //var newAppVo = _mapper.Map<AuthAppVO>(newApp.FirstOrDefault());

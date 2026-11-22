@@ -166,7 +166,7 @@ namespace NewtouchHIS.Base.DomainService
                     var iresult = await AddWithAttr(ientity);
                     if (iresult == 0)
                     {
-                        errorMsg += $"Tại lần thứ{i}gửi thông báo xếp hàng thất bại,Vui lòng thử lại!";
+                        errorMsg += $"Tại lần thứ{i}gửi thông báo xếp hàng thất bại, Vui lòng thử lại!";
                     }
                     resultIds.Add(ientity.Id);
                 }
