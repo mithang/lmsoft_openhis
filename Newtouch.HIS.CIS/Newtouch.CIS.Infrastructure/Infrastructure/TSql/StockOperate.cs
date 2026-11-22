@@ -23,7 +23,7 @@ BEGIN TRY
 	WHERE productId=@proId AND ks=@warehouseId AND OrganizeId=@OrganizeId AND pc=@pc AND ph=@ph AND zt='1' 
 	IF @totalKcsl<@sl
 	BEGIN
-		SELECT 'Tồn kho không đủ，Xuất kho thất bại';
+		SELECT 'Tồn kho không đủ, Xuất kho thất bại';
 		ROLLBACK TRANSACTION;
 		RETURN
 	END 
@@ -88,7 +88,7 @@ BEGIN TRY
 	SELECT @dqkykc=SUM(kcsl-djsl) FROM dbo.Dept_kcxx WHERE productId=@proId AND pc=@pc AND ph=@ph AND OrganizeId=@OrganizeId AND zt='1' AND ks=@warehouseId
 	IF @sl > @dqkykc
 	BEGIN
-		SELECT 'Tồn kho không đủ，Gửi đơn thất bại';
+		SELECT 'Tồn kho không đủ, Gửi đơn thất bại';
 		ROLLBACK TRANSACTION;
 		RETURN
 	END
@@ -297,7 +297,7 @@ BEGIN TRY
 	END
 	IF @totalKcsl<@sl
 	BEGIN
-		SELECT 'Tồn kho không đủ，không thể hủy bỏ';
+		SELECT 'Tồn kho không đủ, không thể hủy bỏ';
 		ROLLBACK TRANSACTION;
 		RETURN;
 	END
