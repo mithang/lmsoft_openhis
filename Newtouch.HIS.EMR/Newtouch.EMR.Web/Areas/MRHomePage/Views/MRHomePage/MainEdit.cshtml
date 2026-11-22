@@ -538,19 +538,19 @@
             return false
         }
         if (para.LXRXM != "" && (para.GX + para.LXRDH) == "") {
-            $.modalAlert('Đã nhập người liên hệ,Chưa điền thông tin liên quan đến người liên hệ', 'warning');
+            $.modalAlert('Đã nhập người liên hệ, Chưa điền thông tin liên quan đến người liên hệ', 'warning');
             return false;
         }
         if (para.LXRXM == "" && para.GX != "") {
-            $.modalAlert('Chưa nhập người liên hệ,Không được điền thông tin liên quan đến người liên hệ', 'warning');
+            $.modalAlert('Chưa nhập người liên hệ, Không được điền thông tin liên quan đến người liên hệ', 'warning');
             return false;
         }
         if (para.LXRXM == "" && para.LXRDH != "") {
-            $.modalAlert('Chưa nhập người liên hệ,Không được điền thông tin liên quan đến người liên hệ', 'warning');
+            $.modalAlert('Chưa nhập người liên hệ, Không được điền thông tin liên quan đến người liên hệ', 'warning');
             return false;
         }
         if (para.LXRXM == "" && para.LXRDZ_SN != "") {
-            $.modalAlert('Chưa nhập người liên hệ,Không được điền thông tin liên quan đến người liên hệ', 'warning');
+            $.modalAlert('Chưa nhập người liên hệ, Không được điền thông tin liên quan đến người liên hệ', 'warning');
             return false;
         }
         if (para.RYTJ == "") {
@@ -593,11 +593,11 @@
             //var date = parseInt((Date.parse(para.CYSJ) - Date.parse(para.RYSJ)) / 1000 / 86400);
         }
         if (para.QJCS != "" && para.QJCGCS == "") {
-            $.modalAlert('Thông tin bệnh nhân Số lần cấp cứu không được để trống,chưa điền số lần thành công', 'warning');
+            $.modalAlert('Thông tin bệnh nhân Số lần cấp cứu không được để trống, chưa điền số lần thành công', 'warning');
             return false;
         }
         if (para.QJCS == "" && para.QJCGCS != "") {
-            $.modalAlert('Thông tin bệnh nhân Số lần cấp cứu để trống,không được điền số lần thành công', 'warning');
+            $.modalAlert('Thông tin bệnh nhân Số lần cấp cứu để trống, không được điền số lần thành công', 'warning');
             return false;
         }
         if (para.LYFS != 5 &&para.QJCS != para.QJCGCS) {
@@ -667,19 +667,19 @@
             return false;
         }
         if (para.LYFS != 5 && (para.SWHZSJ != "" && para.SWHZSJ != "2")) {
-            $.modalAlert('Thông tin nhập viện Cách rời viện không phải tử vong,không được điền khám nghiệm tử thi bệnh nhân tử vong', 'warning');
+            $.modalAlert('Thông tin nhập viện Cách rời viện không phải tử vong, không được điền khám nghiệm tử thi bệnh nhân tử vong', 'warning');
             return false;
         }
         if (para.SZ == "" && (para.SZQXZ + para.SZQXY + para.SZQXN) > 0) {
-            $.modalAlert('Thông tin nhập viện Chưa chọn tái khám,Không được điền thời hạn tái khám', 'warning');
+            $.modalAlert('Thông tin nhập viện Chưa chọn tái khám, Không được điền thời hạn tái khám', 'warning');
             return false;
         }
         if (para.SZ == "1" && (para.SZQXZ == "" && para.SZQXY == "" && para.SZQXN == "")) {
-            $.modalAlert('Thông tin nhập viện Đã chọn tái khám,chưa điền thời hạn tái khám', 'warning');
+            $.modalAlert('Thông tin nhập viện Đã chọn tái khám, chưa điền thời hạn tái khám', 'warning');
             return false;
         }
         if (para.SZ == "2" && (para.SZQXZ + para.SZQXY + para.SZQXN) > 0) {
-            $.modalAlert('Thông tin nhập viện Chưa chọn tái khám,Không được điền thời hạn tái khám', 'warning');
+            $.modalAlert('Thông tin nhập viện Chưa chọn tái khám, Không được điền thời hạn tái khám', 'warning');
             return false;
         }
         if (para.KZR == "") {
@@ -719,7 +719,7 @@
             return false
         }
         if (para.WCLCLJ != 1 && para.TCYY != "" && para.TCYY != "-") {
-            $.modalAlert('Thông tin nhập viện Hoàn thành đường đi lâm sàng,không được điền lý do thoát', 'warning');
+            $.modalAlert('Thông tin nhập viện Hoàn thành đường đi lâm sàng, không được điền lý do thoát', 'warning');
             return false
         }
         if (para.SFBY == 2 && para.BYYY == "") {
@@ -736,7 +736,7 @@
             return false
         }
         if (para.LYFS == 3 && para.WSY_YLJG == "") {
-            $.modalAlert('Thông tin nhập viện chưa điền chuyển đến cơ sở dịch vụ y tế cộng đồng theo y lệnh/Trạm y tế xã,Tên cơ sở y tế dự kiến tiếp nhận', 'warning');
+            $.modalAlert('Thông tin nhập viện chưa điền chuyển đến cơ sở dịch vụ y tế cộng đồng theo y lệnh/Trạm y tế xã, Tên cơ sở y tế dự kiến tiếp nhận', 'warning');
             return false;
         }
         if (para.LYFS == 2 && para.YZZY_YLJG == "") {
@@ -744,15 +744,15 @@
             return false;
         }
         if (para.SSLCLJ != 1 && para.WCLCLJ != "") {
-            $.modalAlert('Thông tin nhập viện Không áp dụng quản lý đường đi lâm sàng,không được điền đã hoàn thành đường đi lâm sàng', 'warning');
+            $.modalAlert('Thông tin nhập viện Không áp dụng quản lý đường đi lâm sàng, không được điền đã hoàn thành đường đi lâm sàng', 'warning');
             return false;
         }
         if (para.SSLCLJ == 2 && para.WCLCLJ == "-") {
-            $.modalAlert('Thông tin nhập viện Áp dụng quản lý đường đi lâm sàng,Chưa điền đã hoàn thành đường đi lâm sàng hay chưa', 'warning');
+            $.modalAlert('Thông tin nhập viện Áp dụng quản lý đường đi lâm sàng, Chưa điền đã hoàn thành đường đi lâm sàng hay chưa', 'warning');
             return false;
         }
         if (para.WCLCLJ == 2 && para.TCYY == "") {
-            $.modalAlert('Thông tin nhập viện Chưa hoàn thành đường đi lâm sàng,chưa điền nguyên nhân', 'warning');
+            $.modalAlert('Thông tin nhập viện Chưa hoàn thành đường đi lâm sàng, chưa điền nguyên nhân', 'warning');
             return false;
         }
         if (para.LYFS != 2 && para.YZZY_YLJG != "" && para.YZZY_YLJG != "-") {
@@ -805,19 +805,19 @@
             return false;
         }
         if (para.SFFSYC == 2 && para.SFZYQJFS == "") {
-            $.modalAlert('Thông tin trang phụ Có phản ứng loét do tì đè,Chưa điền thao tác liên quan đến loét do tì đè', 'warning');
+            $.modalAlert('Thông tin trang phụ Có phản ứng loét do tì đè, Chưa điền thao tác liên quan đến loét do tì đè', 'warning');
             return false;
         }
         if (para.SFFSYC == 2 && para.YCFQ == "") {
-            $.modalAlert('Thông tin trang phụ Có phản ứng loét do tì đè,Chưa điền thao tác liên quan đến loét do tì đè', 'warning');
+            $.modalAlert('Thông tin trang phụ Có phản ứng loét do tì đè, Chưa điền thao tác liên quan đến loét do tì đè', 'warning');
             return false;
         }
         if (para.SFFSYC == 2 && para.YFFYDYW == "") {
-            $.modalAlert('Thông tin trang phụ Có phản ứng truyền dịch,Chưa điền thao tác liên quan đến truyền dịch', 'warning');
+            $.modalAlert('Thông tin trang phụ Có phản ứng truyền dịch, Chưa điền thao tác liên quan đến truyền dịch', 'warning');
             return false;
         }
         if (para.SFFSYC == 2 && para.SYLCBX == "") {
-            $.modalAlert('Thông tin trang phụ Có phản ứng truyền dịch,Chưa điền thao tác liên quan đến truyền dịch', 'warning');
+            $.modalAlert('Thông tin trang phụ Có phản ứng truyền dịch, Chưa điền thao tác liên quan đến truyền dịch', 'warning');
             return false;
         }
         if (para.SYFY == 0 && para.YFFYDYW != "" && para.YFFYDYW != "-") {
