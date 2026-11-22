@@ -33,7 +33,7 @@ namespace NewtouchHIS.AuthenticationCenter.Controllers
             var appInfo = await _appManageDmn.AppKeyGen(new AppFriendAuthKeyRequest { FriendAppId = request.AppId, AppId = request.Data });
             if (appInfo == null)
             {
-                return new BusResult<JWTToken> { code = ResponseResultCode.FAIL, msg = "Ứng dụng chưa đăng ký,Vui lòng liên hệ quản trị viên" };
+                return new BusResult<JWTToken> { code = ResponseResultCode.FAIL, msg = "Ứng dụng chưa đăng ký, Vui lòng liên hệ quản trị viên" };
             }
             return await _jwtService.GetTokenAsync(new JWTTokenRequest
             {
@@ -58,7 +58,7 @@ namespace NewtouchHIS.AuthenticationCenter.Controllers
             var appInfo = await _appManageDmn.AppKeyGen(new AppFriendAuthKeyRequest { FriendAppId = request.AppId, AppId = request.Data });
             if (string.IsNullOrWhiteSpace(appInfo))
             {
-                return new BusResult<JWTToken> { code = ResponseResultCode.FAIL, msg = "Không tìm thấy thông tin cấp quyền ứng dụng liên quan,Vui lòng liên hệ quản trị viên" };
+                return new BusResult<JWTToken> { code = ResponseResultCode.FAIL, msg = "Không tìm thấy thông tin cấp quyền ứng dụng liên quan, Vui lòng liên hệ quản trị viên" };
             }
             return await _jwtService.GetTokenAsync(new JWTTokenRequest
             {
@@ -111,7 +111,7 @@ namespace NewtouchHIS.AuthenticationCenter.Controllers
             var appInfo = await _appManageDmn.AppKeyGen(new AppFriendAuthKeyRequest { AppId = request.Data.KeyLicense, FriendAppId = request.AppId });
             if (appInfo == null)
             {
-                return new BusResult<JWTToken> { code = ResponseResultCode.FAIL, msg = "Ứng dụng chưa đăng ký,Vui lòng liên hệ quản trị viên" };
+                return new BusResult<JWTToken> { code = ResponseResultCode.FAIL, msg = "Ứng dụng chưa đăng ký, Vui lòng liên hệ quản trị viên" };
             }
             request.Data.AppAuthKey = appInfo;
             request.Data.AppId = request.AppId;
@@ -138,7 +138,7 @@ namespace NewtouchHIS.AuthenticationCenter.Controllers
             var appInfo = await _appManageDmn.AppKeyGen(new AppFriendAuthKeyRequest { AppId = request.Data.KeyLicense, FriendAppId = request.AppId });
             if (appInfo == null)
             {
-                return new BusResult<AuthIdentity> { code = ResponseResultCode.FAIL, msg = "Ứng dụng chưa đăng ký,Vui lòng liên hệ quản trị viên" };
+                return new BusResult<AuthIdentity> { code = ResponseResultCode.FAIL, msg = "Ứng dụng chưa đăng ký, Vui lòng liên hệ quản trị viên" };
             }
             request.Data.AppAuthKey = appInfo;
             request.Data.AppId = request.AppId;
