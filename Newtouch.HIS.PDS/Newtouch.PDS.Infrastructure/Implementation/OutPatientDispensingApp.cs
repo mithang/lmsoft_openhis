@@ -70,14 +70,14 @@ namespace Newtouch.HIS.Application.Implementation
                         var rpd = apiResp.data.ToJson().ToObject<List<fyCfYpInfo>>();
                         if (rpd == null || rpd.Count == 0)
                         {
-                            errorMsg.Append(string.Format(@"Đơn thuốc【{0}】Trạng thái chưa thanh toán, Không thể phát thuốc；", p.cfh));
+                            errorMsg.Append(string.Format(@"Đơn thuốc【{0}】Trạng thái chưa thanh toán, Không thể phát thuốc;", p.cfh));
                             break;
                         }
 
                         var deliveryResult = _fydeDmnService.ExecOutpatientDispensingDrugV2(p.cfh, deliveryInfo.yfbmCode, deliveryInfo.userCode, deliveryInfo.organizeId,p.zsm);
                         if (!string.IsNullOrWhiteSpace(deliveryResult))
                         {
-                            errorMsg.Append(deliveryResult + "；");
+                            errorMsg.Append(deliveryResult + ";");
                             break;
                         }
 

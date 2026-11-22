@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Application.Implementation
                 if (rpInfo.Exists(r => !((int)EnumFybz.Yp).ToString().Equals(r.fybz)))
                 {
                     result.IsSucceed = false;
-                    result.ResultMsg += string.Format("Đơn thuốc【{0}】Sửa thất bại, Đơn thuốc bị sửa chỉ có thể là đơn đã xếp thuốc；", q);
+                    result.ResultMsg += string.Format("Đơn thuốc【{0}】Sửa thất bại, Đơn thuốc bị sửa chỉ có thể là đơn đã xếp thuốc;", q);
                     return;
                 }
                 string cancelResult;
@@ -115,7 +115,7 @@ namespace Newtouch.HIS.Application.Implementation
                 if (!string.IsNullOrWhiteSpace(cancelResult))
                 {
                     result.IsSucceed = false;
-                    result.ResultMsg += string.Format("Đơn thuốc【{0}】Hủy đơn thuốc gốc thất bại。{1}；", q, cancelResult);
+                    result.ResultMsg += string.Format("Đơn thuốc【{0}】Hủy đơn thuốc gốc thất bại。{1};", q, cancelResult);
                     return;
                 }
 

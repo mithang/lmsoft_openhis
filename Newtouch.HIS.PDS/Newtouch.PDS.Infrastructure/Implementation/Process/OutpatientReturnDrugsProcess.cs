@@ -96,7 +96,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
                     var apiResp = SiteSettAPIHelper.Request<object, DefaultResponse>("api/OutpatientPharmacy/OutpatientDrugWithdrawalNotify", request);
                     if (apiResp == null || apiResp.data == null)
                     {
-                        errorMsg.Append(string.Format("Đơn thuốc【{0}】Giao diện trả thuốc ngoại trú bất thường, Vui lòng liên hệ quản trị viên；", p.cfh));
+                        errorMsg.Append(string.Format("Đơn thuốc【{0}】Giao diện trả thuốc ngoại trú bất thường, Vui lòng liên hệ quản trị viên;", p.cfh));
                     }
                 }
                 catch (Exception e)

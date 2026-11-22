@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Application.Implementation
         /// <returns></returns>
         public string EmpowermentPharmacyDepartment(EmpowermentPharmacyDepartmentRequestDto req)
         {
-            if (req == null || string.IsNullOrWhiteSpace(req.bmypId)) return "Vui lòng truyền thông tin dược phẩm bộ phận này hiệu lực；";
+            if (req == null || string.IsNullOrWhiteSpace(req.bmypId)) return "Vui lòng truyền thông tin dược phẩm bộ phận này hiệu lực;";
             var oldData = _sysPharmacyDepartmentMedicineRepo.SelectData(req.Ypdm, req.OrganizeId, req.yfbmCode);
             if (oldData != null && oldData.Count > 0)
             {
@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Application.Implementation
                 if (item != null)
                 {
                     var t = _sysPharmacyDepartmentMedicineRepo.UpdateZt(item.bmypId, "1", req.CreatorCode, req.CreateTime);
-                    return t > 0 ? "" : string.Format("Sửa thuốc bộ phận ủy quyền thành【{0}】của thuốc【{1}】Thất bại；", req.yfbmCode, req.Ypdm);
+                    return t > 0 ? "" : string.Format("Sửa thuốc bộ phận ủy quyền thành【{0}】của thuốc【{1}】Thất bại;", req.yfbmCode, req.Ypdm);
                 }
             }
             var bmypxx = new SysPharmacyDepartmentMedicineEntity
@@ -98,7 +98,7 @@ namespace Newtouch.HIS.Application.Implementation
                 LastModifyTime = req.LastModifyTime
             };
             var rt = _sysPharmacyDepartmentMedicineRepo.Insert(bmypxx);
-            return rt > 0 ? "" : string.Format("Thêm thuốc bộ phận ủy quyền thành【{0}】của thuốc【{1}】Thất bại；", req.yfbmCode, req.Ypdm);
+            return rt > 0 ? "" : string.Format("Thêm thuốc bộ phận ủy quyền thành【{0}】của thuốc【{1}】Thất bại;", req.yfbmCode, req.Ypdm);
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Newtouch.HIS.Application.Implementation
         public string EmpowermentPharmacyDepartmentAndRemoveOld(EmpowermentPharmacyDepartmentAndRemoveOldRequestDto req)
         {
             var result = new StringBuilder();
-            if (req == null || req.epds == null || req.epds.Count == 0) return "Vui lòng truyền thông tin dược phẩm bộ phận này hiệu lực；";
+            if (req == null || req.epds == null || req.epds.Count == 0) return "Vui lòng truyền thông tin dược phẩm bộ phận này hiệu lực;";
             req.epds.Select(p => p.Ypdm).Distinct().ToList().ForEach(o =>
             {
                 _sysPharmacyDepartmentMedicineRepo.DeleteItem(o, req.epds[0].OrganizeId);
