@@ -78,7 +78,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             var Screen = _sysDepartmentBindingRepo.FindEntity(o => o.ks == sysDepartmentBindgEntity.ks && o.OrganizeId==OrganizeId && o.zt=="1");
             if (Screen!=null && !string.IsNullOrEmpty(Screen.bddm))
             {
-                return Error("Vui lòng một một đối với phải，Không thể gắn nhiều！");
+                return Error("Vui lòng một một đối với phải, Không thể gắn nhiều！");
             }
            
             var saffentity = _sysDepartmentBindingDmnService.GetSaffEntity(sysDepartmentBindgEntity.gh, this.OrganizeId);

@@ -520,11 +520,11 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         {
             if (string.IsNullOrWhiteSpace(zyh))
             {
-                throw new FailedException("không có Thông tin nhập viện，Không thể hủy nhập viện！");
+                throw new FailedException("không có Thông tin nhập viện, Không thể hủy nhập viện！");
             }
             if (_PatientBasicInfoDmnService.CheckHasFee(zyh, this.OrganizeId))
             {
-                throw new FailedException("có Chưa quyết toán của Nhập viện Chi phí bản ghi，Không thể hủy nhập viện。");
+                throw new FailedException("có Chưa quyết toán của Nhập viện Chi phí bản ghi, Không thể hủy nhập viện。");
             }
             //if (_PatientBasicInfoDmnService.BoolRuQu(zyh, this.OrganizeId))
             //{
@@ -537,11 +537,11 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
 	    {
 		    if (string.IsNullOrWhiteSpace(zyh))
 		    {
-			    throw new FailedException("không có Thông tin nhập viện，Không thể hủy nhập viện！");
+			    throw new FailedException("không có Thông tin nhập viện, Không thể hủy nhập viện！");
 		    }
 		    if (_PatientBasicInfoDmnService.CheckHasFee(zyh, this.OrganizeId))
 		    {
-			    throw new FailedException("có Chưa quyết toán của Nhập viện Chi phí bản ghi，Không thể hủy nhập viện。");
+			    throw new FailedException("có Chưa quyết toán của Nhập viện Chi phí bản ghi, Không thể hủy nhập viện。");
 		    }
             //if (_PatientBasicInfoDmnService.BoolRuQu(zyh, this.OrganizeId))
             //{
@@ -586,7 +586,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         {
             if (print.patid == null)
             {
-                return Error("Thông tin cơ bản của bệnh nhân chưa đầy đủ，Không thể in Thông tin nhập viện");
+                return Error("Thông tin cơ bản của bệnh nhân chưa đầy đủ, Không thể in Thông tin nhập viện");
             }
             var xtInfo = _SysPatBasicInfoApp.GetInfoByPatid(print.patid);
             print.phone = xtInfo.phone;
@@ -684,7 +684,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             // trả lỗi như ý định. Đảo thứ tự: kiểm tra null trước.
             if (print == null || string.IsNullOrWhiteSpace(print.patid))
             {
-                return Error("Thông tin cơ bản của bệnh nhân chưa đầy đủ，Không thể in Vòng đeo tay");
+                return Error("Thông tin cơ bản của bệnh nhân chưa đầy đủ, Không thể in Vòng đeo tay");
             }
             print.Flag = "1";
             _SysPatBasicInfoApp.PrintWDInfo(print);
@@ -981,12 +981,12 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
 
             if (string.IsNullOrWhiteSpace(zyh))
             {
-                var data = new { state = "0", message = "không có Thông tin nhập viện，Không thể hủy nhập viện！" };
+                var data = new { state = "0", message = "không có Thông tin nhập viện, Không thể hủy nhập viện！" };
                 return Content(data.ToJson());
             }
             if (_PatientBasicInfoDmnService.CheckHasFee(zyh, this.OrganizeId))
             {
-                var data = new { state = "0", message = "có Chưa quyết toán của Nhập viện Chi phí bản ghi，Không thể hủy nhập viện。" };
+                var data = new { state = "0", message = "có Chưa quyết toán của Nhập viện Chi phí bản ghi, Không thể hủy nhập viện。" };
                 return Content(data.ToJson());
             }
             InpatientSettXnhPatInfoVO patinfo = _dischargeSettleDmnService.GetInpatientSettXnhPatInfo(zyh, this.OrganizeId);
@@ -1004,7 +1004,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                         }
                         else
                         {
-                            var data = new { state = "0", message = "hiện tại là" + NewtouchHIS.Lib.Base.Extension.EnumExtensions.GetDescription((EnumZYBZ)Convert.ToInt32(patinfo.zybz)) + "Trạng thái，Không thể hủy nhập viện" };
+                            var data = new { state = "0", message = "hiện tại là" + NewtouchHIS.Lib.Base.Extension.EnumExtensions.GetDescription((EnumZYBZ)Convert.ToInt32(patinfo.zybz)) + "Trạng thái, Không thể hủy nhập viện" };
                             return Content(data.ToJson());
                         }
                     }
