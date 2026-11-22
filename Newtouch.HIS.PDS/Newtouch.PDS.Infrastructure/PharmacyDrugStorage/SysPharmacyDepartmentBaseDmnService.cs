@@ -117,7 +117,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
                 if (checkList.Count > 0)
                 {
-                    throw new FailedException("Mã bộ phận không thể trùng lặp！");
+                    throw new FailedException("Mã bộ phận không thể trùng lặp!");
                 }
                 try
                 {
@@ -163,7 +163,7 @@ where yfbmId=@yfbmId");
                 var checkList = FindList<SysPharmacyDepartmentVO>(checkSql, parList.ToArray());
                 if (checkList.Count > 0)
                 {
-                    throw new FailedException("Mã bộ phận không thể trùng lặp！");
+                    throw new FailedException("Mã bộ phận không thể trùng lặp!");
                 }
                 try
                 {
