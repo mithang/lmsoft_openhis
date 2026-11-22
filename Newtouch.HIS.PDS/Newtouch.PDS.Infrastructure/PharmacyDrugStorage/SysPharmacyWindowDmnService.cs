@@ -55,7 +55,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
                 if (checkList.Count > 0)
                 {
-                    throw new FailedException("Mã cửa sổ không thể trùng lặp！");
+                    throw new FailedException("Mã cửa sổ không thể trùng lặp!");
                 }
                 try
                 {
@@ -98,7 +98,7 @@ where yfckId=@yfckId");
                 var checkList = FindList<SysPharmacyWindowVO>(checkSql, parList.ToArray());
                 if (checkList.Count > 0)
                 {
-                    throw new FailedException("Mã cửa sổ không thể trùng lặp！");
+                    throw new FailedException("Mã cửa sổ không thể trùng lặp!");
                 }
                 try
                 {
