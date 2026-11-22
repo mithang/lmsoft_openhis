@@ -126,7 +126,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             {
                 int i = _sysItemsDetailRepository.UpdateMx(this.OrganizeId, kmdm, xmdm, UserIdentity.rygh);
                 if (i == 0) {
-                    return Error("Xóa thất bại,Vui lòng thử lại sau!");
+                    return Error("Xóa thất bại, Vui lòng thử lại sau!");
                 }
                 else
                 {
@@ -145,7 +145,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                 int i = _sysItemsDetailRepository.InsertMx(this.OrganizeId, kmdm, xmdm, UserIdentity.rygh);
                 if (i == 0)
                 {
-                    return Error("Thêm thất bại,Vui lòng thử lại sau!");
+                    return Error("Thêm thất bại, Vui lòng thử lại sau!");
                 }
                 else
                 {
@@ -200,14 +200,14 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                 var list = _sysItemsDetailRepository.GetMlbyKmdm(kmdm, this.OrganizeId);
                 if (list.Count>0)
                 {
-                    return Error("Danh mục này đã tồn tại,Vui lòng nhập lại!");
+                    return Error("Danh mục này đã tồn tại, Vui lòng nhập lại!");
                 }
                 else
                 {
                     int i = _sysItemsDetailRepository.InsertMl(kmmc, kmdm, sjkmdm, xmlx, gmlbz, s, this.OrganizeId, UserIdentity.rygh,zt);
                     if (i == 0)
                     {
-                        return Error("Thêm thất bại,Vui lòng thử lại sau!");
+                        return Error("Thêm thất bại, Vui lòng thử lại sau!");
                     }else
                     {
                         return Success("Thêm thành công!");
@@ -227,7 +227,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                     int i = _sysItemsDetailRepository.UpdateMl(kmmc, kmdm, sjkmdm, xmlx, gmlbz, sl, this.OrganizeId, UserIdentity.rygh, zt);
                     if (i == 0)
                     {
-                        return Error("Sửa thất bại,Vui lòng thử lại sau!");
+                        return Error("Sửa thất bại, Vui lòng thử lại sau!");
                     }
                     else
                     {

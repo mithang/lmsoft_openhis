@@ -177,7 +177,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 			}
 			else
 			{
-				return Content("Xuất tệp thất bại,Vui lòng quay lại trang danh sách và thử lại");
+				return Content("Xuất tệp thất bại, Vui lòng quay lại trang danh sách và thử lại");
 			}
 		}
 
@@ -211,7 +211,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 			var staffId = "";
 			if (string.IsNullOrWhiteSpace(entity.Name) || string.IsNullOrWhiteSpace(entity.OrganizeId))
 			{
-				throw new FailedException("Dữ liệu chưa đầy đủ,Vui lòng nhập lại và gửi");
+				throw new FailedException("Dữ liệu chưa đầy đủ, Vui lòng nhập lại và gửi");
 			}
 			entity.zt = entity.zt == "true" ? "1" : "0";
 			entity.TopOrganizeId = Constants.TopOrganizeId;
