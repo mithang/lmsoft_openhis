@@ -297,7 +297,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
             {
                 if (!string.IsNullOrWhiteSpace(dto.Id) && dto.Id != keyValue)
                 {
-                    return Error("Thông tin bệnh án bất thường，Vui lòng làm mới và thử lại");
+                    return Error("Thông tin bệnh án bất thường, Vui lòng làm mới và thử lại");
                 }
                 else
                 {
