@@ -163,7 +163,7 @@ namespace Newtouch.HIS.DomainServices
         {
             if (list.Count < 1)
             {
-                return "Dữ liệu gửi trống！";
+                return "Dữ liệu gửi trống!";
             }
 
             if (IsFYTHHasOperated(list))
@@ -270,7 +270,7 @@ namespace Newtouch.HIS.DomainServices
         {
             if (list.Count < 1)
             {
-                return "Dữ liệu gửi trống！";
+                return "Dữ liệu gửi trống!";
             }
 
             if (IsFYHasOperated(list))
@@ -597,7 +597,7 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
             // G33-F6: null-guard (binder cho List<T> thường trả empty list, nhưng gọi service trực tiếp có thể null)
             if (list == null || list.Count < 1)
             {
-                return "Dữ liệu gửi trống！";
+                return "Dữ liệu gửi trống!";
             }
 
             int flag = IsTYHasOperated(list, OrganizeId);
@@ -1047,7 +1047,7 @@ WHERE rdb.applyNo=@applyNo
                     var rdbRepo = new ZyReturnDrugApplyBillRepo(new DefaultDatabaseFactory());
                     if (rdbRepo.UpdateProcessStateDoingWithTrans(rd.applyNo, rd.userCode, rd.organizeId, db) <= 0)
                     {
-                        return string.Format("Đơn xin trả thuốc【{0}】Đang xử lý, Vui lòng không gửi trùng lặp！", rd.applyNo);
+                        return string.Format("Đơn xin trả thuốc【{0}】Đang xử lý, Vui lòng không gửi trùng lặp!", rd.applyNo);
                     }
 
                     var zyyzxxRepo = new ZyYpyzzxRepo(new DefaultDatabaseFactory());
@@ -1055,9 +1055,9 @@ WHERE rdb.applyNo=@applyNo
                     var kcxxRepo = new SysMedicineStockInfoRepo(new DefaultDatabaseFactory());
                     foreach (var tyParam in rd.rpInfo)
                     {
-                        if (tyParam.executeBatchDetail == null || tyParam.executeBatchDetail.Count == 0) return string.Format("Đơn trả thuốc【{0}】Không tìm thấy thông tin lô thực hiện y lệnh！", rd.applyNo);
+                        if (tyParam.executeBatchDetail == null || tyParam.executeBatchDetail.Count == 0) return string.Format("Đơn trả thuốc【{0}】Không tìm thấy thông tin lô thực hiện y lệnh!", rd.applyNo);
                         var yzxx = yzxxRepo.SelectDataByYzId(tyParam.yzId, rd.organizeId);
-                        if (yzxx == null || yzxx.Count == 0) return string.Format("Đơn trả thuốc【{0}】Không tìm thấy thông tin y lệnh！", rd.applyNo);
+                        if (yzxx == null || yzxx.Count == 0) return string.Format("Đơn trả thuốc【{0}】Không tìm thấy thông tin y lệnh!", rd.applyNo);
 
                         foreach (var zxpc in tyParam.executeBatchDetail)
                         {
@@ -1067,7 +1067,7 @@ WHERE rdb.applyNo=@applyNo
                             zxpc.tyRpDetail.ForEach(yp =>
                             {
                                 var tyxx = SelectReturnDrugDetail(rd.applyNo, tyParam.yzId, zxpc.zxId, yp.ypCode, rd.yfbmCode, rd.organizeId);
-                                if (tyxx == null || tyxx.Count == 0) throw new Exception(string.Format("【{0}】Không tìm thấy thông tin xin trả thuốc！", yp.ypmc));
+                                if (tyxx == null || tyxx.Count == 0) throw new Exception(string.Format("【{0}】Không tìm thấy thông tin xin trả thuốc!", yp.ypmc));
 
                                 //Chèn bản ghi trả thuốc
                                 var czjl = new ZyYpyzczjlEntity
@@ -1428,7 +1428,7 @@ a.Id, a.yzId, a.zxId, a.ypCode, b.yzxz, b.zlff, c.ycmc, b.dj, c.djdw, a.CreateTi
                     var rdbRepo = new ZyReturnDrugApplyBillRepo(new DefaultDatabaseFactory());
                     if (rdbRepo.UpdateProcessStateDoingWithTrans(rd.applyNo, rd.userCode, rd.organizeId, db) <= 0)
                     {
-                        return string.Format("Đơn xin trả thuốc【{0}】Đang xử lý, Vui lòng không gửi trùng lặp！", rd.applyNo);
+                        return string.Format("Đơn xin trả thuốc【{0}】Đang xử lý, Vui lòng không gửi trùng lặp!", rd.applyNo);
                     }
 
                     var zyyzxxRepo = new ZyYpyzzxRepo(new DefaultDatabaseFactory());
@@ -1436,9 +1436,9 @@ a.Id, a.yzId, a.zxId, a.ypCode, b.yzxz, b.zlff, c.ycmc, b.dj, c.djdw, a.CreateTi
                     var kcxxRepo = new SysMedicineStockInfoRepo(new DefaultDatabaseFactory());
                     foreach (var tyParam in rd.rpInfo)
                     {
-                        if (tyParam.executeBatchDetail == null || tyParam.executeBatchDetail.Count == 0) return string.Format("Đơn trả thuốc【{0}】Không tìm thấy thông tin lô thực hiện y lệnh！", rd.applyNo);
+                        if (tyParam.executeBatchDetail == null || tyParam.executeBatchDetail.Count == 0) return string.Format("Đơn trả thuốc【{0}】Không tìm thấy thông tin lô thực hiện y lệnh!", rd.applyNo);
                         var yzxx = yzxxRepo.SelectDataByYzId(tyParam.yzId, rd.organizeId);
-                        if (yzxx == null || yzxx.Count == 0) return string.Format("Đơn trả thuốc【{0}】Không tìm thấy thông tin y lệnh！", rd.applyNo);
+                        if (yzxx == null || yzxx.Count == 0) return string.Format("Đơn trả thuốc【{0}】Không tìm thấy thông tin y lệnh!", rd.applyNo);
 
                         foreach (var zxpc in tyParam.executeBatchDetail)
                         {
@@ -1448,7 +1448,7 @@ a.Id, a.yzId, a.zxId, a.ypCode, b.yzxz, b.zlff, c.ycmc, b.dj, c.djdw, a.CreateTi
                             zxpc.tyRpDetail.ForEach(yp =>
                             {
                                 var tyxx = SelectReturnDrugDetail(rd.applyNo, tyParam.yzId, zxpc.zxId, yp.ypCode, rd.yfbmCode, rd.organizeId);
-                                if (tyxx == null || tyxx.Count == 0) throw new Exception(string.Format("【{0}】Không tìm thấy thông tin xin trả thuốc！", yp.ypmc));
+                                if (tyxx == null || tyxx.Count == 0) throw new Exception(string.Format("【{0}】Không tìm thấy thông tin xin trả thuốc!", yp.ypmc));
 
                                 //Chèn bản ghi trả thuốc
                                 var czjl = new ZyYpyzczjlEntity
