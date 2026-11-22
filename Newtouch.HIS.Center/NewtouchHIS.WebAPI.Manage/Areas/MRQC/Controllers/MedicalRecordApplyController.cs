@@ -48,7 +48,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.MRQC.Controllers
             var data = await _medicalrecordapplyDmn.AddMedicalApplyRecord(request.Data);
             if (data==null)
             {
-                return new BusResult<MedicalBlApplyResponse> { code = ResponseResultCode.FAIL, msg = "Đăng ký bệnh án kiểm soát chất lượng thất bại,Vui lòng đăng ký lại" };
+                return new BusResult<MedicalBlApplyResponse> { code = ResponseResultCode.FAIL, msg = "Đăng ký bệnh án kiểm soát chất lượng thất bại, Vui lòng đăng ký lại" };
             }
             return new BusResult<MedicalBlApplyResponse> { code = ResponseResultCode.SUCCESS, msg = "Thêm thành công", Data = data };
 

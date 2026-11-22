@@ -38,7 +38,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
             var data = await _msgQueueDmn.AddNoticeGroup(request.Data);
             if (string.IsNullOrWhiteSpace(data))
             {
-                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thêm thất bại do nguyên nhân không xác định,Vui lòng liên hệ quản trị viên" };
+                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thêm thất bại do nguyên nhân không xác định, Vui lòng liên hệ quản trị viên" };
             }
             return new BusResult<string> { code = ResponseResultCode.SUCCESS, msg = "Thêm thành công", Data = data };
 
@@ -84,7 +84,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
             var data = await _msgQueueDmn.AddNotice(request.Data);
             if (data.Count == 0)
             {
-                return new BusResult<List<string>> { code = ResponseResultCode.FAIL, msg = "Thêm thất bại do nguyên nhân không xác định,Vui lòng liên hệ quản trị viên" };
+                return new BusResult<List<string>> { code = ResponseResultCode.FAIL, msg = "Thêm thất bại do nguyên nhân không xác định, Vui lòng liên hệ quản trị viên" };
             }
             return new BusResult<List<string>> { code = ResponseResultCode.SUCCESS, msg = "Thêm thành công", Data = data };
 

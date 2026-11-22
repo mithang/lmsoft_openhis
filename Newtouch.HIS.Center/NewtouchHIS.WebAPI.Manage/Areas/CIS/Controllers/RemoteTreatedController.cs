@@ -145,7 +145,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
                 var modifyApply = await _remoteTreatedDmn.ModifiedApplyStu(apply.Adapt<TreatedApplyEntity>(), request.AppId);
                 if (!modifyApply)
                 {
-                    return new BusResult<MeettingResponse> { code = ResponseResultCode.FAIL, msg = "Ghi lại số cuộc họp thất bại,Vui lòng đăng ký lại cuộc họp" };
+                    return new BusResult<MeettingResponse> { code = ResponseResultCode.FAIL, msg = "Ghi lại số cuộc họp thất bại, Vui lòng đăng ký lại cuộc họp" };
                 }
             }
             //Thông báo phòng khám điện toán đám mây 
