@@ -76,9 +76,9 @@ namespace Newtouch.Application.Implementation
         /// <returns></returns>
         public string SavaInPatDiagnosis(PatInAreaVO patInAreaVo, string organizeId, string userCode)
         {
-            if (patInAreaVo == null) return "Chẩn đoán nội dung không thể để trống！";
-            if (string.IsNullOrWhiteSpace(patInAreaVo.zyh)) return "Số nhập viện không thể là trống！";
-            if (string.IsNullOrWhiteSpace(patInAreaVo.ryzddm1) || string.IsNullOrWhiteSpace(patInAreaVo.ryzdmc1)) return "Chẩn đoán nhập viện1không thể là trống！";
+            if (patInAreaVo == null) return "Chẩn đoán nội dung không thể để trống!";
+            if (string.IsNullOrWhiteSpace(patInAreaVo.zyh)) return "Số nhập viện không thể là trống!";
+            if (string.IsNullOrWhiteSpace(patInAreaVo.ryzddm1) || string.IsNullOrWhiteSpace(patInAreaVo.ryzdmc1)) return "Chẩn đoán nhập viện1không thể là trống!";
 
             #region Đồng bộ đếnSett
             var syncSettResult = SyncInPatDiagnosisToSett(patInAreaVo, organizeId, userCode);
