@@ -766,7 +766,7 @@ AND pc=@pc AND ph=@ph AND zt='1' AND OrganizeId = @OrganizeId
                     };
                     var kcxxLs = db.FindList<SysMedicineStockInfoEntity>(sql1, param1);
                     if (kcxxLs == null || kcxxLs.Count == 0) return string.Format("Lô【{1}】của thuốc【{0}】Không tìm thấy tồn kho hiệu lực", ypmc, zyph.pc);
-                    if (kcxxLs.Sum(p => p.kcsl) < zyph.sl) return string.Format("Lô【{1}】của thuốc【{0}】Số lượng tồn kho không đủ，Không thể phát thuốc", ypmc, zyph.pc);
+                    if (kcxxLs.Sum(p => p.kcsl) < zyph.sl) return string.Format("Lô【{1}】của thuốc【{0}】Số lượng tồn kho không đủ, Không thể phát thuốc", ypmc, zyph.pc);
                     #endregion
                     #region Trừ tồn kho
 

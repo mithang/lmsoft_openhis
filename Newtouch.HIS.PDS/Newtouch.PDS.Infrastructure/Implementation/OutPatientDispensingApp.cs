@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Application.Implementation
                         var rpd = apiResp.data.ToJson().ToObject<List<fyCfYpInfo>>();
                         if (rpd == null || rpd.Count == 0)
                         {
-                            errorMsg.Append(string.Format(@"Đơn thuốc【{0}】Trạng thái chưa thanh toán，Không thể phát thuốc；", p.cfh));
+                            errorMsg.Append(string.Format(@"Đơn thuốc【{0}】Trạng thái chưa thanh toán, Không thể phát thuốc；", p.cfh));
                             break;
                         }
 
@@ -175,7 +175,7 @@ namespace Newtouch.HIS.Application.Implementation
                                 var rpd = apiResp.data.ToJson().ToObject<List<fyCfYpInfo>>();
                                 if (rpd == null || rpd.Count == 0)
                                 {
-                                    errorMsg = string.Format(@"Đơn thuốc【{0}】Trạng thái chưa thanh toán，Không thể phát thuốc", cfxx.cfh);
+                                    errorMsg = string.Format(@"Đơn thuốc【{0}】Trạng thái chưa thanh toán, Không thể phát thuốc", cfxx.cfh);
                                     cts.Cancel();
                                     return false;
                                 }

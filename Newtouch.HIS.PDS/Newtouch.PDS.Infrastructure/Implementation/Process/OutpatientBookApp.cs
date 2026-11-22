@@ -73,7 +73,7 @@ namespace Newtouch.HIS.Application.Implementation
                     if (string.IsNullOrWhiteSpace(p.Cfh)) throw new FailedException("Cfh(Số đơn thuốc) Bắt buộc nhập。");
                     if (string.IsNullOrWhiteSpace(p.CardNo)) throw new FailedException("CardNo(Số thẻ) Bắt buộc nhập。");
                     var rpCount = new fyDmnService(new DefaultDatabaseFactory(), false).ExistEffectiveRp(p.Cfh, p.Yfbm, Request.OrganizeId);
-                    if (rpCount > 0) throw new Exception("Đã tồn tại đơn thuốc【" + p.Cfh + "】，Không thể gửi trùng lặp。");
+                    if (rpCount > 0) throw new Exception("Đã tồn tại đơn thuốc【" + p.Cfh + "】, Không thể gửi trùng lặp。");
                     var ypxx = new SysMedicineExDmnService(new DefaultDatabaseFactory(), false).GetYpDetails(Request.OrganizeId,
                         p.ItemCode);
                     if (ypxx == null) throw new Exception("Không tìm thấy hạng mục【" + p.ItemName + "】。");

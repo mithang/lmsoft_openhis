@@ -232,7 +232,7 @@ namespace Newtouch.HIS.Application.Implementation
 
             if (cfxx.Exists(p => p.jsnm > 0))
             {
-                throw new FailedException("", "Đơn thuốc đã thanh toán，Không thể hủy đặt trước");
+                throw new FailedException("", "Đơn thuốc đã thanh toán, Không thể hủy đặt trước");
             }
 
             var mxphList = _mzCfphRepo.GetList(request.cfh, cfxx[0].lyyf, request.OrganizeId, "0");

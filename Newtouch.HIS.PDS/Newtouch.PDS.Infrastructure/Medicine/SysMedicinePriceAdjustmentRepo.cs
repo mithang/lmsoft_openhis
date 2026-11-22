@@ -78,11 +78,11 @@ namespace Newtouch.HIS.Repository
                 }
                 if (entity.shzt.Equals("0") || entity.shzt.Equals("2") || entity.shzt.Equals("3"))  //Chưa duyệt Từ chối Thu hồi
                 {
-                    return entity.ypCode + " Trạng thái chưa duyệt hoặc từ chối hoặc thu hồi，Không thể thực hiện";
+                    return entity.ypCode + " Trạng thái chưa duyệt hoặc từ chối hoặc thu hồi, Không thể thực hiện";
                 }
                 if ("1".Equals(entity.zxbz))   //Thực hiện
                 {
-                    return entity.ypCode + " Dữ liệu đã thực hiện，Không thể thực hiện trùng lặp";
+                    return entity.ypCode + " Dữ liệu đã thực hiện, Không thể thực hiện trùng lặp";
                 }
                 if (entity.zxsj <= DateTime.Now)
                 {
