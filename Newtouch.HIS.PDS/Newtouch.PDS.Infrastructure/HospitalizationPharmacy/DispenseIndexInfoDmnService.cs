@@ -79,7 +79,7 @@ namespace Newtouch.HIS.DomainServices
             }
             else
             {
-                return "Thực hiện chuẩn bị thuốc thất bại:Mã nội bộ y lệnh【" + model.zxId + "】,Ngày lấy hồ sơ【" + model.jdrq + "】，" + outpar.Value.ToString();
+                return "Thực hiện chuẩn bị thuốc thất bại:Mã nội bộ y lệnh【" + model.zxId + "】, Ngày lấy hồ sơ【" + model.jdrq + "】，" + outpar.Value.ToString();
             }
         }
 
@@ -111,7 +111,7 @@ namespace Newtouch.HIS.DomainServices
             }
             else
             {
-                return "Thực hiện chuẩn bị thuốc thất bại:Mã nội bộ y lệnh【" + model.zxId + "】,Ngày lấy hồ sơ【" + model.jdrq + "】," + outpar.Value.ToString();
+                return "Thực hiện chuẩn bị thuốc thất bại:Mã nội bộ y lệnh【" + model.zxId + "】, Ngày lấy hồ sơ【" + model.jdrq + "】," + outpar.Value.ToString();
             }
         }
 
