@@ -451,7 +451,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                 {
                     isSuccess = false;
                     state = "0";
-                    message = "Mã nhập viện không được để trống，Vui lòng thử lại！";
+                    message = "Mã nhập viện không được để trống, Vui lòng thử lại！";
                 }
 
                 InpatientSettXnhPatInfoVO patinfo = null;
@@ -462,7 +462,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                     {
                         isSuccess = false;
                         state = "0";
-                        message = "Lấy Bệnh nhân nông thôn mới Nhập viện bồi thường Số thứ tự inp Id là trống，Vui lòng liên hệ his xử lý";
+                        message = "Lấy Bệnh nhân nông thôn mới Nhập viện bồi thường Số thứ tự inp Id là trống, Vui lòng liên hệ his xử lý";
                     }
                     if (patinfo.zybz== ((int)EnumZYBZ.Wry).ToString()|| patinfo.zybz == ((int)EnumZYBZ.Ycy).ToString())
                     {
@@ -530,7 +530,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                     var errData = new
                     {
                         state = "0",
-                        message = "Mã nhập viện không được để trống，Vui lòng thử lại！"
+                        message = "Mã nhập viện không được để trống, Vui lòng thử lại！"
                     };
                     return Content(errData.ToJson());
                 }

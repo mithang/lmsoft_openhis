@@ -59,7 +59,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
         {
             if (jsnm == 0)
             {
-                return Error("Dữ liệu chưa đầy đủ，Vui lòng xác nhận");
+                return Error("Dữ liệu chưa đầy đủ, Vui lòng xác nhận");
             }
             var data = _IRefundApp.GetMZJSByJsnm(jsnm);
             return Success("", data);
@@ -88,7 +88,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
         {
             if (jsnm == 0)
             {
-                return Error("Dữ liệu chưa đầy đủ，Vui lòng xác nhận");
+                return Error("Dữ liệu chưa đầy đủ, Vui lòng xác nhận");
             }
             var result = _IRefundApp.btnReturn(kh, GridViewMx, jsnm, out bool isReturnAll);
 

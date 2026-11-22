@@ -144,7 +144,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                     p.zt == "1");
                 if (zyzh != null && zyzh.Count() > 0)
                 {
-                    throw new FailedException("này bệnh nhân Đã Tồn tại tạm ứng Tài khoản，Vui lòng xác nhận");
+                    throw new FailedException("này bệnh nhân Đã Tồn tại tạm ứng Tài khoản, Vui lòng xác nhận");
                 }
             }
             else
@@ -152,7 +152,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                 var zh = _sysAccountRepo.IQueryable().Where(p => p.patid == patid && p.OrganizeId == OrganizeId && p.zt == "1");
                 if (zh != null && zh.Count() > 0)
                 {
-                    throw new FailedException("này bệnh nhân Đã Tồn tại tạm ứng Tài khoản，Vui lòng xác nhận");
+                    throw new FailedException("này bệnh nhân Đã Tồn tại tạm ứng Tài khoản, Vui lòng xác nhận");
                 }
             }
             SysAccountEntity entity = new SysAccountEntity()
