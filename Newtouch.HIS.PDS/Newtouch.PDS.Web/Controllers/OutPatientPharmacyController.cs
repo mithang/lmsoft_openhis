@@ -529,7 +529,7 @@ namespace Newtouch.HIS.Web.Controllers
             var result = _mzCfRepo.GetXmAndCardNo(pagination, Constants.CurrentYfbm.yfbmCode, OrganizeId);
             if (result == null)
             {
-                throw new FailedException("Tất cả chờ xếp hoàn thành，Vui lòng đồng bộ đơn thuốc mới！");
+                throw new FailedException("Tất cả chờ xếp hoàn thành, Vui lòng đồng bộ đơn thuốc mới！");
             }
 
             var data = new
@@ -878,7 +878,7 @@ namespace Newtouch.HIS.Web.Controllers
         public IActionResult GetFyXmAndSfsj(Pagination pagination, string keyword = "")
         {
             var result = _mzCfRepo.GetXmAndCardNo(pagination, Constants.CurrentYfbm.yfbmCode, OrganizeId, keyword, EnumFybz.Yp);
-            if (result == null) throw new FailedException("Tất cả chờ xếp hoàn thành，Vui lòng đồng bộ đơn thuốc mới！");
+            if (result == null) throw new FailedException("Tất cả chờ xếp hoàn thành, Vui lòng đồng bộ đơn thuốc mới！");
             var data = new
             {
                 rows = result,
