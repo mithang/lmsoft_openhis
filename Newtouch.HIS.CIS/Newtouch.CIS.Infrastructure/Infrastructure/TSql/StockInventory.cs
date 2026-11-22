@@ -142,7 +142,7 @@ BEGIN TRY
 	SELECT '' AS Jgxx;
 END TRY
 BEGIN CATCH
-	SELECT 'tạo Kiểm kê thông tin thất bại！' AS Jgxx;
+	SELECT 'tạo Kiểm kê thông tin thất bại!' AS Jgxx;
 	PRINT ERROR_MESSAGE();
 	ROLLBACK TRANSACTION;
 END CATCH
@@ -289,7 +289,7 @@ BEGIN
 		If Isnull(@Kcsl,0) + @Sysl < 0
 		BEGIN
 			ROLLBACK TRANSACTION
-			SELECT @productName + 'Tồn kho không đủ！' 
+			SELECT @productName + 'Tồn kho không đủ!' 
 			RETURN;
 		END		
 			
@@ -299,7 +299,7 @@ BEGIN
 		IF @@ERROR <>0
 		BEGIN
 			ROLLBACK TRANSACTION
-			SELECT 'sửaTồn kho thất bại！';
+			SELECT 'sửaTồn kho thất bại!';
 			RETURN;
 		END
 
@@ -335,7 +335,7 @@ BEGIN
 			IF @@ERROR <>0
 			BEGIN
 				ROLLBACK TRANSACTION
-				SELECT 'Ghi thông tin lãi lỗ vào kho thất bại！'
+				SELECT 'Ghi thông tin lãi lỗ vào kho thất bại!'
 				RETURN;
 			END
 		END
@@ -370,7 +370,7 @@ BEGIN
 			IF @@ERROR <>0
 			BEGIN
 				ROLLBACK TRANSACTION
-				SELECT 'Ghi thông tin lãi lỗ vào kho thất bại！' ;
+				SELECT 'Ghi thông tin lãi lỗ vào kho thất bại!' ;
 				RETURN;
 			END
 		END
@@ -384,7 +384,7 @@ WHERE Id = @pdId
 IF @@ERROR <>0
 BEGIN
 	ROLLBACK TRANSACTION
-	SELECT 'sửaKiểm kê thông tin kho thất bại！' ;
+	SELECT 'sửaKiểm kê thông tin kho thất bại!' ;
 	RETURN;
 END
 	
