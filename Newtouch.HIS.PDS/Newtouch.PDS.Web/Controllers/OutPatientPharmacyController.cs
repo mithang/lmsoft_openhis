@@ -314,7 +314,7 @@ namespace Newtouch.HIS.Web.Controllers
             {
                 throw new FailedException("Xử lý giao diện chuẩn bị thuốc thất bại");
             }
-            return Success("Cấp thuốc thành công！");
+            return Success("Cấp thuốc thành công!");
         }
         #endregion
 
@@ -529,7 +529,7 @@ namespace Newtouch.HIS.Web.Controllers
             var result = _mzCfRepo.GetXmAndCardNo(pagination, Constants.CurrentYfbm.yfbmCode, OrganizeId);
             if (result == null)
             {
-                throw new FailedException("Tất cả chờ xếp hoàn thành, Vui lòng đồng bộ đơn thuốc mới！");
+                throw new FailedException("Tất cả chờ xếp hoàn thành, Vui lòng đồng bộ đơn thuốc mới!");
             }
 
             var data = new
@@ -664,7 +664,7 @@ namespace Newtouch.HIS.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(cfh))
             {
-                throw new FailedException("Vui lòng chọn bệnh nhân cần thao tác！");
+                throw new FailedException("Vui lòng chọn bệnh nhân cần thao tác!");
             }
 
             string result;
@@ -708,7 +708,7 @@ namespace Newtouch.HIS.Web.Controllers
         {
             if (patients == null || patients.Length <= 0)
             {
-                throw new FailedException("Vui lòng chọn bệnh nhân cần xếp thuốc！");
+                throw new FailedException("Vui lòng chọn bệnh nhân cần xếp thuốc!");
             }
 
             var yfbmCode = Constants.CurrentYfbm.yfbmCode;
@@ -878,7 +878,7 @@ namespace Newtouch.HIS.Web.Controllers
         public IActionResult GetFyXmAndSfsj(Pagination pagination, string keyword = "")
         {
             var result = _mzCfRepo.GetXmAndCardNo(pagination, Constants.CurrentYfbm.yfbmCode, OrganizeId, keyword, EnumFybz.Yp);
-            if (result == null) throw new FailedException("Tất cả chờ xếp hoàn thành, Vui lòng đồng bộ đơn thuốc mới！");
+            if (result == null) throw new FailedException("Tất cả chờ xếp hoàn thành, Vui lòng đồng bộ đơn thuốc mới!");
             var data = new
             {
                 rows = result,
@@ -1142,7 +1142,7 @@ namespace Newtouch.HIS.Web.Controllers
             {
                 if (patients == null || patients.Length <= 0)
                 {
-                    throw new FailedException("Vui lòng chọn đơn thuốc cần in！");
+                    throw new FailedException("Vui lòng chọn đơn thuốc cần in!");
                 }
 
                 foreach (var item in patients)
