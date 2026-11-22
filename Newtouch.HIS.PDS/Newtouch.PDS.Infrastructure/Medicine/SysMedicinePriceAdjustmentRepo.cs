@@ -67,7 +67,7 @@ namespace Newtouch.HIS.Repository
         {
             if (ypCodeList == null || ypCodeList.Count == 0)
             {
-                return "Dữ liệu yêu cầu trống,Vui lòng liên hệ quản trị viên";
+                return "Dữ liệu yêu cầu trống, Vui lòng liên hệ quản trị viên";
             }
             foreach (var item in ypCodeList)
             {

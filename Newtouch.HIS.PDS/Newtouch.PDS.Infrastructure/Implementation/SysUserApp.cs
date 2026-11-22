@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Application.Implementation
                 }
                 else
                 {
-                    throw new FailedException("Tài khoản bị hệ thống khóa,Vui lòng liên hệ quản trị viên");
+                    throw new FailedException("Tài khoản bị hệ thống khóa, Vui lòng liên hệ quản trị viên");
                 }
             }
             else

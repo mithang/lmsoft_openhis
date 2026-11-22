@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 result.IsSucceed = false;
                 result.ResultCode = (int)ResultCode.Other;
-                result.ResultMsg = "Xử lý nội bộ thất bại,Vui lòng liên hệ quản trị viên giao diện";
+                result.ResultMsg = "Xử lý nội bộ thất bại, Vui lòng liên hệ quản trị viên giao diện";
                 LogCore.Error("ProcessorFun Process error", ex, message: string.Format("Message:\n{0}\nStackTrace:\n{1}", ex.Message, ex.StackTrace), addInfo: Tags);
             }
             finally

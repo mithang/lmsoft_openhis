@@ -102,7 +102,7 @@ namespace Newtouch.HIS.Application.Implementation
                 {
                     actResult.IsSucceed = false;
                     LogCore.Error("ClinicTfOperateApp UpdateCfByTf Error", ex, addInfo: Tags);
-                    actResult.ResultMsg = string.Format("{0} ; Số đơn thuốc là[{1}]Xảy ra ngoại lệ nội bộ,Vui lòng liên hệ quản trị viên giao diện càng sớm càng tốt", actResult.ResultMsg, p.cfh);
+                    actResult.ResultMsg = string.Format("{0} ; Số đơn thuốc là[{1}]Xảy ra ngoại lệ nội bộ, Vui lòng liên hệ quản trị viên giao diện càng sớm càng tốt", actResult.ResultMsg, p.cfh);
                     actResult.ResultCode = (int)ResultCode.AllFailure;
                 }
             });
