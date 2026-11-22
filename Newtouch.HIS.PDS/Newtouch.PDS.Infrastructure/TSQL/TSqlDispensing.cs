@@ -208,7 +208,7 @@ BEGIN
 
 		IF NOT EXISTS(SELECT 1 FROM #kcData)
 		BEGIN
-			SET @resultMsg= CONCAT('Thuốc【',@ypmc, '】Không tìm thấy tồn kho hiệu lực，Thuốc trong kho này có thể bị kiểm soát');
+			SET @resultMsg= CONCAT('Thuốc【',@ypmc, '】Không tìm thấy tồn kho hiệu lực, Thuốc trong kho này có thể bị kiểm soát');
 			BREAK;
 		END 
 
@@ -396,7 +396,7 @@ BEGIN
 END
 IF ISNULL(@jsnm, 0)>0
 BEGIN
-	SELECT 'Đơn thuốc đã quyết toán，không thể hủy đặt trước';
+	SELECT 'Đơn thuốc đã quyết toán, không thể hủy đặt trước';
 	RETURN ;
 END 
 
@@ -489,7 +489,7 @@ BEGIN
 END
 IF ISNULL(@jsnm, 0)>0
 BEGIN
-	SELECT 'Đơn thuốc đã quyết toán，không thể hủy đặt trước';
+	SELECT 'Đơn thuốc đã quyết toán, không thể hủy đặt trước';
 	RETURN ;
 END 
 
@@ -1026,7 +1026,7 @@ END
 
 if(exists(select 1 from [mz_cfypczjl] a with(nolock),#CancalSettData b where a.mzcfmxid=b.cfmxid))
 begin
-	SELECT 'Đơn thuốc đã phát thuốc，không thể hủy đặt trước';
+	SELECT 'Đơn thuốc đã phát thuốc, không thể hủy đặt trước';
 	RETURN ;
 end
 
