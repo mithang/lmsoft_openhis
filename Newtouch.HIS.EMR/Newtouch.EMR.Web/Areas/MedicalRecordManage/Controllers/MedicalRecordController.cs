@@ -2306,7 +2306,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     {
                         if (string.IsNullOrWhiteSpace(errmsg))
                         {
-                            errmsg = "Tải lên dữ liệu quan trọng của bảo hiểm y tế！";
+                            errmsg = "Tải lên dữ liệu quan trọng của bảo hiểm y tế!";
                         }
                         errmsg += "[" + desc[0].Description + "] không được để trống;";
                     }
