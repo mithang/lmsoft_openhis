@@ -38,7 +38,7 @@ namespace Newtouch.DomainServices
             var cfEntity = _presTemplateRepo.FindEntity(mbId);
             if (cfEntity == null&& cflx!= ((int)EnumCflx.InspectionPres).ToString() && cflx!= ((int)EnumCflx.ExaminationPres).ToString())
             {
-                throw new FailedException("Dữ liệu bất thường，chưa Tra cứu đến mẫu nội dung");
+                throw new FailedException("Dữ liệu bất thường, chưa Tra cứu đến mẫu nội dung");
             }
             var sql = "";
             if (cfEntity != null)

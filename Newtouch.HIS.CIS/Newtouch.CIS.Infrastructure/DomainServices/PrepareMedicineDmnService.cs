@@ -428,7 +428,7 @@ FROM (
                     }
                     else
                     {
-                        return "gọi Nhà thuốc giao diện thất bại，vui lòng liên hệ mở phát người viên！";
+                        return "gọi Nhà thuốc giao diện thất bại, vui lòng liên hệ mở phát người viên！";
                     }
                 }
                 return "Khoa chuẩn bị thuốc Trả lại Lưu thành công！";
@@ -696,7 +696,7 @@ where ypdm=@ypbm and ph=@ph and pc=@pc and OrganizeId=@orgId  and yfbmCode=@yfbm
                 }
                 else
                 {
-                    return "gọi Nhà thuốc giao diện thất bại，vui lòng liên hệ mở phát người viên！";
+                    return "gọi Nhà thuốc giao diện thất bại, vui lòng liên hệ mở phát người viên！";
                 }
             }
             catch (Exception ex)

@@ -31,7 +31,7 @@ namespace Newtouch.DomainServices
         {
             if (string.IsNullOrWhiteSpace(ztId))
             {
-                throw new FailedException("Dữ liệu bất thường，ztId là trống hoặc null");
+                throw new FailedException("Dữ liệu bất thường, ztId là trống hoặc null");
             }
 
             //Bộ mẫu thông tin

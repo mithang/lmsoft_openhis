@@ -76,7 +76,7 @@ namespace Newtouch.Infrastructure
                 token = GetUserToken(user);
                 if (string.IsNullOrWhiteSpace(token))
                 {
-                    throw new FailedException("[Xác thực]chưa Lấy đến Api thân phần mã thông báo，vui lòng liên hệ Quản lý viên");
+                    throw new FailedException("[Xác thực]chưa Lấy đến Api thân phần mã thông báo, vui lòng liên hệ Quản lý viên");
                 }
                 string response = HttpMethods.HttpPostWithToken(uri, data, token);
                 ApiManageResponse<T> apiResp = JsonConvert.DeserializeObject<ApiManageResponse<T>>(response);

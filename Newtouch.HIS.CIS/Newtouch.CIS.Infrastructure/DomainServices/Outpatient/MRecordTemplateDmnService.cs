@@ -68,7 +68,7 @@ namespace Newtouch.DomainServices
             var mbEntity = _mRTemplateRepo.IQueryable().Where(a => a.mbId == mbId && a.zt == "1").FirstOrDefault();
             if (mbEntity == null)
             {
-                throw new FailedException("Dữ liệu bất thường，chưa Tra cứu ra Hồ sơ mẫu thông tin");
+                throw new FailedException("Dữ liệu bất thường, chưa Tra cứu ra Hồ sơ mẫu thông tin");
             }
             //Chẩn đoán Tây y
             //var wmdiagnosisEntityList = _mrTemplateWMDiagnosisRepo.IQueryable().Where(a => a.mbId == mbId && a.OrganizeId == orgId && a.zt == "1").ToList();

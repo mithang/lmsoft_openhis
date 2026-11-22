@@ -920,7 +920,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                                     dbPresEnitty = db.FirstOrDefault<PrescriptionEntity>(sql4, new DbParameter[] { new SqlParameter("@cfId", cf.cfId) });
                                     if (dbPresEnitty == null)
                                     {
-                                        throw new FailedException("Đơn thuốcNgoại lệ，Đơn thuốcdấuhiển thịcộtNgoại lệ");
+                                        throw new FailedException("Đơn thuốcNgoại lệ, Đơn thuốcdấuhiển thịcộtNgoại lệ");
                                     }
 
                                     if (dbPresEnitty.sfbz)
@@ -933,7 +933,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                                 {
                                     if (string.IsNullOrWhiteSpace(cf.cfh))
                                     {
-                                        throw new FailedException("Đơn thuốcNgoại lệ，thiếuSố đơn thuốc");
+                                        throw new FailedException("Đơn thuốcNgoại lệ, thiếuSố đơn thuốc");
                                     }
 
                                     DateTime? cfklrq = null;

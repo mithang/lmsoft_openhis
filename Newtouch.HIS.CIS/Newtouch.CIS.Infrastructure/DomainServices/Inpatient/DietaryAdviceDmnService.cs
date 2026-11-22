@@ -108,9 +108,9 @@ namespace Newtouch.DomainServices.Inpatient
                 // exception khác trả đúng business error với Message gốc.
                 if (e is Newtouch.CIS.Compat.FailedException failedException)
                 {
-                    throw new FailedException("Mục thu phí Lưu thất bại，" + failedException.Msg);
+                    throw new FailedException("Mục thu phí Lưu thất bại, " + failedException.Msg);
                 }
-                throw new FailedException("Mục thu phí Lưu thất bại，" + e.Message);
+                throw new FailedException("Mục thu phí Lưu thất bại, " + e.Message);
             }
         }
 

@@ -139,7 +139,7 @@ group by  ztxm.ztId,zt.ztmc,mb.zxks, Department.Name,sfxm.sqlx ";
         {
             if (string.IsNullOrWhiteSpace(mbId))
             {
-                throw new FailedException("Dữ liệu bất thường，mbId là trống hoặc null");
+                throw new FailedException("Dữ liệu bất thường, mbId là trống hoặc null");
             }
 
             //mẫu thông tin
