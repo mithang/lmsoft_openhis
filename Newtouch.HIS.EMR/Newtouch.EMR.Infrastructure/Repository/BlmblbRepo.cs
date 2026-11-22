@@ -120,7 +120,7 @@ namespace Newtouch.EMR.Repository
         public List<BlmblbEntity> GetPagintionList(Pagination pagination, string OrganizeId, string keyword, OperatorModel user)
         {
             string sql = @"SELECT [Id],[OrganizeId],[mbqx],[mbbm],[mbmc],[bllxId],[bllxmc],[ksbm],[ysgh],[mblj],[py]
-,[Isempty],[Memo],[CreateTime],[CreatorCode],[LastModifyTime],[LastModifierCode],[zt],bllx,IsYB，Ybbm
+,[Isempty],[Memo],[CreateTime],[CreatorCode],[LastModifyTime],[LastModifierCode],[zt],bllx,IsYB,Ybbm
 FROM[dbo].[bl_mblb] with(nolock)
 where zt=1 and OrganizeId=@OrgId
                            ";
