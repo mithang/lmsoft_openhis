@@ -523,7 +523,7 @@ where OrganizeId = @orgId and zt = '1'";
                 });
             if (ck > 0)
             {
-                throw new FailedException("Báo cáo Mã đã tồn tại ở！");
+                throw new FailedException("Báo cáo Mã đã tồn tại ở!");
             }
 
             if (!string.IsNullOrWhiteSpace(keyValue))
@@ -578,7 +578,7 @@ where OrganizeId = @orgId and zt = '1'";
             }
             catch (Exception ex)
             {
-                throw new FailedException("Lưu thất bại！" + ex.Message);
+                throw new FailedException("Lưu thất bại!" + ex.Message);
             }
             
         }

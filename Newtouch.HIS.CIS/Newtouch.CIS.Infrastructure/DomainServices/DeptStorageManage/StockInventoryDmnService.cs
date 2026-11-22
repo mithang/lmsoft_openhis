@@ -372,7 +372,7 @@ END
             }).FirstOrDefault();
             if (result == 0)
             {
-                throw new Exception("Hủy thất bại！");
+                throw new Exception("Hủy thất bại!");
             }
         }
 

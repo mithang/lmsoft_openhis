@@ -424,14 +424,14 @@ FROM (
                     var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/PrepareMedicineReturn", request);
                     if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS && apires.msg == "")
                     {
-                        return "Lưu và Gửi thành công！";
+                        return "Lưu và Gửi thành công!";
                     }
                     else
                     {
-                        return "gọi Nhà thuốc giao diện thất bại, vui lòng liên hệ mở phát người viên！";
+                        return "gọi Nhà thuốc giao diện thất bại, vui lòng liên hệ mở phát người viên!";
                     }
                 }
-                return "Khoa chuẩn bị thuốc Trả lại Lưu thành công！";
+                return "Khoa chuẩn bị thuốc Trả lại Lưu thành công!";
             }
             catch (Exception ex)
             {
@@ -696,7 +696,7 @@ where ypdm=@ypbm and ph=@ph and pc=@pc and OrganizeId=@orgId  and yfbmCode=@yfbm
                 }
                 else
                 {
-                    return "gọi Nhà thuốc giao diện thất bại, vui lòng liên hệ mở phát người viên！";
+                    return "gọi Nhà thuốc giao diện thất bại, vui lòng liên hệ mở phát người viên!";
                 }
             }
             catch (Exception ex)
