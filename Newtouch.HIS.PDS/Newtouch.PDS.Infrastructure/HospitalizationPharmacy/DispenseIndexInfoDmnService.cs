@@ -168,7 +168,7 @@ namespace Newtouch.HIS.DomainServices
 
             if (IsFYTHHasOperated(list))
             {
-                return "Trả lại phát thuốc đã được thao tác，Vui lòng làm mới。";
+                return "Trả lại phát thuốc đã được thao tác, Vui lòng làm mới。";
             }
 
             try
@@ -275,7 +275,7 @@ namespace Newtouch.HIS.DomainServices
 
             if (IsFYHasOperated(list))
             {
-                return "Phát thuốc đã được thao tác，Vui lòng làm mới。";
+                return "Phát thuốc đã được thao tác, Vui lòng làm mới。";
             }
 
             try
@@ -1047,7 +1047,7 @@ WHERE rdb.applyNo=@applyNo
                     var rdbRepo = new ZyReturnDrugApplyBillRepo(new DefaultDatabaseFactory());
                     if (rdbRepo.UpdateProcessStateDoingWithTrans(rd.applyNo, rd.userCode, rd.organizeId, db) <= 0)
                     {
-                        return string.Format("Đơn xin trả thuốc【{0}】Đang xử lý，Vui lòng không gửi trùng lặp！", rd.applyNo);
+                        return string.Format("Đơn xin trả thuốc【{0}】Đang xử lý, Vui lòng không gửi trùng lặp！", rd.applyNo);
                     }
 
                     var zyyzxxRepo = new ZyYpyzzxRepo(new DefaultDatabaseFactory());
@@ -1428,7 +1428,7 @@ a.Id, a.yzId, a.zxId, a.ypCode, b.yzxz, b.zlff, c.ycmc, b.dj, c.djdw, a.CreateTi
                     var rdbRepo = new ZyReturnDrugApplyBillRepo(new DefaultDatabaseFactory());
                     if (rdbRepo.UpdateProcessStateDoingWithTrans(rd.applyNo, rd.userCode, rd.organizeId, db) <= 0)
                     {
-                        return string.Format("Đơn xin trả thuốc【{0}】Đang xử lý，Vui lòng không gửi trùng lặp！", rd.applyNo);
+                        return string.Format("Đơn xin trả thuốc【{0}】Đang xử lý, Vui lòng không gửi trùng lặp！", rd.applyNo);
                     }
 
                     var zyyzxxRepo = new ZyYpyzzxRepo(new DefaultDatabaseFactory());

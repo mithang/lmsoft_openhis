@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Application.Implementation
                     }
                     else
                     {
-                        throw new FailedException("Mật khẩu không đúng，Vui lòng nhập lại");
+                        throw new FailedException("Mật khẩu không đúng, Vui lòng nhập lại");
                     }
                 }
                 else
@@ -71,7 +71,7 @@ namespace Newtouch.HIS.Application.Implementation
             }
             else
             {
-                throw new FailedException("Tài khoản không tồn tại，Vui lòng nhập lại");
+                throw new FailedException("Tài khoản không tồn tại, Vui lòng nhập lại");
             }
         }
     }

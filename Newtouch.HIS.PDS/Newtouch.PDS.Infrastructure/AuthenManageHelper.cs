@@ -79,7 +79,7 @@ namespace Newtouch.Infrastructure
                 token = GetUserToken(user);
                 if (string.IsNullOrWhiteSpace(token))
                 {
-                    throw new FailedException("[Xác thực quyền]Chưa lấy được Api Mã danh tính，Vui lòng liên hệ quản trị viên");
+                    throw new FailedException("[Xác thực quyền]Chưa lấy được Api Mã danh tính, Vui lòng liên hệ quản trị viên");
                 }
                 token = $"Bearer {token}";
                 string response = HttpMethods.HttpPostWithToken(uri, data, token);

@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
                 {
                     var applyInfo = new ZyReturnDrugApplyBillRepo(new DefaultDatabaseFactory()).SelectData(item, Request.organizeId);
                     if (applyInfo == null) throw new Exception(string.Format("Không tìm thấy đơn xin trả thuốc【{0}】", item));
-                    if (applyInfo.ProcessState != 0) throw new Exception(string.Format("Đơn xin trả thuốc【{0}】Đang xử lý，Vui lòng không gửi trùng lặp", item));
+                    if (applyInfo.ProcessState != 0) throw new Exception(string.Format("Đơn xin trả thuốc【{0}】Đang xử lý, Vui lòng không gửi trùng lặp", item));
                     var applyDetail = new ZyReturnDrugApplyBillDetailRepo(new DefaultDatabaseFactory()).SelectData(applyInfo.Id);
                     if (applyDetail == null || applyDetail.Count <= 0) throw new Exception(string.Format("Đơn xin trả thuốc【{0}】Không tìm thấy chi tiết đơn xin trả thuốc hiệu lực", item));
 

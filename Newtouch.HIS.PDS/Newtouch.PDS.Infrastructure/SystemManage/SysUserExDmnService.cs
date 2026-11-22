@@ -96,7 +96,7 @@ and A.zt = '1' and B.zt = '1' and C.zt = '1'";
                 {
                     if (username == "admin")
                     {
-                        throw new FailedException("Mật khẩu không đúng，Vui lòng nhập lại");
+                        throw new FailedException("Mật khẩu không đúng, Vui lòng nhập lại");
                     }
 
                     //lấy Mtrong vài phút mới nhấtN-1bản ghi(Lần này cũng đăng nhập thất bại)
@@ -114,13 +114,13 @@ and A.zt = '1' and B.zt = '1' and C.zt = '1'";
                     }
                     else
                     {
-                        throw new FailedException("Mật khẩu không đúng，Vui lòng nhập lại");
+                        throw new FailedException("Mật khẩu không đúng, Vui lòng nhập lại");
                     }
                 }
             }
             else
             {
-                throw new FailedException("Tài khoản không tồn tại，Vui lòng nhập lại");
+                throw new FailedException("Tài khoản không tồn tại, Vui lòng nhập lại");
             }
         }
 

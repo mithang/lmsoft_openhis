@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Application.Implementation
             else
             {
                 actResult.IsSucceed = false;
-                actResult.ResultMsg = "Không lấy được đơn thuốc chưa xếp lịch，Vui lòng đồng bộ đơn thuốc！";
+                actResult.ResultMsg = "Không lấy được đơn thuốc chưa xếp lịch, Vui lòng đồng bộ đơn thuốc！";
             }
         }
     }
