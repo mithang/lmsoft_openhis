@@ -214,7 +214,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         public IActionResult DeleteExecutedGmxx(string gmxxId)
         {
             int ret = _IAllergyManageDmnService.DeleteAllergyInfo(gmxxId, this.OrganizeId, UserIdentity.UserCode, UserIdentity.UserName);
-            return ret > 0 ? Success("Thao tác thành công") : Error("Hủy Thực hiện thất bại,Vui lòng liên hệ Quản trị viên!");
+            return ret > 0 ? Success("Thao tác thành công") : Error("Hủy Thực hiện thất bại, Vui lòng liên hệ Quản trị viên!");
         }
         #endregion
     }
