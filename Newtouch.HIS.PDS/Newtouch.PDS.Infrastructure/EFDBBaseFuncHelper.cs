@@ -68,7 +68,7 @@ namespace Newtouch.Infrastructure
             {
                 return Convert.ToInt32(newVal);
             }
-            throw new Exception("Lấy số thứ tự thất bại！");
+            throw new Exception("Lấy số thứ tự thất bại!");
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Newtouch.Infrastructure
             {
                 return Convert.ToInt64(newVal);
             }
-            throw new Exception("Lấy số thứ tự thất bại！");
+            throw new Exception("Lấy số thứ tự thất bại!");
         }
 
         /// <summary>
