@@ -74,7 +74,7 @@ namespace Newtouch.HIS.Repository
                 var entity = IQueryable().OrderByDescending(o=>o.CreateTime).FirstOrDefault(a => a.ypCode == item.ToString() && a.zxsj > DateTime.Now);
                 if (entity == null)
                 {
-                    return string.Format(@"Không tra được mã thuốc là{0}của thuốc！", item);
+                    return string.Format(@"Không tra được mã thuốc là{0}của thuốc!", item);
                 }
                 if (entity.shzt.Equals("0") || entity.shzt.Equals("2") || entity.shzt.Equals("3"))  //Chưa duyệt Từ chối Thu hồi
                 {

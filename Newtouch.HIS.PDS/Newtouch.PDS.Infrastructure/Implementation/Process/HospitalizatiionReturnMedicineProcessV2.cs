@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
                                     if (!applyDetail.Exists(p => p.ypCode == o)) return;
 
                                     var sqtysl = applyDetail.FindAll(p => p.ypCode == o).Sum(i => i.tysl * i.zhyz);
-                                    if (sqtysl < tmp.Sum(i => i.sl * i.zhyz)) throw new Exception(string.Format("Đơn xin trả thuốc【{0}】của thuốc【{1}】Số lượng trả thuốc không được lớn hơn số lượng xin trả thuốc！", item, tmp[0].ypmc));
+                                    if (sqtysl < tmp.Sum(i => i.sl * i.zhyz)) throw new Exception(string.Format("Đơn xin trả thuốc【{0}】của thuốc【{1}】Số lượng trả thuốc không được lớn hơn số lượng xin trả thuốc!", item, tmp[0].ypmc));
                                     rpDetail.Add(new RpDetail
                                     {
                                         ypCode = o,
