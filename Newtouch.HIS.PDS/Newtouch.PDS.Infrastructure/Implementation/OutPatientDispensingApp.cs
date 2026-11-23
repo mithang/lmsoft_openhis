@@ -122,7 +122,7 @@ namespace Newtouch.HIS.Application.Implementation
             cfhList = new List<string>();
             if (patients == null || patients.Length <= 0)
             {
-                return "Vui lòng chọn bệnh nhân cần xếp thuốc！";
+                return "Vui lòng chọn bệnh nhân cần xếp thuốc!";
             }
 
             var errorMsg = "";
