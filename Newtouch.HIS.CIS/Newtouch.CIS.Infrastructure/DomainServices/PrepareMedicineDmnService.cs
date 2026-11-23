@@ -128,7 +128,7 @@ order by a.ypcode,a.kcsl,a.yxq
                     if (syxx.Sysl < 0)//Báo hỏng  đĩa Tồn kho là Không nạp đủ
                     {
                         if (kcxx.Sum(p => p.kcsl) + syxx.Sysl < 0)
-                            return string.Format("mã là{0}、Số lô{1}、Lô{2} của thuốc Tồn kho không đủ", syxx.Ypdm, syxx.Ph, syxx.pc);
+                            return string.Format("mã là{0}, Số lô{1}, Lô{2} của thuốc Tồn kho không đủ", syxx.Ypdm, syxx.Ph, syxx.pc);
                     }
 
                     kcxxRepo.UpdateKcslWithTrans(syxx.Sysl, syxx.pc, syxx.Ph, syxx.Ypdm, syxx.yfbmCode, syxx.OrganizeId,
