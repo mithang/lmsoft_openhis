@@ -156,7 +156,7 @@ namespace Newtouch.HIS.Web.Controllers
                 moduleEntity.zt = mappedZt ?? "1";
                 _sysModuleDmnService.SubmitForm(moduleEntity, keyValue, Constants.TopOrganizeId);
             }
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         [HttpPost]
@@ -166,7 +166,7 @@ namespace Newtouch.HIS.Web.Controllers
         public IActionResult DeleteForm(string keyValue)
         {
             _moduleApp.DeleteForm(keyValue);
-            return Success("Xóa thành công。");
+            return Success("Xóa thành công.");
         }
 
         #region Cơ sở ủy quyền
@@ -197,7 +197,7 @@ namespace Newtouch.HIS.Web.Controllers
                 throw new FailedException("Thiếu mã thực đơn cần ủy quyền");
             }
             _sysModuleDmnService.UpdateAuthOrganizeList(keyValue, orgList, 1);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace Newtouch.HIS.Web.Controllers
                 throw new FailedException("Thiếu mã thực đơn cần ủy quyền");
             }
             _sysModuleDmnService.AuthAllOrganize(keyValue, 1);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -235,7 +235,7 @@ namespace Newtouch.HIS.Web.Controllers
                 throw new FailedException("Thiếu mã thực đơn cần ủy quyền");
             }
             _sysModuleDmnService.AuthCancelAllOrganize(keyValue, 1);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         #endregion

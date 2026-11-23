@@ -98,7 +98,7 @@ namespace Newtouch.HIS.Web.Controllers
                 ? System.Array.Empty<string>()
                 : permissionIds.Split(',');
             _roleApp.SubmitForm(roleEntity, permissionIdArray, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         [HttpPost]
@@ -108,7 +108,7 @@ namespace Newtouch.HIS.Web.Controllers
         public IActionResult DeleteForm(string keyValue)
         {
             _roleApp.DeleteForm(keyValue);
-            return Success("Xóa thành công。");
+            return Success("Xóa thành công.");
         }
 
         /// <summary>

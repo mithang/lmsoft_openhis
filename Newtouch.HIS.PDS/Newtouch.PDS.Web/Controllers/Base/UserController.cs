@@ -167,7 +167,7 @@ namespace Newtouch.HIS.Web.Controllers
                 throw new FailedException("Mật khẩu chưa đủ phức tạp<br/>6-16 ký tự, phải bao gồm chữ cái và số");
             }
             _sysUserDmnService.RevisePassword(newpwd, this.UserIdentity.UserId);
-            return Success("Đặt lại mật khẩu thành công。");
+            return Success("Đặt lại mật khẩu thành công.");
         }
 
     }

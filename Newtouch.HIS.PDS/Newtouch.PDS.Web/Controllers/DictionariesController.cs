@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Web.Controllers
                 return Error("Không tìm thấy bản ghi cần sửa");
             var rows = _ISysMedicineProfitLossReasonRepo.SubmitForm(SyyyDTO, keyValue);
             if (rows <= 0) return Error("Không tìm thấy bản ghi cần sửa");
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Newtouch.HIS.Web.Controllers
             if (string.IsNullOrWhiteSpace(keyValue)) return Error("Vui lòng chọn một bản ghi");
             var rows = _ISysMedicineProfitLossReasonRepo.DeleteForm(keyValue);
             if (rows <= 0) return Error("Không tìm thấy bản ghi cần xóa");
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
         #endregion
 
@@ -197,7 +197,7 @@ namespace Newtouch.HIS.Web.Controllers
             if (dup != null) return Error("Cấu hình phát thuốc đã tồn tại");
             var rows = _ISysDispensingaConfigRepo.SubmitForm(FypzDTO, keyValue);
             if (rows <= 0) return Error("Không tìm thấy bản ghi cần sửa");
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
         /// <summary>
         /// Xóa dữ liệu
@@ -211,7 +211,7 @@ namespace Newtouch.HIS.Web.Controllers
             if (string.IsNullOrWhiteSpace(keyValue)) return Error("Vui lòng chọn một bản ghi");
             var rows = _ISysDispensingaConfigRepo.DeleteForm(keyValue, OrganizeId);
             if (rows <= 0) return Error("Không tìm thấy bản ghi cần xóa");
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
         /// <summary>
         /// Lấy dữ liệu hộp thả xuống kho thuốc
@@ -366,7 +366,7 @@ namespace Newtouch.HIS.Web.Controllers
             if (dup != null) return Error("Cấu hình phát thuốc cho khoa đã tồn tại");
             var rows = _ISysYpksfypzEntityRepo.SubmitForm(FypzDTO, keyValue);
             if (rows <= 0) return Error("Không tìm thấy bản ghi cần sửa");
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
         /// <summary>
         /// Xóa cấu hình phát thuốc cho khoa
@@ -380,7 +380,7 @@ namespace Newtouch.HIS.Web.Controllers
             if (string.IsNullOrWhiteSpace(keyValue)) return Error("Vui lòng chọn một bản ghi");
             var rows = _ISysYpksfypzEntityRepo.DeleteForm(keyValue, OrganizeId);
             if (rows <= 0) return Error("Không tìm thấy bản ghi cần xóa");
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
