@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Application.Implementation
                 return _mzCfRepo.UpdateGender(pbi.cfh, pbi.xb, pbi.OrganizeId) > 0 ? "" : string.Format("Theo số đơn thuốc：【{0}】、Tổ chức ID：【{1}】、Giới tính：【{2}】Không tìm thấy bản ghi có thể cập nhật", pbi.cfh, pbi.OrganizeId, pbi.xb);
             }
 
-            return "Thông tin cơ bản bệnh nhân truyền vào không được để trống！";
+            return "Thông tin cơ bản bệnh nhân truyền vào không được để trống!";
         }
     }
 }
