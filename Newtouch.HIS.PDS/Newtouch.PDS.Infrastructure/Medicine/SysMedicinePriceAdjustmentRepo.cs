@@ -135,7 +135,7 @@ namespace Newtouch.HIS.Repository
                 }
                 db.Commit();
             }
-            return expireApply.Count > 0 ? string.Format("Mã thuốc là{0}thao tác thuốc thất bại, Đã quá thời gian thực hiện muộn nhất。", string.Join(",", expireApply)) : "Thao tác thành công";
+            return expireApply.Count > 0 ? string.Format("Mã thuốc là{0}thao tác thuốc thất bại, Đã quá thời gian thực hiện muộn nhất.", string.Join(",", expireApply)) : "Thao tác thành công";
         }
     }
 }

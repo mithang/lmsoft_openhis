@@ -115,7 +115,7 @@ namespace Newtouch.HIS.Application.Implementation
                 if (!string.IsNullOrWhiteSpace(cancelResult))
                 {
                     result.IsSucceed = false;
-                    result.ResultMsg += string.Format("Đơn thuốc【{0}】Hủy đơn thuốc gốc thất bại。{1};", q, cancelResult);
+                    result.ResultMsg += string.Format("Đơn thuốc【{0}】Hủy đơn thuốc gốc thất bại.{1};", q, cancelResult);
                     return;
                 }
 
