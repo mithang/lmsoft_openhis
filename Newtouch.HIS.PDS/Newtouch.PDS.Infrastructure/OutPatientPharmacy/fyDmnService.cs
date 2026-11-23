@@ -199,9 +199,9 @@ namespace Newtouch.HIS.DomainServices
                         {
                             if (mxph.sl <= 0) continue;
                             var kcxxs = kcxxRepo.SelectData(ypCode, mxph.ph, mxph.pc, yfbmCode, organizeId);
-                            if (kcxxs == null || kcxxs.Count == 0) return string.Format("Mã thuốc là{0}、Lô{1}、Số lô{2}thuốc không tìm thấy thông tin tồn kho", ypCode, mxph.pc, mxph.ph);
-                            if (kcxxs.Sum(p => p.djsl) < mxph.sl) return string.Format("Mã thuốc là{0}、Lô{1}、Số lô{2}thuốc đã đóng băng tồn kho không đủ", ypCode, mxph.pc, mxph.ph);
-                            if (kcxxs.Sum(p => p.kcsl) < mxph.sl) return string.Format("Mã thuốc là{0}、Lô{1}、Số lô{2}tồn kho thuốc không đủ", ypCode, mxph.pc, mxph.ph);
+                            if (kcxxs == null || kcxxs.Count == 0) return string.Format("Mã thuốc là{0}, Lô{1}, Số lô{2}thuốc không tìm thấy thông tin tồn kho", ypCode, mxph.pc, mxph.ph);
+                            if (kcxxs.Sum(p => p.djsl) < mxph.sl) return string.Format("Mã thuốc là{0}, Lô{1}, Số lô{2}thuốc đã đóng băng tồn kho không đủ", ypCode, mxph.pc, mxph.ph);
+                            if (kcxxs.Sum(p => p.kcsl) < mxph.sl) return string.Format("Mã thuốc là{0}, Lô{1}, Số lô{2}tồn kho thuốc không đủ", ypCode, mxph.pc, mxph.ph);
                             var sysl = mxph.sl;
                             foreach (var kcxx in kcxxs)
                             {

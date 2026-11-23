@@ -678,7 +678,7 @@ BEGIN
 		IF NOT EXISTS(SELECT 1 FROM #kcData)
 		BEGIN
 			SELECT @ypmc=ypmc FROM NewtouchHIS_Base.dbo.V_C_xt_yp WHERE zt='1' AND OrganizeId=@OrganizeId AND ypCode=@ypCode
-			SET @resultMsg=CONCAT('Lô【',@pc,'】、Số lô【',@ph,'】thuốc【',@ypmc,'】Không tìm thấy thông tin tồn kho hiệu lực')
+			SET @resultMsg=CONCAT('Lô【',@pc,'】, Số lô【',@ph,'】thuốc【',@ypmc,'】Không tìm thấy thông tin tồn kho hiệu lực')
 			BREAK;
 		END
 
@@ -690,7 +690,7 @@ BEGIN
 		IF @sumKcsl<@zxsl
 		BEGIN
 			SELECT @ypmc=ypmc FROM NewtouchHIS_Base.dbo.V_C_xt_yp WHERE zt='1' AND OrganizeId=@OrganizeId AND ypCode=@ypCode
-			SET @resultMsg=CONCAT('Lô【',@pc,'】、Số lô【',@ph,'】thuốc【',@ypmc,'】tồn kho không đủ')
+			SET @resultMsg=CONCAT('Lô【',@pc,'】, Số lô【',@ph,'】thuốc【',@ypmc,'】tồn kho không đủ')
 			BREAK;
 		END 
 		IF @sumDjsl<@zxsl
