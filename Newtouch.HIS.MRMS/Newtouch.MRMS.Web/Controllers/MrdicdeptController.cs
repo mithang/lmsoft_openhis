@@ -54,7 +54,7 @@ namespace Newtouch.MRMS.Web.Controllers
         public IActionResult SubmitForm(MrdicdeptEntity entity, string keyValue)
         {
             _mrdicdeptRepo.SubmitForm(entity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Newtouch.MRMS.Web.Controllers
         public IActionResult DeleteForm(string keyValue)
         {
             _mrdicdeptRepo.DeleteForm(keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
     }
