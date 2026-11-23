@@ -55,11 +55,11 @@ namespace Newtouch.HIS.Application.Implementation
                     if (string.IsNullOrWhiteSpace(detail.fyyf)) throw new Exception("Vui lòng truyền mã nhà thuốc phát thuốc hiệu lực");
                     if (detail.sl <= 0) throw new Exception("Vui lòng nhập số lượng thực hiện y lệnh hiệu lực");
                     var ypxx = new SysMedicineExDmnService(new DefaultDatabaseFactory(), false).GetYpDetails(Request.OrganizeId, detail.ypCode);
-                    if (ypxx == null) throw new Exception("Không tìm thấy thuốc【" + detail.ypCode + "】。");
+                    if (ypxx == null) throw new Exception("Không tìm thấy thuốc【" + detail.ypCode + "】.");
                     detail.ypmc = ypxx.ypmc;
                     if (detail.zhyz <= 0)
                     {
-                        if (ypxx.zycls == null) throw new Exception("Thuốc【" + ypxx.ypmc + "】Số chia lẻ nội trú trống。");
+                        if (ypxx.zycls == null) throw new Exception("Thuốc【" + ypxx.ypmc + "】Số chia lẻ nội trú trống.");
                         detail.zhyz = (int)ypxx.zycls;
                     }
 
