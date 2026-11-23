@@ -1111,7 +1111,7 @@
                     SingleCfSett();
 
             } catch (e) {
-                $.modalConfirm("Quyết toán BHYT lỗi:" + e.message + "! Có chuyển sang quyết toán tự chi trả không？",
+                $.modalConfirm("Quyết toán BHYT lỗi:" + e.message + "! Có chuyển sang quyết toán tự chi trả không?",
                     function(flag) {
                         if (!flag) {
                             return;
@@ -3059,7 +3059,7 @@
             return;
         }
         var xmzje = waitSubmitItems();
-        $.modalConfirm("Sẽ chuyển sang quyết toán tự chi trả,Có xác nhận quyết toán tự chi trả không？",
+        $.modalConfirm("Sẽ chuyển sang quyết toán tự chi trả,Có xác nhận quyết toán tự chi trả không?",
             function (flag) {
                 if (!flag) {
                     return;
@@ -3090,7 +3090,7 @@
         @*if ('@YB_Jzpzl' === 'ON') {
             url = "/OutpatientManage/OutpatCharge/ZFToYBForm?mzh=" + patInfoPostObj.mzh;
         }*@
-	    $.modalConfirm("Sẽ chuyển sang quyết toán BHYT,Có xác nhận quyết toán BHYT không？",
+	    $.modalConfirm("Sẽ chuyển sang quyết toán BHYT,Có xác nhận quyết toán BHYT không?",
 		    function (flag) {
 			    if (!flag) {
 				    return;
@@ -3782,7 +3782,7 @@
                 $.modalAlert("Tồn tại đơn thuốc hiệu lực,Không thể hủy số", 'error');
                 return;
             }
-            $.modalConfirm("Xác nhận hủy số khám ngoại trú？", function (flag) {
+            $.modalConfirm("Xác nhận hủy số khám ngoại trú?", function (flag) {
                 if (!flag) {
                     return;
                 }

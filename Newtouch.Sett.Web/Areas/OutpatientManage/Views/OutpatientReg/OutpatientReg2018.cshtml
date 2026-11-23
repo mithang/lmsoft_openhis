@@ -744,7 +744,7 @@
             fyyGhpbId=$thistr.attr('data-ghpbId');
             if(isAppointment==true && fyyGhpbId!=yyGhpbid)
             {
-                $.modalConfirm("Bệnh nhân này đã hẹn đăng ký khám,Có thay đổi lịch trực đăng ký khám hiện tại không？", function (flag) {
+                $.modalConfirm("Bệnh nhân này đã hẹn đăng ký khám,Có thay đổi lịch trực đăng ký khám hiện tại không?", function (flag) {
                     if (flag) {
                         ghpbchooseBind($thistr);
                         //newtouch_event_yygh();//khởi tạo

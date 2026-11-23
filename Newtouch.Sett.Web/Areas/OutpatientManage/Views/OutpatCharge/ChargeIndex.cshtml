@@ -713,7 +713,7 @@
                     if (lsCfh !== "" && lsCfh === obj.cfh) {
                         if (yfCode === obj.yfdm) {
                             if (sfxmcbh === obj.sfxmcbh) {
-                                res = "Đơn thuốc hiện tại đã có thuốc đã chọn,Xác nhận thêm nữa không？";
+                                res = "Đơn thuốc hiện tại đã có thuốc đã chọn,Xác nhận thêm nữa không?";
                             }
                         }
                         else {
@@ -723,7 +723,7 @@
                 }
                 else {
                     if (sfxmcbh === obj.sfxmcbh) {
-                        res = "Hiện tại đã có khoản mục đã chọn,Xác nhận thêm nữa không？";
+                        res = "Hiện tại đã có khoản mục đã chọn,Xác nhận thêm nữa không?";
                     }
                 }
             }
@@ -916,7 +916,7 @@
                         }
                     } else {
                         if (messCFXM == "error") {
-                            messCFXM = "Thuốc của các nhà thuốc khác nhau không được kê chung một đơn,Có đổi đơn không？";
+                            messCFXM = "Thuốc của các nhà thuốc khác nhau không được kê chung một đơn,Có đổi đơn không?";
                             $.modalConfirm(messCFXM, function (flag) {
                                 if (flag) {//đổi đơn
                                     GetNewCFH(); //lấy số đơn thuốc mới
@@ -990,7 +990,7 @@
         var gridIds = $("#listGrid").jqGrid('getGridParam', 'selarrrow');
         console.log(gridIds);
         if (gridIds.length > 0) {
-            $.modalConfirm("Có chắc xóa dữ liệu đơn thuốc đã chọn không？", function (flag) {
+            $.modalConfirm("Có chắc xóa dữ liệu đơn thuốc đã chọn không?", function (flag) {
                 if (flag) {
                     //lấy của dòng đã chọnid
                     //duyệt
