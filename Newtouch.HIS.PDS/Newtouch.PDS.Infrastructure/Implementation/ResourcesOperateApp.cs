@@ -581,7 +581,7 @@ namespace Newtouch.HIS.Application.Implementation
             }
             if (effectiveLs[0].zytyapplyno == null || effectiveLs[0].zytyapplyno == "")
             {
-                throw new Exception("Số đơn xin trả thuốc không được để trống！");
+                throw new Exception("Số đơn xin trả thuốc không được để trống!");
             }
 
             var tyInfo = new tyInfo
@@ -622,7 +622,7 @@ namespace Newtouch.HIS.Application.Implementation
             var rps = _pyDmnService.SelectCancelRps(request.cfh, request.processesMaxNum, expirationDate, request.fyyf, request.OrganizeId);
             if (rps == null || rps.Count == 0)
             {
-                return string.IsNullOrWhiteSpace(request.cfh) ? "Không tìm thấy đơn thuốc cần hủy yêu cầu xếp thuốc" : string.Format("Đơn thuốc【{0}】Không phù hợp yêu cầu hủy xếp thuốc, Đơn thuốc này có thể đã hủy！", request.cfh);
+                return string.IsNullOrWhiteSpace(request.cfh) ? "Không tìm thấy đơn thuốc cần hủy yêu cầu xếp thuốc" : string.Format("Đơn thuốc【{0}】Không phù hợp yêu cầu hủy xếp thuốc, Đơn thuốc này có thể đã hủy!", request.cfh);
             }
             var emsg = new StringBuilder();
             var successCfh = new StringBuilder("Lần thao tác này thành công hủy đóng băng số đơn thuốc là：");
