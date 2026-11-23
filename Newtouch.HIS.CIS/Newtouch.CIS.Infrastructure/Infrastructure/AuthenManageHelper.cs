@@ -90,13 +90,13 @@ namespace Newtouch.Infrastructure
                 }
                 if (apiResp.HttpStatus != (int)HttpStatusCode.OK)
                 {
-                    throw new FailedException($"[Http]yêu cầu Ngoại lệ：{apiResp.HttpStatus}=>{apiResp.Message}");
+                    throw new FailedException($"[Http]yêu cầu Ngoại lệ: {apiResp.HttpStatus}=>{apiResp.Message}");
                 }
                 return apiResp.BusData;
             }
             catch (Exception ex)
             {
-                throw new FailedException($"yêu cầu Ngoại lệ：{ex.Message}");
+                throw new FailedException($"yêu cầu Ngoại lệ: {ex.Message}");
             }
         }
 

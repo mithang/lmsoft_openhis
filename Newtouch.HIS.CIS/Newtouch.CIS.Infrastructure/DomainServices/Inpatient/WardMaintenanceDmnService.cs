@@ -498,7 +498,7 @@ where czjl.createtime=@bysj
                     _hospInterfaceSyncDmnService.UpdateOccupyByCode(bedUsedEntity.BedCode, bedUsedEntity.WardCode, true, bedUsedEntity.OrganizeId, req.user);
                     //Cập nhật Bệnh nhân Nhập viện Trạng thái
                     SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfoBackReq);
-					return "F|ra khỏi khu thất bại：" + ex.Message;
+					return "F|ra khỏi khu thất bại: " + ex.Message;
 				}
 
 			}
@@ -636,7 +636,7 @@ where czjl.createtime=@bysj
 				}
 				catch (Exception ex)
 				{
-					return "F|Lưu thất bại：" + ex.Message;
+					return "F|Lưu thất bại: " + ex.Message;
 				}
 
 			}
@@ -714,7 +714,7 @@ where czjl.createtime=@bysj
 				}
 				catch (Exception ex)
 				{
-					return "F|Lưu thất bại：" + ex.Message;
+					return "F|Lưu thất bại: " + ex.Message;
 				}
 
 			}

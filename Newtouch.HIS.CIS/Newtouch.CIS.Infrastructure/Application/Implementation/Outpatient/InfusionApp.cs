@@ -102,7 +102,7 @@ namespace Newtouch.Application.Implementation
         public List<OutpatientSettledRpQueryResponseDTO> OutpatientSettledRpQuery(DateTime kssj, DateTime jssj, string fph, string kh,string mzh)
         {
             var yfCode = _sysConfigRepo.GetValueByCode("syyfCode", this.OrganizeId);
-            if (string.IsNullOrWhiteSpace(yfCode)) throw new Exception("vui lòng liên hệ Quản lý viên cấu hình truyền dịch Cách dùng Mã động trạng thái tham số,tham số Mã：syyfCode");
+            if (string.IsNullOrWhiteSpace(yfCode)) throw new Exception("vui lòng liên hệ Quản lý viên cấu hình truyền dịch Cách dùng Mã động trạng thái tham số,tham số Mã: syyfCode");
             var response = _mzsyypxxDmnService.OutpatientSettledRpQuery(this.OrganizeId,kssj, jssj, fph, kh, yfCode,mzh);
 
 			if (response != null) return response;

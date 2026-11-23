@@ -55,7 +55,7 @@ namespace Newtouch.Repository
             }
             catch (Exception ex)
             {
-                throw new FailedException("Lỗi thông tin："+ex.Message);
+                throw new FailedException("Lỗi thông tin: "+ex.Message);
             }
         }
         //Lấy thường dùng Chẩn đoán thông tin--Bảo trì
@@ -89,7 +89,7 @@ namespace Newtouch.Repository
             }
             catch (Exception ex)
             {
-                throw new FailedException("Lỗi thông tin：" + ex.Message);
+                throw new FailedException("Lỗi thông tin: " + ex.Message);
             }
         }
         //Lấy Hồ sơ chẩn đoán thông tin
@@ -124,7 +124,7 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
             catch (Exception ex)
             {
 
-                throw new FailedException("Lỗi thông tin：" + ex.Message);
+                throw new FailedException("Lỗi thông tin: " + ex.Message);
             }
             
         }
@@ -182,7 +182,7 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
             catch (Exception ex)
             {
 
-                throw new FailedException("Lỗi thông tin：" + ex.Message);
+                throw new FailedException("Lỗi thông tin: " + ex.Message);
             }
 
         }
