@@ -332,7 +332,7 @@
     function CXguidang(rowid){
         var rowdata = $('#gridList').jqGrid('getRowData', rowid);
         if (rowdata.bazt != "Đã lưu trữ") {
-            $.modalAlert("Chưa được lưu trữ！", 'warning');
+            $.modalAlert("Chưa được lưu trữ!", 'warning');
             return false;
         }
         else {
