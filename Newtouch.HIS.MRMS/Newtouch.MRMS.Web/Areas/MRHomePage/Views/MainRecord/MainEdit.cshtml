@@ -446,7 +446,7 @@
     }
 
     function newtouch_event_f9() {
-        $.modalConfirm("Đồng bộ dữ liệu sẽ đặt lại trang, Vui lòng xác nhận có đặt lại không？", function (flag) {
+        $.modalConfirm("Đồng bộ dữ liệu sẽ đặt lại trang, Vui lòng xác nhận có đặt lại không?", function (flag) {
             if (flag) {
                 $.ajax({
                     url: "/MRHomePage/MainRecord/GetFormJsonFee?keyValue=" + keyValue,
