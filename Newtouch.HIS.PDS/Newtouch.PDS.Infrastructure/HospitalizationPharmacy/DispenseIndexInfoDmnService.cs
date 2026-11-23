@@ -168,7 +168,7 @@ namespace Newtouch.HIS.DomainServices
 
             if (IsFYTHHasOperated(list))
             {
-                return "Trả lại phát thuốc đã được thao tác, Vui lòng làm mới。";
+                return "Trả lại phát thuốc đã được thao tác, Vui lòng làm mới.";
             }
 
             try
@@ -275,7 +275,7 @@ namespace Newtouch.HIS.DomainServices
 
             if (IsFYHasOperated(list))
             {
-                return "Phát thuốc đã được thao tác, Vui lòng làm mới。";
+                return "Phát thuốc đã được thao tác, Vui lòng làm mới.";
             }
 
             try
