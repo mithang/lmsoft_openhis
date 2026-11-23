@@ -73,7 +73,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             var pzInfo = _hospitalRefundApp.GetPZInfo();
             if (pzInfo == null)
             {
-                var msg = "Hệ thống chưa cấu hình số hiệu：" + Constants.xtmzpz.ZYTFPZ_INCLUDEYP + " của cấu hình in hệ thống";
+                var msg = "Hệ thống chưa cấu hình số hiệu: " + Constants.xtmzpz.ZYTFPZ_INCLUDEYP + " của cấu hình in hệ thống";
                 return Error(msg);  
             }
 

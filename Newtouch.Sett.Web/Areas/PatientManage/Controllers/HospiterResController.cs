@@ -1024,13 +1024,13 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                 }
                 else
                 {
-                    var data = new { state = "0", message = "Hủy Nhập viện Thất bại！Hợp tác nông thôn mới giao diện trả về Lỗi：" + S05ResDto.message };
+                    var data = new { state = "0", message = "Hủy Nhập viện Thất bại！Hợp tác nông thôn mới giao diện trả về Lỗi: " + S05ResDto.message };
                     return Content(data.ToJson());
                 }
             }
             else
             {
-                var data = new { state = "0", message = "Hủy Nhập viện Thất bại！Lỗi：Số nhập viện" + zyh + "Lấy Thông tin bệnh nhân Thất bại！" };
+                var data = new { state = "0", message = "Hủy Nhập viện Thất bại！Lỗi: Số nhập viện" + zyh + "Lấy Thông tin bệnh nhân Thất bại！" };
                 return Content(data.ToJson());
             }
 
@@ -1046,7 +1046,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             var S06Res= _PatientBasicInfoDmnService.S06submit(S06par, OrganizeId);
             if (!S06Res.state)
             {
-                return Error("Hợp tác nông thôn mới giao diện trả về Thất bại：" + S06Res.message);
+                return Error("Hợp tác nông thôn mới giao diện trả về Thất bại: " + S06Res.message);
             }
             GuianXnhS04InfoEntity S06entity = null;
             S06entity = _iGuianXnhS04InfoRepo.FindEntity(p => p.zyh == VO.zyh && p.OrganizeId == OrganizeId);

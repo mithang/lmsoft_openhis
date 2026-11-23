@@ -313,7 +313,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
                     foreach (var item in wzList) {
                         var resultNum = kclist.Where(p => p.productCode == item.sfxm && p.kykc >= item.sl).Count();
                         if(resultNum == 0)
-                            throw new FailedException("Mã là："+item.sfxm +" Không đủ tồn kho！");
+                            throw new FailedException("Mã là: "+item.sfxm +" Không đủ tồn kho！");
                     }
                 }
                 //Lưu
