@@ -59,8 +59,8 @@ namespace Newtouch.HIS.Application.Implementation.Process
                 {
                     if (p.zhyz != 0) return;
                     var ypxx = new SysMedicineExDmnService(new DefaultDatabaseFactory(), false).GetYpDetails(Request.OrganizeId, p.ypdm);
-                    if (ypxx == null) throw new Exception("Không tìm thấy mã là【" + p.ypdm + "】của thuốc。");
-                    if (ypxx.mzcls == null) throw new Exception("Mã thuốc là【" + p.ypdm + "】Số chia lẻ ngoại trú của thuốc trống。");
+                    if (ypxx == null) throw new Exception("Không tìm thấy mã là【" + p.ypdm + "】của thuốc.");
+                    if (ypxx.mzcls == null) throw new Exception("Mã thuốc là【" + p.ypdm + "】Số chia lẻ ngoại trú của thuốc trống.");
                     p.zhyz = (int)ypxx.mzcls;
                 });
             }

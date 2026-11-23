@@ -135,7 +135,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
 
         protected override void Action(ActResult actResult)
         {
-            if (_yzEntities == null || _yzEntities.Count <= 0) throw new ProcessException("Thu thập dữ liệu thực hiện y lệnh thuốc nội trú thất bại。");
+            if (_yzEntities == null || _yzEntities.Count <= 0) throw new ProcessException("Thu thập dữ liệu thực hiện y lệnh thuốc nội trú thất bại.");
 
             int t = 0;
             try
@@ -151,7 +151,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
             if (t <= 0)
             {
                 actResult.IsSucceed = false;
-                actResult.ResultMsg = "Lưu dữ liệu thực hiện y lệnh thuốc nội trú thất bại：Không có Số bản ghi thành công。";
+                actResult.ResultMsg = "Lưu dữ liệu thực hiện y lệnh thuốc nội trú thất bại:Không có Số bản ghi thành công.";
                 return;
             }
 

@@ -45,9 +45,9 @@ namespace Newtouch.HIS.Application.Implementation.Process
                     if (p.tysl < 0) throw new Exception("Số lượng trả thuốc（tysl）Không thể nhỏ hơn 0");
                     if (string.IsNullOrWhiteSpace(p.tysqr)) throw new Exception("Người xin trả thuốc（tysqr）Không được để trống");
                     var ypxx = new SysMedicineExDmnService(new DefaultDatabaseFactory(), false).GetYpDetails(Request.OrganizeId, p.ypCode);
-                    if (ypxx == null) throw new Exception("Không tìm thấy mã thuốc là【" + p.ypCode + "】của thuốc。");
+                    if (ypxx == null) throw new Exception("Không tìm thấy mã thuốc là【" + p.ypCode + "】của thuốc.");
                     if ((p.zhyz ?? 0) > 0) return;
-                    if (ypxx.zycls == null) throw new Exception("Mã thuốc là【" + p.ypCode + "】Số chia lẻ nội trú của thuốc trống。");
+                    if (ypxx.zycls == null) throw new Exception("Mã thuốc là【" + p.ypCode + "】Số chia lẻ nội trú của thuốc trống.");
                     p.zhyz = (int)ypxx.zycls;
                 });
             }
