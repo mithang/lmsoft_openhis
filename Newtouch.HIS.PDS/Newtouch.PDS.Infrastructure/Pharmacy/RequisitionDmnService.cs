@@ -188,7 +188,7 @@ and sld.OrganizeId =@Organizeid
         {
             if (string.IsNullOrWhiteSpace(sldId))
             {
-                throw new FailedException("Thiếu tham Số：sldId");
+                throw new FailedException("Thiếu tham Số: sldId");
             }
             var strSql = new StringBuilder(@"
 SELECT yp.ypmc ypmc, sldmx.ph, sldmx.pc, sldmx.Yxrq, 

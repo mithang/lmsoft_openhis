@@ -145,7 +145,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
             catch(Exception ex)
             {
                 actResult.IsSucceed = false;
-                actResult.ResultMsg = "Ngoại lệ lưu dữ liệu thực hiện y lệnh thuốc nội trú：" + ex.Message;
+                actResult.ResultMsg = "Ngoại lệ lưu dữ liệu thực hiện y lệnh thuốc nội trú: " + ex.Message;
                 return;
             }
             if (t <= 0)
@@ -166,7 +166,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
                 }
                 catch(Exception ex)
                 {
-                    phResult = "HospitalizationBook Ngoại lệ：" + ex.Message;
+                    phResult = "HospitalizationBook Ngoại lệ: " + ex.Message;
                 }
                 if (!string.IsNullOrWhiteSpace(phResult))
                 {

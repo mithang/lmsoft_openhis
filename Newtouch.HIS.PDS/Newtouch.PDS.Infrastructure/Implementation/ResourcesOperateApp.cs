@@ -625,7 +625,7 @@ namespace Newtouch.HIS.Application.Implementation
                 return string.IsNullOrWhiteSpace(request.cfh) ? "Không tìm thấy đơn thuốc cần hủy yêu cầu xếp thuốc" : string.Format("Đơn thuốc【{0}】Không phù hợp yêu cầu hủy xếp thuốc, Đơn thuốc này có thể đã hủy!", request.cfh);
             }
             var emsg = new StringBuilder();
-            var successCfh = new StringBuilder("Lần thao tác này thành công hủy đóng băng số đơn thuốc là：");
+            var successCfh = new StringBuilder("Lần thao tác này thành công hủy đóng băng số đơn thuốc là: ");
             rps.ForEach(p =>
             {
                 var errorMsg = _pyDmnService.OutPatientCancelArrangement(p, request.CreatorCode);

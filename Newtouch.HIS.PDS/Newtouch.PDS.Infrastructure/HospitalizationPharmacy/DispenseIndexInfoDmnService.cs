@@ -814,7 +814,7 @@ WHERE yzId=@yzId AND OrganizeId=@OrganizeId
             }
             catch (Exception e)
             {
-                LogCore.Error("InsertReturnDispensingMedicine error", e, string.Format("Ngoại lệ chèn đơn xin trả thuốc applyBillDetail：{0} \n  applyBill：{1}", applyBillDetail.ToJson(), applyBill.ToJson()));
+                LogCore.Error("InsertReturnDispensingMedicine error", e, string.Format("Ngoại lệ chèn đơn xin trả thuốc applyBillDetail: {0} \n  applyBill: {1}", applyBillDetail.ToJson(), applyBill.ToJson()));
                 return e.Message;
             }
         }
