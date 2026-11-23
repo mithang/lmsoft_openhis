@@ -432,7 +432,7 @@ BEGIN TRANSACTION
 		BEGIN
 			DECLARE @ypmc VARCHAR(256);
 			SELECT @ypmc=ypmc FROM NewtouchHIS_Base.dbo.V_C_xt_yp WHERE ypCode=@ypdm AND OrganizeId=@OrganizeId AND zt='1'
-			SET @errorMsg=CONCAT('Đơn thuốc【',@cfh,'】Không tìm thấy số lô dùng khi đóng băng là【',@ph,'】thuốc【',@ypmc,'】。');
+			SET @errorMsg=CONCAT('Đơn thuốc【',@cfh,'】Không tìm thấy số lô dùng khi đóng băng là【',@ph,'】thuốc【',@ypmc,'】.');
 			BREAK;
 		END 
 		IF @kcsl>@sysl
@@ -525,7 +525,7 @@ BEGIN TRANSACTION
 		BEGIN
 			DECLARE @ypmc VARCHAR(256);
 			SELECT @ypmc=ypmc FROM NewtouchHIS_Base.dbo.V_C_xt_yp WHERE ypCode=@ypdm AND OrganizeId=@OrganizeId AND zt='1'
-			SET @errorMsg=CONCAT('Đơn thuốc【',@cfh,'】Không tìm thấy số lô dùng khi đóng băng là【',@ph,'】thuốc【',@ypmc,'】。');
+			SET @errorMsg=CONCAT('Đơn thuốc【',@cfh,'】Không tìm thấy số lô dùng khi đóng băng là【',@ph,'】thuốc【',@ypmc,'】.');
 			BREAK;
 		END 
 		IF @kcsl>@sysl
@@ -1049,7 +1049,7 @@ BEGIN TRANSACTION
 			BEGIN
 				DECLARE @ypmc VARCHAR(256);
 				SELECT @ypmc=ypmc FROM NewtouchHIS_Base.dbo.V_C_xt_yp WHERE ypCode=@ypdm AND OrganizeId=@OrganizeId AND zt='1'
-				SET @errorMsg+=CONCAT('Đơn thuốc【',@cfh,'】Không tìm thấy số lô dùng khi đóng băng là【',@ph,'】thuốc【',@ypmc,'】。');
+				SET @errorMsg+=CONCAT('Đơn thuốc【',@cfh,'】Không tìm thấy số lô dùng khi đóng băng là【',@ph,'】thuốc【',@ypmc,'】.');
 				BREAK;
 			END 
 				print @kcsl;
