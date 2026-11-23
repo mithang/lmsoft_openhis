@@ -154,7 +154,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         {
             moduleEntity.zt = moduleEntity.zt == "true" ? "1" : "0";
             _sysModuleDmnService.SubmitForm(moduleEntity, keyValue, SysConfigReader.String("Top_OrganizeId"));
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         [HttpPost]
@@ -162,7 +162,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult DeleteForm(string keyValue)
         {
             _moduleApp.DeleteForm(keyValue);
-            return Success("Xóa thành công。");
+            return Success("Xóa thành công.");
         }
 
         #endregion
@@ -197,7 +197,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             {
                 _sysModuleDmnService.UpdateAuthOrganizeList(keyValue, orgList, 1);
             }
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             {
                 _sysModuleDmnService.AuthAllOrganize(keyValue, 1);
             }
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -229,7 +229,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             {
                 _sysModuleDmnService.AuthCancelAllOrganize(keyValue, 1);
             }
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         #endregion

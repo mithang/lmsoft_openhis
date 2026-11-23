@@ -63,7 +63,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult DeleteForm(int keyValue)
         {
             _sysAgInsurChargeCategApp.DeleteForm(keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
         /// <summary>
         /// Lưu
@@ -74,7 +74,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult SubmitForm(SysAgriInsuranceChargeCategoryEntity sysAgInsurChargeCategEntity, int keyValue)
         {
             _sysAgInsurChargeCategApp.SubmitForm(sysAgInsurChargeCategEntity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
 

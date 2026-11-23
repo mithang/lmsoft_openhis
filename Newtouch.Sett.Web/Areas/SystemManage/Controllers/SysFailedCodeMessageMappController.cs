@@ -71,7 +71,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult SubmitForm(SysFailedCodeMessageMappEntity entity, string keyValue)
         {
             _sysFailedCodeMessageMappRepo.SubmitForm(entity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult DeleteForm(string keyValue)
         {
             _sysFailedCodeMessageMappRepo.DeleteForm(keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
     }

@@ -91,7 +91,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             sysDepartmentBindgEntity.zjh = saffentity.zjh;
            
             _sysDepartmentBindingRepo.SubmitForm(sysDepartmentBindgEntity, bddm);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult DeleteForm(string bddm)
         {
             _sysDepartmentBindingRepo.DeleteForm(bddm, this.OrganizeId);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
        
     }

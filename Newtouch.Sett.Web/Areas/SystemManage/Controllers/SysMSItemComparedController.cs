@@ -41,7 +41,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult SubmitForm(SysMedicalTechItemMappEntity entity, string keyValue)
         {
             _SysMSItemComparedApp.SubmitForm(entity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         [HttpPost]
@@ -52,7 +52,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         {
 
             _SysMSItemComparedApp.DeleteForm(keyValue);
-            return Success("Xóa thành công。");
+            return Success("Xóa thành công.");
         }
 
         /// <summary>

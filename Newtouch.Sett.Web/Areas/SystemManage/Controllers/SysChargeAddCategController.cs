@@ -59,7 +59,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult DeleteForm(int keyValue)
         {
             _SysChargeAddCategApp.DeleteForm(keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
         /// <summary>
         /// Lưu
@@ -70,7 +70,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult SubmitForm(SysChargeAdditionalCategoryEntity sysChargeAddCategEntity, int keyValue)
         {
             _SysChargeAddCategApp.SubmitForm(sysChargeAddCategEntity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
         //kèm thêm hiển thị hiển thị lớn loại dưới kéo khung
         public IActionResult GetSysChargeAddCategSelect()

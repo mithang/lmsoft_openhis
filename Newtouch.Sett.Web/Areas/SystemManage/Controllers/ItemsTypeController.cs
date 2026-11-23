@@ -98,7 +98,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         {
             itemsEntity.zt = itemsEntity.zt == "true" ? ((int)EnumZT.Valid).ToString() : ((int)EnumZT.Invalid).ToString();
             _itemsApp.SubmitForm(itemsEntity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
         [HttpPost]
 
@@ -106,7 +106,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult DeleteForm(string keyValue)
         {
             _itemsApp.DeleteForm(keyValue);
-            return Success("Xóa thành công。");
+            return Success("Xóa thành công.");
         }
     }
 }

@@ -131,7 +131,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         public IActionResult EditRehabDoctorRange(DoctorWorkingDaysPlanEntity entity, string keyvalue)
         {
             _therapeutistCompleteDmnService.EditRehabDoctorRange(entity, keyvalue, OrganizeId);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         public IActionResult DelArrange(string keyvalue)
         {
             _therapeutistCompleteDmnService.DelArrange(keyvalue);
-            return Success("Xóa thành công。");
+            return Success("Xóa thành công.");
         }
         #endregion
 

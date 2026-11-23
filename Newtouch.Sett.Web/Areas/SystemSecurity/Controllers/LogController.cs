@@ -53,7 +53,7 @@ namespace Newtouch.Sett.Web.Areas.SystemSecurity.Controllers
         public IActionResult SubmitRemoveLog(string keepTime)
         {
             _logApp.RemoveLog(keepTime);
-            return Success("Xóa trống Thành công。");
+            return Success("Xóa trống Thành công.");
         }
     }
 }

@@ -126,7 +126,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             entity.pzbz = entity.pzbz == "true" ? "1" : "0";
             entity.OrganizeId = this.OrganizeId;
             _sysPatiNatureRepo.SubmitForm(entity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
     }

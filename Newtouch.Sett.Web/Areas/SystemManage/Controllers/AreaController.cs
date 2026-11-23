@@ -87,7 +87,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult SubmitForm(AreaEntity areaEntity, string keyValue)
         {
             _areaApp.SubmitForm(areaEntity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
         [HttpPost]
 
@@ -96,7 +96,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult DeleteForm(string keyValue)
         {
             _areaApp.DeleteForm(keyValue);
-            return Success("Xóa thành công。");
+            return Success("Xóa thành công.");
         }
     }
 }

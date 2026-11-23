@@ -183,7 +183,7 @@ namespace Newtouch.Sett.Web.Areas.KPI.Controllers
             entity.OrganizeId = this.OrganizeId;
             _monthProfitShareConfigDmnService.SubmitMedicalOrgPSConfig(entity, keyValue);
 
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>

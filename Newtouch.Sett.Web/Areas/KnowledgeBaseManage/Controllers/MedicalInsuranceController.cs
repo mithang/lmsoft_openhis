@@ -74,7 +74,7 @@ namespace Newtouch.Sett.Web.Areas.KnowledgeBaseManage.Controllers
             entity.zt = entity.zt == "true" ? "1" : "0";
             entity.OrganizeId = this.OrganizeId;
             _sysMedicalInsuranceFilingRepo.SubmitForm(entity, ybbabId);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Newtouch.Sett.Web.Areas.KnowledgeBaseManage.Controllers
                 throw new FailedCodeException("SYS_GET_ORGANIZATIONAL_FAILURE");
             }
             _sysMedicalInsuranceFilingRepo.DeleteForm(ybbabId, orgId);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
     }
 }

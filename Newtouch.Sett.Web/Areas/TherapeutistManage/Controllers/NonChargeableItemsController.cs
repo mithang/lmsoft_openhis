@@ -90,7 +90,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         public IActionResult submitUpdateTime(Dictionary<string, List<submitTimeVO>> vo)
         {
             _therapeutistCompleteDmnService.UpdateTime(vo);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         #endregion

@@ -68,7 +68,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult DeleteForm(SysChargeItemPriceAdjustEntity sysChargeProjPriceAdjEntity)
         {
             _sysChargeProjPriceAdjApp.DeleteForm(sysChargeProjPriceAdjEntity);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
         /// <summary>
         /// Lưu
@@ -79,7 +79,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult SubmitForm(SysChargeItemPriceAdjustEntity sysChargeProjPriceAdjEntity, int? keyValue)
         {
             _sysChargeProjPriceAdjApp.SubmitForm(sysChargeProjPriceAdjEntity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
     }
 }

@@ -60,7 +60,7 @@ namespace Newtouch.Sett.Web.Areas.SystemSecurity.Controllers
         public IActionResult SubmitForm(FilterIPEntity filterIPEntity, string keyValue)
         {
             _filterIPApp.SubmitForm(filterIPEntity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
         [HttpPost]
 
@@ -69,7 +69,7 @@ namespace Newtouch.Sett.Web.Areas.SystemSecurity.Controllers
         public IActionResult DeleteForm(string keyValue)
         {
             _filterIPApp.DeleteForm(keyValue);
-            return Success("Xóa thành công。");
+            return Success("Xóa thành công.");
         }
 
     }

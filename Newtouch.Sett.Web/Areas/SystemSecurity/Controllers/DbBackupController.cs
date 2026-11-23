@@ -46,7 +46,7 @@ namespace Newtouch.Sett.Web.Areas.SystemSecurity.Controllers
             dbBackupEntity.F_FilePath = SettPathHelper.MapPath("~/Resource/DbBackup/" + dbBackupEntity.F_FileName + ".bak");
             dbBackupEntity.F_FileName = dbBackupEntity.F_FileName + ".bak";
             _dbBackupApp.SubmitForm(dbBackupEntity);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
         [HttpPost]
 
@@ -55,7 +55,7 @@ namespace Newtouch.Sett.Web.Areas.SystemSecurity.Controllers
         public IActionResult DeleteForm(string keyValue)
         {
             _dbBackupApp.DeleteForm(keyValue);
-            return Success("Xóa thành công。");
+            return Success("Xóa thành công.");
         }
         [HttpPost]
         //[HandlerAuthorize]

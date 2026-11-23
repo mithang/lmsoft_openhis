@@ -44,7 +44,7 @@ namespace Newtouch.Sett.Web.Areas.InsuranceManage.Controllers
             entity.OrganizeId = OrganizeId;
             entity.zt = "1";
             _sysCommercialInsuranceDmnService.SubmitForm(entity, keyValue, OrganizeId);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         public IActionResult GetListJson(string engName, string code)
@@ -56,7 +56,7 @@ namespace Newtouch.Sett.Web.Areas.InsuranceManage.Controllers
         public IActionResult DeleteForm(string keyValue)
         {
             _commercialInsuranceRepo.DeleteForm(keyValue);
-            return Success("Xóa thành công。");
+            return Success("Xóa thành công.");
         }
     }
 }

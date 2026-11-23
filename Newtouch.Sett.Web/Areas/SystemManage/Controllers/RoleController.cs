@@ -92,7 +92,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             roleEntity.zt = roleEntity.zt == "true" ? "1" : "0";
             
             _roleApp.SubmitForm(roleEntity, permissionIds.Split(','), keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         [HttpPost]
@@ -102,7 +102,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult DeleteForm(string keyValue)
         {
             _roleApp.DeleteForm(keyValue);
-            return Success("Xóa thành công。");
+            return Success("Xóa thành công.");
         }
 
         /// <summary>

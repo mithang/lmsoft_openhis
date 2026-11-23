@@ -42,14 +42,14 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult SubmitForm(SysChargeItemSpecialMarkEntity xt_sfxmtsbzEntity, string keyValue)
         {
             _SysCISpecialMarkApp.SubmitForm(xt_sfxmtsbzEntity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         public IActionResult DeleteForm(int keyValue)
         {
 
             _SysCISpecialMarkApp.DeleteForm(keyValue);
-            return Success("Xóa thành công。");
+            return Success("Xóa thành công.");
         }
 
         /// <summary>

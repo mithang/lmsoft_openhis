@@ -67,7 +67,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult SubmitForm(PatiChargeLogicVO PatiChargeLogicVO, string keyValue)
         {
             _SysPatiChargeLogicApp.SubmitForm(PatiChargeLogicVO, keyValue,OrganizeId);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         [HttpPost]
@@ -77,7 +77,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult DeleteForm(int keyValue)
         {
             _SysPatiChargeLogicApp.DeleteForm(keyValue);
-            return Success("Xóa thành công。");
+            return Success("Xóa thành công.");
         }
 
         /// <summary>

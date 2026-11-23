@@ -60,7 +60,7 @@ namespace Newtouch.Sett.Web.Areas.InsuranceManage.Controllers
             entity.zt = entity.zt == "true" ? "1" : "0";
             entity.OrganizeId = OrganizeId;
             _sysCommercialInsuranceFilingRepo.SubmitForm(entity, sbbabId);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Newtouch.Sett.Web.Areas.InsuranceManage.Controllers
                 throw new FailedCodeException("SYS_GET_ORGANIZATIONAL_FAILURE");
             }
             _sysCommercialInsuranceFilingRepo.DeleteForm(sbbabId, orgId);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
     }
 }

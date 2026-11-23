@@ -111,7 +111,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             {
                 _ttCataloguesComparisonDetailRepo.Delete(entity);
             }
-            return Success("Xóa thành công。");
+            return Success("Xóa thành công.");
         }
 
         #endregion chi tiết
@@ -202,7 +202,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             {
                 _ttCataloguesComparisonMainRepo.Delete(entity);
             }
-            return Success("Xóa thành công。");
+            return Success("Xóa thành công.");
         }
 
         #endregion Main

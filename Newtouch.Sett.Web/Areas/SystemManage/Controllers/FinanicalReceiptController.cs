@@ -63,7 +63,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             Entity.OrganizeId = this.OrganizeId;
             _financeReceiptRepo.VlidateRepeat(Entity, OrganizeId,Id);
             _financeReceiptRepo.SubmitForm(Entity, Id);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult DeleteForm(string Id)
         {
             _financeReceiptRepo.DeleteForm(Id, this.OrganizeId);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
     }
 }

@@ -36,7 +36,7 @@ namespace Newtouch.Sett.Web.Areas.ExampleManage.Controllers
             //mail.MailPassword = ConfigurationHelper.GetAppConfigValue("MailPassword");
             //mail.MailName = "";
             //mail.Send(account, title, content);
-            return Success("Gửi thành công。");
+            return Success("Gửi thành công.");
         }
     }
 }

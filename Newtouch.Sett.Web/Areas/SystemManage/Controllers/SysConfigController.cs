@@ -64,7 +64,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             entity.zt = entity.zt == "true" ? "1" : "0";
             entity.OrganizeId = this.OrganizeId;
             _sysConfigRepo.SubmitForm(entity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>

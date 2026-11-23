@@ -42,7 +42,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult SubmitForm(SysCashPaymentModelEntity SysForCashPayEntity, int? keyValue)
         {
             _SysForCashPayApp.SubmitForm(SysForCashPayEntity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         [HttpPost]
@@ -53,7 +53,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         {
 
             _SysForCashPayApp.DeleteForm(keyValue);
-            return Success("Xóa thành công。");
+            return Success("Xóa thành công.");
         }
 
         /// <summary>

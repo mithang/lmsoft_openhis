@@ -35,7 +35,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult SubmitForm(SysChargeClassificationEntity xt_sfflEntity, string keyValue)
         {
             _SysChargeClassifyApp.SubmitForm(xt_sfflEntity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         [HttpPost]
@@ -44,7 +44,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         {
 
             _SysChargeClassifyApp.DeleteForm(keyValue);
-            return Success("Xóa thành công。");
+            return Success("Xóa thành công.");
         }
 
         /// <summary>

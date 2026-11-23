@@ -382,7 +382,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         public IActionResult SubmitForm(SysHosBasicInfoVO PatientBasicAndCardInfoVO)
         {
             _PatientBasicInfoDmnService.SavePatBasicCardInfo(PatientBasicAndCardInfoVO, this.OrganizeId, UserIdentity.UserCode);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         [HttpGet]
@@ -524,7 +524,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             }
             if (_PatientBasicInfoDmnService.CheckHasFee(zyh, this.OrganizeId))
             {
-                throw new FailedException("có Chưa quyết toán của Nhập viện Chi phí bản ghi, Không thể hủy nhập viện。");
+                throw new FailedException("có Chưa quyết toán của Nhập viện Chi phí bản ghi, Không thể hủy nhập viện.");
             }
             //if (_PatientBasicInfoDmnService.BoolRuQu(zyh, this.OrganizeId))
             //{
@@ -541,7 +541,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
 		    }
 		    if (_PatientBasicInfoDmnService.CheckHasFee(zyh, this.OrganizeId))
 		    {
-			    throw new FailedException("có Chưa quyết toán của Nhập viện Chi phí bản ghi, Không thể hủy nhập viện。");
+			    throw new FailedException("có Chưa quyết toán của Nhập viện Chi phí bản ghi, Không thể hủy nhập viện.");
 		    }
             //if (_PatientBasicInfoDmnService.BoolRuQu(zyh, this.OrganizeId))
             //{
@@ -986,7 +986,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             }
             if (_PatientBasicInfoDmnService.CheckHasFee(zyh, this.OrganizeId))
             {
-                var data = new { state = "0", message = "có Chưa quyết toán của Nhập viện Chi phí bản ghi, Không thể hủy nhập viện。" };
+                var data = new { state = "0", message = "có Chưa quyết toán của Nhập viện Chi phí bản ghi, Không thể hủy nhập viện." };
                 return Content(data.ToJson());
             }
             InpatientSettXnhPatInfoVO patinfo = _dischargeSettleDmnService.GetInpatientSettXnhPatInfo(zyh, this.OrganizeId);

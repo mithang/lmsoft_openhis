@@ -69,7 +69,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         {
             entity.zt = entity.zt == "true" ? "1" : "0";
             _sysShortcutMenuRepo.SubmitForm(entity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult DeleteForm(string keyValue)
         {
             _sysShortcutMenuRepo.DeleteForm(keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         {
             _sysRoleShortcutMenuDmnService.UpdateAuthRoleList(keyValue, roleList, this.OrganizeId);
 
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
 

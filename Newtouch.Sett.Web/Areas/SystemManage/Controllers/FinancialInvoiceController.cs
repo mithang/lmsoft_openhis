@@ -88,7 +88,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             financialInvoiceEntity.OrganizeId = this.OrganizeId;
             _financialInvoiceRepo.VlidateRepeat(financialInvoiceEntity, OrganizeId,fpdm);
             _financialInvoiceRepo.SubmitForm(financialInvoiceEntity, fpdm);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult DeleteForm(string fpdm)
         {
             _financialInvoiceRepo.DeleteForm(fpdm, this.OrganizeId);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
     }
 }

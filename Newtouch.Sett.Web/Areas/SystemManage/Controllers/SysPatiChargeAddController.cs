@@ -81,7 +81,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult DeleteForm(SysPatientChargeAdditionalEntity SysPatiChargeAddEntity)
         {
             _sysPatiChargeAddApp.DeleteForm(SysPatiChargeAddEntity);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
         /// <summary>
         /// Lưu
@@ -93,7 +93,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         {
             SysPatiChargeAddEntity.zt = SysPatiChargeAddEntity.zt == "true" ? "1" : "0";
             _sysPatiChargeAddApp.SubmitForm(SysPatiChargeAddEntity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
     }

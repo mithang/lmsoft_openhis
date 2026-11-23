@@ -65,7 +65,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult DeleteForm(SysMedicalRecordChargeCategoryEntity sysMRChargeClassEntity)
         {
             _sysMRChargeClassApp.DeleteForm(sysMRChargeClassEntity);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
         /// <summary>
         /// Lưu
@@ -77,7 +77,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         {
             sysMRChargeClassEntity.zt = sysMRChargeClassEntity.zt == "true" ? "1" : "0";
             _sysMRChargeClassApp.SubmitForm(sysMRChargeClassEntity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>

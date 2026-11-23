@@ -67,7 +67,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         public IActionResult DeleteForm(int keyValue)
         {
             _sysPatiChargeWaiverApp.DeleteForm(keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
         /// <summary>
         /// Lưu
@@ -79,7 +79,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         {
             sysPatiChargeWaiverEntity.zt = sysPatiChargeWaiverEntity.zt == "true" ? "1" : "0";
             _sysPatiChargeWaiverApp.SubmitForm(sysPatiChargeWaiverEntity, keyValue);
-            return Success("Thao tác thành công。");
+            return Success("Thao tác thành công.");
         }
 
     }
