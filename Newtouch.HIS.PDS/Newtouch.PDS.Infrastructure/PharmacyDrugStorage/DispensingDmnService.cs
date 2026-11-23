@@ -1069,7 +1069,7 @@ select [Id]
                   var ksbyxx=this.FirstOrDefault<XtksbyEntity>(sql, new[] { new SugarParameter("@orgId", organizeId), new SugarParameter("@Djh", Djh.Trim()) });
                     if (ksbyxx.shzt!="1")
                     {
-                        return "Thu hồi thất bại！Chứng từ phải ở trạng thái đã gửi mới có thể thu hồi！";
+                        return "Thu hồi thất bại! Chứng từ phải ở trạng thái đã gửi mới có thể thu hồi!";
                     }
                     string sqlByxx = @"
 delete from  xt_bqksby where id=@Id and organizeId=@orgId";
@@ -1188,7 +1188,7 @@ SELECT [Id]
                     var ksbyxx = this.FirstOrDefault<XtksbythEntity>(sql, new[] { new SugarParameter("@orgId", organizeId), new SugarParameter("@Djh", Djh.Trim()) });
                     if (ksbyxx.thzt != "2")
                     {
-                        return "Thu hồi thất bại！Chứng từ phải ở trạng thái đã gửi mới có thể thu hồi！";
+                        return "Thu hồi thất bại! Chứng từ phải ở trạng thái đã gửi mới có thể thu hồi!";
                     }
                     string sqlByxx = @"
 delete from  xt_ksbyth where id=@Id and organizeId=@orgId";
