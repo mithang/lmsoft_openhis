@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Application.Implementation
         public string ExecAllDeliveryDrugV2(OutpatienDrugDeliveryInfo deliveryInfo, out List<string> cfhList)
         {
             cfhList = new List<string>();
-            if (deliveryInfo == null || deliveryInfo.PatientInfo == null || deliveryInfo.PatientInfo.Count == 0) return "Thông tin bệnh nhân phát thuốc không được để trống。";
+            if (deliveryInfo == null || deliveryInfo.PatientInfo == null || deliveryInfo.PatientInfo.Count == 0) return "Thông tin bệnh nhân phát thuốc không được để trống.";
 
             var errorMsg = new StringBuilder();
             try
