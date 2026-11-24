@@ -1,6 +1,6 @@
 @using Newtouch.Herp.Infrastructure.Enum;
 @{
-    ViewBag.Title = "Nội bộTrả lại";
+    ViewBag.Title = "Trả lại nội bộ";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -269,7 +269,7 @@
             inputtextcheck: function () {
                 if ($("#rkbm").val() === "" ||
                     $("#rkbm").attr("data-rkbmId") === "") {   //Bỏrơikhoảng trắng hai đầu
-                    $.modalAlert("Vui lòngTrướcChọnKhoa trả lại", 'warning');
+                    $.modalAlert("Vui lòng chọn khoa trả vào trước", 'warning');
                     return false;
                 }
                 return true;

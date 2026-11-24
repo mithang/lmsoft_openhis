@@ -88,7 +88,7 @@
     </div>
 </form>
 <div style="float: left; line-height: 35px; font-weight: bolder;">
-    <span>Lần nàyTổng xuất kho(đ):</span>
+    <span>Tổng tiền xuất kho lần này (đ):</span>
     <span class="sp-ckze">0.00</span>
 </div>
 @Html.Partial("_BottomButtonsView", new Newtouch.Herp.Web.Models.BottomButtonViewModel
@@ -575,7 +575,7 @@
             return false;
         }
         if ($("#rkbm").val() === "" || $("#rkbm").attr("data-rkbmId") === "") {
-            $.modalMsg("Vui lòng chọnKhoa nhập", 'warning', 1500);
+            $.modalMsg("Vui lòng chọn Khoa nhập", 'warning', 1500);
             return false;
         }
         return true;

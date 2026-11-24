@@ -16,17 +16,17 @@
 </style>
 <form id="form1">
     <div class="panel panel-default">
-        <div class="panel-heading">Trả lạiThông tin</div>
+        <div class="panel-heading">Thông tin trả lại</div>
         <div style="padding-right: 10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Trả lạiSố phiếu:</th>
+                    <th class="formTitle">Số phiếu trả lại:</th>
                     <td class="formValue">
                         <input id="Pdh" type="text" class="form-control newtouch_Readonly required" />
                     </td>
                     <th class="formTitle"><span class="required">*</span>Khoa trả lại</th>
                     <td class="formValue">
-                        <input type="text" id="rkbm" name="rkbm" data-rkbmId="" placeholder="Vui lòng chọnKhoa trả lại" class="form-control required" />
+                        <input type="text" id="rkbm" name="rkbm" data-rkbmId="" placeholder="Vui lòng chọn Khoa trả lại" class="form-control required" />
                     </td>
                     <th class="formTitle"><span class="required">*</span>Hình thức trả lại:</th>
                     <td class="formValue">
@@ -53,7 +53,7 @@
                         <input type="text" id="pc" name="pc" class="form-control required" />
                         <input id="fph" type="hidden" value="" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>Trả lạiSố lượng:</th>
+                    <th class="formTitle"><span class="required">*</span>Số lượng trả lại:</th>
                     <td class="formValue">
                         <div class="row">
                             <div class="col-md-8">
@@ -225,7 +225,7 @@
     function newtouch_event_f8() {
         var djmx = $("#gridList").jqGrid('getRowData_AllLine');
         if (djmx == null || djmx.length <= 0) {
-            $.modalAlert("Vui lòngTrướcThêmTrả lạiThông tin", 'warning');
+            $.modalAlert("Vui lòng thêm thông tin trả lại trước", 'warning');
             return;
         }
         var crkdj = Object();
@@ -239,7 +239,7 @@
             dataType: "json",
             success: function (res) {
                 if (res.state === "success") {
-                    $.modalAlert("Trả lạiThành công", 'success');
+                    $.modalAlert("Trả lại thành công", 'success');
                     newtouch_event_f7();//Nhập/xuất kho:Số phiếu mới Xóa trắng dữ liệu chính Xóa trắng chi tiết
                 } else {
                     $.modalAlert(res.message, 'error');
@@ -408,9 +408,9 @@
                 sl: { required: true }
             },
             messages: {
-                Pdh: { required: "Trả lạiSố phiếu phải nhập" },
-                rkbm: { required: "Khoa trả lạiPhải nhập" },
-                crkfs: { required: "Hình thức trả lạiPhải chọn" },
+                Pdh: { required: "Số phiếu trả lại phải nhập" },
+                rkbm: { required: "Khoa trả lại phải nhập" },
+                crkfs: { required: "Hình thức trả lại phải chọn" },
                 wzmc: { required: "Vật tư không được để trống" },
                 pc: { required: "Vui lòng chọn lô" },
                 ph: { required: "Số lô không được để trống" },

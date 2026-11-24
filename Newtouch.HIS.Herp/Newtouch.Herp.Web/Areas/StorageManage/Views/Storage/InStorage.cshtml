@@ -35,7 +35,7 @@
                 </tr>
             </table>
         </div>
-        <div class="panel-heading">Vật tưChi tiết</div>
+        <div class="panel-heading">Chi tiết vật tư</div>
         <div id="divYPMX" style="padding-right:10px;">
             <table class="form">
                 <tr>
@@ -127,7 +127,7 @@
     F8Text = "Nhập kho",
     F9Text = "Lưu tạm"
 })
-<span style="float: left;line-height: 25px;margin: 8px 5px;">Nhập khoTổng giá nhập:&nbsp;<span id="txtRKZE"></span> &nbsp;đ</span>
+<span style="float: left;line-height: 25px;margin: 8px 5px;">Tổng giá nhập kho:&nbsp;<span id="txtRKZE"></span> &nbsp;đ</span>
 <script>
     window.newtouch_globalconfig.f4opions = {
         container: "#divYPMX"
@@ -214,7 +214,7 @@
     function newtouch_event_f7() {
         var djmx = $gridRkmx.jqGrid('getRowData_AllLine');
         if (djmx != null && djmx.length > 0) {
-            $.modalConfirm("Tồn tại chưaGửibản ghi,Xác nhậnTạoPhiếu xuất kho mớikhông?",
+            $.modalConfirm("Tồn tại bản ghi chưa gửi, Bạn có chắc muốn tạo phiếu xuất kho mới không?",
                 function (flag) {
                     if (flag) {
                         newBill();
@@ -349,7 +349,7 @@
                     if (data.state != null) {
                         $.modalMsg(data.state, 'warning', 1500);
                     } else {
-                        $.modalMsg("TạoSố phiếu nhập khoThất bại", 'warning',1500);
+                        $.modalMsg("Tạo Số phiếu nhập kho thất bại", 'warning',1500);
                     }
                 }
             }
@@ -366,7 +366,7 @@
         ajaxmethod: 'Get',
         inputtextcheck: function () {
             if ($("#supplierName").val().replace(" ", "") === "" || $("#supplierId").val() === "") {   //Bỏrơikhoảng trắng hai đầu
-                $.modalMsg('Vui lòngTrướcTạiLớp nổiTrongChọnNhà cung cấp', 'warning', 1500);
+                $.modalMsg('Vui lòng chọn nhà cung cấp trong lớp nổi trước', 'warning', 1500);
                 return false;
             }
             return true;
@@ -516,7 +516,7 @@
                 { label: 'Số lô', name: 'ph', width: 100, align: 'center' },
                 { label: 'Hạn sử dụng', name: 'yxq', width: 80, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }},
                 {
-                    label: 'Giá nhậpSố tiền', name: 'zje', width: 80, align: 'right',
+                    label: 'Số tiền giá nhập', name: 'zje', width: 80, align: 'right',
                     formatter: function (cellvalue) {
                         return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
                     }
@@ -637,7 +637,7 @@
         crkdj.crkfs = $("#ddlRKFS").val();
         var djmx = $gridRkmx.jqGrid('getRowData_AllLine');
         if (djmx == null || djmx.length <= 0) {
-            $.modalMsg("Vui lòngTrướcThêmThông tin nhập kho", 'warning', 1500);
+            $.modalMsg("Vui lòng thêm thông tin nhập kho trước", 'warning', 1500);
             return;
         }
         if (crkdj.deliveryNo.length > 50) {
@@ -676,7 +676,7 @@
         crkdj.crkfs = $("#ddlRKFS").val();
         var djmx = $gridRkmx.jqGrid('getRowData_AllLine');
         if (djmx == null || djmx.length <= 0) {
-            $.modalMsg("Vui lòngTrướcThêmThông tin nhập kho", 'warning', 1500);
+            $.modalMsg("Vui lòng thêm thông tin nhập kho trước", 'warning', 1500);
             return;
         }
         if (crkdj.deliveryNo.length > 50) {
@@ -780,7 +780,7 @@
     //Kiểm tra dữ liệu
     function DataValate() {
         if ($("#Pdh").val() === "") {
-            $.modalAlert("Số phiếu nhập khoTạoThất bại,Vui lòng làm mới trang", 'warning');
+            $.modalAlert("Tạo Số phiếu nhập kho thất bại, Vui lòng làm mới trang", 'warning');
             return false;
         }
         if ($("#supplierName").val() === "" || $("#supplierId").val() === "") {
@@ -788,7 +788,7 @@
             return false;
         }
         if ($("#wzmc").val() === "" || $("#productId").val() === "") {
-            $.modalAlert("Vui lòng chọnHiệu lựcvật tư", 'warning');
+            $.modalAlert("Vui lòng chọn vật tư hiệu lực", 'warning');
             return false;
         }
         if ($("#sl").val() === "") {
@@ -808,7 +808,7 @@
             return false;
         }
         if ($("#Yxq").val() <= $("#scrq").val().replace(/^\s+|\s+$/g, "")) {
-            $.modalAlert("Hạn sử dụngphải muộn hơn của vật tưNgày sản xuất", 'warning');
+            $.modalAlert("Hạn sử dụng phải muộn hơn ngày sản xuất của vật tư", 'warning');
             return false;
         }
         return true;

@@ -77,7 +77,7 @@
             <tr>
                 <td class="formTitle">Số phiếu lĩnh:</td>
                 <td class="formValue">
-                    <input type="text" id="djh" name="djh" class="form-control" placeholder="Vui lòng nhậpSố phiếu lĩnh" />
+                    <input type="text" id="djh" name="djh" class="form-control" placeholder="Vui lòng nhập Số phiếu lĩnh" />
                 </td>
                 <td class="formTitle">Trạng thái lĩnh:</td>
                 <td class="formValue">
@@ -96,7 +96,7 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>Đăng kýNgày:</th>
+                <th class="formTitle"><span class="required">*</span>Ngày đăng ký:</th>
                 <td class="formValue" style="width:130px;">
                     <input id="startTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddMonths(-1).ToString("dd/MM/yyyy 00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
                 </td>
@@ -202,7 +202,7 @@
             postData: getSearchPostData(),
             colModel: [
                 {
-                    label: 'ChỗLýTrạng thái', name: 'applyProcess', width: 60, align: 'center', formatter: function (val) {
+                    label: 'Trạng thái xử lý', name: 'applyProcess', width: 60, align: 'center', formatter: function (val) {
                         switch (val) {
                         case @((int)EnumApplyProcess.Waiting):
                             return "@EnumApplyProcess.Waiting.GetDescription()";
@@ -317,9 +317,9 @@
             height: $(window).height() - 265,
             editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             colModel: [
-                { label: 'Phát hiện tạiSố lượng', name: 'xfsl', width: 55, align: 'center', editable: true, editwidth:"88%"},
+                { label: 'Số lượng phát hiện tại', name: 'xfsl', width: 55, align: 'center', editable: true, editwidth:"88%"},
                 { label: 'Đơn vị', name: 'bmdwmc', width: 40, align: 'left' },
-                { label: 'Đã phátSố lượng', name: 'yfslStr', width: 55, align: 'right' },
+                { label: 'Số lượng đã phát', name: 'yfslStr', width: 55, align: 'right' },
                 { label: 'Số lượng lĩnh', name: 'slStr', width: 55, align: 'right' },
                 { label: 'Tồn kho hiện tại', name: 'kyslStr', width: 80, align: 'center' },
                 { label: 'Tên vật tư', name: 'wzmc', width: 110, align: 'left' },
@@ -375,7 +375,7 @@
     function newtouch_event_f8() {
         var rowIds = $ProductGridList.getDataIDs();
         if (rowIds == undefined || rowIds.length <= 0) {
-            $.modalMsg("Vui lòng chọnPhiếu xuất kho!", 'warning', 1500);
+            $.modalMsg("Vui lòng chọn Phiếu xuất kho!", 'warning', 1500);
             return false;
         }
         var ckmx = [];
@@ -385,7 +385,7 @@
             if (rowData != null) ckmx.push(rowData);
         });
         if (ckmx.length <= 0) {
-            $.modalMsg("Không tìm thấyHiệu lựcchi tiết xuất kho!", 'warning', 1500);
+            $.modalMsg("Không tìm thấy chi tiết xuất kho hiệu lực!", 'warning', 1500);
             return false;
         }
         $.najax({
@@ -395,7 +395,7 @@
             dataType: "json",
             success: function (res) {
                 if (res.state === "success") {
-                    $.modalMsg('Phát thuốcThành công', 'success', 1000);
+                    $.modalMsg('Phát thuốc thành công', 'success', 1000);
                     $gridList.trigger("reloadGrid");
                     $ProductGridList.jqGrid("clearGridData");
                 } else if (res.state === "error") {

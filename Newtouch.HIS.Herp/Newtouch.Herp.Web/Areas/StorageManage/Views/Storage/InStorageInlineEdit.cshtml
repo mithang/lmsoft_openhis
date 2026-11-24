@@ -413,7 +413,7 @@
             ajaxmethod: 'Get',
             inputtextcheck: function () {
                 if ($("#supplierName").val().replace(" ", "") === "" || $("#supplierId").val() === "") {   //Bỏrơikhoảng trắng hai đầu
-                    $.modalMsg('Vui lòngTrướcTạiLớp nổiTrongChọnNhà cung cấp', 'warning', 1500);
+                    $.modalMsg('Vui lòng chọn nhà cung cấp trong lớp nổi trước', 'warning', 1500);
                     return false;
                 }
                 return true;
@@ -540,7 +540,7 @@
             }
             var reg2 = /^\d+(?:\.\d{0,2})?$/;
             if (!reg2.test($("#" + rowid + "_zje").val())) {
-                $.modalMsg("Tổng giá nhậpVui lòng nhập đúng định dạng số tiền!", "warning", 1500);
+                $.modalMsg("Tổng giá nhập Vui lòng nhập đúng định dạng số tiền!", "warning", 1500);
                 return false;
             }
             var sl = Number($("#" + rowid + "_sl").val());
@@ -587,7 +587,7 @@
                 return reqData;
             },
             colModel: [
-                { label: 'Nhà cung cấpMã', name: 'supplierId', widthratio: 30 },
+                { label: 'Mã nhà cung cấp', name: 'supplierId', widthratio: 30 },
                 { label: 'Tên nhà cung cấp', name: 'supplierName', widthratio: 70 }
             ],
             itemdbclickhandler: function ($thistr) {
@@ -611,7 +611,7 @@
                     if (data.state != null) {
                         $.modalMsg(data.state, 'warning', 1500);
                     } else {
-                        $.modalMsg("TạoSố phiếu nhập khoThất bại", 'warning', 1500);
+                        $.modalMsg("Tạo Số phiếu nhập kho thất bại", 'warning', 1500);
                     }
                 }
             }
@@ -789,7 +789,7 @@
         }
         var reg2 = /^\d+(?:\.\d{0,2})?$/;
         if (!reg2.test(rowData.zje)) {
-            $.modalMsg("Tổng giá nhậpVui lòng nhập đúng định dạng số tiền!", "warning", 1500);
+            $.modalMsg("Tổng giá nhập Vui lòng nhập đúng định dạng số tiền!", "warning", 1500);
             return false;
         }
         if (rowData.ph === "") {
@@ -813,7 +813,7 @@
     $("#btn_import").click(function () {
         $.modalOpen({
             id: "patSearch",
-            title: "Đơn mua hàngTra cứu",
+            title: "Tra cứu đơn mua hàng",
             url: "/BillManage/PurchasingOrder/PurchaseView?",
             width: "900px",
             height: "600px",

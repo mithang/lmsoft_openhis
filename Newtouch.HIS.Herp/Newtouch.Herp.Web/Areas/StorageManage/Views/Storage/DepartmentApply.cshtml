@@ -169,7 +169,7 @@
                 { label: 'Quy cách', name: 'gg', width: 100, align: 'center', editable: true, editwidth: "100%" },
                 { label: 'Nhà sản xuất', name: 'sccj', width: 180, align: 'center', editable: true, editwidth: "100%" },
                 { label: 'Đơn giá nhập', name: 'bmjj', width: 90, align: 'center', editable: true, editwidth: "100%" },
-                { label: 'Giá nhậpĐơn vị', name: 'bmdwmc', width: 70, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Đơn vị giá nhập', name: 'bmdwmc', width: 70, align: 'center', editable: true, editwidth: "100%" },
                 { label: 'Tổng giá nhập', name: 'jjze', width: 70, align: 'center', editable: true, editwidth: "100%" },
                 { label: 'zhyz', name: 'zhyz', hidden: true, editable: true },
                 { label: 'zxdwmc', name: 'zxdwmc', hidden: true, editable: true },
@@ -225,7 +225,7 @@
             ajaxmethod: 'Get',
             inputtextcheck: function () {
                 if ($("#ckbm").val() === "" ) {
-                    $.modalMsg("Vui lòngTrướcChọn khoa xuất kho", 'warning', 1500);
+                    $.modalMsg("Vui lòng chọn khoa xuất kho trước", 'warning', 1500);
                     return false;
                 }
                 return true;
@@ -401,11 +401,11 @@
             return false;
         }
         if ($("#ckbm").val() === "" || $("#ckbm").attr("data-rkbmId") === "") {
-            $.modalMsg("Vui lòng chọnKho xuất kho", 'warning', 1500);
+            $.modalMsg("Vui lòng chọn Kho xuất kho", 'warning', 1500);
             return false;
         }
         if ($("#department").val() === "" ) {
-            $.modalMsg("Vui lòng chọnKhoa lĩnh", 'warning', 1500);
+            $.modalMsg("Vui lòng chọn Khoa lĩnh", 'warning', 1500);
             return false;
         }
         return true;
