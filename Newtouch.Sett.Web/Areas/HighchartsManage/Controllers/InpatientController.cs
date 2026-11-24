@@ -94,11 +94,11 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
             var PatientVisitPerThe = new PatientVisitPerThe();
             if (string.IsNullOrWhiteSpace(year))
             {
-                throw new FailedException("Vui lòng chọn Năm！");
+                throw new FailedException("Vui lòng chọn Năm!");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("Vui lòng chọn Tổ chức！");
+                throw new FailedException("Vui lòng chọn Tổ chức!");
             }
             if (datatype == "avg")
             {
@@ -119,15 +119,15 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
             var PatientVisitPerThe = new PatientMonthVisitPerThe();
             if (string.IsNullOrWhiteSpace(year))
             {
-                throw new FailedException("Vui lòng chọn Năm！");
+                throw new FailedException("Vui lòng chọn Năm!");
             }
             if (string.IsNullOrWhiteSpace(datatype))
             {
-                throw new FailedException("Vui lòng chọn Loại！");
+                throw new FailedException("Vui lòng chọn Loại!");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("Vui lòng chọn Tổ chức！");
+                throw new FailedException("Vui lòng chọn Tổ chức!");
             }
             if (datatype == "avg")
             {

@@ -451,7 +451,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                 {
                     isSuccess = false;
                     state = "0";
-                    message = "Mã nhập viện không được để trống, Vui lòng thử lại！";
+                    message = "Mã nhập viện không được để trống, Vui lòng thử lại!";
                 }
 
                 InpatientSettXnhPatInfoVO patinfo = null;
@@ -468,7 +468,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                     {
                         isSuccess = false;
                         state = "0";
-                        message = "này Bệnh nhân đã xuất viện Hoặc Đã hủy bỏ！";
+                        message = "này Bệnh nhân đã xuất viện Hoặc Đã hủy bỏ!";
                     }
 
                     if (isSuccess)
@@ -530,7 +530,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                     var errData = new
                     {
                         state = "0",
-                        message = "Mã nhập viện không được để trống, Vui lòng thử lại！"
+                        message = "Mã nhập viện không được để trống, Vui lòng thử lại!"
                     };
                     return Content(errData.ToJson());
                 }
@@ -555,7 +555,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                     {
                         isSuccess = false;
                         state = "0";
-                        message = "Làm thủ tục nhập viện Thiếu phải của Giá trị！";
+                        message = "Làm thủ tục nhập viện Thiếu phải của Giá trị!";
                     }
                     if (isSuccess)
                     {

@@ -336,7 +336,7 @@
         }
         if (isYbjyjz) {
             if (!isybdk) {
-                $.modalAlert("Hủyquyết toán bệnh nhân BHYT, Vui lòng đọc thẻ trước！", 'warning');
+                $.modalAlert("Hủyquyết toán bệnh nhân BHYT, Vui lòng đọc thẻ trước!", 'warning');
                 return;
             }
             $.ajax({
@@ -714,7 +714,7 @@
                         ajaxLoadDataResult({ zyh: resp.data });
                     }
                     else {
-                        $.modalAlert("Mã nhập viện【" + resp.data + "】cònChưaquyết toán,Không thể hủyquyết toán xuất viện！", 'warning');
+                        $.modalAlert("Mã nhập viện【" + resp.data + "】cònChưaquyết toán,Không thể hủyquyết toán xuất viện!", 'warning');
                         return;
                     }
                 }

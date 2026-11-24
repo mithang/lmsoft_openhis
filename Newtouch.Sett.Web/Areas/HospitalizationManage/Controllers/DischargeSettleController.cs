@@ -723,7 +723,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
             if (string.IsNullOrEmpty(jslx))
             {
-                return Error("Loại quyết toán không được để trống, vui lòng liên hệ vận hành HIS！");
+                return Error("Loại quyết toán không được để trống, vui lòng liên hệ vận hành HIS!");
             }
 
 

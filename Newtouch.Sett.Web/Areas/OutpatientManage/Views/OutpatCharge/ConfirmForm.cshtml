@@ -542,7 +542,7 @@
         if (yibaoCardInfo) {
             if (yibaoCardInfo.Code === "1") {
                 if (!yibaoCardInfo.Data || !yibaoCardInfo.Data.patInfo || !yibaoCardInfo.Data.accountInfo) {
-                    $.modalAlert("Gọi giao diện BHYT01và13,Lấy thông tin nhân viên và tài khoản thất bại！", 'error');
+                    $.modalAlert("Gọi giao diện BHYT01và13,Lấy thông tin nhân viên và tài khoản thất bại!", 'error');
                     return;
                 }
                 var accountInfo = yibaoCardInfo.Data.accountInfo; //đối tượng phản hồi BHYT
@@ -553,16 +553,16 @@
                 $.modalAlert("Quẹt thẻ thất bại:" + yibaoCardInfo.ErrorMsg, 'error');
             }
         } else {
-            $.modalAlert("Quẹt thẻ lấy thông tin BHYT thất bại！Nguyên nhân thất bại:Trung tâm BHYT không trả về thông tin, Vui lòng thử lại！", 'error');
+            $.modalAlert("Quẹt thẻ lấy thông tin BHYT thất bại!Nguyên nhân thất bại:Trung tâm BHYT không trả về thông tin, Vui lòng thử lại!", 'error');
         }
     }
     function CQzydy() {
         if (!$("#zhdy").val()) {
-            $.modalAlert("Vui lòng nhập số thẻ khấu trừ tài khoản！", 'error');
+            $.modalAlert("Vui lòng nhập số thẻ khấu trừ tài khoản!", 'error');
             return;
         }
         if (zhdyList.length > 0) {
-            $.modalAlert("Bệnh nhân này đã khấu trừ！", 'error');
+            $.modalAlert("Bệnh nhân này đã khấu trừ!", 'error');
             return;
         }
         var yibaoZhdy;
@@ -604,7 +604,7 @@
                 $.modalAlert("Không thể dùng khấu trừ tài khoản:"+yibaoZhdy.ErrorMsg, 'error');
             }
         } else {
-            $.modalAlert("BHYT không trả về dữ liệu,Lúc này chưa biết BHYT đã khấu trừ thành công chưa, Vui lòng đóng cửa sổ và quyết toán lại！", 'error');
+            $.modalAlert("BHYT không trả về dữ liệu,Lúc này chưa biết BHYT đã khấu trừ thành công chưa, Vui lòng đóng cửa sổ và quyết toán lại!", 'error');
         }
     }
     function initPage() {

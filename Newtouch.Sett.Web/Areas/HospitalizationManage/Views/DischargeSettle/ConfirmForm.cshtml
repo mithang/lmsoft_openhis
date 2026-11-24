@@ -520,7 +520,7 @@
          if (yibaoCardInfo) {
              if (yibaoCardInfo.Code === "1") {
                  if (!yibaoCardInfo.Data || !yibaoCardInfo.Data.patInfo || !yibaoCardInfo.Data.accountInfo) {
-                     $.modalAlert("Gọi giao diện BHYT01và13,lấylấynhân viênvàThông tin tài khoảnThất bại！", 'error');
+                     $.modalAlert("Gọi giao diện BHYT01và13,lấylấynhân viênvàThông tin tài khoảnThất bại!", 'error');
                      return;
                  }
                  var accountInfo = yibaoCardInfo.Data.accountInfo; //Phản hồi BHYTĐối tượng
@@ -531,20 +531,20 @@
                  $.modalAlert("Quẹt thẻ thất bại:" + yibaoCardInfo.ErrorMsg, 'error');
              }
          } else {
-             $.modalAlert("Quẹt thẻ lấy thông tin BHYT thất bại！Lý do thất bại:Trung tâm BHYT không trả về thông tin, Vui lòng thử lại！", 'error');
+             $.modalAlert("Quẹt thẻ lấy thông tin BHYT thất bại!Lý do thất bại:Trung tâm BHYT không trả về thông tin, Vui lòng thử lại!", 'error');
          }
     }
     function CQzydy() {
         if (!$("#zhdy").val()) {
-            $.modalAlert("Vui lòng nhập số thẻkhấu trừ tài khoản！", 'error');
+            $.modalAlert("Vui lòng nhập số thẻkhấu trừ tài khoản!", 'error');
             return;
         }
         if (zhdyList.length>0) {
-            $.modalAlert("Bệnh nhân này đãkhấu trừ！", 'error');
+            $.modalAlert("Bệnh nhân này đãkhấu trừ!", 'error');
             return;
         }
         if (cqPatInfo.zymzh != zyh) {
-            $.modalAlert("Thông tin mã nhập viện bất thường, Vui lòng đóng cửa sổ bật lên rồi,Thoát trình duyệt, xóa bộ nhớ đệm rồi thử lại！", 'error');
+            $.modalAlert("Thông tin mã nhập viện bất thường, Vui lòng đóng cửa sổ bật lên rồi,Thoát trình duyệt, xóa bộ nhớ đệm rồi thử lại!", 'error');
             return;
         }
         var yibaoZhdy;
@@ -586,7 +586,7 @@
                 $.modalAlert("không thểsử dụngkhấu trừ tài khoản:"+yibaoZhdy.ErrorMsg, 'error');
             }
         } else {
-            $.modalAlert("BHYT không trả về dữ liệu,lúc nàyKhông thểbiếtBHYTlàkhôngđãđãkhấu trừThành công, Vui lòng đóng cửa sổ vàquyết toán lại！", 'error');
+            $.modalAlert("BHYT không trả về dữ liệu,lúc nàyKhông thểbiếtBHYTlàkhôngđãđãkhấu trừThành công, Vui lòng đóng cửa sổ vàquyết toán lại!", 'error');
         }
     }
     function initPage() {

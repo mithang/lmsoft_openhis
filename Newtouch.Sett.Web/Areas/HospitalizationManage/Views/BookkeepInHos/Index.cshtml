@@ -249,7 +249,7 @@
             fillDataToGrid();
         }
         else {
-            $.modalAlert("Vui lòng chọn một dòng dữ liệu！", 'error');
+            $.modalAlert("Vui lòng chọn một dòng dữ liệu!", 'error');
         }
     }
 
@@ -493,7 +493,7 @@
             type: "POST",
             //async: false,
             success: function (data) {
-                if (data.message == "Lưu thành công！") {
+                if (data.message == "Lưu thành công!") {
                     $.modalAlert(data.message, 'success');
                     newtouch_globalevent_f4();
                     $('#zyh').trigger('focus');
@@ -532,7 +532,7 @@
                 callBack: function (iframeId) {
                     var data = top.frames[iframeId].submitForm();
                     if ($("#jzks").val() == null || $("#doctor").val() == null) {
-                        $.modalAlert("Vui lòng chọn bác sĩ và khoa trước！", 'warning');
+                        $.modalAlert("Vui lòng chọn bác sĩ và khoa trước!", 'warning');
                         return;
                     }
                     $.each(data, function () {
@@ -567,7 +567,7 @@
             });
         }
         else {
-            $.modalAlert("Vui lòng chọn bác sĩ trước！", 'warning');
+            $.modalAlert("Vui lòng chọn bác sĩ trước!", 'warning');
         }
     }
 

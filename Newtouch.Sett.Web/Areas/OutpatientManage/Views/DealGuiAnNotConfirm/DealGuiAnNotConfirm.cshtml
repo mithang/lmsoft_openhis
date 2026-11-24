@@ -110,7 +110,7 @@
                     }
                 });
                 if (ybjshtReturn.Code == 0) {
-                    $.modalAlert("Hoàn tác quyết toán thành công！", 'success');
+                    $.modalAlert("Hoàn tác quyết toán thành công!", 'success');
                     var parameter1 = { "astr_jylsh": ybjshtReturn.jylsh, "astr_jyyzm": ybjshtReturn.jyyzm };
                     $.ajax({
                         url: "http://127.0.0.1:12345/api/YiBao/YibaoConfirm",
@@ -147,7 +147,7 @@
                 });
 
                 if (ybReturn.Code == 0) {
-                    $.modalAlert("Hủy thành công！", 'success');
+                    $.modalAlert("Hủy thành công!", 'success');
                     var parameter = { "astr_jylsh": ybReturn.jylsh, "astr_jyyzm": ybReturn.jyyzm };
                     $.ajax({
                         url: "http://127.0.0.1:12345/api/YiBao/YibaoConfirm",

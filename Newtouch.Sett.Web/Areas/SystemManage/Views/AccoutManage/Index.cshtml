@@ -416,7 +416,7 @@
                     window.open(uri, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
                 }
             }, errorCallback: function (rtnval) {
-                if (rtnval.message = "Số biên lai hiện tại đã được sử dụng！") {
+                if (rtnval.message = "Số biên lai hiện tại đã được sử dụng!") {
                     GetSJPZH();
                 }
                 $.modalAlert(rtnval.message, "warning");

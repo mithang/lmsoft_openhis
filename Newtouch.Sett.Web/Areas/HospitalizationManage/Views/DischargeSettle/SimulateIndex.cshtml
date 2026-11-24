@@ -384,7 +384,7 @@
     //Hủyquyết toán xuất viện
     $('#zy_cyjscx').click(function () {
         if (patModel.zyh == null || patModel.zyh=="") {
-            $.modalAlert("Vui lòng chọn mã nhập viện！", 'error');
+            $.modalAlert("Vui lòng chọn mã nhập viện!", 'error');
             return;
         }
        $.ajax({
@@ -406,7 +406,7 @@
                 mdid = payoptype.mdtrt_id;
                 var payoptype = { hisId: patModel.zyh, 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'mdtrt_id': mdid, 'psn_no': cqPatInfo.grbh, "insuplc_admdvs": cqPatInfo.insuplc_admdvs };
                 UpOutMdtrtinfo(payoptype);
-                $.modalAlert("Hủyquyết toán xuất viện thành công！", 'warning');
+                $.modalAlert("Hủyquyết toán xuất viện thành công!", 'warning');
 		    }
 	    });
     })

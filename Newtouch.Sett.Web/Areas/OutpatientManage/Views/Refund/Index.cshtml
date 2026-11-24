@@ -312,7 +312,7 @@
             RETURNS_SL.each(function () {
                 var tsl = $(this).val();
                 if (tuifei[count].SL < tsl) {
-                    $.modalAlert("Số lượng hoàn không được lớn hơn số lượng！", "error");
+                    $.modalAlert("Số lượng hoàn không được lớn hơn số lượng!", "error");
                     $(this).addClass("redBord");
                     flag = false;
 
@@ -336,7 +336,7 @@
                 count++;
             });
         } else {
-            $.modalAlert("Không có khoản mục hoàn phí được chọn！", "error");
+            $.modalAlert("Không có khoản mục hoàn phí được chọn!", "error");
             flag = false;
         }
 
@@ -363,7 +363,7 @@
                             dataType: "json",
                             cache: false,
                             success: function (ajaxresp) {
-                                var msg = "Hoàn phí thành công！Số tiền phải hoàn là:";
+                                var msg = "Hoàn phí thành công!Số tiền phải hoàn là:";
                                 if (ajaxresp.data) {
                                     msg = msg + $("#yingtui").val();
                                 } else {
@@ -383,7 +383,7 @@
                             }
                         });
                     } else {
-                        $.modalAlert("Dữ liệu chưa đầy đủ, Vui lòng kiểm tra Số thẻ hoặc liên hệ quản trị viên！", "error");
+                        $.modalAlert("Dữ liệu chưa đầy đủ, Vui lòng kiểm tra Số thẻ hoặc liên hệ quản trị viên!", "error");
                     }
                 }
             }, false);

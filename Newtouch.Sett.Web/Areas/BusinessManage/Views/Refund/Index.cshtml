@@ -156,7 +156,7 @@
                             $('#gridListFPH').jqGrid("clearGridData");
                             gridListFPH(ajaxresp.data);
                         } else {
-                            $.modalAlert("tìm không đến Thông tin quyết toán！", ajaxresp.state);
+                            $.modalAlert("tìm không đến Thông tin quyết toán!", ajaxresp.state);
                         }
                     }
                     if (ajaxresp.state == 'error') {
@@ -224,7 +224,7 @@
                             $("#ys").html(result.RYMC);
                             getDetail(jsnm);
                         } else {
-                            $.modalAlert("Tạm thời không có hóa đơn bản ghi！", ajaxresp.state);
+                            $.modalAlert("Tạm thời không có hóa đơn bản ghi!", ajaxresp.state);
                         }
 
 
@@ -322,7 +322,7 @@
                         }
                     });
                 } else {
-                    $.modalAlert("Dữ liệu chưa đầy đủ, Vui lòng kiểm tra Số thẻ hoặc liên hệ quản trị viên！", "error");
+                    $.modalAlert("Dữ liệu chưa đầy đủ, Vui lòng kiểm tra Số thẻ hoặc liên hệ quản trị viên!", "error");
                 }
 
             }

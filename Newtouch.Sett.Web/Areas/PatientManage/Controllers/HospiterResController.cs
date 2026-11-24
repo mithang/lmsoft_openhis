@@ -520,7 +520,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         {
             if (string.IsNullOrWhiteSpace(zyh))
             {
-                throw new FailedException("không có Thông tin nhập viện, Không thể hủy nhập viện！");
+                throw new FailedException("không có Thông tin nhập viện, Không thể hủy nhập viện!");
             }
             if (_PatientBasicInfoDmnService.CheckHasFee(zyh, this.OrganizeId))
             {
@@ -531,13 +531,13 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             //    throw new FailedException("Bệnh nhân này đã ở trong khu bệnh,Không thể hủy nhập viện!");
             //}
             _PatientBasicInfoDmnService.CancelAdmission(zyh, this.OrganizeId);
-            return Success("Hủy nhập viện thành công！");
+            return Success("Hủy nhập viện thành công!");
         }
 	    public IActionResult CheckCancelAdmission(string zyh)
 	    {
 		    if (string.IsNullOrWhiteSpace(zyh))
 		    {
-			    throw new FailedException("không có Thông tin nhập viện, Không thể hủy nhập viện！");
+			    throw new FailedException("không có Thông tin nhập viện, Không thể hủy nhập viện!");
 		    }
 		    if (_PatientBasicInfoDmnService.CheckHasFee(zyh, this.OrganizeId))
 		    {
@@ -547,7 +547,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             //{
             //    throw new FailedException("Bệnh nhân này đã ở trong khu bệnh,Không thể hủy nhập viện!");
             //}
-            return Success("Hủy nhập viện thành công！");
+            return Success("Hủy nhập viện thành công!");
 	    }
 		/// <summary>
 		/// theo patid được lấy nhập viện viện thông tintin
@@ -668,7 +668,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                     break;
             }
             _SysPatBasicInfoApp.PrinZYInfo(print);
-            return Success("in Thành công！");
+            return Success("in Thành công!");
         }
 
         /// <summary>
@@ -688,7 +688,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             }
             print.Flag = "1";
             _SysPatBasicInfoApp.PrintWDInfo(print);
-            return Success("in Thành công！");
+            return Success("in Thành công!");
         }
         #endregion
 
@@ -981,7 +981,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
 
             if (string.IsNullOrWhiteSpace(zyh))
             {
-                var data = new { state = "0", message = "không có Thông tin nhập viện, Không thể hủy nhập viện！" };
+                var data = new { state = "0", message = "không có Thông tin nhập viện, Không thể hủy nhập viện!" };
                 return Content(data.ToJson());
             }
             if (_PatientBasicInfoDmnService.CheckHasFee(zyh, this.OrganizeId))
@@ -1024,13 +1024,13 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                 }
                 else
                 {
-                    var data = new { state = "0", message = "Hủy Nhập viện Thất bại！Hợp tác nông thôn mới giao diện trả về Lỗi: " + S05ResDto.message };
+                    var data = new { state = "0", message = "Hủy Nhập viện Thất bại!Hợp tác nông thôn mới giao diện trả về Lỗi: " + S05ResDto.message };
                     return Content(data.ToJson());
                 }
             }
             else
             {
-                var data = new { state = "0", message = "Hủy Nhập viện Thất bại！Lỗi: Số nhập viện" + zyh + "Lấy Thông tin bệnh nhân Thất bại！" };
+                var data = new { state = "0", message = "Hủy Nhập viện Thất bại!Lỗi: Số nhập viện" + zyh + "Lấy Thông tin bệnh nhân Thất bại!" };
                 return Content(data.ToJson());
             }
 

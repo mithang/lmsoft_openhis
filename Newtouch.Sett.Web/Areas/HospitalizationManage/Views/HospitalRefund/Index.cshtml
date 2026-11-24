@@ -175,7 +175,7 @@
                 });
 
             } else {
-                $.modalAlert("Mã nhập viện không được để trống！", "error");
+                $.modalAlert("Mã nhập viện không được để trống!", "error");
             }
 
         });
@@ -202,7 +202,7 @@
                             cache: false,
                             success: function (ajaxresp) {
                                 $('#gridListDetail').jqGrid("clearGridData");
-                                $.modalAlert("Hoàn phí thành công！", "success");
+                                $.modalAlert("Hoàn phí thành công!", "success");
                                 $("#BtnQuery").click();
                                 $("#tsl").val(""); //Xóa số lượng hoàn
                             },
@@ -224,11 +224,11 @@
             var sl = $("#refundGridList").jqGridRowValue().SL;
             var tem = $("#tsl").val();
             if (parseInt(sl) < parseInt(tem)) {
-                $.modalAlert("Số lượng hoàn không được lớn hơn số lượng đã nộp！", "error");
+                $.modalAlert("Số lượng hoàn không được lớn hơn số lượng đã nộp!", "error");
                 return false;
             }
             if (sl==undefined || tem == "" || parseInt(tem) < 0) {
-                $.modalAlert("Tạm thời không có số lượng có thể hoàn！", "error");
+                $.modalAlert("Tạm thời không có số lượng có thể hoàn!", "error");
                 return false;
             }
             return true;

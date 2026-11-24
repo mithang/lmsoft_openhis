@@ -304,7 +304,7 @@
             }
         	if (medicalInsurance == "chongqing") {
 		        if (!ybIsReadCard) {
-			        $.modalAlert("quyết toán bệnh nhân BHYT, Vui lòng đọc thẻ trước！", 'warning');
+			        $.modalAlert("quyết toán bệnh nhân BHYT, Vui lòng đọc thẻ trước!", 'warning');
 			        return;
 		        }
                 $.loading(true, 'Đang sửa đăng ký khám, Vui lòng đợi...');
@@ -786,12 +786,12 @@
         if (!!spGsfReturn && !!spBdbReturn && spGsfReturn.Code === "1" && spBdbReturn.Code === "1") {
             if (!!spGsfReturn.Data && spGsfReturn.Data.cfmxlshList.length > 0) {
                 $.loading(false);
-                $.modalAlert("Bệnh nhân có mụcthu phí cao chưa phê duyệt, Vui lòng liên hệ phòng BHYT phê duyệt rồiquyết toán lại！", 'error');
+                $.modalAlert("Bệnh nhân có mụcthu phí cao chưa phê duyệt, Vui lòng liên hệ phòng BHYT phê duyệt rồiquyết toán lại!", 'error');
                 return;
             }
             if (!!spGsfReturn.Data && spBdbReturn.Data.cfmxlshList.length > 0) {
                 $.loading(false);
-                $.modalAlert("Bệnh nhân có mục Albumin chưa phê duyệt, Vui lòng liên hệ phòng BHYT phê duyệt rồiquyết toán lại！", 'error');
+                $.modalAlert("Bệnh nhân có mục Albumin chưa phê duyệt, Vui lòng liên hệ phòng BHYT phê duyệt rồiquyết toán lại!", 'error');
                 return;
             }
         } else {
@@ -1253,7 +1253,7 @@
                 $.modalAlert("Quẹt thẻ thất bại:" + yibaoCardInfo.err_msg, 'error');
             }
         } else {
-            $.modalAlert("Quẹt thẻ lấy thông tin BHYT thất bại！Lý do thất bại:Trung tâm BHYT không trả về thông tin, Vui lòng thử lại！", 'error');
+            $.modalAlert("Quẹt thẻ lấy thông tin BHYT thất bại!Lý do thất bại:Trung tâm BHYT không trả về thông tin, Vui lòng thử lại!", 'error');
         }
     }
 
@@ -1285,7 +1285,7 @@
                     ajaxLoadDataResult({ zyh: resp.data });
                 }
                 else {
-                    $.modalAlert("Mã cá nhân nông thôn mới【" + obj.xnhgrbm+"】khôngcóTruy vấntớiđãRa khoa, Bệnh nhân nhập viện chờquyết toán,Vui lòng xác nhận bệnh nhân này đã ra khoa！", 'warning');
+                    $.modalAlert("Mã cá nhân nông thôn mới【" + obj.xnhgrbm+"】khôngcóTruy vấntớiđãRa khoa, Bệnh nhân nhập viện chờquyết toán,Vui lòng xác nhận bệnh nhân này đã ra khoa!", 'warning');
                     return;
                      }
             }

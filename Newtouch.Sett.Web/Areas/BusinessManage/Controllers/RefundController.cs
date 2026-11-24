@@ -46,7 +46,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
             }
             else
             {
-                return Error("tra tìm không đến Thông tin quyết toán！");
+                return Error("tra tìm không đến Thông tin quyết toán!");
             }
 
         }

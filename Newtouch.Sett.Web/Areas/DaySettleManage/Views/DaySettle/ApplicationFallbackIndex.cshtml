@@ -176,7 +176,7 @@
 				var refinfo = eval('(' + data + ')');
 				console.log(refinfo);
 				if (refinfo.infcode == "0") {
-					$.modalAlert("hoàn đơn Thành công！".err_msg, 'warning');
+					$.modalAlert("hoàn đơn Thành công!".err_msg, 'warning');
 					$("#btn_search_cx").click();
 				} else {
 					$.modalAlert(refinfo.err_msg, 'warning');

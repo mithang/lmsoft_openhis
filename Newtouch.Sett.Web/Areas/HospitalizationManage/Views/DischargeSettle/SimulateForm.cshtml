@@ -175,12 +175,12 @@
         if (!!spGsfReturn && !!spBdbReturn && spGsfReturn.Code === "1" && spBdbReturn.Code === "1") {
             if (!!spGsfReturn.Data && spGsfReturn.Data.cfmxlshList.length > 0) {
                 $.loading(false);
-                $.modalAlert("Bệnh nhân có mục thu phí cao chưa phê duyệt, Vui lòng liên hệ phòng BHYT phê duyệt rồi quyết toán lại！", 'error');
+                $.modalAlert("Bệnh nhân có mục thu phí cao chưa phê duyệt, Vui lòng liên hệ phòng BHYT phê duyệt rồi quyết toán lại!", 'error');
                 return;
             }
             if (!!spGsfReturn.Data && spBdbReturn.Data.cfmxlshList.length > 0) {
                 $.loading(false);
-                $.modalAlert("Bệnh nhân có mục Albumin chưa phê duyệt, Vui lòng liên hệ phòng BHYT phê duyệt rồi quyết toán lại！", 'error');
+                $.modalAlert("Bệnh nhân có mục Albumin chưa phê duyệt, Vui lòng liên hệ phòng BHYT phê duyệt rồi quyết toán lại!", 'error');
                 return;
             }
         } else {

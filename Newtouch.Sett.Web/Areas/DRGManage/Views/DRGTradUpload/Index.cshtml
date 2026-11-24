@@ -275,7 +275,7 @@
         var crkId = seleRow.length > 1 ? "" : seleRow[0].mlbm_id;
         if (seleRow.length > 1) {
             // Bật hộp xác nhận,Xác nhận tải lên
-            $.modalConfirm("Chọn dữ liệu không phải một dòng sẽ tải lên toàn bộ!！", function(flag) {
+            $.modalConfirm("Chọn dữ liệu không phải một dòng sẽ tải lên toàn bộ!!", function(flag) {
                 if (flag){
                     uploadData(orgId, operatorId, operatorName, crkId);
                 }

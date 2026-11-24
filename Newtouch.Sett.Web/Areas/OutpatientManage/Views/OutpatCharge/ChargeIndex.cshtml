@@ -592,7 +592,7 @@
         }
         var dj = $("#dj").val();
         if (dj == null || dj === "" || dj == undefined) {
-            $.modalAlert("Đơn giá không được trống, Vui lòng nhập khoản thu phí đúng！", 'warning');
+            $.modalAlert("Đơn giá không được trống, Vui lòng nhập khoản thu phí đúng!", 'warning');
             $("#sfxm").focus();
             return false;
         }
@@ -1000,7 +1000,7 @@
                 }
             });
         } else {
-            $.modalAlert("Tạm thời không có thông tin đơn thuốc cần xóa！", 'warning');
+            $.modalAlert("Tạm thời không có thông tin đơn thuốc cần xóa!", 'warning');
         }
     }
 
@@ -1010,7 +1010,7 @@
             LoadSfXMmb(); //tải mẫu khoản thu phí
         else {
             $("#kh").focus();
-            $.modalAlert("Vui lòng đảm bảo bệnh nhân hợp lệ！", 'warning');
+            $.modalAlert("Vui lòng đảm bảo bệnh nhân hợp lệ!", 'warning');
             return false;
         }
     }
@@ -1019,17 +1019,17 @@
     function LoadSfXMmb() {
         if ($("#mzgh").val() == "" || mzgh == "") {
             $("#mzgh").focus();
-            $.modalAlert("Vui lòng chọn đăng ký khám！", 'warning');
+            $.modalAlert("Vui lòng chọn đăng ký khám!", 'warning');
             return false;
         }
         else if ($("#ys") == "" || ys == "") {
             $("#ys").focus();
-            $.modalAlert("Vui lòng chọn bác sĩ！", 'error');
+            $.modalAlert("Vui lòng chọn bác sĩ!", 'error');
             return false;
         }
         else if ($("#ks").Text == "" || ks == "") {
             $("#mzgh").focus();
-            $.modalAlert("Vui lòng chọn đăng ký khám！", 'warning');
+            $.modalAlert("Vui lòng chọn đăng ký khám!", 'warning');
             return false;
         }
         // tảicửa sổ mẫu thu phí,truyền vàokhoa
@@ -1053,7 +1053,7 @@
                 }
             });
         } else {
-            $.modalAlert("Vui lòng chọn bác sĩ！", 'warning');
+            $.modalAlert("Vui lòng chọn bác sĩ!", 'warning');
         }
     }
 

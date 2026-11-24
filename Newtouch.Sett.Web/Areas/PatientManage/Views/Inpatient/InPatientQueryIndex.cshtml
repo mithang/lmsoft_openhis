@@ -778,7 +778,7 @@
                         $.modalAlert(ajaxresp.message, 'warning');
                         $.modalClose();
                     } else {
-                        $.modalAlert("chuyển tự chi trả hợp tác nông thôn mới Thành công！", 'success');
+                        $.modalAlert("chuyển tự chi trả hợp tác nông thôn mới Thành công!", 'success');
                         $.modalClose();
                         $('#btn_search').trigger('click');
                     }
@@ -879,7 +879,7 @@
                         });
 
                         if (ybReturn.Code == 0) {
-                            $.modalAlert("Hủy thành công！", 'success');
+                            $.modalAlert("Hủy thành công!", 'success');
                             var parameter = { "astr_jylsh": ybReturn.jylsh, "astr_jyyzm": ybReturn.jyyzm };
                             $.ajax({
                                 url: "http://127.0.0.1:12345/api/YiBao/YibaoConfirm",
@@ -909,7 +909,7 @@
                             $.modalAlert(ajaxresp.message, 'warning');
                             return;
                         } else {
-                            $.modalAlert("Hủy thành công！", 'success');
+                            $.modalAlert("Hủy thành công!", 'success');
                             $('#btn_search').trigger('click');
                         }
                     }
@@ -969,7 +969,7 @@
                                     $.modalClose();
                                     return;
                                 } else {
-                                    $.modalAlert("hợp tác nông thôn mới chuyển tự chi trả Thành công！", 'success');
+                                    $.modalAlert("hợp tác nông thôn mới chuyển tự chi trả Thành công!", 'success');
                                     $.modalClose();
                                     $('#btn_search').trigger('click');
                                 }
