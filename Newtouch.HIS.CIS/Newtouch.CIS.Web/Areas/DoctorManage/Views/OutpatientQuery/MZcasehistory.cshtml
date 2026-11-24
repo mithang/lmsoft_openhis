@@ -261,9 +261,9 @@
 			postData: { jzid: "" },
 			height: $(window).height() - 400,
 			url: "/DoctorManage/OutpatientQuery/MZlsjzCfInfo",
-			caption: "Lịch sửĐơn thuốcChi tiết",
+			caption: "Chi tiết đơn thuốc lịch sử",
 			colModel: [
-				{ label: 'Đơn thuốcLoại', hidden: true, name: 'cflx', width: 140, align: 'left', formatter: function (val) { return $.enum.getDescByValue("EnumCflx", val); } },
+				{ label: 'Loại đơn thuốc', hidden: true, name: 'cflx', width: 140, align: 'left', formatter: function (val) { return $.enum.getDescByValue("EnumCflx", val); } },
 				{ label: 'Số đơn thuốc', name: 'cfh', width: 140, align: 'left' },
 				{ label: 'Mã hạng mục', name: 'sfxmcode', width: 100, align: 'left', hidden: true },
 				{ label: 'Tên mục', name: 'sfxmmc', width: 140, align: 'left' },
