@@ -1517,12 +1517,12 @@ namespace Newtouch.Sett.Domain
         /// <summary>
         /// Triệt sản Phẫu thuật(Ống dẫn tinh)
         /// </summary>
-        [Description("triệt sản Phẫu thuật（ống dẫn tinh）")]
+        [Description("triệt sản Phẫu thuật(ống dẫn tinh)")]
         jysssjg = 7,
         /// <summary>
         /// Nối lại sau triệt sản Phẫu thuật(Ống dẫn tinh)
         /// </summary>
-        [Description("phục hồi triệt sản Phẫu thuật（ống dẫn tinh）")]
+        [Description("phục hồi triệt sản Phẫu thuật(ống dẫn tinh)")]
         jyftsssjg = 8,
         /// <summary>
         /// Khác
