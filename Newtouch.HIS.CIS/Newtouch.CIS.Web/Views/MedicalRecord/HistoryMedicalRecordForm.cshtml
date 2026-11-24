@@ -640,17 +640,17 @@ border: 0;">
                     //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
-                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcChi tiết" >Rp</a>';
+                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Chi tiết đơn thuốc" >Rp</a>';
                         if(typeFlag != "historynodeContent" && !(window.currPatientInfo && window.currPatientInfo.jzzt == '@((int)EnumJzzt.Treated)')){
                             if(typeClassificationArr[i].sfbz == false){
-                                lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconEditSingleCf" title="SửaĐơn thuốc"><i class="fa fa-pencil-square-o"></i></a>';
+                                lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconEditSingleCf" title="Sửa đơn thuốc"><i class="fa fa-pencil-square-o"></i></a>';
                             }
                         }
                         if(!!typeClassificationArr[i].cfId){
                             if(typeFlag != "historynodeContent" && !(window.currPatientInfo && window.currPatientInfo.jzzt == '@((int)EnumJzzt.Treated)')){
                                 if (typeClassificationArr[i].sfbz == false) {
                                     if (!(typeClassificationArr[i].sendtohisResult == 1)) {
-                                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconSendSingleCf" title="GửiĐơn thuốc" ><i class="fa fa-paper-plane-o"></i></a>';
+                                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconSendSingleCf" title="Gửi đơn thuốc" ><i class="fa fa-paper-plane-o"></i></a>';
                                     }
                                     lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconCancelSingleCf" title="Hủy đơn thuốc" ><i class="fa fa-trash-o"></i></a>';
                                 } else if (typeClassificationArr[i].sfbz && typeClassificationArr[i].tbz) {
@@ -658,7 +658,7 @@ border: 0;">
                                 }
                             }
                             if('@(isPrintRehabPres)' == 'True'){
-                                lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="InĐơn thuốc" ><i class="fa fa-print"></i></a>';
+                                lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="In đơn thuốc" ><i class="fa fa-print"></i></a>';
                             }
                             if('@(isPrintRehabTreatment)' == 'True'){
                                 lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleKfzld" title="In phiếu điều trị" ><i class="fa fa-file-text-o"></i></a>';
@@ -711,24 +711,24 @@ border: 0;">
                     //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
-                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcChi tiết" >Rp</a>';
+                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Chi tiết đơn thuốc" >Rp</a>';
                         if(typeFlag != "historynodeContent" && !(window.currPatientInfo && window.currPatientInfo.jzzt == '@((int)EnumJzzt.Treated)')){
                             if(typeClassificationArr[i].sfbz == false){
-                                lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconEditSingleCf" title="SửaĐơn thuốc"><i class="fa fa-pencil-square-o"></i></a>';
+                                lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconEditSingleCf" title="Sửa đơn thuốc"><i class="fa fa-pencil-square-o"></i></a>';
                             }
                         }
                         if(!!typeClassificationArr[i].cfId){
                             if(typeFlag != "historynodeContent" && !(window.currPatientInfo && window.currPatientInfo.jzzt == '@((int)EnumJzzt.Treated)')){
                                 if(typeClassificationArr[i].sfbz == false){
                                     if(!(typeClassificationArr[i].sendtohisResult == 1)){
-                                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconSendSingleCf" title="GửiĐơn thuốc" ><i class="fa fa-paper-plane-o"></i></a>';
+                                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconSendSingleCf" title="Gửi đơn thuốc" ><i class="fa fa-paper-plane-o"></i></a>';
                                     }
                                     lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconCancelSingleCf" title="Hủy đơn thuốc" ><i class="fa fa-trash-o"></i></a>';
                                 } else if (typeClassificationArr[i].sfbz && typeClassificationArr[i].tbz) {
                                     lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconCancelSingleCf" title="Hủy đơn thuốc" ><i class="fa fa-trash-o"></i></a>';
                                 }
                             }
-                            lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="InĐơn thuốc" ><i class="fa fa-print"></i></a>';
+                            lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="In đơn thuốc" ><i class="fa fa-print"></i></a>';
                         }
                         var thisHtml = '<tr style="line-height:30px;" data-cfId="' + typeClassificationArr[i].cfId + '" data-cflx="cgxmcf" data-cfh="' + typeClassificationArr[i].cfh + '">';
                         thisHtml += '<td>' + typeClassificationArr[i].cfh + '</td>';
@@ -793,31 +793,31 @@ border: 0;">
                     //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
-                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcChi tiết" >Rp</a>';
+                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Chi tiết đơn thuốc" >Rp</a>';
                         if(typeFlag != "historynodeContent" && !(window.currPatientInfo && window.currPatientInfo.jzzt == '@((int)EnumJzzt.Treated)')){
                             if(typeClassificationArr[i].sfbz == false){
-                                lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconEditSingleCf" title="SửaĐơn thuốc"><i class="fa fa-pencil-square-o"></i></a>';
+                                lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconEditSingleCf" title="Sửa đơn thuốc"><i class="fa fa-pencil-square-o"></i></a>';
                             }
                         }
                         if (!!typeClassificationArr[i].cfId) {
                             if(typeFlag != "historynodeContent" && !(window.currPatientInfo && window.currPatientInfo.jzzt == '@((int)EnumJzzt.Treated)')){
                                 if(typeClassificationArr[i].sfbz == false){
                                     if(!(typeClassificationArr[i].sendtohisResult == 1)){
-                                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconSendSingleCf" title="GửiĐơn thuốc" ><i class="fa fa-paper-plane-o"></i></a>';
+                                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconSendSingleCf" title="Gửi đơn thuốc" ><i class="fa fa-paper-plane-o"></i></a>';
                                     }
                                     lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconCancelSingleCf" title="Hủy đơn thuốc" ><i class="fa fa-trash-o"></i></a>';
                                 } else if (typeClassificationArr[i].sfbz && typeClassificationArr[i].tbz) {
                                     lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconCancelSingleCf" title="Hủy đơn thuốc" ><i class="fa fa-trash-o"></i></a>';
                                 }
                             }
-                            lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="InĐơn thuốc" ><i class="fa fa-print"></i></a>';
+                            lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="In đơn thuốc" ><i class="fa fa-print"></i></a>';
                             //if (typeClassificationArr[i].yfCode != "" && typeClassificationArr[i].yfCode != undefined) {
                             if (typeClassificationArr[i].Iscontainzs) {
-                                    lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="InĐơn tiêm" ><i class="fa fa-print"></i></a>';
+                                    lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="In phiếu tiêm" ><i class="fa fa-print"></i></a>';
                                 }
 
                             if (typeClassificationArr[i].Iscontainwh) {
-                                    lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="InĐơn khí dung" ><i class="fa fa-print"></i></a>';
+                                    lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="In phiếu khí dung" ><i class="fa fa-print"></i></a>';
                                 }
                             //}
                         }
@@ -884,10 +884,10 @@ border: 0;">
                     //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
-                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcChi tiết" >Rp</a>';
+                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Chi tiết đơn thuốc" >Rp</a>';
                         if(typeFlag != "historynodeContent" && !(window.currPatientInfo && window.currPatientInfo.jzzt == '@((int)EnumJzzt.Treated)')){
                             if(typeClassificationArr[i].sfbz == false){
-                                lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconEditSingleCf" title="SửaĐơn thuốc"><i class="fa fa-pencil-square-o"></i></a>';
+                                lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconEditSingleCf" title="Sửa đơn thuốc"><i class="fa fa-pencil-square-o"></i></a>';
                             } else if (typeClassificationArr[i].sfbz && typeClassificationArr[i].tbz) {
                                 lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconCancelSingleCf" title="Hủy đơn thuốc" ><i class="fa fa-trash-o"></i></a>';
                             }
@@ -896,17 +896,17 @@ border: 0;">
                             if(typeFlag != "historynodeContent" && !(window.currPatientInfo && window.currPatientInfo.jzzt == '@((int)EnumJzzt.Treated)')){
                                 if(typeClassificationArr[i].sfbz == false){
                                     if(!(typeClassificationArr[i].sendtohisResult == 1)){
-                                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconSendSingleCf" title="GửiĐơn thuốc" ><i class="fa fa-paper-plane-o"></i></a>';
+                                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconSendSingleCf" title="Gửi đơn thuốc" ><i class="fa fa-paper-plane-o"></i></a>';
                                     }
                                     lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconCancelSingleCf" title="Hủy đơn thuốc" ><i class="fa fa-trash-o"></i></a>';
                                 }
                             }
-                            lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="InĐơn thuốc" ><i class="fa fa-print"></i></a>';
+                            lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="In đơn thuốc" ><i class="fa fa-print"></i></a>';
                             if (typeClassificationArr[i].Iscontainzs) {
-                                lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="InĐơn tiêm" ><i class="fa fa-print"></i></a>';
+                                lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="In phiếu tiêm" ><i class="fa fa-print"></i></a>';
                             }
                             if (typeClassificationArr[i].Iscontainwh) {
-                                lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="InĐơn khí dung" ><i class="fa fa-print"></i></a>';
+                                lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="In phiếu khí dung" ><i class="fa fa-print"></i></a>';
                             }
                         }
                         var thisHtml = '<tr style="line-height:30px;" data-cfId="' + typeClassificationArr[i].cfId + '" data-cflx="zycf" data-cfh="' + typeClassificationArr[i].cfh + '">';
@@ -950,12 +950,12 @@ border: 0;">
                     //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
-                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="PhiếuChi tiết" >Req</a>';
+                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Chi tiết phiếu yêu cầu" >Req</a>';
                         if(!!typeClassificationArr[i].cfId){
                             if(typeFlag != "historynodeContent" && !(window.currPatientInfo && window.currPatientInfo.jzzt == '@((int)EnumJzzt.Treated)')){
                                 if(typeClassificationArr[i].sfbz == false){
                                     if(!(typeClassificationArr[i].sendtohisResult == 1)){
-                                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconSendSingleCf" title="GửiPhiếu" ><i class="fa fa-paper-plane-o"></i></a>';
+                                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconSendSingleCf" title="Gửi phiếu yêu cầu" ><i class="fa fa-paper-plane-o"></i></a>';
                                     }
                                     lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconCancelSingleCf" title="Hủy bỏPhiếu" ><i class="fa fa-trash-o"></i></a>';
                                 } else if (typeClassificationArr[i].sfbz && typeClassificationArr[i].tbz) {
@@ -1007,12 +1007,12 @@ border: 0;">
                     //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
-                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="PhiếuChi tiết" >Req</a>';
+                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Chi tiết phiếu yêu cầu" >Req</a>';
                         if(!!typeClassificationArr[i].cfId){
                             if(typeFlag != "historynodeContent" && !(window.currPatientInfo && window.currPatientInfo.jzzt == '@((int)EnumJzzt.Treated)')){
                                 if(typeClassificationArr[i].sfbz == false){
                                     if(!(typeClassificationArr[i].sendtohisResult == 1)){
-                                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconSendSingleCf" title="GửiPhiếu" ><i class="fa fa-paper-plane-o"></i></a>';
+                                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconSendSingleCf" title="Gửi phiếu yêu cầu" ><i class="fa fa-paper-plane-o"></i></a>';
                                     }
                                     lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconCancelSingleCf" title="Hủy bỏPhiếu" ><i class="fa fa-trash-o"></i></a>';
                                 } else if (typeClassificationArr[i].sfbz && typeClassificationArr[i].tbz) {

@@ -1638,7 +1638,7 @@ namespace Newtouch.CIS.Web.Controllers
                 case "In đơn thuốc Y học cổ truyền":
                     j = _reportDmnService.GetZCYCFjson(item.cfId, item.mzh, OrganizeId);
                     break;
-                case "InĐơn thuốc":
+                case "In đơn thuốc":
                     j = _reportDmnService.GetCFDjson(item.cfId, item.mzh, OrganizeId);
                     break;
                 case "In phiếu xét nghiệm":
@@ -1647,10 +1647,10 @@ namespace Newtouch.CIS.Web.Controllers
                 case "In phiếu kiểm tra":
                     j = _reportDmnService.GetJCDjson(item.cfId, item.mzh, OrganizeId);
                     break;
-                case "InĐơn khí dung":
+                case "In phiếu khí dung":
                     j = _reportDmnService.GetWHDjson(item.cfId, item.mzh, OrganizeId);
                     break;
-                case "InĐơn tiêm":
+                case "In phiếu tiêm":
                     j = _reportDmnService.GetZSDjson(item.cfId, item.mzh, OrganizeId);
                     break;
             }
