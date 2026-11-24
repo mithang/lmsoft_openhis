@@ -29,7 +29,7 @@
             });
             $.each(Foodlocaldata, function () {
                 if (!this.Id) {
-                    $.modalAlert('Y lệnhBất thường', "warning");
+                    $.modalAlert('Y lệnh bất thường', "warning");
                     location.href = location.href;
                 }
                 this.action = getSSActionStr()
@@ -618,7 +618,7 @@
                 return;
             }
             if (rowdata.kssj == "") {
-                $.modalAlert("ThiếuThời gian bắt đầu", "warning");
+                $.modalAlert("Thiếu thời gian bắt đầu", "warning");
                 return false;
             }
             if (rowdata.pcCode == "") {

@@ -40,7 +40,7 @@
 			});
 			$.each(itemlocaldata, function () {
 				if (!this.Id) {
-					$.modalAlert('Y lệnhBất thường', "warning");
+					$.modalAlert('Y lệnh bất thường', "warning");
 					location.href = location.href;
 				}
 				this.action = getRActionStr()
@@ -596,7 +596,7 @@
 					    flag = true;
 					    return false;
 					} else if (this.kssj == undefined || this.kssj == "") {
-						$.modalAlert("ThiếuThời gian bắt đầu", "warning");
+						$.modalAlert("Thiếu thời gian bắt đầu", "warning");
 						flag = true;
 						return false;
                     } else if (this.kssj < window.currentobj.ryrq) {
@@ -604,11 +604,11 @@
                         flag = true;
                         return false;
                     } else if (this.dw == undefined || this.dw == "") {
-						$.modalAlert("ThiếuThời gian bắt đầu", "warning");
+						$.modalAlert("Thiếu thời gian bắt đầu", "warning");
 						flag = true;
 						return false;
 					} else if (this.ypjl == undefined || this.ypjl == "") {
-						$.modalAlert("ThiếuThời gian bắt đầu", "warning");
+						$.modalAlert("Thiếu thời gian bắt đầu", "warning");
 						flag = true;
 						return false;
 					}else if (this.pcmc == undefined || this.pcmc == "") {
