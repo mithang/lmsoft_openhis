@@ -176,7 +176,7 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         /// </summary>
         /// <returns></returns>
         [Required]
-        [Description("Quê quán_Tỉnh(Quận、Thành phố)")]
+        [Description("Quê quán_Tỉnh(Quận, Thành phố)")]
         public string BKF643 { get; set; }
 
         /// <summary>

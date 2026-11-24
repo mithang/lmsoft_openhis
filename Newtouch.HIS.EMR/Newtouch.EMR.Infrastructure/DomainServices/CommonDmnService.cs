@@ -111,7 +111,7 @@ order by b.id desc ";
 ,a.[LastModifierCode]
 ,a.[zt]
 ,isnull(a.RelDutys,r.RelDutys)RelDutys
-,(select b.[name]+'，' from [NewtouchHIS_Base].[dbo].[V_S_Sys_Duty] b where charindex(','+b.code+',',','+isnull(a.RelDutys,r.RelDutys))>0 for xml path('')) [RelDutysDesc]
+,(select b.[name]+',' from [NewtouchHIS_Base].[dbo].[V_S_Sys_Duty] b where charindex(','+b.code+',',','+isnull(a.RelDutys,r.RelDutys))>0 for xml path('')) [RelDutysDesc]
 ,a.[OrganizeId]
 ,isnull(a.[bllxcode],r.[bllxcode])[bllxcode]
 ,a.[px],

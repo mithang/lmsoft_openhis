@@ -121,7 +121,7 @@ namespace Newtouch.EMR.Domain.Entity
         /// Tiền sử bệnh(bao gồm chấn thương)
         /// </summary>
         /// <returns></returns>
-        [Description("Tiền sử bệnh（bao gồm chấn thương）")]
+        [Description("Tiền sử bệnh (bao gồm chấn thương)")]
         [Required]
         public string BKF740 { get; set; }
 
