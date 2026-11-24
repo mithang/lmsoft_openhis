@@ -15367,7 +15367,7 @@ function StartDCWriterClientControl(rootElement) {
                 if(i > 0){
                     $(spanClone).html(charLen)
                 }
-                var insertText = String.fromCharCode(symbol+i) + '、'+ (value[i].mainDX)
+                var insertText = String.fromCharCode(symbol+i) + ','+ (value[i].mainDX)
                 insertTextFun(insertText,spanClone)
                 beginEle = beginEle.next()
                 if(value[i].secondDX && $.inArray(value[i].secondDX) && value[i].secondDX.length > 0){
@@ -15399,7 +15399,7 @@ function StartDCWriterClientControl(rootElement) {
                         var secondText = ''
                         for(var j=0;j<value[i].secondDX.length;j++){
                             if(j > 0){
-                                secondText += '、'
+                                secondText += ','
                             }
                             secondText += value[i].secondDX[j]
                         }
