@@ -22,7 +22,7 @@
                     <tr>
                         <th class="formTitle"><span class="required">*</span>Nguyên nhân lãi lỗ:</th>
                         <td class="formValue">
-                            <input id="syyy" name="syyy" type="text" class="form-control required" placeholder="Vui lòng nhậpTên" />
+                            <input id="syyy" name="syyy" type="text" class="form-control required" placeholder="Vui lòng nhập Tên" />
                         </td>
                     </tr>
                     <tr>
@@ -73,7 +73,7 @@
     //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#syyy").val() === "") {
-            $.modalAlert("Nguyên nhân lãi lỗBắt buộc", 'warning');
+            $.modalAlert("Nguyên nhân lãi lỗ Bắt buộc", 'warning');
             return false;
         }
         return true;
