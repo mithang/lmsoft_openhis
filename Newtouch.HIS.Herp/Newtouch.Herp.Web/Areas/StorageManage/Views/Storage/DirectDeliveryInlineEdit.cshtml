@@ -319,7 +319,7 @@
             alerterror: false,
             success: function (res) {
                 if (res.state === "error") {
-                    $.modalConfirm(res.message + "<br /> Có tiếp tục thao tác không??",
+                    $.modalConfirm(res.message + "<br /> Có tiếp tục thao tác không?",
                         function(flag) {
                             if (flag) {
                                 fillProductInfo(rowid, $thistr);

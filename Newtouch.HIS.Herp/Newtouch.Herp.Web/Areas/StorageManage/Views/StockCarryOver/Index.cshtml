@@ -94,7 +94,7 @@
             success: function (ajaxresp) {
                 if (ajaxresp != null) {
                     if (ajaxresp.state === "success") {
-                        var alertMmsg = ajaxresp.data == null || ajaxresp.data === "" ? "Bạn có chắc muốn kết chuyển??" : "Gần nhấtKết chuyểnThời gian là:" + ajaxresp.data + " ,Bạn có chắc muốn kết chuyển??";
+                        var alertMmsg = ajaxresp.data == null || ajaxresp.data === "" ? "Bạn có chắc muốn kết chuyển?" : "Gần nhấtKết chuyểnThời gian là:" + ajaxresp.data + " ,Bạn có chắc muốn kết chuyển?";
                         $.modalConfirm(alertMmsg,
                             function (flag) {
                                 if (flag) {
