@@ -630,9 +630,9 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 var errorMsg = _pyDmnService.OutPatientCancelArrangement(p, request.CreatorCode);
                 if (!string.IsNullOrWhiteSpace(errorMsg)) emsg.Append(errorMsg);
-                successCfh.Append(p.cfh).Append("、");
+                successCfh.Append(p.cfh).Append(",");
             });
-            if (string.IsNullOrWhiteSpace(emsg.ToString())) return successCfh.ToString().Trim('、');
+            if (string.IsNullOrWhiteSpace(emsg.ToString())) return successCfh.ToString().Trim(',');
             throw new FailedException("", emsg.ToString());
         }
 
