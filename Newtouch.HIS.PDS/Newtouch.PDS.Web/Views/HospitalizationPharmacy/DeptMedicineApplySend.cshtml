@@ -255,7 +255,7 @@
 
     //Phát thuốc
     function newtouch_event_f3() {
-        $.modalConfirm("Bạn có chắc muốn gửi tất cả thuốc trong danh sách đăng ký không??", function (flag) {
+        $.modalConfirm("Bạn có chắc muốn gửi tất cả thuốc trong danh sách đăng ký không?", function (flag) {
             if (flag) {
                 var rowIds = $gridBRXXDrugsList.getDataIDs();
                 if (rowIds == null || rowIds.length === 0) {
@@ -293,7 +293,7 @@
             $.modalMsg('Vui lòng tích chọn đơn đăng ký', 'warning', 1500);
             return false;
         }
-        $.modalConfirm("Bạn có chắc muốn trả lại đơn đăng ký đã chọn không??", function (flag) {
+        $.modalConfirm("Bạn có chắc muốn trả lại đơn đăng ký đã chọn không?", function (flag) {
             if(flag)
             {
                 $.najax({

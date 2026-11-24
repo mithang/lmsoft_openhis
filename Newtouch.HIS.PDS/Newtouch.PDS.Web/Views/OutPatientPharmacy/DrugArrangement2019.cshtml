@@ -245,7 +245,7 @@
             });
         });
         if (pats.length <= 0) return;
-        $.modalConfirm("Bạn có chắc muốn xếp tất cả thuốc không??", function (flag) {
+        $.modalConfirm("Bạn có chắc muốn xếp tất cả thuốc không?", function (flag) {
             if (!flag) return;
             $.najax({
                 url: "/OutPatientPharmacy/DrugArrangementV2",

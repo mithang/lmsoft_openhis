@@ -671,7 +671,7 @@
         savePdsPage();
 
         if ($("#autoCarryDown").is(":checked")) {
-            $.modalConfirm("Bạn có chắc muốn tự động tạo kết chuyển không??",
+            $.modalConfirm("Bạn có chắc muốn tự động tạo kết chuyển không?",
                 function (flag) {
                     if (flag) {
                         InventorySubmit();
@@ -702,7 +702,7 @@
 
     //Hủy kiểm kê
     function newtouch_event_f7() {
-        $.modalConfirm("Bạn có chắc muốn kiểm kê lại không??",
+        $.modalConfirm("Bạn có chắc muốn kiểm kê lại không?",
             function (flag) {
                 if (flag) {
                     var pdId = $("#ddlRQ option:selected").attr('data-pdId');

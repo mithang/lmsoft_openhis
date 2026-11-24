@@ -195,7 +195,7 @@
 
     //Hủy xếp thuốc
     function newtouch_event_f6() {
-        $.modalConfirm("Bạn có chắc muốn hủy xếp thuốc không??", function (flag) {
+        $.modalConfirm("Bạn có chắc muốn hủy xếp thuốc không?", function (flag) {
             if (!flag) return;
             var id = $gridList.jqGrid("getGridParam", "selrow");
             if (!id) {
