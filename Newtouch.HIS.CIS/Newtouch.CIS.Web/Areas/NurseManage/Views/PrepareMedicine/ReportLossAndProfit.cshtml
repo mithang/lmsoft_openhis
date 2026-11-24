@@ -39,7 +39,7 @@
         <div id="divYPXX" style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>ThuốcMã:</th>
+                    <th class="formTitle"><span class="required">*</span>Mã thuốc:</th>
                     <td class="formValue">
                         <input id="editRowId" value="" style="display:none;" />
                         <input type="text" id="txtYPCODE" class="form-control" />
@@ -305,7 +305,7 @@
             height: $(window).height() - document.getElementById('gridSYXX').offsetTop - 85,
             colModel: [
                 { label: 'Tình hình thừa thiếu', name: 'syqk', width: 70, align: 'left' },
-                { label: 'ThuốcMã', name: 'ypdm', width: 70, align: 'left' },
+                { label: 'Mã thuốc', name: 'ypdm', width: 70, align: 'left' },
                 { label: 'Tên thuốc', name: 'ypmc', width: 100, align: 'left' },
                 { label: 'Quy cách', name: 'ypgg', width: 100, align: 'left' },
                 { label: 'Thừa thiếuSố lượng', name: 'sl', width: 100, align: 'left' },
@@ -546,7 +546,7 @@
     //Kiểm trachi tiết
     function CheckDetailData() {
         if ($("#txtYPCODE").val() == "") {
-            $.modalAlert("ThuốcMãđể trống", 'warning');
+            $.modalAlert("Mã thuốc trống", 'warning');
             return false;
         }
         if ($("#txtYPMC").val() == "") {

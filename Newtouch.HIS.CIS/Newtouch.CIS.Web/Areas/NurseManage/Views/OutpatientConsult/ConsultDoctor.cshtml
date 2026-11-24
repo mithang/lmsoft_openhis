@@ -14,7 +14,7 @@
                 <tr>
                     <td>
                         <div class="input-group">
-                            <input id="txt_keyword" type="text" class="form-control" placeholder="KhoaTên/KhoaMã" style="width: 180px;">
+                            <input id="txt_keyword" type="text" class="form-control" placeholder="Tên khoa/Mã khoa" style="width: 180px;">
                             <span class="input-group-btn">
                                 <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                             </span>
@@ -54,8 +54,8 @@
             height: $(window).height() - 120,
             postData: { keyValue: $("#txt_keyword").val() },
             colModel: [
-                { label: 'KhoaMã', name: 'Code', width: 70, align: 'left' },
-                { label: "KhoaTên", name: "Name", width: 70, align: "left" },
+                { label: 'Mã khoa', name: 'Code', width: 70, align: 'left' },
+                { label: "Tên khoa", name: "Name", width: 70, align: "left" },
             ],
             rownumbers:false,
             pager: "#gridPager",
@@ -138,7 +138,7 @@
                 { label: 'StaffGh', name: 'StaffGh', hidden: true },
                 { label: 'ks', name: 'ks', hidden: true },
                 { label: 'Bác sĩTên', name: 'StaffName', widthratio: 48 },
-                { label: 'KhoaTên', name: 'ksmc', widthratio: 50 },
+                { label: 'Tên khoa', name: 'ksmc', widthratio: 50 },
             ],
             itemdbclickhandler: function ($thistr, $thisinput) {
                 $("#" + rowid + "_ysxm").val($thistr.attr('data-StaffName'));

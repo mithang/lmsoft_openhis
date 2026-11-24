@@ -250,7 +250,7 @@
             colModel: [
                 { label: 'Thao tác', name: 'operate', width: 50, align: 'center' },
                 { label: '<span class="required">*</span>Tên thuốc', name: 'ypmc', width: 200, align: 'center', editable: true, editwidth: "100%" },
-                { label: "ThuốcMã", name: "ypdm", width: 75, align: 'center', editable: true, editwidth: "100%" },
+                { label: "Mã thuốc", name: "ypdm", width: 75, align: 'center', editable: true, editwidth: "100%" },
                 { label: "ThuốcLoại", name: "dlmc", width: 75, align: 'center', editable: true, editwidth: "100%" },
                 //{ label: '<span class="required">*</span>Lô', name: 'pc', width: 95, align: 'center', editable: true, editwidth: "100%" },
                 { label: 'Lượng tồn kho', name: 'slStr', width: 70, align: 'center', editable: true, editwidth: "100%" },
@@ -586,8 +586,8 @@
                 return reqData;
             },
             colModel: [
-                { label: 'KhoaMã', name: 'Code', width: 100 },
-                { label: 'KhoaTên', name: 'Name', width: 220 }
+                { label: 'Mã khoa', name: 'Code', width: 100 },
+                { label: 'Tên khoa', name: 'Name', width: 220 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#slksbm").val($thistr.attr('data-Code'));
