@@ -53,7 +53,7 @@
                     <input type="button" id="btn_wsh" class="panelposition btn btn-md btn-restore active" value="Chưa duyệt">
                 </td>
                 <td class="formTitle">
-                    Y lệnhLoại:
+                    Loại y lệnh:
                 </td>
                 <td class="formValue formDdlSelectorTd">
                     <select id="yzlx" class="form-control required"></select>
@@ -296,7 +296,7 @@
                 { label: 'Y lệnhID', name: 'Id', align: 'center', width: 50, hidden: true },
                 {label: 'Loại y lệnh', name: 'yzlb', align: 'center', width: 50},
                 {
-                    label: 'Y lệnhLoại', name: 'yzlx', align: 'center', width: 50, formatter: function (val) {
+                    label: 'Loại y lệnh', name: 'yzlx', align: 'center', width: 50, formatter: function (val) {
                         return $.enum.getDescByValue("EnumYzlx", val)
                     }
                 },

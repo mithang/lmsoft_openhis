@@ -33,7 +33,7 @@
                         <option value="zy" selected>Nhập viện</option>
                     </select>
                 </td>
-                <th class="formTitle">Chi phíLoại:</th>
+                <th class="formTitle">Loại chi phí:</th>
                 <td class="formValue">
                     <select class="form-control" id="fylx">
                         <option value="qb" selected>Tất cả</option>
@@ -118,7 +118,7 @@
                 { label: 'Tên bệnh nhân', name: 'hzxm', align: 'center', width: 80 },
                 { label: 'CMND/CCCD', name: 'zjh', align: 'center', width: 120 },
                 {
-                    label: 'Chi phíLoại', name: 'fylx', align: 'center', width: 80, formatter: function (val) {
+                    label: 'Loại chi phí', name: 'fylx', align: 'center', width: 80, formatter: function (val) {
                         if(val=="4" ||val=="6")
                             return "Xét nghiệm"
                         if(val=="5" ||val=="7")
