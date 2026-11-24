@@ -751,26 +751,26 @@
     //Kiểm tra dữ liệu
     function DataValate() {
         if ($("#wzmc").val() === "") {
-            $.modalMsg("Vui lòng chọnVật tư", 'warning', 1500);
+            $.modalMsg("Vui lòng chọn vật tư", 'warning', 1500);
             return false;
         }
         if ($("#ph").val() === "") {
-            $.modalMsg("Vui lòng chọnSố lô", 'warning', 1500);
+            $.modalMsg("Vui lòng chọn Số lô", 'warning', 1500);
             return false;
         }
         if ($("#sl").val() === "") {
-            $.modalMsg("Số lượng nhập khoKhông được để trống", 'warning', 1500);
+            $.modalMsg("Số lượng nhập kho không được để trống", 'warning', 1500);
             return false;
         }
         if (!IsNum($("#zje").val()) || $("#zje").val() === "") {
-            $.modalMsg("Số tiền xuất kholàLớntại0số", 'warning', 1500);
+            $.modalMsg("Số tiền xuất kho phải là số lớn hơn 0", 'warning', 1500);
             return false;
         }
         var zhyz = parseFloat($("#dw").find("option:selected").attr("data-zhyz"));
         var sl = parseFloat($("#sl").val());
         var kykcsl = parseFloat($("#kykcsl").val());
         if (sl * zhyz > kykcsl) {
-            $.modalMsg("Số lượng xuất khoKhông thểLớntạiTồn kho khả dụng", 'warning', 1500);
+            $.modalMsg("Số lượng xuất kho không được lớn hơn tồn kho khả dụng", 'warning', 1500);
             return false;
         }
         return true;

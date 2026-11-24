@@ -513,7 +513,7 @@
     function CheckKc(rowid) {
         var reg = /^[1-9]\d*$/;//Lớntại0số nguyên
         if (!reg.test($("#" + rowid + "_sl").val())) {
-            $.modalMsg("Số lượng phải lớn hơn0số nguyên!", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên!", "warning", 1500);
             $("#" + rowid + "_sl").val("");
             return false;
         }
@@ -762,7 +762,7 @@
     //Xác minh thông tin chính
     function ValidateMain() {
         if ($("#deliveryNo").val().length > 50) {
-            $.modalMsg("Số phiếu giao hàng không được vượt quá50ký tự", 'warning', 1500);
+            $.modalMsg("Số phiếu giao hàng không được vượt quá 50 ký tự", 'warning', 1500);
             return false;
         }
         if ($("#supplierId").val() === "" || $("#supplierName").val() === "") {
@@ -784,7 +784,7 @@
         }
         var reg = /^[1-9]\d*$/;//Lớntại0số nguyên
         if (!reg.test(rowData.sl)) {
-            $.modalMsg("Số lượng phải lớn hơn0số nguyên!", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên!", "warning", 1500);
             return false;
         }
         var reg2 = /^\d+(?:\.\d{0,2})?$/;

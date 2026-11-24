@@ -355,17 +355,17 @@
         var rowData = $ProductGridList.getRowData(rowid);
         var reg = /^[1-9]\d*$/;//Lớntại0số nguyên
         if (!reg.test(rowData.xfsl)) {
-            $.modalMsg("Phát thuốcSố lượng phải lớn hơn0số nguyên!", "warning", 1500);
+            $.modalMsg("Số lượng phát thuốc phải lớn hơn 0 số nguyên!", "warning", 1500);
             return false;
         }
         var xfsl = parseInt(rowData.xfsl);
         var zhyz = parseInt(rowData.zhyz);
         if (xfsl - parseInt(rowData.bmdwsysl) > 0) {
-            $.modalMsg("Phát hiện tạiSố lượngKhông thểLớntại" + rowData.bmdwsysl + "!", 'warning', 1500);
+            $.modalMsg("Số lượng phát hiện tại không được lớn hơn " + rowData.bmdwsysl + "!", 'warning', 1500);
             return false;
         }
         if ((xfsl * zhyz - parseInt(rowData.kykcsl) > 0)) {
-            $.modalMsg("Phát hiện tạiSố lượngKhông thểLớntạiTồn kho khả dụng!", 'warning', 1500);
+            $.modalMsg("Số lượng phát hiện tại không được lớn hơn tồn kho khả dụng!", 'warning', 1500);
             return false;
         }
         return true;

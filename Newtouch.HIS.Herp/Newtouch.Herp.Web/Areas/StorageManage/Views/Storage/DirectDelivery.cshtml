@@ -436,7 +436,7 @@
         if (sl * zhyz > kykcsl) {
             $("#sl").val("");
             $("#sl").focus();
-            $.modalAlert("Số xuất kho của lô này không đượcLớntạiTồn kho khả dụngSố!", 'warning');
+            $.modalAlert("Số xuất kho của lô này không được lớn hơn Số tồn kho khả dụng!", 'warning');
             return false;
         }
         else if (sl <= 0) {

@@ -384,12 +384,12 @@
         var sl = Number($("#" + rowid + "_sl").val());
         var reg = /^[1-9]\d*$/;//Lớntại0số nguyên
         if (!reg.test(sl)) {
-            $.modalMsg("Số lượng phải lớn hơn0số nguyên!", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên!", "warning", 1500);
             return false;
         }
         var zhyz = Number($("#sel_dw_" + rowid).find("option:selected").attr("data-zhyz"));
         if (isNaN(zhyz)) {
-            $.modalMsg("Hệ số quy đổi phải lớn hơn0số nguyên!", "warning", 1500);
+            $.modalMsg("Hệ số quy đổi phải lớn hơn 0 số nguyên!", "warning", 1500);
             return false;
         }
         var maxsl = Number($("#" + rowid + "_kykcsl").val());
@@ -560,7 +560,7 @@
         }
         var reg = /^[1-9]\d*$/;//Lớntại0số nguyên
         if (!reg.test(rowData.sl)) {
-            $.modalMsg("Số lượng phải lớn hơn0số nguyên!", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên!", "warning", 1500);
             return false;
         }
         if (rowData.pc === "" || rowData.ph === "") {
