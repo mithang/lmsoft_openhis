@@ -78,7 +78,7 @@
                             </div>
                         </div>
                     </td>
-                    <th class="formTitle"><span class="required">*</span>Người chịu trách nhiệmMã nhân viên:</th>
+                    <th class="formTitle"><span class="required">*</span>Mã nhân viên người chịu trách nhiệm:</th>
                     <td class="formValue">
                         <input type="text" id="zrrmc" class="form-control" />
                         <input type="text" id="zrr" hidden />
@@ -610,12 +610,12 @@
         }
         var sysl = CalculationSysl();
         if (sysl <= 0) {
-            $.modalAlert("Số lượng lãi lỗNênLớntại0", 'warning');
+            $.modalAlert("Số lượng lãi lỗ nên lớn hơn 0", 'warning');
             return false;
         }
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
             if (sysl > parseFloat($("#Sykc").val())) {   //Ngược lại,So sánh trực tiếpSố lượng(NhấtNhỏĐơn vịSố lượng)
-                $.modalAlert("Báo hỏngSố lượngNênNhỏtạiTồn kho hiện tại", 'warning');
+                $.modalAlert("Số lượng báo hỏng nên nhỏ hơn tồn kho hiện tại", 'warning');
                 return false;
             }
         }
@@ -631,7 +631,7 @@
             }
         }
         if ($("#zrr").val() === "") {
-            $.modalAlert("Người chịu trách nhiệmMã nhân viên trống", 'warning');
+            $.modalAlert("Mã nhân viên người chịu trách nhiệm trống", 'warning');
             return false;
         }
         if ($("#zrrmc").val() === "") {

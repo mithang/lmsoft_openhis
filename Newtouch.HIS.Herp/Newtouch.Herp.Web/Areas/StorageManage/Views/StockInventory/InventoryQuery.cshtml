@@ -67,7 +67,7 @@
     </div>
     <div class="panel panel-default" style="margin-bottom: 0;">
         <div class="panel-heading">
-            <span>Kiểm kê tồn khoThông tin | Theo lô:</span>
+            <span>Thông tin kiểm kê tồn kho | Theo lô:</span>
             <i id="i-noPc" onclick="accordingBatch(this)" class="fa fa-toggle-off" style="margin-left: 5px;font-size: 1.6rem;color: #ff9813;vertical-align: middle;"></i>
         </div>
     </div>
@@ -163,9 +163,9 @@
                 { label: 'Tên vật tư', name: 'wzmc', width: 120, align: 'left' },
                 { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
                 { label: 'Số lượng lý thuyết', name: 'llsl', width: 80, align: 'left' },
-                { label: '(Thực)Số khoa', name: 'deptSjsl', width: 70, align: 'center' },
+                { label: '(Thực tế) Số khoa phòng', name: 'deptSjsl', width: 70, align: 'center' },
                 { label: 'Đơn vị', name: 'deptdw', width: 40, align: 'left' },
-                { label: '(Thực)Số nhỏ nhất', name: 'minSjsl', width: 70, align: 'center' },
+                { label: '(Thực tế) Số nhỏ nhất', name: 'minSjsl', width: 70, align: 'center' },
                 { label: 'Đơn vị', name: 'zxdw', width: 40, align: 'center' },
                 { label: 'Hệ số', name: 'zhyz', width: 40, align: 'center' },
                 { label: 'Số lô', name: 'ph', width: 100, align: 'center' },
@@ -176,7 +176,7 @@
                 { label: 'Thành tiền bán lẻ(Thực)', name: 'sjlsje', width: 70, align: 'left' },
                 { label: 'Phiên âm', name: 'py', width: 100, align: 'left' },
                 { label: 'pdmxId', name: 'pdmxId', hidden: true },
-                { label: 'Vật tưID', name: 'productId', hidden: true }
+                { label: 'Vật tư ID', name: 'productId', hidden: true }
             ],
             multiselect: false,
             pager: "#gridPager",
@@ -195,9 +195,9 @@
                 { label: 'Tên vật tư', name: 'wzmc', width: 150, align: 'left' },
                 { label: 'Quy cách', name: 'gg', width: 100, align: 'left' },
                 { label: 'Số lượng lý thuyết', name: 'llsl', width: 80, align: 'right' },
-                { label: '(Thực)Số khoa', name: 'deptSjsl', width: 70, align: 'right' },
+                { label: '(Thực tế) Số khoa phòng', name: 'deptSjsl', width: 70, align: 'right' },
                 { label: 'Đơn vị', name: 'deptdw', width: 50, align: 'center' },
-                { label: '(Thực)Số nhỏ nhất', name: 'minSjsl', width: 70, align: 'right' },
+                { label: '(Thực tế) Số nhỏ nhất', name: 'minSjsl', width: 70, align: 'right' },
                 { label: 'Đơn vị', name: 'zxdw', width: 50, align: 'center' },
                 { label: 'Hệ số', name: 'zhyz', width: 40, align: 'center' },
                 {
@@ -213,7 +213,7 @@
                     formatter: function (val) { return val.toFixed(2); }
                 },
                 { label: 'Phiên âm', name: 'py', width: 120, align: 'left' },
-                { label: 'Vật tưID', name: 'productId', hidden: true }
+                { label: 'Vật tư ID', name: 'productId', hidden: true }
             ],
             multiselect: false,
             pager: "#gridPagerNoPc",

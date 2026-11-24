@@ -124,7 +124,7 @@
         <table id="gridKCInfoNoPc"></table>
         <div id="gridPagerNoPc" rel="form1"></div>
     </div>
-    <div class="dv-remark">(Thực)Số khoa:Thực tếKhoaĐơn vịSố;(Thực)Số nhỏ nhất:Thực tếNhấtNhỏĐơn vịSố!Vui lòngSố khoavàSố nhỏ nhấtSử dụng kết hợp</div>
+    <div class="dv-remark">(Thực tế) Số khoa phòng: Số đơn vị khoa phòng thực tế; (Thực tế) Số nhỏ nhất: Số đơn vị nhỏ nhất thực tế! Vui lòng sử dụng kết hợp số khoa phòng với số nhỏ nhất</div>
     @Html.Partial("_BottomButtonsView", new Newtouch.Herp.Web.Models.BottomButtonViewModel
     {
         ShowKeyList = new[] { 8, 3, 7 },
@@ -233,9 +233,9 @@
                 { label: 'Tên vật tư', name: 'wzmc', width: 120, align: 'left' },
                 { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
                 { label: 'Số lượng lý thuyết', name: 'llsl', width: 80, align: 'right' },
-                { label: '(Thực)Số khoa', name: 'deptSjsl', width: 70, align: 'right', editable: true, editwidth: "90%" },
+                { label: '(Thực tế) Số khoa phòng', name: 'deptSjsl', width: 70, align: 'right', editable: true, editwidth: "90%" },
                 { label: 'Đơn vị', name: 'deptdw', width: 40, align: 'left' },
-                { label: '(Thực)Số nhỏ nhất', name: 'minSjsl', width: 70, align: 'right', editable: true, editwidth: "90%" },
+                { label: '(Thực tế) Số nhỏ nhất', name: 'minSjsl', width: 70, align: 'right', editable: true, editwidth: "90%" },
                 { label: 'Đơn vị', name: 'zxdw', width: 40, align: 'left' },
                 { label: 'Hệ số', name: 'zhyz', width: 40, align: 'center' },
                 { label: 'Số lô', name: 'ph', width: 100, align: 'center' },
@@ -261,7 +261,7 @@
                 },
                 { label: 'Phiên âm', name: 'py', width: 120, align: 'left' },
                 { label: 'pdmxId', name: 'pdmxId', hidden: true },
-                { label: 'Vật tưID', name: 'productId', hidden: true }
+                { label: 'Vật tư ID', name: 'productId', hidden: true }
             ],
             multiselect: false,
             pager: "#gridPager",
@@ -285,9 +285,9 @@
                 { label: 'Tên vật tư', name: 'wzmc', width: 120, align: 'left' },
                 { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
                 { label: 'Số lượng lý thuyết', name: 'llsl', width: 80, align: 'right' },
-                { label: '(Thực)Số khoa', name: 'deptSjsl', width: 70, align: 'right', editable: true, editwidth: "90%" },
+                { label: '(Thực tế) Số khoa phòng', name: 'deptSjsl', width: 70, align: 'right', editable: true, editwidth: "90%" },
                 { label: 'Đơn vị', name: 'deptdw', width: 40, align: 'left' },
-                { label: '(Thực)Số nhỏ nhất', name: 'minSjsl', width: 70, align: 'right', editable: true, editwidth: "90%" },
+                { label: '(Thực tế) Số nhỏ nhất', name: 'minSjsl', width: 70, align: 'right', editable: true, editwidth: "90%" },
                 { label: 'Đơn vị', name: 'zxdw', width: 40, align: 'left' },
                 { label: 'Hệ số', name: 'zhyz', width: 40, align: 'center' },
                 {
@@ -309,7 +309,7 @@
                     }
                 },
                 { label: 'Phiên âm', name: 'py', width: 120, align: 'left' },
-                { label: 'Vật tưID', name: 'productId', hidden: true }
+                { label: 'Vật tư ID', name: 'productId', hidden: true }
             ],
             multiselect: false,
             pager: "#gridPagerNoPc",
@@ -387,7 +387,7 @@
                 (rowData.deptSjsl < 0 && rowData.minSjsl < 0) ||
                 (isNaN(rowData.deptSjsl) && isNaN(rowData.minSjsl)) ||
                 (rowData.deptSjsl === "" && rowData.minSjsl === "")) {
-                $.modalAlert("Hạng mục(" + rowData.ypmc + ")Số lượng thực tếPhải là số tự nhiên,Vui lòng xác nhận.", "warning");
+                $.modalAlert("Hạng mục(" + rowData.ypmc + ") Số lượng thực tế phải là số tự nhiên, vui lòng xác nhận.", "warning");
                 EnableInlineEditBox($targetJqg);//Bật khung chỉnh sửa trong dòng
                 return false;
             }
@@ -415,7 +415,7 @@
         }
 
         if (resultObjArr.length === 0) {
-            $.modalAlert("Không có nhu cầuLưudữ liệu", 'warning');
+            $.modalAlert("Không có dữ liệu cần lưu", 'warning');
             $("#btn_search").trigger("click");
             $.UpdateProgressbar.update(2);
             return false;
@@ -459,7 +459,7 @@
             dataType: "json",
             data: { pdId: $("#ddlRQ option:selected").val() },
             success: function (ajaxresp) {
-                $.modalMsg("HủyThành công", 'success', 1500);
+                $.modalMsg("Hủy thành công", 'success', 1500);
                 GetPdsj();
                 $("#btn_search").trigger("click");
             }
@@ -469,7 +469,7 @@
     //Kết thúc kiểm kê
     function newtouch_event_f3() {
         if ($("#autoCarryDown").is(":checked")) {
-            $.modalConfirm("Xác nhậnTự động tạoKết chuyển?",
+            $.modalConfirm("Xác nhận tự động tạo kết chuyển?",
                 function (flag) {
                     if (flag) {
                         InventorySubmit();

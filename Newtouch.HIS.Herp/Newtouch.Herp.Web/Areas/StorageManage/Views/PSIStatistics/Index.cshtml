@@ -148,10 +148,10 @@
                 { label: 'Loại', name: 'lbmc', width: 120, align: 'left' },
                 { label: 'Tên vật tư', name: 'wzmc', width: 120, align: 'left' },
                 { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
-                { label: 'GiáĐơn vị', name: 'bmdwmc', width: 60, align: 'center' },
-                { label: 'Đầu kỳSố lượng', name: 'qcsl', width: 80, align: 'right' },
+                { label: 'Giá đơn vị', name: 'bmdwmc', width: 60, align: 'center' },
+                { label: 'Đầu kỳ số lượng', name: 'qcsl', width: 80, align: 'right' },
                 {
-                    label: 'Đầu kỳTổng bán lẻ', name: 'qclsze', hidden: true,
+                    label: 'Đầu kỳ tổng bán lẻ', name: 'qclsze', hidden: true,
                     formatter: function (val) {
                         return val.toFixed(2);
                     }
@@ -177,15 +177,15 @@
                         return val.toFixed(2);
                     }
                 },
-                { label: 'Cuối kỳSố lượng', name: 'qmsl', width: 90, align: 'right' },
+                { label: 'Cuối kỳ số lượng', name: 'qmsl', width: 90, align: 'right' },
                 {
-                    label: 'Cuối kỳTổng bán lẻ', name: 'qmlsze', hidden: true,
+                    label: 'Cuối kỳ tổng bán lẻ', name: 'qmlsze', hidden: true,
                     formatter: function (val) {
                         return val.toFixed(2);
                     }
                 },
                 {
-                    label: 'Điều chỉnh giáTổng lãi lỗ', name: 'tjsyze', width: 100, align: 'right',
+                    label: 'Điều chỉnh giá tổng lãi lỗ', name: 'tjsyze', width: 100, align: 'right',
                     formatter: function (val) {
                         return val.toFixed(2);
                     }
@@ -204,7 +204,7 @@
         //Thống kê
         $("#btn_search").click(function () {
             if ($("#ddlKSSJ").val() >= $("#ddlJSSJ").val() && $("#ddlJSSJ").val() !== "") {
-                $.modalAlert("Kết thúcKết chuyểnThời gian cầnLớntại kỳ sổ sách bắt đầu", 'warning');
+                $.modalAlert("Thời gian kết thúc kết chuyển phải lớn hơn kỳ sổ bắt đầu", 'warning');
                 return;
             }
             //Xóa trắngGrid
