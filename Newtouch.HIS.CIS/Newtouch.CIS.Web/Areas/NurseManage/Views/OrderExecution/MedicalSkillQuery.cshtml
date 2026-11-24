@@ -19,7 +19,7 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle" id="thshrq">Thực hiệnThời gian:</th>
+                <th class="formTitle" id="thshrq">Thời gian thực hiện:</th>
                 <td class="formValue" colspan="2">
                     <input id="txtkssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 42%; float: left;" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     <span style="margin-left: 2%; float: left;">—</span>
@@ -137,7 +137,7 @@
                 { label: 'Lập phiếuKhoa', name: 'kdksmc', width: 100, align: 'center' },
                 { label: 'Lập phiếuBác sĩ', name: 'kdysmc', width: 100, align: 'center' },
                 { label: 'Người thực hiện', name: 'zxr', width: 80, align: 'center' },
-                { label: 'Thực hiệnThời gian', name: 'zxrq', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Thời gian thực hiện', name: 'zxrq', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
                 { label: 'Khoa thực hiện', name: 'zxksmc', width: 100, align: 'center' },
             ],
             onSelectRow: function (rowIndex, s) {

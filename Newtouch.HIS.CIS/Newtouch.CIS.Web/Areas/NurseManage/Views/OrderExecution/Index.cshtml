@@ -61,7 +61,7 @@
                                        onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
                                        onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("dd/MM/yyyy ")" />
                             </td>
-                            <td class="formTitle">Thực hiệnThời gian:</td>
+                            <td class="formTitle">Thời gian thực hiện:</td>
                             <td class="formValue" style="width:120px">
                                 <input id="txt_yzxsj" type="text" class="form-control input-wdatepicker" style="width:70%; height:35%; float:left;"
                                        onclick="WdatePicker({ dateFmt: 'HH:mm:ss' })"
@@ -363,7 +363,7 @@
                 { label: 'Mục thu phíĐơn giá', name: 'dj', align: 'center', width: 100, hidden: true },
                 { label: 'Y lệnh', name: 'yzmc', align: 'left', width: 300 },
                 { label: 'Thời gian bắt đầu', name: 'kssj', align: 'center', width: 110, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: 'Cuối cùngThực hiệnThời gian', name: 'zxsj', align: 'center', width: 110, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Thời gian thực hiện lần cuối', name: 'zxsj', align: 'center', width: 110, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
                 { label: 'Dừng/Hủy bỏThời gian', name: 'tzsj', align: 'center', width: 110, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
                 {
                      label: 'ThuốcNguồn', name: 'yply', align: 'center', width: 50, formatter: function (val) {

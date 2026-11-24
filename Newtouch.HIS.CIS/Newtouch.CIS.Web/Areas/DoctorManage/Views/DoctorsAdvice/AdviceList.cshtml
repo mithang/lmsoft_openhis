@@ -259,7 +259,7 @@
                 { label: 'Tần suất', name: 'yzpcmc', align: 'center', width: 30 },
 				{ label: 'Cùng nhóm', name: 'zh', align: 'center', width: 30 },
 				{
-					label: 'DừngThời gian', name: 'tzsj', align: 'center', width: 110, formatter: "date",
+					label: 'Thời gian dừng', name: 'tzsj', align: 'center', width: 110, formatter: "date",
 					formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
 				},
 				{ label: 'DừngBác sĩ', name: 'tzr', align: 'center', width: 50 },
@@ -290,7 +290,7 @@
                 { label: 'ThuốcNguồn', name: 'yply', align: 'center', width: 50,formatter:function(val){
                     return $.enum.getDescByValue("EnumYply", val);
                 }},
-                { label: 'Cuối cùng<br/>Thực hiệnThời gian', name: 'zxsj', align: 'center', width: 110, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }  },
+                { label: 'Cuối cùng<br/>Thời gian thực hiện', name: 'zxsj', align: 'center', width: 110, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }  },
                 {
                     label: 'Trạng thái', name: 'yzzt', align: 'center', width: 30, formatter: function (val, options, rowObject) {
                         if (rowObject["yzzt"] ==@Html.Raw(((int)EnumYzzt.DC).ToString())) {//DCTrạng thái
