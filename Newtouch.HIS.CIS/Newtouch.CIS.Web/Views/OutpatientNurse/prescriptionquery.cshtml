@@ -257,7 +257,7 @@
                     var len = 0;
                     var rowData = $("#gridList").jqGrid('getRowData', rowIndex);
                     var ids = $("#gridList").jqGrid('getRowData_AllLine');
-                    if (rowData.cfh == '总计') {
+                    if (rowData.cfh == 'Tổng cộng') {
                         $("#gridList").jqGrid("setSelection", rowIndex, false);
                         checkTrigger = false;
                         return;
@@ -348,7 +348,7 @@
                     }
                     // }
             }
-            if (rowData.cfh!="总计")  
+            if (rowData.cfh!="Tổng cộng")  
                 mzh = rowData.mzh; 
         }
         //console.log(listarry);
