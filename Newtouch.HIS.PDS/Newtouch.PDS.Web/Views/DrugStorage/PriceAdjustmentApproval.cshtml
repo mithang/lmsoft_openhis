@@ -181,7 +181,7 @@
         var ids = $("#gridXSHYPInfoList").getDataIDs();
         for (var i = 0; i < ids.length; i++) {
             var rowData = $("#gridXSHYPInfoList").getRowData(ids[i]);
-            if (rowData.Isgq === "已过期") {
+            if (rowData.Isgq === "Đã hết hạn") {
                 $("#" + ids[i]).find("td").css("background-color", "#EECBAD");
             }
         }
@@ -215,7 +215,7 @@
         }
         var ypCodeStr = "";
         for (var i = 0; i < rowsDataArray.length; i++) {
-            if (rowsDataArray[i].Isgq === '已过期' && operationType=="4") {
+            if (rowsDataArray[i].Isgq === 'Đã hết hạn' && operationType=="4") {
                 $.modalAlert(rowsDataArray[i].ypCode + " Đã hết hạn, Thời gian thực hiện phải lớn hơn thời gian hiện tại", 'warning');
                 return;
             }
