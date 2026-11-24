@@ -186,7 +186,7 @@
       //Nhấn hoàn phí để trả về kết quả hoàn phí
     function newtouch_event_f8() {
         if (checkTSL()) {
-                $.modalConfirm("Bạn có chắc muốn hoàn phí không??", function (flag) {
+                $.modalConfirm("Bạn có chắc muốn hoàn phí không?", function (flag) {
                     if (flag) {
                         $.loading(true, "Đang yêu cầu dữ liệu...");
                         $.najax({
