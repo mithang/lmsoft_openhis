@@ -459,7 +459,7 @@
     function gridDeleteRow(rowid) {
         var rowData = $("#gridList").jqGrid('getRowData', rowid);
         $.deleteForm({
-            prompt: "Chú ý: Bạn có chắc muốn hủy【" + "Số nhập viện:" + rowData.zyh + "<br/>Thời gian:" + rowData.rq+ "】dữ liệu này không??",
+            prompt: "Chú ý: Bạn có chắc muốn hủy【" + "Số nhập viện:" + rowData.zyh + "<br/>Thời gian:" + rowData.rq+ "】dữ liệu này không?",
             url: "/MedicalRecordManage/NursingRecord/DeleteForm",
             param: { keyValue: rowData.Id },
             success: function () {

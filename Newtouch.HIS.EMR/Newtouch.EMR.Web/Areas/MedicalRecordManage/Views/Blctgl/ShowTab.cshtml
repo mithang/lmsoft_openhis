@@ -199,7 +199,7 @@
         var PartCTID = $("#ctglDiv").find(".bbit-tree-selected").find(".bbit-tree-node-text").attr("data-id");
         var Isparent = $("#ctglDiv").find(".bbit-tree-selected").find(".bbit-tree-node-text").attr("data-value");
         if (PartCTID == null ||Isparent!= "parent") {
-            $.modalConfirm("Hiện chưa chọn thư mục, Có tạo thư mục không??",
+            $.modalConfirm("Hiện chưa chọn thư mục, Có tạo thư mục không?",
                     function (flag) {
                         if (flag) {
                             $.modalOpen({
@@ -276,7 +276,7 @@
             $.modalMsg("Vui lòng chọn từ cần xóa", 'warning');
             return;
         }
-        $.modalConfirm("Bạn có chắc chắn muốn xóa không??",
+        $.modalConfirm("Bạn có chắc chắn muốn xóa không?",
             function (flag) {
                 if (flag) {
                     $.najax({
