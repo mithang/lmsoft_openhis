@@ -31,7 +31,7 @@
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">Lịch sửKết chuyển:</th>
+                    <th class="formTitle">Lịch sử kết chuyển:</th>
                     <td class="formValue">
                         <select id="lsjz" class="form-control"></select>
                     </td>
@@ -94,7 +94,7 @@
             success: function (ajaxresp) {
                 if (ajaxresp != null) {
                     if (ajaxresp.state === "success") {
-                        var alertMmsg = ajaxresp.data == null || ajaxresp.data === "" ? "Bạn có chắc muốn kết chuyển?" : "Gần nhấtKết chuyểnThời gian là:" + ajaxresp.data + " ,Bạn có chắc muốn kết chuyển?";
+                        var alertMmsg = ajaxresp.data == null || ajaxresp.data === "" ? "Bạn có chắc muốn kết chuyển?" : "Gần nhất kết chuyển thời gian là: " + ajaxresp.data + ", bạn có chắc muốn kết chuyển?";
                         $.modalConfirm(alertMmsg,
                             function (flag) {
                                 if (flag) {
@@ -105,7 +105,7 @@
                                         dataType: "json",
                                         success: function (ajaxresp) {
                                             if (ajaxresp.state === "success") {
-                                                $.modalMsg("Kết chuyểnThành công", 'success', 1500);
+                                                $.modalMsg("Kết chuyển thành công", 'success', 1500);
                                                 GetlsjzSel();//Làm mớiKết chuyểnThời gian
                                                 $("#btn_search").trigger("click");
                                             }
@@ -124,7 +124,7 @@
                         $.modalAlert(ajaxresp.message, "error");
                     }
                 } else {
-                    $.modalAlert("Lấy lần trướcKết chuyểnThời gianThất bại", "error");
+                    $.modalAlert("Lấy lần trước kết chuyển thời gian thất bại", "error");
                 }
             }
         });
@@ -142,7 +142,7 @@
             colModel: [
                 { label: 'Tên vật tư', name: 'wzmc', width: 120, align: 'left' },
                 { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
-                { label: 'Kết chuyểnSố lượng', name: 'jzsl', width: 60, align: 'left' },
+                { label: 'Kết chuyển số lượng', name: 'jzsl', width: 60, align: 'left' },
                 { label: 'Lô', name: 'pc', width: 120, align: 'left' },
                 { label: 'Số lô', name: 'ph', width: 110, align: 'left' },
                 {
@@ -160,7 +160,7 @@
                 },
                 { label: 'Nhà sản xuất', name: 'supplierName', width: 120, align: 'left' },
                 { label: 'Thời gian tạo', name: 'CreateTime', width: 50, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
-                { label: 'Kết chuyểnTồn khoSố lượng', name: 'kcsl', hidden: true },
+                { label: 'Kết chuyển tồn kho số lượng', name: 'kcsl', hidden: true },
                 { label: 'productId', name: 'productId', hidden: true }
             ],
             multiselect: false,
