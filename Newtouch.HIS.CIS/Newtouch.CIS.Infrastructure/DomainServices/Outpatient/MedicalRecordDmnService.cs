@@ -1200,7 +1200,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
             if (apiRespPush == null || apiRespPush.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
                 //ghingàychí
-                AppLogger.Instance.Warn(string.Format("Đẩy giao diện hủy đơn thuốc thất bại, Khám bệnhId：" + jzId + "Thời gian đẩy" + DateTime.Now));
+                AppLogger.Instance.Warn(string.Format("Đẩy giao diện hủy đơn thuốc thất bại, Khám bệnhId:" + jzId + "Thời gian đẩy" + DateTime.Now));
             }
         }
 
@@ -1235,7 +1235,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                 var apiResp1 = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Patient/OutPatientUpdateConsultationStatus", reqObj1);
                 if (apiResp1 == null || apiResp1.code != APIRequestHelper.ResponseResultCode.SUCCESS)
                 {
-                    AppLogger.Instance.Warn(string.Format("đẩyKhám bệnhTrạng tháithất bại, Số khám ngoại trú：" + jzObject.mzh + "Thời gian đẩy" + DateTime.Now));//ghingàychís
+                    AppLogger.Instance.Warn(string.Format("đẩyKhám bệnhTrạng tháithất bại, Số khám ngoại trú:" + jzObject.mzh + "Thời gian đẩy" + DateTime.Now));//ghingàychís
                 }
 
                 //2.2 đẩychínhChẩn đoán
@@ -1261,7 +1261,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                     var apiResp = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Patient/OutPatientUpdateDiagnosis", reqObj);
                     if (apiResp == null || apiResp.code != APIRequestHelper.ResponseResultCode.SUCCESS)
                     {
-                        AppLogger.Instance.Warn(string.Format("đẩyChẩn đoánthất bại, Số khám ngoại trú：" + jzObject.mzh + "Thời gian đẩy" + DateTime.Now));//ghingàychí
+                        AppLogger.Instance.Warn(string.Format("đẩyChẩn đoánthất bại, Số khám ngoại trú:" + jzObject.mzh + "Thời gian đẩy" + DateTime.Now));//ghingàychí
                     }
                 }
             }
@@ -1412,7 +1412,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
             if (!pushSucceeded)
             {
                 pushResult = false;
-                AppLogger.Instance.Warn(string.Format("đẩyĐơn thuốcthất bại, Số khám ngoại trú：" + reqPush.mzh + "Đơn thuốcId：" + cfId + "Thời gian đẩy" + DateTime.Now));//ghingàychí
+                AppLogger.Instance.Warn(string.Format("đẩyĐơn thuốcthất bại, Số khám ngoại trú:" + reqPush.mzh + "Đơn thuốcId:" + cfId + "Thời gian đẩy" + DateTime.Now));//ghingàychí
             }
             else
             {
@@ -1886,7 +1886,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
             if (apiRespPush == null || apiRespPush.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
                 //ghingàychí
-                AppLogger.Instance.Warn(string.Format("Đẩy giao diện hủy đơn thuốc thất bại, chId：" + cfId + "Thời gian đẩy" + DateTime.Now));
+                AppLogger.Instance.Warn(string.Format("Đẩy giao diện hủy đơn thuốc thất bại, chId:" + cfId + "Thời gian đẩy" + DateTime.Now));
             }
         }
 
@@ -1923,7 +1923,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
             if (apiRespPush == null || apiRespPush.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
                 //ghingàychí
-                AppLogger.Instance.Warn(string.Format("đẩyPDSHủy đơn thuốcgiao diệnthất bại, chId：" + cfId + "Thời gian đẩy" + DateTime.Now));
+                AppLogger.Instance.Warn(string.Format("đẩyPDSHủy đơn thuốcgiao diệnthất bại, chId:" + cfId + "Thời gian đẩy" + DateTime.Now));
             }
         }
 
@@ -2530,7 +2530,7 @@ WHERE   b.mzh = @mzh
                 //     </BGESBResult>
                 //    </BGESBEnvelope>";
 
-                AppLogger.Info("ESBLISQ002=>[BGESBResult]：" + sReturn);
+                AppLogger.Info("ESBLISQ002=>[BGESBResult]:" + sReturn);
                 if (sReturn.ToLower().Contains("return='1'"))
                 {
                     //StringReader sr = new StringReader(sReturn);

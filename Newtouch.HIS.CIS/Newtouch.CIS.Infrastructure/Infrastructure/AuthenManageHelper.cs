@@ -171,7 +171,7 @@ namespace Newtouch.Infrastructure
         {
             if (string.IsNullOrWhiteSpace(accessAppId))
             {
-                throw new FailedException("[Xác thực]chưa đọc lấy đến giao diện AppId cấu hình（Token_ApiManage）thông tin");
+                throw new FailedException("[Xác thực]chưa đọc lấy đến giao diện AppId cấu hình(Token_ApiManage)thông tin");
             }
             if (string.IsNullOrWhiteSpace(userCacheToken))
             {
