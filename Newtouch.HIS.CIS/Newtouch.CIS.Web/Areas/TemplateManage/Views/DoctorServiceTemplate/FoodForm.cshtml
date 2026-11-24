@@ -23,7 +23,7 @@
     <form id="form1">
         <table class="form" style="margin-top:10px;">
             <tr>
-                <th class="formTitle"><span class="required">*</span>MẫuTên: </th>
+                <th class="formTitle"><span class="required">*</span>Tên mẫu: </th>
                 <td class="formValue">
                     <input id="mbmc" name="mbmc" type="text" class="form-control required" />
                 </td>
@@ -398,7 +398,7 @@
         //if (Validatessyz()) {//kiểm traDữ liệu
         var mbmc = $('#mbmc').val();
         if (mbmc == "" && isNaN(mbmc)) {
-            $.modalAlert("ThiếuMẫuTên", "warning");
+            $.modalAlert("Thiếu tên mẫu", "warning");
             return false;
         }
             //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
