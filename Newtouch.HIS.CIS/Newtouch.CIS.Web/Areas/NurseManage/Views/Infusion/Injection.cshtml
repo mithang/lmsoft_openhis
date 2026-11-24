@@ -229,7 +229,7 @@
                 var ids = $("#gridRpList").jqGrid('getDataIDs');
                 for (var i = 0; i < ids.length; i++) {
                     var rowData = $("#gridRpList").jqGrid('getRowData', ids[i]);
-                    if (rowData.islgbz == "是") {
+                    if (rowData.islgbz == "Có") {
                         $('#gridRpList tr[id="' + ids[i] + '"]').addClass('red');
                     }
                 }
@@ -294,10 +294,10 @@
         if (selRowIds == null || selRowIds.length === 0) return;
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#gridRpList").jqGrid('getRowData', selRowIds[i]);
-            if (rowData.ispsbz == "是" && rowData.psjg == "Dương tính") {
+            if (rowData.ispsbz == "Có" && rowData.psjg == "Dương tính") {
                 validpsMsg = "Số đơn thuốc:" + rowData.cfh + "kết quả test da là dương tính";
             }
-            if (rowData.ispsbz == "是" && rowData.psjg=="") {
+            if (rowData.ispsbz == "Có" && rowData.psjg=="") {
                 validpsMsg = "Số đơn thuốc:" + rowData.cfh + "Chưa làm test da";
             }
             //if (rowData.islgbz == "Có") {
@@ -340,7 +340,7 @@
                 }
             }
             cfh = rowData.cfh;
-            if (rowData.islgbz != "是") {
+            if (rowData.islgbz != "Có") {
                 $.modalMsg("Chỉ đơn thuốc đang theo dõi mới có thể tiến hành đăng ký theo dõi", "warning");
                 return;
             }
