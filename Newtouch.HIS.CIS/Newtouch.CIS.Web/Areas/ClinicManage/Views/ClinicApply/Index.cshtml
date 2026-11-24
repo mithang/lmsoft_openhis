@@ -181,12 +181,12 @@
                                 + "<a class='btn btn-default' onclick='back(\"" + row.Id + "\")'>Trả lại</a>"
                         }
                         else if (row.sqzt == 2 ) {//Đang khám bệnh 
-                            return "<a class='btn btn-default' onclick='detail(\"" + row.Id + "\")'>XemChi tiết</a>"
-                                + "<a class='btn btn-default' onclick='enterMeeting(\"" + row.Id + "\")'>Bắt đầuKhám chữa bệnh</a>"
+                            return "<a class='btn btn-default' onclick='detail(\"" + row.Id + "\")'>Xem Chi tiết</a>"
+                                + "<a class='btn btn-default' onclick='enterMeeting(\"" + row.Id + "\")'>Bắt đầu Khám chữa bệnh</a>"
                                 + "<a class='btn btn-default' onclick='closeMeeting(\"" + row.Id + "\")'>Đóng cuộc họp</a>"
                         }   
                         else if (row.sqzt == 3) {//Đã kết thúc
-                            return "<a class='btn btn-default' onclick='detail(\"" + row.Id + "\")'>XemChi tiết</a>"
+                            return "<a class='btn btn-default' onclick='detail(\"" + row.Id + "\")'>Xem Chi tiết</a>"
                                 + "<a class='btn btn-default' onclick='closeMeeting(\"" + row.Id + "\")'>Đóng cuộc họp</a>";
                         }
 
@@ -196,7 +196,7 @@
                 },
                 { label: 'Số thẻ', name: 'kh', width: 120, align: 'center', hidden: true },
                 { label: 'Số cuộc họp', name: 'mettingId', width: 120, align: 'center', hidden: true },
-                { label: 'Đề nghịSố thứ tự', name: 'sqlsh', width: 120, align: 'center', hidden: true },
+                { label: 'Đề nghị Số thứ tự', name: 'sqlsh', width: 120, align: 'center', hidden: true },
 
             ],
             pager: "#gridPager",
@@ -418,7 +418,7 @@
                     var resp = JSON.parse(ajaxresp.data);
                     if (!!resp) {
                         $('#zcfsj').text(resp.zcfsj);
-                        $("#zcfsj").attr("title", "Mục thu phíChi tiết:" + resp.zcfsfxm);
+                        $("#zcfsj").attr("title", "Mục thu phí Chi tiết:" + resp.zcfsfxm);
                     }
 
                 }
