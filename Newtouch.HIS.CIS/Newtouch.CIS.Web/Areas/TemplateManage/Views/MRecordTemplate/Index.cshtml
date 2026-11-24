@@ -142,15 +142,15 @@
                         <td>
                             &nbsp;&nbsp;&nbsp;
                             <i class="fa fa-minus-circle fa-lg" id="btn_Remove" style="cursor:pointer;" onclick="btn_removeItem()"></i>
-                            Đơn thuốcLoại: 
+                            Loại đơn thuốc: 
                             <select id="cflx" class="vitalsignschange">
                                 <option value="0">=Vui lòng chọn=</option>
-                                <option value="1"> Thuốc TâyĐơn thuốc</option>
-                                <option value="2"> Thuốc YHCTĐơn thuốc</option>
-                                <option value="3"> Phục hồi chức năngĐơn thuốc</option>
-                                <option value="6"> Thường quyMụcĐơn thuốc</option>
-                                <option value="4"> Xét nghiệmĐơn thuốc</option>
-                                <option value="5"> Kiểm traĐơn thuốc</option>
+                                <option value="1"> Đơn thuốc Tây y</option>
+                                <option value="2"> Đơn thuốc Đông y</option>
+                                <option value="3"> Đơn thuốc phục hồi chức năng</option>
+                                <option value="6"> Đơn thuốc hạng mục thông thường</option>
+                                <option value="4"> Đơn thuốc xét nghiệm</option>
+                                <option value="5"> Đơn thuốc kiểm tra</option>
                             </select>
                         </td>
                         <td ></td>
@@ -430,18 +430,18 @@
                 { label: 'cfmbId', name: 'mbId', hidden: true },
                 { label: 'Tên mẫu', name: 'mbmc', widthratio: 30 },
                 {
-                    label: 'Đơn thuốcLoại',
+                    label: 'Loại đơn thuốc',
                     name: 'cflx',
                     widthratio: 20,
                     formatter: function(value, options, row) {
                         // sẽsốchữGiá trịchuyểnđổilàHánchữ
                         const prescriptionTypes = {
-                            1: "Thuốc TâyĐơn thuốc",
-                            2: "Thuốc YHCTĐơn thuốc",
-                            4: "Xét nghiệmĐơn thuốc",
-                            5: "Kiểm traĐơn thuốc",
-                            3: "Phục hồi chức năngĐơn thuốc",
-                            6: "Thường quyMụcĐơn thuốc",
+                            1: "Đơn thuốc Tây y",
+                            2: "Đơn thuốc Đông y",
+                            4: "Đơn thuốc xét nghiệm",
+                            5: "Đơn thuốc kiểm tra",
+                            3: "Đơn thuốc phục hồi chức năng",
+                            6: "Đơn thuốc hạng mục thông thường",
                         };
                         return prescriptionTypes[value] || "Loại không rõ"; // Mặc địnhGiá trịlà "Không xác địnhLoại"
                     }
@@ -487,18 +487,18 @@
             colModel: [
                 { label: 'mbId', name: 'mbId', width: 120, hidden: true, align: 'left' },
                 { label: 'Tên mẫu', name: 'mbmc', width: 200, align: 'left'  },  // gọichỉnhrộngđộ
-                { label: 'Đơn thuốcLoại', name: 'cflx', width: 120, align: 'left',
+                { label: 'Loại đơn thuốc', name: 'cflx', width: 120, align: 'left',
                     formatter: function(value, options, row) {
                         debugger;
                             // VDnếuGiá trịCósốchữ,thìchuyểnđổilàHánchữ
                             if (typeof value === 'number' || Number.isInteger(value)) {
                                 const prescriptionTypes = {
-                                    1: "Thuốc TâyĐơn thuốc",
-                                    2: "Thuốc YHCTĐơn thuốc",
-                                    4: "Xét nghiệmĐơn thuốc",
-                                    5: "Kiểm traĐơn thuốc",
-                                    3: "Phục hồi chức năngĐơn thuốc",
-                                    6: "Thường quyMụcĐơn thuốc",
+                                    1: "Đơn thuốc Tây y",
+                                    2: "Đơn thuốc Đông y",
+                                    4: "Đơn thuốc xét nghiệm",
+                                    5: "Đơn thuốc kiểm tra",
+                                    3: "Đơn thuốc phục hồi chức năng",
+                                    6: "Đơn thuốc hạng mục thông thường",
                                 };
                                 return prescriptionTypes[value] || "Loại không rõ";
                             }
@@ -583,12 +583,12 @@
         var mbztlist = $("#groupPackageListGridList").jqGrid('getRowData_AllLine', null, true);
         debugger;
         const prescriptionTypes = {
-            "Thuốc TâyĐơn thuốc": 1,
-            "Thuốc YHCTĐơn thuốc": 2,
-            "Xét nghiệmĐơn thuốc": 4,
-            "Kiểm traĐơn thuốc": 5,
-            "Phục hồi chức năngĐơn thuốc": 3,
-            "Thường quyMụcĐơn thuốc": 6,
+            "Đơn thuốc Tây y": 1,
+            "Đơn thuốc Đông y": 2,
+            "Đơn thuốc xét nghiệm": 4,
+            "Đơn thuốc kiểm tra": 5,
+            "Đơn thuốc phục hồi chức năng": 3,
+            "Đơn thuốc hạng mục thông thường": 6,
         };
 
         for (var i = 0; i < mbztlist.length; i++) {

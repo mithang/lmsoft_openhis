@@ -104,19 +104,19 @@
                                onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("dd/MM/yyyy 23:59:59")" />
                     </td>*@
                 <td class="formTitle">
-                    Thực hiệnLoại:
+                    Loại thực hiện:
                 </td>
                 <td class="formValue" colspan="2">
                     <select class="form-control" id="cfdlb">
                         <option value="">Vui lòng chọn</option>
-                        <option value="xycf">Thuốc TâyĐơn thuốc</option>
-                        <option value="zycf">Thuốc YHCTĐơn thuốc</option>
-                        <option value="jycf">Xét nghiệmĐơn thuốc</option>
-                        <option value="jccf">Kiểm traĐơn thuốc</option>
-                        <option value="zscf">TiêmĐơn thuốc</option>
+                        <option value="xycf">Phiếu đơn thuốc Tây y</option>
+                        <option value="zycf">Phiếu đơn thuốc Đông y</option>
+                        <option value="jycf">Phiếu đơn thuốc xét nghiệm</option>
+                        <option value="jccf">Phiếu đơn thuốc kiểm tra</option>
+                        <option value="zscf">Phiếu đơn thuốc tiêm</option>
                         @*<option value="sycf">truyền dịchĐơn thuốc</option>*@
-                        <option value="kfcf">Phục hồi chức năngĐơn thuốc</option>
-                        <option value="cgcf">Thường quyĐơn thuốc</option>
+                        <option value="kfcf">Phiếu đơn thuốc phục hồi chức năng</option>
+                        <option value="cgcf">Phiếu đơn thuốc thông thường</option>
                     </select>
 
                 </td>
@@ -243,7 +243,7 @@
                 { label: 'Cách dùng', name: 'ypyfmc', align: 'center', width: 60 },
                 { label: 'ypcode', name: 'ypcode', align: 'center', hidden: true },
                 { label: 'KêBác sĩ', name: 'ysmc', align: 'center', width: 60 },
-                { label: 'Đơn thuốcLoại', name: 'cflx', align: 'center', width: 60, formatter: function (val) { return val == 1 ? "Thuốc TâyĐơn thuốc" : val == 2 ? "Thuốc YHCTĐơn thuốc" : val == 3 ? "Phục hồi chức năngĐơn thuốc" : val == 4 ? "Xét nghiệmĐơn thuốc" : val == 5 ? "Kiểm traĐơn thuốc" : val == 6 ?"Thường quyĐơn thuốc":"" }},
+                { label: 'Loại đơn thuốc', name: 'cflx', align: 'center', width: 60, formatter: function (val) { return val == 1 ? "Đơn thuốc Tây y" : val == 2 ? "Đơn thuốc Đông y" : val == 3 ? "Đơn thuốc phục hồi chức năng" : val == 4 ? "Đơn thuốc xét nghiệm" : val == 5 ? "Đơn thuốc kiểm tra" : val == 6 ?"Đơn thuốc thông thường":"" }},
                 { label: 'ypyfdm', name: 'yfcode', align: 'center', hidden: true },
                 { label: 'barcode', name: 'barcode', align: 'center', hidden: true }
             ],
@@ -332,7 +332,7 @@
         }
 
         if (!cfdlb) {
-            $.modalAlert("Vui lòng chọn trướcĐơn thuốcLoại", 'warning');
+            $.modalAlert("Vui lòng chọn trước loại phiếu đơn thuốc", 'warning');
             return;
         }
         var listarry = new Array();
