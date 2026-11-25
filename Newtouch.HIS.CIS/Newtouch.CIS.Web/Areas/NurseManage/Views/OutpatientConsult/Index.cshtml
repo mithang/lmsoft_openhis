@@ -100,7 +100,7 @@
             postData: { ksCode: $("#ksCode").val(),keyword: $("#txt_keyword").val(), ghrq: new Date().format('dd/MM/yyyy')},
             colModel: [
                 { label: 'Id', name: 'ghzsId', hidden: true, },
-                { label: 'Đăng ký khámMã nội bộ', name: 'ghnm', hidden: true, },
+                { label: 'Đăng ký khám Mã nội bộ', name: 'ghnm', hidden: true, },
                 @*{
                     label: 'Thao táckhu', name: 'action', width: 40, align: 'center', formatter: function (cellvalue, op, row) {
                         if (row.ghzsId==0) {
@@ -119,12 +119,12 @@
                 },*@
                 { label: 'Số thứ tự', name: 'jzxh', width: 30, align: 'center' },
                 { label: 'Họ tên bệnh nhân', name: 'xm', width: 60, align: 'left'},
-                { label: 'Đăng ký khámThời gian', name: 'ghrq', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
+                { label: 'Đăng ký khám Thời gian', name: 'ghrq', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
                 { label: 'Khoa', name: 'ksmc', width: 80, },
                 { label: 'Mã khoa', name: 'ksCode', hidden: true, },
                 { label: 'Bác sĩ', name: 'ysmc', width: 50,   },
                 { label: 'Phòng khám', name: 'zsmc', width: 80, },
-                { label: 'Phòng khámMã', name: 'zsCode', hidden: true, },
+                { label: 'Phòng khám Mã', name: 'zsCode', hidden: true, },
             ],
             pager: "#gridPager",
             sortname: 'ghrq asc',
@@ -181,7 +181,7 @@
             colModel: [
 
                 { label: 'Id', name: 'ghzsId', hidden: true, },
-                { label: 'Đăng ký khámMã nội bộ', name: 'ghnm', hidden: true, },
+                { label: 'Đăng ký khám Mã nội bộ', name: 'ghnm', hidden: true, },
                 {
                     label: 'Khu thao tác', name: 'action', width: 40, align: 'center', formatter: function (cellvalue, op, row) {
                         if (row.ghzsId==0) {
@@ -200,12 +200,12 @@
                 },
                 { label: 'Số thứ tự', name: 'jzxh', width: 30, align: 'center' },
                 { label: 'Họ tên bệnh nhân', name: 'xm', width: 60, align: 'left' },
-                { label: 'Đăng ký khámThời gian', name: 'ghrq', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
+                { label: 'Đăng ký khám Thời gian', name: 'ghrq', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
 				{ label: 'Khoa', name: 'ksmc', width: 80 },
 				{ label: 'Mã khoa', name: 'ksCode', hidden: true, editwidth: '93%', editable: true },
 				{ label: 'Bác sĩ', name: 'ysmc', width: 50,  },
                 { label: 'Phòng khám', name: 'zsmc', width: 80, editwidth: '93%', editable: true },
-                { label: 'Phòng khámMã', name: 'zsCode', editwidth: '93%', editable: true, hidden: true, },
+                { label: 'Phòng khám Mã', name: 'zsCode', editwidth: '93%', editable: true, hidden: true, },
 
             ],
             pager: "#gridPagerRight",
