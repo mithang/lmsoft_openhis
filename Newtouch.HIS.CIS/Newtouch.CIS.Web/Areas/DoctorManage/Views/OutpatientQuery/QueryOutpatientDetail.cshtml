@@ -194,7 +194,7 @@
                 { label: 'Đơn vị', name: 'dw', width: 90, align: 'center' },
                 { label: 'Số tiền', name: 'je', width: 100, align: 'center' },
                 {
-                    label: 'Thu phíTrạng thái', name: 'sfbz', width: 90, align: 'left', formatter: function (val, options, rowObject) {
+                    label: 'Trạng thái thu phí', name: 'sfbz', width: 90, align: 'left', formatter: function (val, options, rowObject) {
                         if (rowObject["tbz"])
                             return "Đã hoàn phí";
                         else if (rowObject["sfbz"])
@@ -203,7 +203,7 @@
                             return "Chưa thu phí";
                     }
                 },
-                { label: 'Thu phíTrạng thái', name: 'tbz', width: 90, align: 'center',hidden:true }
+                { label: 'Trạng thái thu phí', name: 'tbz', width: 90, align: 'center',hidden:true }
             ]
         });
 
