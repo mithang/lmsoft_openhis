@@ -1179,13 +1179,13 @@
                         MZJS.msg="Dịch vụ BHYT(Quyết toán ngoại trú) Thất bại:"+ybjsSettReturn.fhxx;
                     }
                 } else {
-                    MZJS.msg="Dịch vụ BHYT(Quyết toán ngoại trú)Thông tin trả về trống";
+                    MZJS.msg="Dịch vụ BHYT(Quyết toán ngoại trú) Thông tin trả về trống";
                 }
             } else {
                 MZJS.msg="Dịch vụ BHYT(Quyết toán trước ngoại trú) Thất bại:"+ybjsSettReturn1.fhxx;
             }
         } else {
-            MZJS.msg="Dịch vụ BHYT(Quyết toán trước ngoại trú)Thông tin trả về trống";
+            MZJS.msg="Dịch vụ BHYT(Quyết toán trước ngoại trú) Thông tin trả về trống";
         }
     }
 
@@ -1297,11 +1297,11 @@
                     }
                 }
                 else{
-                    msg = "Dịch vụ BHYT【2201】(Giao diện đăng ký khám bệnh)Thông tin trả về trống";
+                    msg = "Dịch vụ BHYT【2201】(Giao diện đăng ký khám bệnh) Thông tin trả về trống";
                 }
             },
             error: function (request, error, ex) {
-                msg = "Dịch vụ BHYT【2201】(Giao diện đăng ký khám bệnh)Không thể truy cập:[" + ex + "]";
+                msg = "Dịch vụ BHYT【2201】(Giao diện đăng ký khám bệnh) Không thể truy cập:[" + ex + "]";
             }
         });
         if (!rs) {
@@ -1345,12 +1345,12 @@
                             ref=false;
                         }
                     }else {
-                        MZJS.msg=  "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA)Thông tin trả về trống";
+                        MZJS.msg=  "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA) Thông tin trả về trống";
                         ref=false;
                     }
                 },
                 error: function (request, error, ex) {
-                    MZJS.msg= "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA)Không thể truy cập:[" + ex + "]";
+                    MZJS.msg= "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA) Không thể truy cập:[" + ex + "]";
                     ref=false;
                 }
             });
@@ -1391,7 +1391,7 @@
                 success: function (data) {
                     var cfUpload = eval('(' + data + ')');
                     if (!cfUpload) {
-                        MZJS.msg="Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú)Thông tin trả về trống";
+                        MZJS.msg="Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú) Thông tin trả về trống";
                         return;
                     }
                     if (cfUpload.infcode != "0" && cfUpload.infcode != 0) {
@@ -1401,7 +1401,7 @@
                     isuccer=true;
                 },
                 error: function (request, error, ex) {
-                    MZJS.msg="Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú)Không thể truy cập:[" + ex + "]";
+                    MZJS.msg="Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú) Không thể truy cập:[" + ex + "]";
                 }
             });
         }
@@ -1482,7 +1482,7 @@
 					}
 				} else {
 				    delUploadDetail(MZJS.ghxx);
-					$.modalAlert("Dịch vụ BHYT(Quyết toán ngoại trú)Thông tin trả về trống", 'error');
+					$.modalAlert("Dịch vụ BHYT(Quyết toán ngoại trú) Thông tin trả về trống", 'error');
 				}
 			} else {
                 delUploadDetail(MZJS.ghxx);
@@ -1490,7 +1490,7 @@
 			}
 		} else {
 		    delUploadDetail(MZJS.ghxx);
-		    MZJS.msg="Dịch vụ BHYT(Quyết toán trước ngoại trú)Thông tin trả về trống";
+		    MZJS.msg="Dịch vụ BHYT(Quyết toán trước ngoại trú) Thông tin trả về trống";
 		}
     }
     function delUploadDetail(ghxx) {
@@ -1563,7 +1563,7 @@
             async: false,
             success: function (data) {
                 if (!!!data) {
-                    msg = "HISDịch vụ(Lấy số hóa đơn)Thông tin trả về trống";
+                    msg = "HISDịch vụ(Lấy số hóa đơn) Thông tin trả về trống";
                     return;
                 }
                 if (data.indexOf("{") >= 0 || data.indexOf("<") >= 0) {
@@ -1574,7 +1574,7 @@
                 fph = data;
             },
             error: function (request, error, ex) {
-                msg = "HISDịch vụ(Lấy số hóa đơn)Không thể truy cập:[" + ex + "]";
+                msg = "HISDịch vụ(Lấy số hóa đơn) Không thể truy cập:[" + ex + "]";
             }
         });
 
