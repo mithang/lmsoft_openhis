@@ -1219,7 +1219,7 @@
 	                                    if (upDataReturn.xxfhm != "P001") {
 	                                        $.loading(false);
 	                                        isuccer = false;
-	                                        $.modalAlert("Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú)Thất bại:" + upDataReturn.fhxx, 'error');
+	                                        $.modalAlert("Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú) Thất bại:" + upDataReturn.fhxx, 'error');
 	                                        return;
 	                                    }
 	                                }
@@ -1260,13 +1260,13 @@
 
 	                } else {
 	                    $.loading(false);
-	                    $.modalAlert("BHYTTải chi tiết lênThất bại", 'error');
+	                    $.modalAlert("BHYTTải chi tiết lên Thất bại", 'error');
 	                    return;
 	                }
 	            },
 	            error: function () {
 	                $.loading(false);
-	                $.modalAlert("BHYTTải chi tiết lênThất bại", 'error');
+	                $.modalAlert("BHYTTải chi tiết lên Thất bại", 'error');
 	                return;
 	            }
 	        });
@@ -1420,7 +1420,7 @@
 						        }
 					        } else {
 						        $.loading(false);
-						        $.modalAlert("Dịch vụ BHYT(Quyết toán ngoại trú)Thất bại:" +Veremg(ybjsSettReturn), 'error');
+						        $.modalAlert("Dịch vụ BHYT(Quyết toán ngoại trú) Thất bại:" +Veremg(ybjsSettReturn), 'error');
 						        return;
 					        }
 				        } else {
@@ -1430,7 +1430,7 @@
 				        }
 			        } else {
 				        $.loading(false);
-				        $.modalAlert("Dịch vụ BHYT(Quyết toán trước ngoại trú)Thất bại:"+Veremg(ybjsSettReturn1), 'error');
+				        $.modalAlert("Dịch vụ BHYT(Quyết toán trước ngoại trú) Thất bại:"+Veremg(ybjsSettReturn1), 'error');
 				        return;
 			        }
 		        } else {
@@ -1641,7 +1641,7 @@
                     });
                 }
                 else {
-                    $.modalAlert('BHYTHủy đăng ký khámThất bại, Vui lòng nhanh chóng liên hệ quản trị viên<br/>' + ybjyDenyRegReturn.ErrorMsg, 'error');
+                    $.modalAlert('BHYTHủy đăng ký khám Thất bại, Vui lòng nhanh chóng liên hệ quản trị viên<br/>' + ybjyDenyRegReturn.ErrorMsg, 'error');
                     return;
                 }
             };

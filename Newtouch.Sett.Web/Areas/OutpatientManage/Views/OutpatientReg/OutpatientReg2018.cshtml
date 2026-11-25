@@ -1176,13 +1176,13 @@
                         MZJS.ybjyFeeReturn=ybjsSettReturn.xxnr;
 
                     } else {
-                        MZJS.msg="Dịch vụ BHYT(Quyết toán ngoại trú)Thất bại:"+ybjsSettReturn.fhxx;
+                        MZJS.msg="Dịch vụ BHYT(Quyết toán ngoại trú) Thất bại:"+ybjsSettReturn.fhxx;
                     }
                 } else {
                     MZJS.msg="Dịch vụ BHYT(Quyết toán ngoại trú)Thông tin trả về trống";
                 }
             } else {
-                MZJS.msg="Dịch vụ BHYT(Quyết toán trước ngoại trú)Thất bại:"+ybjsSettReturn1.fhxx;
+                MZJS.msg="Dịch vụ BHYT(Quyết toán trước ngoại trú) Thất bại:"+ybjsSettReturn1.fhxx;
             }
         } else {
             MZJS.msg="Dịch vụ BHYT(Quyết toán trước ngoại trú)Thông tin trả về trống";
@@ -1341,7 +1341,7 @@
                     if (medicalReg){
                         if (medicalReg.infcode == "0" || medicalReg.infcode == 0){
                         }else{
-                            MZJS.msg=  "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA)Thất bại:" + medicalReg.err_msg;
+                            MZJS.msg=  "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA) Thất bại:" + medicalReg.err_msg;
                             ref=false;
                         }
                     }else {
@@ -1395,7 +1395,7 @@
                         return;
                     }
                     if (cfUpload.infcode != "0" && cfUpload.infcode != 0) {
-                        MZJS.msg="Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú)Thất bại:" + cfUpload.err_msg;
+                        MZJS.msg="Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú) Thất bại:" + cfUpload.err_msg;
                         return;
                     }
                     isuccer=true;
@@ -1478,7 +1478,7 @@
                         MZJS.ybjyFeeReturn.yllb = "12";
 					} else {
                         delUploadDetail(MZJS.ghxx);
-                        $.modalAlert("Dịch vụ BHYT(Quyết toán ngoại trú)Thất bại:"+ybjsSettReturn.err_msg, 'error');
+                        $.modalAlert("Dịch vụ BHYT(Quyết toán ngoại trú) Thất bại:"+ybjsSettReturn.err_msg, 'error');
 					}
 				} else {
 				    delUploadDetail(MZJS.ghxx);
@@ -1486,7 +1486,7 @@
 				}
 			} else {
                 delUploadDetail(MZJS.ghxx);
-                MZJS.msg="Dịch vụ BHYT(Quyết toán trước ngoại trú)Thất bại:"+ybjsSettReturn1.err_msg;
+                MZJS.msg="Dịch vụ BHYT(Quyết toán trước ngoại trú) Thất bại:"+ybjsSettReturn1.err_msg;
 			}
 		} else {
 		    delUploadDetail(MZJS.ghxx);
