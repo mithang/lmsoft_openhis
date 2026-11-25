@@ -393,7 +393,7 @@
                                     success: function (data) {
                                         var cxcyReturn = eval('(' + data + ')');
                                         if (cxcyReturn.infcode != '0') {
-                                            $.modalAlert('【2305】Hủyquyết toán thành côngnhưng【2405】Hủy xuất việnThất bại:' + cxcyReturn.err_msg + '【Vui lòng liên hệ nhà phát triển HIS xử lý】', 'success');
+                                            $.modalAlert('【2305】 Hủy quyết toán thành công nhưng【2405】 Hủy xuất viện Thất bại:' + cxcyReturn.err_msg + '【Vui lòng liên hệ nhà phát triển HIS xử lý】', 'success');
                                         }
                                         else {
                                             hisSubmit(true, cqybjyDenySettleReturn.output.setlinfo);
@@ -476,13 +476,13 @@
             async: false,
             success: function (data) {
                 if (data.code == "0") {
-                    $.modalAlert("Gạch đỏ hóa đơn điện tửThành công", 'success');
+                    $.modalAlert("Gạch đỏ hóa đơn điện tử Thành công", 'success');
                     funcDoPageClear();
                 }
                 else {
                     $.loading(false);
                     isuccer = false;
-                    $.modalAlert("Gạch đỏ hóa đơn điện tửThất bại[" + data.mes + "]", 'error');
+                    $.modalAlert("Gạch đỏ hóa đơn điện tử Thất bại[" + data.mes + "]", 'error');
                     return;
                 }
             },
