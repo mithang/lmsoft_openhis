@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Application.Implementation
                 if (item != null)
                 {
                     var t = _sysPharmacyDepartmentMedicineRepo.UpdateZt(item.bmypId, "1", req.CreatorCode, req.CreateTime);
-                    return t > 0 ? "" : string.Format("Sửa thuốc bộ phận ủy quyền thành【{0}】của thuốc【{1}】Thất bại;", req.yfbmCode, req.Ypdm);
+                    return t > 0 ? "" : string.Format("Sửa thuốc bộ phận ủy quyền thành【{0}】của thuốc【{1}】 Thất bại;", req.yfbmCode, req.Ypdm);
                 }
             }
             var bmypxx = new SysPharmacyDepartmentMedicineEntity
@@ -98,7 +98,7 @@ namespace Newtouch.HIS.Application.Implementation
                 LastModifyTime = req.LastModifyTime
             };
             var rt = _sysPharmacyDepartmentMedicineRepo.Insert(bmypxx);
-            return rt > 0 ? "" : string.Format("Thêm thuốc bộ phận ủy quyền thành【{0}】của thuốc【{1}】Thất bại;", req.yfbmCode, req.Ypdm);
+            return rt > 0 ? "" : string.Format("Thêm thuốc bộ phận ủy quyền thành【{0}】của thuốc【{1}】 Thất bại;", req.yfbmCode, req.Ypdm);
         }
 
         /// <summary>
