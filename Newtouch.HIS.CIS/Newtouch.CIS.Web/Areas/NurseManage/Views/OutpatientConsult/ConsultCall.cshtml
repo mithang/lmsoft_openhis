@@ -1,6 +1,6 @@
 @using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "Phân loại khámGọi số";
+    ViewBag.Title = "Phân loại khám Gọi số";
     Layout = "~/Views/Shared/_Index.cshtml";
     //phútkhámGọi sốtựđộngLàm mớiThời gian
     var ConsultCallRefreshTime = SysConfigReader.String("ConsultCallRefreshTime");
@@ -86,7 +86,7 @@
 <div id="content" style="width:100%;float:left;">
     <div class="topPanel back" style="height:20%;">
         <div>
-            <span style="font-size:30px;color:red;margin-left:20px;">@(ViewBag.orgName)Xếp hàngGọi sốHệ thống</span>
+            <span style="font-size:30px;color:red;margin-left:20px;">@(ViewBag.orgName) Xếp hàng Gọi số Hệ thống</span>
             <span id="dateTime" style="font-size:30px;color:#F4F897;float:right;margin-right:20px;"></span>
         </div>
     </div>
@@ -194,7 +194,7 @@
                     pager: "#gridPager",
                     sortname: 'ghrq asc',
                     viewrecords: true,
-                    caption: "ThườngPhòng khám",
+                    caption: "Thường Phòng khám",
                     autoScroll: false,//khiautoScrollvàshrinkToFitđềulàfalsekhi,sẽ xuất hiệndòngthanh cuộn
                     shrinkToFit: false,//Có hay không độ rộng cột tự thích ứng. true = thích ứng, false = không thích ứng
                     gridComplete: function () {
@@ -272,7 +272,7 @@
                         th += "<td style='color:#619daf;'>Tên khoa</td>";
                         th += "<td style='color:#619daf;'>Họ tên</td>";
                         //th += "<td>Khám bệnhSố thứ tự</td>";
-                        th += "<td style='color:#619daf;'>Khám bệnhPhòng khám</td>";
+                        th += "<td style='color:#619daf;'>Khám bệnh Phòng khám</td>";
                         th += "</tr>";
                         $("#tbody").append(th);
                         for (var i = 0; i < ajaxresp.length; i++) {
