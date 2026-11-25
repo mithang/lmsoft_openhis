@@ -539,24 +539,30 @@ $.accSub = function (arg1, arg2) {
     n = (r1 >= r2) ? r1 : r2;
     return ((parseFloat(arg1) * m - parseFloat(arg2) * m) / m).toFixed(n);
 }
-/* 获取性别 */
+/* Lấy giới tính */
 $.getGender = function (value) {
     if (value === undefined || value === null) {
         return '';
     }
     var valStr = $.trim(value.toString());
-    if (valStr === "男" || valStr === "女" || valStr.length != 1) {
+    if (valStr === "男") {
+        return "Nam";
+    }
+    if (valStr === "女") {
+        return "Nữ";
+    }
+    if (valStr === "Nam" || valStr === "Nữ" || valStr.length != 1) {
         return valStr;
     }
-    return valStr == '1' ? '男' : (valStr == '2' ? '女' : (valStr == '3' ? '不详' : ''));
+    return valStr == '1' ? 'Nam' : (valStr == '2' ? 'Nữ' : (valStr == '3' ? 'Không rõ' : ''));
 }
-/* 获取性别 */
+/* Lấy giới tính */
 $.getGenderCode = function (value) {
     if (value === undefined || value === null) {
-        return '3'; //3不详
+        return '3'; //3 Không rõ
     }
     var valStr = $.trim(value.toString());
-    return valStr == "男" ? "1" : (valStr == "女" ? "2" : "3"); //1男2女3不详
+    return valStr == "Nam" || valStr == "男" ? "1" : (valStr == "Nữ" || valStr == "女" ? "2" : "3"); //1 Nam 2 Nữ 3 Không rõ
 }
 $.undefinedwith0 = function (value) {
     if (value === undefined || value === null || value === '') { return 0; }

@@ -955,10 +955,16 @@ $.getGender = function (value) {
         return '';
     }
     var valStr = $.trim(value.toString());
-    if (valStr === "男" || valStr === "女" || valStr.length != 1) {
+    if (valStr === "男") {
+        return "Nam";
+    }
+    if (valStr === "女") {
+        return "Nữ";
+    }
+    if (valStr === "Nam" || valStr === "Nữ" || valStr.length != 1) {
         return valStr;
     }
-    return valStr == '1' ? '男' : (valStr == '2' ? '女' : (valStr == '3' ? '不详' : ''));
+    return valStr == '1' ? 'Nam' : (valStr == '2' ? 'Nữ' : (valStr == '3' ? 'Không rõ' : ''));
 }
 /* Lấy giới tính */
 $.getGenderCode = function (value) {
@@ -966,7 +972,7 @@ $.getGenderCode = function (value) {
         return '3'; //3 không rõ
     }
     var valStr = $.trim(value.toString());
-    return valStr == "男" ? "1" : (valStr == "女" ? "2" : "3"); //1 nam, 2 nữ, 3 không rõ
+    return valStr == "Nam" || valStr == "男" ? "1" : (valStr == "Nữ" || valStr == "女" ? "2" : "3"); //1 nam, 2 nữ, 3 không rõ
 }
 /* Không có giá trị thì trả về 0 */
 $.undefinedwith0 = function (value) {
