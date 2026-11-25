@@ -6,7 +6,7 @@ var $dp, WdatePicker; (function () {
     var $ = {
         $langList: [{
             name: "en", charset: "UTF-8"
-        },
+        }, { name: "vi", charset: "UTF-8" },
             { name: "zh-cn", charset: "gb2312" },
             { name: "zh-tw", charset: "GBK" }
         ],
@@ -47,7 +47,7 @@ var $dp, WdatePicker; (function () {
         qsEnabled: true,
         autoShowQS: false,
 
-        specialDates: null, specialDays: null, disabledDates: null, disabledDays: null, opposite: false, errMsg: "", quickSel: [], has: {}, getRealLang: function () { var _ = $.$langList; for (var A = 0; A < _.length; A++) if (_[A].name == this.lang) return _[A]; return _[0] }
+        specialDates: null, specialDays: null, disabledDates: null, disabledDays: null, opposite: false, errMsg: "", quickSel: [], has: {}, getRealLang: function () { var _ = $.$langList; for (var A = 0; A < _.length; A++) if (_[A].name == this.lang) return _[A]; var B = (this.lang || "").split("-")[0]; for (var A = 0; A < _.length; A++) if (_[A].name == B) return _[A]; return _[0] }
     }; WdatePicker = T; var X = window, S = { innerHTML: "" }, M = "document", H = "documentElement", C = "getElementsByTagName", U, A, R, G, a, W = navigator.appName; if (W == "Microsoft Internet Explorer") R = true; else if (W == "Opera") a = true; else G = true; A = J(); if ($.$wdate) K(A + "skin/WdatePicker.css"); U = X; if ($.$crossFrame) { try { while (U.parent && U.parent[M] != U[M] && U.parent[M][C]("frameset").length == 0) U = U.parent } catch (N) { } } if (!U.$dp) U.$dp = { ff: G, ie: R, opera: a, status: 0, defMinDate: $.minDate, defMaxDate: $.maxDate }; B(); if ($.$preLoad && $dp.status == 0) E(X, "onload", function () { T(null, true) }); if (!X[M].docMD) { E(X[M], "onmousedown", D); X[M].docMD = true } if (!U[M].docMD) { E(U[M], "onmousedown", D); U[M].docMD = true } E(X, "onunload", function () { if ($dp.dd) O($dp.dd, "none") }); function B() { U.$dp = U.$dp || {}; obj = { $: function ($) { return (typeof $ == "string") ? X[M].getElementById($) : $ }, $D: function ($, _) { return this.$DV(this.$($).value, _) }, $DV: function (_, $) { if (_ != "") { this.dt = $dp.cal.splitDate(_, $dp.cal.dateFmt); if ($) for (var B in $) if (this.dt[B] === undefined) this.errMsg = "invalid property:" + B; else { this.dt[B] += $[B]; if (B == "M") { var C = $["M"] > 0 ? 1 : 0, A = new Date(this.dt["y"], this.dt["M"], 0).getDate(); this.dt["d"] = Math.min(A + C, this.dt["d"]) } } if (this.dt.refresh()) return this.dt } return "" }, show: function () { var A = U[M].getElementsByTagName("div"), $ = 100000; for (var B = 0; B < A.length; B++) { var _ = parseInt(A[B].style.zIndex); if (_ > $) $ = _ } this.dd.style.zIndex = $ + 2; O(this.dd, "block") }, hide: function () { O(this.dd, "none") }, attachEvent: E }; for (var $ in obj) U.$dp[$] = obj[$]; $dp = U.$dp } function E(A, $, _) { if (R) A.attachEvent($, _); else if (_) { var B = $.replace(/on/, ""); _._ieEmuEventHandler = function ($) { return _($) }; A.addEventListener(B, _._ieEmuEventHandler, false) } }
     function J() {
         var _, A, $ = X[M][C]("script");

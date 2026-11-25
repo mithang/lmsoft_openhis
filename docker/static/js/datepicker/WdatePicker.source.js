@@ -8,7 +8,7 @@ var $dp, WdatePicker;
         $langList: [{
             name: "en",
             charset: "UTF-8"
-        }, {
+        }, { name: "vi", charset: "UTF-8" }, {
             name: "zh-cn",
             charset: "gb2312"
         }, {
@@ -67,6 +67,9 @@ var $dp, WdatePicker;
             var _ = $.$langList;
             for (var A = 0; A < _.length; A++)
                 if (_[A].name == this.lang) return _[A];
+            var B = (this.lang || "").split("-")[0];
+            for (var A = 0; A < _.length; A++)
+                if (_[A].name == B) return _[A];
             return _[0]
         }
     };
