@@ -69,7 +69,7 @@
                 @*<td>nhỏ&nbsp;&nbsp;tiện(ml)</td>*@
             </tr>
             @*<tr>
-            <td>dẫndònglượng(ml)</td>
+            <td>dẫn dòng lượng(ml)</td>
         </tr>*@
             @*<tr>
              <td>nhập lượng dịch(ml)</td>
@@ -87,7 +87,7 @@
                 <td>Tiền sử dị ứng</td>
             </tr>
             @*<tr>
-            <td>ĐauChấm điểm</td>
+            <td>Đau Chấm điểm</td>
         </tr>*@
         </table>
     </div>
@@ -161,7 +161,7 @@
         tempKssj = null;
         $('#tablBaseInfo td label').html('');
         if (!kssj || !jssj || !zyh) {
-            $.modalAlert('Vui lòng hoàn thiệnĐiều kiện lọc', 'error');
+            $.modalAlert('Vui lòng hoàn thiện Điều kiện lọc', 'error');
             return;
         }
         billIndex = 1;
@@ -169,14 +169,14 @@
         $.najax({
             url: "/NurseManage/InpatientVitalSigns/DrawData",
             data: { kssj: kssj, jssj: jssj, zyh: zyh, pagesize: 7 },
-            loadingtext: "Phiếu nhiệt độĐang tải dữ liệu, Vui lòng đợi trong giây lát...",
+            loadingtext: "Phiếu nhiệt độ Đang tải dữ liệu, Vui lòng đợi trong giây lát...",
             asnyc: false,
             success: function (data) {
                 //
                 if (!(data && data.list && data.list.length)) {
                     //draw([]);
                     if (!(data && data.patInfo)) {
-                        $.modalAlert('Vui lòng chọnSố nhập viện', 'warning');
+                        $.modalAlert('Vui lòng chọn Số nhập viện', 'warning');
                         return;
                     }
                     //return;
@@ -271,7 +271,7 @@
                             //}
                         }
                         @*else if (item.brzt == '@((int)EnumHlbrzt.Qj)') {
-                            ztItem.push({ rq: $.getDate({ date: item.rq }), sj: item.sj, brzt: item.brzt, showzt: "vui lònggiả" });
+                            ztItem.push({ rq: $.getDate({ date: item.rq }), sj: item.sj, brzt: item.brzt, showzt: "vui lòng giả" });
                         }*@
                         else if (item.brzt == '@((int)EnumHlbrzt.Jc)') {
                             ztItem.push({ rq: $.getDate({ date: item.rq }), sj: item.sj, brzt: item.brzt, showzt: "Từ chối đo" });
