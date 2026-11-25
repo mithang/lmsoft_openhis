@@ -987,7 +987,7 @@
 	                        cqybjyDenySettleReturn = eval('(' + data + ')');
 	                    },
 	                    error: function (request, error, ex) {
-	                        msg = "Dịch vụ BHYT(Giao dịch hủy quyết toán ngoại trú【SK01】)Không thể truy cập:[" + ex + "]";
+	                        msg = "Dịch vụ BHYT(Giao dịch hủy quyết toán ngoại trú【SK01】) Không thể truy cập:[" + ex + "]";
 	                    }
 	                });
 	                break;
@@ -1006,7 +1006,7 @@
 
 	                    },
 	                    error: function (request, error, ex) {
-	                        msg = "Dịch vụ BHYT(Giao dịch hủy quyết toán ngoại trú【2208】)Không thể truy cập:[" + ex + "]";
+	                        msg = "Dịch vụ BHYT(Giao dịch hủy quyết toán ngoại trú【2208】) Không thể truy cập:[" + ex + "]";
 	                    }
 	                });
 	                break;
@@ -1067,7 +1067,7 @@
 	                return;
 	            }
 	        } else {
-	            $.modalAlert("Dịch vụ BHYT(Hủy quyết toán ngoại trú)Thông tin trả về trống", 'error');
+	            $.modalAlert("Dịch vụ BHYT(Hủy quyết toán ngoại trú) Thông tin trả về trống", 'error');
 	            $.loading(false);
 	            return;
 	        }
@@ -1213,7 +1213,7 @@
 	                                    var upDataReturn = eval('(' + data + ')');
 	                                    if (!upDataReturn) {
 	                                        isuccer = false;
-	                                        $.modalAlert("Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú)Thông tin trả về trống", 'error');
+	                                        $.modalAlert("Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú) Thông tin trả về trống", 'error');
 	                                        return;
 	                                    }
 	                                    if (upDataReturn.xxfhm != "P001") {
@@ -1425,7 +1425,7 @@
 					        }
 				        } else {
 					        $.loading(false);
-					        $.modalAlert("Dịch vụ BHYT(Quyết toán ngoại trú)Thông tin trả về trống", 'error');
+					        $.modalAlert("Dịch vụ BHYT(Quyết toán ngoại trú) Thông tin trả về trống", 'error');
 					        return;
 				        }
 			        } else {
@@ -1435,7 +1435,7 @@
 			        }
 		        } else {
 			        $.loading(false);
-			        $.modalAlert("Dịch vụ BHYT(Quyết toán trước ngoại trú)Thông tin trả về trống", 'error');
+			        $.modalAlert("Dịch vụ BHYT(Quyết toán trước ngoại trú) Thông tin trả về trống", 'error');
 			        return;
 		        }
 		        $.loading(false);

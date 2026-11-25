@@ -534,7 +534,7 @@
             },
             error: function (request, error, ex) {
                 $.loading(false);
-                $.modalAlert("HISDịch vụ(Lấy đơn thuốc chờ thu phí)Không thể truy cập:[" + ex + "]", 'error');
+                $.modalAlert("HISDịch vụ(Lấy đơn thuốc chờ thu phí) Không thể truy cập:[" + ex + "]", 'error');
             }
         });
     }
@@ -554,7 +554,7 @@
             },
             error: function (request, error, ex) {
                 $.loading(false);
-                $.modalAlert("HISDịch vụ(Lấy chi tiết đơn thuốc chờ thu phí)Không thể truy cập:[" + ex + "]", 'error');
+                $.modalAlert("HISDịch vụ(Lấy chi tiết đơn thuốc chờ thu phí) Không thể truy cập:[" + ex + "]", 'error');
             }
         });
     }
@@ -1301,11 +1301,11 @@
                     }
                 }
                 else {
-                    msg = "Dịch vụ BHYT【2201】(Giao diện đăng ký khám bệnh)Thông tin trả về trống";
+                    msg = "Dịch vụ BHYT【2201】(Giao diện đăng ký khám bệnh) Thông tin trả về trống";
                 }
             },
             error: function (request, error, ex) {
-                msg = "Dịch vụ BHYT【2201】(Giao diện đăng ký khám bệnh)Không thể truy cập:[" + ex + "]";
+                msg = "Dịch vụ BHYT【2201】(Giao diện đăng ký khám bệnh) Không thể truy cập:[" + ex + "]";
             }
         });
         if (!rs) {
@@ -1334,7 +1334,7 @@
 			async: false,
 			success: function (payoptype) {
 				if (!payoptype) {
-                    msg = "HISDịch vụ(GetCQjzdjInfo)Thông tin trả về trống";
+                    msg = "HISDịch vụ(GetCQjzdjInfo) Thông tin trả về trống";
                     return;
 				}
 				var bzInfo = cq_getCurrentTsbbz();
@@ -1376,16 +1376,16 @@
 							}
                         }
                         else {
-                            msg = "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA)Thông tin trả về trống";
+                            msg = "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA) Thông tin trả về trống";
                         }
                     },
                     error: function (request, error, ex) {
-                        msg = "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA)Không thể truy cập:[" + ex + "]";
+                        msg = "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA) Không thể truy cập:[" + ex + "]";
                     }
 				});
             },
             error: function (request, error, ex) {
-                msg = "HISDịch vụ(GetCQjzdjInfo)Không thể truy cập:[" + ex + "]";
+                msg = "HISDịch vụ(GetCQjzdjInfo) Không thể truy cập:[" + ex + "]";
             }
         });
 
@@ -1451,7 +1451,7 @@
                                     }
                                 },
                                 error: function (request, error, ex) {
-                                    msg = "Dịch vụ BHYT【SN02】(Hủy chi tiết chi phí khám ngoại trú)Không thể truy cập:[" + ex + "]";
+                                    msg = "Dịch vụ BHYT【SN02】(Hủy chi tiết chi phí khám ngoại trú) Không thể truy cập:[" + ex + "]";
                                 }
                             });
                         } else {
@@ -1481,7 +1481,7 @@
                                                     }
                                                 },
                                                 error: function (request, error, ex) {
-                                                    msg = "HISDịch vụ(Cập nhật trạng thái lô đã hủy)Không thể truy cập:[" + ex + "]";
+                                                    msg = "HISDịch vụ(Cập nhật trạng thái lô đã hủy) Không thể truy cập:[" + ex + "]";
                                                 }
                                             });
                                         }
@@ -1490,11 +1490,11 @@
                                         }
                                     }
                                     else {
-                                        msg = "Dịch vụ BHYT(Hủy chi tiết chi phí khám ngoại trú)Thông tin trả về trống";
+                                        msg = "Dịch vụ BHYT(Hủy chi tiết chi phí khám ngoại trú) Thông tin trả về trống";
                                     }
                                 },
                                 error: function (request, error, ex) {
-                                    msg = "Dịch vụ BHYT(Hủy chi tiết chi phí khám ngoại trú)Không thể truy cập:[" + ex + "]";
+                                    msg = "Dịch vụ BHYT(Hủy chi tiết chi phí khám ngoại trú) Không thể truy cập:[" + ex + "]";
                                 }
                             });
                         }
@@ -1502,11 +1502,11 @@
 		            }
                 }
                 else {
-                    msg = "HISDịch vụ(Lấy lô đã tải lên chưa quyết toán)Thông tin trả về trống";
+                    msg = "HISDịch vụ(Lấy lô đã tải lên chưa quyết toán) Thông tin trả về trống";
                 }
             },
             error: function (request, error, ex) {
-                msg = "HISDịch vụ(Lấy lô đã tải lên chưa quyết toán)Không thể truy cập:[" + ex + "]";
+                msg = "HISDịch vụ(Lấy lô đã tải lên chưa quyết toán) Không thể truy cập:[" + ex + "]";
             }
         });
 
@@ -1580,7 +1580,7 @@
 
                                 var upDataReturn = eval('(' + data + ')');
                                 if (!upDataReturn) {
-                                    MZJS.setCurrentState(-1, "Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú)Thông tin trả về trống");
+                                    MZJS.setCurrentState(-1, "Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú) Thông tin trả về trống");
                                     return;
                                 }
                                 if (upDataReturn.xxfhm != "P001") {
@@ -1598,7 +1598,7 @@
                                 }
                                 rs = true;
                             }, error: function (request, error, ex) {
-                                MZJS.setCurrentState(-1, "Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú)Không thể truy cập:[" + ex + "]");
+                                MZJS.setCurrentState(-1, "Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú) Không thể truy cập:[" + ex + "]");
                             }
                         });
                         break;
@@ -1625,7 +1625,7 @@
                             success: function (data) {
                                 var upDataReturn = eval('(' + data + ')');
                                 if (!upDataReturn) {
-                                    MZJS.setCurrentState(-1, "Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú)Thông tin trả về trống");
+                                    MZJS.setCurrentState(-1, "Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú) Thông tin trả về trống");
                                     return;
                                 }
                                 if (upDataReturn.infcode != "0") {
@@ -1651,12 +1651,12 @@
                                         }
                                     },
                                     error: function (request, error, ex) {
-                                        MZJS.setCurrentState(-1, "HISDịch vụ(Lưu thông tin lô tải lên)Không thể truy cập:[" + ex + "]");
+                                        MZJS.setCurrentState(-1, "HISDịch vụ(Lưu thông tin lô tải lên) Không thể truy cập:[" + ex + "]");
                                     }
                                 });
                             },
                             error: function (request, error, ex) {
-                                MZJS.setCurrentState(-1, "Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú)Không thể truy cập:[" + ex + "]");
+                                MZJS.setCurrentState(-1, "Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú) Không thể truy cập:[" + ex + "]");
                             }
                         });
                         break;
@@ -1664,7 +1664,7 @@
 
 		    },
 		    error: function (request, error, ex) {
-		        MZJS.setCurrentState(-1, "HISDịch vụ(Lấy đơn thuốc BHYT chờ tải lên/Số tiền tự chi trả)Không thể truy cập:[" + ex + "]");
+		        MZJS.setCurrentState(-1, "HISDịch vụ(Lấy đơn thuốc BHYT chờ tải lên/Số tiền tự chi trả) Không thể truy cập:[" + ex + "]");
 		    }
 		});
 
@@ -1811,13 +1811,13 @@
 				        MZJS.setCurrentState(-1, "Quyết toán BHYT thất bại:" + Veremg(ybjsSettReturn));
 					}
 				} else {
-                    MZJS.setCurrentState(-1, "Dịch vụ BHYT(Quyết toán ngoại trú)Thông tin trả về trống");
+                    MZJS.setCurrentState(-1, "Dịch vụ BHYT(Quyết toán ngoại trú) Thông tin trả về trống");
 				}
 			} else {
 		        MZJS.setCurrentState(-1, "Quyết toán trước BHYT thất bại:" + Veremg(ybjsSettReturn1));
 			}
 		} else {
-            MZJS.setCurrentState(-1, "Dịch vụ BHYT(Quyết toán trước ngoại trú)Thông tin trả về trống");
+            MZJS.setCurrentState(-1, "Dịch vụ BHYT(Quyết toán trước ngoại trú) Thông tin trả về trống");
 		}
     }
     function Veremg(ybffxxobj)
@@ -1862,11 +1862,11 @@
                     }
                 }
                 else {
-                    msg = "Dịch vụ BHYT(Hủy quyết toán ngoại trú)Thông tin trả về trống";
+                    msg = "Dịch vụ BHYT(Hủy quyết toán ngoại trú) Thông tin trả về trống";
                 }
             },
             error: function (request, error, ex) {
-                msg = "Dịch vụ BHYT(Hủy quyết toán ngoại trú)Không thể truy cập:[" + ex + "]";
+                msg = "Dịch vụ BHYT(Hủy quyết toán ngoại trú) Không thể truy cập:[" + ex + "]";
             }
         });
 
@@ -2349,7 +2349,7 @@
             async: false,
             success: function (data) {
                 if (!!!data) {
-                    msg = "HISDịch vụ(Lấy số hóa đơn)Thông tin trả về trống";
+                    msg = "HISDịch vụ(Lấy số hóa đơn) Thông tin trả về trống";
                     return;
                 }
                 if (data.indexOf("{") >= 0 || data.indexOf("<") >= 0) {
@@ -2360,7 +2360,7 @@
                 fph = data;
             },
             error: function (request, error, ex) {
-                msg = "HISDịch vụ(Lấy số hóa đơn)Không thể truy cập:[" + ex + "]";
+                msg = "HISDịch vụ(Lấy số hóa đơn) Không thể truy cập:[" + ex + "]";
             }
         });
 
@@ -2393,23 +2393,23 @@
                             },
                             error: function (request, error, ex) {
                                 $.loading(false);
-                                $.modalAlert("HISDịch vụ(In hóa đơn quyết toán)Không thể truy cập:[" + ex + "]", 'error');
+                                $.modalAlert("HISDịch vụ(In hóa đơn quyết toán) Không thể truy cập:[" + ex + "]", 'error');
                             }
                         });
                     }
                     else {
                         $.loading(false);
-                        $.modalAlert("HISDịch vụ(Lấy dữ liệu hóa đơn quyết toán)Thông tin trả về trống", 'error');
+                        $.modalAlert("HISDịch vụ(Lấy dữ liệu hóa đơn quyết toán) Thông tin trả về trống", 'error');
                     }
                 }
                 else {
                     $.loading(false);
-                    $.modalAlert("HISDịch vụ(Lấy dữ liệu hóa đơn quyết toán)Thông tin trả về trống", 'error');
+                    $.modalAlert("HISDịch vụ(Lấy dữ liệu hóa đơn quyết toán) Thông tin trả về trống", 'error');
                 }
             },
             error: function (request, error, ex) {
                 $.loading(false);
-                $.modalAlert("HISDịch vụ(Lấy dữ liệu hóa đơn quyết toán)Không thể truy cập:[" + ex + "]", 'error');
+                $.modalAlert("HISDịch vụ(Lấy dữ liệu hóa đơn quyết toán) Không thể truy cập:[" + ex + "]", 'error');
             }
         });
     }
@@ -2471,7 +2471,7 @@
                 cqybjyDenySettleReturn = eval('(' + data + ')');
             },
             error: function (request, error, ex) {
-                msg = "Dịch vụ BHYT(Giao dịch hủy quyết toán ngoại trú【SK01】)Không thể truy cập:[" + ex + "]";
+                msg = "Dịch vụ BHYT(Giao dịch hủy quyết toán ngoại trú【SK01】) Không thể truy cập:[" + ex + "]";
             }
         });
         if (cqybjyDenySettleReturn && cqybjyDenySettleReturn.xxfhm !== "P001") {
