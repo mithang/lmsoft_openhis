@@ -18,10 +18,14 @@ namespace Newtouch.CIS.Proxy
                 case "男":
                 case "男姓":
                 case "男人":
+                case "Nam":
+                case "1":
                     return "1";
                 case "女":
                 case "女性":
                 case "女人":
+                case "Nữ":
+                case "2":
                     return "2";
                 case "":
                     return "9";
