@@ -2,7 +2,7 @@
 @using Newtouch.Tools
 
 @{
-    ViewBag.Title = "Phân loại khámBác sĩ";
+    ViewBag.Title = "Phân loại khám Bác sĩ";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -86,12 +86,12 @@
             colModel: [
                // { label: "Id", name: "Id",hidden:true, key: true },
                 { label: "Phòng khám Mã", name: "zsCode", key: true   },
-                { label: 'Phòng khámTên', name: 'zsmc', width: 120, align: 'left' },
+                { label: 'Phòng khám Tên', name: 'zsmc', width: 120, align: 'left' },
                 { label: 'Ngày', name: 'rq', width: 120, align: 'left', hidden: true, formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }},
-                { label: 'Bác sĩMã nhân viên', name: 'gh', width: 80, align: 'left', editable: true ,hidden:true },
+                { label: 'Bác sĩ Mã nhân viên', name: 'gh', width: 80, align: 'left', editable: true ,hidden:true },
 				{ label: 'Bác sĩ', name: 'ysxm', width: 80, align: 'left', editwidth: '93%', editable: true },
 				{ label: 'Số tầng phòng khám', name: 'zslc', width: 60, align: 'left', editwidth: '93%', editable: true },
-				{ label: 'Phòng khámSố phòng', name: 'zsfh', width: 60, align: 'left', editwidth: '93%', editable: true },
+				{ label: 'Phòng khám Số phòng', name: 'zsfh', width: 60, align: 'left', editwidth: '93%', editable: true },
                 {
                     label: 'Thao tác', name: 'operate', width: 70, align: 'center', formatter: function (cellvalue, options, cell) {
                         return '<span style="color:#ff0000" onclick=\'ConsultInfo("' + cell.zsCode + '")\'>Phân loại khámThông tin</span>';
@@ -137,7 +137,7 @@
             colModel: [
                 { label: 'StaffGh', name: 'StaffGh', hidden: true },
                 { label: 'ks', name: 'ks', hidden: true },
-                { label: 'Bác sĩTên', name: 'StaffName', widthratio: 48 },
+                { label: 'Bác sĩ Tên', name: 'StaffName', widthratio: 48 },
                 { label: 'Tên khoa', name: 'ksmc', widthratio: 50 },
             ],
             itemdbclickhandler: function ($thistr, $thisinput) {
