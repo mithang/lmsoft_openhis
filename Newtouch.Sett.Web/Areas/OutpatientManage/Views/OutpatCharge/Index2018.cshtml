@@ -1372,7 +1372,7 @@
                             else {
                                 MZJS.jzxx = { mdtrt_id: payoptype.mdtrt_id, psn_no: payoptype.psn_no, med_type: payoptype.med_type, dise_codg: payoptype.dise_codg, hisId: patModel.mzh, bzInfo: bzInfo };
                                 rs = true;
-                                msg = "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA)Thất bại:" + medicalReg.err_msg;
+                                msg = "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA) Thất bại:" + medicalReg.err_msg;
 							}
                         }
                         else {
@@ -1548,7 +1548,7 @@
             success: function (ajaxResp) {
                 /* đã viết lạiControllercách trả về */
                 if (ajaxResp.state != "success") {
-                    MZJS.setCurrentState(-1, "HISDịch vụ(Lấy đơn thuốc BHYT chờ tải lên/Số tiền tự chi trả)Thất bại:" + ajaxResp.message);
+                    MZJS.setCurrentState(-1, "HISDịch vụ(Lấy đơn thuốc BHYT chờ tải lên/Số tiền tự chi trả) Thất bại:" + ajaxResp.message);
                     return;
                 }
 
@@ -1593,7 +1593,7 @@
                                     });
                                     if (errcontent.length < 1)
                                         errcontent = upDataReturn.fhxx;
-                                    MZJS.setCurrentState(-1, "Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú)Thất bại:" + errcontent);
+                                    MZJS.setCurrentState(-1, "Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú) Thất bại:" + errcontent);
                                     return;
                                 }
                                 rs = true;
@@ -1629,7 +1629,7 @@
                                     return;
                                 }
                                 if (upDataReturn.infcode != "0") {
-                                    MZJS.setCurrentState(-1, "Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú)Thất bại:" + upDataReturn.err_msg);
+                                    MZJS.setCurrentState(-1, "Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú) Thất bại:" + upDataReturn.err_msg);
                                     return;
                                 }
 
@@ -1646,7 +1646,7 @@
                                             rs = true;
                                         }
                                         else {
-                                            MZJS.setCurrentState(-1, "HISDịch vụ(Lưu thông tin lô tải lên)Thất bại:" + resp.message);
+                                            MZJS.setCurrentState(-1, "HISDịch vụ(Lưu thông tin lô tải lên) Thất bại:" + resp.message);
                                             return;
                                         }
                                     },
@@ -3809,7 +3809,7 @@
                     hisUnSettedRegBackNum();
                 }
                 else {
-                    $.modalAlert('BHYTHủy đăng ký khámThất bại, Vui lòng thử lại<br/>' + ybjyDenyRegReturn.ErrorMsg, 'error');
+                    $.modalAlert('BHYTHủy đăng ký khám Thất bại, Vui lòng thử lại<br/>' + ybjyDenyRegReturn.ErrorMsg, 'error');
                     return;
                 }
             };

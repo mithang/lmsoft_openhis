@@ -608,14 +608,14 @@
                 else {
                     $.loading(false);
                     isuccer = false;
-                    $.modalAlert('In phiếu hóa đơnThất bại[' + data.mes + ']', 'error');
+                    $.modalAlert('In phiếu hóa đơn Thất bại[' + data.mes + ']', 'error');
                     return;
                 }
             },
             error: function (request, error, ex) {
                 $.loading(false);
                 isuccer = false;
-                $.modalAlert('In phiếu hóa đơnThất bại[' + ex + ']', 'error');
+                $.modalAlert('In phiếu hóa đơn Thất bại[' + ex + ']', 'error');
                 return;
             }
         });
