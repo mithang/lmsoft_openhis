@@ -1,7 +1,7 @@
 @model dynamic
 
 @{
-    ViewBag.Title = "Ra khuChẩn đoán";
+    ViewBag.Title = "Ra khu Chẩn đoán";
     Layout = "~/Views/Shared/_Form.cshtml";
     var isOpendiag = SysConfigReader.String("Inpatient_OutAre");
 }
@@ -25,7 +25,7 @@
         <div role="tabpanel" class="tab-pane fade in active" id="xyzdInfo">
             <table id="tablezd" class="form">
                 <tr>
-                    <th class="formTitle">Chẩn đoánThời gian:</th>
+                    <th class="formTitle">Chẩn đoán Thời gian:</th>
                     <td class="formValue">
                         <input id="txt_zdsj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
                                onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("dd/MM/yyyy ")" />
@@ -37,13 +37,13 @@
 
                     <th class="formTitle" style="margin-left:20px;">
                         <i id="zdCircle" class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>
-                        Xuất việnChẩn đoán:
+                        Xuất viện Chẩn đoán:
                     </th>
                     <td class="formValue" colspan="2">
                         <input id="txt_cyzddm" type="hidden" />
                         <input id="txt_cyzd" name="txt_cyzd" type="text" class="form-control required zdinput" />
                     </td>
-                    <th class="formTitle">Xuất việnTình hình:</th>
+                    <th class="formTitle">Xuất viện Tình hình:</th>
                     <td class="formValue">
                         <select id="txt_cyqk" name="txt_cyqk" class="form-control " data-EnumType="EnumCYQK"></select>
                     </td>
@@ -54,7 +54,7 @@
         <div id="zyzdInfo" role="tabpanel" class="tab-pane fade in">
             <table id="tablezyzd" class="form" style="width: 98%; border: 0">
                 <tr>
-                    <th class="formTitle">Chẩn đoánThời gian:</th>
+                    <th class="formTitle">Chẩn đoán Thời gian:</th>
                     <td class="formValue">
                         <input id="txt_zyzdsj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
                                onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("dd/MM/yyyy ")" />
@@ -72,7 +72,7 @@
                         <input id="txt_zycyzddm" type="hidden" />
                         <input id="txt_zycyzd" name="txt_zycyzd" type="text" class="form-control required zdinput" />
                     </td>
-                    <th class="formTitle">Xuất việnTình hình:</th>
+                    <th class="formTitle">Xuất viện Tình hình:</th>
                     <td class="formValue">
                         <select id="txt_zycyqk" name="txt_zycyqk" class="form-control " data-EnumType="EnumCYQK"></select>
                     </td>
@@ -117,7 +117,7 @@
         ajaxparameters: function () {
             return "ryzd=" + $("#txt_cyzd").val() + "&zdlb=" + "WM";
         },
-        caption: "Xuất việnChẩn đoán",
+        caption: "Xuất viện Chẩn đoán",
         colModel: [
             { label: 'Tên', name: 'zdmc', widthratio: 60 },
             { label: 'Pinyin', name: 'py', widthratio: 20 },
@@ -139,7 +139,7 @@
         ajaxparameters: function () {
             return "ryzd=" + $("#txt_zycyzd").val()  + "&zdlb=" + "TCM";
         },
-        caption: "Xuất việnChẩn đoán",
+        caption: "Xuất viện Chẩn đoán",
         colModel: [
             { label: 'Tên', name: 'zdmc', widthratio: 60 },
             { label: 'Pinyin', name: 'py', widthratio: 20 },
@@ -361,11 +361,11 @@
     $('#tablezyzd .plusToggleCircle').click(function () {
         var number = $('#tablezyzd .zdinput').length + 1;
         if (isopendiag == "OFF") {
-            var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;display:none; margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Chứng chính:</th><td class="formValue" colspan="2"><input id="txt_zyfzzd' + number + 'dm" type="hidden" /><input id="txt_zyfzzd' + number + '" name="txt_zyfzzd' + number + '" type="text"  disabled="disabled" class="form-control required zdinput" /></td><th class="formTitle">Xuất việnTình hình:</th><td class="formValue"><select id="txt_zycyqk' + number + '" name="txt_zycyqk' + number + '"  disabled="disabled" class="form-control"><option value="1">Khỏi bệnh</option><option value="2">Đỡ hơn</option ><option value="3">Chưa khỏi</option><option value="4">Tử vong</option><option value="5">Khác</option></select ></select></td></tr>');
+            var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;display:none; margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Chứng chính:</th><td class="formValue" colspan="2"><input id="txt_zyfzzd' + number + 'dm" type="hidden" /><input id="txt_zyfzzd' + number + '" name="txt_zyfzzd' + number + '" type="text"  disabled="disabled" class="form-control required zdinput" /></td><th class="formTitle">Xuất viện Tình hình:</th><td class="formValue"><select id="txt_zycyqk' + number + '" name="txt_zycyqk' + number + '"  disabled="disabled" class="form-control"><option value="1">Khỏi bệnh</option><option value="2">Đỡ hơn</option ><option value="3">Chưa khỏi</option><option value="4">Tử vong</option><option value="5">Khác</option></select ></select></td></tr>');
             $newTr.appendTo($(this).closest('table'));
         }
         else {
-            var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Chứng chính:</th><td class="formValue" colspan="2"><input id="txt_zyfzzd' + number + 'dm" type="hidden" /><input id="txt_zyfzzd' + number + '" name="txt_zyfzzd' + number + '" type="text" class="form-control required zdinput" /></td><th class="formTitle">Xuất việnTình hình:</th><td class="formValue"><select id="txt_zycyqk' + number + '" name="txt_zycyqk' + number + '" class="form-control"><option value="1">Khỏi bệnh</option><option value="2">Đỡ hơn</option ><option value="3">Chưa khỏi</option><option value="4">Tử vong</option><option value="5">Khác</option></select ></select></td></tr>');
+            var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Chứng chính:</th><td class="formValue" colspan="2"><input id="txt_zyfzzd' + number + 'dm" type="hidden" /><input id="txt_zyfzzd' + number + '" name="txt_zyfzzd' + number + '" type="text" class="form-control required zdinput" /></td><th class="formTitle">Xuất viện Tình hình:</th><td class="formValue"><select id="txt_zycyqk' + number + '" name="txt_zycyqk' + number + '" class="form-control"><option value="1">Khỏi bệnh</option><option value="2">Đỡ hơn</option ><option value="3">Chưa khỏi</option><option value="4">Tử vong</option><option value="5">Khác</option></select ></select></td></tr>');
             $newTr.appendTo($(this).closest('table'));
         }
         //trongyhỗ trợChẩn đoánlớp nổi
@@ -381,7 +381,7 @@
             ajaxparameters: function () {
                 return "ryzd=" + $("#txt_zyfzzd" + number).val() + "&ybnhlx=" + ybnhlx + "&zdlb=" + "ZYZH";
             },
-            caption: "Xuất việnChẩn đoán",
+            caption: "Xuất viện Chẩn đoán",
             colModel: [
                 { label: 'Tên', name: 'zdmc', widthratio: 60 },
                 { label: 'Pinyin', name: 'py', widthratio: 20 },
@@ -406,12 +406,12 @@
 
 	    //var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>hỗ trợChẩn đoán' + number + ':</th><td class="formValue" colspan="2"><input id="txt_fzzd' + number + 'dm" type="hidden" /><input id="txt_fzzd' + number + '" name="txt_fzzd' + number + '" type="text" class="form-control required zdinput" /></td><th class="formTitle">Xuất việntình hình' + number + ':</th><td class="formValue"><select id="txt_cyqk' + number + '" name="txt_cyqk' + number + '" class="form-control" data-EnumType="EnumCYQK"></select></td></tr>');
 		if (isopendiag == "OFF") {
-		    var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;display:none; margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Hỗ trợChẩn đoán:</th><td class="formValue" colspan="2"><input id="txt_fzzd' + number + 'dm" type="hidden" /><input id="txt_fzzd' + number + '" name="txt_fzzd' + number + '" type="text"  disabled="disabled" class="form-control required zdinput" /></td><th class="formTitle">Xuất việnTình hình:</th><td class="formValue"><select id="txt_cyqk' + number + '" name="txt_cyqk' + number + '"  disabled="disabled" class="form-control"><option value="1">Khỏi bệnh</option><option value="2">Đỡ hơn</option ><option value="3">Chưa khỏi</option><option value="4">Tử vong</option><option value="5">Khác</option></select ></select></td></tr>');
+		    var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;display:none; margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Hỗ trợ Chẩn đoán:</th><td class="formValue" colspan="2"><input id="txt_fzzd' + number + 'dm" type="hidden" /><input id="txt_fzzd' + number + '" name="txt_fzzd' + number + '" type="text"  disabled="disabled" class="form-control required zdinput" /></td><th class="formTitle">Xuất viện Tình hình:</th><td class="formValue"><select id="txt_cyqk' + number + '" name="txt_cyqk' + number + '"  disabled="disabled" class="form-control"><option value="1">Khỏi bệnh</option><option value="2">Đỡ hơn</option ><option value="3">Chưa khỏi</option><option value="4">Tử vong</option><option value="5">Khác</option></select ></select></td></tr>');
 		    $newTr.appendTo($(this).closest('table'));
 		}
 		else
 		{
-		    var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Hỗ trợChẩn đoán:</th><td class="formValue" colspan="2"><input id="txt_fzzd' + number + 'dm" type="hidden" /><input id="txt_fzzd' + number + '" name="txt_fzzd' + number + '" type="text" class="form-control required zdinput" /></td><th class="formTitle">Xuất việnTình hình:</th><td class="formValue"><select id="txt_cyqk' + number + '" name="txt_cyqk' + number + '" class="form-control"><option value="1">Khỏi bệnh</option><option value="2">Đỡ hơn</option ><option value="3">Chưa khỏi</option><option value="4">Tử vong</option><option value="5">Khác</option></select ></select></td></tr>');
+		    var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Hỗ trợ Chẩn đoán:</th><td class="formValue" colspan="2"><input id="txt_fzzd' + number + 'dm" type="hidden" /><input id="txt_fzzd' + number + '" name="txt_fzzd' + number + '" type="text" class="form-control required zdinput" /></td><th class="formTitle">Xuất viện Tình hình:</th><td class="formValue"><select id="txt_cyqk' + number + '" name="txt_cyqk' + number + '" class="form-control"><option value="1">Khỏi bệnh</option><option value="2">Đỡ hơn</option ><option value="3">Chưa khỏi</option><option value="4">Tử vong</option><option value="5">Khác</option></select ></select></td></tr>');
 		    $newTr.appendTo($(this).closest('table'));
 		}
 
@@ -434,7 +434,7 @@
             ajaxparameters: function () {
                 return "ryzd=" + $("#txt_fzzd" + number).val() + "&ybnhlx=" + ybnhlx + "&zdlb=" + "WM";
             },
-            caption: "Xuất việnChẩn đoán",
+            caption: "Xuất viện Chẩn đoán",
             colModel: [
                 { label: 'Tên', name: 'zdmc', widthratio: 60 },
                 { label: 'Pinyin', name: 'py', widthratio: 20 },
