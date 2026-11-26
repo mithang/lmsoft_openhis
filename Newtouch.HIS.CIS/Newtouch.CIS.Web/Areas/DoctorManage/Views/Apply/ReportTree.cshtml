@@ -5,7 +5,7 @@
     var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
  }
 <div id="floatLisReportDiv">
-    <div data-href="ynbg"><span>Trong việnBáo cáo</span></div>
+    <div data-href="ynbg"><span>Trong viện Báo cáo</span></div>
 </div>
 <div id="floadLisReportTree" style="display:none;z-index:1;background: white;">
     <div class="panel-body">
@@ -65,7 +65,7 @@
         if ("@IsreportOpen" == "true") {
             $.modalOpen({
                 id: "medicaljyForm",
-                title: "Kiểm traPhiếuDanh sách",
+                title: "Kiểm tra Phiếu Danh sách",
                 url: "/MedicalRecord/PacsSqdhQueryForm?mzzyh=" + zyh + "&type=" + "zy",
                 width: "900px",
                 height: "600px",
@@ -83,7 +83,7 @@
                 success: function (data) {
                     var num = data.num;
                     if (num < 1) {
-                        $.modalAlert("Hiện tạiKhông cóĐã hoàn thànhBáo cáo,Không thểXem", 'warning');
+                        $.modalAlert("Hiện tại Không có Đã hoàn thành Báo cáo,Không thể Xem", 'warning');
                         return;
                     }
                     else {
@@ -105,7 +105,7 @@
         if ("@IsreportOpen" == "true") {
             $.modalOpen({
                 id: "medicaljyForm",
-                title: "Xét nghiệmPhiếuDanh sách",
+                title: "Xét nghiệm Phiếu Danh sách",
                 url: "/MedicalRecord/LisSqdhQueryForm?mzzyh=" + zyh + "&type=" + "zy",
                 width: "900px",
                 height: "600px",
@@ -122,7 +122,7 @@
                 success: function (data) {
                     var num = data.num;
                     if (num < 1) {
-                        $.modalAlert("Hiện tạiKhông cóĐã hoàn thànhBáo cáo,Không thểXem", 'warning');
+                        $.modalAlert("Hiện tại Không có Đã hoàn thành Báo cáo,Không thể Xem", 'warning');
                         return;
                     }
                     else {

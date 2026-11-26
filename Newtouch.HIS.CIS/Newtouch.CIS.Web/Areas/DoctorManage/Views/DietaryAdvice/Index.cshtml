@@ -1,6 +1,6 @@
 @using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "Dinh dưỡngNhậpVào";
+    ViewBag.Title = "Dinh dưỡng Nhập Vào";
 }
 <div id="linkssyz" role="tabpanel" class="tab-pane" style="width:98%;margin-right: 10px;margin-top: 3px;">
     <div class="contentPanel" style="border: 1px solid #ddd;">
@@ -96,7 +96,7 @@
                 { label: 'Mẫu suất ăn', name: 'ssxhdm', hidden: true, editable: true },
                 { label: 'Mẫu suất ăn', name: 'ssxhval', hidden: true, editable: true },
                 {
-                    label: 'Suất ănLoại', name: 'yslb', name: 'yslb', width: 100, editwidth: '100%', align: 'center', editable: true, edittype: "select", editoptions: {
+                    label: 'Suất ăn Loại', name: 'yslb', name: 'yslb', width: 100, editwidth: '100%', align: 'center', editable: true, edittype: "select", editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
@@ -547,11 +547,11 @@
                             flag = true;
                             return false;
                         } else if (this.pcmc == undefined || this.pcmc == "") {
-                            $.modalAlert("ThiếuTần suất", "warning");
+                            $.modalAlert("Thiếu Tần suất", "warning");
                             flag = true;
                             return false;
                         } else if (this.yfmc == undefined || this.yfmc == "") {
-                            $.modalAlert("ThiếuCách dùng", "warning");
+                            $.modalAlert("Thiếu Cách dùng", "warning");
                             flag = true;
                             return false;
                         }
@@ -606,7 +606,7 @@
                 return false;
             }
             if (dbt == 'PTSS' && ssxh != 'Nhịn ăn' && yslb == '') {
-                $.modalAlert("Thiếu suất ănLoại", "warning");
+                $.modalAlert("Thiếu suất ăn Loại", "warning");
                 return false;
             }
             if ((dbt == 'CNYY' || dbt == 'YYBCJ') && yszs == '') {
@@ -622,7 +622,7 @@
                 return false;
             }
             if (rowdata.pcCode == "") {
-                $.modalAlert("ThiếuTần suất", "warning");
+                $.modalAlert("Thiếu Tần suất", "warning");
                 return false;
             }
 
@@ -631,7 +631,7 @@
                 return false;
             }
             if (ypyfdm=='') {
-                $.modalAlert("Thiếu suất ănCách dùng", "warning");
+                $.modalAlert("Thiếu suất ăn Cách dùng", "warning");
                 return false;
             }
         return true;
