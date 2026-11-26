@@ -149,7 +149,7 @@
                             <table class="form">
                                 <tr>
                                     <td class="formValue">
-                                        <input class="btn btn-info md" id="btn_sjsc" style="width: 100px;" value="Từ xaY tếDữ liệuTải lên" />
+                                        <input class="btn btn-info md" id="btn_sjsc" style="width: 100px;" value="Từ xa Y tế Dữ liệu Tải lên" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -201,7 +201,7 @@
                                 </tr>
                                 <tr>
                                     <td class="formValue">
-                                        <input class="btn btn-info md" id="btn_xd" style="width: 100px;" value="Điện timBáo cáo" />
+                                        <input class="btn btn-info md" id="btn_xd" style="width: 100px;" value="Điện tim Báo cáo" />
                                     </td>
                                 </tr>
 
@@ -240,7 +240,7 @@
                                 <label id="zcfsj" class="formClearIgnore"></label>
                             </td>
                             <td class="formValue">
-                                <input id="updatePatInfo" type="button" class="btn btn-primary" value="Thông tinSửa" onclick="updatePatInfo()">
+                                <input id="updatePatInfo" type="button" class="btn btn-primary" value="Thông tin Sửa" onclick="updatePatInfo()">
                             </td>
                             <td class="formValue">
                                 <input id="rpt_yygh" type="button" class="btn btn-primary" value="Hẹn khám" onclick="yuyueclick()">
@@ -1181,7 +1181,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             width: 400,
             height: 200,
             clickautotrigger: true,
-            caption: "ChọnChẩn đoán",
+            caption: "Chọn Chẩn đoán",
             ajaxparameters: null,
             itemdbclickhandler: function ($thistr) {
                 if (num == 0) {
@@ -1199,7 +1199,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 //    { label: 'Mã', name: 'zdCode', widthratio: 25 },
                 //{ label: 'Tên chẩn đoán', name: 'zdmc', widthratio: 50 },
                 { label: 'Mã', name: 'cyzdbm', widthratio: 25 },
-                { label: 'Chẩn đoánTên', name: 'cyzdmc', widthratio: 25 },
+                { label: 'Chẩn đoán Tên', name: 'cyzdmc', widthratio: 25 },
                 { label: 'py', name: 'py', widthratio: 50, hidden: true },
                 { label: 'icd10', name: 'icd10', widthratio: 25 },
                 { label: '<select id="zyzdxz' + num + '" name="zyzdxz' + num + '"  onchange="selzycyzd(this.options[this.options.selectedIndex].value,' + num + ')"><option value="0">Tất cả</option><option value="1">Cá nhân</option><option value="2">Khoa</option></select>', name: 'isgr', widthratio: 25 },
@@ -1231,7 +1231,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             width: 400,
             height: 200,
             clickautotrigger: true,
-            caption: "ChọnChẩn đoán",
+            caption: "Chọn Chẩn đoán",
             ajaxparameters: null,
             itemdbclickhandler: function ($thistr) {
                 if (num == 0) {
@@ -1248,7 +1248,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             },
             colModel: [
                 { label: 'Mã', name: 'cyzdbm', widthratio: 25 },
-                { label: 'Chẩn đoánTên', name: 'cyzdmc', widthratio: 25 },
+                { label: 'Chẩn đoán Tên', name: 'cyzdmc', widthratio: 25 },
                 { label: 'py', name: 'py', widthratio: 50, hidden: true },
                 { label: 'icd10', name: 'icd10', widthratio: 25 },
                 { label: '<select id="cyzdxz' + num + '" name="cyzdxz' + num + '"  onchange="selcyzd(this.options[this.options.selectedIndex].value,' + num+')"><option value="0">Tất cả</option><option value="1">Cá nhân</option><option value="2">Khoa</option></select>', name: 'isgr', widthratio: 25 },
@@ -1399,7 +1399,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     //bậtcửa sổHồ sơnội dungTrích dẫnbảnbản(Thêm mớiHồ sơmẫutrongĐơn thuốcBộ mẫuTrích dẫn)
                     $.modalOpen({
                         id: "HistoryMedicalRecordForm",
-                        title: "Bệnh ánThông tin",
+                        title: "Bệnh án Thông tin",
                         url: "/MedicalRecord/HistoryMedicalRecordForm?ex2=" + item.Ex2 + "&jzid=" + item.id,
                         width: "930px",
                         height: "850px",
@@ -1991,7 +1991,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             //if (pageType != "yczl") {
             $.modalOpen({
                 id: "HistoryMedicalRecordForm",
-                title: "Bệnh ánThông tin",
+                title: "Bệnh án Thông tin",
                 //data: { ajaxresp: JSON.stringify(ajaxresp)},
                 url: "/MedicalRecord/HistoryMedicalRecordForm?ex2=" + item.Ex2 + "&jzid=" + item.id + " &Id=" + Id + "&pageType=" + pageType + "&jzzt=" + window.currPatientInfo.jzzt,
                 width: "930px",
@@ -5970,7 +5970,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                              btn:null
                          });
                      } else {
-                         $.modalAlert("Tạm thời không cóĐiện timBáo cáo", 'warning');
+                         $.modalAlert("Tạm thời không cóĐiện tim Báo cáo", 'warning');
                          return;
                      }
                 }
