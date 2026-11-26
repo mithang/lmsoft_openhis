@@ -19,7 +19,7 @@
         <div id="gridmedicinePager"></div>
     </div>
     <div class="toolbar" style="float:right;width:80%;margin:10px 30px 12px;text-align:right;">
-        <a class="btn btn-primary" style="margin-left:4px;" onclick="HistoricalOrders(@Html.Raw(((int)EnumYzlx.Yp).ToString()))">Lịch sửY lệnhTrích dẫn</a>
+        <a class="btn btn-primary" style="margin-left:4px;" onclick="HistoricalOrders(@Html.Raw(((int)EnumYzlx.Yp).ToString()))">Lịch sử Y lệnh Trích dẫn</a>
         <a class="btn btn-primary" style="margin-left:4px;" onclick="ReviewToday()">Xem trong ngày</a>
         <a class="btn btn-primary" style="margin-left:4px;" onclick="SaveMedicineTemplate()">Lưu thành bộ mẫu</a>
         <a class="btn btn-primary" id="btn_bottombutton" style="margin-left:4px;" onclick="SaveDoctorService('1')">Lưu</a>
@@ -165,7 +165,7 @@
                                     {
                                         if($("#" + rowid + "_xmmc").val()=="")
                                         {
-                                            $.modalAlert("Vui lòng chọn trướcThuốc.", 'warning');
+                                            $.modalAlert("Vui lòng chọn trước Thuốc.", 'warning');
                                             $(this).val('')
                                             return;
                                         }
@@ -261,7 +261,7 @@
                                }
                     ]
                 }},
-                { label: '<span class="required"></span>Bộ mẫuMã', name: 'yfztbm', width: 65, editwidth: '100%', align: 'center', editable: true},
+                { label: '<span class="required"></span>Bộ mẫu Mã', name: 'yfztbm', width: 65, editwidth: '100%', align: 'center', editable: true},
                 { label: 'yfmcval', name: 'yfmcval', width: 75, editwidth: '100%', align: 'center', editable: true, hidden: true },
                 { label: 'ypyfdm', name: 'ypyfdm', width: 75, editwidth: '100%', align: 'center', editable: true, hidden: true },
                 { label: '<span class="required">*</span>Tần suất', name: 'pcmc', width: 55, editwidth: '100%', align: 'center', editable: true },
@@ -365,7 +365,7 @@
 
                 { label: 'yztag', name: 'yztag', editwidth: '', align: 'center', editable: true, hidden: true },
                 { label: 'Thao tác', name: 'action', width: 45, align: 'center' },
-                { label: 'Y lệnhChẩn đoán', name: 'yzzdmc', width: 100, align: 'center', editwidth: '100%', editable: true },
+                { label: 'Y lệnh Chẩn đoán', name: 'yzzdmc', width: 100, align: 'center', editwidth: '100%', editable: true },
                 { label: 'yzzdmc', name: 'yzzdid', editable: true, hidden: true },
                 { label: 'yzzdsj', name: 'yzzdsj', editable: true, hidden: true },
                 { label: 'iskss', name: 'iskss', editable: true, hidden: true },
@@ -473,7 +473,7 @@
                 });
         $("#gridmedicinePager_right").append('<div class=\"ckbox\" style=\"margin-top:2px;\"><span style="color:red;">Nhà thuốc:</span><select id="tip_yfly"></select></div>');
         $("#gridmedicinePager_right").append("<div class=\"ckbox\" style=\"margin-top:2px;\"><input id=\"chklsyz\" name=\"chklsyz\" type=\"checkbox\" ><label for=\"chklsyz\">Y lệnh tạm thời</label></div>");
-        $("#gridmedicinePager_right").append("<div class=\"ckbox\" style=\"margin-top:2px;\"><input id=\"chkkskc\" name=\"chkkskc\" type=\"checkbox\" ><label for=\"chkkskc\">KhoaTồn kho</label></div>");
+        $("#gridmedicinePager_right").append("<div class=\"ckbox\" style=\"margin-top:2px;\"><input id=\"chkkskc\" name=\"chkkskc\" type=\"checkbox\" ><label for=\"chkkskc\">Khoa Tồn kho</label></div>");
         $("#tip_yfly").empty();
         $.ajax({
             type: "POST",
@@ -673,7 +673,7 @@
         if ($("#" + rowid + "_isjffffff").parent().next().children('select').val() != "") {
             $.modalOpen({
                 id: "OrderDiagnosisForm",
-                title: "Y lệnhChẩn đoán",
+                title: "Y lệnh Chẩn đoán",
                 url: "/DoctorManage/Medicine/OrderDiagnosisForm?zyh=xy&brxz=",
                 width: "500px",
                 height: "330px",
@@ -686,7 +686,7 @@
                         zdObj.jbmc = obj.jbmc;
                     }
                     if (obj == null || obj == "undefined" || zdObj.jbbm == "" || zdObj.jbbm == "" || zdObj.zdsj=="") {
-                        $.modalAlert("Thuốc gây nghiện - hướng thầnY lệnhChẩn đoánBắt buộc!", "warning");
+                        $.modalAlert("Thuốc gây nghiện - hướng thần Y lệnh Chẩn đoán Bắt buộc!", "warning");
                         return;
                     }
                     $.modalClose("OrderDiagnosisForm");
