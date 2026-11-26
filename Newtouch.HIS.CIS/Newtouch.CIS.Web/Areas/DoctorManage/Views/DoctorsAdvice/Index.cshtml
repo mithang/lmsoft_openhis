@@ -188,16 +188,16 @@
             <li role="presentation"><a href="#linkzylr" role="tab" data-toggle="tab">Thuốc thảo dược</a></li>
         }
 
-        <li role="presentation"><a href="#linkcydy" role="tab" data-toggle="tab">Xuất việnThuốc mang theo</a></li>
-        <li role="presentation"><a href="#linkwzlr" role="tab" data-toggle="tab">Văn bảnNhập</a></li>
-        <li role="presentation"><a href="#linkxmlr" role="tab" data-toggle="tab">MụcNhập</a></li>
+        <li role="presentation"><a href="#linkcydy" role="tab" data-toggle="tab">Xuất viện Thuốc mang theo</a></li>
+        <li role="presentation"><a href="#linkwzlr" role="tab" data-toggle="tab">Văn bản Nhập</a></li>
+        <li role="presentation"><a href="#linkxmlr" role="tab" data-toggle="tab">Mục Nhập</a></li>
         if (iSOpenWzhc == true)
         {
             <li role="presentation"><a href="#linkhclr" role="tab" data-toggle="tab">Vật tư tiêu hao</a></li>
         }
         if (IsOpenRehabSwitch == true)
         {
-            <li role="presentation"><a href="#linkkfyz" role="tab" data-toggle="tab">Phục hồi chức năngY lệnh</a></li>
+            <li role="presentation"><a href="#linkkfyz" role="tab" data-toggle="tab">Phục hồi chức năng Y lệnh</a></li>
         }
         if (IsOpenJyJcSwitch == true)
         {
@@ -206,7 +206,7 @@
         }
         if (ISOpenSsyz == true)
         {
-            <li role="presentation"><a href="#linkssyz" role="tab" data-toggle="tab">Suất ănY lệnh</a></li>
+            <li role="presentation"><a href="#linkssyz" role="tab" data-toggle="tab">Suất ăn Y lệnh</a></li>
         }
     }
 
@@ -359,7 +359,7 @@
         //alert(aaa);
         $.modalOpen({
             id: "Form",
-            title: "Bệnh nhânChi phíTình hình",
+            title: "Bệnh nhân Chi phí Tình hình",
             url: "/DoctorManage/DoctorsAdvice/SettInfoShow?zyh=" + window.currentobj.zyh + "&ycqbr=" + ycqbr,
             width: "700px",
             height: "330px",
@@ -650,7 +650,7 @@
     {
         debugger;
         if (isNaN(zxzqdw) || zxzqdw=="") {
-            $.modalAlert("Thực hiệnChu kỳĐơn vịkhông được để trống", 'error');
+            $.modalAlert("Thực hiện Chu kỳ Đơn vị không được để trống", 'error');
             return;
         }
         var rtnsl;
@@ -677,7 +677,7 @@
         debugger;
         var zysl = 0;
         if (isNaN(dwlb) || dwlb == "") {
-            $.modalAlert("Đơn vịLoạikhông được để trống", 'error');
+            $.modalAlert("Đơn vị Loại không được để trống", 'error');
             return;
         }
         var qzint = ypjl * ts;//Mặc địnhĐơn vị nhập viện ,khôngcầnchuyểnđổi
@@ -865,7 +865,7 @@
         patobjValidate();
         $.modalOpen({
             id: "CurrentdayView",
-            title: "Trong ngàyY lệnhDanh sách",
+            title: "Trong ngày Y lệnh Danh sách",
             url: "/DoctorManage/Orginal/CurrentdayView?zyh=" + currentobj.zyh,
             width: "800px",
             height: "370px",
@@ -937,7 +937,7 @@
                 success: function (reqdata) {
                     if (reqdata) {
                         if (reqdata.message != "") {
-                            $.modalAlert("Duyệt trướcGọi giao diệnthất bại:" + reqdata.message, 'warning');
+                            $.modalAlert("Duyệt trước Gọi giao diện thất bại:" + reqdata.message, 'warning');
                         }
                     }
 
@@ -969,7 +969,7 @@
             success: function (reqdata) {
                 if (reqdata) {
                 if (reqdata.message != "") {
-                    $.modalAlert("DrgGọi giao diệnthất bại:" + reqdata.message, 'warning');
+                    $.modalAlert("Drg Gọi giao diện thất bại:" + reqdata.message, 'warning');
                     }
                 }
             }
