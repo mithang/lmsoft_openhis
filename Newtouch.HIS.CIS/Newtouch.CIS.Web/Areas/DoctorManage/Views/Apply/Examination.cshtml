@@ -35,7 +35,7 @@
                 <input id="txt_jc_lcyx" name="txt_jc_lcyx" type="text" class="form-control" />
             </td>
             <td class="formTitle">
-                Đề nghịGhi chú
+                Đề nghị Ghi chú
             </td>
             <td class="formValue">
                 <input id="txt_jc_sqbz" name="txt_jc_sqbz" type="text" class="form-control" />
@@ -49,7 +49,7 @@
             <td></td>
             <td></td>
             <td class="formValue">
-                <input type="button" class="btn btn-primary" value="LưuPhiếu" style="display: table-cell;float:right" onclick="SaveExaminationZT('1')" />
+                <input type="button" class="btn btn-primary" value="Lưu Phiếu" style="display: table-cell;float:right" onclick="SaveExaminationZT('1')" />
             </td>
         </tr>
     </table>
@@ -110,7 +110,7 @@
     function gridjc() {
         var $gridjc = $("#gridjc");
         $gridjc.dataGrid({
-            caption: "ChọnBộ mẫu",
+            caption: "Chọn Bộ mẫu",
             height: 160,
             //multiselect: true,
             colModel: [
@@ -125,10 +125,10 @@
                 },
                 { label: 'Đơn vị', name: 'dw', width: 120, align: 'center' },
                 { label: 'zxks', name: 'zxks', width: 60, align: 'center', hidden: true },
-                { label: 'Bộ mẫuID', name: 'ztId', width: 60, align: 'left', hidden: true },
+                { label: 'Bộ mẫu ID', name: 'ztId', width: 60, align: 'left', hidden: true },
                 { label: 'Tên bộ mẫu', name: 'ztmc', width: 120, align: 'center' },
                 { label: 'Khoa thực hiện', name: 'zxksmc', width: 100, align: 'center' },
-                { label: 'Có hay khôngBảo hiểm y tế', name: 'sfyb', width: 100, align: 'center' }
+                { label: 'Có hay không Bảo hiểm y tế', name: 'sfyb', width: 100, align: 'center' }
             ],
             //onSelectRow: function (rowid, status) {
             //    gridjccheck([rowid], status);
@@ -281,9 +281,9 @@
                 { label: 'Đơn vị', name: 'dwwwwwww', width: 50, align: 'center' },
                 { label: 'zxksdm', name: 'zxksdm', align: 'center', hidden: true },
                 { label: 'Khoa thực hiện', name: 'zxksmc', width: 90, align: 'center' },
-                { label: 'Bộ mẫuID', name: 'ztId', width: 60, align: 'center', editable: true, hidden: true },
+                { label: 'Bộ mẫu ID', name: 'ztId', width: 60, align: 'center', editable: true, hidden: true },
                 { label: 'Tên bộ mẫu', name: 'ztmc', width: 120, align: 'center' },
-                { label: 'Có hay khôngBảo hiểm y tế', name: 'sfyb', width: 60, align: 'center' },
+                { label: 'Có hay không Bảo hiểm y tế', name: 'sfyb', width: 60, align: 'center' },
                 { name: 'yzlx', hidden: true },
                 { name: 'pcCode', hidden: true },
                 { name: 'pcmc', hidden: true },
@@ -483,7 +483,7 @@
             caption: "Chi tiết phiếu đã kê,Tổng số tiền phiếu:0.00",
             editurl: "clientArray",
             colModel: [
-                { label: 'Bộ mẫuID', name: 'ztId', width: 60, align: 'left', key: true, editable: true, hidden: true },
+                { label: 'Bộ mẫu ID', name: 'ztId', width: 60, align: 'left', key: true, editable: true, hidden: true },
                 { label: 'mbId', name: 'mbId', width: 60, align: 'left', hidden: true },
                 { label: 'Tên bộ mẫu', name: 'ztmc', width: 150, align: 'left' },
                 { label: 'Vị trí', name: 'bw', editable: true, editwidth: '97%', width: 150, align: 'center' },
