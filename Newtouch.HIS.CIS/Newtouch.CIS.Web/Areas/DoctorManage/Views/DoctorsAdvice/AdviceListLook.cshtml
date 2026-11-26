@@ -52,8 +52,8 @@
                 </td>
                 <td class="formValue" style="width:15%;margin-left:10px">
                     <div id="panelposition" style="margin-left:30px">
-                        <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="qb" />Tất cảY lệnh</label>
-                        <label><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" value="yx" />Hiệu lựcY lệnh</label>
+                        <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="qb" />Tất cả Y lệnh</label>
+                        <label><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" value="yx" />Hiệu lực Y lệnh</label>
                     </div>
                 </td>
                 <th class="formTitle">Ngày bắt đầu:</th>
@@ -81,15 +81,15 @@
             <td>
                 <label style="height:7px;width:25px;background-color:brown; border:1px solid #ddd"></label>
             </td>
-            <td>Thực hiệnDài hạn/Tạm thời</td>
+            <td>Thực hiện Dài hạn/Tạm thời</td>
             <td>
                 <label style="height:7px;width:25px;background-color:red; border:1px solid #ddd"></label>
             </td>
-            <td>Hủy bỏTạm thời</td>
+            <td>Hủy bỏ Tạm thời</td>
             <td>
                 <label style="height:7px;width:25px;background-color:grey; border:1px solid #ddd"></label>
             </td>
-            <td>DừngDài hạn</td>
+            <td>Dừng Dài hạn</td>
             <td>
                 <label style="height:7px;width:25px;background-color:black;  border:1px solid #ddd"></label>
             </td>
@@ -156,7 +156,7 @@
             rowNum: 100,
             rownumbers: true,
             colModel: [
-                { label: 'Y lệnhID', name: 'Id', align: 'center',  hidden: true },
+                { label: 'Y lệnh ID', name: 'Id', align: 'center',  hidden: true },
                 {label: 'Loại y lệnh', name: 'yzlb', align: 'center', width: 50},
                 {
                     label: 'Loại y lệnh', name: 'yzlx', align: 'center', width: 50, formatter: function (val) {
@@ -171,7 +171,7 @@
                     label: 'Thời gian dừng', name: 'tzsj', align: 'center', width: 110, formatter: "date",
                     formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: 'DừngBác sĩ', name: 'tzr', align: 'center', width: 50 },
+                { label: 'Dừng Bác sĩ', name: 'tzr', align: 'center', width: 50 },
 				{ label: 'Người thực hiện', name: 'zxr', align: 'center', width: 50 },
 				{ label: 'Khoa thực hiện', name: 'deptName', align: 'center', width: 60 },
                 { label: 'yztag', name: 'yztag', align: 'center', hidden: true },
@@ -304,7 +304,7 @@
         }
         $.modalOpen({
             id: "Form",
-            title: "Y lệnhDừng",
+            title: "Y lệnh Dừng",
             url: "/DoctorManage/DoctorsAdvice/AdviceStop?yzId=" + yzId + "&yznr=" + yznr + "&kssj=" + kssj + "&tznr=" + tznr,
             width: "550px",
             height: "370px",
@@ -363,7 +363,7 @@
                            }
                        });
         };
-        $.modalConfirm("Có hay khôngCầnHủy bỏ?",
+        $.modalConfirm("Có hay không Cần Hủy bỏ?",
             function (flag) {
                 if (flag) {
                     if (yzzt == @Html.Raw((int)EnumYzzt.Zx).ToString()&& ((yzlx==@Html.Raw((int)EnumYzlx.Cydy))||(yzlx==@Html.Raw((int)EnumYzlx.Yp)))) {
