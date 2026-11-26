@@ -1,6 +1,6 @@
 @using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "Thuốc Đông yNhậpVào";
+    ViewBag.Title = "Thuốc Đông y Nhập Vào";
     Layout = null;
 }
 <div id="linkzylr" role="tabpanel" class="tab-pane" style="width:98%;margin-right: 10px; border:solid 1px #ddd; margin-top: 3px;">
@@ -9,7 +9,7 @@
         <div id="gridzycfPager"></div>
     </div>
     <div class="toolbar" style="float:right;width:80%;margin:10px 30px 12px;text-align:right;">
-        <a class="btn btn-primary" style="margin-left:4px;" onclick="HistoricalOrders(@Html.Raw(((int)EnumYzlx.zcy).ToString()))">Lịch sửY lệnhTrích dẫn</a>
+        <a class="btn btn-primary" style="margin-left:4px;" onclick="HistoricalOrders(@Html.Raw(((int)EnumYzlx.zcy).ToString()))">Lịch sử Y lệnh Trích dẫn</a>
         <a class="btn btn-primary" style="margin-left:4px;" onclick="ReviewToday()">Xem trong ngày</a>
         <a class="btn btn-primary" style="margin-left:4px;" onclick="SaveTCMMedicineTemplate()">Lưu thành bộ mẫu</a>
         <a class="btn btn-primary" style="margin-left:4px;" onclick="SavTCMService('1')">Lưu</a>
@@ -326,15 +326,15 @@
             .navButtonAdd('#gridzycfPager_center',
                 {
                     buttonicon: "glyphicon glyphicon-new-window",
-                    title: "Y lệnhChẩn đoán",
-                    caption: "Y lệnhChẩn đoán",
+                    title: "Y lệnh Chẩn đoán",
+                    caption: "Y lệnh Chẩn đoán",
                     position: "last",
                     onClickButton: function () {
                         YZZDCorrespond();
                     },
                 })
         $("#gridzycfPager_right").append('<div class=\"ckbox\" style=\"margin-top:2px;\"><span style="color:red;">Nhà thuốc:</span><select id="tip_zyyfly"></select></div>');
-        $("#gridzycfPager_right").append("<div style=\"margin-top:2px;\"><label id=\"zdmc\" style=\"margin-right:20px;\"></label><a type=\"button\" class=\"btn btn-primary\" onclick=\"YZZDCorrespond()\">Y lệnhChẩn đoán</a></div>");
+        $("#gridzycfPager_right").append("<div style=\"margin-top:2px;\"><label id=\"zdmc\" style=\"margin-right:20px;\"></label><a type=\"button\" class=\"btn btn-primary\" onclick=\"YZZDCorrespond()\">Y lệnh Chẩn đoán</a></div>");
         $("#tip_zyyfly").empty();
         $.ajax({
             type: "POST",
@@ -363,7 +363,7 @@
         function YZZDCorrespond() {
                 $.modalOpen({
                     id: "OrderDiagnosisForm",
-                    title: "Y lệnhChẩn đoán",
+                    title: "Y lệnh Chẩn đoán",
                     url: "/DoctorManage/Medicine/OrderDiagnosisForm?zyh=zy&brxz=",
                     width: "500px",
                     height: "330px",
@@ -376,7 +376,7 @@
                             zdObj.jbmc = obj.jbmc;
                         }
                         $.modalClose("OrderDiagnosisForm");
-                        $("#zdmc").text("Y lệnhChẩn đoán:" + zdObj.jbmc);
+                        $("#zdmc").text("Y lệnh Chẩn đoán:" + zdObj.jbmc);
                         $("#pdyzzd").val(zdObj.jbbm);
                         $("#pdyzzdmc").val(zdObj.jbmc);
                         $("#pdyzzdsj").val(zdObj.zdsj);
@@ -720,7 +720,7 @@
                     $(this)[i].yzzdsj = $("#pdyzzdsj").val();
                     if (savetodb == '1') {
                         if (this.xmmc == undefined || this.xmmc == "") {
-                            $.modalAlert("ThiếuTên", "warning");
+                            $.modalAlert("Thiếu Tên", "warning");
                             flag = true;
                             return false;
                         } else if (this.kssj == undefined || this.kssj == "") {
@@ -728,15 +728,15 @@
                             flag = true;
                             return false;
                         } else if (this.kssj < window.currentobj.ryrq) {
-                            $.modalAlert("[" + this.xmmc + "]Thời gian bắt đầuKhông được sớm hơnNhập việnThời gian Ngày nhập viện:" + window.currentobj.ryrq, "warning");
+                            $.modalAlert("[" + this.xmmc + "]Thời gian bắt đầu Không được sớm hơn Nhập viện Thời gian Ngày nhập viện:" + window.currentobj.ryrq, "warning");
                             flag = true;
                             return false;
                         } else if (this.ypgg == undefined || this.ypgg == "") {
-                            $.modalAlert("ThiếuQuy cách", "warning");
+                            $.modalAlert("Thiếu Quy cách", "warning");
                             flag = true;
                             return false;
                         } else if (isNaN(this.sl) || this.sl == "") {
-                            $.modalAlert("ThiếuSố thang", "warning");
+                            $.modalAlert("Thiếu Số thang", "warning");
                             flag = true;
                             return false;
                         } else if (isNaN(this.ypjl) || this.ypjl == "") {
@@ -748,20 +748,20 @@
                             flag = true;
                             return false;
                         } else if (this.pcmc === undefined || this.pcmc == "") {
-                            $.modalAlert("ThiếuTần suất", "warning");
+                            $.modalAlert("Thiếu Tần suất", "warning");
                             flag = true;
                             return false;
                         } else if (this.yfmc === undefined || this.yfmc == "" || this.yfmc == "Vui lòng chọn") {
-                            $.modalAlert("ThiếuCách dùng", "warning");
+                            $.modalAlert("Thiếu Cách dùng", "warning");
                             flag = true;
                             return false;
                         }
                           else if (this.djbz === undefined || this.djbz == "") {
-                            $.modalAlert("ThiếuSắc thuốc hộDấu hiệu", "warning");
+                            $.modalAlert("Thiếu Sắc thuốc hộ Dấu hiệu", "warning");
                             flag = true;
                             return false;
                         } else if (this.cydybz === undefined || this.cydybz == "") {
-                            $.modalAlert("ThiếuXuất việnThuốc mang theoDấu hiệu", "warning");
+                            $.modalAlert("Thiếu Xuất viện Thuốc mang theo Dấu hiệu", "warning");
                             flag = true;
                             return false;
                         }
