@@ -20,7 +20,7 @@
     <div class="panel panel-default" style="padding-right:10px;">
         <table class="form">
             <tr>
-                <th class="formTitle">Xuất việnThời gian:</th>
+                <th class="formTitle">Xuất viện Thời gian:</th>
                 <td class="formValue">
                     <input id="txt_cqrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })"
                            onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss',  onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" />
@@ -39,14 +39,14 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Chẩn đoánThời gian:</th>
+                <th class="formTitle">Chẩn đoán Thời gian:</th>
                 <td class="formValue">
                     <input id="txt_zdsj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
                            onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("dd/MM/yyyy ")" />
                 </td>
             </tr>
             @*<tr>
-                    <th class="formTitle">Xuất việnChẩn đoán:</th>
+                    <th class="formTitle">Xuất viện Chẩn đoán:</th>
                     <td class="formValue">
                         <input id="txt_cyzddm" type="hidden" />
                         <input id="txt_cyzd" disabled="disabled" name="txt_cyzd" type="text" style="background-color:#edeaea" class="form-control required zdinput" />
@@ -93,7 +93,7 @@
                 <tr>
                     <th class="formTitle">
                         <i id="zdCircle" class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="display:none;color: #6ff3ad; font-size: large;"></i>
-                        Xuất việnChẩn đoán:
+                        Xuất viện Chẩn đoán:
                     </th>
                     <td class="formValue">
                         <input id="txt_cyzddm" type="hidden" />
@@ -321,7 +321,7 @@
             });
         }
         if (zdcnt == 1) {
-            $.modalConfirm("Hiện tạiXuất việnChẩn đoánChỉ có một dòng,Xác nhậnChuyển khu?", function (flag) {
+            $.modalConfirm("Hiện tại Xuất viện Chẩn đoán Chỉ có một dòng, Xác nhận Chuyển khu?", function (flag) {
                 if (flag) {
                     $.ajax({
                         type: "POST",
@@ -378,7 +378,7 @@
     //tâyyhỗ trợChẩn đoán Thêm mớiicon
     $('#tablezd .plusToggleCircle').click(function () {
         var number = $('#tablezd .zdinput').length + 1;
-        var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;display:none; margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Hỗ trợChẩn đoán:</th><td class="formValue"><input id="txt_fzzd' + number + 'dm" type="hidden" /><input id="txt_fzzd' + number + '" name="txt_fzzd' + number + '" type="text"  disabled="disabled" style="background-color:#edeaea" class="form-control required zdinput" /></td></tr>');
+        var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;display:none; margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Hỗ trợ Chẩn đoán:</th><td class="formValue"><input id="txt_fzzd' + number + 'dm" type="hidden" /><input id="txt_fzzd' + number + '" name="txt_fzzd' + number + '" type="text"  disabled="disabled" style="background-color:#edeaea" class="form-control required zdinput" /></td></tr>');
         $newTr.appendTo($(this).closest('table'));
     });
 
