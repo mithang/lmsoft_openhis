@@ -494,7 +494,7 @@
     function AdviceLeaveHospitalStop() {
         $.modalOpen({
             id: "AdviceLeaveHospitalStop",
-            title: "Xuất việnDừng toàn bộ",
+            title: "Xuất viện Dừng toàn bộ",
             url: "/DoctorManage/DoctorsAdvice/AdviceLeaveHospitalStop?zyh=" + currentobj.zyh,
             width: "550px",
             height: "300px",
@@ -505,7 +505,7 @@
                             top.frames[iframeId].submitForm(function () {
                                 $.loading(false);
                                 $.modalClose("AdviceLeaveHospitalStop");
-                                $.modalMsg("Xuất việnDừng toàn bộthành công", 'success');
+                                $.modalMsg("Xuất viện Dừng toàn bộ thành công", 'success');
                                 btn_search();
                             });
                         }
