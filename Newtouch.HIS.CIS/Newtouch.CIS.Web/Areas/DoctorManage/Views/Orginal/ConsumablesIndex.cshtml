@@ -11,7 +11,7 @@
 
     <div class="toolbar" style="float:right;width:80%;margin:10px 30px 12px;text-align:right;">
         <div id="labhcyzzje" style="margin-top:2px;float:left;"></div>
-        <a class="btn btn-primary" style="margin-left:4px;" onclick="HistoricalOrders(@Html.Raw(((int)EnumYzlx.yyhc).ToString()))">Lịch sửY lệnhTrích dẫn</a>
+        <a class="btn btn-primary" style="margin-left:4px;" onclick="HistoricalOrders(@Html.Raw(((int)EnumYzlx.yyhc).ToString()))">Lịch sử Y lệnh Trích dẫn</a>
         <a class="btn btn-primary" style="margin-left:4px;" id="btn_bottombutton_f7" onclick="ReviewToday()">Xem trong ngày</a>
         <a class="btn btn-primary" style="margin-left:4px;" id="btn_bottombutton_f8" onclick="SaveYyhcTemplate()">Lưu thành bộ mẫu</a>
         <a class="btn btn-primary" style="margin-left:4px;" id="btn_bottombutton_f9" onclick="SaveYyhcMedicine('1')">Lưu</a>
@@ -423,7 +423,7 @@
         $("#" + rowid + "_zxksmc").newtouchBatchFloatingSelector({
             height: 170,
             width: 300,
-            caption: "ChọnKhoa",
+            caption: "Chọn Khoa",
             url: '/Rehab/GetSfxmZxksSelectJson2',
             clickautotrigger: true,
             ajaxparameters: function ($thisinput) {
@@ -583,7 +583,7 @@
                     $(this)[i].ysgh = '@ViewBag.ysgh';
                     var sl = calitemslByobj(this);
                     if (!sl && savetodb == '1') {
-                        $.modalAlert("Tính toánSố lượngthất bại", "warning");
+                        $.modalAlert("Tính toán Số lượng thất bại", "warning");
                         flag = true;
                         return false;
                     } else if (sl) {
@@ -591,7 +591,7 @@
                     }
                     if (savetodb == '1') {
                         if (this.xmmc == undefined || this.xmmc == "") {
-                            $.modalAlert("ThiếuMục", "warning");
+                            $.modalAlert("Thiếu Mục", "warning");
                             flag = true;
                             return false;
                         } else if (this.zxksmc == undefined || this.zxksmc == "" || this.zxksdm == undefined || this.zxksdm == ""){
@@ -603,7 +603,7 @@
                             flag = true;
                             return false;
                         } else if (this.kssj < window.currentobj.ryrq) {
-                            $.modalAlert("[" + this.xmmc + "]Thời gian bắt đầuKhông được sớm hơnNhập việnThời gian Ngày nhập viện:" + window.currentobj.ryrq, "warning");
+                            $.modalAlert("[" + this.xmmc + "]Thời gian bắt đầu Không được sớm hơn Nhập viện Thời gian Ngày nhập viện:" + window.currentobj.ryrq, "warning");
                             flag = true;
                             return false;
                         } else if (this.dw == undefined || this.dw == "") {
@@ -615,7 +615,7 @@
                             flag = true;
                             return false;
                         }else if (this.pcmc == undefined || this.pcmc == "") {
-                            $.modalAlert("ThiếuTần suất", "warning");
+                            $.modalAlert("Thiếu Tần suất", "warning");
                             flag = true;
                             return false;
                         }
