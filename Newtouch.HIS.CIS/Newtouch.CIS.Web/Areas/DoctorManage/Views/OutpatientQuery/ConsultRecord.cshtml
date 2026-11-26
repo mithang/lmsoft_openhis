@@ -1,6 +1,6 @@
 
 @{
-    ViewBag.Title = "Ngoại trúKhám bệnhHồ sơ";
+    ViewBag.Title = "Ngoại trú Khám bệnh Hồ sơ";
     Layout = "~/Views/Shared/_Index.cshtml";
     var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
     var ReportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
@@ -62,7 +62,7 @@
                 { label: 'Tuổi', name: 'nl', align: 'left', width: 50 },
                 { label: 'Chẩn đoán', name: 'zdmc', width: 150, align: 'left' },
                 { label: 'Thời gian bắt đầu', name: 'zlkssj', align: 'left', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
-                { label: 'Kết thúcThời gian', name: 'zljssj', align: 'left', width: 120, formatter: function (val) { return val != "" && val != undefined ? $.getTime({ date: val }) : ""; } },
+                { label: 'Kết thúc Thời gian', name: 'zljssj', align: 'left', width: 120, formatter: function (val) { return val != "" && val != undefined ? $.getTime({ date: val }) : ""; } },
                  { label: 'Khoa', name: 'ks', width: 80, align: 'left' },
                 { label: 'Bác sĩ', name: 'ys', width: 80, align: 'left' },
                 { label: 'Địa chỉ gia đình', name: 'dz', width: 80, align: 'left' },

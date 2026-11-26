@@ -37,9 +37,9 @@
 	</div>
 	<div class="ui-layout" id="layout" style="height:70%;width:100%;">
 		<ul class="nav nav-tabs" id="myTab">
-			<li class="active"><a href="#librlb" id="alibrlb" data-toggle="tab" onclick="newtabchange('1')">Ngoại trúBệnh ánDanh sách</a></li>
-			<li><a href="#linbl" id="alinbl" data-toggle="tab" onclick="newtabchange('2')">Bệnh ánChi tiết</a></li>
-			<li><a href="#linlsjz" id="alinlsjz" data-toggle="tab" onclick="newtabchange('3')">Lịch sửBệnh ánGhi chép</a></li>
+			<li class="active"><a href="#librlb" id="alibrlb" data-toggle="tab" onclick="newtabchange('1')">Ngoại trú Bệnh án Danh sách</a></li>
+			<li><a href="#linbl" id="alinbl" data-toggle="tab" onclick="newtabchange('2')">Bệnh án Chi tiết</a></li>
+			<li><a href="#linlsjz" id="alinlsjz" data-toggle="tab" onclick="newtabchange('3')">Lịch sử Bệnh án Ghi chép</a></li>
 		</ul>
 		<div class="tab-pane fade in active" id="librlb">
 			<table id="gridList"></table>
@@ -96,9 +96,9 @@
                 { label: 'Tuổi', name: 'nl', align: 'left', width: 50 },
                 { label: 'Chẩn đoán', name: 'zdmc', width: 150, align: 'left' },
                 { label: 'Thời gian bắt đầu', name: 'zlkssj', align: 'left', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
-                { label: 'Kết thúcThời gian', name: 'zljssj', align: 'left', width: 120, formatter: function (val) { return val != "" && val != undefined ? $.getTime({ date: val }) : ""; } },
+                { label: 'Kết thúc Thời gian', name: 'zljssj', align: 'left', width: 120, formatter: function (val) { return val != "" && val != undefined ? $.getTime({ date: val }) : ""; } },
                 { label: 'Khoa', name: 'ks', width: 80, align: 'left' },
-                { label: 'Khám bệnhBác sĩ', name: 'ys', width: 80, align: 'left' },
+                { label: 'Khám bệnh Bác sĩ', name: 'ys', width: 80, align: 'left' },
                 { label: 'Địa chỉ gia đình', name: 'dz', width: 80, align: 'left' },
                 { label: 'Kết quả điều trị', name: 'zg', width: 80, align: 'left', hidden: true }
             ],
@@ -179,7 +179,7 @@
 	function doubleclick(rowid) {
 		var selRowData = $("#gridList").getRowData(rowid);
 		if (selRowData==null) {
-			$.modalAlert("Vui lòng chọnmột dòngBệnh nhânThông tin", 'warning');
+			$.modalAlert("Vui lòng chọn một dòng Bệnh nhân Thông tin", 'warning');
 			return;
 		}
 		//$.modalMsg("chọnBệnh nhâncủaSố khám ngoại trúlà:" + selRowData.mzh, 'warning');
@@ -210,7 +210,7 @@
 			postData: { blh: blh },
 			height: $(window).height() - 500,
 			url: "/DoctorManage/OutpatientQuery/MZBLlsinfo",
-			caption: "Lịch sửKhám bệnhGhi chép",
+			caption: "Lịch sử Khám bệnh Ghi chép",
 			colModel: [
 				{ label: 'Số bệnh án', name: 'blh', width: 100, align: 'left' },
 				{ label: 'Mã số khám ngoại trú', name: 'mzh', width: 100, align: 'left' },
@@ -219,11 +219,11 @@
 				{ label: 'Tuổi', name: 'nl', width: 50, align: 'left' },
 				{ label: 'Chẩn đoán', name: 'zdmc', width: 150, align: 'left' },
 				{ label: 'Thời gian bắt đầu', name: 'zlkssj', width: 120, align: 'left', formatter: function (val) { return $.getTime({ date: val }); } },
-				{ label: 'Kết thúcThời gian', name: 'zljssj', width: 120, align: 'left', formatter: function (val) { return val != "" && val != undefined ? $.getTime({ date: val }) : ""; } },
+				{ label: 'Kết thúc Thời gian', name: 'zljssj', width: 120, align: 'left', formatter: function (val) { return val != "" && val != undefined ? $.getTime({ date: val }) : ""; } },
 				{ label: 'Khoa', name: 'ks', width: 80, align: 'left' },
-				{ label: 'Khám bệnhBác sĩ', name: 'ys', width: 80, align: 'left' },
+				{ label: 'Khám bệnh Bác sĩ', name: 'ys', width: 80, align: 'left' },
 				{ label: 'Địa chỉ gia đình', name: 'dz', width: 80, align: 'left' },
-				{ label: 'Khám bệnhID', name: 'jzId', width: 80, align: 'left', hidden: true }
+				{ label: 'Khám bệnh ID', name: 'jzId', width: 80, align: 'left', hidden: true }
 			],
 			pager: "#gridPagerls",
 			sortname: " zlkssj desc",
@@ -245,7 +245,7 @@
 			ondblClickRow: function (rowid) {
 				var selRowData = $("#gridListls").getRowData(rowid);
 				if (selRowData == null) {
-					$.modalAlert("Vui lòng chọnmột dòngBệnh nhânThông tin", 'warning');
+					$.modalAlert("Vui lòng chọn một dòng Bệnh nhân Thông tin", 'warning');
 					return;
 				}
 				mzh = selRowData.mzh;//Hồ sơChi tiếtthông tinSử dụng
@@ -271,8 +271,8 @@
 				{ label: 'Đơn vị', name: 'dw', align: 'left', width: 80},
 				{ label: 'Số lượng', name: 'sl', align: 'center', width: 80 },
 				{ label: 'Số tiền', name: 'je', align: 'left', width: 80 },
-				{ label: 'KêBác sĩ', name: 'klys', width: 130, align: 'left' },
-				{ label: 'KêKhoa', name: 'klks', width: 130, align: 'left' },
+				{ label: 'Kê Bác sĩ', name: 'klys', width: 130, align: 'left' },
+				{ label: 'Kê Khoa', name: 'klks', width: 130, align: 'left' },
                 {
                     label: 'Trạng thái thu phí', name: 'sfbz', width: 90, align: 'left', formatter: function (val, options, rowObject) {
                         if (rowObject["tbz"])
