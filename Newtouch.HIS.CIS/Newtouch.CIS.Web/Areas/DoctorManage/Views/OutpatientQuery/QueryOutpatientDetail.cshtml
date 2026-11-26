@@ -1,6 +1,6 @@
 @using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "Tra cứuNgoại trúThông tin chi tiết";
+    ViewBag.Title = "Tra cứu Ngoại trú Thông tin chi tiết";
     Layout = "~/Views/Shared/_Index.cshtml";
     var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
     var ReportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
@@ -128,17 +128,17 @@
             width: "100px",
             url: "/DoctorManage/OutpatientQuery/GetOutpatientDetailGridJson",
             colModel: [
-                { label: 'Khám bệnhThời gian', name: 'jzsj', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
+                { label: 'Khám bệnh Thời gian', name: 'jzsj', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
                 { label: 'Mã số khám ngoại trú', name: 'mzh', width: 100, align: 'center' },
                 { label: 'Tên bệnh nhân', name: 'xm', align: 'center', width: 110 },
                 { label: 'Giới tính', name: 'xb', align: 'center', width: 50 },
                 { label: 'Tính chất bệnh nhân', name: 'brxzmc', align: 'center', width: 100 },
-                { label: 'Khám bệnhKhoa', name: 'jzks', width: 100, align: 'center' },
+                { label: 'Khám bệnh Khoa', name: 'jzks', width: 100, align: 'center' },
                 { label: 'Số đơn thuốc', name: 'cfs', align: 'center', width: 50 },
-                { label: 'Đơn thuốcSố tiền', name: 'cfje', align: 'center', width: 80 },
+                { label: 'Đơn thuốc Số tiền', name: 'cfje', align: 'center', width: 80 },
                 { label: 'Số lần kiểm tra', name: 'jcs', align: 'center', width: 50 },
-                { label: 'Kiểm traSố tiền', name: 'jcje', align: 'center', width: 80 },
-                { label: 'Bổ sungMục', name: 'fjxm', align: 'left', width: 50 },
+                { label: 'Kiểm tra Số tiền', name: 'jcje', align: 'center', width: 80 },
+                { label: 'Bổ sung Mục', name: 'fjxm', align: 'left', width: 50 },
             ],
             pager: "#gridPager",
             sortname: " jzsj asc",

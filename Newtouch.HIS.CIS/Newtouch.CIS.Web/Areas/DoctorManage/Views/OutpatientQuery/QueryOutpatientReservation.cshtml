@@ -1,6 +1,6 @@
 
 @{
-    ViewBag.Title = "Tra cứuNgoại trúHẹn trướcHồ sơ";
+    ViewBag.Title = "Tra cứu Ngoại trú Hẹn trước Hồ sơ";
     Layout = "~/Views/Shared/_Index.cshtml";
     var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
     var ReportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
@@ -64,7 +64,7 @@
                            onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
                            value="@DateTime.Now.ToString("dd/MM/yyyy")" />
                 </td>
-                <th class="formTitle">Đặt hẹnHọ tên:</th>
+                <th class="formTitle">Đặt hẹn Họ tên:</th>
                 <td class="formValue" style="width:10%;float:left;">
                     <input id="xm" type="text" class="form-control" style="width:90px;float:left;" />
                 </td>
@@ -95,15 +95,15 @@
             colModel: [
 
                 { label: 'Đặt hẹn Ngày', name: 'yyrq', width: 80, align: 'center' },
-                { label: 'Đặt hẹnThời gian', name: 'yysj', width: 80, align: 'center' },
+                { label: 'Đặt hẹn Thời gian', name: 'yysj', width: 80, align: 'center' },
                 { label: 'Mã số khám ngoại trú', name: 'mzh', width: 100, align: 'center' },
                 { label: 'Tên bệnh nhân', name: 'xm', align: 'center', width: 110 },
                 { label: 'Giới tính', name: 'xb', align: 'center', width: 50 },
                 { label: 'Điện thoại người đặt hẹn', name: 'yylxfs', align: 'center', width: 100 },
-                { label: 'Đặt hẹnKhoa', name: 'yyks', width: 80, align: 'center' },
-                { label: 'Đặt hẹnBác sĩ', name: 'yyys', align: 'center', width: 80 },
-                { label: 'Thao tác1', name: 'action', align: 'center', width: 100, formatter: function (val) { return "<input class='btn btn-default btn-md btn_add' type='button' value='SửaThời gian' onclick='updateRow($(this).parent().parent().attr(\"id\"))'/>"; } },
-                { label: 'Thao tác2', name: 'action', align: 'left', width: 100, formatter: function (val) { return "<input class='btn btn-default btn-md btn_add' type='button' value='XóaGhi chép' onclick='deleteRow($(this).parent().parent().attr(\"id\"))'/>"; } },
+                { label: 'Đặt hẹn Khoa', name: 'yyks', width: 80, align: 'center' },
+                { label: 'Đặt hẹn Bác sĩ', name: 'yyys', align: 'center', width: 80 },
+                { label: 'Thao tác1', name: 'action', align: 'center', width: 100, formatter: function (val) { return "<input class='btn btn-default btn-md btn_add' type='button' value='Sửa Thời gian' onclick='updateRow($(this).parent().parent().attr(\"id\"))'/>"; } },
+                { label: 'Thao tác2', name: 'action', align: 'left', width: 100, formatter: function (val) { return "<input class='btn btn-default btn-md btn_add' type='button' value='Xóa Ghi chép' onclick='deleteRow($(this).parent().parent().attr(\"id\"))'/>"; } },
             ],
             pager: "#gridPager",
             sortname: " yyrq asc",
