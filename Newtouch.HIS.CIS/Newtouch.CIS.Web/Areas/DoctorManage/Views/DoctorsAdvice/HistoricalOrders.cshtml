@@ -127,14 +127,14 @@
             colModel: [
                 { label: 'Id', name: 'Id', hidden: true },
                 { label: 'Dài hạn/Tạm thời', name: 'yzlb', width: 30, align: 'center' },
-                { label: 'NhậpThời gian', name: 'CreateTime', width: 120, align: 'center' },
+                { label: 'Nhập Thời gian', name: 'CreateTime', width: 120, align: 'center' },
                 { label: 'Mã hạng mục', name: 'xmdm', width: 10, align: 'left', hidden: true },
                 { label: 'Tên mục', name: 'xmmc', width: 10, align: 'left', hidden: true },
                 { label: 'Nội dung y lệnh', name: 'yznr', width: 240, align: 'left'},
                 //{ label: 'Đơn giá', name: 'dj', width: 60, align: 'left' },
                 { label: 'Liều lượng', name: 'ypjl', width: 40, align: 'center', hidden: true },
                 { label: 'Cách dùng', name: 'yfmcval', width: 60, align: 'center', hidden: true},
-                { label: 'Cách dùngMã', name: 'ypyfdm', width: 10, align: 'left', hidden: true },
+                { label: 'Cách dùng Mã', name: 'ypyfdm', width: 10, align: 'left', hidden: true },
                 { label: 'Liều mỗi lần điều trị', name: 'ypjl', width: 80, align: 'center', hidden: (tclx == sfxm || tclx == kfyz) ? null : true },
                 { label: 'pcCode', name: 'pcCode', hidden: true },
                 { label: 'Tần suất', name: 'pcmc', width: 60, align: 'center', hidden: true},
@@ -156,7 +156,7 @@
     //            },
                   { label: 'Tồn kho', name: 'kcsl', width: 50, hidden: true },
                 {
-                    label: 'Kiểm soátDấu hiệu', name: 'kzbz', width: 50, hidden: (tclx == yp || tclx == zyyz) ? null : tclx == cydy ? null : true, formatter: function (val) {
+                    label: 'Kiểm soát Dấu hiệu', name: 'kzbz', width: 50, hidden: (tclx == yp || tclx == zyyz) ? null : tclx == cydy ? null : true, formatter: function (val) {
                         if (val == "0") {
                             return "Bình thường";
                         } else if (val == "1") {
