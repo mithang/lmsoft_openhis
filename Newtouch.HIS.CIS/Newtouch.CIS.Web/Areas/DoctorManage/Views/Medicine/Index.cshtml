@@ -940,7 +940,7 @@
                 {
                     if($("#" + rowid + "_xmmc").val()=="")
                     {
-                        $.modalAlert("Vui lòng chọn trướcThuốc.", 'warning');
+                        $.modalAlert("Vui lòng chọn trước Thuốc.", 'warning');
                         $(this).val('')
                         return;
                     }
@@ -1028,7 +1028,7 @@
             width: 250,
             height: 200,
             focusautotrigger: true,
-            caption: "ChọnBộ mẫu",
+            caption: "Chọn Bộ mẫu",
             url: '/Prescription/GetSfxmItem',
             ajaxparameters: function ($thisinput) {
                 var yfbm=$("#" + rowid + "_ypyfdm").val();
@@ -1036,7 +1036,7 @@
             },
             colModel: [
 
-                { label: 'Bộ mẫuMã', name: 'sfmb', widthratio: 60 },
+                { label: 'Bộ mẫu Mã', name: 'sfmb', widthratio: 60 },
                 { label: 'Tên bộ mẫu', name: 'sfmbmc', widthratio: 35 }
             ],
             itemdbclickhandler: function ($this) {
@@ -1353,21 +1353,21 @@
         patobjValidate();
         $.modalOpen({
             id: "PatientHistoricalOrders",
-            title: "Lịch sửBệnh nhânChọn",
+            title: "Lịch sử Bệnh nhân Chọn",
             url: "/DoctorManage/DoctorsAdvice/PatientHistoricalOrders?zyh=" + currentobj.zyh,
             width: "600px",
             height: "450px",
             callBack: function (iframeId) {
                 var zyhorryrq = top.frames[iframeId].submitForm();
                 if (zyhorryrq == null || zyhorryrq=="") {
-                    $.modalAlert("Vui lòng chọnLịch sửBệnh nhânThông tinTiến hànhSao chép", 'warning');
+                    $.modalAlert("Vui lòng chọn Lịch sử Bệnh nhân Thông tin Tiến hành Sao chép", 'warning');
                     $.modalClose("PatientHistoricalOrders");
                     return;
                 }
                 $.modalClose("PatientHistoricalOrders");
                 $.modalOpen({
             id: "HistoricalOrders",
-            title: "Lịch sửY lệnhTrích dẫn",
+            title: "Lịch sử Y lệnh Trích dẫn",
                     url: "/DoctorManage/DoctorsAdvice/HistoricalOrders?tclx=" + type + "&zyh=" + zyhorryrq.split(',')[0] + "&ryrq=" + zyhorryrq.split(',')[1] + "&xm=" + zyhorryrq.split(',')[2] + "&xb=" + zyhorryrq.split(',')[3] + "&cyrq=" + zyhorryrq.split(',')[4] + "&ryzd=" + zyhorryrq.split(',')[5] + "&cyzd=" + zyhorryrq.split(',')[6],
             width: "900px",
             height: "700px",
@@ -1432,7 +1432,7 @@
         patobjValidate();
         $.modalOpen({
             id: "CurrentdayView",
-            title: "Trong ngàyY lệnhDanh sách",
+            title: "Trong ngày Y lệnh Danh sách",
             url: "/DoctorManage/Orginal/CurrentdayView?zyh=" + currentobj.zyh,
             width: "800px",
             height: "370px",
@@ -1491,7 +1491,7 @@
                     $(this)[i].Px=px+1; px++;
                     if (savetodb == '1') {
                         if (this.xmmc == undefined || this.xmmc == "") {
-                            $.modalAlert("ThiếuMục", "warning");
+                            $.modalAlert("Thiếu Mục", "warning");
                             flag = true;
                             return false;
                         } else if (this.kssj == undefined || this.kssj == "") {
@@ -1499,15 +1499,15 @@
                             flag = true;
                             return false;
                         } else if (this.kssj < window.currentobj.ryrq) {
-                            $.modalAlert("[" + this.xmmc + "]Thời gian bắt đầuKhông được sớm hơnNhập việnThời gian Ngày nhập viện:" + window.currentobj.ryrq, "warning");
+                            $.modalAlert("[" + this.xmmc + "]Thời gian bắt đầu Không được sớm hơn Nhập viện Thời gian Ngày nhập viện:" + window.currentobj.ryrq, "warning");
                             flag = true;
                             return false;
                         } else if (this.ypgg == undefined || this.ypgg == "") {
-                            $.modalAlert("ThiếuThuốcQuy cách", "warning");
+                            $.modalAlert("Thiếu Thuốc Quy cách", "warning");
                             flag = true;
                             return false;
                         } else if (this.ypjl == undefined || this.ypjl == "") {
-                            $.modalAlert("ThiếuThuốcLiều lượng", "warning");
+                            $.modalAlert("Thiếu Thuốc Liều lượng", "warning");
                             flag = true;
                             return false;
                         } else if (this.dw === undefined || this.dw == "") {
@@ -1515,25 +1515,25 @@
                             flag = true;
                             return false;
                         } else if (this.yfmc === undefined || this.yfmc == "" || this.yfmc == "Vui lòng chọn") {
-                            $.modalAlert("ThiếuCách dùng", "warning");
+                            $.modalAlert("Thiếu Cách dùng", "warning");
                             flag = true;
                             return false;
                         } else if (this.pcmc === undefined || this.pcmc == "") {
-                            $.modalAlert("ThiếuTần suất", "warning");
+                            $.modalAlert("Thiếu Tần suất", "warning");
                             flag = true;
                             return false;
                         } else if (this.zbbz === undefined || this.zbbz == "") {
-                            $.modalAlert("ThiếuTự chuẩn bịDấu hiệu", "warning");
+                            $.modalAlert("Thiếu Tự chuẩn bị Dấu hiệu", "warning");
                             flag = true;
                             return false;
                         }
                         else if (this.yztag != "" && this.yzzdid=="") {
-                            $.modalAlert("Thuốc gây nghiện - hướng thầnY lệnhCầnĐiềnChẩn đoán, Vui lòng chọn lạiThuốc gây nghiện - hướng thần", "warning");
+                            $.modalAlert("Thuốc gây nghiện - hướng thần Y lệnh Cần Điền Chẩn đoán, Vui lòng chọn lại Thuốc gây nghiện - hướng thần", "warning");
                             flag = true;
                             return false;
                         }
                         else if (this.ispscs != "" && this.ispscs == "") {
-                            $.modalAlert("ThiếuTest daKiểm thửDấu hiệu", "warning");
+                            $.modalAlert("Thiếu Test da Kiểm thử Dấu hiệu", "warning");
                             flag = true;
                             return false;
                         }
