@@ -847,7 +847,7 @@
     }
     function newtouch_event_f9() {
         var zyh = currentobj.zyh;
-        top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Phiếu theo dõi 3 chỉ sốTra cứu(Bác sĩ)", enName: "", url: "/NurseManage/InpatientVitalSigns/TemperatureChartIndex?zyh=" + zyh+"&yshsbz=1" });
+        top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Phiếu theo dõi 3 chỉ số Tra cứu(Bác sĩ)", enName: "", url: "/NurseManage/InpatientVitalSigns/TemperatureChartIndex?zyh=" + zyh+"&yshsbz=1" });
     }
     function newtouch_event_f10() {
 
@@ -907,10 +907,10 @@
                 }},
             { label: 'Đường dùng thuốc', name: 'AdminRoute', align: 'center', width: 100 },
             { label: 'Tần suất dùng thuốc', name: 'AdminFrequency', align: 'center', width: 100 },
-            { label: 'LỗiThông tin', name: 'MessageText', align: 'center', width: 250 },
+            { label: 'Lỗi Thông tin', name: 'MessageText', align: 'center', width: 250 },
             { label: 'Đề xuất', name: 'Advice', align: 'center', width: 200 },
             { label: 'Nguồn', name: 'Source', align: 'center', width: 100 },
-            { label: 'LỗiLoại', name: 'Type', align: 'center', width: 100 }
+            { label: 'Lỗi Loại', name: 'Type', align: 'center', width: 100 }
         ];
         const cfStateMap = {
             "1": "Đang duyệt",
@@ -934,11 +934,11 @@
                 statusColor = "gray";  // Không xác địnhTrạng thái
                 break;
         }
-        $("#hlyyauditStatus").html("DuyệtTrạng thái: <span style='color: " + statusColor + "; font-size: " + fontSize + ";'>" + auditStatus + "</span>");
+        $("#hlyyauditStatus").html("Duyệt Trạng thái: <span style='color: " + statusColor + "; font-size: " + fontSize + ";'>" + auditStatus + "</span>");
         // tạovàđiềnThuốcChi tiếtbảngô
         $HlyydrugGrid.newtouchLocalDataGrid({
             unwritten: false,
-            caption: "ThuốcThông tinChi tiết",
+            caption: "Thuốc Thông tin Chi tiết",
             colModel: drugColModel,
             shrinkToFit: true,
         }, Data.Message.Infos.InfoList.length > 0 ?Data.Message.Infos.InfoList : [{/* Empty row to show column headers */ }]);
