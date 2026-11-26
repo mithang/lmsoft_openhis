@@ -113,7 +113,7 @@
             autowidth: true,
             colModel: [
                 { label: 'gmxxid', name: 'gmxxid', align: 'center', hidden: true, key: true  },
-                { label: 'Chi tiết đơn thuốcID', name: 'cfmxId', align: 'center', hidden: true},
+                { label: 'Chi tiết đơn thuốc ID', name: 'cfmxId', align: 'center', hidden: true},
                 { label: 'Số khám ngoại trú', name: 'mzh', align: 'center', width: 100 },
                 { label: 'blh', name: 'blh', align: 'center', hidden: true },
                 { label: 'Tên bệnh nhân', name: 'xm', align: 'center', width: 60 },
@@ -123,12 +123,12 @@
                 { label: 'Giá trị kết quả', name: 'lrjg', align: 'center', width: 50, formatter: function (val) { if ((val == "Dương tính")) return "<span style='color:red;'>" + val + "</span>"; else return val; } },
                 { label: 'Nội dung đơn thuốc', name: 'cfmxnr', align: 'center', width: 180 },
                 { label: 'Người nhập', name: 'CreatorName', align: 'center', width: 50 },
-                { label: 'NhậpThời gian', name: 'CreateTime', align: 'center', width: 100, formatter: function (val) { return $.getTime({ date: val }); } },
+                { label: 'Nhập Thời gian', name: 'CreateTime', align: 'center', width: 100, formatter: function (val) { return $.getTime({ date: val }); } },
                 { label: 'Người cập nhật', name: 'LastModifierName', align: 'center', width: 50 },
                 { label: 'Thời gian cập nhật', name: 'LastModifyTime', align: 'center', width: 100, formatter: function (val) { return val!=null? $.getTime({ date: val }):""; } },
                 { label: 'ypcode', name: 'ypcode', align: 'center', hidden: true },
                 { label: 'cancel', name: 'iscancel', align: 'center', hidden: true },
-                { label: 'Thực hiệnTrạng thái', name: 'cancel', align: 'center', width: 50, formatter: function (val) { return val == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Thực hiện Trạng thái', name: 'cancel', align: 'center', width: 50, formatter: function (val) { return val == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
                 { label: 'Thao tác', name: 'action', align: 'center', width: 40, formatter: function (val) { return "<input class='btn btn-default btn-md btn_add' type='button' value='Hủy Thực hiện' onclick='cancelRow($(this).parent().parent().attr(\"id\"))'/>";} },
             ],
             pager: "#gridPager",
@@ -186,7 +186,7 @@
         }
         $.modalOpen({
             id: "InpatientVitalSignsForm",
-            title: "Test daNhập",
+            title: "Test da Nhập",
             url: "/NurseManage/OrderAudit/Inputresults",
             width: "400px",
             height: "200px",
@@ -202,7 +202,7 @@
                         success: function (data) {
                             RefreshOrder();
                             if (!!data && data.state == "success") {
-                                $.modalMsg('Test daThực hiệnthành công', 'success');
+                                $.modalMsg('Test da Thực hiện thành công', 'success');
                             }
                             else if (!!data && data.state == "error") {
                                 $.modalMsg(data.message, 'error');

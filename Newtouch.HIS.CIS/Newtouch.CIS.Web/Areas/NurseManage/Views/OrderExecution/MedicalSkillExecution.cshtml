@@ -1,6 +1,6 @@
 @using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "Kỹ thuật y tếQuản lý-Kỹ thuật y tếKhoaThực hiện";
+    ViewBag.Title = "Kỹ thuật y tế Quản lý-Kỹ thuật y tế Khoa Thực hiện";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -121,33 +121,33 @@
             colModel: [
                 { label: 'Id', name: 'Id', align: 'center', width: 50, key: true, hidden: true },
                 { label: 'cfh', name: 'cfh', align: 'left',hidden:true },
-                { label: 'Bệnh nhânLoại', name: 'hzlx', width: 60, align: 'left' },
+                { label: 'Bệnh nhân Loại', name: 'hzlx', width: 60, align: 'left' },
                 { label: 'Số khám bệnh/Số nhập viện', name: 'mzzyh', width: 90, align: 'left' },
                 { label: 'Tên bệnh nhân', name: 'hzxm', align: 'center', width: 80 },
                 { label: 'CMND/CCCD', name: 'zjh', align: 'center', width: 120 },
                 { label: 'cflx', name: 'cflx', align: 'center', width: 80 ,hidden:true},
                 { label: 'Loại chi phí', name: 'cflxstr', align: 'center', width: 80 },
                 { label: 'Số phiếu', name: 'sqdh', align: 'center', width: 130 },
-                { label: 'PhiếuLoại', name: 'sqdlx', align: 'center', width: 70 },
+                { label: 'Phiếu Loại', name: 'sqdlx', align: 'center', width: 70 },
                 { label: 'Tên mục', name: 'ztmc', width: 90, align: 'left' },
                 { label: 'Quy cách', name: 'gg', width: 50, align: 'left' },
                 { label: 'Đơn vị', name: 'dw', width: 50, align: 'left' },
-                { label: 'Chi phíSố lượng', name: 'sl', width: 50, align: 'left' },
+                { label: 'Chi phí Số lượng', name: 'sl', width: 50, align: 'left' },
                 { label: 'dj', name: 'dj', width: 50, align: 'left', hidden: true },
                 { label: 'Số tiền', name: 'je', width: 50, align: 'left' },
                 { label: 'Người thực hiện', name: 'zxr', width: 70, align: 'left' },
                 { label: 'Thực hiện Ngày', name: 'zxrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
                 { label: 'Khoa thực hiện', name: 'zxksmc', width: 100, align: 'left' },
                 { label: 'Người ghi nhận chi phí', name: 'jzr', width: 80, align: 'left' },
-                { label: 'Ghi nhận chi phíThời gian', name: 'kdrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Ghi nhận chi phí Thời gian', name: 'kdrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
                 { label: 'zxks', name: 'zxks', width: 100, align: 'left', hidden: true },
                 { label: 'kdks', name: 'kdks', width: 100, align: 'left', hidden: true },
                 { label: 'kdys', name: 'kdys', width: 100, align: 'left', hidden: true },
                 { label: 'shr', name: 'shr', width: 100, align: 'left', hidden: true },
                 { label: 'ztId', name: 'ztId', width: 100, align: 'left', hidden: true },
                 { label: 'ztmc', name: 'ztmc', width: 100, align: 'left', hidden: true },
-                { label: 'Lập phiếuKhoa', name: 'kdksmc', width: 100, align: 'left' },
-                { label: 'Lập phiếuBác sĩ', name: 'kdysmc', width: 100, align: 'left' }
+                { label: 'Lập phiếu Khoa', name: 'kdksmc', width: 100, align: 'left' },
+                { label: 'Lập phiếu Bác sĩ', name: 'kdysmc', width: 100, align: 'left' }
             ],
             pager: "#gridPager",
             sortname: " kdrq asc,sqdh",
