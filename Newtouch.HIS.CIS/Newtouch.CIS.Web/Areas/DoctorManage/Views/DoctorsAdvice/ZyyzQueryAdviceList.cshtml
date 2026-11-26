@@ -46,7 +46,7 @@
         <table class="form" style="margin-left:5px;">
             <tr>
                 <td colspan="3" id="btnKeywordTypeGourp">
-                    <input type="button" id="btn_dryz" class="panelposition btn btn-default btn-md" value="Trong ngàyY lệnh">
+                    <input type="button" id="btn_dryz" class="panelposition btn btn-default btn-md" value="Trong ngày Y lệnh">
                     <input type="button" id="btn_cqyz" class="panelposition btn btn-default btn-md" value="Y lệnh dài hạn">
                     <input type="button" id="btn_lsyz" class="panelposition btn btn-default btn-md" value="Y lệnh tạm thời">
                     <span style="margin:auto 5px">|</span>
@@ -60,8 +60,8 @@
                 </td>
                 <td class="formValue" style="width:15%;margin-left:10px">
                     <div id="panelposition" style="margin-left:30px">
-                        <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="qb" />Tất cảY lệnh</label>
-                        <label><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" value="yx" />Hiệu lựcY lệnh</label>
+                        <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="qb" />Tất cả Y lệnh</label>
+                        <label><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" value="yx" />Hiệu lực Y lệnh</label>
                     </div>
                 </td>
                 <th class="formTitle">Ngày bắt đầu:</th>
@@ -89,15 +89,15 @@
             <td>
                 <label style="height:7px;width:25px;background-color:blue; border:1px solid #ddd"></label>
             </td>
-            <td>Thực hiệnDài hạn/Tạm thời</td>
+            <td>Thực hiện Dài hạn/Tạm thời</td>
             <td>
                 <label style="height:7px;width:25px;background-color:red; border:1px solid #ddd"></label>
             </td>
-            <td>Hủy bỏTạm thời</td>
+            <td>Hủy bỏ Tạm thời</td>
             <td>
                 <label style="height:7px;width:25px;background-color:grey; border:1px solid #ddd"></label>
             </td>
-            <td>DừngDài hạn</td>
+            <td>Dừng Dài hạn</td>
             <td>
                 <label style="height:7px;width:25px;background-color:black;  border:1px solid #ddd"></label>
             </td>
@@ -293,7 +293,7 @@
             rownumbers: true,
             rowNum: 100, //mỗitrangHiển thịghi chépsố
             colModel: [
-                { label: 'Y lệnhID', name: 'Id', align: 'center', width: 50, hidden: true },
+                { label: 'Y lệnh ID', name: 'Id', align: 'center', width: 50, hidden: true },
                 {label: 'Loại y lệnh', name: 'yzlb', align: 'center', width: 50},
                 {
                     label: 'Loại y lệnh', name: 'yzlx', align: 'center', width: 50, formatter: function (val) {
@@ -321,7 +321,7 @@
                     label: 'Thời gian dừng', name: 'tzsj', align: 'center', width: 110, formatter: "date",
                     formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: 'DừngBác sĩ', name: 'tzr', align: 'center', width: 50 },
+                { label: 'Dừng Bác sĩ', name: 'tzr', align: 'center', width: 50 },
 				{ label: 'Người thực hiện', name: 'zxr', align: 'center', width: 50 },
 				{ label: 'Khoa thực hiện', name: 'deptName', align: 'center', width: 60 },
                 { label: 'yztag', name: 'yztag', align: 'center', hidden: true },
@@ -367,7 +367,7 @@
                  },
                 { label: 'Thao tác', name: 'cz', align: 'center', width: 70, title: false , formatter: function (val, option, row) {
                         if (row.isfsyz != null && row.isfsyz != "") {
-                            return "<span style='color:red' onclick='DeleteBind(\"" + row.Id + "\",\"" + row.yzlb +"\")' title='Hủy bỏDừng' >Hủy bỏDừng</span>";
+                            return "<span style='color:red' onclick='DeleteBind(\"" + row.Id + "\",\"" + row.yzlb +"\")' title='Hủy bỏ Dừng' >Hủy bỏ Dừng</span>";
                         }
                         else {
                             return "";
@@ -453,7 +453,7 @@
     }
     function newtouch_event_f6() {
         var zyh = currentobj.zyh;
-        top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Phiếu theo dõi 3 chỉ sốTra cứu(Điều dưỡng)", enName: "", url: "/NurseManage/InpatientVitalSigns/TemperatureChartIndex?zyh=" + zyh + "&yshsbz=2" });
+        top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Phiếu theo dõi 3 chỉ số Tra cứu(Điều dưỡng)", enName: "", url: "/NurseManage/InpatientVitalSigns/TemperatureChartIndex?zyh=" + zyh + "&yshsbz=2" });
     }
     function btn_search() {
         last = "";
