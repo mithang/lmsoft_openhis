@@ -212,7 +212,7 @@
             type: "GET",
             url: "@Url.Action("GetOperatPatSearchList")",
             loading: true,
-            loadingtext: "ĐangTảiDanh sách bệnh nhân, Vui lòng đợi trong giây lát...",
+            loadingtext: "Đang Tải Danh sách bệnh nhân, Vui lòng đợi trong giây lát...",
             success: function (ajaxresp) {
                 newtouch_event_f4();
                 leftdata = ajaxresp;
@@ -231,7 +231,7 @@
             url: "@Url.Action("getSupplement")",
             data: { zyh: $("#zyh").html() },
             loading: true,
-            loadingtext: "ĐangTảiChi phíDanh sách, Vui lòng đợi trong giây lát...",
+            loadingtext: "Đang Tải Chi phí Danh sách, Vui lòng đợi trong giây lát...",
             success: function (ajaxresp) {
                 $("#gridFeeList").resetSelection();
                 $("#gridFeeList").clearGridData();
@@ -282,7 +282,7 @@
             {
                 label: "Số tiền", name: "zje", width: 80, align: "left", formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
             }, {
-                label: "Thực hiệnTrạng thái", name: "zxzt", width: 50, align: "left", formatter: function (cellvalue) {
+                label: "Thực hiện Trạng thái", name: "zxzt", width: 50, align: "left", formatter: function (cellvalue) {
                     if (cellvalue == "0") {
                         return "Chưa thực hiện"
                     }
@@ -327,7 +327,7 @@
         },
         itemdbclickhandler: function ($thistr, $thisinput) {
             if ($.trim($("#zyh").html) == "") {
-                $.modalAlert("ChưaChọnBệnh nhân", "warning");
+                $.modalAlert("Chưa Chọn Bệnh nhân", "warning");
                 return;
             }
             if ($thisinput.attr('id') === 'sfxmmc') {
@@ -352,7 +352,7 @@
     //Thêm
     function newtouch_event_f2() {
         if ($("#zyh").html() == "") {
-            $.modalAlert("ThiếuBệnh nhânThông tin cơ bản", 'warning');
+            $.modalAlert("Thiếu Bệnh nhân Thông tin cơ bản", 'warning');
             return;
         }
 
@@ -398,7 +398,7 @@
     //Sửa
     function newtouch_event_f3() {
         if ($("#zyh").html() == "") {
-            $.modalAlert("ThiếuBệnh nhânThông tin cơ bản", 'warning');
+            $.modalAlert("Thiếu Bệnh nhân Thông tin cơ bản", 'warning');
             return;
         }
         if (editingNewid) {
@@ -514,7 +514,7 @@
     function newtouch_event_f8() {
 
         if ($("#zyh").html() == "") {
-            $.modalAlert("ThiếuBệnh nhânThông tin cơ bản", 'warning');
+            $.modalAlert("Thiếu Bệnh nhân Thông tin cơ bản", 'warning');
             return;
         }
         var dataIDs = $("#gridFeeList").jqGrid('getDataIDs');
@@ -605,11 +605,11 @@
     //Kiểm trađangởSửacủaDữ liệu(chờGửi)củaxongchỉnhtính
     function checkEditingRowData(rowData) {
         if (!rowData.xmdm || !rowData.xmmc || !rowData.yzlb || !rowData.dxmdm) {
-            $.modalAlert("Vui lòng chọnMục thu phí", 'warning');
+            $.modalAlert("Vui lòng chọn Mục thu phí", 'warning');
             return;
         }
         if (!!!rowData.sl || isNaN(rowData.sl)) {
-            $.modalAlert("ThiếuSố lượng", 'warning');
+            $.modalAlert("Thiếu Số lượng", 'warning');
             return;
         }
         //Thường quy,Số lượng
@@ -618,13 +618,13 @@
             return;
         }
         else if (!!!rowData.dw) {
-            $.modalAlert("ThiếuMụcĐơn vịThông tin", 'warning');
+            $.modalAlert("Thiếu Mục Đơn vị Thông tin", 'warning');
         }
         else if (!((/^(([1-9][0-9]*\.[0-9][0-9]*)|([0]\.[0-9][0-9]*)|([1-9][0-9]*)|([0]{1}))$/).test(rowData.dj))) {
             $.modalAlert("Đơn giá phải là số không nhỏ hơn 0", 'warning');
         }
         else if (rowData.dj == "" || isNaN(rowData.dj)) {
-            $.modalAlert("ThiếuMụcĐơn giáThông tin", 'warning');
+            $.modalAlert("Thiếu Mục Đơn giá Thông tin", 'warning');
         }
         else {
             return true;
