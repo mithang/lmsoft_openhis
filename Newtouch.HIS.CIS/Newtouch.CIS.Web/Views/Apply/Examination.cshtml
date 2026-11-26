@@ -31,7 +31,7 @@
                 <input id="txt_jc_lcyx" name="txt_jc_lcyx" type="text" class="form-control" />
             </td>
             <td class="formTitle">
-                Đề nghịGhi chú
+                Đề nghị Ghi chú
             </td>
             <td class="formValue">
                 <input id="txt_jc_sqbz" name="txt_jc_sqbz" type="text" class="form-control" />
@@ -42,10 +42,10 @@
         <tr>
             <td colspan="4"></td>
             <td>
-                <input type="button" class="btn btn-primary" value="Quay lạiBệnh án" style="display:table-cell" onclick="SaveJCbyZT()" />
+                <input type="button" class="btn btn-primary" value="Quay lại Bệnh án" style="display:table-cell" onclick="SaveJCbyZT()" />
             </td>
             <td>
-                <input type="button" class="btn btn-primary" value="F3:LưuPhiếu" style="display:table-cell" onclick="SaveJCbyZT('1')" />
+                <input type="button" class="btn btn-primary" value="F3:Lưu Phiếu" style="display:table-cell" onclick="SaveJCbyZT('1')" />
             </td>
         </tr>
     </table>
@@ -96,7 +96,7 @@
     function gridjc() {
         var $gridjc = $("#gridjc");
         $gridjc.dataGrid({
-            caption: "ChọnBộ mẫu",
+            caption: "Chọn Bộ mẫu",
             height: 130,
             //multiselect: true,
             unwritten: false,
@@ -113,10 +113,10 @@
                 },
                 { label: 'Đơn vị', name: 'dw', width: 120, align: 'left' },
                 { label: 'zxks', name: 'zxks', width: 60, align: 'left', hidden: true },
-                { label: 'Bộ mẫuID', name: 'ztId', width: 60, align: 'left', key: true, hidden: true },
+                { label: 'Bộ mẫu ID', name: 'ztId', width: 60, align: 'left', key: true, hidden: true },
                 { label: 'Tên bộ mẫu', name: 'ztmc', width: 120, align: 'center' },
                 { label: 'Khoa thực hiện', name: 'zxksmc', width: 80, align: 'left' },
-                { label: 'Có hay khôngBảo hiểm y tế', name: 'sfyb', width: 60, align: 'center' }
+                { label: 'Có hay không Bảo hiểm y tế', name: 'sfyb', width: 60, align: 'center' }
             ],
             //onSelectRow: function (rowid, status) {
             //    gridjccheck([rowid], status);
@@ -244,10 +244,10 @@
                 { label: 'Đơn giá', name: 'dj', width: 80, align: 'left' },
                 { label: 'Đơn vị', name: 'dw', width: 120, align: 'left' },
                 { label: 'zxks', name: 'zxks', width: 60, align: 'left', hidden: true },
-                { label: 'Bộ mẫuID', name: 'ztId', width: 60, align: 'left', editable: true, hidden: true },
+                { label: 'Bộ mẫu ID', name: 'ztId', width: 60, align: 'left', editable: true, hidden: true },
                 { label: 'Tên bộ mẫu', name: 'ztmc', width: 120, align: 'center' },
                 { label: 'Khoa thực hiện', name: 'zxksmc', width: 120, align: 'left' },
-                { label: 'Có hay khôngBảo hiểm y tế', name: 'sfyb', width: 80, align: 'center' }
+                { label: 'Có hay không Bảo hiểm y tế', name: 'sfyb', width: 80, align: 'center' }
             ]
         });
     }
@@ -360,7 +360,7 @@
         if (!(justUpdateAlldataArray == true)) {
             if (savetodb == '1') {
                 if (SaveData(false, function () {
-                    $.modalAlert("PhiếuLưu thành công", 'success');
+                    $.modalAlert("Phiếu Lưu thành công", 'success');
                     thsNewJcCfh = GetNewPresNo();
                 })) {
                     $("#gridjc").clearGridData();
@@ -413,7 +413,7 @@
             caption: "Chi tiết phiếu đã kê,Tổng số tiền phiếu:0.00",
             editurl: "clientArray",
             colModel: [
-                { label: 'Bộ mẫuID', name: 'ztId', width: 60, align: 'left', key: true, editable: true,hidden:true },
+                { label: 'Bộ mẫu ID', name: 'ztId', width: 60, align: 'left', key: true, editable: true,hidden:true },
                 { label: 'mbId', name: 'mbId', width: 60, align: 'left', hidden: true },
                 { label: 'Tên bộ mẫu', name: 'ztmc', width: 150, align: 'left' },
                 { label: 'Vị trí', name: 'bw', editable: true, width: 150, align: 'left' },
@@ -538,7 +538,7 @@
         if (!(justUpdateAlldataArray == true)) {
             if (savetodb == '1') {
                 if (SaveData(false, function () {
-                    $.modalAlert("PhiếuLưu thành công", 'success');
+                    $.modalAlert("Phiếu Lưu thành công", 'success');
                     thsNewJcCfh = GetNewPresNo();
                 })) {
                     $("#gridjc").clearGridData();
