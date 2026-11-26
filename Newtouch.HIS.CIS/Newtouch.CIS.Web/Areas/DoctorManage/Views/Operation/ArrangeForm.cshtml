@@ -61,7 +61,7 @@
                     <input id="rq" name="rq" type="text" width="120" class="required form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" />
                 </td>
                 <td></td>
-                <td class="formTitle"><span class="required">*</span>Phẫu thuậtĐịa điểm:</td>
+                <td class="formTitle"><span class="required">*</span>Phẫu thuật Địa điểm:</td>
                 <td class="formValue" colspan="2">
                     <select id="ssdd" name="ssdd" class="form-control required">
                         <option value="">==Vui lòng chọn==</option>
@@ -80,7 +80,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>Phẫu thuậtBác sĩ:</td>
+                <td class="formTitle"><span class="required">*</span>Phẫu thuật Bác sĩ:</td>
                 <td class="formValue">
                     <input type="text" id="ssys" name="ssys" class="form-control form-an" onblur="getValue('ssys');" />
                     <input type="hidden" id="hssys" name="hssys" /><input type="hidden" id="hssysName" name="hssysName" />
@@ -88,7 +88,7 @@
             </tr>
             <tr id="tr_sszs"></tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>Gây mêPhương thức:</td>
+                <td class="formTitle"><span class="required">*</span>Gây mê Phương thức:</td>
                 <td class="formValue">
                     <select id="mzfs" name="mzfs" class="form-control required">
                         <option value="">==Vui lòng chọn==</option>
@@ -247,7 +247,7 @@
 
     function AcceptClick(callback) {
         if ($.trim(keyValue) == '') {
-            $.modalAlert("Vui lòng chọnPhẫu thuậtY lệnh", "warning");
+            $.modalAlert("Vui lòng chọn Phẫu thuật Y lệnh", "warning");
             return;
         }
         if (!$("#form1").formValid()) {
@@ -258,30 +258,30 @@
         data.zyh = $('#zyh').html();
         var ssrq = $("#rq").val();
         if ($.trim(ssrq) == "") {
-            $.modalAlert("Vui lòng chọnPhẫu thuật Ngày", "warning");
+            $.modalAlert("Vui lòng chọn Phẫu thuật Ngày", "warning");
             return;
         }
         data.aprq = $("#rq").val();
         var ssdd = $("#ssdd").val();
         if ($.trim(ssdd) == "") {
-            $.modalAlert("Vui lòng điềnPhẫu thuậtĐịa điểm", "warning");
+            $.modalAlert("Vui lòng điền Phẫu thuật Địa điểm", "warning");
             return;
         }
         data.ssAddr = ssdd;
         data.urgent = $('input:radio[name=urgent]:checked').val();
         if (!data.urgent || $.trim(data.urgent) == "") {
-            $.modalAlert("Vui lòng chọnCó hay khôngKhẩn", "warning");
+            $.modalAlert("Vui lòng chọn Có hay không Khẩn", "warning");
             return;
         }
         //từ điển
         data.surgeonId = $('#ssys').attr('data-label');
         if (!data.surgeonId || $.trim(data.surgeonId) == "") {
-            $.modalAlert("Vui lòng chọnPhẫu thuậtBác sĩ", "warning");
+            $.modalAlert("Vui lòng chọn Phẫu thuật Bác sĩ", "warning");
             return;
         }
         data.surgeonName = $('#ssys').val();
         if (!data.surgeonName || $.trim(data.surgeonName) == "") {
-            $.modalAlert("Vui lòng chọn lạiPhẫu thuậtBác sĩ", "warning");
+            $.modalAlert("Vui lòng chọn lại Phẫu thuật Bác sĩ", "warning");
             return;
         }
 
@@ -308,7 +308,7 @@
         data.assistantName = sszsNames;
         data.anesthesiaType = $("#mzfs").val();
         if (!data.anesthesiaType || $.trim(data.anesthesiaType) == "") {
-            $.modalAlert("Vui lòng chọnGây mêPhương thức", "warning");
+            $.modalAlert("Vui lòng chọn Gây mê Phương thức", "warning");
             return;
         }
         data.remark = $('#remark').val();
