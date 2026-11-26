@@ -1,7 +1,7 @@
 @model dynamic
 
 @{
-    ViewBag.Title = "Bệnh nhânRa khu";
+    ViewBag.Title = "Bệnh nhân Ra khu";
     Layout = "~/Views/Shared/_Form.cshtml";
     var isOpendiags = SysConfigReader.String("Inpatient_OutAre");
     var isopenPriorReview = (ViewBag.isopenPriorReview);//CóKhôngbậttrícó thểPhê duyệt
@@ -314,7 +314,7 @@
                 success: function (reqdata) {
                     if (reqdata) {
                         if (reqdata.message != "") {
-                            $.modalAlert("DrgGọi giao diệnthất bại:" + reqdata.message, 'warning');
+                            $.modalAlert("Drg Gọi giao diện thất bại:" + reqdata.message, 'warning');
                         }
                     }
                 }

@@ -42,7 +42,7 @@
                     <th class="formTitle">Y lệnh dài hạn/tạm thời:</th>
                     <td class="formValue">
                         <select id="CLSelect" name="CLSelect"  class="form-control required">
-                            <option value="">Tất cảY lệnh</option>
+                            <option value="">Tất cả Y lệnh</option>
                             <option value="Tạm thời">Y lệnh tạm thời</option>
                             <option value="Dài hạn">Y lệnh dài hạn</option>
                         </select>
@@ -228,7 +228,7 @@
     function submitForm() {
         var data = $("#gridList").jqGrid('getRowData_AllLine', true, true);
         if(!data || data.length==0){
-            $.modalAlert("Vui lòng chọnChi tiếtTiến hànhSao chép", 'warning');
+            $.modalAlert("Vui lòng chọn Chi tiết Tiến hành Sao chép", 'warning');
             return;
         }
         var yzlistId = "";

@@ -69,11 +69,11 @@
     function Orderdiagnosis() {
         var obj = new Object();
         if ($('#txt_zdsj').val() == null || $('#txt_zdsj').val() == "") {
-            $.modalAlert("CầnĐiềnThời gian!", "warning");
+            $.modalAlert("Cần Điền Thời gian!", "warning");
             return;
         }
         if ($('#txt_cyzddm').val() == null || $('#txt_cyzddm').val() == "") {
-            $.modalAlert("CầnĐiềnChẩn đoán!", "warning");
+            $.modalAlert("Cần Điền Chẩn đoán!", "warning");
             return;
         }
         obj.zdsj = $('#txt_zdsj').val();
