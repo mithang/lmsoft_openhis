@@ -1,7 +1,7 @@
 
 @using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "Điện tửĐơn thuốcQuản lý";
+    ViewBag.Title = "Điện tử Đơn thuốc Quản lý";
     Layout = "~/Views/Shared/_Index.cshtml";
     var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
 }
@@ -225,7 +225,7 @@
         }
         $.modalOpen({
             id: "backForm",
-            title: "Điện tửĐơn thuốcHủy bỏ",
+            title: "Điện tử Đơn thuốc Hủy bỏ",
             url: "/DoctorManage/ElectronicPrescription/backForm?hisId=" + rowData.mzh + "&cfh=" + rowData.cfh+"&cxys="+ '@(opr.rygh)',
             width: "20%",
             height: "20%",
@@ -255,7 +255,7 @@
         }
         $.modalOpen({
             id: "cfForm",
-            title: "Điện tửĐơn thuốcTra cứu",
+            title: "Điện tử Đơn thuốc Tra cứu",
             url: "/DoctorManage/ElectronicPrescription/cfForm?hisId=" + rowData.mzh + "&cfh=" + rowData.cfh,
             width: "90%",
             height: "90%",
@@ -277,7 +277,7 @@
         }
         $.modalOpen({
             id: "examForm",
-            title: "Điện tửĐơn thuốcDuyệtKết quả",
+            title: "Điện tử Đơn thuốc Duyệt Kết quả",
             url: "/DoctorManage/ElectronicPrescription/examForm?hisId=" + rowData.mzh + "&cfh=" + rowData.cfh,
             width: "35%",
             height: "32%",
@@ -299,7 +299,7 @@
         }
         $.modalOpen({
             id: "medicineForm",
-            title: "Điện tửĐơn thuốcLấy thuốcKết quả",
+            title: "Điện tử Đơn thuốc Lấy thuốc Kết quả",
             url: "/DoctorManage/ElectronicPrescription/medicineForm?hisId=" + rowData.mzh + "&cfh=" + rowData.cfh,
             width: "60%",
             height: "45%",
