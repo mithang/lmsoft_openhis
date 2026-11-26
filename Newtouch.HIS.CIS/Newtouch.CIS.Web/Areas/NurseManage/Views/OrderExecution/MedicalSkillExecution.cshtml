@@ -69,7 +69,7 @@
                 <td></td>
                 <td class="formValue" >
                     <input type="button" id="btn_Exec" class="btn btn-primary btn-md" style="margin-left: 0px; " value="Thực hiện hàng loạt" />
-                    <input type="button" id="btn_CancalExec" class="btn btn-primary btn-md" style="margin-left: 0px; background:red" value="HủyThực hiện" />
+                    <input type="button" id="btn_CancalExec" class="btn btn-primary btn-md" style="margin-left: 0px; background:red" value="Hủy Thực hiện" />
                 </td>
             </tr>
         </table>
@@ -327,7 +327,7 @@
             dataType: "json",
             success: function (ajaxresp) {
                 if (ajaxresp.state === "success") {
-                    $.modalAlert("HủyThực hiệnthành công", 'warning');
+                    $.modalAlert("Hủy Thực hiện thành công", 'warning');
 
                     btn_search();
                 }

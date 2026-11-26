@@ -129,7 +129,7 @@
                 { label: 'ypcode', name: 'ypcode', align: 'center', hidden: true },
                 { label: 'cancel', name: 'iscancel', align: 'center', hidden: true },
                 { label: 'Thực hiệnTrạng thái', name: 'cancel', align: 'center', width: 50, formatter: function (val) { return val == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: 'Thao tác', name: 'action', align: 'center', width: 40, formatter: function (val) { return "<input class='btn btn-default btn-md btn_add' type='button' value='HủyThực hiện' onclick='cancelRow($(this).parent().parent().attr(\"id\"))'/>";} },
+                { label: 'Thao tác', name: 'action', align: 'center', width: 40, formatter: function (val) { return "<input class='btn btn-default btn-md btn_add' type='button' value='Hủy Thực hiện' onclick='cancelRow($(this).parent().parent().attr(\"id\"))'/>";} },
             ],
             pager: "#gridPager",
             sortname: 'CreateTime Desc',
@@ -154,7 +154,7 @@
             success: function (data) {
                 RefreshOrder();
                 if (!!data && data.state == "success") {
-                    $.modalMsg('Test daHủyThực hiệnthành công', 'success');
+                    $.modalMsg('Test da Hủy Thực hiện thành công', 'success');
                 }
                 else if (!!data && data.state == "error") {
                     $.modalMsg(data.message, 'error');

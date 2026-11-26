@@ -2819,10 +2819,10 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             return;
         }
         if (!!!jzObject.jzId) {
-            $.modalAlert("ChưaTạoBệnh án", 'warning');
+            $.modalAlert("Chưa Tạo Bệnh án", 'warning');
             return;
         }
-        $.modalConfirm("Xác nhậnHủy bỏBệnh án",
+        $.modalConfirm("Xác nhận Hủy bỏ Bệnh án",
             function(flag) {
                 if (flag) {
                     $.najax({
@@ -2831,7 +2831,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         data: { jzId: jzObject.jzId },
                         type: "POST",
                         success: function(data) {
-                            $.modalAlert("Hủy bỏthành công", 'warning');
+                            $.modalAlert("Hủy bỏ thành công", 'warning');
                             //Xóa trắng tất cả văn bản, đơn thuốc, đơn thuốc lịch sử, grid danh sách
                             newtouch_globalevent_f4();
                         }
@@ -4665,7 +4665,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 						success: function (ret) {
 							upload = ret.status;
 							if (upload == 'Success') {
-								$.modalAlert("Hủy bỏthành công", 'success');
+								$.modalAlert("Hủy bỏ thành công", 'success');
 								removeCfFromWindowAlldataArray(type, cfid);
 							} else {
 								errorCode = ret.errorCode;
@@ -4899,7 +4899,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     success: function (ajaxResp) {
                         if (ajaxResp.state == 'success') {
                             if (!ajaxResp.message) {
-								$.modalAlert("Hủy bỏthành công", 'success');
+								$.modalAlert("Hủy bỏ thành công", 'success');
 								if (type == "wzhccf") {
 									WZDJSZuoFei(cfh);
 								}
