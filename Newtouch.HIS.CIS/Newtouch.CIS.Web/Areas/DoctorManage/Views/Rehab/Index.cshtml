@@ -388,7 +388,7 @@
 		$("#" + rowid + "_zxksmc").newtouchBatchFloatingSelector({
 			height: 170,
 			width: 300,
-			caption: "ChọnKhoa",
+			caption: "Chọn Khoa",
             url: '/Rehab/GetSfxmZxksSelectJson2',
 			clickautotrigger: true,
 			ajaxparameters: function ($thisinput) {
@@ -580,7 +580,7 @@
 				$(this)[i].ysgh = '@ViewBag.ysgh';
 				var sl = calitemslByobj(this);
 				if (!sl && savetodb == '1') {
-					$.modalAlert("Tính toánSố lượngthất bại", "warning");
+					$.modalAlert("Tính toán Số lượng thất bại", "warning");
 					flag = true;
 					return false;
 				} else if (sl) {
@@ -588,7 +588,7 @@
 				}
 				if (savetodb == '1') {
 					if (this.xmmc == undefined || this.xmmc == "") {
-						$.modalAlert("ThiếuMục", "warning");
+						$.modalAlert("Thiếu Mục", "warning");
 						flag = true;
 						return false;
 					}else if(this.zxksmc==undefined ||this.zxksmc==""){
@@ -600,7 +600,7 @@
 						flag = true;
 						return false;
                     } else if (this.kssj < window.currentobj.ryrq) {
-                        $.modalAlert("[" + this.xmmc + "]Thời gian bắt đầuKhông được sớm hơnNhập việnThời gian Ngày nhập viện:" + window.currentobj.ryrq, "warning");
+                        $.modalAlert("[" + this.xmmc + "]Thời gian bắt đầu Không được sớm hơn Nhập viện Thời gian Ngày nhập viện:" + window.currentobj.ryrq, "warning");
                         flag = true;
                         return false;
                     } else if (this.dw == undefined || this.dw == "") {
@@ -612,7 +612,7 @@
 						flag = true;
 						return false;
 					}else if (this.pcmc == undefined || this.pcmc == "") {
-						$.modalAlert("ThiếuTần suất", "warning");
+						$.modalAlert("Thiếu Tần suất", "warning");
 						flag = true;
 						return false;
 					}
@@ -734,7 +734,7 @@
 			&& cfItem.dwjls && cfItem.jjcl && cfItem.mczll
 			&& cfItem.mczll >= cfItem.dwjls
 			&& cfItem.pcmc && cfItem.pcCode && cfItem.zxcs)){
-			$.modalAlert("Trích dẫnGhi chépDữ liệuKhông đầy đủ(Tự độngBỏ qua)", 'warning');
+			$.modalAlert("Trích dẫn Ghi chép Dữ liệu Không đầy đủ (Tự động Bỏ qua)", 'warning');
 			return false;
 		}
 		cfItem.Id = Math.random().toString() + new Date().getMilliseconds();
@@ -750,7 +750,7 @@
 			}
 		});
 		if (isRepeatedAdd) {
-			$.modalAlert("Đơn lẻĐơn thuốcchi tiết trong không được trùng lặp(Tự độngBỏ qua)", 'warning');
+			$.modalAlert("Đơn lẻ Đơn thuốc chi tiết trong không được trùng lặp (Tự động Bỏ qua)", 'warning');
 			return false;
 		}
 		else {
